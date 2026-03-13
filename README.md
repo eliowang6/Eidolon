@@ -9,16 +9,16 @@
 ### And Your Super AI Companion
 
 <p>
-  <a href="https://github.com/YOUR_ORG/YOUR_REPO/stargazers">
+  <a href="https://github.com/eliowang6/Eidolon/stargazers">
     <img src="https://img.shields.io/github/stars/eliowang6/Eidolon?style=for-the-badge&logo=github&color=8b5cf6" alt="stars" />
   </a>
-  <a href="https://github.com/YOUR_ORG/YOUR_REPO/network/members">
+  <a href="https://github.com/eliowang6/Eidolon/network/members">
     <img src="https://img.shields.io/github/forks/eliowang6/Eidolon?style=for-the-badge&logo=github&color=06b6d4" alt="forks" />
   </a>
-  <a href="https://github.com/YOUR_ORG/YOUR_REPO/issues">
+  <a href="https://github.com/eliowang6/Eidolon/issues">
     <img src="https://img.shields.io/github/issues/eliowang6/Eidolon?style=for-the-badge&logo=github&color=f43f5e" alt="issues" />
   </a>
-  <a href="https://github.com/YOUR_ORG/YOUR_REPO/discussions">
+  <a href="https://github.com/eliowang6/Eidolon/discussions">
     <img src="https://img.shields.io/github/discussions/eliowang6/Eidolon?style=for-the-badge&logo=github&color=14b8a6" alt="discussions" />
   </a>
 </p>
