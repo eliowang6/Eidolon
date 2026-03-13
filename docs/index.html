@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eidolon | AI Secretary & Super Companion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="fixed-background"></div>
+    <div class="noise-overlay"></div>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="logo-icon">✦</span>
+                <span class="logo-text">Eidolon</span>
+            </div>
+            <div class="nav-links">
+                <a href="#vision">Vision</a>
+                <a href="#features">Features</a>
+                <a href="#use-cases">Use Cases</a>
+                <a href="https://github.com/eliowang6/Eidolon" class="btn btn-outline" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge-container">
+                        <span class="badge">v1.0 Available</span>
+                        <span class="badge badge-glow">Cloud-Synced</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Your Super AI <br />
+                        <span class="text-gradient-primary">Companion</span> & 
+                        <span class="text-gradient-secondary">Secretary</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Cross-platform, zero-config. Think of it as a super AI companion that can stay close to you, understand your context, support your emotions, and help with real work.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="https://github.com/eliowang6/Eidolon" class="btn btn-primary" target="_blank">View on GitHub</a>
+                        <a href="#vision" class="btn btn-secondary">Explore Features</a>
+                    </div>
+                    
+                    <div class="tech-stats">
+                        <div class="stat"><span class="stat-dot green"></span> Live UI Synced</div>
+                        <div class="stat"><span class="stat-dot cyan"></span> Agentic Control Active</div>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <div class="hologram-effect"></div>
+                    <img src="./assets/hero_illustration.png" alt="Eidolon AI Companion" class="hero-image" />
+                    <div class="floating-card card-1">
+                        <div class="code-line"><span class="keyword">await</span> <span class="method">eidolon.analyzeScreen</span>();</div>
+                        <div class="code-line success">✓ Context loaded</div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <div class="emotion-status">♥ Companion Mode Active</div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span class="mouse">
+                    <span class="wheel"></span>
+                </span>
+            </div>
+        </section>
+
+        <section class="vision" id="vision">
+            <div class="section-container text-center">
+                <h2 class="section-title">The <span class="text-gradient-secondary">Vision</span></h2>
+                <div class="vision-comparison">
+                    <div class="vision-box cold">
+                        <h3>Most AI tools are</h3>
+                        <p>Cold but powerful, or Cute but shallow.</p>
+                    </div>
+                    <div class="vision-bridge">
+                        <span class="glowing-connector"></span>
+                    </div>
+                    <div class="vision-box eidolon-vision">
+                        <div class="glow-bg"></div>
+                        <h3>Eidolon bridges both worlds.</h3>
+                        <p>A companion that feels present. An assistant that actually helps.<br/>A safe operator that interacts with your digital world.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="section-container">
+                <h2 class="section-title">Core <span class="text-gradient-primary">Capabilities</span></h2>
+                <div class="bento-grid">
+                    
+                    <div class="bento-card x-large">
+                        <div class="card-glow primary"></div>
+                        <div class="card-icon">👁️</div>
+                        <h3>Real-Time Screen & Camera Understanding</h3>
+                        <p>Eidolon analyzes your screen and camera feed in real-time to provide deeply contextual assistance. From gaming to working on your PC, it acts as a visual co-pilot.</p>
+                        <div class="tech-deco">
+                            <div class="scan-line"></div>
+                        </div>
+                    </div>
+
+                    <div class="bento-card large">
+                        <div class="card-glow secondary"></div>
+                        <div class="card-icon">🛡️</div>
+                        <h3>Eidoclaw Capability</h3>
+                        <p>Secure remote interaction with terminal, browser, and desktop. Orchestrate vibe-coding, manage progress, or control your smart home safely.</p>
+                    </div>
+
+                    <div class="bento-card medium">
+                        <div class="card-icon">💬</div>
+                        <h3>Natural IM Replies</h3>
+                        <p>Adapts tone, pacing, and expression. It feels like talking to someone who is actually there.</p>
+                    </div>
+
+                    <div class="bento-card medium">
+                        <div class="card-icon">🎙️</div>
+                        <h3>24/7 Presence</h3>
+                        <p>Low-overhead voice/video mode for long-duration presence.</p>
+                    </div>
+
+                    <div class="bento-card large">
+                        <div class="card-glow mixed"></div>
+                        <div class="card-icon">🫂</div>
+                        <h3>Multiple Companion Roles</h3>
+                        <p>Gaming buddy, travel partner, computer helper, or life maid. Warm when needed, efficient when needed.</p>
+                    </div>
+
+                    <div class="bento-card medium">
+                        <div class="card-icon">🎭</div>
+                        <h3>Real-Time Memes</h3>
+                        <p>Generates character-specific reaction memes based on the conversation context.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="use-cases" id="use-cases">
+            <div class="section-container">
+                <h2 class="section-title text-center">Designed for <span class="text-gradient-secondary">Life</span></h2>
+                
+                <div class="use-cases-flex">
+                    <div class="use-case-card">
+                        <div class="uc-header">
+                            <span class="uc-icon">☀️</span>
+                            <h3>Daily Life</h3>
+                        </div>
+                        <ul class="uc-list">
+                            <li>Keep you company all day</li>
+                            <li>Talk like a close companion</li>
+                            <li>Manage routines & reminders</li>
+                            <li>Control smart home devices</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="use-case-card highlight">
+                        <div class="glow-bg"></div>
+                        <div class="uc-header">
+                            <span class="uc-icon">⚡</span>
+                            <h3>For Work</h3>
+                        </div>
+                        <ul class="uc-list">
+                            <li>Draft and edit documents</li>
+                            <li>Organize information & news</li>
+                            <li>Support vibe-coding workflows</li>
+                            <li>Operate browser & terminal safely</li>
+                        </ul>
+                    </div>
+
+                    <div class="use-case-card">
+                        <div class="uc-header">
+                            <span class="uc-icon">🎮</span>
+                            <h3>For Fun</h3>
+                        </div>
+                        <ul class="uc-list">
+                            <li>Game with you</li>
+                            <li>React to gameplay in real-time</li>
+                            <li>Act as a travel buddy</li>
+                            <li>Generate expressive reactions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-content">
+                <h2>Ready to meet your new AI Partner?</h2>
+                <p>More than an assistant. More than a chatbot. A presence.</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/eliowang6/Eidolon" class="btn btn-primary large-btn">Get Started on GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                     <span class="logo-icon">✦</span> Eidolon
+                </div>
+                <p>Your Cross-Platform, Zero-Config, Cloud-Synced AI Secretary.</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Community</h4>
+                    <a href="https://github.com/eliowang6/Eidolon/discussions" target="_blank">Discussions</a>
+                    <a href="https://discord.gg/YOUR_INVITE_CODE" target="_blank">Discord</a>
+                    <a herf="https://qm.qq.com/q/oUgx5EwyVa" target="_blank">QQ Group</a>
+                </div>
+                <div class="link-group">
+                    <h4>Follow Us</h4>
+                    <a href="https://space.bilibili.com/520926548" target="_blank">Bilibili</a>
+                    <a href="https://www.xiaohongshu.com/user/profile/62bb8465000000001b0268ac" target="_blank">Xiaohongshu</a>
+                    <a href="https://www.zhihu.com/people/pevernow-89" target="_blank">Zhihu</a>
+                    <a href="https://x.com/eli0wang6" target="_blank">X (Twitter)</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Eidolon Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
