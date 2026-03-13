@@ -273,7 +273,7 @@ We welcome builders, dreamers, developers, creators, roleplay lovers, AI enthusi
 ## 🔗 Links
 
 <p align="center">
-  <a href="https://discord.gg/YOUR_INVITE_CODE">
+  <a href="https://discord.gg/uBFgfV7y">
     <img src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
   </a>
   <a href="https://space.bilibili.com/520926548">
@@ -291,7 +291,7 @@ We welcome builders, dreamers, developers, creators, roleplay lovers, AI enthusi
   <a href="https://eliowang6.github.io/Eidolon/">
     <img src="https://img.shields.io/badge/Official%20Website-Visit%20Now-111827?style=for-the-badge" alt="Official Website" />
   </a>
-  <a herf="https://qm.qq.com/q/oUgx5EwyVa">
+  <a href="https://qm.qq.com/q/oUgx5EwyVa">
     <img src="https://img.shields.io/badge/QQ%20Group-277703772-12B7F5?style=for-the-badge" alt="QQ Group" />
   </a>
 </p>
