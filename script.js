@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Scroll reveal ──
     const revealEls = document.querySelectorAll(
-        '.vision-card, .cap-card, .scenario-card, .timeline-item, .tech-item, .waitlist-wrapper, .section-header'
+        '.vision-card, .cap-card, .scenario-card, .timeline-item, .tech-item, .waitlist-wrapper, .section-header, .symbiosis-card, .symbiosis-fusion, .story-card, .partner-item'
     );
     revealEls.forEach(el => el.classList.add('reveal'));
     const revealObs = new IntersectionObserver((entries) => {
