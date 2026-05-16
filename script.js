@@ -1,113 +1,116 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Simple scroll reveal animation for bento cards
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.bento-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
-        observer.observe(card);
-    });
-
-    // Navbar blur effect on scroll
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(10, 10, 15, 0.9)';
-            navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
-        } else {
-            navbar.style.background = 'rgba(10, 10, 15, 0.7)';
-            navbar.style.boxShadow = 'none';
-        }
-    });
-
-    // 3D Tilt Effect for Bento Cards
-    const cards = document.querySelectorAll('.bento-card');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            // Calculate rotation (max 10 degrees)
-            const rotateX = (-y / (rect.height / 2)) * 10;
-            const rotateY = (x / (rect.width / 2)) * 10;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-            card.style.transition = 'transform 0.5s ease';
-        });
-
-        card.addEventListener('mouseenter', () => {
-            card.style.transition = 'none'; // Remove transition during continuous movement
-        });
-    });
-
-    // Typing effect logic
-    const words = ["Secretary", "Maid", "Partner", "Co-pilot", "Agent"];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typingElement = document.getElementById('typing-text');
-
+    // ── Typing effect ──
+    const words = ["Today.", "Now.", "Together.", "Forever."];
+    let wordIdx = 0, charIdx = 0, deleting = false;
+    const el = document.getElementById('typing-text');
     function type() {
-        const currentWord = words[wordIndex];
+        const w = words[wordIdx];
+        if (deleting) { charIdx--; } else { charIdx++; }
+        el.textContent = w.substring(0, charIdx);
+        let speed = deleting ? 45 : 90;
+        if (!deleting && charIdx === w.length) { speed = 2200; deleting = true; }
+        else if (deleting && charIdx === 0) { deleting = false; wordIdx = (wordIdx + 1) % words.length; speed = 400; }
+        setTimeout(type, speed);
+    }
+    if (el) setTimeout(type, 800);
 
-        if (isDeleting) {
-            typingElement.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typingElement.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
-        }
+    // ── Navbar scroll ──
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
 
-        let typeSpeed = isDeleting ? 50 : 100;
-
-        if (!isDeleting && charIndex === currentWord.length) {
-            // Pause at end of word
-            typeSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            typeSpeed = 500;
-        }
-
-        setTimeout(type, typeSpeed);
+    // ── Mobile hamburger ──
+    const ham = document.getElementById('nav-hamburger');
+    const links = document.getElementById('nav-links');
+    if (ham) {
+        ham.addEventListener('click', () => {
+            links.classList.toggle('open');
+            ham.classList.toggle('active');
+        });
+        // Close menu on link click
+        links.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => { links.classList.remove('open'); ham.classList.remove('active'); });
+        });
     }
 
-    // Start typing
-    if (typingElement) {
-        setTimeout(type, 1000);
+    // ── Smooth scroll ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+
+    // ── Scroll reveal ──
+    const revealEls = document.querySelectorAll(
+        '.vision-card, .cap-card, .scenario-card, .timeline-item, .tech-item, .waitlist-wrapper, .section-header'
+    );
+    revealEls.forEach(el => el.classList.add('reveal'));
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach((el, i) => {
+        el.style.transitionDelay = `${(i % 6) * 0.08}s`;
+        revealObs.observe(el);
+    });
+
+    // ── 3D Tilt for cards ──
+    document.querySelectorAll('.cap-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+            const y = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+            card.style.transform = `perspective(800px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg) translateY(-4px)`;
+            card.style.transition = 'none';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+            card.style.transition = 'all .4s ease';
+        });
+    });
+
+    // ── Waitlist form ──
+    const form = document.getElementById('waitlist-form');
+    const msg = document.getElementById('waitlist-message');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('waitlist-email').value.trim();
+            const btn = document.getElementById('waitlist-submit');
+            const btnText = btn.querySelector('.btn-text');
+            const btnLoad = btn.querySelector('.btn-loading');
+            if (!email) return;
+
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoad.style.display = 'inline-flex';
+            msg.textContent = '';
+            msg.className = 'waitlist-message';
+
+            try {
+                const res = await fetch('https://api.freewaitlists.com/waitlists/cmp7tkfdd01o401qtuocoduii', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, meta: { source: 'landing-page' } })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    msg.textContent = '🎉 You\'re on the list! Welcome to the future.';
+                    msg.className = 'waitlist-message success';
+                    document.getElementById('waitlist-email').value = '';
+                } else {
+                    msg.textContent = data.message || 'Something went wrong. Please try again.';
+                    msg.className = 'waitlist-message error';
+                }
+            } catch (err) {
+                msg.textContent = 'Network error. Please try again later.';
+                msg.className = 'waitlist-message error';
+            } finally {
+                btn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoad.style.display = 'none';
+            }
+        });
     }
 });
