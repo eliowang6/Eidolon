@@ -182,12 +182,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-he
 .timeline-card li{padding-left:1.2rem;position:relative;color:var(--text-muted);font-size:.88rem;}
 .timeline-card li::before{content:"→";position:absolute;left:0;color:var(--violet);font-size:.8rem;}
 
-/* TECH GRID */
-.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.tech-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.6rem;transition:all .2s;}
-.tech-item:hover{border-color:var(--border-accent);transform:translateY(-2px);}
-.tech-icon{font-size:1.6rem;}
-.tech-item span{font-size:.85rem;color:var(--text-muted);font-weight:500;}
+/* PARTNERS GRID */
+.partners-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;}
+.partner-item{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem 2rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:all .3s;min-width:120px;}
+.partner-item:hover{border-color:var(--border-accent);transform:translateY(-3px);box-shadow:0 8px 30px rgba(139,92,246,0.12);}
+.partner-logo{color:var(--text-muted);transition:color .3s;}
+.partner-item:hover .partner-logo{color:var(--text);}
+.partner-item span{font-size:.88rem;color:var(--text-muted);font-weight:600;letter-spacing:.3px;}
 
 /* WAITLIST */
 .waitlist{padding:2rem 0;}
@@ -237,7 +238,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-he
     .scenario-featured{transform:none;}
     .scenario-featured:hover{transform:translateY(-4px);}
     .floating-chip{display:none;}
-    .tech-grid{grid-template-columns:repeat(3,1fr);}
+    .partners-grid{gap:1rem;}
 }
 @media(max-width:768px){
     .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,14,0.95);backdrop-filter:blur(12px);flex-direction:column;padding:1.5rem 2rem;border-bottom:1px solid var(--border);gap:1rem;}
@@ -246,7 +247,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-he
     .hero-title{font-size:clamp(2rem,7vw,2.8rem);}
     .cap-grid{grid-template-columns:1fr;}
     .cap-hero-card{grid-column:span 1;}
-    .tech-grid{grid-template-columns:repeat(2,1fr);}
+    .partner-item{min-width:100px;padding:1rem 1.25rem;}
     .waitlist-wrapper{padding:3rem 1.5rem;}
     .waitlist-input-group{flex-direction:column;}
     .footer-top{flex-direction:column;}
