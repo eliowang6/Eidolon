@@ -1,0 +1,26 @@
+{
+  "id": "features/subscription",
+  "title": "订阅与权益",
+  "description": "了解 Eidolon 的订阅等级和各项权益",
+  "source": "@site/docs/features/subscription.md",
+  "sourceDirName": "features",
+  "slug": "/features/subscription",
+  "permalink": "/features/subscription",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/subscription.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/features/subscription",
+    "title": "订阅与权益",
+    "description": "了解 Eidolon 的订阅等级和各项权益"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "MCP 工具扩展",
+    "permalink": "/features/mcp"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "features/alarm",
+  "title": "闹钟提醒",
+  "description": "设置闹钟，让 AI 在指定时间提醒你",
+  "source": "@site/docs/features/alarm.md",
+  "sourceDirName": "features",
+  "slug": "/features/alarm",
+  "permalink": "/features/alarm",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/alarm.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "slug": "/features/alarm",
+    "title": "闹钟提醒",
+    "description": "设置闹钟，让 AI 在指定时间提醒你"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "专注模式",
+    "permalink": "/features/focus-timer"
+  },
+  "next": {
+    "title": "小剧场",
+    "permalink": "/features/theater"
+  }
+}

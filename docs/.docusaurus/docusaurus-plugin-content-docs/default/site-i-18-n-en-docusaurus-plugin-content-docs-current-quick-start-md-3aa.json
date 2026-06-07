@@ -1,0 +1,26 @@
+{
+  "id": "quick-start",
+  "title": "Quick Start",
+  "description": "Get started with Eidolon in 5 minutes, from zero to your first conversation",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/quick-start.md",
+  "sourceDirName": ".",
+  "slug": "/quick-start",
+  "permalink": "/en/quick-start",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/quick-start.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/quick-start",
+    "title": "Quick Start",
+    "description": "Get started with Eidolon in 5 minutes, from zero to your first conversation"
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Installation Guide",
+    "permalink": "/en/install"
+  }
+}

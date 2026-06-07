@@ -1,0 +1,30 @@
+{
+  "id": "features/emoji-sticker",
+  "title": "表情包与贴纸",
+  "description": "搜索表情包、上传自定义贴纸",
+  "source": "@site/docs/features/emoji-sticker.md",
+  "sourceDirName": "features",
+  "slug": "/features/emoji-sticker",
+  "permalink": "/features/emoji-sticker",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/emoji-sticker.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "slug": "/features/emoji-sticker",
+    "title": "表情包与贴纸",
+    "description": "搜索表情包、上传自定义贴纸"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "AI 画图",
+    "permalink": "/features/image-generation"
+  },
+  "next": {
+    "title": "快捷提问",
+    "permalink": "/features/quick-prompts"
+  }
+}

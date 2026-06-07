@@ -1,0 +1,30 @@
+{
+  "id": "features/video-call",
+  "title": "视频通话",
+  "description": "与 AI 面对面的视频陪伴体验",
+  "source": "@site/docs/features/video-call.md",
+  "sourceDirName": "features",
+  "slug": "/features/video-call",
+  "permalink": "/features/video-call",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/video-call.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "slug": "/features/video-call",
+    "title": "视频通话",
+    "description": "与 AI 面对面的视频陪伴体验"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "语音通话",
+    "permalink": "/features/voice-call"
+  },
+  "next": {
+    "title": "工具调用",
+    "permalink": "/features/tools"
+  }
+}

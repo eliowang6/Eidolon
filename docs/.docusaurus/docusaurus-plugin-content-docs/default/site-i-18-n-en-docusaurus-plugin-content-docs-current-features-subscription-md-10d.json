@@ -1,0 +1,26 @@
+{
+  "id": "features/subscription",
+  "title": "Subscription & Benefits",
+  "description": "Understand Eidolon's subscription tiers and their benefits",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/subscription.md",
+  "sourceDirName": "features",
+  "slug": "/features/subscription",
+  "permalink": "/en/features/subscription",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/subscription.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/features/subscription",
+    "title": "Subscription & Benefits",
+    "description": "Understand Eidolon's subscription tiers and their benefits"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "MCP Tool Extensions",
+    "permalink": "/en/features/mcp"
+  }
+}

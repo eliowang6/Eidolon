@@ -1,0 +1,26 @@
+{
+  "id": "account",
+  "title": "Account Management",
+  "description": "Registration, login, password management, and account switching",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/account.md",
+  "sourceDirName": ".",
+  "slug": "/account",
+  "permalink": "/en/account",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/account.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "slug": "/account",
+    "title": "Account Management",
+    "description": "Registration, login, password management, and account switching"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Installation Guide",
+    "permalink": "/en/install"
+  }
+}

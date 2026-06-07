@@ -1,0 +1,30 @@
+{
+  "id": "install",
+  "title": "安装指南",
+  "description": "Eidolon 各平台安装方法详解",
+  "source": "@site/docs/install.md",
+  "sourceDirName": ".",
+  "slug": "/install",
+  "permalink": "/install",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/install.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/install",
+    "title": "安装指南",
+    "description": "Eidolon 各平台安装方法详解"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "快速上手",
+    "permalink": "/quick-start"
+  },
+  "next": {
+    "title": "账号管理",
+    "permalink": "/account"
+  }
+}

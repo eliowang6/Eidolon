@@ -1,0 +1,30 @@
+{
+  "id": "features/avatar",
+  "title": "Character Model",
+  "description": "3D character rendering, VRM/Live2D models, and avatar settings",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/avatar.md",
+  "sourceDirName": "features",
+  "slug": "/features/avatar",
+  "permalink": "/en/features/avatar",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/avatar.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/features/avatar",
+    "title": "Character Model",
+    "description": "3D character rendering, VRM/Live2D models, and avatar settings"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "QQ Bot",
+    "permalink": "/en/features/qqbot"
+  },
+  "next": {
+    "title": "Themes & Appearance",
+    "permalink": "/en/features/theme"
+  }
+}

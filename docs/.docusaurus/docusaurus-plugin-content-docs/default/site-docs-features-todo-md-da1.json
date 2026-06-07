@@ -1,0 +1,30 @@
+{
+  "id": "features/todo",
+  "title": "待办管理",
+  "description": "让 AI 帮你创建、管理和追踪待办事项",
+  "source": "@site/docs/features/todo.md",
+  "sourceDirName": "features",
+  "slug": "/features/todo",
+  "permalink": "/features/todo",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/todo.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/features/todo",
+    "title": "待办管理",
+    "description": "让 AI 帮你创建、管理和追踪待办事项"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "AI 代理（子代理）",
+    "permalink": "/features/agent"
+  },
+  "next": {
+    "title": "习惯打卡",
+    "permalink": "/features/habit"
+  }
+}

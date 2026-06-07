@@ -1,0 +1,30 @@
+{
+  "id": "features/agent",
+  "title": "AI Agent (Sub-Agent)",
+  "description": "Let AI operate your computer, search information, and execute complex tasks",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/agent.md",
+  "sourceDirName": "features",
+  "slug": "/features/agent",
+  "permalink": "/en/features/agent",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/agent.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "slug": "/features/agent",
+    "title": "AI Agent (Sub-Agent)",
+    "description": "Let AI operate your computer, search information, and execute complex tasks"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "Tool Calling",
+    "permalink": "/en/features/tools"
+  },
+  "next": {
+    "title": "To-Do Management",
+    "permalink": "/en/features/todo"
+  }
+}

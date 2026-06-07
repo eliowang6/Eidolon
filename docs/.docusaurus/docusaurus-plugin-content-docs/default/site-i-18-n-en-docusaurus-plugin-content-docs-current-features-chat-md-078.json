@@ -1,0 +1,26 @@
+{
+  "id": "features/chat",
+  "title": "Smart Chat",
+  "description": "Everything about text chatting with your AI companion",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/chat.md",
+  "sourceDirName": "features",
+  "slug": "/features/chat",
+  "permalink": "/en/features/chat",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/chat.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/features/chat",
+    "title": "Smart Chat",
+    "description": "Everything about text chatting with your AI companion"
+  },
+  "sidebar": "featureSidebar",
+  "next": {
+    "title": "Voice Call",
+    "permalink": "/en/features/voice-call"
+  }
+}

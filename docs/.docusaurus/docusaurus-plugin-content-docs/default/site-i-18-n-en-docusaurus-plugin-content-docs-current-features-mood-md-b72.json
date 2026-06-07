@@ -1,0 +1,30 @@
+{
+  "id": "features/mood",
+  "title": "Mood Tracking",
+  "description": "Record your mood each day — AI helps you stay aware of emotional changes",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/mood.md",
+  "sourceDirName": "features",
+  "slug": "/features/mood",
+  "permalink": "/en/features/mood",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/mood.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "slug": "/features/mood",
+    "title": "Mood Tracking",
+    "description": "Record your mood each day — AI helps you stay aware of emotional changes"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "Habit Tracking",
+    "permalink": "/en/features/habit"
+  },
+  "next": {
+    "title": "Focus Mode",
+    "permalink": "/en/features/focus-timer"
+  }
+}

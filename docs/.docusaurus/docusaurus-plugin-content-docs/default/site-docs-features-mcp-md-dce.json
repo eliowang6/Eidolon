@@ -1,0 +1,30 @@
+{
+  "id": "features/mcp",
+  "title": "MCP 工具扩展",
+  "description": "通过 MCP 协议扩展 AI 的能力",
+  "source": "@site/docs/features/mcp.md",
+  "sourceDirName": "features",
+  "slug": "/features/mcp",
+  "permalink": "/features/mcp",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/mcp.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "slug": "/features/mcp",
+    "title": "MCP 工具扩展",
+    "description": "通过 MCP 协议扩展 AI 的能力"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "长期记忆",
+    "permalink": "/features/memory"
+  },
+  "next": {
+    "title": "订阅与权益",
+    "permalink": "/features/subscription"
+  }
+}

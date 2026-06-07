@@ -1,0 +1,30 @@
+{
+  "id": "features/mcp",
+  "title": "MCP Tool Extensions",
+  "description": "Extend AI's capabilities through the MCP protocol",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/mcp.md",
+  "sourceDirName": "features",
+  "slug": "/features/mcp",
+  "permalink": "/en/features/mcp",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/mcp.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "slug": "/features/mcp",
+    "title": "MCP Tool Extensions",
+    "description": "Extend AI's capabilities through the MCP protocol"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "Long-Term Memory",
+    "permalink": "/en/features/memory"
+  },
+  "next": {
+    "title": "Subscription & Benefits",
+    "permalink": "/en/features/subscription"
+  }
+}

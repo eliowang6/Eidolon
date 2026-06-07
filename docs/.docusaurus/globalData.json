@@ -1,0 +1,170 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/en/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/en/",
+          "mainDocId": "quick-start",
+          "docs": [
+            {
+              "id": "account",
+              "path": "/en/account",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "faq",
+              "path": "/en/faq",
+              "sidebar": "faqSidebar"
+            },
+            {
+              "id": "features/agent",
+              "path": "/en/features/agent",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/alarm",
+              "path": "/en/features/alarm",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/avatar",
+              "path": "/en/features/avatar",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/chat",
+              "path": "/en/features/chat",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/emoji-sticker",
+              "path": "/en/features/emoji-sticker",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/focus-timer",
+              "path": "/en/features/focus-timer",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/habit",
+              "path": "/en/features/habit",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/image-generation",
+              "path": "/en/features/image-generation",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/mcp",
+              "path": "/en/features/mcp",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/memory",
+              "path": "/en/features/memory",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/mood",
+              "path": "/en/features/mood",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/qqbot",
+              "path": "/en/features/qqbot",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/quick-prompts",
+              "path": "/en/features/quick-prompts",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/subscription",
+              "path": "/en/features/subscription",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/theater",
+              "path": "/en/features/theater",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/theme",
+              "path": "/en/features/theme",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/todo",
+              "path": "/en/features/todo",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/tools",
+              "path": "/en/features/tools",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/tts",
+              "path": "/en/features/tts",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/video-call",
+              "path": "/en/features/video-call",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/voice-call",
+              "path": "/en/features/voice-call",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/wechat",
+              "path": "/en/features/wechat",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "install",
+              "path": "/en/install",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "quick-start",
+              "path": "/en/quick-start",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/en/quick-start",
+                "label": "quick-start"
+              }
+            },
+            "featureSidebar": {
+              "link": {
+                "path": "/en/features/chat",
+                "label": "features/chat"
+              }
+            },
+            "faqSidebar": {
+              "link": {
+                "path": "/en/faq",
+                "label": "faq"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

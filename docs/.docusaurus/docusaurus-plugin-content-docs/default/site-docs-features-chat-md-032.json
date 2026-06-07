@@ -1,0 +1,26 @@
+{
+  "id": "features/chat",
+  "title": "智能对话",
+  "description": "与 AI 伴侣的文字聊天功能详解",
+  "source": "@site/docs/features/chat.md",
+  "sourceDirName": "features",
+  "slug": "/features/chat",
+  "permalink": "/features/chat",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/chat.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/features/chat",
+    "title": "智能对话",
+    "description": "与 AI 伴侣的文字聊天功能详解"
+  },
+  "sidebar": "featureSidebar",
+  "next": {
+    "title": "语音通话",
+    "permalink": "/features/voice-call"
+  }
+}

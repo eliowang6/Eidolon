@@ -1,0 +1,30 @@
+{
+  "id": "features/quick-prompts",
+  "title": "快捷提问",
+  "description": "一键发起常见场景对话",
+  "source": "@site/docs/features/quick-prompts.md",
+  "sourceDirName": "features",
+  "slug": "/features/quick-prompts",
+  "permalink": "/features/quick-prompts",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/quick-prompts.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "slug": "/features/quick-prompts",
+    "title": "快捷提问",
+    "description": "一键发起常见场景对话"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "表情包与贴纸",
+    "permalink": "/features/emoji-sticker"
+  },
+  "next": {
+    "title": "微信集成",
+    "permalink": "/features/wechat"
+  }
+}

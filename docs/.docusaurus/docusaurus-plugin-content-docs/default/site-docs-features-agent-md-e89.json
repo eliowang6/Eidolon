@@ -1,0 +1,30 @@
+{
+  "id": "features/agent",
+  "title": "AI 代理（子代理）",
+  "description": "让 AI 帮你操作电脑、搜索信息、执行复杂任务",
+  "source": "@site/docs/features/agent.md",
+  "sourceDirName": "features",
+  "slug": "/features/agent",
+  "permalink": "/features/agent",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/agent.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "slug": "/features/agent",
+    "title": "AI 代理（子代理）",
+    "description": "让 AI 帮你操作电脑、搜索信息、执行复杂任务"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "工具调用",
+    "permalink": "/features/tools"
+  },
+  "next": {
+    "title": "待办管理",
+    "permalink": "/features/todo"
+  }
+}

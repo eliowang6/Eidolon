@@ -1,0 +1,30 @@
+{
+  "id": "install",
+  "title": "Installation Guide",
+  "description": "Detailed installation instructions for each platform",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/install.md",
+  "sourceDirName": ".",
+  "slug": "/install",
+  "permalink": "/en/install",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/install.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/install",
+    "title": "Installation Guide",
+    "description": "Detailed installation instructions for each platform"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Quick Start",
+    "permalink": "/en/quick-start"
+  },
+  "next": {
+    "title": "Account Management",
+    "permalink": "/en/account"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "features/theater",
+  "title": "Theater",
+  "description": "Immersive interactive storytelling experience",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/theater.md",
+  "sourceDirName": "features",
+  "slug": "/features/theater",
+  "permalink": "/en/features/theater",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/theater.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/features/theater",
+    "title": "Theater",
+    "description": "Immersive interactive storytelling experience"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "Alarms & Reminders",
+    "permalink": "/en/features/alarm"
+  },
+  "next": {
+    "title": "AI Image Generation",
+    "permalink": "/en/features/image-generation"
+  }
+}

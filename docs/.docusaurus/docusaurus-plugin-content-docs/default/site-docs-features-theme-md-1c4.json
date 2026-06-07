@@ -1,0 +1,30 @@
+{
+  "id": "features/theme",
+  "title": "主题与外观",
+  "description": "个性化你的 Eidolon 界面",
+  "source": "@site/docs/features/theme.md",
+  "sourceDirName": "features",
+  "slug": "/features/theme",
+  "permalink": "/features/theme",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/theme.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/features/theme",
+    "title": "主题与外观",
+    "description": "个性化你的 Eidolon 界面"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "角色模型",
+    "permalink": "/features/avatar"
+  },
+  "next": {
+    "title": "TTS 语音设置",
+    "permalink": "/features/tts"
+  }
+}

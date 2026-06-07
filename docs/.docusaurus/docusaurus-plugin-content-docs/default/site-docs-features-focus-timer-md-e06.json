@@ -1,0 +1,30 @@
+{
+  "id": "features/focus-timer",
+  "title": "专注模式",
+  "description": "番茄钟 + 白噪音，和 AI 一起专注",
+  "source": "@site/docs/features/focus-timer.md",
+  "sourceDirName": "features",
+  "slug": "/features/focus-timer",
+  "permalink": "/features/focus-timer",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/focus-timer.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "slug": "/features/focus-timer",
+    "title": "专注模式",
+    "description": "番茄钟 + 白噪音，和 AI 一起专注"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "心情记录",
+    "permalink": "/features/mood"
+  },
+  "next": {
+    "title": "闹钟提醒",
+    "permalink": "/features/alarm"
+  }
+}

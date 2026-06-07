@@ -1,0 +1,30 @@
+{
+  "id": "features/focus-timer",
+  "title": "Focus Mode",
+  "description": "Pomodoro timer + ambient sounds — focus together with AI",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/focus-timer.md",
+  "sourceDirName": "features",
+  "slug": "/features/focus-timer",
+  "permalink": "/en/features/focus-timer",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/focus-timer.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "slug": "/features/focus-timer",
+    "title": "Focus Mode",
+    "description": "Pomodoro timer + ambient sounds — focus together with AI"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "Mood Tracking",
+    "permalink": "/en/features/mood"
+  },
+  "next": {
+    "title": "Alarms & Reminders",
+    "permalink": "/en/features/alarm"
+  }
+}

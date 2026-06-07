@@ -1,0 +1,30 @@
+{
+  "id": "features/tools",
+  "title": "Tool Calling",
+  "description": "AI proactively creates to-dos, habits, images, and more for you",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/tools.md",
+  "sourceDirName": "features",
+  "slug": "/features/tools",
+  "permalink": "/en/features/tools",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/tools.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "slug": "/features/tools",
+    "title": "Tool Calling",
+    "description": "AI proactively creates to-dos, habits, images, and more for you"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "Video Call",
+    "permalink": "/en/features/video-call"
+  },
+  "next": {
+    "title": "AI Agent (Sub-Agent)",
+    "permalink": "/en/features/agent"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "features/habit",
+  "title": "习惯打卡",
+  "description": "和 AI 一起养成好习惯",
+  "source": "@site/docs/features/habit.md",
+  "sourceDirName": "features",
+  "slug": "/features/habit",
+  "permalink": "/features/habit",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/habit.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/features/habit",
+    "title": "习惯打卡",
+    "description": "和 AI 一起养成好习惯"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "待办管理",
+    "permalink": "/features/todo"
+  },
+  "next": {
+    "title": "心情记录",
+    "permalink": "/features/mood"
+  }
+}

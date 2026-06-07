@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "Eidolon Docs",
+    "description": "The title in the navbar"
+  },
+  "item.label.使用教程": {
+    "message": "Getting Started",
+    "description": "Navbar item with label 使用教程"
+  },
+  "item.label.功能详解": {
+    "message": "Features",
+    "description": "Navbar item with label 功能详解"
+  },
+  "item.label.常见问题": {
+    "message": "FAQ",
+    "description": "Navbar item with label 常见问题"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

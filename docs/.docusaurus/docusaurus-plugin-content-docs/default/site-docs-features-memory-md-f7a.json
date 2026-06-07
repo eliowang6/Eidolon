@@ -1,0 +1,30 @@
+{
+  "id": "features/memory",
+  "title": "长期记忆",
+  "description": "AI 记住你的每一个重要时刻",
+  "source": "@site/docs/features/memory.md",
+  "sourceDirName": "features",
+  "slug": "/features/memory",
+  "permalink": "/features/memory",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/memory.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "slug": "/features/memory",
+    "title": "长期记忆",
+    "description": "AI 记住你的每一个重要时刻"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "TTS 语音设置",
+    "permalink": "/features/tts"
+  },
+  "next": {
+    "title": "MCP 工具扩展",
+    "permalink": "/features/mcp"
+  }
+}

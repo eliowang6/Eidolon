@@ -1,0 +1,30 @@
+{
+  "id": "features/theme",
+  "title": "Themes & Appearance",
+  "description": "Personalize your Eidolon interface",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/theme.md",
+  "sourceDirName": "features",
+  "slug": "/features/theme",
+  "permalink": "/en/features/theme",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/theme.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/features/theme",
+    "title": "Themes & Appearance",
+    "description": "Personalize your Eidolon interface"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "Character Model",
+    "permalink": "/en/features/avatar"
+  },
+  "next": {
+    "title": "TTS Voice Settings",
+    "permalink": "/en/features/tts"
+  }
+}

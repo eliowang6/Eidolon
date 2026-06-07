@@ -1,0 +1,30 @@
+{
+  "id": "features/avatar",
+  "title": "角色模型",
+  "description": "3D 角色渲染、VRM/Live2D 模型与头像设置",
+  "source": "@site/docs/features/avatar.md",
+  "sourceDirName": "features",
+  "slug": "/features/avatar",
+  "permalink": "/features/avatar",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/avatar.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/features/avatar",
+    "title": "角色模型",
+    "description": "3D 角色渲染、VRM/Live2D 模型与头像设置"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "QQ 机器人",
+    "permalink": "/features/qqbot"
+  },
+  "next": {
+    "title": "主题与外观",
+    "permalink": "/features/theme"
+  }
+}

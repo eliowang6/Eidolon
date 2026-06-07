@@ -1,0 +1,30 @@
+{
+  "id": "features/mood",
+  "title": "心情记录",
+  "description": "记录每一天的心情，AI 帮你关注情绪变化",
+  "source": "@site/docs/features/mood.md",
+  "sourceDirName": "features",
+  "slug": "/features/mood",
+  "permalink": "/features/mood",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/mood.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "slug": "/features/mood",
+    "title": "心情记录",
+    "description": "记录每一天的心情，AI 帮你关注情绪变化"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "习惯打卡",
+    "permalink": "/features/habit"
+  },
+  "next": {
+    "title": "专注模式",
+    "permalink": "/features/focus-timer"
+  }
+}

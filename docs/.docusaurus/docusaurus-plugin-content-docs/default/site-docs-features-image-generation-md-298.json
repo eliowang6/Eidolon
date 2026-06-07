@@ -1,0 +1,30 @@
+{
+  "id": "features/image-generation",
+  "title": "AI 画图",
+  "description": "让 AI 根据你的描述生成图片",
+  "source": "@site/docs/features/image-generation.md",
+  "sourceDirName": "features",
+  "slug": "/features/image-generation",
+  "permalink": "/features/image-generation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/image-generation.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/features/image-generation",
+    "title": "AI 画图",
+    "description": "让 AI 根据你的描述生成图片"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "小剧场",
+    "permalink": "/features/theater"
+  },
+  "next": {
+    "title": "表情包与贴纸",
+    "permalink": "/features/emoji-sticker"
+  }
+}

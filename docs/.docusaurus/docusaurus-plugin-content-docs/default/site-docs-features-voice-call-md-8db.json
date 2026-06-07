@@ -1,0 +1,30 @@
+{
+  "id": "features/voice-call",
+  "title": "语音通话",
+  "description": "和 AI 进行实时语音对话",
+  "source": "@site/docs/features/voice-call.md",
+  "sourceDirName": "features",
+  "slug": "/features/voice-call",
+  "permalink": "/features/voice-call",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/voice-call.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/features/voice-call",
+    "title": "语音通话",
+    "description": "和 AI 进行实时语音对话"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "智能对话",
+    "permalink": "/features/chat"
+  },
+  "next": {
+    "title": "视频通话",
+    "permalink": "/features/video-call"
+  }
+}

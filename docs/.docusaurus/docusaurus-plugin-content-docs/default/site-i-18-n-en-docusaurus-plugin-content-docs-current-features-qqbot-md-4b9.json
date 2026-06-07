@@ -1,0 +1,30 @@
+{
+  "id": "features/qqbot",
+  "title": "QQ Bot",
+  "description": "Turn AI into a QQ bot that auto-replies",
+  "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/qqbot.md",
+  "sourceDirName": "features",
+  "slug": "/features/qqbot",
+  "permalink": "/en/features/qqbot",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/qqbot.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/features/qqbot",
+    "title": "QQ Bot",
+    "description": "Turn AI into a QQ bot that auto-replies"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "WeChat Integration",
+    "permalink": "/en/features/wechat"
+  },
+  "next": {
+    "title": "Character Model",
+    "permalink": "/en/features/avatar"
+  }
+}
