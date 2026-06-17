@@ -8,55 +8,55 @@ const features = [
     icon: '💬',
     title: 'Smart Chat',
     desc: 'Text, voice, video — communicate with AI your way',
-    href: '/features/chat',
+    href: '/Eidolon/docs/build/en/features/chat',
   },
   {
     icon: '🎙️',
     title: 'Voice & Video Calls',
     desc: 'Talk to AI like a phone call, or go face-to-face with video',
-    href: '/features/video-call',
+    href: '/Eidolon/docs/build/en/features/video-call',
   },
   {
     icon: '✅',
     title: 'To-Do & Habits',
     desc: 'AI helps manage tasks, build habits, and track your mood',
-    href: '/features/todo',
+    href: '/Eidolon/docs/build/en/features/todo',
   },
   {
     icon: '🎭',
     title: 'Theater',
     desc: 'Immersive interactive stories — co-create with AI',
-    href: '/features/theater',
+    href: '/Eidolon/docs/build/en/features/theater',
   },
   {
     icon: '🎨',
     title: 'AI Image Generation',
     desc: 'Generate beautiful images from text descriptions',
-    href: '/features/image-generation',
+    href: '/Eidolon/docs/build/en/features/image-generation',
   },
   {
     icon: '🧠',
     title: 'Long-Term Memory',
     desc: 'AI remembers every important moment — the more you chat, the better it knows you',
-    href: '/features/memory',
+    href: '/Eidolon/docs/build/en/features/memory',
   },
   {
     icon: '⏰',
     title: 'Focus & Reminders',
     desc: 'Pomodoro timer + alarm reminders — AI stays with you',
-    href: '/features/focus-timer',
+    href: '/Eidolon/docs/build/en/features/focus-timer',
   },
   {
     icon: '🤖',
     title: 'AI Agent',
     desc: 'Let AI operate your computer, search the web, and execute tasks',
-    href: '/features/agent',
+    href: '/Eidolon/docs/build/en/features/agent',
   },
   {
     icon: '🎨',
     title: 'Themes & Personalization',
     desc: '9 beautiful themes, character models, voice customization',
-    href: '/features/theme',
+    href: '/Eidolon/docs/build/en/features/theme',
   },
 ];
 
@@ -101,14 +101,14 @@ export default function Home(): React.JSX.Element {
               </span>
             </p>
             <div className="eid-hero__actions">
-              <a className="eid-btn eid-btn--primary" href="/quick-start">
+              <a className="eid-btn eid-btn--primary" href="/Eidolon/docs/build/en/quick-start">
                 <span>Quick Start</span>
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
-              <a className="eid-btn eid-btn--ghost" href="/features/chat">
+              <a className="eid-btn eid-btn--ghost" href="/Eidolon/docs/build/en/features/chat">
                 Features
               </a>
-              <a className="eid-btn eid-btn--ghost" href="/faq">
+              <a className="eid-btn eid-btn--ghost" href="/Eidolon/docs/build/en/faq">
                 FAQ
               </a>
             </div>
@@ -139,7 +139,7 @@ export default function Home(): React.JSX.Element {
           <div className="eid-cta__container">
             <h2 className="eid-cta__title">Ready to begin?</h2>
             <p className="eid-cta__desc">Get started in 5 minutes — begin your AI companion journey</p>
-            <a className="eid-btn eid-btn--primary eid-btn--lg" href="/quick-start">
+            <a className="eid-btn eid-btn--primary eid-btn--lg" href="/Eidolon/docs/build/en/quick-start">
               <span>Get Started</span>
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
