@@ -5,10 +5,10 @@
   "source": "@site/docs/features/tools.md",
   "sourceDirName": "features",
   "slug": "/features/tools",
-  "permalink": "/features/tools",
+  "permalink": "/Eidolon/docs/build/features/tools",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/tools.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/tools.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 4,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "视频通话",
-    "permalink": "/features/video-call"
+    "permalink": "/Eidolon/docs/build/features/video-call"
   },
   "next": {
     "title": "AI 代理（子代理）",
-    "permalink": "/features/agent"
+    "permalink": "/Eidolon/docs/build/features/agent"
   }
 }

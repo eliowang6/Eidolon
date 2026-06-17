@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/voice-call.md",
   "sourceDirName": "features",
   "slug": "/features/voice-call",
-  "permalink": "/en/features/voice-call",
+  "permalink": "/Eidolon/docs/build/en/features/voice-call",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/voice-call.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/voice-call.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 2,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "Smart Chat",
-    "permalink": "/en/features/chat"
+    "permalink": "/Eidolon/docs/build/en/features/chat"
   },
   "next": {
     "title": "Video Call",
-    "permalink": "/en/features/video-call"
+    "permalink": "/Eidolon/docs/build/en/features/video-call"
   }
 }

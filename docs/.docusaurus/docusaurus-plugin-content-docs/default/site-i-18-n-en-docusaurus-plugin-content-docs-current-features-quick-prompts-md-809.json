@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/quick-prompts.md",
   "sourceDirName": "features",
   "slug": "/features/quick-prompts",
-  "permalink": "/en/features/quick-prompts",
+  "permalink": "/Eidolon/docs/build/en/features/quick-prompts",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/quick-prompts.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/quick-prompts.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 4,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "Emoji & Stickers",
-    "permalink": "/en/features/emoji-sticker"
+    "permalink": "/Eidolon/docs/build/en/features/emoji-sticker"
   },
   "next": {
     "title": "WeChat Integration",
-    "permalink": "/en/features/wechat"
+    "permalink": "/Eidolon/docs/build/en/features/wechat"
   }
 }

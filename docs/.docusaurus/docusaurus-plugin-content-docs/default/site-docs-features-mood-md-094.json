@@ -5,10 +5,10 @@
   "source": "@site/docs/features/mood.md",
   "sourceDirName": "features",
   "slug": "/features/mood",
-  "permalink": "/features/mood",
+  "permalink": "/Eidolon/docs/build/features/mood",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/mood.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/mood.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 3,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "习惯打卡",
-    "permalink": "/features/habit"
+    "permalink": "/Eidolon/docs/build/features/habit"
   },
   "next": {
     "title": "专注模式",
-    "permalink": "/features/focus-timer"
+    "permalink": "/Eidolon/docs/build/features/focus-timer"
   }
 }

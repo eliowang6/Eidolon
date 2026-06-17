@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/theme.md",
   "sourceDirName": "features",
   "slug": "/features/theme",
-  "permalink": "/en/features/theme",
+  "permalink": "/Eidolon/docs/build/en/features/theme",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/theme.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/theme.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 2,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "Character Model",
-    "permalink": "/en/features/avatar"
+    "permalink": "/Eidolon/docs/build/en/features/avatar"
   },
   "next": {
     "title": "TTS Voice Settings",
-    "permalink": "/en/features/tts"
+    "permalink": "/Eidolon/docs/build/en/features/tts"
   }
 }

@@ -5,10 +5,10 @@
   "source": "@site/docs/features/qqbot.md",
   "sourceDirName": "features",
   "slug": "/features/qqbot",
-  "permalink": "/features/qqbot",
+  "permalink": "/Eidolon/docs/build/features/qqbot",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/qqbot.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/qqbot.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 2,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "微信集成",
-    "permalink": "/features/wechat"
+    "permalink": "/Eidolon/docs/build/features/wechat"
   },
   "next": {
-    "title": "角色模型",
-    "permalink": "/features/avatar"
+    "title": "设置与偏好",
+    "permalink": "/Eidolon/docs/build/features/settings"
   }
 }

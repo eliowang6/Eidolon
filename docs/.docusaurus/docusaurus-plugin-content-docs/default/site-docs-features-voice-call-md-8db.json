@@ -5,10 +5,10 @@
   "source": "@site/docs/features/voice-call.md",
   "sourceDirName": "features",
   "slug": "/features/voice-call",
-  "permalink": "/features/voice-call",
+  "permalink": "/Eidolon/docs/build/features/voice-call",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/voice-call.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/voice-call.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 2,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "智能对话",
-    "permalink": "/features/chat"
+    "permalink": "/Eidolon/docs/build/features/chat"
   },
   "next": {
     "title": "视频通话",
-    "permalink": "/features/video-call"
+    "permalink": "/Eidolon/docs/build/features/video-call"
   }
 }

@@ -22,6 +22,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: '生活管理',
       items: [
+        'features/life',
         'features/todo',
         'features/habit',
         'features/mood',
@@ -51,6 +52,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: '个性化',
       items: [
+        'features/settings',
         'features/avatar',
         'features/theme',
         'features/tts',

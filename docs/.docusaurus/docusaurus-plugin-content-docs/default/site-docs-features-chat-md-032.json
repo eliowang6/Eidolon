@@ -5,10 +5,10 @@
   "source": "@site/docs/features/chat.md",
   "sourceDirName": "features",
   "slug": "/features/chat",
-  "permalink": "/features/chat",
+  "permalink": "/Eidolon/docs/build/features/chat",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/chat.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/chat.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
@@ -21,6 +21,6 @@
   "sidebar": "featureSidebar",
   "next": {
     "title": "语音通话",
-    "permalink": "/features/voice-call"
+    "permalink": "/Eidolon/docs/build/features/voice-call"
   }
 }

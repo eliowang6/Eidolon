@@ -5,10 +5,10 @@
   "source": "@site/docs/features/agent.md",
   "sourceDirName": "features",
   "slug": "/features/agent",
-  "permalink": "/features/agent",
+  "permalink": "/Eidolon/docs/build/features/agent",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/agent.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/agent.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 5,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "工具调用",
-    "permalink": "/features/tools"
+    "permalink": "/Eidolon/docs/build/features/tools"
   },
   "next": {
-    "title": "待办管理",
-    "permalink": "/features/todo"
+    "title": "生活动态",
+    "permalink": "/Eidolon/docs/build/features/life"
   }
 }

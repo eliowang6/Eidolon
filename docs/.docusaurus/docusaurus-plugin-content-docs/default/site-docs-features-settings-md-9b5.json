@@ -1,0 +1,30 @@
+{
+  "id": "features/settings",
+  "title": "设置与偏好",
+  "description": "语言、模型、隐私、桌面功能等个性化配置详解",
+  "source": "@site/docs/features/settings.md",
+  "sourceDirName": "features",
+  "slug": "/features/settings",
+  "permalink": "/Eidolon/docs/build/en/features/settings",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/settings.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6,
+    "slug": "/features/settings",
+    "title": "设置与偏好",
+    "description": "语言、模型、隐私、桌面功能等个性化配置详解"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "QQ Bot",
+    "permalink": "/Eidolon/docs/build/en/features/qqbot"
+  },
+  "next": {
+    "title": "Character Model",
+    "permalink": "/Eidolon/docs/build/en/features/avatar"
+  }
+}

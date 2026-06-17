@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/tts.md",
   "sourceDirName": "features",
   "slug": "/features/tts",
-  "permalink": "/en/features/tts",
+  "permalink": "/Eidolon/docs/build/en/features/tts",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/tts.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/tts.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 3,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "Themes & Appearance",
-    "permalink": "/en/features/theme"
+    "permalink": "/Eidolon/docs/build/en/features/theme"
   },
   "next": {
     "title": "Long-Term Memory",
-    "permalink": "/en/features/memory"
+    "permalink": "/Eidolon/docs/build/en/features/memory"
   }
 }

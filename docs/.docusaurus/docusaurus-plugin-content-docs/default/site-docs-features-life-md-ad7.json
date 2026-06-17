@@ -1,0 +1,30 @@
+{
+  "id": "features/life",
+  "title": "生活动态",
+  "description": "记录生活动态，查看待办、习惯和心情汇总",
+  "source": "@site/docs/features/life.md",
+  "sourceDirName": "features",
+  "slug": "/features/life",
+  "permalink": "/Eidolon/docs/build/en/features/life",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/life.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "slug": "/features/life",
+    "title": "生活动态",
+    "description": "记录生活动态，查看待办、习惯和心情汇总"
+  },
+  "sidebar": "featureSidebar",
+  "previous": {
+    "title": "AI Agent (Sub-Agent)",
+    "permalink": "/Eidolon/docs/build/en/features/agent"
+  },
+  "next": {
+    "title": "To-Do Management",
+    "permalink": "/Eidolon/docs/build/en/features/todo"
+  }
+}

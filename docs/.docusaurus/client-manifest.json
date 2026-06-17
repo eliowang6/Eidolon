@@ -29,9 +29,6 @@
     "10db8ab8": [
       497
     ],
-    "116e21e2": [
-      512
-    ],
     "1df93b7f": [
       583
     ],
@@ -62,6 +59,9 @@
     "4bd02ba8": [
       602
     ],
+    "50a199e2": [
+      585
+    ],
     "571a8673": [
       257
     ],
@@ -86,6 +86,9 @@
     "96df7bff": [
       503
     ],
+    "9b59f1af": [
+      50
+    ],
     "a202dd66": [
       280
     ],
@@ -101,6 +104,9 @@
     ],
     "aba21aa0": [
       742
+    ],
+    "ad761a6e": [
+      698
     ],
     "ae597964": [
       769
@@ -135,9 +141,9 @@
     "34": {
       "js": [
         {
-          "file": "assets/js/2491ed86.a707a831.js",
-          "hash": "d78d6d4649f35108",
-          "publicPath": "/en/assets/js/2491ed86.a707a831.js"
+          "file": "assets/js/2491ed86.3c41e71f.js",
+          "hash": "b709b30793a1091e",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/2491ed86.3c41e71f.js"
         }
       ]
     },
@@ -146,16 +152,25 @@
         {
           "file": "assets/js/a94703ab.2057b131.js",
           "hash": "5ca3539ca1fdde44",
-          "publicPath": "/en/assets/js/a94703ab.2057b131.js"
+          "publicPath": "/Eidolon/docs/build/en/assets/js/a94703ab.2057b131.js"
+        }
+      ]
+    },
+    "50": {
+      "js": [
+        {
+          "file": "assets/js/9b59f1af.6ff52e90.js",
+          "hash": "9df3cdbd17adb159",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/9b59f1af.6ff52e90.js"
         }
       ]
     },
     "80": {
       "js": [
         {
-          "file": "assets/js/659f4e2f.b1a226aa.js",
-          "hash": "88dbc683e5eeb2d4",
-          "publicPath": "/en/assets/js/659f4e2f.b1a226aa.js"
+          "file": "assets/js/659f4e2f.dcce1e44.js",
+          "hash": "dc426847187b0d0b",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/659f4e2f.dcce1e44.js"
         }
       ]
     },
@@ -164,16 +179,16 @@
         {
           "file": "assets/js/a7bd4aaa.22751670.js",
           "hash": "ed2266f07730d176",
-          "publicPath": "/en/assets/js/a7bd4aaa.22751670.js"
+          "publicPath": "/Eidolon/docs/build/en/assets/js/a7bd4aaa.22751670.js"
         }
       ]
     },
     "107": {
       "js": [
         {
-          "file": "assets/js/e6f54c64.09bb2cb7.js",
-          "hash": "9f3e09bdf8889bdb",
-          "publicPath": "/en/assets/js/e6f54c64.09bb2cb7.js"
+          "file": "assets/js/e6f54c64.2ece2595.js",
+          "hash": "3946e21053c305c5",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/e6f54c64.2ece2595.js"
         }
       ]
     },
@@ -182,7 +197,7 @@
         {
           "file": "assets/js/a7456010.16bf50f7.js",
           "hash": "ec57cbca7ac07de8",
-          "publicPath": "/en/assets/js/a7456010.16bf50f7.js"
+          "publicPath": "/Eidolon/docs/build/en/assets/js/a7456010.16bf50f7.js"
         }
       ]
     },
@@ -191,70 +206,70 @@
         {
           "file": "assets/js/237.68013c27.js",
           "hash": "5c90dc32fed54477",
-          "publicPath": "/en/assets/js/237.68013c27.js"
+          "publicPath": "/Eidolon/docs/build/en/assets/js/237.68013c27.js"
         }
       ]
     },
     "249": {
       "js": [
         {
-          "file": "assets/js/dac4a629.56f97993.js",
-          "hash": "e5ff30c1c15b5abf",
-          "publicPath": "/en/assets/js/dac4a629.56f97993.js"
+          "file": "assets/js/dac4a629.caec13e9.js",
+          "hash": "d419af1a903e9c65",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/dac4a629.caec13e9.js"
         }
       ]
     },
     "257": {
       "js": [
         {
-          "file": "assets/js/571a8673.0f26f623.js",
-          "hash": "1c1f8a45ac308ff6",
-          "publicPath": "/en/assets/js/571a8673.0f26f623.js"
+          "file": "assets/js/571a8673.32cc4a7e.js",
+          "hash": "cd854265f163509e",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/571a8673.32cc4a7e.js"
         }
       ]
     },
     "258": {
       "js": [
         {
-          "file": "assets/js/7977860e.8b07de37.js",
-          "hash": "b78b70454ab3263e",
-          "publicPath": "/en/assets/js/7977860e.8b07de37.js"
+          "file": "assets/js/7977860e.098541aa.js",
+          "hash": "5273fa3d66e8b35e",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/7977860e.098541aa.js"
         }
       ]
     },
     "280": {
       "js": [
         {
-          "file": "assets/js/a202dd66.95ce2af6.js",
-          "hash": "9e643ffa3c7f95fb",
-          "publicPath": "/en/assets/js/a202dd66.95ce2af6.js"
+          "file": "assets/js/a202dd66.9e09cb61.js",
+          "hash": "ce09265b5b90dbac",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/a202dd66.9e09cb61.js"
         }
       ]
     },
     "311": {
       "js": [
         {
-          "file": "assets/js/4b9c2228.58cd5d39.js",
-          "hash": "335804bfdfae3c42",
-          "publicPath": "/en/assets/js/4b9c2228.58cd5d39.js"
+          "file": "assets/js/4b9c2228.f5191885.js",
+          "hash": "8e9b1e6f5933e88f",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/4b9c2228.f5191885.js"
         }
       ]
     },
     "354": {
       "js": [
         {
-          "file": "assets/js/runtime~main.9f247701.js",
-          "hash": "62fa6451017159db",
-          "publicPath": "/en/assets/js/runtime~main.9f247701.js"
+          "file": "assets/js/runtime~main.41d4d21a.js",
+          "hash": "bec405719248bd46",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/runtime~main.41d4d21a.js"
         }
       ]
     },
     "374": {
       "js": [
         {
-          "file": "assets/js/626abe3d.f0be4969.js",
-          "hash": "b43427e9ff5fc25e",
-          "publicPath": "/en/assets/js/626abe3d.f0be4969.js"
+          "file": "assets/js/626abe3d.5a37581c.js",
+          "hash": "22beb72e00713baf",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/626abe3d.5a37581c.js"
         }
       ]
     },
@@ -263,7 +278,7 @@
         {
           "file": "assets/js/17896441.2f8bb238.js",
           "hash": "c13531b66b10441f",
-          "publicPath": "/en/assets/js/17896441.2f8bb238.js"
+          "publicPath": "/Eidolon/docs/build/en/assets/js/17896441.2f8bb238.js"
         }
       ]
     },
@@ -272,88 +287,79 @@
         {
           "file": "assets/js/436.522c2261.js",
           "hash": "bd3c6b2716b2503a",
-          "publicPath": "/en/assets/js/436.522c2261.js"
+          "publicPath": "/Eidolon/docs/build/en/assets/js/436.522c2261.js"
         }
       ]
     },
     "458": {
       "js": [
         {
-          "file": "assets/js/27f50a7c.eb40e570.js",
-          "hash": "949e0332a653a574",
-          "publicPath": "/en/assets/js/27f50a7c.eb40e570.js"
+          "file": "assets/js/27f50a7c.d570d4a3.js",
+          "hash": "79828674f0ce4845",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/27f50a7c.d570d4a3.js"
         }
       ]
     },
     "472": {
       "js": [
         {
-          "file": "assets/js/4a49fa26.a4e245af.js",
-          "hash": "68c09c8f3a635315",
-          "publicPath": "/en/assets/js/4a49fa26.a4e245af.js"
+          "file": "assets/js/4a49fa26.f54ca470.js",
+          "hash": "5de18fd90501cd44",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/4a49fa26.f54ca470.js"
         }
       ]
     },
     "488": {
       "js": [
         {
-          "file": "assets/js/314e669a.abe8dabd.js",
-          "hash": "af54dd508713ca08",
-          "publicPath": "/en/assets/js/314e669a.abe8dabd.js"
+          "file": "assets/js/314e669a.a9cbefd6.js",
+          "hash": "0267318ebc2cd6eb",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/314e669a.a9cbefd6.js"
         }
       ]
     },
     "489": {
       "js": [
         {
-          "file": "assets/js/b725e81d.b2d322c7.js",
-          "hash": "29f402363c856e22",
-          "publicPath": "/en/assets/js/b725e81d.b2d322c7.js"
+          "file": "assets/js/b725e81d.577735c2.js",
+          "hash": "8e20e29fa14c3265",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/b725e81d.577735c2.js"
         }
       ]
     },
     "497": {
       "js": [
         {
-          "file": "assets/js/10db8ab8.1b5782f3.js",
-          "hash": "8156fc71510f1878",
-          "publicPath": "/en/assets/js/10db8ab8.1b5782f3.js"
+          "file": "assets/js/10db8ab8.d0706d12.js",
+          "hash": "0b8e1247bc6228f4",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/10db8ab8.d0706d12.js"
         }
       ]
     },
     "503": {
       "js": [
         {
-          "file": "assets/js/96df7bff.34a141d1.js",
-          "hash": "c864c853bab21341",
-          "publicPath": "/en/assets/js/96df7bff.34a141d1.js"
-        }
-      ]
-    },
-    "512": {
-      "js": [
-        {
-          "file": "assets/js/116e21e2.0dca8dc7.js",
-          "hash": "a7f035184dbf26e0",
-          "publicPath": "/en/assets/js/116e21e2.0dca8dc7.js"
+          "file": "assets/js/96df7bff.9a48d3cf.js",
+          "hash": "06736eddc2e75ffa",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/96df7bff.9a48d3cf.js"
         }
       ]
     },
     "532": {
       "js": [
         {
-          "file": "assets/js/8096a3e9.23a7284d.js",
-          "hash": "10bc4985d419a002",
-          "publicPath": "/en/assets/js/8096a3e9.23a7284d.js"
+          "file": "assets/js/8096a3e9.458366db.js",
+          "hash": "b208a1cd577dfaf8",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/8096a3e9.458366db.js"
         }
       ]
     },
     "575": {
       "js": [
         {
-          "file": "assets/js/8fc1c7a3.ee3b02eb.js",
-          "hash": "c8dce1f30bf47227",
-          "publicPath": "/en/assets/js/8fc1c7a3.ee3b02eb.js"
+          "file": "assets/js/8fc1c7a3.4953c6e8.js",
+          "hash": "dec6c6b75ef5fffd",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/8fc1c7a3.4953c6e8.js"
         }
       ]
     },
@@ -362,25 +368,34 @@
         {
           "file": "assets/js/1df93b7f.79bb433b.js",
           "hash": "18c592cac563846f",
-          "publicPath": "/en/assets/js/1df93b7f.79bb433b.js"
+          "publicPath": "/Eidolon/docs/build/en/assets/js/1df93b7f.79bb433b.js"
+        }
+      ]
+    },
+    "585": {
+      "js": [
+        {
+          "file": "assets/js/50a199e2.99814f28.js",
+          "hash": "28684f71f906c488",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/50a199e2.99814f28.js"
         }
       ]
     },
     "602": {
       "js": [
         {
-          "file": "assets/js/4bd02ba8.46df92e2.js",
-          "hash": "3ad083bf6cf9d4e4",
-          "publicPath": "/en/assets/js/4bd02ba8.46df92e2.js"
+          "file": "assets/js/4bd02ba8.f861d5e5.js",
+          "hash": "786f585adea1de91",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/4bd02ba8.f861d5e5.js"
         }
       ]
     },
     "620": {
       "js": [
         {
-          "file": "assets/js/078f444f.fea99ea8.js",
-          "hash": "db90f1fb02a01c76",
-          "publicPath": "/en/assets/js/078f444f.fea99ea8.js"
+          "file": "assets/js/078f444f.2c51125f.js",
+          "hash": "7a8e178a599f47dd",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/078f444f.2c51125f.js"
         }
       ]
     },
@@ -389,25 +404,34 @@
         {
           "file": "assets/js/5e95c892.87aaf9b7.js",
           "hash": "499a6b410ccd7018",
-          "publicPath": "/en/assets/js/5e95c892.87aaf9b7.js"
+          "publicPath": "/Eidolon/docs/build/en/assets/js/5e95c892.87aaf9b7.js"
         }
       ]
     },
     "658": {
       "js": [
         {
-          "file": "assets/js/f5191c80.7028d8d1.js",
-          "hash": "67d9ddbb2e4304b3",
-          "publicPath": "/en/assets/js/f5191c80.7028d8d1.js"
+          "file": "assets/js/f5191c80.e8d78e0e.js",
+          "hash": "52ba8aaeb2e4ceb4",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/f5191c80.e8d78e0e.js"
+        }
+      ]
+    },
+    "698": {
+      "js": [
+        {
+          "file": "assets/js/ad761a6e.766d4f35.js",
+          "hash": "2678944c709abac8",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/ad761a6e.766d4f35.js"
         }
       ]
     },
     "723": {
       "js": [
         {
-          "file": "assets/js/3aa4a0ca.76b41f53.js",
-          "hash": "32ffb56e402c9903",
-          "publicPath": "/en/assets/js/3aa4a0ca.76b41f53.js"
+          "file": "assets/js/3aa4a0ca.ba9043e5.js",
+          "hash": "c82b3a5d06e65d9a",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/3aa4a0ca.ba9043e5.js"
         }
       ]
     },
@@ -416,34 +440,34 @@
         {
           "file": "assets/js/aba21aa0.ab95acb8.js",
           "hash": "dca0c5f6f6a0c47a",
-          "publicPath": "/en/assets/js/aba21aa0.ab95acb8.js"
+          "publicPath": "/Eidolon/docs/build/en/assets/js/aba21aa0.ab95acb8.js"
         }
       ]
     },
     "769": {
       "js": [
         {
-          "file": "assets/js/ae597964.e13ef884.js",
-          "hash": "c556969c0289fbcd",
-          "publicPath": "/en/assets/js/ae597964.e13ef884.js"
+          "file": "assets/js/ae597964.d80bb585.js",
+          "hash": "09de5388016b66e0",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/ae597964.d80bb585.js"
         }
       ]
     },
     "774": {
       "js": [
         {
-          "file": "assets/js/ee434f1e.6a4fb88f.js",
-          "hash": "a59078fbb13a22d4",
-          "publicPath": "/en/assets/js/ee434f1e.6a4fb88f.js"
+          "file": "assets/js/ee434f1e.c1af5d55.js",
+          "hash": "42dc63283b542b93",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/ee434f1e.c1af5d55.js"
         }
       ]
     },
     "792": {
       "js": [
         {
-          "file": "assets/js/main.37f9e05a.js",
-          "hash": "3bf569b3206e73fe",
-          "publicPath": "/en/assets/js/main.37f9e05a.js"
+          "file": "assets/js/main.a6fc2327.js",
+          "hash": "16f8aaf39eda9900",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/main.a6fc2327.js"
         }
       ]
     },
@@ -452,34 +476,34 @@
         {
           "file": "assets/css/styles.88865032.css",
           "hash": "985f61eb0e3e670a",
-          "publicPath": "/en/assets/css/styles.88865032.css"
+          "publicPath": "/Eidolon/docs/build/en/assets/css/styles.88865032.css"
         }
       ]
     },
     "951": {
       "js": [
         {
-          "file": "assets/js/fa371c74.09f54dee.js",
-          "hash": "1e56910cfb20cc96",
-          "publicPath": "/en/assets/js/fa371c74.09f54dee.js"
+          "file": "assets/js/fa371c74.301774ae.js",
+          "hash": "70524faee26f7029",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/fa371c74.301774ae.js"
         }
       ]
     },
     "962": {
       "js": [
         {
-          "file": "assets/js/3ade8a5f.797e0d30.js",
-          "hash": "905440a078dd3cce",
-          "publicPath": "/en/assets/js/3ade8a5f.797e0d30.js"
+          "file": "assets/js/3ade8a5f.ef972211.js",
+          "hash": "3be88c4d1ae3fc3e",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/3ade8a5f.ef972211.js"
         }
       ]
     },
     "970": {
       "js": [
         {
-          "file": "assets/js/2475a62d.cd465fff.js",
-          "hash": "9a773d67988d86db",
-          "publicPath": "/en/assets/js/2475a62d.cd465fff.js"
+          "file": "assets/js/2475a62d.05bbee45.js",
+          "hash": "4a50bb5e6142478c",
+          "publicPath": "/Eidolon/docs/build/en/assets/js/2475a62d.05bbee45.js"
         }
       ]
     }

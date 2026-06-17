@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/mood.md",
   "sourceDirName": "features",
   "slug": "/features/mood",
-  "permalink": "/en/features/mood",
+  "permalink": "/Eidolon/docs/build/en/features/mood",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/mood.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/mood.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 3,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "Habit Tracking",
-    "permalink": "/en/features/habit"
+    "permalink": "/Eidolon/docs/build/en/features/habit"
   },
   "next": {
     "title": "Focus Mode",
-    "permalink": "/en/features/focus-timer"
+    "permalink": "/Eidolon/docs/build/en/features/focus-timer"
   }
 }

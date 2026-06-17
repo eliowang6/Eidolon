@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/agent.md",
   "sourceDirName": "features",
   "slug": "/features/agent",
-  "permalink": "/en/features/agent",
+  "permalink": "/Eidolon/docs/build/en/features/agent",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/agent.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/agent.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 5,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "Tool Calling",
-    "permalink": "/en/features/tools"
+    "permalink": "/Eidolon/docs/build/en/features/tools"
   },
   "next": {
-    "title": "To-Do Management",
-    "permalink": "/en/features/todo"
+    "title": "生活动态",
+    "permalink": "/Eidolon/docs/build/en/features/life"
   }
 }

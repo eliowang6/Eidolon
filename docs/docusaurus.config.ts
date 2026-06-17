@@ -7,11 +7,11 @@ const config: Config = {
   tagline: 'Your other self in the AI era',
   favicon: 'img/favicon.ico',
 
-  url: 'https://docs.eidolon.ai',
-  baseUrl: '/',
+  url: 'https://eliowang6.github.io',
+  baseUrl: '/Eidolon/docs/build/',
 
-  organizationName: 'instarmony',
-  projectName: 'eidolon',
+  organizationName: 'eliowang6',
+  projectName: 'Eidolon',
 
   onBrokenLinks: 'throw',
   markdown: {
@@ -34,7 +34,7 @@ const config: Config = {
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           editUrl:
-            'https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/',
+            'https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/',
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
         },
@@ -90,7 +90,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/instarmony/eidolon',
+          href: 'https://github.com/eliowang6/Eidolon',
           label: 'GitHub',
           position: 'right',
         },
@@ -117,11 +117,15 @@ const config: Config = {
           items: [
             {
               label: 'QQ Group',
-              href: '#',
+              href: 'https://qm.qq.com/q/oUgx5EwyVa',
+            },
+            {
+              label: 'Discord',
+              href: 'https://discord.gg/uBFgfV7y',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/instarmony/eidolon',
+              href: 'https://github.com/eliowang6/Eidolon',
             },
           ],
         },
@@ -129,8 +133,12 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Website',
-              href: 'https://eidolon.ai',
+              label: 'Official Website',
+              href: 'https://eliowang6.github.io/Eidolon/',
+            },
+            {
+              label: 'Bilibili',
+              href: 'https://space.bilibili.com/520926548',
             },
           ],
         },

@@ -14,8 +14,8 @@
       "calendar": "gregory",
       "path": "zh-Hans",
       "translate": false,
-      "url": "https://docs.eidolon.ai",
-      "baseUrl": "/"
+      "url": "https://eliowang6.github.io",
+      "baseUrl": "/Eidolon/docs/build/"
     },
     "en": {
       "label": "English",
@@ -24,8 +24,8 @@
       "calendar": "gregory",
       "path": "en",
       "translate": true,
-      "url": "https://docs.eidolon.ai",
-      "baseUrl": "/en/"
+      "url": "https://eliowang6.github.io",
+      "baseUrl": "/Eidolon/docs/build/en/"
     }
   }
 }

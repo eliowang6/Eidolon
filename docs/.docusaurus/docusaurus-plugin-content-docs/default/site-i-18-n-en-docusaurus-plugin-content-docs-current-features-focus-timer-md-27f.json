@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/focus-timer.md",
   "sourceDirName": "features",
   "slug": "/features/focus-timer",
-  "permalink": "/en/features/focus-timer",
+  "permalink": "/Eidolon/docs/build/en/features/focus-timer",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/focus-timer.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/focus-timer.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 4,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "Mood Tracking",
-    "permalink": "/en/features/mood"
+    "permalink": "/Eidolon/docs/build/en/features/mood"
   },
   "next": {
     "title": "Alarms & Reminders",
-    "permalink": "/en/features/alarm"
+    "permalink": "/Eidolon/docs/build/en/features/alarm"
   }
 }

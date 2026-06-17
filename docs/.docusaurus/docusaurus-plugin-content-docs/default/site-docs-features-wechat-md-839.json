@@ -5,10 +5,10 @@
   "source": "@site/docs/features/wechat.md",
   "sourceDirName": "features",
   "slug": "/features/wechat",
-  "permalink": "/features/wechat",
+  "permalink": "/Eidolon/docs/build/features/wechat",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/wechat.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/wechat.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "快捷提问",
-    "permalink": "/features/quick-prompts"
+    "permalink": "/Eidolon/docs/build/features/quick-prompts"
   },
   "next": {
     "title": "QQ 机器人",
-    "permalink": "/features/qqbot"
+    "permalink": "/Eidolon/docs/build/features/qqbot"
   }
 }

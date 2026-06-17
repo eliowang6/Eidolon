@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/todo.md",
   "sourceDirName": "features",
   "slug": "/features/todo",
-  "permalink": "/en/features/todo",
+  "permalink": "/Eidolon/docs/build/en/features/todo",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/todo.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/todo.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
@@ -20,11 +20,11 @@
   },
   "sidebar": "featureSidebar",
   "previous": {
-    "title": "AI Agent (Sub-Agent)",
-    "permalink": "/en/features/agent"
+    "title": "生活动态",
+    "permalink": "/Eidolon/docs/build/en/features/life"
   },
   "next": {
     "title": "Habit Tracking",
-    "permalink": "/en/features/habit"
+    "permalink": "/Eidolon/docs/build/en/features/habit"
   }
 }

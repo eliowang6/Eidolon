@@ -9,6 +9,15 @@
 ### And Your Super AI Companion
 
 <p>
+  <a href="https://eliowang6.github.io/Eidolon/docs/build/">
+    <img src="https://img.shields.io/badge/📖 Documentation-Read%20the%20Docs-7c3aed?style=for-the-badge" alt="documentation" />
+  </a>
+  <a href="https://eliowang6.github.io/Eidolon/">
+    <img src="https://img.shields.io/badge/🌐 Website-Visit%20Now-111827?style=for-the-badge" alt="website" />
+  </a>
+</p>
+
+<p>
   <a href="https://github.com/eliowang6/Eidolon/stargazers">
     <img src="https://img.shields.io/github/stars/eliowang6/Eidolon?style=for-the-badge&logo=github&color=8b5cf6" alt="stars" />
   </a>
@@ -38,6 +47,7 @@
 </p>
 
 <p>
+  <a href="https://eliowang6.github.io/Eidolon/docs/build/">Documentation</a> •
   <a href="#-features">Features</a> •
   <a href="#-screenshots">Screenshots</a> •
   <a href="#-why-eidolon">Why Eidolon</a> •
@@ -78,6 +88,81 @@ It is designed to be:
 - and a safe operator that can interact with your digital world.
 
 Whether you want someone to talk to, a gaming buddy, a travel partner, a desktop helper, or an always-there AI presence, Eidolon is built to feel **personal, ambient, and useful**.
+
+---
+
+## 📖 Getting Started
+
+> **New to Eidolon?** Start here!
+>
+> Visit our **[Documentation Site](https://eliowang6.github.io/Eidolon/docs/build/)** for:
+> - **[Quick Start Guide](https://eliowang6.github.io/Eidolon/docs/build/quick-start)** — from installation to your first conversation in 5 minutes
+> - **[Installation Guide](https://eliowang6.github.io/Eidolon/docs/build/install)** — detailed setup for Windows, Android, and Web
+> - **[Account Management](https://eliowang6.github.io/Eidolon/docs/build/account)** — registration, login, and security
+> - **[Settings & Preferences](https://eliowang6.github.io/Eidolon/docs/build/features/settings)** — language, AI model, privacy, and desktop features
+> - **[Feature Guide](https://eliowang6.github.io/Eidolon/docs/build/features/chat)** — learn every feature in depth
+> - **[FAQ](https://eliowang6.github.io/Eidolon/docs/build/faq)** — common questions answered
+
+Eidolon supports **Windows Desktop**, **Android**, and **Web**. Download the latest release from [GitHub Releases](https://github.com/eliowang6/Eidolon/releases).
+
+---
+
+## 📚 Documentation
+
+Full documentation is available at **[eliowang6.github.io/Eidolon/docs/build/](https://eliowang6.github.io/Eidolon/docs/build/)**.
+
+### Getting Started
+| Guide | Description |
+|-------|-------------|
+| [Quick Start](https://eliowang6.github.io/Eidolon/docs/build/quick-start) | From download to first conversation in 5 minutes |
+| [Installation](https://eliowang6.github.io/Eidolon/docs/build/install) | Detailed setup for all platforms |
+| [Account](https://eliowang6.github.io/Eidolon/docs/build/account) | Registration, login, and password management |
+
+### Core Features
+| Feature | Description |
+|---------|-------------|
+| [Chat](https://eliowang6.github.io/Eidolon/docs/build/features/chat) | Smart conversation with long-term memory |
+| [Voice Call](https://eliowang6.github.io/Eidolon/docs/build/features/voice-call) | Real-time voice conversation |
+| [Video Call](https://eliowang6.github.io/Eidolon/docs/build/features/video-call) | Face-to-face video companionship |
+| [Tool Calls](https://eliowang6.github.io/Eidolon/docs/build/features/tools) | AI creates todos, habits, images for you |
+| [AI Agent](https://eliowang6.github.io/Eidolon/docs/build/features/agent) | Autonomous computer operation (Genesis) |
+
+### Life Management
+| Feature | Description |
+|---------|-------------|
+| [Life Dashboard](https://eliowang6.github.io/Eidolon/docs/build/features/life) | Activity feed, widgets, and insights |
+| [Todo](https://eliowang6.github.io/Eidolon/docs/build/features/todo) | Task management with AI assistance |
+| [Habit Tracker](https://eliowang6.github.io/Eidolon/docs/build/features/habit) | Build good habits together |
+| [Mood Journal](https://eliowang6.github.io/Eidolon/docs/build/features/mood) | Track emotions and well-being |
+| [Focus Timer](https://eliowang6.github.io/Eidolon/docs/build/features/focus-timer) | Pomodoro with AI companionship |
+| [Alarms](https://eliowang6.github.io/Eidolon/docs/build/features/alarm) | AI-powered reminders |
+
+### Creative & Social
+| Feature | Description |
+|---------|-------------|
+| [Theater](https://eliowang6.github.io/Eidolon/docs/build/features/theater) | Interactive story adventures |
+| [AI Image Generation](https://eliowang6.github.io/Eidolon/docs/build/features/image-generation) | Text-to-image creation |
+| [Emoji & Stickers](https://eliowang6.github.io/Eidolon/docs/build/features/emoji-sticker) | Expressive reactions and custom stickers |
+| [Quick Prompts](https://eliowang6.github.io/Eidolon/docs/build/features/quick-prompts) | One-click conversation starters |
+| [WeChat Integration](https://eliowang6.github.io/Eidolon/docs/build/features/wechat) | AI auto-replies on WeChat |
+| [QQ Bot](https://eliowang6.github.io/Eidolon/docs/build/features/qqbot) | AI as a QQ channel bot |
+
+### Personalization
+| Feature | Description |
+|---------|-------------|
+| [Settings](https://eliowang6.github.io/Eidolon/docs/build/features/settings) | All preferences in one place |
+| [Avatar](https://eliowang6.github.io/Eidolon/docs/build/features/avatar) | VRM/Live2D models and floating window |
+| [Themes](https://eliowang6.github.io/Eidolon/docs/build/features/theme) | 9+ visual themes and fonts |
+| [TTS Voice](https://eliowang6.github.io/Eidolon/docs/build/features/tts) | Voice customization and cloning |
+| [Memory](https://eliowang6.github.io/Eidolon/docs/build/features/memory) | Long-term memory and relationship |
+| [MCP Extensions](https://eliowang6.github.io/Eidolon/docs/build/features/mcp) | Plugin system via MCP protocol |
+| [Subscription](https://eliowang6.github.io/Eidolon/docs/build/features/subscription) | Tiers, quotas, and features comparison |
+
+### Help
+| Resource | Description |
+|----------|-------------|
+| [FAQ](https://eliowang6.github.io/Eidolon/docs/build/faq) | Common questions and troubleshooting |
+| [GitHub Issues](https://github.com/eliowang6/Eidolon/issues) | Report bugs and request features |
 
 ---
 
@@ -255,13 +340,13 @@ please use **Discussions** or join our **Discord**.
 ## 🤝 Community & Support
 
 <p>
-  <a href="https://github.com/YOUR_ORG/YOUR_REPO/issues">
+  <a href="https://github.com/eliowang6/Eidolon/issues">
     <img src="https://img.shields.io/badge/Feedback-Issues-ef4444?style=for-the-badge&logo=github" alt="issues" />
   </a>
-  <a href="https://github.com/YOUR_ORG/YOUR_REPO/discussions">
+  <a href="https://github.com/eliowang6/Eidolon/discussions">
     <img src="https://img.shields.io/badge/Discussion-GitHub%20Discussions-14b8a6?style=for-the-badge&logo=github" alt="discussions" />
   </a>
-  <a href="https://discord.gg/YOUR_INVITE_CODE">
+  <a href="https://discord.gg/uBFgfV7y">
     <img src="https://img.shields.io/badge/Chat-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="discord" />
   </a>
 </p>
@@ -273,6 +358,9 @@ We welcome builders, dreamers, developers, creators, roleplay lovers, AI enthusi
 ## 🔗 Links
 
 <p align="center">
+  <a href="https://eliowang6.github.io/Eidolon/docs/build/">
+    <img src="https://img.shields.io/badge/📖 Documentation-Read%20the%20Docs-7c3aed?style=for-the-badge" alt="Documentation" />
+  </a>
   <a href="https://discord.gg/uBFgfV7y">
     <img src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
   </a>

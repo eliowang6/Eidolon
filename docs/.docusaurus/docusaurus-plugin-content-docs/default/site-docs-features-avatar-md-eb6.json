@@ -5,10 +5,10 @@
   "source": "@site/docs/features/avatar.md",
   "sourceDirName": "features",
   "slug": "/features/avatar",
-  "permalink": "/features/avatar",
+  "permalink": "/Eidolon/docs/build/features/avatar",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/avatar.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/avatar.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
@@ -20,11 +20,11 @@
   },
   "sidebar": "featureSidebar",
   "previous": {
-    "title": "QQ 机器人",
-    "permalink": "/features/qqbot"
+    "title": "设置与偏好",
+    "permalink": "/Eidolon/docs/build/features/settings"
   },
   "next": {
     "title": "主题与外观",
-    "permalink": "/features/theme"
+    "permalink": "/Eidolon/docs/build/features/theme"
   }
 }

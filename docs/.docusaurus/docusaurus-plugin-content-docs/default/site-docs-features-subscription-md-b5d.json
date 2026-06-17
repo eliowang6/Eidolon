@@ -5,10 +5,10 @@
   "source": "@site/docs/features/subscription.md",
   "sourceDirName": "features",
   "slug": "/features/subscription",
-  "permalink": "/features/subscription",
+  "permalink": "/Eidolon/docs/build/features/subscription",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/subscription.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/subscription.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
@@ -21,6 +21,6 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "MCP 工具扩展",
-    "permalink": "/features/mcp"
+    "permalink": "/Eidolon/docs/build/features/mcp"
   }
 }

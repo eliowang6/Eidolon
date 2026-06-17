@@ -5,10 +5,10 @@
   "source": "@site/docs/features/focus-timer.md",
   "sourceDirName": "features",
   "slug": "/features/focus-timer",
-  "permalink": "/features/focus-timer",
+  "permalink": "/Eidolon/docs/build/features/focus-timer",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/focus-timer.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/focus-timer.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 4,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "心情记录",
-    "permalink": "/features/mood"
+    "permalink": "/Eidolon/docs/build/features/mood"
   },
   "next": {
     "title": "闹钟提醒",
-    "permalink": "/features/alarm"
+    "permalink": "/Eidolon/docs/build/features/alarm"
   }
 }

@@ -1,143 +1,153 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/en/",
+      "path": "/Eidolon/docs/build/en/",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/en/",
+          "path": "/Eidolon/docs/build/en/",
           "mainDocId": "quick-start",
           "docs": [
             {
               "id": "account",
-              "path": "/en/account",
+              "path": "/Eidolon/docs/build/en/account",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "faq",
-              "path": "/en/faq",
+              "path": "/Eidolon/docs/build/en/faq",
               "sidebar": "faqSidebar"
             },
             {
               "id": "features/agent",
-              "path": "/en/features/agent",
+              "path": "/Eidolon/docs/build/en/features/agent",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/alarm",
-              "path": "/en/features/alarm",
+              "path": "/Eidolon/docs/build/en/features/alarm",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/avatar",
-              "path": "/en/features/avatar",
+              "path": "/Eidolon/docs/build/en/features/avatar",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/chat",
-              "path": "/en/features/chat",
+              "path": "/Eidolon/docs/build/en/features/chat",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/emoji-sticker",
-              "path": "/en/features/emoji-sticker",
+              "path": "/Eidolon/docs/build/en/features/emoji-sticker",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/focus-timer",
-              "path": "/en/features/focus-timer",
+              "path": "/Eidolon/docs/build/en/features/focus-timer",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/habit",
-              "path": "/en/features/habit",
+              "path": "/Eidolon/docs/build/en/features/habit",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/image-generation",
-              "path": "/en/features/image-generation",
+              "path": "/Eidolon/docs/build/en/features/image-generation",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/life",
+              "path": "/Eidolon/docs/build/en/features/life",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/mcp",
-              "path": "/en/features/mcp",
+              "path": "/Eidolon/docs/build/en/features/mcp",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/memory",
-              "path": "/en/features/memory",
+              "path": "/Eidolon/docs/build/en/features/memory",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/mood",
-              "path": "/en/features/mood",
+              "path": "/Eidolon/docs/build/en/features/mood",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/qqbot",
-              "path": "/en/features/qqbot",
+              "path": "/Eidolon/docs/build/en/features/qqbot",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/quick-prompts",
-              "path": "/en/features/quick-prompts",
+              "path": "/Eidolon/docs/build/en/features/quick-prompts",
+              "sidebar": "featureSidebar"
+            },
+            {
+              "id": "features/settings",
+              "path": "/Eidolon/docs/build/en/features/settings",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/subscription",
-              "path": "/en/features/subscription",
+              "path": "/Eidolon/docs/build/en/features/subscription",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/theater",
-              "path": "/en/features/theater",
+              "path": "/Eidolon/docs/build/en/features/theater",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/theme",
-              "path": "/en/features/theme",
+              "path": "/Eidolon/docs/build/en/features/theme",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/todo",
-              "path": "/en/features/todo",
+              "path": "/Eidolon/docs/build/en/features/todo",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/tools",
-              "path": "/en/features/tools",
+              "path": "/Eidolon/docs/build/en/features/tools",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/tts",
-              "path": "/en/features/tts",
+              "path": "/Eidolon/docs/build/en/features/tts",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/video-call",
-              "path": "/en/features/video-call",
+              "path": "/Eidolon/docs/build/en/features/video-call",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/voice-call",
-              "path": "/en/features/voice-call",
+              "path": "/Eidolon/docs/build/en/features/voice-call",
               "sidebar": "featureSidebar"
             },
             {
               "id": "features/wechat",
-              "path": "/en/features/wechat",
+              "path": "/Eidolon/docs/build/en/features/wechat",
               "sidebar": "featureSidebar"
             },
             {
               "id": "install",
-              "path": "/en/install",
+              "path": "/Eidolon/docs/build/en/install",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "quick-start",
-              "path": "/en/quick-start",
+              "path": "/Eidolon/docs/build/en/quick-start",
               "sidebar": "tutorialSidebar"
             }
           ],
@@ -145,19 +155,19 @@
           "sidebars": {
             "tutorialSidebar": {
               "link": {
-                "path": "/en/quick-start",
+                "path": "/Eidolon/docs/build/en/quick-start",
                 "label": "quick-start"
               }
             },
             "featureSidebar": {
               "link": {
-                "path": "/en/features/chat",
+                "path": "/Eidolon/docs/build/en/features/chat",
                 "label": "features/chat"
               }
             },
             "faqSidebar": {
               "link": {
-                "path": "/en/faq",
+                "path": "/Eidolon/docs/build/en/faq",
                 "label": "faq"
               }
             }

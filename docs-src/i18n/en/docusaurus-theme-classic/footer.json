@@ -1,0 +1,30 @@
+{
+  "link.title.Docs": {
+    "message": "Docs",
+    "description": "The title of the footer links column with label Docs"
+  },
+  "link.item.label.快速上手": {
+    "message": "Quick Start",
+    "description": "The label of footer link with label 快速上手"
+  },
+  "link.item.label.功能详解": {
+    "message": "Features",
+    "description": "The label of footer link with label 功能详解"
+  },
+  "link.title.Community": {
+    "message": "Community",
+    "description": "The title of the footer links column with label Community"
+  },
+  "link.title.More": {
+    "message": "More",
+    "description": "The title of the footer links column with label More"
+  },
+  "link.item.label.Website": {
+    "message": "Website",
+    "description": "The label of footer link with label Website"
+  },
+  "copyright": {
+    "message": "Copyright © {year} Eidolon. Built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}

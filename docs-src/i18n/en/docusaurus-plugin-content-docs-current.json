@@ -1,0 +1,30 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.核心功能": {
+    "message": "Core Features",
+    "description": "The label for category Core Features in sidebar featureSidebar"
+  },
+  "sidebar.tutorialSidebar.category.生活管理": {
+    "message": "Life Management",
+    "description": "The label for category Life Management in sidebar featureSidebar"
+  },
+  "sidebar.tutorialSidebar.category.创意娱乐": {
+    "message": "Creative & Fun",
+    "description": "The label for category Creative & Fun in sidebar featureSidebar"
+  },
+  "sidebar.tutorialSidebar.category.社交集成": {
+    "message": "Social Integrations",
+    "description": "The label for category Social Integrations in sidebar featureSidebar"
+  },
+  "sidebar.tutorialSidebar.category.个性化": {
+    "message": "Personalization",
+    "description": "The label for category Personalization in sidebar featureSidebar"
+  },
+  "sidebar.tutorialSidebar.category.订阅与权益": {
+    "message": "Subscription & Benefits",
+    "description": "The label for category Subscription & Benefits in sidebar featureSidebar"
+  }
+}

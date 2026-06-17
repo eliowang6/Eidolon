@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/habit.md",
   "sourceDirName": "features",
   "slug": "/features/habit",
-  "permalink": "/en/features/habit",
+  "permalink": "/Eidolon/docs/build/en/features/habit",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/habit.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/habit.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 2,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "To-Do Management",
-    "permalink": "/en/features/todo"
+    "permalink": "/Eidolon/docs/build/en/features/todo"
   },
   "next": {
     "title": "Mood Tracking",
-    "permalink": "/en/features/mood"
+    "permalink": "/Eidolon/docs/build/en/features/mood"
   }
 }

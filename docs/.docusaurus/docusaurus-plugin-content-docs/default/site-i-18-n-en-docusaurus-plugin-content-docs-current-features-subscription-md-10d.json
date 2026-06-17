@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/features/subscription.md",
   "sourceDirName": "features",
   "slug": "/features/subscription",
-  "permalink": "/en/features/subscription",
+  "permalink": "/Eidolon/docs/build/en/features/subscription",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/subscription.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/subscription.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
@@ -21,6 +21,6 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "MCP Tool Extensions",
-    "permalink": "/en/features/mcp"
+    "permalink": "/Eidolon/docs/build/en/features/mcp"
   }
 }

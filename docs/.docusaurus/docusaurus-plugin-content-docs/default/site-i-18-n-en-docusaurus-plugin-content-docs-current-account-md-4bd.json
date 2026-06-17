@@ -5,10 +5,10 @@
   "source": "@site/i18n/en/docusaurus-plugin-content-docs/current/account.md",
   "sourceDirName": ".",
   "slug": "/account",
-  "permalink": "/en/account",
+  "permalink": "/Eidolon/docs/build/en/account",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/account.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/account.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 3,
@@ -21,6 +21,6 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Installation Guide",
-    "permalink": "/en/install"
+    "permalink": "/Eidolon/docs/build/en/install"
   }
 }

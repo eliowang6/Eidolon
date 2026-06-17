@@ -5,10 +5,10 @@
   "source": "@site/docs/features/alarm.md",
   "sourceDirName": "features",
   "slug": "/features/alarm",
-  "permalink": "/features/alarm",
+  "permalink": "/Eidolon/docs/build/features/alarm",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/instarmony/eidolon/tree/main/eidolon_github/docs/docs/features/alarm.md",
+  "editUrl": "https://github.com/eliowang6/Eidolon/tree/main/eidolon_github/docs/docs/features/alarm.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 5,
@@ -21,10 +21,10 @@
   "sidebar": "featureSidebar",
   "previous": {
     "title": "专注模式",
-    "permalink": "/features/focus-timer"
+    "permalink": "/Eidolon/docs/build/features/focus-timer"
   },
   "next": {
     "title": "小剧场",
-    "permalink": "/features/theater"
+    "permalink": "/Eidolon/docs/build/features/theater"
   }
 }

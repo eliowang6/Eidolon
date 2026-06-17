@@ -3,175 +3,187 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
-    path: '/en/',
-    component: ComponentCreator('/en/', '6c2'),
+    path: '/Eidolon/docs/build/en/',
+    component: ComponentCreator('/Eidolon/docs/build/en/', '2ad'),
     exact: true
   },
   {
-    path: '/en/',
-    component: ComponentCreator('/en/', '760'),
+    path: '/Eidolon/docs/build/en/',
+    component: ComponentCreator('/Eidolon/docs/build/en/', 'afb'),
     routes: [
       {
-        path: '/en/',
-        component: ComponentCreator('/en/', '2bf'),
+        path: '/Eidolon/docs/build/en/',
+        component: ComponentCreator('/Eidolon/docs/build/en/', 'a7f'),
         routes: [
           {
-            path: '/en/',
-            component: ComponentCreator('/en/', 'cf3'),
+            path: '/Eidolon/docs/build/en/',
+            component: ComponentCreator('/Eidolon/docs/build/en/', 'b24'),
             routes: [
               {
-                path: '/en/account',
-                component: ComponentCreator('/en/account', 'ccd'),
+                path: '/Eidolon/docs/build/en/account',
+                component: ComponentCreator('/Eidolon/docs/build/en/account', '9dd'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/en/faq',
-                component: ComponentCreator('/en/faq', '3df'),
+                path: '/Eidolon/docs/build/en/faq',
+                component: ComponentCreator('/Eidolon/docs/build/en/faq', 'bc2'),
                 exact: true,
                 sidebar: "faqSidebar"
               },
               {
-                path: '/en/features/agent',
-                component: ComponentCreator('/en/features/agent', 'e45'),
+                path: '/Eidolon/docs/build/en/features/agent',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/agent', '402'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/alarm',
-                component: ComponentCreator('/en/features/alarm', 'fe0'),
+                path: '/Eidolon/docs/build/en/features/alarm',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/alarm', '320'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/avatar',
-                component: ComponentCreator('/en/features/avatar', 'fb8'),
+                path: '/Eidolon/docs/build/en/features/avatar',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/avatar', '67b'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/chat',
-                component: ComponentCreator('/en/features/chat', '204'),
+                path: '/Eidolon/docs/build/en/features/chat',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/chat', '56f'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/emoji-sticker',
-                component: ComponentCreator('/en/features/emoji-sticker', 'f8d'),
+                path: '/Eidolon/docs/build/en/features/emoji-sticker',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/emoji-sticker', 'a8f'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/focus-timer',
-                component: ComponentCreator('/en/features/focus-timer', 'b14'),
+                path: '/Eidolon/docs/build/en/features/focus-timer',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/focus-timer', '52a'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/habit',
-                component: ComponentCreator('/en/features/habit', '21c'),
+                path: '/Eidolon/docs/build/en/features/habit',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/habit', 'eb4'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/image-generation',
-                component: ComponentCreator('/en/features/image-generation', '60d'),
+                path: '/Eidolon/docs/build/en/features/image-generation',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/image-generation', 'ca1'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/mcp',
-                component: ComponentCreator('/en/features/mcp', 'dd4'),
+                path: '/Eidolon/docs/build/en/features/life',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/life', 'fde'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/memory',
-                component: ComponentCreator('/en/features/memory', '901'),
+                path: '/Eidolon/docs/build/en/features/mcp',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/mcp', '251'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/mood',
-                component: ComponentCreator('/en/features/mood', 'e15'),
+                path: '/Eidolon/docs/build/en/features/memory',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/memory', 'fb8'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/qqbot',
-                component: ComponentCreator('/en/features/qqbot', '9ab'),
+                path: '/Eidolon/docs/build/en/features/mood',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/mood', '079'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/quick-prompts',
-                component: ComponentCreator('/en/features/quick-prompts', 'f3c'),
+                path: '/Eidolon/docs/build/en/features/qqbot',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/qqbot', 'aeb'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/subscription',
-                component: ComponentCreator('/en/features/subscription', 'e82'),
+                path: '/Eidolon/docs/build/en/features/quick-prompts',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/quick-prompts', 'd87'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/theater',
-                component: ComponentCreator('/en/features/theater', 'e00'),
+                path: '/Eidolon/docs/build/en/features/settings',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/settings', '4ac'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/theme',
-                component: ComponentCreator('/en/features/theme', '989'),
+                path: '/Eidolon/docs/build/en/features/subscription',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/subscription', '326'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/todo',
-                component: ComponentCreator('/en/features/todo', '50b'),
+                path: '/Eidolon/docs/build/en/features/theater',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/theater', '731'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/tools',
-                component: ComponentCreator('/en/features/tools', '548'),
+                path: '/Eidolon/docs/build/en/features/theme',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/theme', '333'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/tts',
-                component: ComponentCreator('/en/features/tts', 'fa8'),
+                path: '/Eidolon/docs/build/en/features/todo',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/todo', '33e'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/video-call',
-                component: ComponentCreator('/en/features/video-call', '418'),
+                path: '/Eidolon/docs/build/en/features/tools',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/tools', '039'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/voice-call',
-                component: ComponentCreator('/en/features/voice-call', '915'),
+                path: '/Eidolon/docs/build/en/features/tts',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/tts', '93e'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/features/wechat',
-                component: ComponentCreator('/en/features/wechat', 'e23'),
+                path: '/Eidolon/docs/build/en/features/video-call',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/video-call', '826'),
                 exact: true,
                 sidebar: "featureSidebar"
               },
               {
-                path: '/en/install',
-                component: ComponentCreator('/en/install', 'e8c'),
+                path: '/Eidolon/docs/build/en/features/voice-call',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/voice-call', '7ef'),
+                exact: true,
+                sidebar: "featureSidebar"
+              },
+              {
+                path: '/Eidolon/docs/build/en/features/wechat',
+                component: ComponentCreator('/Eidolon/docs/build/en/features/wechat', '6be'),
+                exact: true,
+                sidebar: "featureSidebar"
+              },
+              {
+                path: '/Eidolon/docs/build/en/install',
+                component: ComponentCreator('/Eidolon/docs/build/en/install', 'eb2'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/en/quick-start',
-                component: ComponentCreator('/en/quick-start', '135'),
+                path: '/Eidolon/docs/build/en/quick-start',
+                component: ComponentCreator('/Eidolon/docs/build/en/quick-start', '53b'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }
