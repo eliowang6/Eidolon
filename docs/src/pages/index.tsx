@@ -1,67 +1,67 @@
 import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 
-const features = [
-  {
-    icon: '💬',
-    title: '智能对话',
-    desc: '文字、语音、视频，多种方式与 AI 自由交流',
-    href: '/features/chat',
-  },
-  {
-    icon: '🎙️',
-    title: '语音 & 视频通话',
-    desc: '像打电话一样和 AI 对话，面对面视频陪伴',
-    href: '/features/video-call',
-  },
-  {
-    icon: '✅',
-    title: '待办 & 习惯',
-    desc: 'AI 帮你管理任务、养成好习惯、记录心情',
-    href: '/features/todo',
-  },
-  {
-    icon: '🎭',
-    title: '小剧场',
-    desc: '沉浸式互动剧情，与 AI 共创独特故事',
-    href: '/features/theater',
-  },
-  {
-    icon: '🎨',
-    title: 'AI 画图',
-    desc: '用文字描述就能生成精美图片',
-    href: '/features/image-generation',
-  },
-  {
-    icon: '🧠',
-    title: '长期记忆',
-    desc: 'AI 记住你的每一个重要时刻，越聊越懂你',
-    href: '/features/memory',
-  },
-  {
-    icon: '⏰',
-    title: '专注 & 提醒',
-    desc: '番茄钟专注模式 + 闹钟提醒，AI 陪你一起',
-    href: '/features/focus-timer',
-  },
-  {
-    icon: '🤖',
-    title: 'AI 代理',
-    desc: '让 AI 帮你操作电脑、搜索信息、执行任务',
-    href: '/features/agent',
-  },
-  {
-    icon: '🎨',
-    title: '主题 & 个性化',
-    desc: '9 套精美主题、角色模型、声音定制',
-    href: '/features/theme',
-  },
-];
-
 export default function Home(): React.JSX.Element {
   const {siteConfig} = useDocusaurusContext();
+  const features = [
+    {
+      icon: '💬',
+      title: '智能对话',
+      desc: '文字、语音、视频，多种方式与 AI 自由交流',
+      href: useBaseUrl('/features/chat'),
+    },
+    {
+      icon: '🎙️',
+      title: '语音 & 视频通话',
+      desc: '像打电话一样和 AI 对话，面对面视频陪伴',
+      href: useBaseUrl('/features/video-call'),
+    },
+    {
+      icon: '✅',
+      title: '待办 & 习惯',
+      desc: 'AI 帮你管理任务、养成好习惯、记录心情',
+      href: useBaseUrl('/features/todo'),
+    },
+    {
+      icon: '🎭',
+      title: '小剧场',
+      desc: '沉浸式互动剧情，与 AI 共创独特故事',
+      href: useBaseUrl('/features/theater'),
+    },
+    {
+      icon: '🎨',
+      title: 'AI 画图',
+      desc: '用文字描述就能生成精美图片',
+      href: useBaseUrl('/features/image-generation'),
+    },
+    {
+      icon: '🧠',
+      title: '长期记忆',
+      desc: 'AI 记住你的每一个重要时刻，越聊越懂你',
+      href: useBaseUrl('/features/memory'),
+    },
+    {
+      icon: '⏰',
+      title: '专注 & 提醒',
+      desc: '番茄钟专注模式 + 闹钟提醒，AI 陪你一起',
+      href: useBaseUrl('/features/focus-timer'),
+    },
+    {
+      icon: '🤖',
+      title: 'AI 代理',
+      desc: '让 AI 帮你操作电脑、搜索信息、执行任务',
+      href: useBaseUrl('/features/agent'),
+    },
+    {
+      icon: '🎨',
+      title: '主题 & 个性化',
+      desc: '9 套精美主题、角色模型、声音定制',
+      href: useBaseUrl('/features/theme'),
+    },
+  ];
   return (
     <Layout
       title={`${siteConfig.title}`}
@@ -102,14 +102,14 @@ export default function Home(): React.JSX.Element {
               </span>
             </p>
             <div className="eid-hero__actions">
-              <a className="eid-btn eid-btn--primary" href="/quick-start">
+              <a className="eid-btn eid-btn--primary" href={useBaseUrl('/quick-start')}>
                 <span>快速上手</span>
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
-              <a className="eid-btn eid-btn--ghost" href="/features/chat">
+              <a className="eid-btn eid-btn--ghost" href={useBaseUrl('/features/chat')}>
                 功能详解
               </a>
-              <a className="eid-btn eid-btn--ghost" href="/faq">
+              <a className="eid-btn eid-btn--ghost" href={useBaseUrl('/faq')}>
                 常见问题
               </a>
             </div>
@@ -142,7 +142,7 @@ export default function Home(): React.JSX.Element {
           <div className="eid-cta__container">
             <h2 className="eid-cta__title">准备好了吗？</h2>
             <p className="eid-cta__desc">5 分钟上手，开启你的 AI 伴侣之旅</p>
-            <a className="eid-btn eid-btn--primary eid-btn--lg" href="/quick-start">
+            <a className="eid-btn eid-btn--primary eid-btn--lg" href={useBaseUrl('/quick-start')}>
               <span>开始使用</span>
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
