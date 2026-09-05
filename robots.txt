@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /eidolon/login.html
+
+Sitemap: https://instarmony.com/sitemap.xml
