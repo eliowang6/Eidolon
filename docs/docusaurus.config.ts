@@ -7,8 +7,8 @@ const config: Config = {
   tagline: 'Your other self in the AI era',
   favicon: 'img/favicon.ico',
 
-  url: 'https://eliowang6.github.io',
-  baseUrl: '/Eidolon/docs/build/',
+  url: process.env.DOCS_URL ?? 'https://instarmony.com',
+  baseUrl: process.env.DOCS_BASE_URL ?? '/docs/build/',
 
   organizationName: 'eliowang6',
   projectName: 'Eidolon',

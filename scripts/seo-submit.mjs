@@ -24,7 +24,8 @@ const ROOT = resolve(__dirname, '..');
 const SITE = 'https://instarmony.com';
 
 // Canonical pages: top-level site pages + product pages under /eidolon/.
-// Derived from the actual nav links in index.html; update if the site adds pages.
+// Redirect stubs (login.html / contact.html) are intentionally NOT listed:
+// they are noindex + canonical-ized, and crawling them yields duplicate content.
 const PAGES = [
   { path: '/',                priority: '1.0', changefreq: 'weekly' },
   { path: '/eidolon/',        priority: '1.0', changefreq: 'weekly' },
@@ -33,8 +34,6 @@ const PAGES = [
   { path: '/eidolon/pricing.html',   priority: '0.8', changefreq: 'monthly' },
   { path: '/eidolon/docs.html',      priority: '0.7', changefreq: 'weekly' },
   { path: '/eidolon/about.html',     priority: '0.5', changefreq: 'monthly' },
-  { path: '/eidolon/contact.html',   priority: '0.5', changefreq: 'monthly' },
-  { path: '/eidolon/login.html',     priority: '0.3', changefreq: 'yearly' },
 ];
 
 function today() {
@@ -56,6 +55,7 @@ ${PAGES.map(p => `  <url>
 
   const robots = `User-agent: *
 Allow: /
+Disallow: /web/
 Disallow: /eidolon/login.html
 
 Sitemap: ${SITE}/sitemap.xml
