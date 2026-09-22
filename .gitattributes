@@ -1,0 +1,3 @@
+# scripts/install-site.sh runs on the Linux server (often piped through ssh), where
+# a CRLF line ending breaks the shebang and every subsequent line.
+*.sh text eol=lf
