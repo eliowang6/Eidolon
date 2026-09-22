@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elio Wang — AI Researcher · Instarmony AI Lab</title>
+    <meta name="description"
+        content="Elio Wang is an independent AI researcher and founder of Instarmony AI Lab, working on efficient large language models, autonomous agents, and long-term personalized AI systems for human–AI symbiosis.">
+    <meta name="keywords"
+        content="Elio Wang, AI researcher, Instarmony AI Lab, efficient LLM, autonomous agents, human-AI symbiosis, personalized AI, Eidolon">
+    <meta name="author" content="Elio Wang">
+    <meta property="og:title" content="Elio Wang — AI Researcher · Instarmony AI Lab">
+    <meta property="og:description"
+        content="Independent AI researcher exploring efficient intelligence, autonomous agents, and long-term human–AI symbiosis.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://instarmony.com/team/eli0wang6/">
+    <meta property="og:site_name" content="Instarmony">
+    <meta property="og:image" content="https://instarmony.com/assets/og-image-lab.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Elio Wang — AI Researcher · Instarmony AI Lab">
+    <meta name="twitter:description"
+        content="Independent AI researcher exploring efficient intelligence, autonomous agents, and long-term human–AI symbiosis.">
+    <link rel="canonical" href="https://instarmony.com/team/eli0wang6/">
+    <meta name="theme-color" content="#0b0a14">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="../../assets/logo-icon.jpg">
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+    <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../../style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Elio Wang",
+      "url": "https://instarmony.com/team/eli0wang6/",
+      "email": "mailto:eli0wang6@instarmony.com",
+      "jobTitle": "Independent AI Researcher",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Instarmony AI Lab",
+        "url": "https://instarmony.com/"
+      },
+      "knowsAbout": [
+        "Efficient Large Language Models",
+        "Autonomous AI Agents",
+        "Human-AI Symbiosis",
+        "Personalized AI Systems"
+      ],
+      "sameAs": [
+        "https://github.com/eliowang6"
+      ]
+    }
+    </script>
+
+    <style>
+        /* ── Profile-page scoped styles (extends the shared Instarmony design system) ── */
+        .profile-hero {
+            padding-top: 160px;
+            padding-bottom: 72px;
+            position: relative;
+        }
+
+        .profile-hero-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .identity-roles {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 24px;
+        }
+
+        .identity-role {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .identity-role.accent {
+            color: var(--nebula-light);
+        }
+
+        .identity-tagline {
+            font-size: 1.12rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 28px;
+            max-width: 600px;
+        }
+
+        .identity-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.92rem;
+            color: var(--cyan-light);
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.22);
+            padding: 9px 16px;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: all var(--transition-fast);
+        }
+
+        .identity-email:hover {
+            background: rgba(6, 182, 212, 0.16);
+            color: #ffffff;
+        }
+
+        /* Avatar card */
+        .avatar-card {
+            background: var(--void-card);
+            border: 1px solid var(--void-border);
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            backdrop-filter: blur(16px);
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        .avatar-frame {
+            position: relative;
+            width: 168px;
+            height: 168px;
+            margin: 0 auto 24px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(124, 58, 237, 0.45);
+            box-shadow: 0 0 34px rgba(124, 58, 237, 0.35);
+            background: radial-gradient(circle at 50% 35%, rgba(124, 58, 237, 0.22) 0%, rgba(7, 6, 13, 0.6) 70%);
+        }
+
+        .avatar-frame img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        .avatar-fallback {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            z-index: 1;
+        }
+
+        .avatar-name {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .avatar-affil {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .avatar-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 22px 0;
+        }
+
+        .avatar-facts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .avatar-fact {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.86rem;
+            color: var(--text-secondary);
+        }
+
+        .avatar-fact svg {
+            color: var(--nebula-light);
+            flex-shrink: 0;
+        }
+
+        /* Prose panels */
+        .profile-panel {
+            background: var(--void-card);
+            border: 1px solid var(--void-border);
+            border-radius: var(--radius-lg);
+            padding: 44px;
+            backdrop-filter: blur(16px);
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .profile-prose p {
+            font-size: 1.04rem;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+
+        .profile-prose p:last-child {
+            margin-bottom: 0;
+        }
+
+        .profile-prose strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .pub-empty {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 8px 0 4px 0;
+        }
+
+        .profile-note {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 18px;
+            line-height: 1.6;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(124, 58, 237, 0.35);
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(124, 58, 237, 0.16);
+            border: 1px solid rgba(124, 58, 237, 0.34);
+            color: var(--nebula-light);
+            flex-shrink: 0;
+        }
+
+        .contact-meta {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .contact-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .contact-value {
+            font-size: 0.94rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .section-shell {
+            padding: 92px 0;
+            position: relative;
+        }
+
+        .section-shell.alt {
+            background: linear-gradient(180deg, transparent 0%, rgba(13, 11, 24, 0.5) 50%, transparent 100%);
+        }
+
+        @media (max-width: 1024px) {
+            .profile-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 44px;
+            }
+
+            .avatar-card {
+                max-width: 420px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-hero {
+                padding-top: 130px;
+            }
+
+            .profile-panel {
+                padding: 30px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Ambient Canvas & Background Lighting -->
+    <canvas id="particle-canvas"></canvas>
+    <div class="bg-ambient-layer bg-grid"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- ── Top Navigation ── -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="nav-brand">
+                <img src="../../assets/logo-infinity.png" alt="Instarmony Logo" class="nav-logo-img">
+                <span class="nav-brand-title">Instarmony</span>
+                <span class="nav-brand-badge">AI LAB</span>
+            </a>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#interests">Research</a></li>
+                <li class="nav-item"><a href="#projects">Projects</a></li>
+                <li class="nav-item"><a href="#background">Background</a></li>
+                <li class="nav-item"><a href="#publications">Publications</a></li>
+                <li class="nav-item"><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="https://github.com/eliowang6" class="btn btn-glass btn-sm" target="_blank" rel="noopener">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+                    <span>GitHub</span>
+                </a>
+                <a href="/" class="btn btn-primary btn-sm">
+                    <span>Instarmony</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ===== HERO ===== -->
+        <section class="profile-hero">
+            <div class="container profile-hero-grid">
+                <div class="hero-content">
+                    <div class="hero-tag">
+                        <span class="hero-tag-glow"></span>
+                        <span>RESEARCHER PROFILE · INSTARMONY AI LAB</span>
+                    </div>
+
+                    <h1 class="hero-title">Elio <span class="gradient-text">Wang</span></h1>
+
+                    <div class="identity-roles">
+                        <span class="identity-role accent">Founder, Instarmony AI Lab</span>
+                        <span class="identity-role">Independent AI Researcher</span>
+                    </div>
+
+                    <p class="identity-tagline">
+                        Exploring the future of human–AI symbiosis through efficient intelligence,
+                        autonomous agents, and long-term personalized AI systems.
+                    </p>
+
+                    <a class="identity-email" href="mailto:eli0wang6@instarmony.com">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        eli0wang6@instarmony.com
+                    </a>
+
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            <span>View Projects</span>
+                        </a>
+                        <a href="#contact" class="btn btn-glass">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>
+                            <span>Get in Touch</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="avatar-card">
+                        <div class="avatar-frame">
+                            <!-- Drop a photo at team/eli0wang6/avatar.jpg to replace the initials -->
+                            <img src="avatar.jpg" alt="Elio Wang"
+                                onerror="this.style.display='none';">
+                            <div class="avatar-fallback gradient-text">EW</div>
+                        </div>
+                        <div class="avatar-name">Elio Wang</div>
+                        <div class="avatar-affil">Instarmony AI Lab</div>
+
+                        <div class="avatar-divider"></div>
+
+                        <div class="avatar-facts">
+                            <div class="avatar-fact">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Independent AI Researcher
+                            </div>
+                            <div class="avatar-fact">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+                                Efficient LLMs · Agents · Symbiosis
+                            </div>
+                            <div class="avatar-fact">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                github.com/eliowang6
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== RESEARCH INTERESTS ===== -->
+        <section class="section-shell" id="interests">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <span class="section-tag-pulse"></span>
+                        <span>RESEARCH INTERESTS</span>
+                    </div>
+                    <h2 class="section-title">What I work on</h2>
+                    <p class="section-subtitle">
+                        Four threads that run through my research — from model efficiency to the
+                        long-term relationship between people and the systems they build.
+                    </p>
+                </div>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-purple">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                                </div>
+                                <span class="pillar-num">01 / EFFICIENCY</span>
+                            </div>
+                            <h3 class="pillar-title">Efficient Large Language Models</h3>
+                            <p class="pillar-desc">
+                                Exploring methods to improve intelligence density, adaptive computation,
+                                and model efficiency — getting more capability out of fewer parameters
+                                and less compute.
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">Intelligence Density</span>
+                            <span class="pillar-tag">Adaptive Compute</span>
+                            <span class="pillar-tag">Sparse Architectures</span>
+                        </div>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-cyan">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 9 3 3-3 3"/><path d="M15 15h2"/></svg>
+                                </div>
+                                <span class="pillar-num">02 / AGENCY</span>
+                            </div>
+                            <h3 class="pillar-title">Autonomous AI Agents</h3>
+                            <p class="pillar-desc">
+                                Building AI systems with persistent memory, planning capability, and
+                                long-term interaction — agents that act, remember, and stay accountable
+                                over time.
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">Persistent Memory</span>
+                            <span class="pillar-tag">Planning</span>
+                            <span class="pillar-tag">Tool Use</span>
+                        </div>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-pink">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.85"/></svg>
+                                </div>
+                                <span class="pillar-num">03 / SYMBIOSIS</span>
+                            </div>
+                            <h3 class="pillar-title">Human–AI Symbiosis</h3>
+                            <p class="pillar-desc">
+                                Investigating new forms of collaboration between humans and digital
+                                intelligence — how trust, presence, and shared context develop across a
+                                long-lived relationship.
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">Collaboration</span>
+                            <span class="pillar-tag">Trust</span>
+                            <span class="pillar-tag">Presence</span>
+                        </div>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-amber">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12 22 2"/><path d="M12 8v4l3 2"/></svg>
+                                </div>
+                                <span class="pillar-num">04 / PERSONALIZATION</span>
+                            </div>
+                            <h3 class="pillar-title">Personalized AI Systems</h3>
+                            <p class="pillar-desc">
+                                Developing architectures for long-term, context-aware AI companions that
+                                accumulate understanding of an individual rather than resetting every
+                                session.
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">Long-term Context</span>
+                            <span class="pillar-tag">Continuity</span>
+                            <span class="pillar-tag">Companion Systems</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS ===== -->
+        <section class="section-shell alt" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <span class="section-tag-pulse"></span>
+                        <span>CURRENT PROJECTS</span>
+                    </div>
+                    <h2 class="section-title">Projects</h2>
+                    <p class="section-subtitle">
+                        Research initiatives and systems I am building, from an independent lab to
+                        shipped products and open exploration.
+                    </p>
+                </div>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-purple">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+                                </div>
+                                <span class="pillar-num">LAB</span>
+                            </div>
+                            <h3 class="pillar-title">Instarmony AI Lab</h3>
+                            <p class="pillar-desc">
+                                An independent research initiative exploring next-generation AI
+                                architectures and human-centered intelligent systems.
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">Independent Research</span>
+                            <span class="pillar-tag">Human-centered AI</span>
+                        </div>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-cyan">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/><path d="M3 12h18"/></svg>
+                                </div>
+                                <span class="pillar-num">PRODUCT</span>
+                            </div>
+                            <h3 class="pillar-title">Eidolon</h3>
+                            <p class="pillar-desc">
+                                A digital companion platform exploring long-term memory, autonomous
+                                agents, and continuous human–AI interaction.
+                            </p>
+                            <a class="eco-card-link" href="https://instarmony.com" target="_blank" rel="noopener">
+                                instarmony.com
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                            </a>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">Long-term Memory</span>
+                            <span class="pillar-tag">Autonomous Agents</span>
+                        </div>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-pink">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                                </div>
+                                <span class="pillar-num">RESEARCH</span>
+                            </div>
+                            <h3 class="pillar-title">Efficient Language Model Research</h3>
+                            <p class="pillar-desc">
+                                Exploring efficient neural architectures, adaptive inference, and
+                                scalable intelligence — early-stage work on getting more out of less
+                                compute.
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag">Adaptive Inference</span>
+                            <span class="pillar-tag">Sparse Models</span>
+                            <span class="pillar-tag">In Preparation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BACKGROUND ===== -->
+        <section class="section-shell" id="background">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <span class="section-tag-pulse"></span>
+                        <span>BACKGROUND</span>
+                    </div>
+                    <h2 class="section-title">Background</h2>
+                </div>
+
+                <div class="profile-panel profile-prose">
+                    <p>
+                        Elio Wang is an <strong>independent AI researcher</strong> and founder of
+                        <strong>Instarmony AI Lab</strong>.
+                    </p>
+                    <p>
+                        His research focuses on <strong>efficient intelligence</strong>, large language
+                        models, and autonomous AI systems — with an emphasis on building long-term,
+                        context-aware systems that people actually live alongside.
+                    </p>
+                    <p>
+                        He is currently an undergraduate in Computer Science at
+                        <strong>Tianjin University of Science and Technology</strong>, and develops AI
+                        systems independently.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PUBLICATIONS ===== -->
+        <section class="section-shell alt" id="publications">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <span class="section-tag-pulse"></span>
+                        <span>PUBLICATIONS</span>
+                    </div>
+                    <h2 class="section-title">Publications</h2>
+                </div>
+
+                <div class="profile-panel">
+                    <div class="pub-empty">No publications yet.</div>
+                    <p class="profile-note">
+                        Papers and technical reports will be listed here as they are released.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section class="section-shell" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <span class="section-tag-pulse"></span>
+                        <span>CONTACT</span>
+                    </div>
+                    <h2 class="section-title">Get in touch</h2>
+                    <p class="section-subtitle">
+                        Open to research collaboration, conversations about efficient intelligence and
+                        autonomous agents, and interesting problems.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <a class="contact-item" href="mailto:eli0wang6@instarmony.com">
+                        <span class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </span>
+                        <span class="contact-meta">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">eli0wang6@instarmony.com</span>
+                        </span>
+                    </a>
+
+                    <a class="contact-item" href="https://github.com/eliowang6" target="_blank" rel="noopener">
+                        <span class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+                        </span>
+                        <span class="contact-meta">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">github.com/eliowang6</span>
+                        </span>
+                    </a>
+
+                    <a class="contact-item" href="https://instarmony.com/team/eli0wang6/">
+                        <span class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </span>
+                        <span class="contact-meta">
+                            <span class="contact-label">Homepage</span>
+                            <span class="contact-value">instarmony.com/team/eli0wang6</span>
+                        </span>
+                    </a>
+
+                    <div class="contact-item" title="WeChat ID: _eliowang">
+                        <span class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 11c-3.03 0-5.5 2.02-5.5 4.5 0 1.4.75 2.65 1.9 3.5L3.5 21l2.3-1.15c.53.16 1.1.25 1.7.25.28 0 .55-.02.82-.06A4.4 4.4 0 0 1 8 18.5C8 15.46 10.69 13 14 13c.34 0 .67.03 1 .08C14.72 11.28 11.42 11 7.5 11z"/><path d="M22 15.5c0-2.21-2.24-4-5-4s-5 1.79-5 4 2.24 4 5 4c.55 0 1.08-.08 1.57-.22L21 20l-.4-1.6c.85-.72 1.4-1.7 1.4-2.9z"/><circle cx="6" cy="15" r=".6" fill="currentColor"/><circle cx="9.5" cy="15" r=".6" fill="currentColor"/></svg>
+                        </span>
+                        <span class="contact-meta">
+                            <span class="contact-label">WeChat</span>
+                            <span class="contact-value">_eliowang</span>
+                        </span>
+                    </div>
+
+                    <!-- Uncomment once available:
+                    <a class="contact-item" href="https://openreview.net/profile?id=~YOUR_ID" target="_blank" rel="noopener">
+                        <span class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+                        <span class="contact-meta"><span class="contact-label">OpenReview</span><span class="contact-value">openreview.net/profile</span></span>
+                    </a>
+                    <a class="contact-item" href="https://www.linkedin.com/in/YOUR_HANDLE" target="_blank" rel="noopener">
+                        <span class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></span>
+                        <span class="contact-meta"><span class="contact-label">LinkedIn</span><span class="contact-value">linkedin.com/in/…</span></span>
+                    </a>
+                    -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="nav-brand">
+                        <img src="../../assets/logo-infinity.png" alt="Instarmony" class="nav-logo-img">
+                        <span class="nav-brand-title">Instarmony</span>
+                    </a>
+                    <p class="footer-desc">
+                        Harmonizing Human &amp; Machine Intelligence.<br>
+                        An AI lab exploring proactive companionship and next-generation digital life.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Profile</h4>
+                    <ul class="footer-links">
+                        <li><a href="#interests">Research Interests</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#background">Background</a></li>
+                        <li><a href="#publications">Publications</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Instarmony</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/eidolon/">Eidolon Product</a></li>
+                        <li><a href="/eidolon/features.html">Features</a></li>
+                        <li><a href="/eidolon/docs.html">Docs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Elsewhere</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/eliowang6" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="mailto:eli0wang6@instarmony.com">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2026 Instarmony. All rights reserved. Made with ❤️ for human-AI symbiosis.
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="/">Instarmony</a>
+                    <a href="/eidolon/">Eidolon</a>
+                    <a href="/eidolon/privacy.html">Privacy</a>
+                    <a href="/eidolon/terms.html">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ── Particle / Starfield Background (matches the Instarmony home canvas) ──
+            const canvas = document.getElementById('particle-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width = canvas.width = window.innerWidth;
+                let height = canvas.height = window.innerHeight;
+                const particles = [];
+                const particleCount = Math.min(Math.floor((width * height) / 14000), 100);
+
+                class Particle {
+                    constructor() { this.reset(); }
+                    reset() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.size = Math.random() * 1.8 + 0.5;
+                        this.speedX = (Math.random() - 0.5) * 0.35;
+                        this.speedY = (Math.random() - 0.5) * 0.35;
+                        this.alpha = Math.random() * 0.6 + 0.2;
+                        this.color = Math.random() > 0.6 ? '#7c3aed' : (Math.random() > 0.5 ? '#06b6d4' : '#ec4899');
+                    }
+                    update() {
+                        this.x += this.speedX;
+                        this.y += this.speedY;
+                        if (this.x < 0 || this.x > width) this.speedX *= -1;
+                        if (this.y < 0 || this.y > height) this.speedY *= -1;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.globalAlpha = this.alpha;
+                        ctx.shadowBlur = 8;
+                        ctx.shadowColor = this.color;
+                        ctx.fill();
+                    }
+                }
+
+                for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+
+                function renderParticles() {
+                    ctx.clearRect(0, 0, width, height);
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 130) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = '#7c3aed';
+                                ctx.globalAlpha = (1 - dist / 130) * 0.12;
+                                ctx.lineWidth = 0.8;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    particles.forEach(p => { p.update(); p.draw(); });
+                    requestAnimationFrame(renderParticles);
+                }
+                renderParticles();
+
+                window.addEventListener('resize', () => {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                }, { passive: true });
+            }
+
+            // ── Navbar scroll state ──
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    navbar.classList.toggle('scrolled', window.scrollY > 40);
+                }, { passive: true });
+            }
+
+            // ── Mobile hamburger ──
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', () => {
+                    navMenu.classList.toggle('open');
+                    hamburger.classList.toggle('active');
+                });
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('open');
+                        hamburger.classList.remove('active');
+                    });
+                });
+            }
+
+            // ── Smooth anchor scrolling ──
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
