@@ -34,6 +34,7 @@ const PAGES = [
   { path: '/eidolon/pricing.html',   priority: '0.8', changefreq: 'monthly' },
   { path: '/eidolon/docs.html',      priority: '0.7', changefreq: 'weekly' },
   { path: '/eidolon/about.html',     priority: '0.5', changefreq: 'monthly' },
+  { path: '/team/eli0wang6/',        priority: '0.5', changefreq: 'monthly' },
 ];
 
 function today() {
