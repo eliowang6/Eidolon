@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import LegalPage from '../components/pages/LegalPage.astro';
+import { t } from '../i18n';
+
+const lang = 'zh' as const;
+const copy = t(lang);
+---
+<Base lang={lang} path="/privacy.html" title={copy.meta.privacy.title} description={copy.meta.privacy.description}>
+  <LegalPage lang={lang} page={copy.privacyPage} />
+</Base>

@@ -1,0 +1,18 @@
+---
+interface Props {
+  label: string;
+  h2a: string;
+  h2b?: string;
+  lede?: string;
+  align?: 'left' | 'center';
+  id?: string;
+  class?: string;
+}
+const { label, h2a, h2b, lede, align = 'left', id, class: className = '' } = Astro.props;
+---
+<div class={`sec-head ${align === 'center' ? 'sec-head--center' : ''} ${className}`} id={id}>
+  <span class="label">{label}</span>
+  <h2>{h2a}{h2b && <><br />{h2b}</>}</h2>
+  {lede && <p class="lede">{lede}</p>}
+  <slot />
+</div>

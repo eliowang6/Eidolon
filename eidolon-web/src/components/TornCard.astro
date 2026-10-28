@@ -1,0 +1,71 @@
+---
+interface Props {
+  no: string;
+  title: string;
+  desc: string;
+  class?: string;
+  anchor?: string;
+}
+const { no, title, desc, class: className = '', anchor } = Astro.props;
+---
+<article class={`torn ${className}`} data-thread-anchor={anchor}>
+  <span class="torn-tape" aria-hidden="true"></span>
+  <span class="torn-no mono">{no}</span>
+  <h3>{title}</h3>
+  <p>{desc}</p>
+  <slot />
+</article>
+
+<style>
+  .torn {
+    position: relative;
+    background: var(--card);
+    padding: 34px 24px 28px;
+    box-shadow: var(--sh-paper);
+    clip-path: polygon(0 3%, 8% 0, 19% 2.5%, 31% 0.5%, 44% 3%, 57% 1%, 69% 3.5%, 82% 0.8%, 93% 2.8%, 100% 1%, 100% 100%, 0 100%);
+    transition: transform var(--t-mid) var(--ease), box-shadow var(--t-mid) var(--ease);
+  }
+  .torn:nth-child(odd) {
+    transform: rotate(-1.2deg);
+  }
+  .torn:nth-child(even) {
+    transform: rotate(1deg) translateY(14px);
+  }
+  .torn:hover {
+    transform: rotate(0) translateY(-4px);
+    box-shadow: 0 24px 44px -20px rgba(18, 36, 29, 0.32);
+  }
+  .torn-tape {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    width: 72px;
+    height: 22px;
+    transform: translateX(-50%) rotate(-4deg);
+    background: rgba(233, 185, 100, 0.42);
+  }
+  .torn-no {
+    font-size: 12px;
+    color: var(--annot);
+  }
+  .torn h3 {
+    font-size: 22px;
+    margin: 10px 0 8px;
+  }
+  .torn p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  @media (max-width: 767px) {
+    .torn:nth-child(odd) {
+      transform: rotate(-0.6deg);
+    }
+    .torn:nth-child(even) {
+      transform: rotate(0.6deg);
+    }
+    .torn:hover {
+      transform: rotate(0);
+    }
+  }
+</style>

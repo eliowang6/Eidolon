@@ -1,0 +1,101 @@
+---
+import Icon from './Icon.astro';
+import { localizePath, t, type Lang } from '../i18n';
+
+interface Item {
+  q: string;
+  a: string;
+  downloadLink?: boolean;
+  privacyLink?: boolean;
+}
+interface Props {
+  items: Item[];
+  lang: Lang;
+  title?: string;
+}
+const { items, lang, title } = Astro.props;
+const copy = t(lang);
+---
+<section class="faq" aria-label={title ?? 'FAQ'}>
+  {title && <h2 class="faq-title">{title}</h2>}
+  <div class="faq-list">
+    {items.map((item) => (
+      <details class="faq-item">
+        <summary>
+          <span>{item.q}</span>
+          <span class="faq-icon" aria-hidden="true"><Icon name="plus" size={18} stroke={1.8} /></span>
+        </summary>
+        <div class="faq-body">
+          <p>
+            {item.a}
+            {item.downloadLink && (
+              <> <a class="faq-link" href={localizePath(lang, '/download.html')}>{copy.common.downloadPreview} →</a></>
+            )}
+            {item.privacyLink && (
+              <> <a class="faq-link" href={localizePath(lang, '/privacy.html')}>{copy.footer.privacy} →</a></>
+            )}
+          </p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+  .faq-title {
+    font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.25rem);
+    margin-bottom: 28px;
+  }
+  .faq-list {
+    border-top: 1px solid var(--line);
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    transition: color var(--t-fast);
+  }
+  summary:hover {
+    color: var(--sage-deep);
+  }
+  .faq-icon {
+    flex: none;
+    color: var(--ink-3);
+    transition: transform var(--t-mid) var(--ease), color var(--t-mid);
+  }
+  details[open] .faq-icon {
+    transform: rotate(45deg);
+    color: var(--sage-deep);
+  }
+  .faq-body {
+    padding: 0 40px 22px 0;
+  }
+  .faq-body p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink-2);
+    max-width: 72ch;
+  }
+  .faq-link {
+    color: var(--sage-deep);
+    border-bottom: 1px solid currentColor;
+    white-space: nowrap;
+  }
+  @media (max-width: 767px) {
+    summary {
+      font-size: 16.5px;
+      padding: 18px 0;
+    }
+    .faq-body {
+      padding-right: 0;
+    }
+  }
+</style>

@@ -1,0 +1,173 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  class?: string;
+}
+const { lang, class: className = '' } = Astro.props;
+const copy = t(lang);
+const parts = ['dawn', 'day', 'dusk', 'night'] as const;
+---
+<aside class={`presence ${className}`} aria-label={copy.hero.presenceAria}>
+  {parts.map((part) => {
+    const data = copy.hero.dayparts[part];
+    return (
+      <div class={`presence-part presence-part--${part}`} data-part={part}>
+        <div class="presence-top">
+          <span class="avatar"><Logo size={22} /></span>
+          <span class="who">
+            {copy.hero.presenceName}
+            <small><span class="live" aria-hidden="true"></span>{copy.hero.presenceLive}</small>
+          </span>
+          <time>{data.time}</time>
+        </div>
+        <p class="greet latin">{data.greet}</p>
+        <p class="msg">{data.msg}</p>
+        <div class="chips">
+          {data.chips.map((chip) => <span class="chip">{chip}</span>)}
+        </div>
+        <div class="ask" aria-hidden="true">
+          <span>{copy.hero.presenceAsk}</span>
+          <i><Icon name="arrowUpRight" size={16} stroke={2} /></i>
+        </div>
+      </div>
+    );
+  })}
+</aside>
+
+<style>
+  .presence {
+    width: 340px;
+    max-width: 100%;
+    padding: 18px 18px 14px;
+    border-radius: var(--r-lg);
+    background: color-mix(in srgb, var(--card) 76%, transparent);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px) saturate(1.25);
+    box-shadow: var(--sh-float);
+    animation: float 7s ease-in-out infinite;
+  }
+  html[data-daypart="night"] .presence {
+    background: rgba(21, 37, 30, 0.72);
+    border-color: rgba(233, 239, 230, 0.14);
+  }
+  @keyframes float {
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  .presence-part {
+    display: none;
+  }
+  .presence-part--day {
+    display: block;
+  }
+  html[data-daypart="dawn"] .presence-part--day,
+  html[data-daypart="dusk"] .presence-part--day,
+  html[data-daypart="night"] .presence-part--day {
+    display: none;
+  }
+  html[data-daypart="dawn"] .presence-part--dawn,
+  html[data-daypart="dusk"] .presence-part--dusk,
+  html[data-daypart="night"] .presence-part--night {
+    display: block;
+  }
+  .presence-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--sage-wash);
+    color: var(--sage-deep);
+    flex: none;
+  }
+  .who {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+  .who small {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .who .live {
+    width: 6px;
+    height: 6px;
+  }
+  .who .live::after {
+    inset: -4px;
+  }
+  time {
+    margin-left: auto;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .greet {
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .msg {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-2);
+    margin: 6px 0 12px;
+    min-height: 4.9em;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+    min-height: 28px;
+  }
+  .ask {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 5px 5px 14px;
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+  html[data-daypart="night"] .ask {
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .ask i {
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--sage-deep);
+    color: #fff;
+    font-style: normal;
+    flex: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .presence {
+      animation: none;
+    }
+  }
+</style>

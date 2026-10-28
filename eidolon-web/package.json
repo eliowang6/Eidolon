@@ -1,0 +1,30 @@
+{
+  "name": "eidolon-web",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "eidolon.instarmony.com — Daylight Margin product site (Astro source, builds into ../eidolon-site)",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/clean-out.mjs && astro build && node scripts/check-i18n.mjs && node scripts/check-copy.mjs",
+    "build:fonts": "node scripts/build-fonts.mjs",
+    "prepare:hero": "node scripts/prepare-hero.mjs",
+    "og": "node scripts/make-og.mjs",
+    "preview": "astro preview",
+    "check": "astro check && node scripts/check-i18n.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "astro": "^5.18.2",
+    "gsap": "^3.15.0",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.5",
+    "puppeteer-core": "^24.43.1",
+    "typescript": "^5.9.3"
+  }
+}

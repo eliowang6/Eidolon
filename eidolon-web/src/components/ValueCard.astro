@@ -1,0 +1,232 @@
+---
+import PhoneFrame from './PhoneFrame.astro';
+import WindowFrame from './WindowFrame.astro';
+import Icon from './Icon.astro';
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  card: {
+    label: string;
+    title: string;
+    desc: string;
+    bullets: string[];
+    skin: string;
+    media: string;
+  };
+  lang: Lang;
+  index?: number;
+  anchor?: string;
+}
+const { card, lang, index = 0, anchor } = Astro.props;
+const copy = t(lang);
+const task = copy.loop.steps[3];
+---
+<article class={`value value--${card.skin} reveal`} style={`--i:${index}`} data-thread-anchor={anchor}>
+  <span class="label">{card.label}</span>
+  <h3>{card.title}</h3>
+  <p class="desc">{card.desc}</p>
+
+  <div class="media" aria-hidden="true">
+    {card.media === 'phone' && (
+      <div class="media-phone">
+        <PhoneFrame cropTop>
+          <img src="/assets/screenshots/app-mobile-home.webp" alt="" width="390" height="844" loading="lazy" />
+        </PhoneFrame>
+      </div>
+    )}
+    {card.media === 'window' && (
+      <div class="media-window">
+        <WindowFrame title="Focus Cabin">
+          <img src="/assets/screenshots/app-focus-cabin.webp" alt="" width="1440" height="1100" loading="lazy" />
+        </WindowFrame>
+      </div>
+    )}
+    {card.media === 'task' && (
+      <div class="mini-task">
+        <div class="mt-top">
+          <span class="chip"><Icon name="check" size={12} stroke={2.4} />{task.time}</span>
+          <span class="mono">21:00</span>
+        </div>
+        <ul>
+          {task.log.map((line) => (
+            <li><span class="tick"><Icon name="check" size={11} stroke={2.6} /></span>{line}</li>
+          ))}
+        </ul>
+        <div class="mt-foot"><span>{task.note}</span><span class="mt-btns">{task.buttons.join(' · ')}</span></div>
+      </div>
+    )}
+  </div>
+
+  <ul class="bullets">
+    {card.bullets.map((bullet) => <li>{bullet}</li>)}
+  </ul>
+</article>
+
+<style>
+  .value {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 30px 28px 26px;
+    border-radius: var(--r-xl);
+    border: 1px solid var(--line);
+    background: var(--card);
+    min-height: 560px;
+    overflow: hidden;
+  }
+  .value--dark {
+    background: #12241d;
+    color: var(--night-text);
+    border-color: #12241d;
+  }
+  .value--dark .label {
+    color: var(--lime);
+  }
+  .value--dark .desc {
+    color: var(--night-dim);
+  }
+  .value--sage {
+    background: var(--sage-wash);
+    border-color: transparent;
+  }
+  h3 {
+    font-size: 28px;
+    margin-top: 2px;
+  }
+  .desc {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .media {
+    margin: 8px 0 4px;
+    height: 220px;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    position: relative;
+  }
+  .media-phone {
+    display: flex;
+    justify-content: center;
+    padding-top: 18px;
+  }
+  .media-phone :global(.pf) {
+    width: 214px;
+    flex: none;
+  }
+  .media-window {
+    height: 100%;
+  }
+  .media-window :global(.wf) {
+    height: 100%;
+    box-shadow: none;
+  }
+  .media-window :global(.wf-body) {
+    height: calc(100% - 28px);
+  }
+  .media-window :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .value--dark .media :global(.wf) {
+    border-color: rgba(233, 239, 230, 0.12);
+  }
+  .mini-task {
+    height: 100%;
+    background: color-mix(in srgb, var(--card) 92%, transparent);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 14px 14px 12px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+  .mt-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .mt-top .mono {
+    font-size: 10.5px;
+    color: var(--ink-3);
+  }
+  .mt-top .chip {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+  .mini-task ul {
+    display: grid;
+    gap: 7px;
+  }
+  .mini-task li {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .tick {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--sage-deep);
+    color: #fff;
+    flex: none;
+    margin-top: 1px;
+  }
+  .mt-foot {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--line-2);
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 10.5px;
+    color: var(--ink-3);
+  }
+  .mt-btns {
+    font-family: var(--f-mono);
+    font-size: 10px;
+  }
+  .bullets {
+    margin-top: auto;
+    border-top: 1px solid rgba(127, 127, 127, 0.25);
+    padding-top: 16px;
+    display: grid;
+    gap: 8px;
+    font-size: 14.5px;
+  }
+  .bullets li {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .bullets li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sage-deep);
+    flex: none;
+    transform: translateY(-2px);
+  }
+  .value--dark .bullets li::before {
+    background: var(--lime);
+  }
+  @media (max-width: 1100px) {
+    .value {
+      min-height: 520px;
+    }
+  }
+  @media (max-width: 767px) {
+    .value {
+      min-height: 0;
+    }
+    .media {
+      height: 240px;
+    }
+  }
+</style>

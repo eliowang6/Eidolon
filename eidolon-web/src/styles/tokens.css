@@ -1,0 +1,136 @@
+/* ─────────────────────────────────────────────────────────────
+   Daylight Margin · tokens
+   Paper, forest ink, sage, and one lime signal that means “she's here”.
+   Fonts are self-hosted subsets (see scripts/build-fonts.mjs).
+   ───────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("/fonts/noto-serif-sc-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "LXGW WenKai";
+  src: url("/fonts/lxgw-wenkai-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/instrument-serif-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/instrument-serif-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Variable";
+  src: url("/fonts/inter-var-latin.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --paper: #f5f2ea;
+  --paper-2: #ece7da;
+  --card: #fcfbf7;
+  --line: rgba(18, 36, 29, 0.12);
+  --line-2: rgba(18, 36, 29, 0.2);
+  --ink: #12241d;
+  --ink-2: #2f4a3f;
+  --ink-3: #586960;
+  --sage: #86b8ad;
+  --sage-deep: #467268;
+  --sage-wash: #e3ede7;
+  --lime: #c8f169;
+  --lime-deep: #4d6a10;
+  --honey: #e9b964;
+  --annot: #a34f38;
+  --night: #0e1a15;
+  --night-2: #15251e;
+  --night-3: #1d3229;
+  --night-line: rgba(233, 239, 230, 0.12);
+  --night-text: #e9efe6;
+  --night-dim: rgba(233, 239, 230, 0.62);
+
+  --f-zh-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+  --f-latin-display: "Instrument Serif", "Times New Roman", serif;
+  --f-body: "Inter Variable", "Inter", -apple-system, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+  --f-hand: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", cursive;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  --fs-display: clamp(2.75rem, 1.6rem + 4.2vw, 5.25rem);
+  --fs-h2: clamp(2rem, 1.3rem + 2.4vw, 3.25rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --fs-lede: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.75rem;
+
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+  --r-full: 999px;
+  --sh-paper: 0 1px 0 rgba(18, 36, 29, 0.04), 0 18px 40px -18px rgba(18, 36, 29, 0.22);
+  --sh-float: 0 2px 0 rgba(255, 255, 255, 0.6) inset, 0 30px 60px -24px rgba(18, 36, 29, 0.35);
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --t-fast: 240ms;
+  --t-mid: 480ms;
+  --t-slow: 900ms;
+  --container: 1240px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --nav-h: 72px;
+}
+
+html[data-daypart="night"] {
+  --paper: #0e1a15;
+  --paper-2: #15251e;
+  --card: #15251e;
+  --line: rgba(233, 239, 230, 0.12);
+  --line-2: rgba(233, 239, 230, 0.22);
+  --ink: #e9efe6;
+  --ink-2: rgba(233, 239, 230, 0.82);
+  --ink-3: rgba(233, 239, 230, 0.56);
+  --sage-wash: rgba(134, 184, 173, 0.14);
+  --sage-deep: #a9d3c8;
+  --annot: #e7a58f;
+  color-scheme: dark;
+}
+
+/* Dark bands keep their own palette in both day and night modes. */
+.band-night {
+  --paper: #0e1a15;
+  --paper-2: #15251e;
+  --card: #15251e;
+  --line: var(--night-line);
+  --line-2: rgba(233, 239, 230, 0.22);
+  --ink: #e9efe6;
+  --ink-2: rgba(233, 239, 230, 0.82);
+  --ink-3: rgba(233, 239, 230, 0.56);
+  --sage-wash: rgba(134, 184, 173, 0.14);
+  --sage-deep: #a9d3c8;
+  --annot: #e7a58f;
+  color-scheme: dark;
+}
+html[data-daypart="night"] .band-night {
+  --paper: #15251e;
+  --card: #1d3229;
+}

@@ -1,0 +1,662 @@
+---
+import PageHero from '../PageHero.astro';
+import SectionHead from '../SectionHead.astro';
+import MetricCard from '../MetricCard.astro';
+import MemoryLayers from '../MemoryLayers.astro';
+import Icon from '../Icon.astro';
+import CtaBand from '../CtaBand.astro';
+import { localizePath, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const page = copy.howPage;
+const p = (href: string) => localizePath(lang, href);
+const steps = copy.loop.steps;
+const metrics = copy.foundation.metrics;
+const splitTitle = (title: string) => title.split(/[，,]\s*/);
+const memoryTitle = splitTitle(page.memory.h2);
+const cacheTitle = splitTitle(page.cache.h2);
+const actionTitle = splitTitle(page.action.h2);
+const comma = lang === 'zh' ? '，' : ',';
+---
+
+<PageHero label={page.label} h1a={page.h1a} h1b={page.h1b} lede={page.lede} />
+
+<section class="section loop-sec">
+  <div class="container">
+    <SectionHead class="reveal" label={page.loop.label} h2a={page.loop.h2} lede={page.loop.lede} />
+
+    <div class="feed-bands reveal">
+      <div class="feed-band">
+        <span class="label">{page.loop.outer}</span>
+        <p>{copy.loop.inputOuterText}</p>
+      </div>
+      <div class="feed-band">
+        <span class="label">{page.loop.inner}</span>
+        <p>{copy.loop.inputInnerText}</p>
+      </div>
+    </div>
+
+    <svg class="feed-merge" viewBox="0 0 1200 54" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M300 1 V20 H600 V46" />
+      <path d="M900 1 V20 H600" />
+      <path class="head" d="M594 40 L600 47 L606 40" />
+    </svg>
+
+    <div class="loop-track reveal">
+      {steps.map((step, i) => (
+        <article class={`loop-node ${i === 2 ? 'loop-node--night' : ''}`}>
+          <div class="node-top">
+            <span class="node-no mono">{String(i + 1).padStart(2, '0')}</span>
+            <span class="node-time mono">{step.time}</span>
+          </div>
+          <h3>{step.name}{lang === 'zh' && <small>{step.en}</small>}</h3>
+          <p>{step.desc}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="loop-back" aria-hidden="true"></div>
+
+    <p class="loop-closing reveal">{copy.loop.closing}</p>
+  </div>
+</section>
+
+<section class="section section--paper2 memory-sec">
+  <div class="container memory-grid">
+    <div class="memory-copy">
+      <span class="label">{page.memory.label}</span>
+      <h2>{memoryTitle[0]}{memoryTitle.length > 1 && comma}{memoryTitle.length > 1 && <><br />{memoryTitle[1]}</>}</h2>
+      <p class="lede">{page.memory.body}</p>
+    </div>
+    <div class="memory-visual reveal">
+      <div class="memory-card band-night">
+        <MemoryLayers variant="large" />
+      </div>
+      <p class="memory-caption mono">{page.memory.caption}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section band-night cache-sec">
+  <div class="container cache-grid">
+    <div class="cache-metrics reveal">
+      <MetricCard
+        value={metrics[0].to}
+        captionA={metrics[0].captionA}
+        captionB={metrics[0].captionB}
+        to="25"
+        prefix="−"
+        suffix="%"
+        index={0}
+      />
+      <MetricCard
+        value={metrics[1].to}
+        captionA={metrics[1].captionA}
+        captionB={metrics[1].captionB}
+        to="90"
+        rangeTo="97"
+        suffix="%"
+        index={1}
+      />
+      <p class="footnote">{page.cache.footnote}</p>
+    </div>
+    <div class="cache-copy">
+      <span class="label">{page.cache.label}</span>
+      <h2>{cacheTitle[0]}{cacheTitle.length > 1 && comma}{cacheTitle.length > 1 && <><br />{cacheTitle[1]}</>}</h2>
+      <p class="lede">{page.cache.body}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section action-sec">
+  <div class="container">
+    <SectionHead class="reveal" label={page.action.label} h2a={`${actionTitle[0]}${actionTitle[1] ? comma : ''}`} h2b={actionTitle[1]} />
+
+    <div class="ad-flow">
+      <div class="ad-card ad-main reveal">
+        <span class="ad-badge"><Icon name="sparkles" size={15} /></span>
+        <h3>{page.action.main}</h3>
+        <span class="ad-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+
+      <div class="ad-link" aria-hidden="true"></div>
+
+      <div class="ad-card ad-exec reveal">
+        <span class="ad-badge"><Icon name="bolt" size={15} /></span>
+        <h3>{page.action.exec}</h3>
+        <span class="ad-pulse" aria-hidden="true"></span>
+      </div>
+
+      <svg class="ad-fan reveal" viewBox="0 0 100 48" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M50 0 V10 M50 10 C50 26 16 24 16 46" />
+        <path d="M50 10 C50 26 50 24 50 46" />
+        <path d="M50 10 C50 26 84 24 84 46" />
+      </svg>
+
+      <div class="ad-targets reveal">
+        {page.action.targets.map((target, i) => (
+          <span class="ad-target">
+            <Icon name={['smartphone', 'monitor', 'terminal'][i]} size={17} />
+            {target}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper2 quote-sec">
+  <div class="container">
+    <blockquote class="reveal">
+      <span class="quote-mark" aria-hidden="true">“</span>
+      <p>{page.quote}</p>
+    </blockquote>
+  </div>
+</section>
+
+<section class="section boundary-sec">
+  <div class="container">
+    <SectionHead class="reveal" label={page.boundary.label} h2a={page.boundary.h2} />
+    <div class="boundary-grid">
+      {page.boundary.cards.map((card, i) => (
+        <article class="boundary-card reveal" style={`--i:${i}`}>
+          <span class="b-icon"><Icon name={card.icon} size={19} /></span>
+          <h3>{card.title}</h3>
+          <p>{card.desc}</p>
+        </article>
+      ))}
+    </div>
+    <div class="boundary-foot reveal">
+      <a class="tlink" href={p('/privacy.html')}>{page.boundary.link}</a>
+    </div>
+  </div>
+</section>
+
+<CtaBand lang={lang} h2={page.cta.h2} lede={page.cta.lede} variant="paper2" />
+
+<style>
+  .loop-sec {
+    padding-top: 0;
+  }
+  .feed-bands {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: clamp(40px, 5vw, 56px);
+  }
+  .feed-band {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    border: 1px dashed var(--line-2);
+    border-radius: var(--r-full);
+    padding: 16px 24px;
+    background: var(--paper);
+  }
+  .feed-band .label {
+    flex: none;
+    color: color-mix(in srgb, var(--sage-deep) 78%, var(--ink));
+  }
+  .feed-band p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .feed-merge {
+    display: block;
+    width: 100%;
+    height: 54px;
+    margin-top: 2px;
+  }
+  .feed-merge path {
+    fill: none;
+    stroke: var(--line-2);
+    stroke-width: 1.2;
+    stroke-dasharray: 4 7;
+    vector-effect: non-scaling-stroke;
+  }
+  .feed-merge .head {
+    stroke-dasharray: none;
+    stroke: var(--ink-3);
+  }
+
+  .loop-track {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 26px;
+  }
+  .loop-node {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--card);
+    padding: 18px 16px 20px;
+    min-height: 208px;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--t-mid) var(--ease), box-shadow var(--t-mid);
+  }
+  .loop-node:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sh-paper);
+  }
+  .loop-node:not(:last-of-type)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -18px;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid var(--ink-3);
+    border-right: 1px solid var(--ink-3);
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .node-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--ink-3);
+    font-size: 11px;
+  }
+  .node-no {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  .loop-node h3 {
+    font-size: 22px;
+    margin: 18px 0 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .loop-node h3 small {
+    font-family: var(--f-latin-display);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+  }
+  .loop-node p {
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--ink-2);
+    margin-top: 10px;
+  }
+  .loop-node--night {
+    background: var(--night);
+    border-color: transparent;
+    color: var(--night-text);
+  }
+  .loop-node--night .node-top,
+  .loop-node--night h3 small {
+    color: var(--lime);
+    opacity: 0.8;
+  }
+  .loop-node--night p {
+    color: var(--night-dim);
+  }
+  .loop-node--night:not(:last-of-type)::after {
+    border-color: var(--lime);
+    opacity: 0.5;
+  }
+  .loop-back {
+    position: relative;
+    height: 46px;
+    margin: 22px 9% 0;
+  }
+  .loop-back::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--line-2);
+    border-top: 0;
+    border-radius: 0 0 22px 22px;
+  }
+  .loop-back::after {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: -1px;
+    width: 8px;
+    height: 8px;
+    border-top: 1px solid var(--ink-3);
+    border-left: 1px solid var(--ink-3);
+    transform: rotate(45deg);
+  }
+  .loop-closing {
+    margin-top: 26px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+
+  .memory-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(36px, 6vw, 88px);
+    align-items: center;
+  }
+  .memory-copy h2 {
+    margin: 14px 0 18px;
+    max-width: 500px;
+    text-wrap: balance;
+  }
+  .memory-copy .lede {
+    max-width: 470px;
+  }
+  .memory-caption {
+    margin-top: 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    text-align: right;
+  }
+  .memory-card {
+    border-radius: var(--r-xl);
+    padding: clamp(26px, 4vw, 44px);
+  }
+
+  .cache-sec {
+    border-radius: var(--r-xl);
+  }
+  .cache-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: clamp(36px, 6vw, 80px);
+    align-items: center;
+  }
+  .cache-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .cache-metrics .footnote {
+    grid-column: 1 / -1;
+    font-size: 11px;
+    line-height: 1.7;
+    color: rgba(233, 239, 230, 0.42);
+  }
+  .cache-copy .label {
+    color: var(--lime);
+  }
+  .cache-copy h2 {
+    color: var(--night-text);
+    margin: 14px 0 18px;
+    text-wrap: balance;
+  }
+  .cache-copy .lede {
+    color: var(--night-dim);
+    max-width: 420px;
+  }
+
+  .ad-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ad-card {
+    position: relative;
+    width: min(640px, 100%);
+    border-radius: 20px;
+    padding: 24px 26px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+  .ad-main {
+    background: var(--night);
+    color: var(--night-text);
+    border-color: transparent;
+    box-shadow: var(--sh-paper);
+  }
+  .ad-main .ad-badge {
+    background: rgba(200, 241, 105, 0.14);
+    color: var(--lime);
+  }
+  .ad-badge {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: var(--sage-wash);
+    color: var(--sage-deep);
+  }
+  .ad-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .ad-dots {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+  }
+  .ad-dots i {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--lime);
+    opacity: 0.3;
+    animation: ad-blink 2.4s infinite;
+  }
+  .ad-dots i:nth-child(2) { animation-delay: 0.35s; }
+  .ad-dots i:nth-child(3) { animation-delay: 0.7s; }
+  @keyframes ad-blink {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 1; }
+  }
+  .ad-link {
+    width: 1px;
+    height: 46px;
+    background-image: linear-gradient(var(--line-2) 55%, transparent 55%);
+    background-size: 1px 8px;
+  }
+  .ad-exec {
+    background: var(--sage-wash);
+    border-color: var(--sage);
+  }
+  .ad-pulse {
+    margin-left: auto;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--sage-deep);
+    box-shadow: 0 0 0 0 rgba(74, 112, 96, 0.35);
+    animation: ad-ping 2.6s infinite;
+  }
+  @keyframes ad-ping {
+    0% { box-shadow: 0 0 0 0 rgba(74, 112, 96, 0.35); }
+    70% { box-shadow: 0 0 0 12px rgba(74, 112, 96, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 112, 96, 0); }
+  }
+  .ad-fan {
+    width: min(640px, 100%);
+    height: 48px;
+    margin-top: 2px;
+  }
+  .ad-fan path {
+    fill: none;
+    stroke: var(--ink-3);
+    stroke-width: 1;
+    stroke-dasharray: 4 6;
+    vector-effect: non-scaling-stroke;
+    animation: fan-flow 3.2s linear infinite;
+  }
+  @keyframes fan-flow {
+    to { stroke-dashoffset: -40; }
+  }
+  .ad-targets {
+    width: min(640px, 100%);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .ad-target {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-full);
+    background: var(--paper);
+    padding: 12px 10px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    text-align: center;
+  }
+  .ad-target::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-bottom: 1px solid var(--ink-3);
+    border-right: 1px solid var(--ink-3);
+    transform: translateX(-50%) rotate(45deg);
+  }
+  .ad-target :global(svg) {
+    color: var(--sage-deep);
+    flex: none;
+  }
+
+  .quote-sec {
+    padding-block: clamp(64px, 9vw, 120px);
+  }
+  .quote-sec blockquote {
+    position: relative;
+    max-width: 940px;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .quote-mark {
+    font-family: var(--f-latin-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.6;
+    color: var(--sage);
+    display: block;
+    margin-bottom: 18px;
+  }
+  .quote-sec p {
+    font-family: var(--f-zh-display);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 1.1rem + 1.7vw, 2.4rem);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  html[lang="en"] .quote-sec p {
+    font-family: var(--f-latin-display);
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  .boundary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .boundary-card {
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--card);
+    padding: 26px;
+  }
+  .b-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--sage-wash);
+    color: var(--sage-deep);
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+  }
+  .boundary-card h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .boundary-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+  .boundary-foot {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 1023px) {
+    .loop-track {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .loop-node {
+      min-height: 0;
+    }
+    .loop-node:not(:last-of-type)::after {
+      top: auto;
+      right: 50%;
+      bottom: -12px;
+      transform: translateX(50%) rotate(135deg);
+    }
+    .loop-back {
+      display: none;
+    }
+    .memory-grid,
+    .cache-grid {
+      grid-template-columns: 1fr;
+    }
+    .memory-copy .lede,
+    .cache-copy .lede {
+      max-width: 620px;
+    }
+    .cache-copy {
+      order: -1;
+    }
+    .boundary-grid {
+      grid-template-columns: 1fr;
+    }
+    .feed-bands {
+      grid-template-columns: 1fr;
+    }
+    .feed-merge {
+      display: none;
+    }
+  }
+  @media (max-width: 640px) {
+    .cache-metrics {
+      grid-template-columns: 1fr;
+    }
+    .feed-band {
+      flex-direction: column;
+      gap: 6px;
+      border-radius: 18px;
+    }
+    .ad-card {
+      padding: 20px;
+    }
+    .ad-card h3 {
+      font-size: 14.5px;
+    }
+    .ad-fan {
+      height: 40px;
+    }
+    .ad-target {
+      font-size: 11px;
+      flex-direction: column;
+      gap: 5px;
+      border-radius: 16px;
+    }
+  }
+</style>

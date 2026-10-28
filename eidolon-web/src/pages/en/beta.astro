@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import BetaPage from '../../components/pages/BetaPage.astro';
+import { t } from '../../i18n';
+
+const lang = 'en' as const;
+const copy = t(lang);
+---
+<Base lang={lang} path="/beta.html" title={copy.meta.beta.title} description={copy.meta.beta.description}>
+  <BetaPage lang={lang} />
+</Base>

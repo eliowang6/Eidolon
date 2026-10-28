@@ -1,0 +1,237 @@
+---
+import Logo from './Logo.astro';
+import { SITE } from '../config/site';
+import { localizePath, t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const p = (href: string) => localizePath(lang, href);
+
+type SocialLink = { label: string; href: string };
+const socialLink = (href: string, label: string): SocialLink | null => (href ? { label, href } : null);
+const community = [
+  socialLink(SITE.social.qqGroup, copy.footer.qq),
+  socialLink(SITE.social.xiaohongshu, copy.footer.xiaohongshu),
+  socialLink(SITE.social.bilibili, copy.footer.bilibili),
+].filter((item): item is SocialLink => item !== null);
+---
+<footer class="footer band-night" id="site-footer">
+  <div class="container">
+    <div class="f-mark" aria-hidden="true"><Logo size={120} stroke={1.2} /></div>
+    <p class="f-closing">
+      {copy.footer.closingA}<br />{copy.footer.closingB}
+    </p>
+    <p class="f-verbs latin">{copy.footer.verbs}</p>
+
+    <div class="f-cols">
+      <div class="f-col">
+        <h2>{copy.footer.product}</h2>
+        <ul>
+          <li><a href={p('/features.html')}>{copy.footer.features}</a></li>
+          <li><a href={p('/how-it-works.html')}>{copy.footer.how}</a></li>
+          <li><a href={p('/pricing.html')}>{copy.footer.pricing}</a></li>
+          <li><a href={p('/download.html')}>{copy.footer.download}</a></li>
+          <li><a href={p('/beta.html')}>{copy.footer.beta}</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h2>{copy.footer.learn}</h2>
+        <ul>
+          <li><a href={p('/about.html')}>{copy.footer.about}</a></li>
+          <li><a href={p('/docs.html')}>{copy.footer.docs}</a></li>
+          <li><a href={SITE.docs.faq} target="_blank" rel="noopener noreferrer">{copy.footer.faq}</a></li>
+          <li><a href={SITE.social.github} target="_blank" rel="noopener noreferrer">{copy.footer.github}</a></li>
+        </ul>
+      </div>
+      {community.length > 0 && (
+        <div class="f-col">
+          <h2>{copy.footer.community}</h2>
+          <ul>
+            {community.map((item) => (
+              <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div class="f-col">
+        <h2>{copy.footer.parent}</h2>
+        <ul>
+          <li><a href="https://instarmony.com/" target="_blank" rel="noopener noreferrer">{copy.footer.instarmony}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="f-bottom">
+      <span class="f-copy">{copy.footer.copyright}</span>
+      <nav class="f-legal" aria-label={lang === 'zh' ? '法律与联系' : 'Legal and contact'}>
+        <a href={p('/privacy.html')}>{copy.footer.privacy}</a>
+        <a href={p('/terms.html')}>{copy.footer.terms}</a>
+        {SITE.contactEmail && <a href={`mailto:${SITE.contactEmail}`}>{copy.footer.invest}</a>}
+      </nav>
+      <div class="f-tools">
+        <div class="theme" role="group" aria-label={copy.footer.themeLabel} data-theme-group>
+          <button type="button" data-theme="auto" aria-pressed="true">{copy.footer.themeAuto}</button>
+          <button type="button" data-theme="light" aria-pressed="false">{copy.footer.themeDay}</button>
+          <button type="button" data-theme="dark" aria-pressed="false">{copy.footer.themeNight}</button>
+        </div>
+        <button type="button" class="forget" data-forget>{copy.footer.forget}</button>
+        <span class="forget-note hand" data-forget-note hidden>{copy.footer.forgot}</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--night);
+    color: var(--night-text);
+    padding: 120px 0 28px;
+    position: relative;
+    transition: background-color 900ms var(--ease);
+  }
+  html[data-daypart="night"] .footer {
+    background: var(--night-2);
+    border-top: 1px solid var(--night-line);
+  }
+  .footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 96px;
+    background: linear-gradient(180deg, rgba(233, 239, 230, 0.28), var(--lime));
+    opacity: 0.7;
+  }
+  .f-mark {
+    display: flex;
+    justify-content: center;
+    color: var(--lime);
+    opacity: 0.92;
+    margin-bottom: 26px;
+  }
+  .f-closing {
+    margin: 0 auto;
+    max-width: 720px;
+    text-align: center;
+    font-family: var(--f-zh-display);
+    font-weight: 700;
+    font-size: clamp(1.375rem, 1rem + 1.2vw, 1.75rem);
+    line-height: 1.6;
+    color: var(--night-text);
+  }
+  .f-verbs {
+    margin: 18px auto 0;
+    text-align: center;
+    font-size: 20px;
+    color: var(--lime);
+    opacity: 0.9;
+  }
+  .f-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 28px clamp(24px, 4vw, 56px);
+    max-width: 920px;
+    margin: clamp(56px, 8vw, 88px) auto 0;
+  }
+  .f-col h2 {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(233, 239, 230, 0.55);
+    margin-bottom: 16px;
+  }
+  .f-col ul {
+    display: grid;
+    gap: 9px;
+  }
+  .f-col a {
+    font-size: 14.5px;
+    color: rgba(233, 239, 230, 0.78);
+    transition: color var(--t-fast);
+  }
+  .f-col a:hover {
+    color: var(--lime);
+  }
+  .f-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 24px;
+    margin-top: clamp(48px, 7vw, 72px);
+    padding-top: 22px;
+    border-top: 1px solid var(--night-line);
+    font-size: 13px;
+    color: rgba(233, 239, 230, 0.5);
+  }
+  .f-legal {
+    display: flex;
+    gap: 18px;
+  }
+  .f-legal a {
+    color: rgba(233, 239, 230, 0.62);
+    border-bottom: 1px solid transparent;
+  }
+  .f-legal a:hover {
+    color: var(--lime);
+    border-color: var(--lime);
+  }
+  .f-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-left: auto;
+  }
+  .theme {
+    display: inline-flex;
+    padding: 3px;
+    border-radius: var(--r-full);
+    border: 1px solid var(--night-line);
+    background: rgba(233, 239, 230, 0.04);
+  }
+  .theme button {
+    padding: 5px 11px;
+    border-radius: var(--r-full);
+    font-size: 12px;
+    color: rgba(233, 239, 230, 0.62);
+    transition: background var(--t-fast), color var(--t-fast);
+  }
+  .theme button[aria-pressed="true"] {
+    background: var(--lime);
+    color: #0e1a15;
+    font-weight: 600;
+  }
+  .forget {
+    font-size: 13px;
+    color: rgba(233, 239, 230, 0.62);
+    border-bottom: 1px solid rgba(233, 239, 230, 0.22);
+    padding-bottom: 2px;
+  }
+  .forget:hover {
+    color: var(--lime);
+    border-color: var(--lime);
+  }
+  .forget-note {
+    font-size: 17px;
+    color: #e7a58f;
+  }
+  @media (max-width: 720px) {
+    .footer {
+      padding-top: 88px;
+    }
+    .f-bottom {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .f-tools {
+      margin-left: 0;
+    }
+  }
+</style>

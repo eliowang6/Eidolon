@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import HomePage from '../components/pages/HomePage.astro';
+import { SITE } from '../config/site';
+import { t } from '../i18n';
+
+const lang = 'zh' as const;
+const copy = t(lang);
+const software = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Eidolon',
+  url: SITE.url,
+  applicationCategory: 'LifestyleApplication',
+  operatingSystem: 'Windows 10, Windows 11, Android 10+',
+  description: copy.meta.home.description,
+  image: `${SITE.url}/assets/og-zh.png`,
+  offers: copy.pricingPage.plans.map((plan) => ({
+    '@type': 'Offer',
+    name: plan.name,
+    price: plan.price,
+    priceCurrency: 'CNY',
+  })),
+};
+---
+<Base lang={lang} path="/" title={copy.meta.home.title} description={copy.meta.home.description} jsonLd={[software]}>
+  <HomePage lang={lang} />
+</Base>

@@ -1,0 +1,226 @@
+---
+import Icon from '../Icon.astro';
+import { SITE } from '../../config/site';
+import type { Lang } from '../../i18n';
+
+interface LegalPage {
+  label: string;
+  tag: string;
+  title: string;
+  intro: string;
+  tocTitle: string;
+  sections: { title: string; body: string }[];
+  repoCta: string;
+}
+interface Props {
+  lang: Lang;
+  page: LegalPage;
+}
+const { lang, page } = Astro.props;
+const slug = (i: number) => `sec-${i + 1}`;
+---
+
+<header class="legal-head">
+  <div class="container">
+    <span class="label reveal">{page.label}</span>
+    <div class="legal-title-row reveal" style="--i:1">
+      <h1>{page.title}</h1>
+      <span class="draft-tag"><span class="live" aria-hidden="true"></span>{page.tag}</span>
+    </div>
+    <p class="legal-intro reveal" style="--i:2">{page.intro}</p>
+  </div>
+</header>
+
+<section class="section legal-sec">
+  <div class="container legal-grid">
+    <aside class="toc">
+      <span class="toc-title mono">{page.tocTitle}</span>
+      <nav aria-label={page.tocTitle}>
+        {page.sections.map((section, i) => (
+          <a href={`#${slug(i)}`} data-toc-link={slug(i)}>{section.title}</a>
+        ))}
+      </nav>
+      <a class="toc-repo" href={SITE.social.github} target="_blank" rel="noopener noreferrer">
+        <Icon name="github" size={14} />{page.repoCta}
+      </a>
+    </aside>
+
+    <article class="legal-body" lang={lang}>
+      {page.sections.map((section, i) => (
+        <section id={slug(i)} data-legal-section>
+          <h2>{section.title}</h2>
+          <p>{section.body}</p>
+        </section>
+      ))}
+      <p class="legal-foot">
+        <a class="tlink" href={SITE.social.github} target="_blank" rel="noopener noreferrer">{page.repoCta} →</a>
+      </p>
+    </article>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/legal';
+</script>
+
+<style>
+  .legal-head {
+    padding: clamp(124px, 16vh, 168px) 0 clamp(36px, 5vw, 52px);
+  }
+  .legal-title-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin: 14px 0 20px;
+  }
+  .legal-title-row h1 {
+    font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  }
+  .draft-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid var(--annot);
+    border-radius: var(--r-full);
+    color: var(--annot);
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+  }
+  .draft-tag .live {
+    background: var(--annot);
+  }
+  .legal-intro {
+    max-width: 720px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink-2);
+  }
+
+  .legal-sec {
+    padding-top: 0;
+  }
+  .legal-grid {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 720px);
+    gap: clamp(36px, 5vw, 72px);
+    justify-content: center;
+    align-items: start;
+  }
+  .toc {
+    position: sticky;
+    top: calc(var(--nav-h) + 36px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .toc-title {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .toc nav {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    border-left: 1px solid var(--line);
+    padding-left: 14px;
+  }
+  .toc nav a {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-3);
+    transition: color var(--t-fast);
+  }
+  .toc nav a:hover {
+    color: var(--ink-2);
+  }
+  .toc nav a.active {
+    color: var(--ink);
+  }
+  .toc-repo {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 12px;
+    padding-left: 15px;
+    font-size: 11.5px;
+    color: var(--ink-3);
+  }
+  .toc-repo:hover {
+    color: var(--sage-deep);
+  }
+
+  .legal-body {
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--ink-2);
+  }
+  .legal-body section {
+    scroll-margin-top: calc(var(--nav-h) + 90px);
+    padding-top: 8px;
+  }
+  .legal-body section + section {
+    margin-top: 40px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+  .legal-body h2 {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .legal-body p {
+    text-wrap: pretty;
+  }
+  .legal-foot {
+    margin-top: 48px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line-2);
+  }
+
+  @media (max-width: 1023px) {
+    .legal-grid {
+      grid-template-columns: 1fr;
+      max-width: 720px;
+      margin-inline: auto;
+    }
+    .toc {
+      position: static;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .toc nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      border-left: 0;
+      padding-left: 0;
+    }
+    .toc nav a {
+      font-size: 11.5px;
+      border: 1px solid var(--line);
+      border-radius: var(--r-full);
+      padding: 4px 10px;
+    }
+    .toc nav a.active {
+      border-color: var(--ink);
+    }
+    .toc-repo {
+      padding-left: 0;
+    }
+  }
+  @media (max-width: 640px) {
+    .legal-body {
+      font-size: 16px;
+    }
+    .legal-title-row {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>

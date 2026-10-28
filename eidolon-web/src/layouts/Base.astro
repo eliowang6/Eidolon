@@ -1,0 +1,193 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config/site';
+import { localizePath, t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  path: string;
+  title: string;
+  description: string;
+  ogImage?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+  bodyClass?: string;
+}
+const {
+  lang,
+  path,
+  title,
+  description,
+  ogImage,
+  noindex = false,
+  jsonLd = [],
+  bodyClass = '',
+} = Astro.props;
+
+const copy = t(lang);
+const zhPath = path;
+const enPath = localizePath('en', zhPath);
+const zhUrl = SITE.url + (zhPath === '/' ? '/' : zhPath);
+const enUrl = SITE.url + enPath;
+const canonical = lang === 'zh' ? zhUrl : enUrl;
+const og = SITE.url + (ogImage ?? (lang === 'zh' ? '/assets/og-zh.png' : '/assets/og-en.png'));
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Instarmony',
+  url: 'https://instarmony.com/',
+  logo: `${SITE.url}/assets/logo-icon.jpg`,
+};
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Eidolon',
+  url: SITE.url,
+  inLanguage: ['zh-CN', 'en'],
+};
+const structured = [organization, website, ...jsonLd];
+---
+<!doctype html>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        var q = new URLSearchParams(location.search).get('t');
+        var pref = null;
+        try { pref = localStorage.getItem('eidolon_theme'); } catch (e) {}
+        var h = new Date().getHours();
+        var auto = h >= 5 && h < 10 ? 'dawn' : h >= 10 && h < 16 ? 'day' : h >= 16 && h < 19 ? 'dusk' : 'night';
+        var p = q === 'dawn' || q === 'day' || q === 'dusk' || q === 'night'
+          ? q
+          : pref === 'light' ? 'day' : pref === 'dark' ? 'night' : auto;
+        d.dataset.daypart = p;
+      })();
+    </script>
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="zh-CN" href={zhUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={zhUrl} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Eidolon" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={og} />
+    <meta name="theme-color" content={lang === 'zh' ? '#F5F2EA' : '#F5F2EA'} id="meta-theme" />
+
+    <link rel="icon" type="image/jpeg" href="/assets/logo-icon.jpg" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/noto-serif-sc-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/instrument-serif-400.woff2" crossorigin />
+
+    {structured.map((item) => (
+      <script type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">{copy.nav.skip}</a>
+    <Nav lang={lang} path={path} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} path={path} />
+
+    <aside class="stay-note" id="stay-note" role="note" hidden>
+      <span class="stay-scrap">{copy.mnote.stay}</span>
+    </aside>
+
+    {lang === 'zh' && (
+      <aside class="lang-hint" id="lang-hint" hidden>
+        <a href={localizePath('en', path)} data-lang-switch="en">{copy.footer.langHint}</a>
+        <button type="button" aria-label={copy.footer.langHintClose} data-lang-hint-close>×</button>
+      </aside>
+    )}
+
+    <script>
+      import '../scripts/site';
+    </script>
+
+    <style>
+      .stay-note {
+        position: fixed;
+        right: clamp(16px, 3vw, 32px);
+        bottom: clamp(16px, 3vw, 32px);
+        z-index: 70;
+        pointer-events: none;
+      }
+      .stay-scrap {
+        display: inline-block;
+        padding: 10px 16px 9px;
+        border-radius: 3px;
+        background: color-mix(in srgb, var(--card) 88%, transparent);
+        border: 1px solid var(--line);
+        box-shadow: 0 14px 30px -18px rgba(18, 36, 29, 0.5);
+        font-family: var(--f-hand);
+        font-size: 18px;
+        color: var(--annot);
+        transform: rotate(-2deg);
+        opacity: 0;
+        translate: 0 10px;
+        transition: opacity var(--t-mid) var(--ease), translate var(--t-mid) var(--ease);
+      }
+      .stay-note.show .stay-scrap {
+        opacity: 1;
+        translate: 0 0;
+      }
+      .lang-hint {
+        position: fixed;
+        right: clamp(16px, 3vw, 32px);
+        bottom: clamp(16px, 3vw, 32px);
+        z-index: 75;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 10px 10px 16px;
+        border-radius: var(--r-full);
+        background: var(--card);
+        border: 1px solid var(--line-2);
+        box-shadow: var(--sh-paper);
+        font-size: 13px;
+      }
+      .lang-hint a {
+        color: var(--ink-2);
+      }
+      .lang-hint button {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        color: var(--ink-3);
+        line-height: 1;
+      }
+      .lang-hint button:hover {
+        background: var(--sage-wash);
+        color: var(--ink);
+      }
+      main {
+        position: relative;
+      }
+    </style>
+  </body>
+</html>

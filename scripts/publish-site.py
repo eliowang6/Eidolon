@@ -40,7 +40,8 @@ REQUIRED_ENTRIES = (
 )
 
 # Build scratch and deployment plumbing never ship as site content.
-PRUNE_DIRS = {".git", "node_modules", ".docusaurus", ".cache", "dist"}
+PRUNE_DIRS = {".git", "node_modules", ".docusaurus", ".cache", "dist",
+              "eidolon-web", "eidolon-site"}
 SKIP_NAMES = {".env", ".DS_Store"}
 
 

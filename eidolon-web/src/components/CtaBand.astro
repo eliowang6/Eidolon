@@ -1,0 +1,47 @@
+---
+import Button from './Button.astro';
+import { SITE } from '../config/site';
+import { localizePath, t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  h2: string;
+  lede?: string;
+  variant?: 'paper' | 'paper2';
+}
+const { lang, h2, lede, variant = 'paper2' } = Astro.props;
+const copy = t(lang);
+const joinHref = SITE.status === 'public-beta' ? localizePath(lang, '/download.html') : localizePath(lang, '/beta.html') + '#join';
+---
+<section class={`section section--${variant} cta`}>
+  <div class="container cta-inner reveal">
+    <h2>{h2}</h2>
+    {lede && <p class="lede">{lede}</p>}
+    <div class="cta-actions">
+      <Button href={joinHref} variant="ink"><span>{copy.common.joinFirstBeta}</span></Button>
+      <Button href={localizePath(lang, '/download.html')} variant="ghost">{copy.common.downloadPreview}</Button>
+      <a class="btn-text" href={localizePath(lang, '/pricing.html')}>{copy.common.viewPlans}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-inner {
+    max-width: 760px;
+    text-align: center;
+  }
+  .cta h2 {
+    font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.75rem);
+    margin-bottom: 12px;
+  }
+  .cta .lede {
+    margin: 0 auto 30px;
+  }
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px 20px;
+  }
+</style>

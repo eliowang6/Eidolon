@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import DocsPage from '../../components/pages/DocsPage.astro';
+import { t } from '../../i18n';
+
+const lang = 'en' as const;
+const copy = t(lang);
+---
+<Base lang={lang} path="/docs.html" title={copy.meta.docs.title} description={copy.meta.docs.description}>
+  <DocsPage lang={lang} />
+</Base>

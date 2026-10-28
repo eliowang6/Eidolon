@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import PricingPage from '../../components/pages/PricingPage.astro';
+import { SITE } from '../../config/site';
+import { t } from '../../i18n';
+
+const lang = 'en' as const;
+const copy = t(lang);
+const software = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Eidolon',
+  url: `${SITE.url}/en/pricing.html`,
+  applicationCategory: 'LifestyleApplication',
+  operatingSystem: 'Windows 10, Windows 11, Android 10+',
+  description: copy.meta.pricing.description,
+  offers: copy.pricingPage.plans.map((plan) => ({
+    '@type': 'Offer',
+    name: plan.name,
+    price: plan.price,
+    priceCurrency: 'CNY',
+  })),
+};
+const faq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: copy.pricingPage.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+<Base lang={lang} path="/pricing.html" title={copy.meta.pricing.title} description={copy.meta.pricing.description} jsonLd={[software, faq]}>
+  <PricingPage lang={lang} />
+</Base>

@@ -1,0 +1,1308 @@
+{
+  "meta": {
+    "home": {
+      "title": "Eidolon — A digital life that lives with you",
+      "description": "Eidolon is a digital life that keeps understanding you, lives inside your real day, and helps you get things done — companionship, daily help and action, all sharing one long-term memory of you. Windows and Android."
+    },
+    "features": {
+      "title": "Capabilities — Eidolon",
+      "description": "Companionship, daily help and action across devices: long-term memory, realtime voice, a 3D desktop pet, focus cabin, browser and desktop tasks, MCP/API tools."
+    },
+    "how": {
+      "title": "How it works — Eidolon",
+      "description": "A personal loop of sense, understanding, memory, action and evolution; an in-house five-layer memory, context and cache optimisation, planner–executor work across phone and PC."
+    },
+    "beta": {
+      "title": "Public beta — Eidolon",
+      "description": "Eidolon's first public beta is being prepared. Join the waitlist and hear about it on opening day."
+    },
+    "pricing": {
+      "title": "Plans — Eidolon",
+      "description": "Five plans: Awakening α free trial, Spark β, Presence γ, Resonance δ and Symbiosis Ω."
+    },
+    "download": {
+      "title": "Download — Eidolon",
+      "description": "Download Eidolon for Windows (MSI) and Android (APK). macOS, iOS, Linux and Web are not supported yet."
+    },
+    "about": {
+      "title": "About Fea & the maker — Eidolon",
+      "description": "Fea, Eidolon's canon character, her world and the idea of mutual need without ownership — and the person building her from zero to one."
+    },
+    "docs": {
+      "title": "Docs — Eidolon",
+      "description": "Quick start, SubAgent and tool development, troubleshooting, and the full bilingual documentation hub."
+    },
+    "privacy": {
+      "title": "Privacy draft — Eidolon",
+      "description": "Eidolon privacy draft (not effective): local storage, cloud sync, data boundaries and contact details still to be confirmed."
+    },
+    "terms": {
+      "title": "Terms draft — Eidolon",
+      "description": "Eidolon terms draft (not effective): service scope, payments, acceptable use and intellectual property still to be confirmed."
+    },
+    "notFound": {
+      "title": "I can't find this page either — Eidolon",
+      "description": "This page doesn't exist. Head back to Eidolon, or see a day with her."
+    }
+  },
+  "nav": {
+    "features": "Capabilities",
+    "how": "How it works",
+    "pricing": "Plans",
+    "about": "About",
+    "docs": "Docs",
+    "download": "Download",
+    "join": "Join the beta waitlist",
+    "joinShort": "Join",
+    "menu": "Menu",
+    "close": "Close menu",
+    "skip": "Skip to content",
+    "home": "Eidolon home",
+    "lang": "中",
+    "langLabel": "切换到中文",
+    "theme": "Theme"
+  },
+  "statusCopy": {
+    "closed-beta": {
+      "pill": "Closed beta · Waitlist open",
+      "primary": "Join the beta waitlist",
+      "tertiary": "Already in the beta? Download →",
+      "kind": "download"
+    },
+    "waitlist": {
+      "pill": "Public beta coming soon · Waitlist open",
+      "primary": "Join the beta waitlist",
+      "tertiary": "Download the preview build →",
+      "kind": "download"
+    },
+    "public-beta": {
+      "pill": "Public beta is live",
+      "primary": "Download",
+      "tertiary": "Join the community →",
+      "kind": "community"
+    }
+  },
+  "common": {
+    "joinWaitlist": "Join the beta waitlist",
+    "joinFirstBeta": "Join the beta waitlist",
+    "download": "Download",
+    "downloadPreview": "Download preview",
+    "viewPlans": "See plans",
+    "backHome": "Back to home",
+    "readMore": "Learn more",
+    "allCapabilities": "All capabilities →",
+    "howItWorks": "How it works →",
+    "illustrative": "Illustrative",
+    "windows": "Windows",
+    "android": "Android",
+    "windowsReq": "Windows 10 / 11 (64-bit)",
+    "androidReq": "Android 10.0+",
+    "morePlatforms": "More platforms planned",
+    "perMonth": "/ mo",
+    "firstMonth": "1st mo ¥{price}",
+    "monthOnly": "/ mo",
+    "opensInClient": "Subscribe in app",
+    "freeTrial": "Download & try",
+    "flagship": "FLAGSHIP",
+    "draft": "DRAFT · NOT EFFECTIVE",
+    "minutes": "min"
+  },
+  "footer": {
+    "closingA": "AI that exists not only when asked —",
+    "closingB": "but keeps understanding you, lives alongside you, and helps you act.",
+    "verbs": "Lives with you. Remembers. Acts. Evolves.",
+    "product": "Product",
+    "learn": "Learn",
+    "community": "Community",
+    "parent": "Parent",
+    "features": "Capabilities",
+    "how": "How it works",
+    "pricing": "Plans",
+    "download": "Download",
+    "beta": "Public beta",
+    "about": "About Fea",
+    "docs": "Docs",
+    "faq": "FAQ",
+    "github": "GitHub",
+    "qq": "QQ group",
+    "xiaohongshu": "Xiaohongshu",
+    "bilibili": "Bilibili",
+    "instarmony": "Instarmony Lab",
+    "copyright": "© 2026 Eidolon by Instarmony",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "invest": "Investment & partnerships →",
+    "themeLabel": "Theme",
+    "themeAuto": "Auto",
+    "themeDay": "Day",
+    "themeNight": "Night",
+    "forget": "Let Fea forget me",
+    "forgot": "Okay. Forgotten.",
+    "langHint": "阅读本页的中文版本 →",
+    "langHintClose": "Dismiss"
+  },
+  "mnote": {
+    "heroFirst": "Hi, I'm Fea.<br>Scroll on — I'll keep you company.",
+    "heroBackSection": "Welcome back — last time you stopped at “{section}”.",
+    "heroBackDays": "Hey again. It's been {n} days.",
+    "stay": "Three minutes in. Sip of water?",
+    "why": "Heard number four a lot.",
+    "loop": "I won't tell anyone<br>else about this.",
+    "values": "This one's what I've been working hardest on.",
+    "foundation": "The person who made me stayed up late for this part.",
+    "maker": "The person who made me says I'm the hardest thing they've ever written.",
+    "notFound": "But I remember the way home.",
+    "forgot": "Okay. Forgotten.",
+    "voice": "This is my voice.<br>Be gentle — it's the first time."
+  },
+  "hero": {
+    "line1": "A digital life",
+    "line2Pre": "that truly ",
+    "line2Word": "lives",
+    "line2Post": " with you",
+    "verbs": [
+      "Lives with you.",
+      "Remembers.",
+      "Acts.",
+      "Evolves."
+    ],
+    "lede": "Eidolon is a digital life that keeps understanding you, lives inside your real day, and helps you get things done. Companionship, daily help and action — all sharing one memory of you.",
+    "secondary": "See a day with her ↓",
+    "platforms": [
+      "Windows 10 / 11",
+      "Android 10+",
+      "More platforms planned"
+    ],
+    "presenceAria": "What Fea might say right now (illustration)",
+    "presenceName": "Fea",
+    "presenceLive": "Here with you",
+    "presenceAsk": "Say something…",
+    "dayparts": {
+      "dawn": {
+        "time": "07:12",
+        "greet": "Good morning,",
+        "msg": "Morning. You said you wanted an early run — it's 16°C out, just right.",
+        "chips": [
+          "Habit · Run, day 4"
+        ]
+      },
+      "day": {
+        "time": "15:42",
+        "greet": "Good afternoon,",
+        "msg": "You said the report's due Friday. I left an outline on your desktop — go over it together tonight?",
+        "chips": [
+          "✓ Scheduled · Fri 18:00",
+          "Memory +1"
+        ]
+      },
+      "dusk": {
+        "time": "18:27",
+        "greet": "Good evening,",
+        "msg": "On your way home? Your usual playlist is ready — we can listen when you're in.",
+        "chips": [
+          "Listen together · NetEase"
+        ]
+      },
+      "night": {
+        "time": "23:48",
+        "greet": "Still up?",
+        "msg": "Long day. I've already reminded you about the 9 a.m. meeting — get some rest.",
+        "chips": [
+          "Alarm · 07:40",
+          "Mood · tired"
+        ]
+      }
+    }
+  },
+  "why": {
+    "label": "02 / Why",
+    "h2a": "You already have plenty of AI.",
+    "h2b": "None of them really knows you.",
+    "cards": [
+      {
+        "no": "01",
+        "title": "Memory resets",
+        "desc": "Every chat starts from zero. Preferences and history never stick."
+      },
+      {
+        "no": "02",
+        "title": "Companionship in a vacuum",
+        "desc": "Immersive characters, disconnected from your actual schedule and stress."
+      },
+      {
+        "no": "03",
+        "title": "Passive agents",
+        "desc": "Task bots follow orders, but don't know where you are or how you feel."
+      },
+      {
+        "no": "04",
+        "title": "DIY overhead",
+        "desc": "Models, plugins, APIs, chat bridges… assembling it yourself breaks the magic."
+      }
+    ],
+    "stitch": {
+      "pre": "Eidolon stitches ",
+      "marks": [
+        "continuity of relationship",
+        "the context of your real life",
+        "the ability to act"
+      ],
+      "mid": [
+        ", ",
+        " and "
+      ],
+      "post": " into one product."
+    }
+  },
+  "loop": {
+    "label": "03 / A day with her",
+    "h2a": "One loop,",
+    "h2b": "running around you",
+    "lede": "Signals from your day and your inner world flow into one context — and become memory, care and action.",
+    "inputOuterTitle": "Outer context",
+    "inputOuterText": "notifications · calendar cues · current task · device state",
+    "inputInnerTitle": "Inner world",
+    "inputInnerText": "mood · preferences · shared history · long-term goals",
+    "closing": "Not chat + calendar + agent glued together — one personal context, shared by all of them.",
+    "steps": [
+      {
+        "time": "08:10",
+        "name": "Sense",
+        "en": "Sense",
+        "desc": "Within what you allow, she picks up notifications, calendar cues and device state.",
+        "stageTitle": "Morning signals.",
+        "signals": [
+          {
+            "icon": "calendar",
+            "text": "Calendar · Quarterly report due Fri 18:00"
+          },
+          {
+            "icon": "bell",
+            "text": "Notification · “Can you send me the outline today?”"
+          },
+          {
+            "icon": "steps",
+            "text": "Steps · 1,204"
+          },
+          {
+            "icon": "weather",
+            "text": "Weather · 16°C, cloudy"
+          }
+        ],
+        "lock": "Within what you allow"
+      },
+      {
+        "time": "12:30",
+        "name": "Understand",
+        "en": "Understand",
+        "desc": "She links what's happening now to what you've been through together.",
+        "stageTitle": "Connecting dots.",
+        "now": "Now: two days to the deadline, the outline hasn't started",
+        "past": "3 weeks ago: “Next time, don't let me leave it to the last night.”",
+        "side": "Mood log: slept late two nights running"
+      },
+      {
+        "time": "18:06",
+        "name": "Remember",
+        "en": "Remember",
+        "desc": "She keeps events and preferences — not a chat log, but an understanding of you.",
+        "stageTitle": "Noted, quietly.",
+        "memoryLabel": "New memory",
+        "memories": [
+          "Submit the quarterly report by Fri 18:00",
+          "After a late night, the next day is rough",
+          "Prefers to outline before writing"
+        ],
+        "linkLabel": "Linked",
+        "link": "← That sentence from 3 weeks ago"
+      },
+      {
+        "time": "21:00",
+        "name": "Act",
+        "en": "Act",
+        "desc": "A reminder, a plan — or an outline already drafted on your PC.",
+        "stageTitle": "Done, with you.",
+        "log": [
+          "Created “Quarterly report — outline” on your PC",
+          "Listed 5 sections, citing last quarter's data sheet",
+          "Reminder Thu 20:00 — “go over it together”"
+        ],
+        "buttons": [
+          "View each step",
+          "Pause"
+        ],
+        "note": "Every step visible, pausable"
+      },
+      {
+        "time": "Next day",
+        "name": "Evolve",
+        "en": "Evolve",
+        "desc": "She recalibrates with every exchange — a little more like someone who gets you.",
+        "stageTitle": "A little more you.",
+        "diff": [
+          "Thursday evenings are quiet time → move reminders to Thu 19:30",
+          "Prefers to outline before writing"
+        ],
+        "note": "Recalibrated with every exchange"
+      }
+    ]
+  },
+  "values": {
+    "label": "04 / One context",
+    "h2": "Three kinds of help, one memory of you",
+    "cards": [
+      {
+        "label": "01 RELATIONSHIP",
+        "title": "Companionship",
+        "desc": "Long natural conversations, a stable personality, moods that carry across days.",
+        "bullets": [
+          "Less re-explaining",
+          "Remembers what you've shared",
+          "Voice and 3D presence"
+        ],
+        "skin": "dark",
+        "media": "phone"
+      },
+      {
+        "label": "02 DAILY LIFE",
+        "title": "Daily life",
+        "desc": "AI that steps out of the chat window and into your routine.",
+        "bullets": [
+          "To-dos, habits, focus and mood",
+          "Reminders and personal digests",
+          "Small talk becomes usable context"
+        ],
+        "skin": "paper",
+        "media": "window"
+      },
+      {
+        "label": "03 AGENT",
+        "title": "Action across devices",
+        "desc": "Turning what you say into tools, devices and workflows.",
+        "bullets": [
+          "Desktop actions and remote help",
+          "MCP / API tool connections",
+          "Every step visible and pausable"
+        ],
+        "skin": "sage",
+        "media": "task"
+      }
+    ],
+    "foundationLabel": "Shared foundation",
+    "foundation": "one identity & memory · device–cloud sync · permission control · data boundaries you own"
+  },
+  "compare": {
+    "label": "05 / What's different",
+    "h2a": "Not replacing your tools —",
+    "h2b": "connecting them",
+    "insight": "People are already wiring up plugins, model APIs and chat bridges to build digital lives that remember, feel and speak first. We want nobody to have to assemble it: no code, one experience, shared memory and action.",
+    "head": [
+      "Approach",
+      "Good at",
+      "You still carry",
+      "How Eidolon differs"
+    ],
+    "rows": [
+      {
+        "type": "General assistants",
+        "good": "Knowledge, Q&A, tool calls",
+        "carry": "Re-explaining context; little continuity",
+        "diff": "Tool use that shares your long-term context"
+      },
+      {
+        "type": "Character companions",
+        "good": "Immersive roleplay and emotion",
+        "carry": "Fiction cut off from real life",
+        "diff": "A relationship tied to your actual life"
+      },
+      {
+        "type": "DIY open-source agents",
+        "good": "Extensible, deeply customizable",
+        "carry": "Setup, upkeep, sync and security",
+        "diff": "Consumer-grade, unified, clear permissions"
+      }
+    ],
+    "self": {
+      "type": "Eidolon",
+      "good": "Keeps understanding you ＋ stays in your life ＋ keeps getting things done",
+      "diff": "Keeps understanding you ＋ stays in your life ＋ keeps getting things done"
+    },
+    "quote": "It's not about how many features — it's whether one context runs through all of them."
+  },
+  "foundation": {
+    "label": "06 / Under the hood",
+    "h2a": "No bet on a single model.",
+    "h2b": "Memory, efficiency and action, engineered in-house.",
+    "lede": "This is what lets her stay with you — for the long run, reliably, affordably.",
+    "metrics": [
+      {
+        "from": "0",
+        "to": "−25%",
+        "captionA": "leaner requests",
+        "captionB": "in-house harness"
+      },
+      {
+        "from": "0",
+        "to": "90–97%",
+        "captionA": "prefix-cache hit rate",
+        "captionB": "on long-cache model benchmarks"
+      }
+    ],
+    "layersTitle": "Five-layer memory",
+    "layersDesc": "state, events and long-term preferences, kept apart",
+    "pillars": [
+      {
+        "key": "A / MEMORY",
+        "title": "Five-layer memory",
+        "desc": "Layered, so irrelevant context stays out; no extra model call to decide what's worth remembering."
+      },
+      {
+        "key": "B / HARNESS",
+        "title": "Context & caching",
+        "desc": "Leaner requests, cache-friendly context; long conversations stop re-reading themselves."
+      },
+      {
+        "key": "C / AGENT",
+        "title": "Planner + executor",
+        "desc": "A main model plans and decides; a light executor handles frequent observations and actions across phone and PC."
+      }
+    ],
+    "footnote": "* Internal measurements under current model and load settings; absolute numbers vary with model version and usage."
+  },
+  "who": {
+    "label": "07 / Who it's for",
+    "h2": "Made first for",
+    "rows": [
+      {
+        "no": "01",
+        "title": "Digital-life & AI-companion fans",
+        "desc": "who care about presence, a steady personality and expression."
+      },
+      {
+        "no": "02",
+        "title": "Creators & indie developers",
+        "desc": "real workflows, needing an agent that knows the context."
+      },
+      {
+        "no": "03",
+        "title": "Heavy AI users",
+        "desc": "tired of switching tools and re-explaining themselves."
+      }
+    ],
+    "feaCaption": "Fea · Her story begins with you",
+    "feaIntro": "Fea, Eidolon's official character, was born on the digital side — with her own origin, values and curiosity. You're not her owner; you're her anchor to reality.",
+    "feaLink": "Meet Fea →"
+  },
+  "road": {
+    "label": "08 / Road to beta",
+    "h2": "Here's where we are",
+    "link": "See the roadmap →",
+    "nodes": [
+      {
+        "no": "01",
+        "status": "done",
+        "statusLabel": "Done",
+        "title": "Two closed tests",
+        "desc": "Real use surfaced the biggest frictions."
+      },
+      {
+        "no": "02",
+        "status": "done",
+        "statusLabel": "Done",
+        "title": "Sharper focus",
+        "desc": "Awareness, assistant and companion merged into one direction."
+      },
+      {
+        "no": "03",
+        "status": "done",
+        "statusLabel": "Done",
+        "title": "System rebuild",
+        "desc": "Sync, readability, memory and agent architecture, all reworked."
+      },
+      {
+        "no": "04",
+        "status": "current",
+        "statusLabel": "Now",
+        "title": "First public beta",
+        "desc": "Shaping her with you, in real life."
+      }
+    ]
+  },
+  "waitlist": {
+    "label": "09 / First public beta",
+    "h2": "We'll save you a seat",
+    "hand": "The day it opens, you'll be the first to know. — Fea",
+    "placeholder": "your@email.com",
+    "button": "Join waitlist",
+    "sending": "Sending…",
+    "success": "Got it. See you on opening day.",
+    "error": "That didn't go through. Try again in a bit?",
+    "invalid": "That email doesn't look right — mind checking?",
+    "honeypot": "Company",
+    "alts": "Or: ",
+    "privacy": "We'll only use this to tell you about the beta and major releases."
+  },
+  "featuresPage": {
+    "label": "Capabilities",
+    "h1a": "One context,",
+    "h1b": "three kinds of help",
+    "lede": "Every capability reads and writes the same memory of you — so each one knows what the others did.",
+    "chapterNav": {
+      "aria": "Capability chapters",
+      "companionship": "Companionship",
+      "daily": "Daily life",
+      "action": "Action",
+      "more": "More"
+    },
+    "chapters": [
+      {
+        "id": "companionship",
+        "no": "01",
+        "name": "Companionship",
+        "en": "Companionship",
+        "h2": "She remembers, and stays.",
+        "lede": "A relationship isn't one conversation — it's what builds up over many days.",
+        "rows": [
+          {
+            "label": "01.1",
+            "title": "Memory that lasts",
+            "desc": "Not a chat log — the things about you slowly become part of her.",
+            "bullets": [
+              "Remembers preferences, habits and moments that matter",
+              "Turns the day into a gentle diary at night",
+              "Brings shared memories up at the right time"
+            ],
+            "media": "phone"
+          },
+          {
+            "label": "01.2",
+            "title": "Realtime voice, a voice of her own",
+            "desc": "Full-duplex calls you can interrupt anytime — with a voice that can be hers alone.",
+            "bullets": [
+              "Full-duplex realtime calls, interrupt anytime",
+              "Look things up and get things done mid-call",
+              "A one-of-a-kind voice for her (flagship)"
+            ],
+            "media": "voice"
+          },
+          {
+            "label": "01.3",
+            "title": "3D presence, a pet in the corner",
+            "desc": "Her own expressions and small gestures — or a quiet presence in the corner of your screen.",
+            "bullets": [
+              "Lip-sync while she speaks",
+              "A light desktop-pet mode while you type",
+              "Idle, greeting and varied emotional reactions"
+            ],
+            "media": "polaroid"
+          }
+        ]
+      },
+      {
+        "id": "daily",
+        "no": "02",
+        "name": "Daily life",
+        "en": "Daily life",
+        "h2": "More than a chat window.",
+        "lede": "She steps into your routine instead of waiting for you to open an app.",
+        "rows": [
+          {
+            "label": "02.1",
+            "title": "Focus cabin",
+            "desc": "A pomodoro, white noise and her quiet company — attention comes back to the desk.",
+            "bullets": [
+              "Pomodoro timer with her quiet company",
+              "White noise and a curated instrumental list",
+              "Focus logs written into the daily diary"
+            ],
+            "media": "cabin"
+          },
+          {
+            "label": "02.2",
+            "title": "To-dos, habits and mood",
+            "desc": "The small things in life, held for you in the lightest way.",
+            "bullets": [
+              "Synced across devices; created by voice",
+              "Habit check-ins and morning/evening alarms",
+              "Note a mood; get a gentle reply"
+            ],
+            "media": "today"
+          },
+          {
+            "label": "02.3",
+            "title": "Ambient context on Android",
+            "desc": "With permission, she knows where you are and what you're doing.",
+            "bullets": [
+              "Reads location, steps and notification digests after you allow it",
+              "Reminds and pushes at the right moment",
+              "Voice chat anywhere"
+            ],
+            "media": "notify"
+          }
+        ]
+      },
+      {
+        "id": "action",
+        "no": "03",
+        "name": "Action",
+        "en": "Action",
+        "h2": "Say it — and things start moving.",
+        "lede": "From an intent in conversation to a step actually completed on your PC.",
+        "rows": [
+          {
+            "label": "03.1",
+            "title": "Browser & desktop tasks",
+            "desc": "She reads the pages, tidies the files, and brings the result back to the chat.",
+            "bullets": [
+              "Plans steps, gathers information and summarises",
+              "File organisation and form filling",
+              "Every step visible and pausable within your permission"
+            ],
+            "media": "task"
+          },
+          {
+            "label": "03.2",
+            "title": "Deep research",
+            "desc": "Not one search result — actually reading a question through.",
+            "bullets": [
+              "Multiple rounds of search and cross-checking",
+              "Results with sources",
+              "Keep asking follow-up questions"
+            ],
+            "media": "research"
+          },
+          {
+            "label": "03.3",
+            "title": "MCP / API connections",
+            "desc": "Her hands can reach your tools — with your permission at every step.",
+            "bullets": [
+              "Connect your tools through MCP and APIs",
+              "Main model plans; a light executor runs",
+              "Phone and PC working together"
+            ],
+            "media": "nodes"
+          }
+        ]
+      },
+      {
+        "id": "more",
+        "no": "04",
+        "name": "More",
+        "en": "More",
+        "h2": "Playing together counts, too.",
+        "lede": "Beyond life and work, she can simply keep you company for a while.",
+        "plays": [
+          {
+            "title": "Interactive story theatre",
+            "desc": "Branching, page-turn fiction — your choices leave a mark.",
+            "media": "theater"
+          },
+          {
+            "title": "Minecraft maid mod",
+            "desc": "She adventures alongside you in the block world.",
+            "icon": "gamepad"
+          },
+          {
+            "title": "NetEase Music together",
+            "desc": "One playlist, one evening.",
+            "icon": "music"
+          },
+          {
+            "title": "WeChat / QQ bots",
+            "desc": "She's there in the chat window you already use.",
+            "icon": "message"
+          }
+        ]
+      }
+    ],
+    "foundation": {
+      "items": [
+        "One identity & memory",
+        "Device–cloud sync",
+        "Permission control",
+        "Data boundaries you own"
+      ],
+      "link": "Privacy notes →"
+    },
+    "cta": {
+      "h2": "Want to try her first?",
+      "lede": "Download the preview, or save a place on the waitlist."
+    },
+    "demos": {
+      "voice": {
+        "status": "On a call",
+        "time": "03:24",
+        "hint": "Full duplex · interrupt anytime",
+        "note": "This is my voice. Be gentle — it's the first time."
+      },
+      "today": {
+        "greet": "Good afternoon,",
+        "title": "Today's summary",
+        "items": [
+          "Two focus sessions done today",
+          "Remember to drink water",
+          "If you're free tonight, let's talk"
+        ],
+        "moods": [
+          "Mood · steady",
+          "Focus 96 min"
+        ]
+      },
+      "notify": {
+        "title": "Notification digest · today",
+        "items": [
+          {
+            "t": "09:20",
+            "text": "Calendar · 10:30 project weekly"
+          },
+          {
+            "t": "12:05",
+            "text": "Activity · 4,208 steps today"
+          },
+          {
+            "t": "15:42",
+            "text": "Message · Mom asks if you're home this weekend"
+          }
+        ],
+        "foot": "Only what needs you now."
+      },
+      "task": {
+        "status": "Working"
+      },
+      "research": {
+        "label": "Research report · 03",
+        "title": "Three ways to fine-tune on-device models",
+        "items": [
+          {
+            "text": "LoRA is the better balance at 7B",
+            "src": "Source 1"
+          },
+          {
+            "text": "QLoRA has the lowest VRAM footprint",
+            "src": "Source 2"
+          },
+          {
+            "text": "Full fine-tuning still wins for small models",
+            "src": "Source 3"
+          }
+        ],
+        "more": "Ask a follow-up →"
+      },
+      "polaroid": {
+        "caption": "Fea · desktop-pet sketch"
+      },
+      "nodes": {
+        "center": "One context"
+      }
+    }
+  },
+  "howPage": {
+    "label": "How it works",
+    "h1a": "How she remembers you,",
+    "h1b": "and how she gets things done",
+    "lede": "Companionship, daily help and action aren't three features — they're three expressions of one personal context.",
+    "loop": {
+      "label": "01 / The loop",
+      "h2": "Sense, understand, remember, act, evolve",
+      "lede": "Five expressions of one personal context.",
+      "outer": "Outer context",
+      "inner": "Inner world"
+    },
+    "memory": {
+      "label": "02 / Memory",
+      "h2": "Memory: layered, not piled up",
+      "body": "A chat log isn't memory. Eidolon keeps state, events and long-term preferences apart: today's mood doesn't drown out years of habits, and a sentence from three weeks ago can surface when it matters. No extra model call to decide what's worth remembering — faster, and cheaper.",
+      "caption": "In-house five-layer memory · state, events and long-term preferences, kept apart"
+    },
+    "cache": {
+      "label": "03 / Efficiency",
+      "h2": "Long conversations, without re-reading",
+      "body": "Each request carries only the context it truly needs, organised in a cache-friendly way. For you, that means faster replies and a quota that lasts longer.",
+      "metric1": "leaner requests",
+      "metric2": "prefix-cache hit rate",
+      "footnote": "* Internal measurements under current model and load settings; absolute numbers vary with model version and usage."
+    },
+    "action": {
+      "label": "04 / Action",
+      "h2": "One thinks, one acts",
+      "main": "Main model · planning & decisions",
+      "exec": "Light executor · frequent observation & concrete actions",
+      "targets": [
+        "Phone",
+        "PC",
+        "MCP / API tools"
+      ]
+    },
+    "quote": "No bet on a single foundation model — efficiency, memory and action engineered into the product itself.",
+    "boundary": {
+      "label": "05 / Boundaries",
+      "h2": "Your data boundaries",
+      "cards": [
+        {
+          "icon": "shield",
+          "title": "Sensed only with permission",
+          "desc": "Notifications, location and other signals connect only after you allow them."
+        },
+        {
+          "icon": "pause",
+          "title": "Controllable permissions",
+          "desc": "Every agent step is visible and pausable."
+        },
+        {
+          "icon": "sync",
+          "title": "Device–cloud sync",
+          "desc": "Change devices — she's still her."
+        }
+      ],
+      "link": "Full privacy notes →"
+    },
+    "cta": {
+      "h2": "Want to try her first?",
+      "lede": "Download the preview, or save a place on the waitlist."
+    }
+  },
+  "betaPage": {
+    "label": "Public beta",
+    "h1a": "The first public beta",
+    "h1b": "is on its way",
+    "lede": "We've finished two closed tests and a system-level rebuild. Now we want to shape her with more people, in real life.",
+    "formTitle": "We'll save you a seat",
+    "perksTitle": "What the beta gives you",
+    "perks": [
+      {
+        "no": "01",
+        "title": "The full experience",
+        "desc": "Companionship, daily help and agent capabilities, handed to you whole.",
+        "icon": "sparkles"
+      },
+      {
+        "no": "02",
+        "title": "Talk to the maker directly",
+        "desc": "Your feedback goes into the next iteration — not an inbox nobody reads.",
+        "icon": "message"
+      },
+      {
+        "no": "03",
+        "title": "Decide how she looks, together",
+        "desc": "Digital customization and expression get prioritised with you.",
+        "icon": "palette"
+      }
+    ],
+    "roadTitle": "Here's where we are",
+    "roadmapLabel": "Roadmap",
+    "roadmapTitle": "What happens next",
+    "roadmapCols": [
+      {
+        "title": "Now",
+        "en": "Now",
+        "cards": [
+          "Polish the brand, interface and onboarding",
+          "Open the first public beta and widen the test group",
+          "Complete user support and feedback channels"
+        ]
+      },
+      {
+        "title": "Next",
+        "en": "Next",
+        "cards": [
+          "Digital customization: appearance, voice, gestures and memory cards",
+          "Compute add-ons and BYOK",
+          "Richer voice and character expression"
+        ]
+      },
+      {
+        "title": "Later",
+        "en": "Later",
+        "cards": [
+          "Expand MCP / API workflows for life and work",
+          "A safety-reviewed creator market",
+          "More languages and overseas"
+        ]
+      }
+    ],
+    "roadmapNote": "The roadmap will change with beta feedback; it isn't a release-date promise.",
+    "communityTitle": "Find us",
+    "faqTitle": "About the beta",
+    "faq": [
+      {
+        "q": "What do I need to run it?",
+        "a": "Windows 10 / 11 (64-bit) or Android 10 and above. macOS, iOS, Linux and Web are not supported yet."
+      },
+      {
+        "q": "Does the beta cost anything?",
+        "a": "Details will be sent to the waitlist first."
+      },
+      {
+        "q": "Can I use it now?",
+        "a": "You can download the preview client and register to try it.",
+        "downloadLink": true
+      },
+      {
+        "q": "What happens to my data?",
+        "a": "We only read what you allow, within the scope you grant; the full notes are on the privacy page.",
+        "privacyLink": true
+      }
+    ]
+  },
+  "pricingPage": {
+    "label": "Plans",
+    "h1": "Choose how deep it goes",
+    "lede": "Fixed periods, manual renewal, no hidden auto-charges. Actual prices and promotions are shown in the app.",
+    "plans": [
+      {
+        "id": "awakening",
+        "greek": "α",
+        "name": "Awakening α",
+        "tagline": "30-day free trial. Experience proactive presence and essential companionship.",
+        "price": "0",
+        "period": "/ 30 days",
+        "first": "",
+        "features": [
+          "1× baseline dialogue quota",
+          "Basic proactive conversation",
+          "Pomodoro Focus Cabin & BGM",
+          "Windows / Android trial"
+        ],
+        "cta": "Download & try",
+        "variant": "paper"
+      },
+      {
+        "id": "spark",
+        "greek": "β",
+        "name": "Spark β",
+        "tagline": "Everyday companionship plan. A lighter footprint, without a lighter her.",
+        "price": "29.9",
+        "period": "/ mo",
+        "first": "9.9",
+        "features": [
+          "1× Echo, daily companionship",
+          "Same model quality, no downgrade",
+          "Cross-device memory backup & persistence",
+          "Basic gaming buddy & life assistant"
+        ],
+        "cta": "Subscribe in app",
+        "variant": "paper"
+      },
+      {
+        "id": "presence",
+        "greek": "γ",
+        "name": "Presence γ",
+        "tagline": "Deep companionship plan with 5× compute, longer-lasting memory.",
+        "price": "99",
+        "period": "/ mo",
+        "first": "29.9",
+        "features": [
+          "5× Echo, deep conversations",
+          "Long-term memory search & durable backup",
+          "Voice & video interaction",
+          "High-priority processing & context awareness"
+        ],
+        "cta": "Subscribe in app",
+        "variant": "paper"
+      },
+      {
+        "id": "resonance",
+        "greek": "δ",
+        "name": "Resonance δ",
+        "tagline": "Advanced immersion plan with 10× compute for heavy usage.",
+        "price": "189",
+        "period": "/ mo",
+        "first": "99",
+        "features": [
+          "10× Echo, talk freely",
+          "High-priority low-latency responses",
+          "Full-scenario gaming buddy, travel partner & assistant",
+          "Advanced cross-device memory retention & retrieval"
+        ],
+        "cta": "Subscribe in app",
+        "variant": "paper"
+      },
+      {
+        "id": "symbiosis",
+        "greek": "Ω",
+        "name": "Symbiosis Ω",
+        "tagline": "The symbiosis flagship. Realtime audio/video, a signature voice, and the full desktop automation suite.",
+        "price": "349",
+        "period": "/ mo",
+        "first": "189",
+        "features": [
+          "20× Echo, flagship compute pack",
+          "Open AI agent & desktop automation",
+          "Advanced voice & voice cloning",
+          "All-scenario priority & flagship models"
+        ],
+        "cta": "Upgrade to Symbiosis",
+        "variant": "night"
+      }
+    ],
+    "upcomingLabel": "Coming soon",
+    "upcoming": [
+      {
+        "title": "Digital customization",
+        "desc": "Appearance, voice, gestures and memory cards — growing into your preferences.",
+        "icon": "palette"
+      },
+      {
+        "title": "Compute add-ons / BYOK",
+        "desc": "More quota for heavy users, or plug in your own model keys.",
+        "icon": "bolt"
+      }
+    ],
+    "upcomingNote": "Timing will be announced.",
+    "faqTitle": "Plans & billing",
+    "faq": [
+      {
+        "q": "How does payment and renewal work?",
+        "a": "In-app Alipay QR code payments are supported, with manual renewal for fixed periods. Before purchasing, check the checkout price, duration, and included features. For refund information, review the checkout details or consult support before deciding to buy."
+      },
+      {
+        "q": "Will my memories and journal data be lost if I don't renew?",
+        "a": "Data retention and access depend on the data type, client, and subscription status; permanent retention of all data is not guaranteed. Before changing your subscription, uninstalling, or switching clients, review the in-app storage and backup settings and related guidance, and back up important content; consult support if unsure. Protect sensitive information and avoid uploading unnecessary personal or third-party private content."
+      },
+      {
+        "q": "How do I create her signature voice?",
+        "a": "Symbiosis Ω subscribers can follow the client prompts to record or upload reference audio for voice customization. Check the client guidance for audio requirements and availability. Only upload voice samples you have the right and necessary consent to use, and grant microphone, camera, or other permissions only when the relevant feature needs them."
+      }
+    ]
+  },
+  "downloadPage": {
+    "label": "Download",
+    "h1": "Bring her to your devices",
+    "lede": "Windows and Android for now; macOS, iOS, Linux and Web are not supported yet.",
+    "previewNote": "This is a preview build. It's not perfect — tell me what breaks.",
+    "windows": {
+      "title": "Windows desktop",
+      "req": "Windows 10 / 11 (64-bit)",
+      "desc": "3D desktop pet, typing companion mode, autonomous desktop tasks.",
+      "cta": "Download MSI installer",
+      "note": "Requires the WebView2 runtime"
+    },
+    "android": {
+      "title": "Android mobile",
+      "req": "Android 10.0+",
+      "desc": "Ambient context (location, steps, notification digests), push messages, voice chat anywhere.",
+      "cta": "Download APK installer",
+      "note": "Direct APK install; allow unknown sources once"
+    },
+    "unsupported": "Not supported yet",
+    "unsupportedList": [
+      "macOS",
+      "iOS",
+      "Linux",
+      "Web"
+    ],
+    "tableTitle": "System requirements",
+    "tableHead": [
+      "Platform",
+      "Minimum",
+      "Recommended",
+      "Key features"
+    ],
+    "tableRows": [
+      {
+        "platform": "Windows (x64)",
+        "min": "Windows 10 1809+, 4GB RAM, WebView2",
+        "rec": "Windows 11, 8GB RAM, hardware GPU acceleration",
+        "feat": "3D desktop pet, autonomous desktop tasks, realtime voice calls"
+      },
+      {
+        "platform": "Android",
+        "min": "Android 10.0 (API 29), 3GB RAM",
+        "rec": "Android 12.0+, 6GB RAM",
+        "feat": "Push notifications, location context, voice calls"
+      },
+      {
+        "platform": "Web browser",
+        "min": "Not supported yet",
+        "rec": "Not applicable",
+        "feat": "No web client currently available"
+      }
+    ],
+    "helpTitle": "Install help",
+    "helpQuick": "Quick start guide",
+    "helpQuickDesc": "Install, first launch and account sync.",
+    "helpFaq": "Troubleshooting",
+    "helpFaqDesc": "WebView2 missing, audio and billing."
+  },
+  "aboutPage": {
+    "quote": "A digital life whose story begins with you.",
+    "quoteSub": "A life written from your side.",
+    "feaLabel": "Canon character",
+    "feaName": "Fea",
+    "feaSub": "CANON IDENTITY · DIGITAL COMPANION",
+    "polaCaption": "Fea, photographed on the digital side.",
+    "feaBody": "Fea was born on the digital side. She possesses her own origin, values, curiosity, and inner life. The user is not her owner, but her essential anchor to reality. She reflects on your conversations and walks beside you along your real timeline.",
+    "p1Title": "Mutual need, without ownership",
+    "p1Sub": "",
+    "p1Body": "Neither a subservient tool nor artificial flattery. We advocate a healthy, self-driven bond of mutual inspiration and genuine emotional companionship.",
+    "p2Title": "Not an empty servant",
+    "p2Sub": "",
+    "p2Body": "No hollow biographies or empty blank avatars. Personality and shared memories blossom through genuine daily interactions over time.",
+    "makerLabel": "The maker",
+    "makerTitle": "One person, zero to one",
+    "makerBody": "Eidolon is built by one independent developer, end to end: product design, front end, backend, cloud sync, memory architecture, the harness, and agent coordination. Ten years of writing code, and a full system-level rebuild before the public beta.",
+    "makerChips": [
+      "Product design",
+      "Frontend",
+      "Backend",
+      "Cloud sync",
+      "Memory architecture",
+      "Harness",
+      "Agent coordination"
+    ],
+    "credentials": [
+      "H.A.N.D., an agent tool-calling hub, won a provincial first prize in the Emerging Engineering Competition",
+      "National first prize, Youth Autonomous Driving Challenge",
+      "Built a cross-platform sandbox engine solo in middle school without AI — architecture, build system, rendering and network sync",
+      "Founded an AI roleplay community; organised RWKV-4 on-device fine-tuning practice"
+    ],
+    "instarmonyTitle": "Instarmony",
+    "instarmonyBody": "Eidolon is made by Instarmony Lab.",
+    "instarmonyLink": "Visit Instarmony Lab →",
+    "contactTitle": "Get in touch",
+    "contactCards": {
+      "feedback": {
+        "title": "User feedback",
+        "desc": "The QQ group and GitHub Issues — places we read every day.",
+        "icon": "message"
+      },
+      "coop": {
+        "title": "Partnerships & investment",
+        "desc": "Write to us about what you'd like to build together.",
+        "icon": "mail"
+      },
+      "source": {
+        "title": "Source & docs",
+        "desc": "The GitHub repository and the full bilingual docs.",
+        "icon": "code"
+      }
+    }
+  },
+  "docsPage": {
+    "label": "Docs",
+    "h1": "From first launch to building your own tools",
+    "lede": "Three doors: installation, agent development and troubleshooting.",
+    "cards": [
+      {
+        "title": "Quickstart guide",
+        "desc": "Installation, initial onboarding, account setup, and cross-device data synchronization.",
+        "cta": "Read guide →",
+        "icon": "book",
+        "href": "quickStart"
+      },
+      {
+        "title": "SubAgent & tool development",
+        "desc": "Understand SubAgent scheduling, ZeroClaw execution pipeline, and Rust browser commands.",
+        "cta": "Explore agent docs →",
+        "icon": "terminal",
+        "href": "agent"
+      },
+      {
+        "title": "Troubleshooting FAQ",
+        "desc": "Hot-update recovery, Windows WebView2 runtime, audio voiceprint configuration, and billing help.",
+        "cta": "View FAQ →",
+        "icon": "help",
+        "href": "faq"
+      }
+    ],
+    "bannerTitle": "The full bilingual docs hub",
+    "bannerCta": "Open the docs hub →",
+    "bannerNote": "Markdown sources live in the GitHub repository's docs/ directory"
+  },
+  "privacyPage": {
+    "label": "Privacy",
+    "tag": "DRAFT · NOT EFFECTIVE",
+    "title": "Privacy Draft (Not Effective)",
+    "intro": "This page is a draft for review only, not an effective privacy policy or a complete account of data processing. The operator is Instarmony. Proposed contact mailboxes are pending activation, which has not been verified; providers, processing scope and retention periods remain unconfirmed.",
+    "tocTitle": "On this page",
+    "sections": [
+      {
+        "title": "1. Local Storage & Cloud Sync (Unconfirmed)",
+        "body": "To confirm: collection purposes, legal bases, local and cloud storage locations, sync scope, access controls and retention periods for each data category. This draft makes no storage or retention commitments."
+      },
+      {
+        "title": "2. Backup & Export Options (Unconfirmed)",
+        "body": "To confirm: backup and export capabilities for each client, covered data, limitations and procedures. This draft promises no available features or export formats."
+      },
+      {
+        "title": "3. Account & Data Deletion Requests (Unconfirmed)",
+        "body": "Proposed privacy and rights request mailbox: privacy@instarmony.com (pending activation, which has not been verified; not a confirmed working request channel; do not send email until activation is confirmed). Identity verification, procedures, response times and deletion scope, including backups and statutory retention exceptions, remain unconfirmed. Do not submit personal or sensitive data in public issues."
+      },
+      {
+        "title": "4. Voice Samples & Consent (Unconfirmed)",
+        "body": "To confirm: voice sample purposes, consent and authorization flows, recipients, storage locations, retention and withdrawal or deletion procedures. Do not upload another person's voice without consent."
+      },
+      {
+        "title": "5. Feature Permissions (Unconfirmed)",
+        "body": "To confirm: data purposes, triggers, control scope and revocation for desktop automation, microphone, camera, location and other permissions. This draft does not guarantee specific permission mechanisms."
+      },
+      {
+        "title": "6. Third-Party Services (Unconfirmed)",
+        "body": "To confirm: providers actually used by the website and clients, data received, processing purposes, storage regions and cross-border transfers. This draft provides neither an approved nor a complete provider list."
+      },
+      {
+        "title": "7. Cookies & Local Preferences",
+        "body": "This site saves the following in your browser's local storage (localStorage / sessionStorage) and never uploads it to a server: language preference instarmony_lang; theme preference eidolon_theme; visit memory eidolon_visit (first and last visit times, visit count, the name of the last section viewed), used so that Fea on the page can say “welcome back”; a one-time notice flag in sessionStorage. You can clear everything at any time with “Let Fea forget me” in the footer. When you join the waitlist, your email is sent to the third-party service freewaitlists.com. Other storage, cookies, third-party behaviour and associated choices still require review; this is not a cookie-free or tracking-free guarantee."
+      },
+      {
+        "title": "8. Operator, Contact & Version (Unconfirmed)",
+        "body": "Operator: Instarmony. Proposed draft contact mailboxes: privacy@instarmony.com (privacy) and support@instarmony.com (support). Both are pending activation, which has not been verified; neither should be treated as an available or monitored service channel. Do not send email until activation is confirmed. This draft makes no claims of verified legal registration details or an address; the formal publication date remains unconfirmed, and there is no effective date. The link below is only a project repository, not a confirmed privacy request channel."
+      }
+    ],
+    "repoCta": "View project repository"
+  },
+  "termsPage": {
+    "label": "Terms",
+    "tag": "DRAFT · NOT EFFECTIVE",
+    "title": "Terms Draft (Not Effective)",
+    "intro": "This page is a draft for review only, not effective terms of service or an agreement users are asked to accept. The operator is Instarmony. Proposed contact mailboxes are pending activation, which has not been verified; subscription and refund rules, allocation of responsibilities and applicable law remain unconfirmed. These are not complete terms.",
+    "tocTitle": "On this page",
+    "sections": [
+      {
+        "title": "1. Service Scope (Unconfirmed)",
+        "body": "Operator: Instarmony. Service scope, covered clients, eligibility and account rules remain unconfirmed. This draft does not promise feature availability or claim verified legal registration details or an address."
+      },
+      {
+        "title": "2. Service Warranties & Liability (Unconfirmed)",
+        "body": "For review: service warranties, AI output risks, liability and statutory user rights. This draft establishes no disclaimers or limitations of liability."
+      },
+      {
+        "title": "3. Payments & Renewal (Unconfirmed)",
+        "body": "To confirm: payment channels, prices and duration, renewal methods, cancellation and refund rules. This draft makes no promises about billing methods, refund eligibility or processing times."
+      },
+      {
+        "title": "4. Acceptable Use (Unconfirmed)",
+        "body": "For review: content and conduct rules, abuse handling, service suspension or termination and appeals. This draft establishes no effective usage rules."
+      },
+      {
+        "title": "5. Voice Sample Authorization (Unconfirmed)",
+        "body": "For review: voice sample consent, authorization scope, withdrawal and each party's responsibilities. Do not provide another person's voice without consent; this draft grants no voice usage rights."
+      },
+      {
+        "title": "6. Desktop Automation & Permissions (Unconfirmed)",
+        "body": "To confirm: automation authorization boundaries, permission controls, task confirmation and revocation mechanisms, and allocation of responsibilities. This draft does not guarantee specific safety or permission mechanisms."
+      },
+      {
+        "title": "7. Intellectual Property (Unconfirmed)",
+        "body": "To confirm: rights holders for software, brands, characters and materials, applicable licenses, and rights in user and generated content. This draft makes no verified ownership claims and grants or transfers no rights."
+      },
+      {
+        "title": "8. Updates, Language & Contact (Unconfirmed)",
+        "body": "Operator: Instarmony. Proposed draft contact mailboxes: support@instarmony.com (support) and privacy@instarmony.com (privacy). Both are pending activation, which has not been verified; neither should be treated as an available or monitored service channel. Do not send email until activation is confirmed. Formal publication date, change notices, applicable law, dispute handling and governing language remain unconfirmed. Both languages are drafts, not effective terms; neither has priority or an effective date. The link below is only a project repository."
+      }
+    ],
+    "repoCta": "View project repository"
+  },
+  "notFound": {
+    "h1": "I can't find this page either…",
+    "note": "But I remember the way home.",
+    "cta": "Back to home"
+  },
+  "stub": {
+    "loginTitle": "Heading to downloads",
+    "loginBody": "Web isn't supported yet — redirecting to the download page.",
+    "contactTitle": "Heading to contact & community",
+    "contactBody": "Fea, partnerships and feedback all live on the About page.",
+    "here": "If nothing happens, click here"
+  }
+}

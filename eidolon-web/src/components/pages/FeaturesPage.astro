@@ -1,0 +1,1117 @@
+---
+import PageHero from '../PageHero.astro';
+import PhoneFrame from '../PhoneFrame.astro';
+import WindowFrame from '../WindowFrame.astro';
+import Polaroid from '../Polaroid.astro';
+import Icon from '../Icon.astro';
+import Logo from '../Logo.astro';
+import CtaBand from '../CtaBand.astro';
+import { localizePath, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const p = (href: string) => localizePath(lang, href);
+const page = copy.featuresPage;
+const demos = page.demos;
+const chapters = page.chapters;
+const task = copy.loop.steps[3];
+const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.sin(i * 1.7)) * 54));
+---
+<PageHero label={page.label} h1a={page.h1a} h1b={page.h1b} lede={page.lede} />
+
+<div class="chapters">
+  <div class="chapter-nav" data-chapter-nav>
+    <div class="container">
+      <nav class="chapter-pills" aria-label={page.chapterNav.aria}>
+        {chapters.map((chapter, i) => (
+          <a href={`#${chapter.id}`} data-chapter-link={chapter.id} class={i === 0 ? 'active' : ''} aria-current={i === 0 ? 'true' : undefined}>
+            {page.chapterNav[chapter.id as keyof typeof page.chapterNav]}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+
+  {chapters.map((chapter, ci) => (
+  <section class={`chapter ${ci % 2 === 1 ? 'chapter--alt' : ''}`} id={chapter.id} data-chapter>
+    <div class="container">
+      <header class="chapter-head reveal">
+        <span class="chapter-no" aria-hidden="true">{chapter.no}</span>
+        <div class="chapter-intro">
+          <span class="label">{chapter.no} / {chapter.name}</span>
+          <h2>{chapter.h2}</h2>
+          <p class="lede">{chapter.lede}</p>
+        </div>
+      </header>
+
+      {chapter.rows && (
+        <div class="feature-list">
+          {chapter.rows.map((row, i) => (
+            <article class={`feature-row ${i % 2 === 1 ? 'feature-row--flip' : ''} reveal`}>
+              <div class="feature-copy">
+                <span class="label">{row.label}</span>
+                <h3>{row.title}</h3>
+                <p>{row.desc}</p>
+                <ul>
+                  {row.bullets.map((bullet) => (
+                    <li><span class="dot" aria-hidden="true"></span>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class={`feature-media stage--${row.media}`}>
+                {row.media === 'phone' && (
+                  <div class="stage stage--phone">
+                    <PhoneFrame cropTop>
+                      <img src="/assets/screenshots/app-mobile-home.webp" alt="" width="390" height="844" loading="lazy" />
+                    </PhoneFrame>
+                  </div>
+                )}
+
+                {row.media === 'voice' && (
+                  <div class="stage stage--voice">
+                    <span class="sound-ring" aria-hidden="true"></span>
+                    <span class="sound-ring sound-ring--2" aria-hidden="true"></span>
+                    <div class="callcard">
+                      <div class="call-top">
+                        <span class="call-avatar"><Logo size={24} /></span>
+                        <span class="who">Fea<small><span class="live" aria-hidden="true"></span>{demos.voice.status}</small></span>
+                        <time class="mono">{demos.voice.time}</time>
+                      </div>
+                      <div class="wave" aria-hidden="true">
+                        {wave.map((h, i) => <i style={`--h:${h}px;--d:${i * 40}ms`}></i>)}
+                      </div>
+                      <p class="call-hint mono">{demos.voice.hint}</p>
+                      <div class="call-actions" aria-hidden="true">
+                        <span class="cbtn"><Icon name="mic" size={17} /></span>
+                        <span class="cbtn cbtn--end"><Icon name="close" size={17} /></span>
+                      </div>
+                    </div>
+                    <p class="hand stage-note">{demos.voice.note}</p>
+                  </div>
+                )}
+
+                {row.media === 'polaroid' && (
+                  <div class="stage stage--polaroid">
+                    <Polaroid src="/assets/fea-hero-illustration.webp" alt="Fea" caption={demos.polaroid.caption} />
+                  </div>
+                )}
+
+                {row.media === 'cabin' && (
+                  <div class="stage stage--cabin">
+                    <WindowFrame title="Focus Cabin">
+                      <img src="/assets/screenshots/app-focus-cabin.webp" alt="" width="1440" height="1100" loading="lazy" />
+                    </WindowFrame>
+                  </div>
+                )}
+
+                {row.media === 'today' && (
+                  <div class="stage stage--today">
+                    <div class="todaycard">
+                      <p class="tc-greet latin">{demos.today.greet}</p>
+                      <div class="tc-title"><Icon name="sparkles" size={16} />{demos.today.title}</div>
+                      <ul>
+                        {demos.today.items.map((item, i) => (
+                          <li><span class={i === 0 ? 'cbox done' : 'cbox'}>{i === 0 && <Icon name="check" size={11} stroke={3} />}</span>{item}</li>
+                        ))}
+                      </ul>
+                      <div class="tc-moods">
+                        {demos.today.moods.map((mood) => <span class="chip">{mood}</span>)}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {row.media === 'notify' && (
+                  <div class="stage stage--notify">
+                    <PhoneFrame>
+                      <div class="notify-ui">
+                        <div class="statusbar mono"><span>09:41</span><span>●●●</span></div>
+                        <h4>{demos.notify.title}</h4>
+                        <ul>
+                          {demos.notify.items.map((item) => (
+                            <li><time class="mono">{item.t}</time><span>{item.text}</span></li>
+                          ))}
+                        </ul>
+                        <p class="notify-foot">{demos.notify.foot}</p>
+                      </div>
+                    </PhoneFrame>
+                  </div>
+                )}
+
+                {row.media === 'task' && (
+                  <div class="stage stage--task">
+                    <div class="taskcard">
+                      <div class="task-head">
+                        <span class="chip"><Icon name="check" size={12} stroke={2.4} />{task.time} · {demos.task.status}</span>
+                        <span class="mono">3 / 3</span>
+                      </div>
+                      <ul>
+                        {task.log.map((line) => (
+                          <li><span class="tick"><Icon name="check" size={11} stroke={2.6} /></span>{line}</li>
+                        ))}
+                      </ul>
+                      <div class="task-foot"><span>{task.note}</span><span class="mono">{task.buttons.join(' · ')}</span></div>
+                    </div>
+                  </div>
+                )}
+
+                {row.media === 'research' && (
+                  <div class="stage stage--research">
+                    <div class="research">
+                      <span class="label">{demos.research.label}</span>
+                      <h4>{demos.research.title}</h4>
+                      <ul>
+                        {demos.research.items.map((item) => (
+                          <li><span class="rtext">{item.text}</span><span class="src mono">{item.src}</span></li>
+                        ))}
+                      </ul>
+                      <span class="more">{demos.research.more}</span>
+                    </div>
+                  </div>
+                )}
+
+                {row.media === 'nodes' && (
+                  <div class="stage stage--nodes">
+                    <div class="nodediag">
+                      <svg viewBox="0 0 620 400" preserveAspectRatio="none" aria-hidden="true">
+                        <line x1="310" y1="200" x2="120" y2="200" />
+                        <line x1="310" y1="200" x2="500" y2="200" />
+                        <line x1="310" y1="200" x2="310" y2="340" />
+                      </svg>
+                      <span class="node node--center"><Logo size={30} /><b>Eidolon</b><small>{demos.nodes.center}</small></span>
+                      <span class="node node--left">{copy.howPage.action.targets[0]}</span>
+                      <span class="node node--right">{copy.howPage.action.targets[1]}</span>
+                      <span class="node node--bottom">{copy.howPage.action.targets[2]}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {chapter.plays && (
+        <div class="plays">
+          {chapter.plays.map((play, i) => (
+            <article class="play reveal" style={`--i:${i}`}>
+              <span class="play-index mono">04.{i + 1}</span>
+              {play.media === 'theater' ? (
+                <div class="play-thumb"><img src="/assets/screenshots/app-theater.webp" alt="" width="1028" height="852" loading="lazy" /></div>
+              ) : (
+                <div class={`play-art play-art--${play.icon}`} aria-hidden="true">
+                  {play.icon === 'music' && (
+                    <span class="eq">{Array.from({ length: 16 }, (_, k) => <i style={`--h:${14 + Math.round(Math.abs(Math.sin(k * 1.35)) * 44)}px;--d:${k * 110}ms`}></i>)}</span>
+                  )}
+                  {play.icon === 'message' && (
+                    <span class="bubbles"><i></i><i></i><i></i></span>
+                  )}
+                  <span class="play-icon"><Icon name={play.icon} size={22} /></span>
+                </div>
+              )}
+              <h3>{play.title}</h3>
+              <p>{play.desc}</p>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+  ))}
+</div>
+
+<section class="section baseband-sec">
+  <div class="container">
+    <div class="baseband band-night reveal">
+      <div class="bb-item"><Logo size={26} /><span>{page.foundation.items[0]}</span></div>
+      <div class="bb-item"><Icon name="sync" size={22} /><span>{page.foundation.items[1]}</span></div>
+      <div class="bb-item"><Icon name="pause" size={22} /><span>{page.foundation.items[2]}</span></div>
+      <div class="bb-item"><Icon name="shield" size={22} /><span>{page.foundation.items[3]}</span></div>
+      <a class="tlink" href={p('/privacy.html')}>{page.foundation.link}</a>
+    </div>
+  </div>
+</section>
+
+<CtaBand lang={lang} h2={page.cta.h2} lede={page.cta.lede} variant="paper2" />
+
+<script>
+  import '../../scripts/features';
+</script>
+
+<style>
+  .chapter-nav {
+    position: sticky;
+    top: var(--nav-h);
+    z-index: 45;
+    padding: 8px 0;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(12px) saturate(1.1);
+    border-bottom: 1px solid var(--line);
+    transition: opacity var(--t-fast), transform var(--t-fast);
+  }
+  .chapter-nav.is-past {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+  }
+  .chapter-pills {
+    display: flex;
+    gap: 4px;
+    width: fit-content;
+    margin-inline: auto;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-full);
+    background: var(--card);
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .chapter-pills::-webkit-scrollbar {
+    display: none;
+  }
+  .chapter-pills a {
+    padding: 8px 16px;
+    border-radius: var(--r-full);
+    font-size: 13px;
+    color: var(--ink-2);
+    white-space: nowrap;
+    transition: background var(--t-fast), color var(--t-fast);
+  }
+  .chapter-pills a:hover {
+    background: var(--sage-wash);
+  }
+  .chapter-pills a.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .chapter {
+    padding: clamp(72px, 9vw, 120px) 0;
+    scroll-margin-top: 130px;
+    transition: background-color 900ms var(--ease);
+  }
+  .chapter--alt {
+    background: var(--paper-2);
+  }
+  .chapter-head {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    align-items: center;
+    gap: clamp(20px, 4vw, 60px);
+    margin-bottom: clamp(48px, 7vw, 84px);
+  }
+  .chapter-no {
+    font-family: var(--f-latin-display);
+    font-size: clamp(6rem, 12vw, 10rem);
+    line-height: 0.8;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--line-2);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .chapter-intro h2 {
+    margin: 12px 0 12px;
+  }
+  .chapter-intro .lede {
+    max-width: 560px;
+  }
+
+  .feature-list {
+    display: grid;
+    gap: clamp(56px, 8vw, 100px);
+  }
+  .feature-row {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(28px, 5vw, 76px);
+    align-items: center;
+  }
+  .feature-copy {
+    max-width: 430px;
+  }
+  .feature-copy h3 {
+    font-size: clamp(1.5rem, 1.2rem + 0.8vw, 1.85rem);
+    margin: 12px 0 12px;
+  }
+  .feature-copy p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink-2);
+  }
+  .feature-copy ul {
+    margin-top: 18px;
+    display: grid;
+    gap: 9px;
+  }
+  .feature-copy li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+  .feature-copy .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sage-deep);
+    flex: none;
+    transform: translateY(-2px);
+  }
+  .feature-row--flip {
+    grid-template-columns: 7fr 5fr;
+  }
+  .feature-row--flip .feature-media {
+    order: -1;
+  }
+
+  .feature-media {
+    min-width: 0;
+  }
+  .stage {
+    position: relative;
+    min-height: 420px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 90% at 20% 0%, var(--sage-wash), transparent 70%),
+      linear-gradient(160deg, var(--paper-2), var(--card));
+    border: 1px solid var(--line);
+  }
+  .stage--phone,
+  .stage--notify {
+    align-items: flex-start;
+    padding-top: 24px;
+    min-height: 420px;
+    max-height: 420px;
+  }
+  .stage--phone :global(.pf),
+  .stage--notify :global(.pf) {
+    width: 238px;
+    flex: none;
+  }
+  .stage--voice {
+    background:
+      radial-gradient(100% 90% at 80% 10%, rgba(134, 184, 173, 0.22), transparent 70%),
+      linear-gradient(160deg, var(--paper-2), var(--card));
+  }
+  .sound-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 350px;
+    height: 350px;
+    border: 1px solid var(--line-2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+  }
+  .sound-ring--2 {
+    width: 520px;
+    height: 520px;
+    border-style: dashed;
+    opacity: 0.45;
+    animation: ring-turn 60s linear infinite;
+  }
+  @keyframes ring-turn {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  .stage--polaroid {
+    background: linear-gradient(160deg, var(--paper-2), var(--sage-wash));
+  }
+  .stage--cabin {
+    background: linear-gradient(160deg, var(--paper-2), var(--card));
+  }
+  .stage--cabin :global(.wf) {
+    width: 100%;
+    max-width: 540px;
+  }
+  .stage--today,
+  .stage--task,
+  .stage--research {
+    background: linear-gradient(160deg, var(--sage-wash), var(--card));
+  }
+  .stage--nodes {
+    min-height: 440px;
+    background: linear-gradient(160deg, var(--paper-2), var(--card));
+  }
+
+  .callcard {
+    position: relative;
+    z-index: 1;
+    width: min(382px, 100%);
+    background: color-mix(in srgb, var(--card) 86%, transparent);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow: var(--sh-float);
+    border-radius: 26px;
+    padding: 22px 22px 18px;
+    backdrop-filter: blur(12px);
+  }
+  html[data-daypart="night"] .callcard {
+    border-color: var(--line);
+  }
+  .call-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .call-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--sage-wash);
+    color: var(--sage-deep);
+    display: grid;
+    place-items: center;
+  }
+  .call-top .who {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .call-top .who small {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    font-size: 11.5px;
+    color: var(--ink-3);
+  }
+  .call-top .live {
+    width: 6px;
+    height: 6px;
+  }
+  .call-top time {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 84px;
+    margin: 18px 0 8px;
+    justify-content: center;
+  }
+  .wave i {
+    width: 4px;
+    height: var(--h);
+    border-radius: 4px;
+    background: var(--sage-deep);
+    opacity: 0.75;
+    transform-origin: center;
+    animation: wave 1.6s ease-in-out var(--d) infinite alternate;
+  }
+  @keyframes wave {
+    to { transform: scaleY(0.55); opacity: 0.4; }
+  }
+  .call-hint {
+    text-align: center;
+    font-size: 10.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+  }
+  .call-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .cbtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line-2);
+    color: var(--ink-2);
+  }
+  .cbtn--end {
+    background: var(--annot);
+    border-color: var(--annot);
+    color: #fff;
+  }
+  .stage-note {
+    position: absolute;
+    right: 22px;
+    bottom: 14px;
+    max-width: 220px;
+    font-size: 17px;
+    text-align: right;
+  }
+
+  .todaycard {
+    width: min(360px, 100%);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    box-shadow: var(--sh-paper);
+    padding: 24px;
+  }
+  .tc-greet {
+    font-size: 27px;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .tc-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 14px 0 12px;
+    font-family: var(--f-zh-display);
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .tc-title :global(svg) {
+    color: var(--sage-deep);
+  }
+  .todaycard ul {
+    display: grid;
+    gap: 10px;
+  }
+  .todaycard li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 13.5px;
+    color: var(--ink-2);
+  }
+  .cbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid var(--line-2);
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+  .cbox.done {
+    background: var(--sage-deep);
+    border-color: var(--sage-deep);
+    color: #fff;
+  }
+  .tc-moods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .notify-ui {
+    height: 100%;
+    padding: 20px 18px;
+    background:
+      radial-gradient(90% 50% at 20% 0%, var(--sage-wash), transparent 70%),
+      var(--paper-2);
+    display: flex;
+    flex-direction: column;
+  }
+  .statusbar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-bottom: 22px;
+  }
+  .notify-ui h4 {
+    font-family: var(--f-zh-display);
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+  .notify-ui ul {
+    display: grid;
+    gap: 10px;
+  }
+  .notify-ui li {
+    background: color-mix(in srgb, var(--card) 86%, transparent);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 11px 12px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .notify-ui time {
+    font-size: 10px;
+    color: var(--ink-3);
+    flex: none;
+  }
+  .notify-foot {
+    margin-top: auto;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--ink-3);
+  }
+
+  .taskcard {
+    width: min(420px, 100%);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: var(--sh-paper);
+    padding: 20px;
+  }
+  .task-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+  .task-head .chip {
+    font-size: 11px;
+  }
+  .taskcard ul {
+    display: grid;
+    gap: 11px;
+  }
+  .taskcard li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+  .tick {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--sage-deep);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    flex: none;
+    margin-top: 1px;
+  }
+  .task-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--line-2);
+    font-size: 10.5px;
+    color: var(--ink-3);
+  }
+
+  .research {
+    width: min(430px, 100%);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: var(--sh-paper);
+    padding: 24px;
+  }
+  .research h4 {
+    font-family: var(--f-zh-display);
+    font-weight: 700;
+    font-size: 19px;
+    margin: 10px 0 16px;
+  }
+  .research ul {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .research li {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13.5px;
+    color: var(--ink-2);
+  }
+  .src {
+    font-size: 9.5px;
+    color: var(--sage-deep);
+    border: 1px solid var(--sage);
+    border-radius: var(--r-full);
+    padding: 2px 7px;
+    white-space: nowrap;
+  }
+  .research .more {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--sage-deep);
+    border-bottom: 1px solid currentColor;
+  }
+
+  .nodediag {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    aspect-ratio: 620 / 400;
+  }
+  .nodediag svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .nodediag line {
+    stroke: var(--ink);
+    stroke-opacity: 0.35;
+    stroke-width: 1.5;
+    stroke-dasharray: 5 7;
+    animation: flow 6s linear infinite;
+  }
+  @keyframes flow {
+    to { stroke-dashoffset: -72; }
+  }
+  .node {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: var(--r-full);
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 9px 16px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+  .node--center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 16px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    border-color: transparent;
+    box-shadow: var(--sh-paper);
+  }
+  html[data-daypart="night"] .node--center {
+    background: var(--lime);
+    color: #0e1a15;
+  }
+  .node--center b {
+    font-family: var(--f-latin-display);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1;
+  }
+  .node--center small {
+    font-size: 10px;
+    opacity: 0.65;
+  }
+  .node--left { left: 0; top: 50%; transform: translateY(-50%); }
+  .node--right { right: 0; top: 50%; transform: translateY(-50%); }
+  .node--bottom { left: 50%; bottom: 0; transform: translateX(-50%); }
+
+  .plays {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .play {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 20px;
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform var(--t-mid) var(--ease), box-shadow var(--t-mid);
+  }
+  .play:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sh-paper);
+  }
+  .play-index {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    font-size: 10px;
+    color: var(--ink-3);
+  }
+  .play-thumb {
+    margin: -4px -4px 8px;
+    height: 150px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--paper-2);
+  }
+  .play-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .play-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: var(--sage-wash);
+    color: var(--sage-deep);
+    display: grid;
+    place-items: center;
+    margin-bottom: 6px;
+  }
+  .play-art {
+    position: relative;
+    height: 150px;
+    margin: -4px -4px 8px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .play-art .play-icon {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    z-index: 2;
+    margin: 0;
+    background: color-mix(in srgb, var(--card) 82%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .play-art--gamepad {
+    background:
+      radial-gradient(circle at 17% 26%, rgba(255, 255, 255, 0.9) 0 13px, transparent 14px),
+      radial-gradient(circle at 24% 30%, rgba(255, 255, 255, 0.9) 0 9px, transparent 10px),
+      radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.7) 0 11px, transparent 12px),
+      linear-gradient(180deg, transparent 0 56%, #a3c295 56% 63%, #c4b393 63%),
+      linear-gradient(180deg, #e8efe4, #dbe7d8);
+  }
+  .play-art--gamepad::after {
+    content: "";
+    position: absolute;
+    right: 48px;
+    bottom: 20px;
+    width: 18px;
+    height: 18px;
+    background: #6f9b62;
+    box-shadow:
+      18px 0 #7fae6f,
+      36px 0 #6f9b62,
+      18px 18px #7fae6f,
+      36px 18px #628f57,
+      54px 18px #86b476;
+  }
+  .play-art--music {
+    background:
+      radial-gradient(120% 110% at 85% 0%, #2e5142, transparent 60%),
+      #12241d;
+  }
+  .play-art--music::before {
+    content: "";
+    position: absolute;
+    right: 30px;
+    top: 22px;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    border: 1px solid rgba(200, 241, 105, 0.35);
+    background: repeating-radial-gradient(circle, #1b332a 0 3px, #24483a 3px 6px);
+    box-shadow: 0 0 0 10px rgba(200, 241, 105, 0.04);
+  }
+  .play-art--music .play-icon {
+    background: #1d3a2e;
+    color: var(--lime);
+  }
+  .eq {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 16px;
+    height: 58px;
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .eq i {
+    flex: 1;
+    height: var(--h);
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--lime), rgba(134, 184, 173, 0.5));
+    opacity: 0.85;
+    animation: eq-pulse 1.8s var(--d) ease-in-out infinite alternate;
+  }
+  @keyframes eq-pulse {
+    to { height: calc(var(--h) * 0.45); opacity: 0.55; }
+  }
+  .play-art--message {
+    background: linear-gradient(160deg, var(--sage-wash), var(--paper-2));
+  }
+  .bubbles {
+    position: absolute;
+    right: 22px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+  }
+  .bubbles i {
+    display: block;
+    width: 116px;
+    height: 22px;
+    border-radius: 12px 12px 3px 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .bubbles i:nth-child(2) {
+    width: 82px;
+    align-self: flex-start;
+    border-radius: 12px 12px 12px 3px;
+    background: var(--sage);
+    border-color: transparent;
+  }
+  .bubbles i:nth-child(3) {
+    width: 52px;
+  }
+  .bubbles i::before,
+  .bubbles i::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ink-3);
+  }
+  .bubbles i::before { left: 14px; }
+  .bubbles i::after { left: 24px; }
+  .play h3 {
+    font-size: 19px;
+  }
+  .play p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+  }
+
+  .baseband-sec {
+    padding-top: 0;
+  }
+  .baseband {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) auto;
+    gap: 22px;
+    align-items: center;
+    padding: 30px 32px;
+    border-radius: var(--r-xl);
+  }
+  .bb-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--night-text);
+  }
+  .bb-item :global(svg) {
+    color: var(--lime);
+    flex: none;
+  }
+  .baseband .tlink {
+    color: var(--night-text);
+    border-color: var(--line-2);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1023px) {
+    .chapter-head {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .chapter-no {
+      font-size: clamp(4.5rem, 16vw, 7rem);
+    }
+    .feature-row {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .feature-copy {
+      max-width: 620px;
+    }
+    .feature-row--flip .feature-media {
+      order: 0;
+    }
+    .baseband {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .plays {
+      grid-template-columns: 1fr;
+    }
+    .stage {
+      min-height: 360px;
+      padding: 20px;
+      border-radius: 22px;
+    }
+    .stage--phone,
+    .stage--notify {
+      max-height: 380px;
+      min-height: 380px;
+    }
+    .stage--voice {
+      flex-direction: column;
+      gap: 14px;
+      min-height: 400px;
+      padding: 24px 20px 22px;
+    }
+    .stage-note {
+      position: static;
+      max-width: none;
+      text-align: center;
+    }
+    .sound-ring {
+      width: 300px;
+      height: 300px;
+      top: 40%;
+    }
+    .sound-ring--2 {
+      width: 430px;
+      height: 430px;
+    }
+    .stage--nodes {
+      min-height: 420px;
+    }
+    .node--left,
+    .node--right {
+      font-size: 11px;
+      padding: 7px 11px;
+    }
+    .node--center {
+      padding: 12px 18px;
+    }
+    .baseband {
+      grid-template-columns: 1fr;
+      padding: 24px;
+    }
+    .baseband .tlink {
+      justify-self: start;
+    }
+  }
+</style>

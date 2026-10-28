@@ -23,18 +23,13 @@ const ROOT = resolve(__dirname, '..');
 
 const SITE = 'https://instarmony.com';
 
-// Canonical pages: top-level site pages + product pages under /eidolon/.
-// Redirect stubs (login.html / contact.html) are intentionally NOT listed:
-// they are noindex + canonical-ized, and crawling them yields duplicate content.
+// Canonical pages of this host. The Eidolon product lives on its own
+// sub-domain with an Astro-generated sitemap; every file under /eidolon/ is a
+// noindex + canonical-ised 0-second redirect stub, so none of them belong here.
+// Redirect stubs (login.html / contact.html) follow the same rule.
 const PAGES = [
   { path: '/',                priority: '1.0', changefreq: 'weekly' },
-  { path: '/eidolon/',        priority: '1.0', changefreq: 'weekly' },
-  { path: '/eidolon/download.html',  priority: '0.9', changefreq: 'weekly' },
-  { path: '/eidolon/features.html',  priority: '0.8', changefreq: 'monthly' },
-  { path: '/eidolon/pricing.html',   priority: '0.8', changefreq: 'monthly' },
-  { path: '/eidolon/docs.html',      priority: '0.7', changefreq: 'weekly' },
-  { path: '/eidolon/about.html',     priority: '0.5', changefreq: 'monthly' },
-  { path: '/team/eli0wang6/',        priority: '0.5', changefreq: 'monthly' },
+  { path: '/team/eli0wang6/', priority: '0.5', changefreq: 'monthly' },
 ];
 
 function today() {

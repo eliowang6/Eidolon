@@ -1,0 +1,6 @@
+node_modules/
+.astro/
+.shots/
+preview.log
+scripts/.charset.txt
+scripts/.gf.css

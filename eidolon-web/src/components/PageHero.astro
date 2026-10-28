@@ -1,0 +1,45 @@
+---
+interface Props {
+  label: string;
+  h1a: string;
+  h1b?: string;
+  lede?: string;
+  align?: 'left' | 'center';
+  class?: string;
+}
+const { label, h1a, h1b, lede, align = 'left', class: className = '' } = Astro.props;
+---
+<header class={`page-head ${align === 'center' ? 'page-head--center' : ''} ${className}`}>
+  <div class="container">
+    <span class="label reveal">{label}</span>
+    <h1 class="reveal" style="--i:1">{h1a}{h1b && <><br />{h1b}</>}</h1>
+    {lede && <p class="lede reveal" style="--i:2">{lede}</p>}
+    <slot />
+  </div>
+</header>
+
+<style>
+  .page-head {
+    padding: clamp(128px, 18vh, 176px) 0 clamp(48px, 7vw, 80px);
+  }
+  .page-head h1 {
+    font-size: clamp(2.5rem, 1.7rem + 3.2vw, 4.5rem);
+    margin: 16px 0 20px;
+    max-width: 900px;
+  }
+  .page-head .lede {
+    max-width: 620px;
+  }
+  .page-head--center {
+    text-align: center;
+  }
+  .page-head--center h1,
+  .page-head--center .lede {
+    margin-inline: auto;
+  }
+  @media (max-width: 767px) {
+    .page-head {
+      padding-top: 118px;
+    }
+  }
+</style>

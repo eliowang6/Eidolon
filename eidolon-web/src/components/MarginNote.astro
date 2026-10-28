@@ -1,0 +1,93 @@
+---
+interface Props {
+  text: string;
+  variant?: 'plain' | 'scrap';
+  arrow?: boolean;
+  hideMobile?: boolean;
+  class?: string;
+  id?: string;
+  style?: string;
+  heroNote?: { first: string; section: string; days: string };
+}
+const {
+  text,
+  variant = 'plain',
+  arrow = false,
+  hideMobile = true,
+  class: className = '',
+  id,
+  style,
+  heroNote,
+} = Astro.props;
+---
+<div
+  class={`mnote ${variant === 'scrap' ? 'mnote--scrap' : ''} ${hideMobile ? 'mnote--hide-m' : ''} ${className}`}
+  id={id}
+  style={style}
+  role="note"
+  data-hero-note={heroNote ? 'true' : undefined}
+  data-note-first={heroNote?.first}
+  data-note-section={heroNote?.section}
+  data-note-days={heroNote?.days}
+>
+  <span data-mnote-text set:html={heroNote ? heroNote.first : text}></span>
+  {arrow && (
+    <svg class="mnote-arrow" width="70" height="46" viewBox="0 0 70 46" aria-hidden="true">
+      <path d="M6 4C18 30 40 40 62 38M52 30l10 8-11 6" />
+    </svg>
+  )}
+</div>
+
+<style>
+  .mnote {
+    position: absolute;
+    z-index: 4;
+    max-width: 260px;
+    font-family: var(--f-hand);
+    font-size: 19px;
+    line-height: 1.45;
+    color: var(--annot);
+    transform: rotate(-3deg);
+    pointer-events: none;
+  }
+  .mnote--scrap {
+    padding: 10px 14px 8px;
+    background: color-mix(in srgb, var(--card) 82%, transparent);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 10px 24px -14px rgba(18, 36, 29, 0.4);
+    border-radius: 3px;
+  }
+  .mnote--scrap::before {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: 24px;
+    width: 54px;
+    height: 18px;
+    transform: rotate(-6deg);
+    background: rgba(233, 185, 100, 0.5);
+  }
+  .mnote-arrow {
+    display: block;
+    margin-top: 2px;
+    overflow: visible;
+  }
+  .mnote--scrap .mnote-arrow {
+    position: absolute;
+    right: -58px;
+    bottom: -30px;
+    margin-top: 0;
+  }
+  .mnote-arrow path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @media (max-width: 767px) {
+    .mnote--hide-m {
+      display: none;
+    }
+  }
+</style>

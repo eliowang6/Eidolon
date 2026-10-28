@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face { font-family: "Noto Serif SC"; src: url("../public/fonts/noto-serif-sc-700.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "Instrument Serif"; src: url("../public/fonts/instrument-serif-400.woff2") format("woff2"); }
+  @font-face { font-family: "Instrument Serif"; src: url("../public/fonts/instrument-serif-400-italic.woff2") format("woff2"); font-style: italic; }
+  @font-face { font-family: "Inter Variable"; src: url("../public/fonts/inter-var-latin.woff2") format("woff2-variations"); font-weight: 100 900; }
+  @font-face { font-family: "JetBrains Mono"; src: url("../public/fonts/jetbrains-mono-500.woff2") format("woff2"); font-weight: 500; }
+  @font-face { font-family: "LXGW WenKai"; src: url("../public/fonts/lxgw-wenkai-400.woff2") format("woff2"); font-weight: 400; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #d9d4c8; }
+  #og {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background:
+      radial-gradient(90% 120% at 88% 0%, #dfe8dc 0%, rgba(223, 232, 220, 0) 60%),
+      radial-gradient(70% 90% at 10% 100%, rgba(200, 241, 105, 0.18), transparent 65%),
+      #f5f2ea;
+    color: #12241d;
+    padding: 62px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .grain {
+    position: absolute; inset: 0; opacity: 0.4; mix-blend-mode: multiply;
+    background-image: radial-gradient(rgba(18, 36, 29, 0.1) 0.6px, transparent 0.7px);
+    background-size: 4px 4px;
+  }
+  .top { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand svg { width: 62px; height: 40px; }
+  .brand b { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 44px; letter-spacing: -0.01em; }
+  .meta { font-family: "JetBrains Mono", monospace; font-size: 15px; letter-spacing: 0.16em; color: #4a7060; }
+  .main { position: relative; z-index: 1; max-width: 980px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 500 16px/1 "JetBrains Mono", monospace; letter-spacing: 0.12em; color: #4f7f74; margin-bottom: 26px; }
+  .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: #4f7f74; box-shadow: 0 0 0 5px rgba(79, 127, 116, 0.15); }
+  h1 { font-family: "Noto Serif SC", serif; font-size: 76px; line-height: 1.18; letter-spacing: -0.01em; }
+  h1 em { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
+  .en h1 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 88px; line-height: 1.02; letter-spacing: -0.02em; }
+  .rule { width: 120px; height: 3px; background: #c8f169; margin: 30px 0 22px; }
+  .sub { font: 500 22px/1.5 "Inter Variable", sans-serif; color: #3c4f47; }
+  .bottom { position: relative; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; }
+  .url { font: 500 19px/1 "JetBrains Mono", monospace; letter-spacing: 0.04em; color: #12241d; }
+  .stamp { font-family: "LXGW WenKai", "Noto Serif SC", serif; font-size: 24px; color: #b0583f; transform: rotate(-3deg); }
+  .arc { position: absolute; right: -120px; top: 90px; width: 520px; height: 520px; border-radius: 50%; border: 1px solid rgba(18, 36, 29, 0.14); }
+  .arc::before { content: ""; position: absolute; inset: 48px; border-radius: 50%; border: 1px dashed rgba(18, 36, 29, 0.12); }
+  .arc::after { content: ""; position: absolute; width: 300px; height: 300px; right: 110px; top: 110px; background: radial-gradient(circle, rgba(200, 241, 105, 0.45), transparent 68%); }
+  .lang-hidden { display: none; }
+</style>
+</head>
+<body>
+  <div id="og">
+    <div class="grain"></div>
+    <div class="arc"></div>
+    <div class="top">
+      <div class="brand">
+        <svg viewBox="2 4 20 16" fill="none" stroke="#4a7060" stroke-width="1.6" stroke-linecap="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>
+        <b>Eidolon</b>
+      </div>
+      <span class="meta">INSTARMONY · 2026</span>
+    </div>
+
+    <div class="main zh">
+      <span class="eyebrow"><i></i>WINDOWS · ANDROID</span>
+      <h1>让数字生命<br />真正生活在你身边</h1>
+      <div class="rule"></div>
+      <p class="sub">陪伴、生活协助与跨端行动，共享同一份长期记忆。</p>
+    </div>
+    <div class="main en lang-hidden">
+      <span class="eyebrow"><i></i>WINDOWS · ANDROID</span>
+      <h1>A digital life that <em>lives beside you.</em></h1>
+      <div class="rule"></div>
+      <p class="sub">Companionship, daily help and action — one long memory.</p>
+    </div>
+
+    <div class="bottom">
+      <span class="url">eidolon.instarmony.com</span>
+      <span class="stamp zh">她一直在。</span>
+      <span class="stamp en lang-hidden">She stays.</span>
+    </div>
+  </div>
+  <script>
+    const lang = new URLSearchParams(location.search).get('lang') ?? 'zh';
+    if (lang === 'en') {
+      document.documentElement.lang = 'en';
+      document.getElementById('og').classList.add('en');
+      document.querySelector('.zh.main').classList.add('lang-hidden');
+      document.querySelector('.en.main').classList.remove('lang-hidden');
+      document.querySelector('.stamp.zh').classList.add('lang-hidden');
+      document.querySelector('.stamp.en').classList.remove('lang-hidden');
+    }
+  </script>
+</body>
+</html>
