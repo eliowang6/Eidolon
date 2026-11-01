@@ -586,15 +586,36 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
       btn.innerHTML = `<span class="btn-text">${isZh ? '正在跳转收银台…' : 'Redirecting…'}</span>`;
 
       try {
-        const resp = await fetch(API_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            tierId,
-            currency,
-          }),
-        });
+        let resp: Response | null = null;
+        let lastErr: any = null;
+        const endpoints = [
+          'https://api.eidolon.instarmony.com/subscription/checkout-public',
+          'https://api.eidolon.instarmony.com/eidolon/api/subscription/checkout-public',
+        ];
+
+        for (const ep of endpoints) {
+          try {
+            const r = await fetch(ep, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email,
+                tierId,
+                currency,
+              }),
+            });
+            if (r.ok || r.status !== 404) {
+              resp = r;
+              break;
+            }
+          } catch (e) {
+            lastErr = e;
+          }
+        }
+
+        if (!resp) {
+          throw lastErr || new Error('网络请求失败');
+        }
 
         if (!resp.ok) {
           const errData = await resp.json().catch(() => ({}));
