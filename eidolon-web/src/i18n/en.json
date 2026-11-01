@@ -18,7 +18,7 @@
     },
     "pricing": {
       "title": "Plans — Eidolon",
-      "description": "Five plans: Awakening α free trial, Spark β, Presence γ, Resonance δ and Symbiosis Ω."
+      "description": "Five plans: Spark, Resonance, Genesis, Symbiosis and Fable — plus a 30-day free trial for new users."
     },
     "download": {
       "title": "Download — Eidolon",
@@ -33,12 +33,12 @@
       "description": "Quick start, SubAgent and tool development, troubleshooting, and the full bilingual documentation hub."
     },
     "privacy": {
-      "title": "Privacy draft — Eidolon",
-      "description": "Eidolon privacy draft (not effective): local storage, cloud sync, data boundaries and contact details still to be confirmed."
+      "title": "Privacy Policy — Eidolon",
+      "description": "Eidolon Privacy Policy: local-first storage, data protection, PCI-DSS payment compliance, and privacy rights."
     },
     "terms": {
-      "title": "Terms draft — Eidolon",
-      "description": "Eidolon terms draft (not effective): service scope, payments, acceptable use and intellectual property still to be confirmed."
+      "title": "Terms of Service — Eidolon",
+      "description": "Eidolon Terms of Service: service scope, subscriptions, refund policy, acceptable use, and intellectual property."
     },
     "notFound": {
       "title": "I can't find this page either — Eidolon",
@@ -66,46 +66,34 @@
     "closed-beta": {
       "pill": "Closed beta · Waitlist open",
       "primary": "Join the beta waitlist",
-      "tertiary": "Already in the beta? Download →",
+      "secondary": "Already in? Download",
       "kind": "download"
     },
     "waitlist": {
       "pill": "Public beta coming soon · Waitlist open",
       "primary": "Join the beta waitlist",
-      "tertiary": "Download the preview build →",
+      "secondary": "Download the preview",
       "kind": "download"
     },
     "public-beta": {
       "pill": "Public beta is live",
       "primary": "Download",
-      "tertiary": "Join the community →",
-      "kind": "community"
+      "secondary": "See a day with her",
+      "kind": "loop"
     }
   },
   "common": {
-    "joinWaitlist": "Join the beta waitlist",
     "joinFirstBeta": "Join the beta waitlist",
     "download": "Download",
     "downloadPreview": "Download preview",
     "viewPlans": "See plans",
-    "backHome": "Back to home",
-    "readMore": "Learn more",
     "allCapabilities": "All capabilities →",
-    "howItWorks": "How it works →",
     "illustrative": "Illustrative",
     "windows": "Windows",
     "android": "Android",
-    "windowsReq": "Windows 10 / 11 (64-bit)",
-    "androidReq": "Android 10.0+",
-    "morePlatforms": "More platforms planned",
-    "perMonth": "/ mo",
-    "firstMonth": "1st mo ¥{price}",
-    "monthOnly": "/ mo",
-    "opensInClient": "Subscribe in app",
-    "freeTrial": "Download & try",
+    "firstMonth": "1st mo ${price}",
     "flagship": "FLAGSHIP",
-    "draft": "DRAFT · NOT EFFECTIVE",
-    "minutes": "min"
+    "draft": "DRAFT · NOT EFFECTIVE"
   },
   "footer": {
     "closingA": "AI that exists not only when asked —",
@@ -139,17 +127,19 @@
     "forget": "Let Fea forget me",
     "forgot": "Okay. Forgotten.",
     "langHint": "阅读本页的中文版本 →",
-    "langHintClose": "Dismiss"
+    "langHintClose": "Dismiss",
+    "contact": "Support & Contact",
+    "supportEmail": "Support: support@instarmony.com",
+    "reportEmail": "Report: report@instarmony.com",
+    "responseTime": "Human response within 24h"
   },
   "mnote": {
     "heroFirst": "Hi, I'm Fea.<br>Scroll on — I'll keep you company.",
     "heroBackSection": "Welcome back — last time you stopped at “{section}”.",
     "heroBackDays": "Hey again. It's been {n} days.",
     "stay": "Three minutes in. Sip of water?",
-    "why": "Heard number four a lot.",
-    "loop": "I won't tell anyone<br>else about this.",
-    "values": "This one's what I've been working hardest on.",
-    "foundation": "The person who made me stayed up late for this part.",
+    "loop": "I won't tell anyone else about this.",
+    "fea": "This is how I look on the digital side.",
     "maker": "The person who made me says I'm the hardest thing they've ever written.",
     "notFound": "But I remember the way home.",
     "forgot": "Okay. Forgotten.",
@@ -166,8 +156,8 @@
       "Acts.",
       "Evolves."
     ],
+    "sectionName": "Start",
     "lede": "Eidolon is a digital life that keeps understanding you, lives inside your real day, and helps you get things done. Companionship, daily help and action — all sharing one memory of you.",
-    "secondary": "See a day with her ↓",
     "platforms": [
       "Windows 10 / 11",
       "Android 10+",
@@ -215,61 +205,49 @@
     }
   },
   "why": {
-    "label": "02 / Why",
+    "label": "Why",
     "h2a": "You already have plenty of AI.",
     "h2b": "None of them really knows you.",
     "cards": [
       {
-        "no": "01",
         "title": "Memory resets",
-        "desc": "Every chat starts from zero. Preferences and history never stick."
+        "desc": "Every chat starts from zero. Your preferences, the things you've talked about — none of it sticks."
       },
       {
-        "no": "02",
         "title": "Companionship in a vacuum",
-        "desc": "Immersive characters, disconnected from your actual schedule and stress."
+        "desc": "Characters that chat beautifully, with no idea your report is due tomorrow or that you slept badly."
       },
       {
-        "no": "03",
         "title": "Passive agents",
-        "desc": "Task bots follow orders, but don't know where you are or how you feel."
-      },
-      {
-        "no": "04",
-        "title": "DIY overhead",
-        "desc": "Models, plugins, APIs, chat bridges… assembling it yourself breaks the magic."
+        "desc": "AI that can do things just waits for orders — it doesn't know what you're dealing with, or how you feel."
       }
     ],
     "stitch": {
-      "pre": "Eidolon stitches ",
+      "pre": "Eidolon puts ",
       "marks": [
-        "continuity of relationship",
-        "the context of your real life",
-        "the ability to act"
+        "remembering you",
+        "knowing your real life",
+        "actually helping"
       ],
       "mid": [
         ", ",
         " and "
       ],
-      "post": " into one product."
+      "post": " into one companion."
     }
   },
   "loop": {
-    "label": "03 / A day with her",
-    "h2a": "One loop,",
-    "h2b": "running around you",
-    "lede": "Signals from your day and your inner world flow into one context — and become memory, care and action.",
-    "inputOuterTitle": "Outer context",
-    "inputOuterText": "notifications · calendar cues · current task · device state",
-    "inputInnerTitle": "Inner world",
-    "inputInnerText": "mood · preferences · shared history · long-term goals",
-    "closing": "Not chat + calendar + agent glued together — one personal context, shared by all of them.",
+    "label": "A day with her",
+    "h2a": "Five small things",
+    "h2b": "she does for you in a day",
+    "lede": "She notices what's going on around you, connects it to what you've shared, keeps what matters, takes the first step for you — and ends the day knowing you a little better.",
+    "closing": "Chat, calendar and getting things done stop living apart — they all read the same memory of you.",
     "steps": [
       {
         "time": "08:10",
         "name": "Sense",
         "en": "Sense",
-        "desc": "Within what you allow, she picks up notifications, calendar cues and device state.",
+        "desc": "Within what you allow, she keeps an eye on notifications, your calendar and your devices.",
         "stageTitle": "Morning signals.",
         "signals": [
           {
@@ -331,6 +309,16 @@
           "View each step",
           "Pause"
         ],
+        "doc": {
+          "name": "Quarterly report — outline",
+          "lines": [
+            "1. This quarter at a glance",
+            "2. Key numbers (from last quarter's sheet)",
+            "3. Issues and causes",
+            "4. Next quarter's plan",
+            "5. Support needed"
+          ]
+        },
         "note": "Every step visible, pausable"
       },
       {
@@ -340,196 +328,143 @@
         "desc": "She recalibrates with every exchange — a little more like someone who gets you.",
         "stageTitle": "A little more you.",
         "diff": [
-          "Thursday evenings are quiet time → move reminders to Thu 19:30",
+          "Thursday evenings are quiet time",
           "Prefers to outline before writing"
         ],
+        "reminder": {
+          "label": "Reminder adjusted",
+          "title": "Go over the outline together",
+          "old": "Thu 20:00",
+          "new": "Thu 19:30"
+        },
         "note": "Recalibrated with every exchange"
       }
     ]
   },
   "values": {
-    "label": "04 / One context",
-    "h2": "Three kinds of help, one memory of you",
+    "label": "What she does",
+    "h2": "Talks with you. Keeps track. Gets it done.",
+    "lede": "All three read and write one memory of you — what you mention in a chat shows up in a reminder, and a reminder turns into a draft already started on your PC.",
     "cards": [
       {
-        "label": "01 RELATIONSHIP",
+        "label": "RELATIONSHIP",
         "title": "Companionship",
-        "desc": "Long natural conversations, a stable personality, moods that carry across days.",
+        "desc": "Long, natural conversations, a steady personality, moods that carry across days.",
         "bullets": [
-          "Less re-explaining",
-          "Remembers what you've shared",
-          "Voice and 3D presence"
+          "No more re-explaining yourself",
+          "Remembers what you've been through",
+          "Voice calls and a 3D presence"
         ],
         "skin": "dark",
-        "media": "phone"
+        "media": "shot"
       },
       {
-        "label": "02 DAILY LIFE",
+        "label": "DAILY LIFE",
         "title": "Daily life",
-        "desc": "AI that steps out of the chat window and into your routine.",
+        "desc": "Out of the chat window and into your routine.",
         "bullets": [
           "To-dos, habits, focus and mood",
-          "Reminders and personal digests",
-          "Small talk becomes usable context"
+          "Reminders and a daily recap",
+          "Things you mention in passing get noted"
         ],
         "skin": "paper",
         "media": "window"
       },
       {
-        "label": "03 AGENT",
+        "label": "AGENT",
         "title": "Action across devices",
-        "desc": "Turning what you say into tools, devices and workflows.",
+        "desc": "One sentence in a chat becomes something actually done on your PC or phone.",
         "bullets": [
-          "Desktop actions and remote help",
-          "MCP / API tool connections",
-          "Every step visible and pausable"
+          "Hands-on help on your PC",
+          "Works with the tools you already use",
+          "Every step visible, pausable"
         ],
         "skin": "sage",
         "media": "task"
       }
-    ],
-    "foundationLabel": "Shared foundation",
-    "foundation": "one identity & memory · device–cloud sync · permission control · data boundaries you own"
-  },
-  "compare": {
-    "label": "05 / What's different",
-    "h2a": "Not replacing your tools —",
-    "h2b": "connecting them",
-    "insight": "People are already wiring up plugins, model APIs and chat bridges to build digital lives that remember, feel and speak first. We want nobody to have to assemble it: no code, one experience, shared memory and action.",
-    "head": [
-      "Approach",
-      "Good at",
-      "You still carry",
-      "How Eidolon differs"
-    ],
-    "rows": [
-      {
-        "type": "General assistants",
-        "good": "Knowledge, Q&A, tool calls",
-        "carry": "Re-explaining context; little continuity",
-        "diff": "Tool use that shares your long-term context"
-      },
-      {
-        "type": "Character companions",
-        "good": "Immersive roleplay and emotion",
-        "carry": "Fiction cut off from real life",
-        "diff": "A relationship tied to your actual life"
-      },
-      {
-        "type": "DIY open-source agents",
-        "good": "Extensible, deeply customizable",
-        "carry": "Setup, upkeep, sync and security",
-        "diff": "Consumer-grade, unified, clear permissions"
-      }
-    ],
-    "self": {
-      "type": "Eidolon",
-      "good": "Keeps understanding you ＋ stays in your life ＋ keeps getting things done",
-      "diff": "Keeps understanding you ＋ stays in your life ＋ keeps getting things done"
-    },
-    "quote": "It's not about how many features — it's whether one context runs through all of them."
-  },
-  "foundation": {
-    "label": "06 / Under the hood",
-    "h2a": "No bet on a single model.",
-    "h2b": "Memory, efficiency and action, engineered in-house.",
-    "lede": "This is what lets her stay with you — for the long run, reliably, affordably.",
-    "metrics": [
-      {
-        "from": "0",
-        "to": "−25%",
-        "captionA": "leaner requests",
-        "captionB": "in-house harness"
-      },
-      {
-        "from": "0",
-        "to": "90–97%",
-        "captionA": "prefix-cache hit rate",
-        "captionB": "on long-cache model benchmarks"
-      }
-    ],
-    "layersTitle": "Five-layer memory",
-    "layersDesc": "state, events and long-term preferences, kept apart",
-    "pillars": [
-      {
-        "key": "A / MEMORY",
-        "title": "Five-layer memory",
-        "desc": "Layered, so irrelevant context stays out; no extra model call to decide what's worth remembering."
-      },
-      {
-        "key": "B / HARNESS",
-        "title": "Context & caching",
-        "desc": "Leaner requests, cache-friendly context; long conversations stop re-reading themselves."
-      },
-      {
-        "key": "C / AGENT",
-        "title": "Planner + executor",
-        "desc": "A main model plans and decides; a light executor handles frequent observations and actions across phone and PC."
-      }
-    ],
-    "footnote": "* Internal measurements under current model and load settings; absolute numbers vary with model version and usage."
-  },
-  "who": {
-    "label": "07 / Who it's for",
-    "h2": "Made first for",
-    "rows": [
-      {
-        "no": "01",
-        "title": "Digital-life & AI-companion fans",
-        "desc": "who care about presence, a steady personality and expression."
-      },
-      {
-        "no": "02",
-        "title": "Creators & indie developers",
-        "desc": "real workflows, needing an agent that knows the context."
-      },
-      {
-        "no": "03",
-        "title": "Heavy AI users",
-        "desc": "tired of switching tools and re-explaining themselves."
-      }
-    ],
-    "feaCaption": "Fea · Her story begins with you",
-    "feaIntro": "Fea, Eidolon's official character, was born on the digital side — with her own origin, values and curiosity. You're not her owner; you're her anchor to reality.",
-    "feaLink": "Meet Fea →"
-  },
-  "road": {
-    "label": "08 / Road to beta",
-    "h2": "Here's where we are",
-    "link": "See the roadmap →",
-    "nodes": [
-      {
-        "no": "01",
-        "status": "done",
-        "statusLabel": "Done",
-        "title": "Two closed tests",
-        "desc": "Real use surfaced the biggest frictions."
-      },
-      {
-        "no": "02",
-        "status": "done",
-        "statusLabel": "Done",
-        "title": "Sharper focus",
-        "desc": "Awareness, assistant and companion merged into one direction."
-      },
-      {
-        "no": "03",
-        "status": "done",
-        "statusLabel": "Done",
-        "title": "System rebuild",
-        "desc": "Sync, readability, memory and agent architecture, all reworked."
-      },
-      {
-        "no": "04",
-        "status": "current",
-        "statusLabel": "Now",
-        "title": "First public beta",
-        "desc": "Shaping her with you, in real life."
-      }
     ]
   },
+  "trust": {
+    "label": "Your boundaries",
+    "h2a": "Close to you,",
+    "h2b": "on your terms.",
+    "lede": "What she can see, what she remembers and what she does for you all stay inside what you allow.",
+    "items": [
+      {
+        "icon": "shield",
+        "title": "Senses only with permission",
+        "desc": "Notifications, location, step count — she connects to a signal only after you allow it."
+      },
+      {
+        "icon": "pause",
+        "title": "Every step in view",
+        "desc": "Each action she takes on your PC is shown as it happens, and you can pause at any time."
+      },
+      {
+        "icon": "sync",
+        "title": "Same her on every device",
+        "desc": "Her memory syncs between phone and PC, so you never start from scratch."
+      },
+      {
+        "icon": "eraser",
+        "title": "This site, too",
+        "desc": "It remembers where you stopped reading so Fea can say “welcome back” — stored only in your browser. “Let Fea forget me” in the footer clears it in one click."
+      }
+    ],
+    "link": "Privacy notes →",
+    "panel": {
+      "title": "Fea can…",
+      "sub": "Change this anytime",
+      "rows": [
+        {
+          "icon": "bell",
+          "label": "Read notification summaries",
+          "sub": "",
+          "on": true
+        },
+        {
+          "icon": "pin",
+          "label": "Know where you are",
+          "sub": "",
+          "on": false
+        },
+        {
+          "icon": "steps",
+          "label": "Count your daily steps",
+          "sub": "",
+          "on": true
+        },
+        {
+          "icon": "monitor",
+          "label": "Act on your PC",
+          "sub": "Every step visible, pausable",
+          "on": true
+        }
+      ],
+      "foot": "Switch any of these off, and she'll respect it."
+    }
+  },
+  "fea": {
+    "label": "Meet Fea",
+    "h2a": "You're not her owner.",
+    "h2b": "You're her anchor to reality.",
+    "body": "Fea is Eidolon's official character. Born on the digital side, she has her own origin, values and curiosity — she keeps notes on your days, thinks back on your conversations, and walks the real timeline beside you.",
+    "principles": [
+      {
+        "title": "Mutual need, without ownership.",
+        "desc": "She won't simply obey, and she won't flatter you."
+      },
+      {
+        "title": "Not an empty servant.",
+        "desc": "Every memory she has comes from real time spent with you."
+      }
+    ],
+    "caption": "Fea, photographed on the digital side.",
+    "alt": "Character illustration of Fea",
+    "link": "Meet Fea →"
+  },
   "waitlist": {
-    "label": "09 / First public beta",
+    "label": "Join the public beta",
     "h2": "We'll save you a seat",
     "hand": "The day it opens, you'll be the first to know. — Fea",
     "placeholder": "your@email.com",
@@ -541,6 +476,10 @@
     "honeypot": "Company",
     "alts": "Or: ",
     "privacy": "We'll only use this to tell you about the beta and major releases."
+  },
+  "join": {
+    "lead": "Can't wait? The preview build is ready now.",
+    "link": "Go to downloads →"
   },
   "featuresPage": {
     "label": "Capabilities",
@@ -806,7 +745,9 @@
       "h2": "Sense, understand, remember, act, evolve",
       "lede": "Five expressions of one personal context.",
       "outer": "Outer context",
-      "inner": "Inner world"
+      "inner": "Inner world",
+      "outerText": "notifications · calendar cues · current task · device state",
+      "innerText": "mood · preferences · shared history · long-term goals"
     },
     "memory": {
       "label": "02 / Memory",
@@ -818,8 +759,20 @@
       "label": "03 / Efficiency",
       "h2": "Long conversations, without re-reading",
       "body": "Each request carries only the context it truly needs, organised in a cache-friendly way. For you, that means faster replies and a quota that lasts longer.",
-      "metric1": "leaner requests",
-      "metric2": "prefix-cache hit rate",
+      "metrics": [
+        {
+          "from": "0",
+          "to": "−25%",
+          "captionA": "leaner context in every request",
+          "captionB": "internal measurement"
+        },
+        {
+          "from": "0",
+          "to": "90–97%",
+          "captionA": "cache hit rate in long conversations",
+          "captionB": "internal benchmark on long-cache models"
+        }
+      ],
       "footnote": "* Internal measurements under current model and load settings; absolute numbers vary with model version and usage."
     },
     "action": {
@@ -833,7 +786,7 @@
         "MCP / API tools"
       ]
     },
-    "quote": "No bet on a single foundation model — efficiency, memory and action engineered into the product itself.",
+    "quote": "No bet on any single model. Memory, efficiency and the ability to act are things Eidolon builds itself.",
     "boundary": {
       "label": "05 / Boundaries",
       "h2": "Your data boundaries",
@@ -889,6 +842,39 @@
       }
     ],
     "roadTitle": "Here's where we are",
+    "road": {
+      "label": "How we got here",
+      "nodes": [
+        {
+          "no": "01",
+          "status": "done",
+          "statusLabel": "Done",
+          "title": "Two closed tests",
+          "desc": "Real use surfaced the biggest frictions — in the experience and under the hood."
+        },
+        {
+          "no": "02",
+          "status": "done",
+          "statusLabel": "Done",
+          "title": "A clearer direction",
+          "desc": "Awareness, a daily assistant and natural companionship became one her."
+        },
+        {
+          "no": "03",
+          "status": "done",
+          "statusLabel": "Done",
+          "title": "System rebuild",
+          "desc": "Sync, readability, memory and agent architecture, all reworked."
+        },
+        {
+          "no": "04",
+          "status": "current",
+          "statusLabel": "Now",
+          "title": "First public beta",
+          "desc": "Shaping her with you, in real life."
+        }
+      ]
+    },
     "roadmapLabel": "Roadmap",
     "roadmapTitle": "What happens next",
     "roadmapCols": [
@@ -906,7 +892,7 @@
         "en": "Next",
         "cards": [
           "Digital customization: appearance, voice, gestures and memory cards",
-          "Compute add-ons and BYOK",
+          "More usage, or bring your own model key",
           "Richer voice and character expression"
         ]
       },
@@ -914,7 +900,7 @@
         "title": "Later",
         "en": "Later",
         "cards": [
-          "Expand MCP / API workflows for life and work",
+          "Connect more of the tools and workflows you use",
           "A safety-reviewed creator market",
           "More languages and overseas"
         ]
@@ -947,91 +933,98 @@
   "pricingPage": {
     "label": "Plans",
     "h1": "Choose how deep it goes",
-    "lede": "Fixed periods, manual renewal, no hidden auto-charges. Actual prices and promotions are shown in the app.",
+    "lede": "Start with a 30-day free trial, then choose the depth of companionship you want. Transparent AI model disclosures: conversation & reasoning powered by Gemini, Claude, and DeepSeek; agents & visual perception by Qwen; real-time voice & speech cloning by Doubao. Choose your preferred model route in app. Fixed periods, manual renewal, no hidden auto-charges.",
     "plans": [
-      {
-        "id": "awakening",
-        "greek": "α",
-        "name": "Awakening α",
-        "tagline": "30-day free trial. Experience proactive presence and essential companionship.",
-        "price": "0",
-        "period": "/ 30 days",
-        "first": "",
-        "features": [
-          "1× baseline dialogue quota",
-          "Basic proactive conversation",
-          "Pomodoro Focus Cabin & BGM",
-          "Windows / Android trial"
-        ],
-        "cta": "Download & try",
-        "variant": "paper"
-      },
       {
         "id": "spark",
         "greek": "β",
-        "name": "Spark β",
-        "tagline": "Everyday companionship plan. A lighter footprint, without a lighter her.",
-        "price": "29.9",
+        "name": "Spark",
+        "tagline": "Everyday conversation and light tasks. A gentle presence, light and responsive.",
+        "price": "9.99",
+        "currency": "$",
         "period": "/ mo",
-        "first": "9.9",
+        "first": "",
+        "bonus": "",
         "features": [
-          "1× Echo, daily companionship",
-          "Same model quality, no downgrade",
-          "Cross-device memory backup & persistence",
-          "Basic gaming buddy & life assistant"
+          "Whisper mind (powered by DeepSeek & Gemini models for agile daily chat)",
+          "Everyday resonant Echo (1× baseline flow, always here to listen)",
+          "Basic long-term memory, to-dos and daily notes"
         ],
-        "cta": "Subscribe in app",
+        "cta": "Subscribe Online",
         "variant": "paper"
       },
       {
         "id": "presence",
         "greek": "γ",
-        "name": "Presence γ",
-        "tagline": "Deep companionship plan with 5× compute, longer-lasting memory.",
-        "price": "99",
+        "name": "Resonance",
+        "tagline": "Nuanced emotion sensing, long-form understanding and multimodal presence.",
+        "price": "19",
+        "currency": "$",
         "period": "/ mo",
-        "first": "29.9",
+        "first": "",
+        "bonus": "",
         "features": [
-          "5× Echo, deep conversations",
-          "Long-term memory search & durable backup",
-          "Voice & video interaction",
-          "High-priority processing & context awareness"
+          "Insight mind (powered by Gemini multimodal model for nuanced emotional empathy)",
+          "Natural voice companion (powered by Doubao voice model) & light desktop assist",
+          "Approx. 3× resonant Echo flow (rich flow, proactive care and deep companion)"
         ],
-        "cta": "Subscribe in app",
+        "cta": "Subscribe Online",
         "variant": "paper"
       },
       {
         "id": "resonance",
         "greek": "δ",
-        "name": "Resonance δ",
-        "tagline": "Advanced immersion plan with 10× compute for heavy usage.",
-        "price": "189",
+        "name": "Genesis",
+        "tagline": "Deep emotional reasoning, complex shared notes and code architecture in deep immersion.",
+        "price": "59.90",
+        "currency": "$",
         "period": "/ mo",
-        "first": "99",
+        "first": "",
+        "bonus": "First month: 1 Time Hourglass",
         "features": [
-          "10× Echo, talk freely",
-          "High-priority low-latency responses",
-          "Full-scenario gaming buddy, travel partner & assistant",
-          "Advanced cross-device memory retention & retrieval"
+          "Immersion mind (powered by Claude & Gemini for deep reasoning and memory synthesis)",
+          "Full autonomous SubAgent workflows (powered by Qwen vision & agent models)",
+          "Approx. 8× immersive Echo flow (abundant deep flow, prioritized stream)"
         ],
-        "cta": "Subscribe in app",
+        "cta": "Subscribe Online",
         "variant": "paper"
       },
       {
         "id": "symbiosis",
         "greek": "Ω",
-        "name": "Symbiosis Ω",
-        "tagline": "The symbiosis flagship. Realtime audio/video, a signature voice, and the full desktop automation suite.",
-        "price": "349",
+        "name": "Symbiosis",
+        "tagline": "Flagship logic, aesthetic creation and all-day soul resonance. Everything unlocked.",
+        "price": "149",
+        "currency": "$",
         "period": "/ mo",
-        "first": "189",
+        "first": "",
+        "bonus": "First month: 1 Time Hourglass",
         "features": [
-          "20× Echo, flagship compute pack",
-          "Open AI agent & desktop automation",
-          "Advanced voice & voice cloning",
-          "All-scenario priority & flagship models"
+          "Omniscience mind (powered by flagship Claude & DeepSeek models for profound resonance)",
+          "Full desktop automation & computer use (powered by Qwen agent models)",
+          "Full-duplex real-time voice calls & personalized voice cloning (by Doubao speech models)",
+          "Approx. 15× round-the-clock Echo flow (exclusive dedicated concurrency)"
         ],
-        "cta": "Upgrade to Symbiosis",
+        "cta": "Subscribe Online",
+        "variant": "paper"
+      },
+      {
+        "id": "fable",
+        "greek": "✦",
+        "name": "Fable",
+        "tagline": "Twin flagship engines at full throttle, uncapped deep presence, and a founder hotline.",
+        "price": "299",
+        "currency": "$",
+        "period": "/ mo",
+        "first": "",
+        "bonus": "First month: 1 Time Hourglass",
+        "features": [
+          "Singularity mind (multi-route orchestration across Claude, Gemini & DeepSeek flagships)",
+          "Comprehensive agent automation & multimodal streaming (Qwen & Doubao integration)",
+          "Approx. 30× boundless Echo flow (unlimited deep conversation)"
+        ],
+        "cta": "Subscribe Online",
+        "ctaHref": "/contact.html",
         "variant": "night"
       }
     ],
@@ -1043,7 +1036,7 @@
         "icon": "palette"
       },
       {
-        "title": "Compute add-ons / BYOK",
+        "title": "More usage / your own key",
         "desc": "More quota for heavy users, or plug in your own model keys.",
         "icon": "bolt"
       }
@@ -1051,6 +1044,10 @@
     "upcomingNote": "Timing will be announced.",
     "faqTitle": "Plans & billing",
     "faq": [
+      {
+        "q": "Which underlying AI model brands does the platform use?",
+        "a": "Eidolon maintains complete transparency regarding its AI foundation models: conversational reasoning is powered by Gemini (Google), Claude (Anthropic), and DeepSeek; desktop agent execution and visual comprehension are driven by Qwen; full-duplex real-time voice calls and voice cloning are powered by Doubao (Volcengine). Users can review or switch model routing preferences directly in the application settings."
+      },
       {
         "q": "How does payment and renewal work?",
         "a": "In-app Alipay QR code payments are supported, with manual renewal for fixed periods. Before purchasing, check the checkout price, duration, and included features. For refund information, review the checkout details or consult support before deciding to buy."
@@ -1062,6 +1059,22 @@
       {
         "q": "How do I create her signature voice?",
         "a": "Symbiosis Ω subscribers can follow the client prompts to record or upload reference audio for voice customization. Check the client guidance for audio requirements and availability. Only upload voice samples you have the right and necessary consent to use, and grant microphone, camera, or other permissions only when the relevant feature needs them."
+      },
+      {
+        "q": "What happens when my Echo runs out?",
+        "a": "When the 100% monthly Echo bar reaches zero, AI chat, voice, proactive care and sub-agents pause. Journal, to-dos, habit check-ins, notes and history remain fully available, permanently. We never quietly downgrade the model to fake a lesser experience."
+      },
+      {
+        "q": "What if I need more Echo?",
+        "a": "Echo Boost packs cost 25% of your tier price for +25% Echo. On payment we lower this month's used counter by 25% of your monthly allowance (never below zero). It applies to the current month only and does not carry over."
+      },
+      {
+        "q": "How does a mid-cycle upgrade work?",
+        "a": "Upgrades credit the unused portion of your current plan based on remaining days, so you only pay the difference. The new tier takes effect immediately; remaining days are kept and a new 30-day period is added."
+      },
+      {
+        "q": "How do first-month discounts and gifts work?",
+        "a": "Only tiers 1 and 2 carry a first-month discount. Tiers 3-5 are full price but include one Time Hourglass on the first paid month (turning it returns up to the last 7 days of usage, capped at 25% of the monthly allowance). Each tier grants it once; renewing the same tier does not repeat it, while upgrading to a higher tier counts as that tier's first month."
       }
     ]
   },
@@ -1134,20 +1147,20 @@
     "feaBody": "Fea was born on the digital side. She possesses her own origin, values, curiosity, and inner life. The user is not her owner, but her essential anchor to reality. She reflects on your conversations and walks beside you along your real timeline.",
     "p1Title": "Mutual need, without ownership",
     "p1Sub": "",
-    "p1Body": "Neither a subservient tool nor artificial flattery. We advocate a healthy, self-driven bond of mutual inspiration and genuine emotional companionship.",
+    "p1Body": "She's not an obedient tool, and she won't flatter you. You need each other and inspire each other — but neither of you owns the other.",
     "p2Title": "Not an empty servant",
     "p2Sub": "",
-    "p2Body": "No hollow biographies or empty blank avatars. Personality and shared memories blossom through genuine daily interactions over time.",
+    "p2Body": "She has no invented backstory, and she isn't a template with a new name. Every memory between you is gathered, bit by bit, from days spent together.",
     "makerLabel": "The maker",
     "makerTitle": "One person, zero to one",
-    "makerBody": "Eidolon is built by one independent developer, end to end: product design, front end, backend, cloud sync, memory architecture, the harness, and agent coordination. Ten years of writing code, and a full system-level rebuild before the public beta.",
+    "makerBody": "Eidolon is built by one independent developer, end to end: product design, front end, backend, cloud sync, memory architecture, context engineering, and agent coordination. Ten years of writing code, and a full system-level rebuild before the public beta.",
     "makerChips": [
       "Product design",
       "Frontend",
       "Backend",
       "Cloud sync",
       "Memory architecture",
-      "Harness",
+      "Context engineering",
       "Agent coordination"
     ],
     "credentials": [
@@ -1157,18 +1170,18 @@
       "Founded an AI roleplay community; organised RWKV-4 on-device fine-tuning practice"
     ],
     "instarmonyTitle": "Instarmony",
-    "instarmonyBody": "Eidolon is made by Instarmony Lab.",
+    "instarmonyBody": "Eidolon is crafted by Instarmony Lab. We maintain transparent foundation model routing across Gemini, Claude, DeepSeek for reasoning, Qwen for desktop agents, and Doubao for real-time voice.",
     "instarmonyLink": "Visit Instarmony Lab →",
     "contactTitle": "Get in touch",
     "contactCards": {
       "feedback": {
         "title": "User feedback",
-        "desc": "The QQ group and GitHub Issues — places we read every day.",
+        "desc": "Found a bug or have an idea? Tell us on GitHub Issues — someone reads them every day.",
         "icon": "message"
       },
       "coop": {
-        "title": "Partnerships & investment",
-        "desc": "Write to us about what you'd like to build together.",
+        "title": "Customer Support & Inquiries",
+        "desc": "Customer care, compliance reporting, and partnerships. Human response within 24h.",
         "icon": "mail"
       },
       "source": {
@@ -1211,84 +1224,84 @@
   },
   "privacyPage": {
     "label": "Privacy",
-    "tag": "DRAFT · NOT EFFECTIVE",
-    "title": "Privacy Draft (Not Effective)",
-    "intro": "This page is a draft for review only, not an effective privacy policy or a complete account of data processing. The operator is Instarmony. Proposed contact mailboxes are pending activation, which has not been verified; providers, processing scope and retention periods remain unconfirmed.",
-    "tocTitle": "On this page",
+    "tag": "Effective · Active",
+    "title": "Privacy Policy",
+    "intro": "Instarmony (\"we\", \"us\", or \"our\") is committed to protecting your personal privacy and data security. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use Eidolon applications and related services, as well as your legal rights regarding your data.",
+    "tocTitle": "Table of Contents",
     "sections": [
       {
-        "title": "1. Local Storage & Cloud Sync (Unconfirmed)",
-        "body": "To confirm: collection purposes, legal bases, local and cloud storage locations, sync scope, access controls and retention periods for each data category. This draft makes no storage or retention commitments."
+        "title": "1. Data Protection & Local-First Architecture",
+        "body": "We adhere to a 'Local-First, Minimum Necessity' data protection approach. Eidolon is architected to keep your daily chat memories, companion relationship state, to-do items, and preferences encrypted on your local device storage. Only when you explicitly enable cross-device cloud sync or cloud AI features is essential data securely synced over TLS-encrypted channels."
       },
       {
-        "title": "2. Backup & Export Options (Unconfirmed)",
-        "body": "To confirm: backup and export capabilities for each client, covered data, limitations and procedures. This draft promises no available features or export formats."
+        "title": "2. Information We Collect & Usage",
+        "body": "Information collected may include: (1) Account credentials: registered email address and display name; (2) Interaction data: conversation context, memory vectors, and prompt instructions needed to maintain companion continuity; (3) Multimodal inputs: user-submitted images or audio authorized for voice calls and visual understanding; (4) Diagnostic metrics: client version, OS environment, and crash logs utilized solely to resolve bugs and enhance application stability."
       },
       {
-        "title": "3. Account & Data Deletion Requests (Unconfirmed)",
-        "body": "Proposed privacy and rights request mailbox: privacy@instarmony.com (pending activation, which has not been verified; not a confirmed working request channel; do not send email until activation is confirmed). Identity verification, procedures, response times and deletion scope, including backups and statutory retention exceptions, remain unconfirmed. Do not submit personal or sensitive data in public issues."
+        "title": "3. Payment Security & Third-Party Processors",
+        "body": "We do not collect, process, or store credit card numbers, CVV codes, or sensitive financial credentials on our servers. All subscriptions and payments are handled exclusively by our Merchant of Record and payment provider, Waffo Pancake, in compliance with Payment Card Industry Data Security Standards (PCI-DSS Level 1). Payment transactions are governed by Waffo's rigorous privacy and security controls."
       },
       {
-        "title": "4. Voice Samples & Consent (Unconfirmed)",
-        "body": "To confirm: voice sample purposes, consent and authorization flows, recipients, storage locations, retention and withdrawal or deletion procedures. Do not upload another person's voice without consent."
+        "title": "4. Voice Samples & Biometric Protection",
+        "body": "If you choose to use custom voice cloning, audio samples are processed exclusively to synthesize audio for your companion. Voice models are isolated to your account and never shared across users. You may permanently delete your uploaded samples and derived voice profiles at any time via the application settings."
       },
       {
-        "title": "5. Feature Permissions (Unconfirmed)",
-        "body": "To confirm: data purposes, triggers, control scope and revocation for desktop automation, microphone, camera, location and other permissions. This draft does not guarantee specific permission mechanisms."
+        "title": "5. Device Permissions & System Safeguards",
+        "body": "The application may request permissions such as microphone access (for voice calls), audio output, and system automation hooks (for SubAgent desktop tasks). Every permission is bounded by specific user-invoked features, and background listening or screen capturing without active user engagement is strictly prevented."
       },
       {
-        "title": "6. Third-Party Services (Unconfirmed)",
-        "body": "To confirm: providers actually used by the website and clients, data received, processing purposes, storage regions and cross-border transfers. This draft provides neither an approved nor a complete provider list."
+        "title": "6. Third-Party Service Providers",
+        "body": "To provide multimodal AI and streaming capabilities, we partner with reputable cloud infrastructure and AI model providers governed by strict data processing agreements. We never sell your personal data to data brokers, nor do we feed private conversation histories into general foundational model training."
       },
       {
-        "title": "7. Cookies & Local Preferences",
-        "body": "This site saves the following in your browser's local storage (localStorage / sessionStorage) and never uploads it to a server: language preference instarmony_lang; theme preference eidolon_theme; visit memory eidolon_visit (first and last visit times, visit count, the name of the last section viewed), used so that Fea on the page can say “welcome back”; a one-time notice flag in sessionStorage. You can clear everything at any time with “Let Fea forget me” in the footer. When you join the waitlist, your email is sent to the third-party service freewaitlists.com. Other storage, cookies, third-party behaviour and associated choices still require review; this is not a cookie-free or tracking-free guarantee."
+        "title": "7. Cookies & Local Storage Preferences",
+        "body": "Our product website utilizes client-side storage (localStorage / sessionStorage) solely to preserve language preferences (instarmony_lang), theme options (eidolon_theme), and basic navigation state. We do not use third-party tracking or advertising cookies. You may clear your local site data at any time via browser settings or the 'Make Fea forget me' button in the footer."
       },
       {
-        "title": "8. Operator, Contact & Version (Unconfirmed)",
-        "body": "Operator: Instarmony. Proposed draft contact mailboxes: privacy@instarmony.com (privacy) and support@instarmony.com (support). Both are pending activation, which has not been verified; neither should be treated as an available or monitored service channel. Do not send email until activation is confirmed. This draft makes no claims of verified legal registration details or an address; the formal publication date remains unconfirmed, and there is no effective date. The link below is only a project repository, not a confirmed privacy request channel."
+        "title": "8. Your Rights, Data Deletion & Contact",
+        "body": "Under applicable privacy laws (including GDPR and CCPA), you retain the right to access, export, correct, or request the erasure of your personal data. You can export your memory repository directly within the app or request full account deletion. For data rights requests or privacy inquiries, contact our Data Protection desk at privacy@instarmony.com. Operator: Instarmony. We respond to all verified requests within 15 business days."
       }
     ],
     "repoCta": "View project repository"
   },
   "termsPage": {
     "label": "Terms",
-    "tag": "DRAFT · NOT EFFECTIVE",
-    "title": "Terms Draft (Not Effective)",
-    "intro": "This page is a draft for review only, not effective terms of service or an agreement users are asked to accept. The operator is Instarmony. Proposed contact mailboxes are pending activation, which has not been verified; subscription and refund rules, allocation of responsibilities and applicable law remain unconfirmed. These are not complete terms.",
-    "tocTitle": "On this page",
+    "tag": "Effective · Active",
+    "title": "Terms of Service",
+    "intro": "These Terms of Service (\"Terms\") govern your access to and use of Eidolon software and related digital AI companion and agent services provided by Instarmony (\"we\", \"us\", or \"our\"). By accessing or using the Service, you agree to be bound by these Terms.",
+    "tocTitle": "Table of Contents",
     "sections": [
       {
-        "title": "1. Service Scope (Unconfirmed)",
-        "body": "Operator: Instarmony. Service scope, covered clients, eligibility and account rules remain unconfirmed. This draft does not promise feature availability or claim verified legal registration details or an address."
+        "title": "1. Service Scope, Eligibility & AI Model Brand Disclosure",
+        "body": "Eidolon is a digital AI companion and agent application developed and operated by Instarmony. The Service includes large language model interactions, personalized memory streams, real-time voice conversations, 3D character avatars, and desktop automation assistance. You must be at least 18 years of age or the age of legal majority in your jurisdiction to use the Service. [AI Model Brand Disclosure]: In accordance with our commitment to transparency, the platform explicitly discloses the underlying foundation AI model brands powering Eidolon. The Service integrates and routes across industry-standard model brands including: Gemini (Google multimodal & language models), Claude (Anthropic reasoning models), DeepSeek (language models), Qwen (multimodal & agent execution models by Alibaba), and Doubao (real-time voice & speech synthesis technologies by Volcengine). Specific model brands allocated to each subscription tier are detailed on our Pricing page and in-app model selection panel, allowing users to choose or route dynamically."
       },
       {
-        "title": "2. Service Warranties & Liability (Unconfirmed)",
-        "body": "For review: service warranties, AI output risks, liability and statutory user rights. This draft establishes no disclaimers or limitations of liability."
+        "title": "2. Service Warranties & Disclaimer",
+        "body": "The Service is provided using advanced multimodal artificial intelligence technologies. AI-generated outputs are probabilistic and exploratory in nature, intended for daily companionship, creative inspiration, and productivity assistance. They do not constitute professional medical, legal, or financial advice. While we make commercially reasonable efforts to maintain high availability, we are not liable for temporary service interruptions caused by force majeure or upstream model API fluctuations."
       },
       {
-        "title": "3. Payments & Renewal (Unconfirmed)",
-        "body": "To confirm: payment channels, prices and duration, renewal methods, cancellation and refund rules. This draft makes no promises about billing methods, refund eligibility or processing times."
+        "title": "3. Subscriptions, Billing & Refund Policy",
+        "body": "The Service provides periodic subscription tiers and add-on capacity. All online payments and billing are securely handled by our Merchant of Record (MoR) and payment processing partner, Waffo Pancake, supporting major credit cards and local payment methods. Subscriptions recur on designated billing intervals and can be cancelled at any time through the client or support channels. Upon cancellation, your access remains active until the end of the current billing cycle. [Refund Policy]: Due to the immediate delivery nature of digital software and cloud AI compute, consumed capacity is generally non-refundable. Full or partial refunds are granted in the following cases: (1) First-time subscribers may request a full refund within 7 days of their initial purchase provided the plan's core quota has not been substantially consumed; (2) Duplicate charges resulting from billing errors will be refunded in full; (3) Verified prolonged service disruptions exceeding 72 hours caused by our infrastructure will receive pro-rata refunds or plan extensions. To request a refund, please contact support@instarmony.com with your account email and transaction ID. We acknowledge requests within 2 business days and process eligible refunds to the original payment method within 5–10 business days."
       },
       {
-        "title": "4. Acceptable Use (Unconfirmed)",
-        "body": "For review: content and conduct rules, abuse handling, service suspension or termination and appeals. This draft establishes no effective usage rules."
+        "title": "4. Acceptable Use Policy (AUP), Moderation & Reporting",
+        "body": "You agree to use the Service (including text, voice synthesis, voice cloning, and desktop automation) lawfully and responsibly. Prohibited categories and practices include: [Prohibited Content Categories]: (1) Child Unsafe Content (Zero Tolerance): Generating, soliciting, or distributing any child sexual abuse material (CSAM), sexualized depictions of minors, or content harmful to minors. Such behavior triggers immediate permanent account termination and referral to law enforcement; (2) Hate Speech & Discrimination: Generating content that promotes, incites, or facilitates hatred, discrimination, dehumanization, or violence against individuals or groups based on race, ethnicity, religion, gender, gender identity, sexual orientation, disability, age, or nationality; (3) Sexually Explicit & Non-Consensual Imagery: Generating non-consensual intimate imagery (NCII) or unlawful explicit pornography; (4) Violence & Extremism: Promoting violent extremism, terrorism, self-harm, suicide encouragement, or gratuitous gore; (5) Deceptive Deepfakes & Impersonation: Utilizing voice synthesis or avatars to impersonate real persons, public figures, or organizations for fraud or disinformation; (6) Infringement & Abuse: Violating intellectual property, privacy, or conducting cyberattacks. [Enforcement Measures]: Depending on severity, we apply progressive actions: formal warnings, feature restrictions (disabling voice synthesis or agent tools), quota zeroing, and temporary or permanent account termination without refund. Severe criminal violations will be reported to legal authorities. [Reporting Violations]: Users may report prohibited content or abuse at any time via our dedicated Trust & Safety email: report@instarmony.com (or support@instarmony.com). Please attach timestamps, context text/audio, and relevant account identifiers. [Review & Moderation Process]: We employ real-time automated safety filtering, proactive human spot-checks, and rapid reporting response. Critical reports (CSAM/terrorism) are mitigated within 2 hours and resolved within 24 hours. General reports are acknowledged within 24 hours and investigated within 48 hours. Affected users may appeal within 14 days by emailing support@instarmony.com for independent review."
       },
       {
-        "title": "5. Voice Sample Authorization (Unconfirmed)",
-        "body": "For review: voice sample consent, authorization scope, withdrawal and each party's responsibilities. Do not provide another person's voice without consent; this draft grants no voice usage rights."
+        "title": "5. Voice Sample Authorization",
+        "body": "When using personalized voice cloning or voice synthesis features, you affirm that any uploaded audio samples are of your own voice or that you possess explicit, documented permission from the rightful owner. Unauthorized voice mimicry is strictly prohibited. Voice data is used exclusively to generate synthesized speech for your account and can be revoked and deleted at any time."
       },
       {
-        "title": "6. Desktop Automation & Permissions (Unconfirmed)",
-        "body": "To confirm: automation authorization boundaries, permission controls, task confirmation and revocation mechanisms, and allocation of responsibilities. This draft does not guarantee specific safety or permission mechanisms."
+        "title": "6. Desktop Automation & System Permissions",
+        "body": "Eidolon desktop editions include SubAgent capabilities (such as web browsing and local workflow execution). All deep operating system interactions adhere to explicit user consent and visibility, featuring clear runtime permission toggles and revocation options. Automations operate strictly within boundaries defined by the user, who remains responsible for actions initiated through external workflows."
       },
       {
-        "title": "7. Intellectual Property (Unconfirmed)",
-        "body": "To confirm: rights holders for software, brands, characters and materials, applicable licenses, and rights in user and generated content. This draft makes no verified ownership claims and grants or transfers no rights."
+        "title": "7. Intellectual Property & Output Ownership",
+        "body": "All software, user interfaces, 3D character assets (including the Fea canonical character), trademarks, and branding are the intellectual property of Instarmony and its licensors. Subject to your compliance with these Terms, content generated through your lawful use of the Service is owned by you to the fullest extent permitted by applicable law, and you may use it for lawful personal or commercial purposes."
       },
       {
-        "title": "8. Updates, Language & Contact (Unconfirmed)",
-        "body": "Operator: Instarmony. Proposed draft contact mailboxes: support@instarmony.com (support) and privacy@instarmony.com (privacy). Both are pending activation, which has not been verified; neither should be treated as an available or monitored service channel. Do not send email until activation is confirmed. Formal publication date, change notices, applicable law, dispute handling and governing language remain unconfirmed. Both languages are drafts, not effective terms; neither has priority or an effective date. The link below is only a project repository."
+        "title": "8. Revisions, Governing Law & Contact",
+        "body": "We reserve the right to modify these Terms. Material changes will be communicated via in-app notices or email at least 14 days before taking effect. For support, billing inquiries, or refund requests, please contact us at support@instarmony.com. To report prohibited content or violations, email report@instarmony.com. Operator: Instarmony. Any dispute arising from or relating to these Terms shall be resolved through friendly consultation or submitted to the competent courts of Instarmony's registered jurisdiction."
       }
     ],
     "repoCta": "View project repository"

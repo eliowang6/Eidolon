@@ -19,6 +19,45 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
 
 <section class="section plans-sec">
   <div class="container">
+    <div class="billing-header-bar">
+      <div class="channel-card">
+        <div class="channel-meta">
+          <span class="channel-pill">{lang === 'zh' ? '🇨🇳 中国大陆结算区' : '🌐 Global Billing'}</span>
+          <span class="channel-type">{lang === 'zh' ? '单月按需购买 · 无自动续费' : 'Monthly Recurring Subscription'}</span>
+          <span class="channel-methods">{lang === 'zh' ? '支持 微信支付 · 支付宝 · 银联' : 'Supports Credit Card · Apple Pay · Google Pay'}</span>
+        </div>
+        <p class="channel-note">
+          {lang === 'zh'
+            ? '由 Waffo MoR 提供合规担保与支付收银。支持在网页端直接为指定账号开通：已注册账号即时充入；未注册账号以此邮箱注册后自动激活。'
+            : 'Powered by Waffo MoR payment gateway. You can subscribe for any account email directly on the web. Activated upon payment.'}
+        </p>
+      </div>
+
+      <div class="email-sub-panel">
+        <div class="email-sub-label-row">
+          <label for="sub-account-email" class="email-label">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+            <span>{lang === 'zh' ? '为指定账号邮箱开通' : 'Subscribe for Account Email'}</span>
+          </label>
+          <span class="email-hint" id="sub-email-hint">
+            {lang === 'zh' ? '输入接收订阅的账号邮箱后，点击下方套餐即可直接结账' : 'Enter email, then click any plan below to proceed to checkout'}
+          </span>
+        </div>
+        <div class="email-input-group">
+          <input
+            id="sub-account-email"
+            type="email"
+            class="email-sub-input"
+            placeholder={lang === 'zh' ? '输入要接收订阅的账号邮箱，例如 user@example.com' : 'Enter recipient account email (e.g. user@example.com)'}
+            autocomplete="email"
+          />
+        </div>
+      </div>
+    </div>
+
     <div class="plans">
       {page.plans.map((plan, i) => (
         <article
@@ -31,11 +70,21 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
           <p class="plan-tag">{plan.tagline}</p>
 
           <div class="price">
-            <span class="cur">¥</span>
-            <b>{plan.price}</b>
-            <span class="period">{plan.period}</span>
+            <span class="cur">{plan.currency}</span>
+            <b>{plan.first || plan.price}</b>
+            <span class="period">{plan.first ? (lang === 'zh' ? '/ 首月' : '/ 1st mo') : plan.period}</span>
+            {plan.first && (
+              <span class="price-orig" title={lang === 'zh' ? `正价 ${plan.currency}${plan.price}/月` : `Regular ${plan.currency}${plan.price}/mo`}>
+                {plan.currency}{plan.price}
+              </span>
+            )}
           </div>
-          {plan.first && <span class="first-pill">{firstLabel(plan.first)}</span>}
+          {plan.first && (
+            <span class="first-pill first-pill--promo">
+              {lang === 'zh' ? `首月特惠 · 续费 ${plan.currency}${plan.price} / 月` : `Intro offer · renews at ${plan.currency}${plan.price}/mo`}
+            </span>
+          )}
+          {plan.bonus && <span class="first-pill first-pill--gift">{plan.bonus}</span>}
 
           <ul class="plan-features">
             {plan.features.map((feature) => (
@@ -44,7 +93,18 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
           </ul>
 
           <div class="plan-cta">
-            <Button href={p('/download.html')} variant={plan.variant === 'night' ? 'ink' : 'ghost'}>{plan.cta}</Button>
+            <button
+              type="button"
+              class={`btn ${plan.variant === 'night' ? 'btn-ink' : 'btn-ghost'} sub-trigger-btn`}
+              data-tier={plan.id}
+              data-currency={lang === 'zh' ? 'CNY' : 'USD'}
+              data-plan-name={plan.name}
+            >
+              <span class="btn-text">{plan.cta}</span>
+            </button>
+            <a href={p('/download.html')} class="plan-download-link">
+              {lang === 'zh' ? '在客户端内订阅 →' : 'Subscribe in app →'}
+            </a>
           </div>
         </article>
       ))}
@@ -84,7 +144,7 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
   }
   .plans {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.16fr);
     gap: 12px;
     align-items: stretch;
   }
@@ -119,15 +179,16 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
     opacity: 0.22;
   }
   .plan-badge {
-    align-self: flex-start;
+    position: absolute;
+    top: 22px;
+    left: 20px;
     font-family: var(--f-mono);
-    font-size: 9.5px;
+    font-size: 10.5px;
     letter-spacing: 0.08em;
     color: var(--lime);
     border: 1px solid rgba(200, 241, 105, 0.4);
     border-radius: var(--r-full);
     padding: 4px 9px;
-    margin-bottom: 0;
   }
   .plan-name {
     position: relative;
@@ -138,15 +199,17 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
   }
   .plan--night .plan-name {
     color: var(--night-text);
-    margin-top: 84px;
+  }
+  html[lang="en"] .plan-name {
+    font-size: 25px;
   }
   .plan-tag {
     position: relative;
     margin-top: 10px;
-    font-size: 12.5px;
+    font-size: 13.5px;
     line-height: 1.6;
     color: var(--ink-2);
-    min-height: 60px;
+    min-height: 4.8em;
     text-wrap: pretty;
   }
   .plan--night .plan-tag {
@@ -176,27 +239,53 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
     letter-spacing: -0.02em;
   }
   .period {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--ink-3);
     margin-left: 3px;
   }
   .plan--night .period {
     color: var(--night-dim);
   }
+  .price-orig {
+    font-size: 15px;
+    color: var(--ink-3);
+    text-decoration: line-through;
+    margin-left: 6px;
+    font-family: var(--f-latin-display);
+    opacity: 0.65;
+    align-self: center;
+    transform: translateY(-2px);
+  }
+  .plan--night .price-orig {
+    color: var(--night-dim);
+  }
   .first-pill {
     align-self: flex-start;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     margin-top: 10px;
     padding: 3px 9px;
     border-radius: var(--r-full);
     background: var(--sage-wash);
     color: color-mix(in srgb, var(--sage-deep) 78%, var(--ink));
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.02em;
   }
   .plan--night .first-pill {
     background: rgba(200, 241, 105, 0.14);
     color: var(--lime);
+  }
+  .first-pill--promo {
+    background: color-mix(in srgb, var(--sage-wash) 90%, var(--card));
+    border: 1px solid color-mix(in srgb, var(--sage-deep) 25%, transparent);
+    font-weight: 500;
+  }
+  .first-pill--gift {
+    background: transparent;
+    border: 1px dashed color-mix(in srgb, var(--sage-deep) 45%, transparent);
+  }
+  .plan--night .first-pill--gift {
+    border-color: rgba(200, 241, 105, 0.4);
   }
   .plan-features {
     position: relative;
@@ -204,7 +293,8 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
     padding-top: 18px;
     border-top: 1px solid var(--line);
     display: grid;
-    gap: 9px;
+    align-content: start;
+    gap: 10px;
     flex: 1;
   }
   .plan--night .plan-features {
@@ -214,9 +304,10 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
     display: flex;
     align-items: flex-start;
     gap: 7px;
-    font-size: 12px;
+    font-size: 13.5px;
     line-height: 1.5;
     color: var(--ink-2);
+    text-wrap: pretty;
   }
   .plan--night .plan-features li {
     color: var(--night-dim);
@@ -236,7 +327,7 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
   .plan-cta :global(.btn) {
     width: 100%;
     justify-content: center;
-    font-size: 12.5px;
+    font-size: 13.5px;
     padding-inline: 8px;
   }
   .upcoming {
@@ -272,18 +363,146 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
     margin-bottom: 16px;
   }
   .up-card h3 {
-    font-size: 17px;
+    font-size: 19px;
     margin-bottom: 6px;
   }
+  html[lang="en"] .up-card h3 {
+    font-size: 23px;
+  }
   .up-card p {
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.7;
     color: var(--ink-2);
   }
   .up-note {
     margin-top: 22px;
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--sage-deep);
+  }
+
+  .billing-header-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--card);
+    padding: 20px 24px;
+  }
+  .channel-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .channel-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .channel-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: var(--r-full);
+    background: var(--lime);
+    color: #111;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .channel-type {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .channel-methods {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    padding-left: 8px;
+    border-left: 1px solid var(--line);
+  }
+  .channel-note {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .email-sub-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .email-sub-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .email-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .email-hint {
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .email-hint.hint-error {
+    color: #e04545;
+    font-weight: 600;
+  }
+  .email-input-group {
+    width: 100%;
+  }
+  .email-sub-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .email-sub-input:focus {
+    border-color: var(--ink);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+  }
+  .email-sub-input.input-error {
+    border-color: #e04545;
+    box-shadow: 0 0 0 2px rgba(224, 69, 69, 0.2);
+  }
+  .plan-cta {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .sub-trigger-btn {
+    width: 100%;
+    cursor: pointer;
+  }
+  .plan-download-link {
+    display: inline-block;
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--ink-3);
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .plan-download-link:hover {
+    color: var(--ink);
   }
 
   @media (max-width: 1279px) {
@@ -325,3 +544,79 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
     }
   }
 </style>
+
+<script>
+  const emailInput = document.getElementById('sub-account-email') as HTMLInputElement | null;
+  const hintEl = document.getElementById('sub-email-hint');
+  const triggerBtns = document.querySelectorAll<HTMLButtonElement>('.sub-trigger-btn');
+
+  const API_ENDPOINT = 'https://api.eidolon.instarmony.com/eidolon/api/subscription/checkout-public';
+
+  triggerBtns.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const email = (emailInput?.value || '').trim();
+      const isZh = btn.dataset.currency === 'CNY';
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (emailInput) {
+          emailInput.focus();
+          emailInput.classList.add('input-error');
+          setTimeout(() => emailInput.classList.remove('input-error'), 2000);
+        }
+        if (hintEl) {
+          hintEl.textContent = isZh
+            ? '⚠️ 请先输入有效的接收账号邮箱地址'
+            : '⚠️ Please enter a valid account email first';
+          hintEl.classList.add('hint-error');
+        }
+        return;
+      }
+
+      if (hintEl) {
+        hintEl.textContent = isZh
+          ? `正在为 ${email} 创建收银会话…`
+          : `Creating checkout session for ${email}…`;
+        hintEl.classList.remove('hint-error');
+      }
+
+      const tierId = btn.dataset.tier || 'spark';
+      const currency = btn.dataset.currency || 'CNY';
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<span class="btn-text">${isZh ? '正在跳转收银台…' : 'Redirecting…'}</span>`;
+
+      try {
+        const resp = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            tierId,
+            currency,
+          }),
+        });
+
+        if (!resp.ok) {
+          const errData = await resp.json().catch(() => ({}));
+          throw new Error(errData.detail || `HTTP ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        if (data.checkoutUrl) {
+          window.location.href = data.checkoutUrl;
+        } else {
+          throw new Error('未获取到有效收银台链接');
+        }
+      } catch (err: any) {
+        alert((isZh ? '发起结算失败：' : 'Failed to start checkout: ') + (err?.message || err));
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        if (hintEl) {
+          hintEl.textContent = isZh
+            ? '输入接收订阅的账号邮箱后，点击下方套餐即可直接结账'
+            : 'Enter email, then click any plan below to proceed to checkout';
+        }
+      }
+    });
+  });
+</script>
