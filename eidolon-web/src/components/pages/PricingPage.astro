@@ -109,6 +109,17 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
         </article>
       ))}
     </div>
+
+    <div class="dew-entry">
+      <p>
+        {lang === 'zh'
+          ? '只想补充回响额度？星露无需注册，填邮箱即可购买，付款后在 App 内归户。'
+          : 'Only need more echo credits? Chrono Dew needs no signup — pay with your email, then claim it in the app.'}
+      </p>
+      <a href={p('/dew.html')} class="btn btn-ghost">
+        {lang === 'zh' ? '购买星露（免注册）→' : 'Buy Chrono Dew →'}
+      </a>
+    </div>
   </div>
 </section>
 
@@ -542,6 +553,23 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
     .up-grid {
       grid-template-columns: 1fr;
     }
+  }
+  .dew-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+    padding: 16px 18px;
+    border: 1px dashed var(--line);
+    border-radius: var(--r-xl);
+  }
+  .dew-entry p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 52ch;
   }
 </style>
 

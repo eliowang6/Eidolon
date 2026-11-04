@@ -20,6 +20,11 @@
       "title": "Plans — Eidolon",
       "description": "Five plans: Spark, Resonance, Genesis, Symbiosis and Fable — plus a 30-day free trial for new users."
     },
+    "dew": {
+      "title": "Chrono Dew · No-signup purchase — Eidolon",
+      "description": "Buy Chrono Dew credit packs for Eidolon by Instarmony without signing up. Pay with WeChat Pay / Alipay / UnionPay (CNY) in China, or card / Apple Pay / Google Pay (USD) internationally. Claim in-app after payment with a one-time claim token.",
+      "keywords": "Eidolon, Chrono Dew, credit pack, no signup purchase, echo credits, Instarmony, WeChat Pay, Alipay, credit card"
+    },
     "download": {
       "title": "Download — Eidolon",
       "description": "Download Eidolon for Windows (MSI) and Android (APK). macOS, iOS, Linux and Web are not supported yet."
@@ -49,6 +54,7 @@
     "features": "Capabilities",
     "how": "How it works",
     "pricing": "Plans",
+    "dew": "Dew",
     "about": "About",
     "docs": "Docs",
     "download": "Download",
@@ -1075,6 +1081,67 @@
       {
         "q": "How do first-month discounts and gifts work?",
         "a": "Only tiers 1 and 2 carry a first-month discount. Tiers 3-5 are full price but include one Time Hourglass on the first paid month (turning it returns up to the last 7 days of usage, capped at 25% of the monthly allowance). Each tier grants it once; renewing the same tier does not repeat it, while upgrading to a higher tier counts as that tier's first month."
+      }
+    ]
+  },
+  "dewPage": {
+    "label": "Chrono Dew",
+    "h1": "Buy a little time, keep walking with her",
+    "lede": "Chrono Dew is Eidolon's pay-as-you-go echo credit. No signup needed — enter your email to purchase. After payment, sign in to the app and paste your one-time claim token to add the credits to your account.",
+    "regionLabel": "Billing region",
+    "regionCn": "China · CNY",
+    "regionIntl": "International · USD",
+    "cnHint": "WeChat Pay / Alipay / UnionPay",
+    "intlHint": "Credit Card / Apple Pay / Google Pay",
+    "emailLabel": "Email to receive the Dew",
+    "emailHint": "Use the email you will register or sign in with, and double-check it before paying: if it is mistyped, support cannot find the order by email and can only help with the order number or claim code. If it differs from your signed-in account email, the app will ask you to confirm before claiming — it never merges silently into someone else's account.",
+    "emailPlaceholder": "you@example.com",
+    "loading": "Loading prices…",
+    "loadFailed": "Failed to load prices. Please refresh and try again.",
+    "creditsLine": "{units}x Dew · {credits}B echo",
+    "listPrice": "List {price}",
+    "buy": "Buy {units}x",
+    "buying": "Creating order…",
+    "promoUsed": "First-purchase offer already used for this tier; charged at list price",
+    "maxNote": "For more than {max}x, contact the founder for a one-to-one top-up.",
+    "orderTitle": "Order created — save your claim token first",
+    "orderNote": "The token is shown only once and disappears on refresh. After payment, sign in to the app and paste it to claim.",
+    "tokenLabel": "Claim token",
+    "copy": "Copy token",
+    "copied": "Copied",
+    "copyFailed": "Copy failed — please select and copy manually.",
+    "orderNo": "Order",
+    "amountLabel": "Paid",
+    "expiresLabel": "Token expires",
+    "pay": "Go to payment",
+    "payNote": "Payment opens in a new window. Copy the token first; it will not be shown again after you refresh this page.",
+    "stepsTitle": "How to claim",
+    "steps": [
+      "Copy the claim token above.",
+      "Sign in to the Eidolon app; register with the order email if you have no account.",
+      "Open the Dew page, choose Claim, paste the token and confirm.",
+      "The Dew is added to your account balance immediately."
+    ],
+    "termsTitle": "Purchase terms",
+    "termsNote": "Orders are non-refundable by default. Refunds are available only in the cases listed in the Terms of Service, calculated by unused proportion × amount actually paid. Balances stay valid indefinitely (except for disabled accounts).",
+    "termsLink": "Read the Terms of Service",
+    "faqTitle": "FAQ",
+    "faq": [
+      {
+        "q": "How does the first-purchase offer work?",
+        "a": "Each account gets the first-purchase price once per tier; tiers are shared across currencies. Discount labels and amounts are determined live by the server, and the checkout page is authoritative for what you pay."
+      },
+      {
+        "q": "Can I buy without an account?",
+        "a": "Yes. Enter your email to order. Save the one-time claim token after payment, then register and sign in to the app to claim it on the Dew page."
+      },
+      {
+        "q": "What if I used the wrong email?",
+        "a": "The order email is authoritative. If your signed-in account email differs, the app asks you to confirm the order email before claiming; it never silently merges into another account."
+      },
+      {
+        "q": "Does Dew change my subscription tier?",
+        "a": "No. Dew only adds spendable echo balance. It does not change your tier, entitlements or billing cycle."
       }
     ]
   },

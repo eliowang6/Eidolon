@@ -1,0 +1,717 @@
+---
+import PageHero from '../PageHero.astro';
+import Faq from '../Faq.astro';
+import { localizePath, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const page = copy.dewPage;
+const p = (href: string) => localizePath(lang, href);
+
+const PLANS_ENDPOINTS = [
+  'https://api.eidolon.instarmony.com/subscription/dew/plans-public',
+  'https://api.eidolon.instarmony.com/eidolon/api/subscription/dew/plans-public',
+];
+const CHECKOUT_ENDPOINTS = [
+  'https://api.eidolon.instarmony.com/subscription/dew/checkout-public',
+  'https://api.eidolon.instarmony.com/eidolon/api/subscription/dew/checkout-public',
+];
+
+const config = {
+  lang,
+  copy: {
+    loading: page.loading,
+    loadFailed: page.loadFailed,
+    creditsLine: page.creditsLine,
+    listPrice: page.listPrice,
+    buy: page.buy,
+    buying: page.buying,
+    promoUsed: page.promoUsed,
+    maxNote: page.maxNote,
+    orderTitle: page.orderTitle,
+    orderNote: page.orderNote,
+    tokenLabel: page.tokenLabel,
+    copy: page.copy,
+    copied: page.copied,
+    copyFailed: page.copyFailed,
+    orderNo: page.orderNo,
+    amountLabel: page.amountLabel,
+    expiresLabel: page.expiresLabel,
+    pay: page.pay,
+    payNote: page.payNote,
+    badEmail: lang === 'zh' ? '请先填写有效的邮箱地址。' : 'Please enter a valid email first.',
+    requestFailed: lang === 'zh' ? '创建订单失败：' : 'Failed to create order: ',
+    cnHint: page.cnHint,
+    intlHint: page.intlHint,
+  },
+  plansEndpoints: PLANS_ENDPOINTS,
+  checkoutEndpoints: CHECKOUT_ENDPOINTS,
+};
+---
+
+<PageHero label={page.label} h1a={page.h1} lede={page.lede} />
+
+<section class="section dew-sec">
+  <div class="container dew-shell">
+    <div class="dew-toolbar">
+      <span class="dew-toolbar-label">{page.regionLabel}</span>
+      <div class="dew-regions" role="group" aria-label={page.regionLabel}>
+        <button type="button" class="dew-region is-active" data-currency="CNY" aria-pressed="true">
+          {page.regionCn}
+        </button>
+        <button type="button" class="dew-region" data-currency="USD" aria-pressed="false">
+          {page.regionIntl}
+        </button>
+      </div>
+      <span class="dew-region-hint" id="dew-region-hint">{lang === 'zh' ? page.cnHint : page.intlHint}</span>
+    </div>
+
+    <div class="dew-email-field">
+      <label for="dew-email">{page.emailLabel}</label>
+      <input
+        id="dew-email"
+        type="email"
+        autocomplete="email"
+        inputmode="email"
+        placeholder={page.emailPlaceholder}
+        spellcheck="false"
+      />
+      <p class="dew-hint">{page.emailHint}</p>
+    </div>
+
+    <div class="dew-grid" id="dew-grid" aria-live="polite">
+      <p class="dew-loading">{page.loading}</p>
+    </div>
+    <p class="dew-maxnote" id="dew-maxnote"></p>
+
+    <div class="dew-order" id="dew-order" hidden>
+      <h3 id="dew-order-title">{page.orderTitle}</h3>
+      <p class="dew-order-note" id="dew-order-note">{page.orderNote}</p>
+      <div class="dew-token-row">
+        <span class="dew-token-label">{page.tokenLabel}</span>
+        <code class="dew-token" id="dew-token"></code>
+        <button type="button" class="btn btn-ghost btn-sm" id="dew-copy">{page.copy}</button>
+      </div>
+      <p class="dew-order-meta">
+        <span><b>{page.orderNo}</b> <span id="dew-order-id"></span></span>
+        <span><b>{page.amountLabel}</b> <span id="dew-order-amount"></span></span>
+        <span><b>{page.expiresLabel}</b> <span id="dew-order-expires"></span></span>
+      </p>
+      <p class="dew-promo-used" id="dew-promo-used" hidden></p>
+      <a class="btn btn-ink dew-pay" id="dew-pay" href="#" target="_blank" rel="noopener noreferrer">{page.pay}</a>
+      <p class="dew-pay-note">{page.payNote}</p>
+    </div>
+
+    <div class="dew-terms">
+      <h3>{page.termsTitle}</h3>
+      <p>{page.termsNote}</p>
+      <a href={`${p('/terms.html')}#sec-3`} class="dew-terms-link">{page.termsLink} →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper2 dew-steps-sec">
+  <div class="container">
+    <h2 class="dew-steps-title">{page.stepsTitle}</h2>
+    <ol class="dew-steps">
+      {page.steps.map((step) => (
+        <li>{step}</li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<section class="section faq-sec">
+  <div class="container">
+    <Faq items={page.faq} lang={lang} title={page.faqTitle} />
+  </div>
+</section>
+
+<script type="application/json" id="dew-config" set:html={JSON.stringify(config)}></script>
+
+<script>
+  type Plan = {
+    bundleId: string;
+    units: number;
+    credits: number;
+    currency: string;
+    listAmount: string;
+    promoAmount: string;
+    promoLabel: string;
+    promoLabelEn: string;
+    promoAvailable: boolean;
+  };
+
+  const cfgEl = document.getElementById('dew-config');
+  if (cfgEl) {
+    const cfg = JSON.parse(cfgEl.textContent || '{}');
+    const copy = cfg.copy;
+    const grid = document.getElementById('dew-grid') as HTMLElement | null;
+    const emailInput = document.getElementById('dew-email') as HTMLInputElement | null;
+    const maxNote = document.getElementById('dew-maxnote') as HTMLElement | null;
+    const regionHint = document.getElementById('dew-region-hint') as HTMLElement | null;
+    const regionButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.dew-region'));
+    const orderPanel = document.getElementById('dew-order') as HTMLElement | null;
+    const orderTitle = document.getElementById('dew-order-title') as HTMLElement | null;
+    const orderNote = document.getElementById('dew-order-note') as HTMLElement | null;
+    const tokenEl = document.getElementById('dew-token') as HTMLElement | null;
+    const copyBtn = document.getElementById('dew-copy') as HTMLButtonElement | null;
+    const orderIdEl = document.getElementById('dew-order-id') as HTMLElement | null;
+    const orderAmountEl = document.getElementById('dew-order-amount') as HTMLElement | null;
+    const orderExpiresEl = document.getElementById('dew-order-expires') as HTMLElement | null;
+    const promoUsedEl = document.getElementById('dew-promo-used') as HTMLElement | null;
+    const payLink = document.getElementById('dew-pay') as HTMLAnchorElement | null;
+
+    let currency = 'CNY';
+    let currentPlans: Plan[] = [];
+    let claimToken = ''; // 只在内存里保存，绝不写 localStorage/sessionStorage。
+    let loadSeq = 0;
+
+    const tpl = (tplStr: string, vars: Record<string, string | number>) =>
+      tplStr.replace(/\{(\w+)\}/g, (_, key) => String(vars[key] ?? ''));
+
+    const symbol = (curr: string) => (curr === 'CNY' ? '¥' : '$');
+
+    const fetchJson = async (endpoints: string[], init?: RequestInit) => {
+      let lastError: unknown = null;
+      for (const url of endpoints) {
+        try {
+          const resp = await fetch(url, init);
+          if (resp.ok || resp.status !== 404) {
+            return { resp, data: await resp.json().catch(() => ({})) };
+          }
+        } catch (err) {
+          lastError = err;
+        }
+      }
+      throw lastError || new Error('network');
+    };
+
+    const errorMessage = (data: any, fallback: string) => {
+      if (data?.detail && typeof data.detail === 'object' && data.detail.message) return data.detail.message;
+      if (typeof data?.detail === 'string') return data.detail;
+      return fallback;
+    };
+
+    const creditsText = (credits: number) => {
+      const bn = credits / 1_000_000_000;
+      return `${Number.isInteger(bn) ? bn : bn.toFixed(1)}B`;
+    };
+
+    const renderPlans = () => {
+      if (!grid) return;
+      grid.innerHTML = '';
+      if (!currentPlans.length) {
+        const p = document.createElement('p');
+        p.className = 'dew-loading';
+        p.textContent = copy.loadFailed;
+        grid.appendChild(p);
+        return;
+      }
+      for (const plan of currentPlans) {
+        const card = document.createElement('article');
+        card.className = 'dew-card';
+
+        const top = document.createElement('div');
+        top.className = 'dew-card-top';
+        const units = document.createElement('span');
+        units.className = 'dew-units';
+        units.textContent = `${plan.units}x`;
+        top.appendChild(units);
+        if (plan.promoAvailable) {
+          const badge = document.createElement('span');
+          badge.className = 'dew-badge';
+          badge.textContent = cfg.lang === 'zh' ? plan.promoLabel : plan.promoLabelEn;
+          top.appendChild(badge);
+        }
+        card.appendChild(top);
+
+        const credits = document.createElement('p');
+        credits.className = 'dew-credits';
+        credits.textContent = tpl(copy.creditsLine, {
+          units: plan.units,
+          credits: creditsText(plan.credits),
+        });
+        card.appendChild(credits);
+
+        const price = document.createElement('div');
+        price.className = 'dew-price';
+        const now = document.createElement('span');
+        now.className = 'dew-now';
+        now.textContent = `${symbol(plan.currency)}${plan.promoAvailable ? plan.promoAmount : plan.listAmount}`;
+        const was = document.createElement('span');
+        was.className = 'dew-was';
+        was.textContent = `${symbol(plan.currency)}${plan.listAmount}`;
+        price.appendChild(now);
+        if (plan.promoAvailable) price.appendChild(was);
+        card.appendChild(price);
+
+        const listLine = document.createElement('p');
+        listLine.className = 'dew-listline';
+        listLine.textContent = plan.promoAvailable
+          ? tpl(copy.listPrice, { price: `${symbol(plan.currency)}${plan.listAmount}` })
+          : copy.promoUsed;
+        card.appendChild(listLine);
+
+        const buy = document.createElement('button');
+        buy.type = 'button';
+        buy.className = 'btn btn-ghost dew-buy';
+        buy.dataset.units = String(plan.units);
+        buy.textContent = tpl(copy.buy, { units: plan.units });
+        card.appendChild(buy);
+
+        grid.appendChild(card);
+      }
+    };
+
+    const setOrderPanel = (data: any) => {
+      if (!orderPanel) return;
+      claimToken = data.claimToken || '';
+      if (tokenEl) tokenEl.textContent = claimToken || '—';
+      if (orderTitle) orderTitle.textContent = copy.orderTitle;
+      if (orderNote) orderNote.textContent = copy.orderNote;
+      if (orderIdEl) orderIdEl.textContent = data.order?.id || '';
+      if (orderAmountEl) {
+        const curr = data.order?.currency || currency;
+        const amountCents = Number(data.order?.amountCents || 0);
+        orderAmountEl.textContent = `${symbol(curr)}${amountCents % 100 === 0 ? amountCents / 100 : (amountCents / 100).toFixed(2)}`;
+      }
+      if (orderExpiresEl) {
+        const raw = data.claimTokenExpiresAt;
+        orderExpiresEl.textContent = raw ? new Date(raw).toLocaleString(cfg.lang === 'zh' ? 'zh-CN' : 'en-US') : '—';
+      }
+      if (promoUsedEl) {
+        const used = data.promoApplied === false;
+        promoUsedEl.hidden = !used;
+        promoUsedEl.textContent = used ? copy.promoUsed : '';
+      }
+      if (payLink) {
+        if (data.checkoutUrl) {
+          payLink.href = data.checkoutUrl;
+          payLink.hidden = false;
+        } else {
+          payLink.hidden = true;
+        }
+      }
+      orderPanel.hidden = false;
+      orderPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    const loadPlans = async (nextCurrency: string) => {
+      currency = nextCurrency;
+      const seq = ++loadSeq;
+      if (grid) grid.innerHTML = `<p class="dew-loading">${copy.loading}</p>`;
+      if (maxNote) maxNote.textContent = '';
+      try {
+        const { data } = await fetchJson([...cfg.plansEndpoints.map((u: string) => `${u}?currency=${currency}`)]);
+        if (seq !== loadSeq) return;
+        currentPlans = Array.isArray(data.plans) ? data.plans : [];
+        renderPlans();
+        if (maxNote && data.maxUnits) maxNote.textContent = tpl(copy.maxNote, { max: data.maxUnits });
+      } catch {
+        if (seq !== loadSeq) return;
+        currentPlans = [];
+        renderPlans();
+      }
+    };
+
+    regionButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const next = btn.dataset.currency || 'CNY';
+        regionButtons.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle('is-active', active);
+          b.setAttribute('aria-pressed', String(active));
+        });
+        if (regionHint) regionHint.textContent = next === 'CNY' ? cfg.copy.cnHint || '' : cfg.copy.intlHint || '';
+        loadPlans(next);
+      });
+    });
+
+    grid?.addEventListener('click', async (event) => {
+      const target = event.target as HTMLElement;
+      const btn = target.closest('.dew-buy') as HTMLButtonElement | null;
+      if (!btn) return;
+      const email = (emailInput?.value || '').trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailInput?.focus();
+        emailInput?.classList.add('input-error');
+        window.setTimeout(() => emailInput?.classList.remove('input-error'), 2000);
+        alert(copy.badEmail);
+        return;
+      }
+      const units = Number(btn.dataset.units || 0);
+      const original = btn.textContent || '';
+      btn.disabled = true;
+      btn.textContent = copy.buying;
+      try {
+        const { resp, data } = await fetchJson(cfg.checkoutEndpoints, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            units,
+            currency,
+            clientRequestId: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`,
+          }),
+        });
+        if (!resp.ok) {
+          alert(copy.requestFailed + errorMessage(data, `HTTP ${resp.status}`));
+          return;
+        }
+        if (!data.claimToken) {
+          alert(copy.requestFailed + errorMessage(data, copy.loadFailed));
+          return;
+        }
+        setOrderPanel(data);
+      } catch (err: any) {
+        alert(copy.requestFailed + (err?.message || err));
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+
+    const copyToken = async () => {
+      if (!claimToken) return;
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(claimToken);
+        ok = true;
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = claimToken;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        ok = document.execCommand('copy');
+        document.body.removeChild(area);
+      }
+      if (copyBtn) {
+        copyBtn.textContent = ok ? copy.copied : copy.copyFailed;
+        window.setTimeout(() => {
+          copyBtn.textContent = copy.copy;
+        }, 1800);
+      }
+    };
+    copyBtn?.addEventListener('click', copyToken);
+
+    // 首屏默认人民币；国际用户可切换 USD。
+    loadPlans('CNY');
+  }
+</script>
+
+<style>
+  .dew-sec {
+    padding-top: 0;
+  }
+  .dew-shell {
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    background: var(--card);
+    padding: clamp(20px, 3vw, 34px);
+  }
+  .dew-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .dew-toolbar-label {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .dew-regions {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: var(--r-full);
+    background: var(--sage-wash);
+  }
+  .dew-region {
+    border: 0;
+    border-radius: var(--r-full);
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--ink-2);
+    background: transparent;
+    cursor: pointer;
+  }
+  .dew-region.is-active {
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: var(--sh-paper);
+  }
+  .dew-region-hint {
+    font-size: 12.5px;
+    color: var(--ink-3);
+  }
+  .dew-email-field {
+    margin-top: 20px;
+  }
+  .dew-email-field label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .dew-email-field input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .dew-email-field input:focus {
+    border-color: var(--ink);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+  }
+  .dew-email-field input.input-error {
+    border-color: #e04545;
+    box-shadow: 0 0 0 2px rgba(224, 69, 69, 0.2);
+  }
+  .dew-hint {
+    margin-top: 8px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--ink-3);
+  }
+  .dew-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .dew-loading {
+    grid-column: 1 / -1;
+    padding: 32px 0;
+    text-align: center;
+    color: var(--ink-3);
+  }
+  .dew-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 16px 16px;
+    background: var(--paper);
+  }
+  .dew-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .dew-units {
+    font-family: var(--f-latin-display);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .dew-badge {
+    display: inline-flex;
+    padding: 3px 8px;
+    border-radius: var(--r-full);
+    background: var(--lime);
+    color: #111;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .dew-credits {
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+  .dew-price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .dew-now {
+    font-family: var(--f-latin-display);
+    font-size: 28px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .dew-was {
+    font-size: 13px;
+    color: var(--ink-3);
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+  .dew-listline {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    min-height: 1.4em;
+  }
+  .dew-buy {
+    margin-top: auto;
+    width: 100%;
+    justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .dew-maxnote {
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--ink-3);
+  }
+  .dew-order {
+    margin-top: 26px;
+    border: 1px solid color-mix(in srgb, var(--sage-deep) 30%, transparent);
+    border-radius: var(--r-xl);
+    background: var(--sage-wash);
+    padding: clamp(18px, 2.6vw, 28px);
+  }
+  .dew-order h3 {
+    font-size: 19px;
+    color: var(--ink);
+  }
+  .dew-order-note {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink-2);
+  }
+  .dew-token-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+  .dew-token-label {
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .dew-token {
+    flex: 1;
+    min-width: 180px;
+    font-family: var(--f-mono);
+    font-size: 13px;
+    color: var(--ink);
+    word-break: break-all;
+    user-select: all;
+  }
+  .dew-order-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+  .dew-promo-used {
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: #b3540c;
+  }
+  .dew-pay {
+    margin-top: 16px;
+    display: inline-flex;
+  }
+  .dew-pay-note {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .dew-terms {
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .dew-terms h3 {
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .dew-terms p {
+    margin-top: 6px;
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+  }
+  .dew-terms-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--sage-deep);
+  }
+  .dew-steps-title {
+    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 2rem);
+    margin-bottom: 18px;
+  }
+  .dew-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    counter-reset: dew-step;
+  }
+  .dew-steps li {
+    position: relative;
+    list-style: none;
+    border: 1px solid rgba(79, 127, 116, 0.22);
+    border-radius: 14px;
+    padding: 18px 16px 18px 46px;
+    background: color-mix(in srgb, var(--card) 70%, transparent);
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink-2);
+  }
+  .dew-steps li::before {
+    counter-increment: dew-step;
+    content: counter(dew-step);
+    position: absolute;
+    left: 16px;
+    top: 18px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--sage-deep);
+    color: var(--card);
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  @media (max-width: 1180px) {
+    .dew-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .dew-steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 767px) {
+    .dew-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .dew-steps {
+      grid-template-columns: 1fr;
+    }
+    .dew-token-row {
+      align-items: flex-start;
+    }
+  }
+</style>

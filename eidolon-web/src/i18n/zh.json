@@ -20,6 +20,11 @@
       "title": "订阅方案 — Eidolon",
       "description": "五档订阅：Spark 微光、Resonance 共鸣、Genesis 创生、Symbiosis 共生与 Fable 神话（新用户另享 30 天免费试用）。"
     },
+    "dew": {
+      "title": "星露 Chrono Dew · 免注册购买 — Eidolon 幻灵",
+      "description": "Eidolon 幻灵（by Instarmony）星露额度包：无需注册，填写邮箱即可购买。国内支持微信/支付宝/银联（CNY），国际支持信用卡/Apple Pay/Google Pay（USD）。付款后在 App 内粘贴归户口令即可归户。",
+      "keywords": "Eidolon, 星露, Chrono Dew, 额度包, 免注册购买, 回响额度, Instarmony, 微信支付, 支付宝, 信用卡"
+    },
     "download": {
       "title": "下载 — Windows 与 Android — Eidolon",
       "description": "下载 Eidolon Windows MSI 与 Android APK 客户端。macOS、iOS、Linux 与 Web 暂不支持。"
@@ -49,6 +54,7 @@
     "features": "能力",
     "how": "原理",
     "pricing": "订阅",
+    "dew": "星露",
     "about": "关于",
     "docs": "文档",
     "download": "下载",
@@ -1075,6 +1081,67 @@
       {
         "q": "首月优惠和赠礼怎么算？",
         "a": "仅第 1、2 档提供首月优惠；第 3~5 档不打折，新订首月额外赠送 1 盏时光沙漏（翻转沙漏可退回最近 7 天内、最多不超过本月额度 25% 的已用回响）。同一档位只赠一次，续费不再重复赠送；升级到更高档位属于该档位首订，仍会赠送。"
+      }
+    ]
+  },
+  "dewPage": {
+    "label": "星露 / Chrono Dew",
+    "h1": "买一点时间，继续陪她走下去",
+    "lede": "星露是 Eidolon 的按次回响额度。无需注册，填邮箱即可购买；付款后在 App 内粘贴一次性归户口令，星露会并入你的账户。",
+    "regionLabel": "结算区域",
+    "regionCn": "中国大陆 · CNY",
+    "regionIntl": "国际 · USD",
+    "cnHint": "微信 / 支付宝 / 银联",
+    "intlHint": "Credit Card / Apple Pay / Google Pay",
+    "emailLabel": "接收星露的邮箱",
+    "emailHint": "请填写之后要在 Eidolon 注册/登录的邮箱，下单前再核对一次：填错后客服无法按邮箱找回，只能凭订单号或归户口令处理。归户时若与当前账户邮箱不一致，会要求你再次确认，不会静默并入他人账户。",
+    "emailPlaceholder": "you@example.com",
+    "loading": "正在获取价格…",
+    "loadFailed": "价格加载失败，请刷新页面重试。",
+    "creditsLine": "{units}x 星露 · {credits}B 回响",
+    "listPrice": "原价 {price}",
+    "buy": "购买 {units}x",
+    "buying": "正在创建订单…",
+    "promoUsed": "本档首充已使用，按原价结算",
+    "maxNote": "超过 {max}x 的额度请联系创始人一对一充值。",
+    "orderTitle": "订单已创建，请先保存归户口令",
+    "orderNote": "口令只显示这一次，刷新页面后不再保留。付款成功后，在 App 内登录并粘贴口令即可归户。",
+    "tokenLabel": "归户口令",
+    "copy": "复制口令",
+    "copied": "已复制",
+    "copyFailed": "复制失败，请手动选中复制。",
+    "orderNo": "订单号",
+    "amountLabel": "实付",
+    "expiresLabel": "口令有效期至",
+    "pay": "前往支付",
+    "payNote": "支付在新窗口打开。请先复制口令；本页刷新后口令不再显示。",
+    "stepsTitle": "如何归户",
+    "steps": [
+      "复制上面的归户口令。",
+      "在 Eidolon App 内登录；没有账户就用订单邮箱注册。",
+      "进入「星露」页，选择「归户」，粘贴口令并确认。",
+      "归户成功后星露立即计入账户余额，可继续使用。"
+    ],
+    "termsTitle": "购买条款",
+    "termsNote": "下单默认不退款。仅在《服务条款》列明的退款情形下，按未使用比例 × 实收金额退款。余额永久有效（账户停用除外）。",
+    "termsLink": "阅读服务条款",
+    "faqTitle": "常见问题",
+    "faq": [
+      {
+        "q": "首充优惠怎么算？",
+        "a": "每个账号每个档位各享受一次首充价，跨币种按档位共用一次。页面上的折扣文案与金额都由服务端实时判定，实际支付金额以下单页为准。"
+      },
+      {
+        "q": "不注册也能买吗？",
+        "a": "可以。填写邮箱即可下单；付款成功后保存一次性归户口令，之后注册并登录 App，在星露页粘贴口令完成归户。"
+      },
+      {
+        "q": "买错邮箱了怎么办？",
+        "a": "归户以订单邮箱为准。如果登录账户邮箱与订单邮箱不一致，App 会要求你确认订单邮箱后才并入，不会静默归入他人账户。"
+      },
+      {
+        "q": "星露会影响订阅档位吗？",
+        "a": "不会。星露只增加可用的回响余额，不改变你的订阅档位、权益与计费周期。"
       }
     ]
   },
