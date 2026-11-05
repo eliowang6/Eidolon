@@ -27,3 +27,7 @@ eidolon-site/
 
 .DS_Store
 Thumbs.db
+
+# Local AI-assistant tooling state (never part of the site source).
+.claude/
+.workbuddy-ai/

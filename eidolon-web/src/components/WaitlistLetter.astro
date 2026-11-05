@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import Eyebrow from './Eyebrow.astro';
 import { SITE } from '../config/site';
 import { t, type Lang } from '../i18n';
 
@@ -7,9 +8,10 @@ interface Props {
   lang: Lang;
   id?: string;
   compact?: boolean;
-  anchor?: string;
+  /** Bead for the home page's margin thread. */
+  node?: boolean;
 }
-const { lang, id, compact = false, anchor } = Astro.props;
+const { lang, id, compact = false, node = false } = Astro.props;
 const copy = t(lang);
 const inputId = `${id ?? 'waitlist'}-email`;
 const socialLink = (href: string, label: string): { label: string; href: string } | null =>
@@ -33,10 +35,10 @@ const alts = [
     data-label={copy.waitlist.button}
     novalidate
   >
-    <img class="stamp" src="/assets/stickers/envelope_with_heart.png" alt="" width="88" height="88" aria-hidden="true" data-thread-anchor={anchor} />
+    <img class="stamp" src="/assets/stickers/envelope_with_heart.png" alt="" width="88" height="55" aria-hidden="true" />
     {!compact && (
       <>
-        <span class="label">{copy.waitlist.label}</span>
+        <Eyebrow text={copy.waitlist.label} node={node} />
         <h2>{copy.waitlist.h2}</h2>
       </>
     )}
@@ -184,7 +186,7 @@ const alts = [
   }
   .privacy {
     margin-top: 16px;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.6;
     color: var(--ink-3);
   }

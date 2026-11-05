@@ -7,7 +7,7 @@ description: Immersive interactive storytelling experience
 
 # Theater
 
-Theater is Eidolon's immersive interactive storytelling feature. Create or enter a story world and co-create a unique adventure with AI.
+Theater is Sholarel's immersive interactive storytelling feature. Create or enter a story world and co-create a unique adventure with AI.
 
 ---
 

@@ -2,18 +2,18 @@
 sidebar_position: 1
 slug: /features/subscription
 title: 订阅与权益
-description: 了解 Eidolon 的订阅等级和各项权益
+description: 了解 Sholarel 的订阅等级和各项权益
 ---
 
 # 订阅与权益
 
-Eidolon 采用订阅等级制度，不同等级享有不同的 AI 能力和功能权限。你可以根据需求选择合适的等级。
+Sholarel 采用订阅等级制度，不同等级享有不同的 AI 能力和功能权限。你可以根据需求选择合适的等级。
 
 ---
 
 ## 订阅等级
 
-Eidolon 提供四个订阅等级，从基础到高级：
+Sholarel 提供四个订阅等级，从基础到高级：
 
 ### Awakening（觉醒）
 

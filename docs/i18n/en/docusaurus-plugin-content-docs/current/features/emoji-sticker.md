@@ -7,7 +7,7 @@ description: Search emoji packs and upload custom stickers
 
 # Emoji & Stickers
 
-Eidolon supports rich emoji and sticker features to make conversations more lively and fun. Search from a massive emoji library or upload your own exclusive stickers.
+Sholarel supports rich emoji and sticker features to make conversations more lively and fun. Search from a massive emoji library or upload your own exclusive stickers.
 
 ---
 
@@ -23,7 +23,7 @@ Tap to insert into your message.
 
 ## Search Emoji Packs
 
-Eidolon has built-in emoji search — enter a keyword to find matching emoji:
+Sholarel has built-in emoji search — enter a keyword to find matching emoji:
 
 1. Click the **Emoji** button in the input box
 2. Enter a keyword in the search box (e.g. "happy", "cat", "cheer")

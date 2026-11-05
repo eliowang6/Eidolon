@@ -4,7 +4,7 @@ import WindowFrame from '../WindowFrame.astro';
 import PhoneFrame from '../PhoneFrame.astro';
 import Icon from '../Icon.astro';
 import { SITE } from '../../config/site';
-import { t, type Lang } from '../../i18n';
+import { localizeDocsPath, t, type Lang } from '../../i18n';
 
 interface Props {
   lang: Lang;
@@ -13,12 +13,12 @@ const { lang } = Astro.props;
 const copy = t(lang);
 const page = copy.downloadPage;
 const platforms = [
-  { key: 'windows', data: page.windows, href: SITE.downloads.windows, icon: 'monitor' },
-  { key: 'android', data: page.android, href: SITE.downloads.android, icon: 'smartphone' },
+  { key: 'windows', data: page.windows, href: SITE.downloads.windows, fallback: SITE.downloadsFallback.windows, release: SITE.release.windows, icon: 'monitor' },
+  { key: 'android', data: page.android, href: SITE.downloads.android, fallback: SITE.downloadsFallback.android, release: SITE.release.android, icon: 'smartphone' },
 ] as const;
 const help = [
-  { title: page.helpQuick, desc: page.helpQuickDesc, href: SITE.docs.quickStart, icon: 'book' },
-  { title: page.helpFaq, desc: page.helpFaqDesc, href: SITE.docs.faq, icon: 'help' },
+  { title: page.helpQuick, desc: page.helpQuickDesc, href: localizeDocsPath(lang, SITE.docs.quickStart), icon: 'book' },
+  { title: page.helpFaq, desc: page.helpFaqDesc, href: localizeDocsPath(lang, SITE.docs.faq), icon: 'help' },
 ];
 ---
 
@@ -47,11 +47,22 @@ const help = [
             <h2>{platform.data.title}</h2>
             <span class="platform-req mono">{platform.data.req}</span>
             <p>{platform.data.desc}</p>
-            <a class="btn btn-ink platform-btn" href={platform.href}>
-              <span class="dot" aria-hidden="true"></span>
-              <span>{platform.data.cta}</span>
-            </a>
-            <span class="platform-note">{platform.data.note}</span>
+            <div class="platform-cta">
+              <a class="btn btn-ink" href={platform.href} data-dl-primary data-dl-fallback={platform.fallback}>
+                <span class="dot" aria-hidden="true"></span>
+                <span>{platform.data.cta}</span>
+              </a>
+              {platform.key === 'android' && <span class="platform-arch">{page.android.arch}</span>}
+              <span
+                class="platform-release mono"
+                data-release
+                data-release-endpoint={platform.release}
+                data-release-label={page.releaseLabel}
+                data-release-fallback={page.releaseFallback}
+              >{page.releaseFallback}</span>
+              <span class="platform-note">{platform.data.note}</span>
+              <a class="platform-backup mono" href={platform.fallback} data-dl-backup>{page.backupLink}</a>
+            </div>
           </div>
         </article>
       ))}
@@ -102,6 +113,75 @@ const help = [
     </div>
   </div>
 </section>
+
+<script>
+  // 主线路是 CDN 优选域名，备用是 R2 直连。静态站没有服务端可用性判断，
+  // 只能在点击时用 no-cors HEAD 探一下：DNS / TLS / 连接层失败才会 reject，
+  // 探不通就改走备用线路（页面上也留了手动备用链接）。超时按「可用」处理，
+  // 免得探测本身把用户卡在前面。
+  const PROBE_TIMEOUT_MS = 3000;
+
+  document.querySelectorAll<HTMLAnchorElement>('a[data-dl-primary]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const fallback = link.dataset.dlFallback;
+      if (!fallback) return;
+
+      event.preventDefault();
+      const primary = link.href;
+      const timer = new Promise<boolean>((resolve) => setTimeout(() => resolve(true), PROBE_TIMEOUT_MS));
+      const probe = fetch(primary, { method: 'HEAD', mode: 'no-cors', cache: 'no-store' })
+        .then(() => true)
+        .catch(() => false);
+
+      Promise.race([probe, timer]).then((ok) => {
+        window.location.href = ok ? primary : fallback;
+      });
+    });
+  });
+
+  // 版本号来自应用服务端的发版清单（带 CORS 响应头，每次发版由发布管线写入）。
+  // 页面不写死版本号：发版不需要改这里，也不需要重新构建官网。
+  // 取不到就保留静态文案「下载最新版」——任何情况下都不显示空白或 undefined。
+  const RELEASE_TIMEOUT_MS = 4000;
+  const formatSize = (bytes: unknown) =>
+    typeof bytes === 'number' && bytes > 0 ? `${Math.round(bytes / 1024 / 1024)} MB` : '';
+  // 发版清单的 pub_date 是 UTC（如 2026-11-04T09:58:58Z）。直接截前 10 位在跨零点时
+  // 会把北京时间的前一天显示出来，所以固定按 UTC+8 渲染，中英两页同一口径；
+  // 不使用访客本地时区，避免同一页面在不同地区看到不同日期。
+  const formatDate = (value: unknown) => {
+    if (typeof value !== 'string' || !value) return '';
+    const parsed = Date.parse(value);
+    if (Number.isNaN(parsed)) return value.slice(0, 10);
+    return new Date(parsed + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-release]').forEach((node) => {
+    const endpoint = node.dataset.releaseEndpoint;
+    if (!endpoint) return;
+    const label = node.dataset.releaseLabel ?? '';
+    const fallback = node.dataset.releaseFallback ?? '';
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), RELEASE_TIMEOUT_MS);
+
+    fetch(`${endpoint}?ts=${Date.now()}`, { cache: 'no-store', signal: controller.signal })
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error(String(response.status)))))
+      .then((data: { version?: unknown; pub_date?: unknown; size?: unknown }) => {
+        if (typeof data.version !== 'string' || !data.version) throw new Error('missing version');
+        const date = formatDate(data.pub_date);
+        const parts = [data.version, date, formatSize(data.size)].filter(Boolean);
+        node.textContent = `${label} ${parts.join(' · ')}`.trim();
+        node.classList.add('is-live');
+      })
+      .catch(() => {
+        node.textContent = fallback;
+      })
+      .finally(() => {
+        window.clearTimeout(timeout);
+      });
+  });
+</script>
 
 <style>
   .preview-note {
@@ -172,24 +252,54 @@ const help = [
   .platform-req {
     display: inline-block;
     margin: 6px 0 14px;
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
     color: var(--ink-3);
   }
   .platform-body p {
-    font-size: 14px;
+    font-size: 15.5px;
     line-height: 1.75;
     color: var(--ink-2);
     max-width: 400px;
     text-wrap: pretty;
   }
-  .platform-btn {
-    margin-top: 24px;
+  .platform-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 26px;
   }
   .platform-note {
-    margin-top: 12px;
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--ink-3);
+  }
+  .platform-arch {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--sage-deep);
+    background: var(--sage-wash);
+    border-radius: var(--r-full);
+    padding: 5px 12px;
+  }
+  .platform-release {
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink-2);
+  }
+  .platform-backup {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    opacity: 0.85;
+    transition: opacity 0.18s ease, color 0.18s ease;
+  }
+  .platform-backup:hover {
+    opacity: 1;
+    color: var(--ink-2);
   }
 
   .unsupported {
@@ -210,7 +320,7 @@ const help = [
     border: 1px dashed var(--line-2);
     border-radius: var(--r-full);
     padding: 6px 14px;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--ink-3);
   }
 
@@ -227,21 +337,25 @@ const help = [
     gap: 24px;
     padding: 18px 4px;
     border-bottom: 1px solid var(--line);
-    font-size: 13px;
+    font-size: 14.5px;
     line-height: 1.65;
     color: var(--ink-2);
   }
   .req-row--head {
     padding: 12px 4px;
     font-family: var(--f-mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
+    font-size: 11px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink-3);
   }
+  :lang(zh) .req-row--head {
+    font-family: var(--f-body);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
   .req-platform {
-    font-family: var(--f-mono);
-    font-size: 12px;
+    font-weight: 600;
     color: var(--ink);
   }
   .req-feat {
@@ -285,11 +399,14 @@ const help = [
     place-items: center;
   }
   .help-card h3 {
-    font-size: 17px;
+    font-size: 19px;
     margin-bottom: 6px;
   }
+  html[lang="en"] .help-card h3 {
+    font-size: 23px;
+  }
   .help-card p {
-    font-size: 13.5px;
+    font-size: 15px;
     line-height: 1.6;
     color: var(--ink-2);
   }
@@ -310,24 +427,21 @@ const help = [
     .req-row {
       grid-template-columns: 1fr 1fr;
       gap: 8px 18px;
-      font-size: 12px;
+      font-size: 14px;
     }
     .req-row--head {
       display: none;
     }
     .req-platform {
       grid-column: 1 / -1;
-      font-size: 12.5px;
     }
     .req-feat {
       grid-column: 1 / -1;
     }
     .m-label {
       display: block;
-      font-family: var(--f-mono);
-      font-size: 9px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-size: 11.5px;
+      letter-spacing: 0.04em;
       color: var(--ink-3);
       margin-bottom: 3px;
     }

@@ -2,12 +2,12 @@
 sidebar_position: 2
 slug: /features/theme
 title: Themes & Appearance
-description: Personalize your Eidolon interface
+description: Personalize your Sholarel interface
 ---
 
 # Themes & Appearance
 
-Eidolon offers multiple carefully designed interface themes, each with a unique visual style and atmosphere. Switch themes anytime based on your mood and preference.
+Sholarel offers multiple carefully designed interface themes, each with a unique visual style and atmosphere. Switch themes anytime based on your mood and preference.
 
 ---
 

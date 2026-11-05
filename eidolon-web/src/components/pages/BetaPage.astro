@@ -1,5 +1,6 @@
 ---
 import StatusPill from '../StatusPill.astro';
+import Eyebrow from '../Eyebrow.astro';
 import WaitlistLetter from '../WaitlistLetter.astro';
 import Icon from '../Icon.astro';
 import Timeline from '../Timeline.astro';
@@ -30,10 +31,11 @@ const communities = [
       <StatusPill text={status.pill} />
       <h1>{page.h1a}<br />{page.h1b}</h1>
       <p class="lede">{page.lede}</p>
-      <div class="beta-meta">
-        <span class="mono">WINDOWS · ANDROID</span>
-        <span class="mono">2026 · FIRST PUBLIC BETA</span>
-      </div>
+      <p class="beta-meta">
+        {copy.hero.platforms.map((platform, i) => (
+          <span class={i === copy.hero.platforms.length - 1 ? 'muted' : ''}>{platform}</span>
+        ))}
+      </p>
     </div>
     <div class="beta-form" id="join">
       <h2 class="sr-only">{page.formTitle}</h2>
@@ -50,7 +52,6 @@ const communities = [
     <div class="perks">
       {page.perks.map((perk, i) => (
         <article class="perk reveal" style={`--i:${i}`}>
-          <span class="perk-no mono">{perk.no}</span>
           <span class="perk-icon"><Icon name={perk.icon} size={20} /></span>
           <h3>{perk.title}</h3>
           <p>{perk.desc}</p>
@@ -63,11 +64,11 @@ const communities = [
 <section class="section road-sec">
   <div class="container road-grid">
     <div class="road-copy">
-      <span class="label">{copy.road.label}</span>
+      <Eyebrow text={page.road.label} />
       <h2>{page.roadTitle}</h2>
     </div>
     <div class="road-visual reveal">
-      <Timeline nodes={copy.road.nodes} orientation="vertical" />
+      <Timeline nodes={page.road.nodes} orientation="vertical" />
     </div>
   </div>
 </section>
@@ -75,7 +76,7 @@ const communities = [
 <section class="section section--paper2 roadmap-sec" id="roadmap">
   <div class="container">
     <div class="roadmap-head reveal">
-      <span class="label">{page.roadmapLabel}</span>
+      <Eyebrow text={page.roadmapLabel} />
       <h2>{page.roadmapTitle}</h2>
     </div>
     <div class="board">
@@ -83,8 +84,7 @@ const communities = [
         <div class={`board-col board-col--${ci} reveal`} style={`--i:${ci}`}>
           <div class="board-head">
             <h3>{col.title}</h3>
-            <span class="mono">{col.en}</span>
-            <span class="board-count mono">{String(col.cards.length).padStart(2, '0')}</span>
+            {lang === 'zh' && <span class="mono">{col.en}</span>}
           </div>
           <div class="board-cards">
             {col.cards.map((card, i) => (
@@ -104,7 +104,7 @@ const communities = [
   <section class="section community-sec">
     <div class="container">
       <div class="community-head reveal">
-        <span class="label">Community</span>
+        <Eyebrow text={copy.footer.community} />
         <h2>{page.communityTitle}</h2>
       </div>
       <div class="community-grid">
@@ -129,7 +129,7 @@ const communities = [
 
 <style>
   .beta-hero {
-    padding: clamp(56px, 7vw, 96px) 0 clamp(64px, 8vw, 110px);
+    padding: calc(var(--nav-h) + clamp(40px, 6vw, 80px)) 0 clamp(64px, 8vw, 110px);
     background:
       radial-gradient(60% 80% at 12% 0%, var(--sage-wash), transparent 65%),
       var(--paper);
@@ -149,13 +149,16 @@ const communities = [
   .beta-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 22px;
+    gap: 8px 20px;
     margin-top: 34px;
     padding-top: 18px;
     border-top: 1px solid var(--line);
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
+    font-size: 13px;
     color: var(--ink-3);
+  }
+  .beta-meta span:not(.muted) {
+    color: var(--ink-2);
+    font-weight: 600;
   }
   .beta-form :global(.letter-wrap) {
     max-width: none;
@@ -186,14 +189,6 @@ const communities = [
     border-radius: 22px;
     padding: 28px 26px;
   }
-  .perk-no {
-    position: absolute;
-    top: 24px;
-    right: 26px;
-    font-size: 10.5px;
-    color: var(--ink-3);
-    letter-spacing: 0.08em;
-  }
   .perk-icon {
     width: 44px;
     height: 44px;
@@ -205,11 +200,14 @@ const communities = [
     margin-bottom: 40px;
   }
   .perk h3 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 8px;
   }
+  html[lang="en"] .perk h3 {
+    font-size: 24px;
+  }
   .perk p {
-    font-size: 13.5px;
+    font-size: 15px;
     line-height: 1.7;
     color: var(--ink-2);
     text-wrap: pretty;
@@ -271,12 +269,9 @@ const communities = [
     font-size: 18px;
   }
   .board-head span.mono {
-    font-size: 10px;
+    font-size: 11px;
     color: var(--ink-3);
     letter-spacing: 0.08em;
-  }
-  .board-count {
-    margin-left: auto;
   }
   .board-cards {
     display: grid;
@@ -313,14 +308,14 @@ const communities = [
     --tape: rgba(176, 88, 63, 0.18);
   }
   .rm-card p {
-    font-size: 13px;
+    font-size: 14.5px;
     line-height: 1.65;
     color: var(--ink-2);
   }
   .roadmap-note {
     margin-top: 24px;
     text-align: center;
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--ink-3);
   }
 
@@ -357,7 +352,7 @@ const communities = [
     margin-bottom: 6px;
   }
   .community-card p {
-    font-size: 13.5px;
+    font-size: 15px;
     line-height: 1.7;
     color: var(--ink-2);
   }

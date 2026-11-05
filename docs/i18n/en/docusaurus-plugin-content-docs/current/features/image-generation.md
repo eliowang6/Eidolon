@@ -7,7 +7,7 @@ description: Have AI generate images from your text descriptions
 
 # AI Image Generation
 
-Eidolon's image generation feature lets you create images from text descriptions. Whether it's cute illustrations, beautiful landscapes, or creative designs, AI can draw it for you.
+Sholarel's image generation feature lets you create images from text descriptions. Whether it's cute illustrations, beautiful landscapes, or creative designs, AI can draw it for you.
 
 ---
 

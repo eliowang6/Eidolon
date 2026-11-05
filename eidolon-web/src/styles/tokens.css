@@ -74,7 +74,8 @@
   --f-latin-display: "Instrument Serif", "Times New Roman", serif;
   --f-body: "Inter Variable", "Inter", -apple-system, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
   --f-hand: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", cursive;
-  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  /* CJK inside mono runs falls through to the body sans, not a monospaced CJK face. */
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", monospace;
 
   --fs-display: clamp(2.75rem, 1.6rem + 4.2vw, 5.25rem);
   --fs-h2: clamp(2rem, 1.3rem + 2.4vw, 3.25rem);
@@ -98,6 +99,18 @@
   --container: 1240px;
   --gutter: clamp(20px, 4vw, 56px);
   --nav-h: 72px;
+}
+
+/* The paper itself takes the local light: rosier at dawn, amber at dusk. */
+html[data-daypart="dawn"] {
+  --paper: #f6f0e9;
+  --paper-2: #eee4d9;
+  --card: #fdfaf6;
+}
+html[data-daypart="dusk"] {
+  --paper: #f4ece1;
+  --paper-2: #ebdfcd;
+  --card: #fcf9f3;
 }
 
 html[data-daypart="night"] {

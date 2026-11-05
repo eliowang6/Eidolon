@@ -7,7 +7,7 @@ description: Customize AI's speaking voice and style
 
 # TTS Voice Settings
 
-Eidolon's TTS (Text-to-Speech) feature lets AI reply with natural-sounding voice. You can adjust emotional intensity and even upload your own voice sample so AI speaks in your voice.
+Sholarel's TTS (Text-to-Speech) feature lets AI reply with natural-sounding voice. You can adjust emotional intensity and even upload your own voice sample so AI speaks in your voice.
 
 ---
 

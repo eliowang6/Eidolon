@@ -11,6 +11,7 @@ interface Props {
   path: string;
   title: string;
   description: string;
+  keywords?: string;
   ogImage?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown>[];
@@ -21,6 +22,7 @@ const {
   path,
   title,
   description,
+  keywords = '',
   ogImage,
   noindex = false,
   jsonLd = [],
@@ -35,19 +37,32 @@ const enUrl = SITE.url + enPath;
 const canonical = lang === 'zh' ? zhUrl : enUrl;
 const og = SITE.url + (ogImage ?? (lang === 'zh' ? '/assets/og-zh.png' : '/assets/og-en.png'));
 
+// `sameAs` is what lets search engines and LLM answer engines decide that the
+// GitHub repo, the X account and the Bilibili channel are the *same* entity as
+// this site. Without it every profile is a separate, low-confidence mention.
 const organization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': 'https://instarmony.com/#organization',
   name: 'Instarmony',
   url: 'https://instarmony.com/',
   logo: `${SITE.url}/assets/logo-icon.jpg`,
+  sameAs: [
+    'https://github.com/eliowang6/Eidolon',
+    'https://x.com/eli0wang6',
+    'https://space.bilibili.com/520926548',
+    'https://www.zhihu.com/people/pevernow-89',
+    'https://www.xiaohongshu.com/user/profile/62bb8465000000001b0268ac',
+  ],
 };
 const website = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Eidolon',
+  '@id': `${SITE.url}/#website`,
+  name: 'Sholarel',
   url: SITE.url,
   inLanguage: ['zh-CN', 'en'],
+  publisher: { '@id': 'https://instarmony.com/#organization' },
 };
 const structured = [organization, website, ...jsonLd];
 ---
@@ -69,11 +84,18 @@ const structured = [organization, website, ...jsonLd];
           ? q
           : pref === 'light' ? 'day' : pref === 'dark' ? 'night' : auto;
         d.dataset.daypart = p;
+        // If the page script is slow or blocked, never leave content invisible.
+        setTimeout(function () {
+          if (!d.classList.contains('reveal-ready')) d.classList.add('reveal-all');
+        }, 2500);
       })();
     </script>
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="waffo-verify" content="ac0a33903ae6481423d0aed79e1e6e00" />
+    <meta name="waffo-verification" content="ac0a33903ae6481423d0aed79e1e6e00" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="zh-CN" href={zhUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />
@@ -81,7 +103,7 @@ const structured = [organization, website, ...jsonLd];
     {noindex && <meta name="robots" content="noindex, follow" />}
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Eidolon" />
+    <meta property="og:site_name" content="Sholarel" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -93,7 +115,7 @@ const structured = [organization, website, ...jsonLd];
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={og} />
-    <meta name="theme-color" content={lang === 'zh' ? '#F5F2EA' : '#F5F2EA'} id="meta-theme" />
+    <meta name="theme-color" content="#F5F2EA" id="meta-theme" />
 
     <link rel="icon" type="image/jpeg" href="/assets/logo-icon.jpg" />
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />

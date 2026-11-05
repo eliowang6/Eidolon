@@ -1,7 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import { SITE } from '../config/site';
-import { localizePath, t, type Lang } from '../i18n';
+import { localizePath, localizeDocsPath, t, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -43,7 +43,7 @@ const community = [
         <ul>
           <li><a href={p('/about.html')}>{copy.footer.about}</a></li>
           <li><a href={p('/docs.html')}>{copy.footer.docs}</a></li>
-          <li><a href={SITE.docs.faq} target="_blank" rel="noopener noreferrer">{copy.footer.faq}</a></li>
+          <li><a href={localizeDocsPath(lang, SITE.docs.faq)}>{copy.footer.faq}</a></li>
           <li><a href={SITE.social.github} target="_blank" rel="noopener noreferrer">{copy.footer.github}</a></li>
         </ul>
       </div>
@@ -57,6 +57,14 @@ const community = [
           </ul>
         </div>
       )}
+      <div class="f-col f-col--contact">
+        <h2>{copy.footer.contact}</h2>
+        <ul>
+          <li><a href={`mailto:${SITE.contactEmail}`}>{copy.footer.supportEmail}</a></li>
+          <li><a href="mailto:report@instarmony.com">{copy.footer.reportEmail}</a></li>
+          <li class="f-note-item">{copy.footer.responseTime}</li>
+        </ul>
+      </div>
       <div class="f-col">
         <h2>{copy.footer.parent}</h2>
         <ul>
@@ -66,7 +74,10 @@ const community = [
     </div>
 
     <div class="f-bottom">
-      <span class="f-copy">{copy.footer.copyright}</span>
+      <div class="f-copy-wrap">
+        <span class="f-copy">{copy.footer.copyright}</span>
+        <a class="f-support-chip" href={`mailto:${SITE.contactEmail}`}>{copy.footer.supportEmail}</a>
+      </div>
       <nav class="f-legal" aria-label={lang === 'zh' ? '法律与联系' : 'Legal and contact'}>
         <a href={p('/privacy.html')}>{copy.footer.privacy}</a>
         <a href={p('/terms.html')}>{copy.footer.terms}</a>
@@ -97,15 +108,16 @@ const community = [
     background: var(--night-2);
     border-top: 1px solid var(--night-line);
   }
+  /* The last stretch of the home page's thread, dropping into the ∞. */
   .footer::before {
     content: "";
     position: absolute;
     top: 0;
     left: 50%;
-    width: 1px;
+    width: 1.4px;
     height: 96px;
-    background: linear-gradient(180deg, rgba(233, 239, 230, 0.28), var(--lime));
-    opacity: 0.7;
+    background: linear-gradient(180deg, var(--lime), color-mix(in srgb, var(--lime) 60%, transparent));
+    opacity: 0.75;
   }
   .f-mark {
     display: flex;
@@ -135,17 +147,23 @@ const community = [
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 28px clamp(24px, 4vw, 56px);
-    max-width: 920px;
-    margin: clamp(56px, 8vw, 88px) auto 0;
+    margin-top: clamp(64px, 8vw, 96px);
+    padding-top: 36px;
+    border-top: 1px solid var(--night-line);
   }
   .f-col h2 {
     font-family: var(--f-mono);
     font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(233, 239, 230, 0.55);
+    color: rgba(233, 239, 230, 0.5);
     margin-bottom: 16px;
+  }
+  :lang(zh) .f-col h2 {
+    font-family: var(--f-body);
+    font-size: 13px;
+    letter-spacing: 0.08em;
   }
   .f-col ul {
     display: grid;
@@ -159,12 +177,40 @@ const community = [
   .f-col a:hover {
     color: var(--lime);
   }
+  .f-note-item {
+    font-size: 12.5px;
+    color: rgba(233, 239, 230, 0.55);
+    line-height: 1.4;
+  }
+  .f-copy-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .f-support-chip {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--lime);
+    padding: 3px 10px;
+    background: rgba(184, 230, 162, 0.08);
+    border: 1px solid rgba(184, 230, 162, 0.25);
+    border-radius: var(--r-full);
+    text-decoration: none;
+    transition: background var(--t-fast), border-color var(--t-fast);
+  }
+  .f-support-chip:hover {
+    background: rgba(184, 230, 162, 0.16);
+    border-color: var(--lime);
+  }
   .f-bottom {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 14px 24px;
-    margin-top: clamp(48px, 7vw, 72px);
+    margin-top: clamp(40px, 6vw, 64px);
     padding-top: 22px;
     border-top: 1px solid var(--night-line);
     font-size: 13px;

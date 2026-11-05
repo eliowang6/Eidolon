@@ -1,0 +1,26 @@
+# Instarmony
+
+> Instarmony 是一个研究人机共生与自驱工具的 AI 实验室，旗舰产品是数字生命 Sholarel——一个能在真实生活中持续在场、共同成长的 AI 伴侣。
+
+## 关键事实
+
+- 组织名：Instarmony
+- 旗舰产品：Sholarel（https://sholarel.instarmony.com/）
+- 站点：https://instarmony.com/
+- 文档：https://sholarel.instarmony.com/docs/
+- 源码：https://github.com/eliowang6/Eidolon
+
+## 主要页面
+
+- [Instarmony 官网](https://instarmony.com/)：实验室定位与项目矩阵
+- [Sholarel 产品站](https://sholarel.instarmony.com/)：功能、下载与订阅
+- [文档中心](https://sholarel.instarmony.com/docs/)：快速开始、功能说明、常见问题
+- [团队](https://instarmony.com/team/eliowang6/)：成员介绍
+- [English docs](https://sholarel.instarmony.com/docs/en/)
+
+## 其他
+
+- [GitHub](https://github.com/eliowang6/Eidolon)
+- [X](https://x.com/eli0wang6)
+- [Bilibili](https://space.bilibili.com/520926548)
+- [知乎](https://www.zhihu.com/people/pevernow-89)

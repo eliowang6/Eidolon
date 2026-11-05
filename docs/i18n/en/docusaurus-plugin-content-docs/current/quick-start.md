@@ -2,36 +2,36 @@
 sidebar_position: 1
 slug: /quick-start
 title: Quick Start
-description: Get started with Eidolon in 5 minutes, from zero to your first conversation
+description: Get started with Sholarel in 5 minutes, from zero to your first conversation
 ---
 
 # Quick Start
 
-Welcome to Eidolon! This beginner-friendly guide will walk you from installation to your first conversation, so you can quickly experience the magic of an AI companion.
+Welcome to Sholarel! This beginner-friendly guide will walk you from installation to your first conversation, so you can quickly experience the magic of an AI companion.
 
 ---
 
 ## Step 1: Download & Install
 
-Eidolon is available on **Windows Desktop**, **Android**, and **Web**.
+Sholarel is available on **Windows Desktop**, **Android**, and **Web**.
 
 ### Windows Desktop
 
-1. Visit the [Eidolon website](https://eidolon.ai) or the [GitHub Releases](https://github.com/instarmony/eidolon/releases) page
+1. Visit the [official download page](https://sholarel.instarmony.com/en/download)
 2. Download the latest `.msi` installer
 3. Double-click the installer and follow the setup wizard
-4. After installation, find the Eidolon icon on your desktop and launch it
+4. After installation, find the Sholarel icon on your desktop and launch it
 
 ### Android
 
-1. Download the `.apk` file from the GitHub Releases page
+1. Download the `.apk` file from the [official download page](https://sholarel.instarmony.com/en/download)
 2. Open the downloaded APK on your phone
 3. If prompted about "unknown sources", enable installation from unknown sources in your settings
-4. After installation, find Eidolon in your app list and open it
+4. After installation, find Sholarel in your app list and open it
 
 ### Web
 
-Simply visit the Eidolon web address in your browser — no installation needed.
+Open [https://web.eidolon.instarmony.com/](https://web.eidolon.instarmony.com/) in your browser — no installation needed. The web app is currently in invite-only beta: sign-up requires an invite code, and it is not publicly launched yet.
 
 :::tip Recommendation
 The desktop app offers the most complete experience, including floating window, desktop pet mode, auto-start on boot, and more. We recommend the desktop version when possible.
@@ -41,7 +41,7 @@ The desktop app offers the most complete experience, including floating window, 
 
 ## Step 2: Create an Account
 
-When you first open Eidolon, you'll see the login page.
+When you first open Sholarel, you'll see the login page.
 
 1. Click the **"Register"** tab
 2. Fill in the following:
@@ -100,7 +100,7 @@ After logging in, you'll see the **"Today"** home page — your daily starting p
 - "Tell me a joke!"
 
 :::tip Conversation Tips
-Eidolon's AI has long-term memory — it remembers important things you share. The more genuinely you communicate, the better AI understands you.
+Sholarel's AI has long-term memory — it remembers important things you share. The more genuinely you communicate, the better AI understands you.
 :::
 
 ---
@@ -136,5 +136,5 @@ Currently, please contact the admin to reset your password. Self-service recover
 ---
 
 :::success Congratulations!
-You've completed the basic onboarding for Eidolon. Now dive deeper into each feature and find the way that works best for you!
+You've completed the basic onboarding for Sholarel. Now dive deeper into each feature and find the way that works best for you!
 :::

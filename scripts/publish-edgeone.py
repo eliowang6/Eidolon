@@ -21,7 +21,7 @@ Credentials and project names come from the environment, optionally seeded from
 
     EDGEONE_API_TOKEN   API Token from the Pages console (required to deploy)
     EDGEONE_MAIN_PROJECT       project serving instarmony.com            (default: instarmony-main-overseas)
-    EDGEONE_SUB_PROJECT        project serving eidolon.instarmony.com    (default: eidolon-overseas-test)
+    EDGEONE_SUB_PROJECT        project serving sholarel.instarmony.com    (default: eidolon-overseas-test)
     EDGEONE_DASHBOARD_PROJECT  project serving dashboard.eidolon.instarmony.com
                                                                             (default: eidolon-dashboard-overseas)
     EDGEONE_AREA           overseas | global                          (default: overseas)
@@ -64,15 +64,35 @@ DASHBOARD_DIST = EIDOLON_REPO / "server" / "dashboard_dist"
 WEB_DIST = EIDOLON_REPO / "client" / "dist"
 
 # Build scratch and deployment plumbing never ship as site content.
+# The dot-directories are local tooling state: .edgeone/ holds the project id,
+# .claude/ a local launch profile, .workbuddy-ai/ the internal working notes.
+# None of them is site content, and a Pages ZIP makes every member fetchable —
+# the working notes would be readable at https://instarmony.com/.workbuddy-ai/.
+# .well-known/ is the opposite: those files (payment-provider verification) must
+# be reachable, so it stays.
 EXCLUDE_DIRS = {"node_modules", ".docusaurus", ".cache", ".git", ".github",
-                "scripts", "dist", "eidolon-site", "eidolon-web"}
+                "scripts", "dist", "eidolon-site", "eidolon-web",
+                ".claude", ".edgeone", ".workbuddy-ai", "seo"}
 EXCLUDE_FILES = {
     "README.md", ".gitignore", ".gitattributes", "w.html",
     # Astro content-layer scratch emitted next to the built HTML.
     "content-assets.mjs", "content-modules.mjs",
     # web build mirror assets (local experiments, not deployed on AWS)
     "main.3ea39a4c.js", "main.dfea661b.js",
+    # The redirect rules live in a file the platform has to find at the ZIP
+    # root. add_tree must not ship it as page content as well — that would
+    # write the same member twice — so the deploy step injects it alone.
+    "edgeone.json",
 }
+
+# The EdgeOne custom-rules file. It must be inside the ZIP for the platform to
+# apply the redirects, but it is not site content: left in the package it would
+# be served as a readable file at /edgeone.json, advertising the redirect map.
+# `add_tree` drops it from the payload; the deploy step injects it separately.
+EDGEONE_JSON = "edgeone.json"
+# The product sub-domain is a separate Pages project with its own host, so it
+# carries its own rules file.
+EDGEONE_SUB_JSON = "edgeone.sub.json"
 
 # Secrets and local tooling config must never ship. .env holds EDGEONE_API_TOKEN
 # in plaintext, and a Pages ZIP makes every member publicly fetchable at
@@ -85,8 +105,8 @@ ROOT_HASHED_JS = re.compile(r"^[0-9a-f]{8}\.[0-9a-f]{8}\.js$")
 
 # The server's release script refuses a package missing any of these; keep the
 # Pages payload honest about the same entries.
-REQUIRED_MAIN_ENTRIES = ("index.html", "eidolon/index.html",
-                         "docs/build/index.html", "docs/build/en/index.html")
+REQUIRED_MAIN_ENTRIES = ("index.html", "eidolon/index.html", "robots.txt",
+                         "sitemap.xml")
 REQUIRED_SUB_ENTRIES = (
     "index.html", "en/index.html", "404.html", "en/404.html",
     "features.html", "en/features.html",
@@ -97,7 +117,13 @@ REQUIRED_SUB_ENTRIES = (
     "about.html", "en/about.html",
     "docs.html", "en/docs.html",
     "privacy.html", "terms.html", "en/privacy.html", "en/terms.html",
+    # The Docusaurus docs ship on this host, under /docs/.
+    "docs/index.html", "docs/en/index.html",
     "assets/logo-infinity.png", "assets/og-zh.png", "assets/og-en.png",
+    # Search-engine plumbing. A 404 robots.txt is a real indexing blocker for
+    # Baidu/Bing, so it must never silently drop out of the package. sitemap.xml
+    # is flattened from Astro's sitemap-0.xml by scripts/seo-submit.mjs.
+    "robots.txt", "sitemap.xml",
 )
 # The console is a hash-router SPA: every route lives behind #, so a single
 # index.html at the root is the whole site.
@@ -174,12 +200,17 @@ def generate_seo() -> None:
     run(["node", str(script), "generate"], cwd=ROOT)
 
 
-def add_tree(zf: zipfile.ZipFile, base: Path, at_repo_root: bool = False) -> int:
+def add_tree(zf: zipfile.ZipFile, base: Path, at_repo_root: bool = False,
+             skip_top: tuple[str, ...] = ()) -> int:
     """Add every publishable file under base at the ZIP root.
 
     at_repo_root marks the main-site walk, where hashed web-build JS sitting
     directly in the repository root is a local experiment. Nested builds (e.g.
     docs/build/assets/js/) must keep theirs, so the filter never applies there.
+
+    skip_top names top-level directories to leave out of this particular
+    archive. The docs build moved to the product sub-domain, so the main-site
+    payload no longer carries it.
     """
     n = 0
     for p in sorted(base.rglob("*")):
@@ -195,12 +226,57 @@ def add_tree(zf: zipfile.ZipFile, base: Path, at_repo_root: bool = False) -> int
             continue
         if at_repo_root and len(rel.parts) == 1 and ROOT_HASHED_JS.match(rel.name):
             continue
+        if at_repo_root and rel.parts[0] in skip_top:
+            continue
         zf.write(p, rel.as_posix())
         n += 1
     return n
 
 
-def package(archive: Path, base: Path, at_repo_root: bool = False) -> int:
+def inject_edgeone_json(archive: Path, source: Path) -> None:
+    """Put edgeone.json at the ZIP root so the platform applies its rules.
+
+    The file is written straight into the archive after the payload walk: the
+    platform needs it at the root to pick the redirects up, but it must not be
+    part of the site's public file tree.
+    """
+    if not source.is_file():
+        raise SystemExit(f"[ERROR] {source} is missing — the redirects would not be applied.")
+    with zipfile.ZipFile(archive, "a", zipfile.ZIP_DEFLATED) as zf:
+        zf.write(source, EDGEONE_JSON)
+
+
+def add_docs_tree(zf: zipfile.ZipFile, docs_build: Path) -> int:
+    """Add the Docusaurus output to a ZIP under /docs/.
+
+    The docs are built with baseUrl /docs/, so their own asset and link URLs
+    already point at /docs/... — dropping the tree under that prefix makes
+    them resolve correctly at sholarel.instarmony.com/docs/...
+    """
+    if not docs_build.is_dir():
+        raise SystemExit(
+            f"[ERROR] {docs_build} is missing — the docs would be missing from the "
+            "product site. Run the docs build first."
+        )
+    n = 0
+    for p in sorted(docs_build.rglob("*")):
+        if not p.is_file():
+            continue
+        rel = p.relative_to(docs_build)
+        parts = set(rel.parts[:-1]) | {rel.name}
+        if parts & EXCLUDE_DIRS:
+            continue
+        if rel.name in EXCLUDE_FILES:
+            continue
+        if EXCLUDE_SECRET_FILES.match(rel.name):
+            continue
+        zf.write(p, (Path("docs") / rel).as_posix())
+        n += 1
+    return n
+
+
+def package(archive: Path, base: Path, at_repo_root: bool = False,
+            skip_top: tuple[str, ...] = ()) -> int:
     DIST_DIR.mkdir(parents=True, exist_ok=True)
     if archive.exists():
         # A viewer or a parallel run can still hold the old archive open.
@@ -216,7 +292,7 @@ def package(archive: Path, base: Path, at_repo_root: bool = False) -> int:
                     )
                 time.sleep(1.0)
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as zf:
-        return add_tree(zf, base, at_repo_root)
+        return add_tree(zf, base, at_repo_root, skip_top)
 
 
 def verify(archive: Path, required: tuple[str, ...]) -> None:
@@ -350,15 +426,28 @@ def main() -> int:
     main_zip = DIST_DIR / "instarmony-website-pages.zip"
     sub_zip = DIST_DIR / "eidolon-product-pages.zip"
 
-    n_main = package(main_zip, ROOT, at_repo_root=True)
+    # The docs now live on the product sub-domain, so the lab payload no longer
+    # carries them. The old /docs/build/* URLs stay reachable through the 301
+    # rules in edgeone.json.
+    n_main = package(main_zip, ROOT, at_repo_root=True, skip_top=("docs",))
     print(f"[OK] main site: {n_main} files -> {main_zip.name} "
           f"({main_zip.stat().st_size / 1024 / 1024:.1f} MB)")
     verify(main_zip, REQUIRED_MAIN_ENTRIES)
+    inject_edgeone_json(main_zip, ROOT / EDGEONE_JSON)
 
     n_sub = package(sub_zip, ROOT / "eidolon-site")
-    print(f"[OK] product site: {n_sub} files -> {sub_zip.name} "
+    # The Docusaurus build is a sibling of the Astro output, so it is added
+    # under /docs/ to land at sholarel.instarmony.com/docs/. package() already
+    # closed the archive, so it is reopened for the append.
+    with zipfile.ZipFile(sub_zip, "a", zipfile.ZIP_DEFLATED) as zf:
+        n_docs = add_docs_tree(zf, ROOT / "docs" / "build")
+    print(f"[OK] product site: {n_sub + n_docs} files -> {sub_zip.name} "
           f"({sub_zip.stat().st_size / 1024 / 1024:.1f} MB)")
     verify(sub_zip, REQUIRED_SUB_ENTRIES)
+    # The product sub-domain serves its own host, so it needs its own rules.
+    # Today that is just HSTS; the lab's redirect rules would send sub-domain
+    # traffic to the wrong place.
+    inject_edgeone_json(sub_zip, ROOT / EDGEONE_SUB_JSON)
 
     # Admin console: built by the eidolon repo, deployed to its own Pages project.
     # Skipped with a notice when the artifact is absent so this script still works
@@ -418,7 +507,7 @@ def main() -> int:
     print()
     print("Publish complete. Verify the live sites:")
     print("  https://instarmony.com/")
-    print("  https://eidolon.instarmony.com/")
+    print("  https://sholarel.instarmony.com/")
     if dash_ready:
         print("  https://dashboard.eidolon.instarmony.com/")
     if web_ready:

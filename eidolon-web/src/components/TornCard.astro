@@ -1,16 +1,19 @@
 ---
 interface Props {
-  no: string;
   title: string;
   desc: string;
+  no?: string;
+  /** A Latin line set in italic display type above the title. */
+  kicker?: string;
   class?: string;
-  anchor?: string;
+  style?: string;
 }
-const { no, title, desc, class: className = '', anchor } = Astro.props;
+const { title, desc, no, kicker, class: className = '', style } = Astro.props;
 ---
-<article class={`torn ${className}`} data-thread-anchor={anchor}>
+<article class={`torn ${className}`} style={style}>
   <span class="torn-tape" aria-hidden="true"></span>
-  <span class="torn-no mono">{no}</span>
+  {no && <span class="torn-no">{no}</span>}
+  {kicker && <span class="torn-kicker latin">{kicker}</span>}
   <h3>{title}</h3>
   <p>{desc}</p>
   <slot />
@@ -20,52 +23,63 @@ const { no, title, desc, class: className = '', anchor } = Astro.props;
   .torn {
     position: relative;
     background: var(--card);
-    padding: 34px 24px 28px;
+    padding: 40px 30px 32px;
     box-shadow: var(--sh-paper);
-    clip-path: polygon(0 3%, 8% 0, 19% 2.5%, 31% 0.5%, 44% 3%, 57% 1%, 69% 3.5%, 82% 0.8%, 93% 2.8%, 100% 1%, 100% 100%, 0 100%);
+    clip-path: polygon(0 2.4%, 8% 0, 19% 2%, 31% 0.4%, 44% 2.4%, 57% 0.8%, 69% 2.8%, 82% 0.6%, 93% 2.2%, 100% 0.8%, 100% 100%, 0 100%);
     transition: transform var(--t-mid) var(--ease), box-shadow var(--t-mid) var(--ease);
   }
-  .torn:nth-child(odd) {
-    transform: rotate(-1.2deg);
+  .torn:nth-child(3n + 1) {
+    rotate: -0.8deg;
   }
-  .torn:nth-child(even) {
-    transform: rotate(1deg) translateY(14px);
+  .torn:nth-child(3n + 2) {
+    rotate: 0.6deg;
+    translate: 0 12px;
+  }
+  .torn:nth-child(3n) {
+    rotate: -0.3deg;
   }
   .torn:hover {
-    transform: rotate(0) translateY(-4px);
+    rotate: 0deg;
+    translate: 0 -4px;
     box-shadow: 0 24px 44px -20px rgba(18, 36, 29, 0.32);
   }
   .torn-tape {
     position: absolute;
-    top: 2px;
+    top: 0;
     left: 50%;
-    width: 72px;
+    width: 76px;
     height: 22px;
-    transform: translateX(-50%) rotate(-4deg);
+    transform: translateX(-50%) rotate(-3deg);
     background: rgba(233, 185, 100, 0.42);
   }
   .torn-no {
+    font-family: var(--f-mono);
     font-size: 12px;
     color: var(--annot);
   }
-  .torn h3 {
+  .torn-kicker {
+    display: block;
     font-size: 22px;
-    margin: 10px 0 8px;
+    line-height: 1.2;
+    color: var(--sage-deep);
+    margin-top: 6px;
+  }
+  .torn h3 {
+    font-size: 24px;
+    margin: 4px 0 12px;
   }
   .torn p {
-    font-size: 14.5px;
-    line-height: 1.75;
+    font-size: 16px;
+    line-height: 1.8;
     color: var(--ink-2);
   }
+  html[lang="en"] .torn h3 {
+    font-size: 28px;
+  }
   @media (max-width: 767px) {
-    .torn:nth-child(odd) {
-      transform: rotate(-0.6deg);
-    }
-    .torn:nth-child(even) {
-      transform: rotate(0.6deg);
-    }
-    .torn:hover {
-      transform: rotate(0);
+    .torn:nth-child(n) {
+      rotate: 0deg;
+      translate: none;
     }
   }
 </style>

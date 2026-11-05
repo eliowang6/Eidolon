@@ -43,7 +43,7 @@ jobs:
         working-directory: docs
         env:
           DOCS_URL: https://eliowang6.github.io
-          DOCS_BASE_URL: /Eidolon/docs/build/
+          DOCS_BASE_URL: /Sholarel/docs/build/
         run: |
           npm ci --include=dev
           npx --no-install tsc --noEmit

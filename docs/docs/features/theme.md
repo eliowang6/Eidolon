@@ -2,12 +2,12 @@
 sidebar_position: 2
 slug: /features/theme
 title: 主题与外观
-description: 个性化你的 Eidolon 界面
+description: 个性化你的 Sholarel 界面
 ---
 
 # 主题与外观
 
-Eidolon 提供多套精心设计的界面主题，每套主题都有独特的视觉风格和氛围。你可以根据心情和喜好随时切换。
+Sholarel 提供多套精心设计的界面主题，每套主题都有独特的视觉风格和氛围。你可以根据心情和喜好随时切换。
 
 ---
 

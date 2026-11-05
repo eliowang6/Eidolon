@@ -65,7 +65,7 @@ export default function Home(): React.JSX.Element {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Eidolon 使用文档 - 你的 AI 时代另一个自己">
+      description="Sholarel 使用文档 - 你的 AI 时代另一个自己">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -89,7 +89,7 @@ export default function Home(): React.JSX.Element {
               v2.0 Open Beta
             </div>
             <h1 className="eid-hero__title">
-              <span className="eid-hero__title-line">Eidolon</span>
+              <span className="eid-hero__title-line">Sholarel</span>
               <span className="eid-hero__title-line eid-hero__title-gradient">
                 使用文档
               </span>
@@ -123,7 +123,7 @@ export default function Home(): React.JSX.Element {
               探索全部功能
             </h2>
             <p className="eid-features__subheading">
-              不只是聊天工具——Eidolon 是真正融入你生活的 AI 伴侣
+              不只是聊天工具——Sholarel 是真正融入你生活的 AI 伴侣
             </p>
             <div className="eid-features__grid">
               {features.map((f, i) => (

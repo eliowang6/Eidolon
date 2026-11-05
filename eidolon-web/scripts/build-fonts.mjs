@@ -43,6 +43,18 @@ const handwriting = [
   dict.aboutPage.polaCaption,
   dict.downloadPage.previewNote,
   dict.featuresPage.demos.voice.note,
+  dict.featuresPage.demos.polaroid.caption,
+  dict.fea.caption,
+  dict.trust.panel.foot,
+  // Home section names are dropped into Fea's "welcome back" note at runtime.
+  dict.why.label,
+  dict.loop.label,
+  dict.values.label,
+  dict.trust.label,
+  dict.fea.label,
+  dict.waitlist.label,
+  dict.dewPage.emblemNote,
+  dict.dewPage.tokenNote,
 ].join('');
 const annotationChars = new Set([...(handwriting + '——～·…“”‘’「」' + ascii)]);
 

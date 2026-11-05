@@ -18,6 +18,22 @@ export function otherLang(lang: Lang): Lang {
   return lang === 'zh' ? 'en' : 'zh';
 }
 
+/** Where the Docusaurus build lands on the product sub-domain. */
+const DOCS_BASE = '/docs/';
+
 export function absoluteUrl(path: string): string {
-  return `https://eidolon.instarmony.com${path}`;
+  return `https://sholarel.instarmony.com${path}`;
+}
+
+/**
+ * Localize a documentation path.
+ *
+ * Docusaurus nests the localized builds under <baseUrl>/<locale>/ — the
+ * English tree is /docs/en/..., not /en/docs/... — so the locale segment
+ * goes inside the docs base, not in front of it.
+ */
+export function localizeDocsPath(lang: Lang, zhPath: string): string {
+  if (lang === 'zh') return zhPath;
+  if (!zhPath.startsWith(DOCS_BASE)) return zhPath;
+  return `/docs/en/${zhPath.slice(DOCS_BASE.length)}`;
 }

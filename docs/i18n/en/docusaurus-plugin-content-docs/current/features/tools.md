@@ -7,7 +7,7 @@ description: AI proactively creates to-dos, habits, images, and more for you
 
 # Tool Calling
 
-Eidolon's AI doesn't just chat — it can **proactively take actions**, creating to-do items, setting up habit trackers, generating images, and sending voice messages. These actions appear as **tool cards** in the conversation.
+Sholarel's AI doesn't just chat — it can **proactively take actions**, creating to-do items, setting up habit trackers, generating images, and sending voice messages. These actions appear as **tool cards** in the conversation.
 
 ---
 

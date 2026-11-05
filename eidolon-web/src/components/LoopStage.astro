@@ -8,13 +8,12 @@ interface Props {
   active?: number;
   single?: boolean;
   compact?: boolean;
-  anchor?: string;
 }
-const { steps, lang, active = 0, single = false, compact = false, anchor } = Astro.props;
+const { steps, lang, active = 0, single = false, compact = false } = Astro.props;
 const copy = t(lang);
 const panels = single ? [steps[active]] : steps;
 ---
-<div class={`stage ${compact ? 'stage--compact' : ''}`} data-loop-stage data-thread-anchor={anchor}>
+<div class={`stage ${compact ? 'stage--compact' : ''}`} data-loop-stage>
   <div class="stage-bar">
     <div class="bar" aria-hidden="true">
       {steps.map((_, i) => <i class={i <= active ? 'on' : ''} data-loop-bar></i>)}
@@ -50,7 +49,7 @@ const panels = single ? [steps[active]] : steps;
     border-radius: var(--r-xl);
     padding: 24px 28px 26px;
     box-shadow: var(--sh-paper);
-    min-height: 440px;
+    min-height: 460px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -76,8 +75,12 @@ const panels = single ? [steps[active]] : steps;
   .bar i.on {
     background: var(--ink);
   }
+  :lang(zh) .stage-tag,
+  :lang(zh) .step-no {
+    letter-spacing: 0.04em;
+  }
   .stage-tag {
-    font-size: 9.5px;
+    font-size: 10.5px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink-3);
@@ -116,7 +119,7 @@ const panels = single ? [steps[active]] : steps;
     margin-bottom: 14px;
   }
   .step-no {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     color: var(--ink-3);
     text-transform: uppercase;

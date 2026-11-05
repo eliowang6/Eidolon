@@ -1,5 +1,4 @@
 ---
-import PhoneFrame from './PhoneFrame.astro';
 import WindowFrame from './WindowFrame.astro';
 import Icon from './Icon.astro';
 import { t, type Lang } from '../i18n';
@@ -15,44 +14,46 @@ interface Props {
   };
   lang: Lang;
   index?: number;
-  anchor?: string;
 }
-const { card, lang, index = 0, anchor } = Astro.props;
+const { card, lang, index = 0 } = Astro.props;
 const copy = t(lang);
 const task = copy.loop.steps[3];
 ---
-<article class={`value value--${card.skin} reveal`} style={`--i:${index}`} data-thread-anchor={anchor}>
+<article class={`value value--${card.skin} reveal`} style={`--i:${index}`}>
   <span class="label">{card.label}</span>
   <h3>{card.title}</h3>
   <p class="desc">{card.desc}</p>
 
   <div class="media" aria-hidden="true">
-    {card.media === 'phone' && (
-      <div class="media-phone">
-        <PhoneFrame cropTop>
-          <img src="/assets/screenshots/app-mobile-home.webp" alt="" width="390" height="844" loading="lazy" />
-        </PhoneFrame>
+    {card.media === 'shot' && (
+      <div class="media-shot">
+        <img src="/assets/screenshots/app-mobile-home.webp" alt="" width="390" height="844" loading="lazy" decoding="async" />
       </div>
     )}
     {card.media === 'window' && (
       <div class="media-window">
         <WindowFrame title="Focus Cabin">
-          <img src="/assets/screenshots/app-focus-cabin.webp" alt="" width="1440" height="1100" loading="lazy" />
+          <img src="/assets/screenshots/app-focus-cabin.webp" alt="" width="1440" height="1100" loading="lazy" decoding="async" />
         </WindowFrame>
       </div>
     )}
     {card.media === 'task' && (
       <div class="mini-task">
         <div class="mt-top">
-          <span class="chip"><Icon name="check" size={12} stroke={2.4} />{task.time}</span>
-          <span class="mono">21:00</span>
+          <span class="chip"><span class="live" aria-hidden="true"></span>{task.stageTitle}</span>
+          <span class="mono">{task.time}</span>
         </div>
         <ul>
           {task.log.map((line) => (
             <li><span class="tick"><Icon name="check" size={11} stroke={2.6} /></span>{line}</li>
           ))}
         </ul>
-        <div class="mt-foot"><span>{task.note}</span><span class="mt-btns">{task.buttons.join(' · ')}</span></div>
+        <div class="mt-foot">
+          <span>{task.note}</span>
+          <span class="mt-btns">
+            {task.buttons.map((label, i) => <span class={i === 0 ? 'on' : ''}>{label}</span>)}
+          </span>
+        </div>
       </div>
     )}
   </div>
@@ -67,17 +68,20 @@ const task = copy.loop.steps[3];
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 30px 28px 26px;
+    padding: 32px 30px 28px;
     border-radius: var(--r-xl);
     border: 1px solid var(--line);
     background: var(--card);
-    min-height: 560px;
     overflow: hidden;
   }
   .value--dark {
     background: #12241d;
     color: var(--night-text);
     border-color: #12241d;
+  }
+  html[data-daypart="night"] .value--dark {
+    background: var(--night-3);
+    border-color: var(--night-line);
   }
   .value--dark .label {
     color: var(--lime);
@@ -89,30 +93,44 @@ const task = copy.loop.steps[3];
     background: var(--sage-wash);
     border-color: transparent;
   }
+  .label {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
   h3 {
-    font-size: 28px;
+    font-size: 30px;
     margin-top: 2px;
+  }
+  html[lang="en"] h3 {
+    font-size: 34px;
   }
   .desc {
     color: var(--ink-2);
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.7;
+    min-height: 3.4em;
   }
   .media {
-    margin: 8px 0 4px;
-    height: 220px;
+    margin: 10px 0 6px;
+    height: 230px;
     border-radius: var(--r-md);
-    overflow: hidden;
     position: relative;
   }
-  .media-phone {
-    display: flex;
-    justify-content: center;
-    padding-top: 18px;
+  /* A slice of the real app: the greeting card from the home screen. */
+  .media-shot {
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--r-md);
+    background: #f4efe4;
+    box-shadow: 0 0 0 1px rgba(233, 239, 230, 0.08), 0 24px 40px -24px rgba(0, 0, 0, 0.6);
   }
-  .media-phone :global(.pf) {
-    width: 214px;
-    flex: none;
+  .media-shot img {
+    width: 128%;
+    max-width: none;
+    margin: -95% 0 0 -27%;
   }
   .media-window {
     height: 100%;
@@ -130,45 +148,54 @@ const task = copy.loop.steps[3];
     object-fit: cover;
     object-position: top center;
   }
-  .value--dark .media :global(.wf) {
-    border-color: rgba(233, 239, 230, 0.12);
-  }
   .mini-task {
     height: 100%;
-    background: color-mix(in srgb, var(--card) 92%, transparent);
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
     border: 1px solid var(--line);
     border-radius: var(--r-md);
-    padding: 14px 14px 12px;
-    font-size: 12.5px;
+    padding: 16px 16px 14px;
+    font-size: 13.5px;
     color: var(--ink-2);
+    box-shadow: 0 18px 32px -24px rgba(18, 36, 29, 0.4);
   }
   .mt-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .mt-top .mono {
-    font-size: 10.5px;
+    font-size: 11px;
     color: var(--ink-3);
   }
   .mt-top .chip {
-    font-size: 11px;
-    padding: 3px 8px;
+    font-family: var(--f-latin-display);
+    font-style: italic;
+    font-size: 15px;
+    padding: 2px 10px 2px 8px;
+  }
+  .mt-top .chip .live {
+    width: 6px;
+    height: 6px;
+  }
+  .mt-top .chip .live::after {
+    inset: -4px;
   }
   .mini-task ul {
     display: grid;
-    gap: 7px;
+    gap: 9px;
   }
   .mini-task li {
     display: flex;
-    gap: 8px;
+    gap: 9px;
     align-items: flex-start;
     line-height: 1.5;
   }
   .tick {
-    width: 16px;
-    height: 16px;
+    width: 17px;
+    height: 17px;
     border-radius: 50%;
     display: grid;
     place-items: center;
@@ -177,27 +204,40 @@ const task = copy.loop.steps[3];
     flex: none;
     margin-top: 1px;
   }
+  html[data-daypart="night"] .tick {
+    color: #0e1a15;
+  }
   .mt-foot {
-    margin-top: 10px;
-    padding-top: 8px;
+    margin-top: auto;
+    padding-top: 10px;
     border-top: 1px dashed var(--line-2);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 8px;
-    font-size: 10.5px;
+    font-size: 11.5px;
     color: var(--ink-3);
   }
   .mt-btns {
-    font-family: var(--f-mono);
-    font-size: 10px;
+    display: flex;
+    gap: 6px;
+  }
+  .mt-btns span {
+    padding: 2px 9px;
+    border-radius: var(--r-full);
+    border: 1px solid transparent;
+  }
+  .mt-btns span.on {
+    border-color: var(--line-2);
+    color: var(--ink-2);
   }
   .bullets {
     margin-top: auto;
-    border-top: 1px solid rgba(127, 127, 127, 0.25);
-    padding-top: 16px;
+    border-top: 1px solid rgba(127, 127, 127, 0.22);
+    padding-top: 18px;
     display: grid;
-    gap: 8px;
-    font-size: 14.5px;
+    gap: 9px;
+    font-size: 15px;
   }
   .bullets li {
     display: flex;
@@ -216,17 +256,23 @@ const task = copy.loop.steps[3];
   .value--dark .bullets li::before {
     background: var(--lime);
   }
-  @media (max-width: 1100px) {
+  @media (max-width: 1100px) and (min-width: 901px) {
     .value {
-      min-height: 520px;
+      padding: 26px 22px 24px;
+    }
+    h3 {
+      font-size: 26px;
+    }
+    .media {
+      height: 200px;
     }
   }
   @media (max-width: 767px) {
-    .value {
-      min-height: 0;
-    }
     .media {
       height: 240px;
+    }
+    .desc {
+      min-height: 0;
     }
   }
 </style>

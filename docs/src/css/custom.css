@@ -1,5 +1,5 @@
 /**
- * Eidolon Docs — Custom Theme
+ * Sholarel Docs — Custom Theme
  * A polished, modern documentation site with
  * glassmorphism accents, smooth animations, and refined typography.
  */
@@ -47,7 +47,7 @@ html {
   /* Sidebar */
   --ifm-menu-link-sublist-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%237c3aed' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 4l4 4-4 4'/%3E%3C/svg%3E");
 
-  /* Eidolon custom tokens */
+  /* Sholarel custom tokens */
   --eid-glow: rgba(124, 58, 237, 0.25);
   --eid-glass-bg: rgba(255, 255, 255, 0.55);
   --eid-glass-border: rgba(255, 255, 255, 0.25);

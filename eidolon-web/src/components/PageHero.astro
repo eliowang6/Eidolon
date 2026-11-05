@@ -1,4 +1,6 @@
 ---
+import Eyebrow from './Eyebrow.astro';
+
 interface Props {
   label: string;
   h1a: string;
@@ -11,7 +13,7 @@ const { label, h1a, h1b, lede, align = 'left', class: className = '' } = Astro.p
 ---
 <header class={`page-head ${align === 'center' ? 'page-head--center' : ''} ${className}`}>
   <div class="container">
-    <span class="label reveal">{label}</span>
+    <Eyebrow text={label} class="reveal" />
     <h1 class="reveal" style="--i:1">{h1a}{h1b && <><br />{h1b}</>}</h1>
     {lede && <p class="lede reveal" style="--i:2">{lede}</p>}
     <slot />

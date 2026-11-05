@@ -9,12 +9,10 @@ import SectionHead from '../SectionHead.astro';
 import TornCard from '../TornCard.astro';
 import LoopStage from '../LoopStage.astro';
 import ValueCard from '../ValueCard.astro';
-import CompareTable from '../CompareTable.astro';
-import MetricCard from '../MetricCard.astro';
-import MemoryLayers from '../MemoryLayers.astro';
+import PermissionPanel from '../PermissionPanel.astro';
 import Polaroid from '../Polaroid.astro';
-import Timeline from '../Timeline.astro';
 import WaitlistLetter from '../WaitlistLetter.astro';
+import Icon from '../Icon.astro';
 import { SITE } from '../../config/site';
 import { localizePath, t, type Lang } from '../../i18n';
 
@@ -26,28 +24,23 @@ const copy = t(lang);
 const p = (href: string) => localizePath(lang, href);
 const status = SITE.status;
 const statusCopy = copy.statusCopy[status];
-const sectionNames = lang === 'zh'
-  ? { hero: '开始', why: '为什么', loop: '她的一天', values: '三种价值', compare: '不同之处', foundation: '底座', who: '为谁而做', road: '公测之路', waitlist: '候补' }
-  : { hero: 'Start', why: 'Why', loop: 'A day with her', values: 'Three values', compare: "What's different", foundation: 'Foundation', who: "Who it's for", road: 'Road to beta', waitlist: 'Waitlist' };
 const joinHref = status === 'public-beta' ? p('/download.html') : `${p('/beta.html')}#join`;
-const tertiaryHref = statusCopy.kind === 'download' ? p('/download.html') : statusCopy.kind === 'community' ? `${p('/beta.html')}#community` : p('/download.html');
+const secondaryHref = statusCopy.kind === 'loop' ? '#loop' : p('/download.html');
 const stitch = copy.why.stitch;
 ---
 <div class="home" data-thread-home>
-  <svg class="thread" data-thread aria-hidden="true" preserveAspectRatio="none">
+  <svg class="thread" data-thread aria-hidden="true" focusable="false">
     <defs>
-      <linearGradient id="thread-grad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="var(--ink)" />
-        <stop offset="0.9" stop-color="var(--ink)" />
-        <stop offset="1" stop-color="var(--lime)" />
-      </linearGradient>
+      <linearGradient id="thread-ink" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1"></linearGradient>
     </defs>
-    <path d=""></path>
+    <path class="thread-path" d="" />
+    <g class="thread-beads"></g>
+    <circle class="thread-tip" r="3.5" cx="0" cy="0" />
   </svg>
 
-  <!-- H1 · Hero -->
-  <section class="hero" data-section-name={sectionNames.hero}>
-    <div class="hero-media">
+  <!-- Hero: the page takes the reader's local light -->
+  <section class="hero" data-section-name={copy.hero.sectionName}>
+    <div class="hero-media" aria-hidden="true">
       <Picture
         src={heroImage}
         formats={['avif', 'webp']}
@@ -68,93 +61,61 @@ const stitch = copy.why.stitch;
 
     <div class="container hero-inner">
       <div class="hero-copy">
-        <StatusPill text={statusCopy.pill} class="hero-pill reveal" />
-        <h1 class="reveal" style="--i:1">
+        <span class="hero-pill" data-thread-start><StatusPill text={statusCopy.pill} /></span>
+        <h1>
           <span class="ln">{copy.hero.line1}</span>
-          <span class="ln">{copy.hero.line2Pre}<span class="live-word" data-thread-anchor="hero-word">{copy.hero.line2Word}<svg viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12C20 4 40 18 60 9s30-3 38 2" /></svg></span>{copy.hero.line2Post}</span>
+          <span class="ln">{copy.hero.line2Pre}<span class="live-word">{copy.hero.line2Word}<svg viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12C20 4 40 18 60 9s30-3 38 2" /></svg></span>{copy.hero.line2Post}</span>
         </h1>
         <p class="verbs" aria-label={copy.hero.verbs.join(' ')}>
-          {copy.hero.verbs.map((verb, i) => <span style={`--v:${i}`}>{verb}</span>)}
+          {copy.hero.verbs.map((verb, i) => <span aria-hidden="true" style={`--v:${i}`}>{verb}</span>)}
         </p>
-        <p class="lede reveal" style="--i:2">{copy.hero.lede}</p>
-        <div class="hero-actions reveal" style="--i:3">
+        <p class="lede hero-lede">{copy.hero.lede}</p>
+        <div class="hero-actions">
           <Button href={joinHref} variant="ink">{statusCopy.primary}</Button>
-          <Button href="#loop" variant="ghost">{copy.hero.secondary}</Button>
-          <a class="btn-text" href={tertiaryHref}>{statusCopy.tertiary}</a>
+          <Button href={secondaryHref} variant="ghost">{statusCopy.secondary}</Button>
         </div>
-        <div class="hero-meta reveal" style="--i:4">
+        <p class="hero-meta">
           {copy.hero.platforms.map((platform, i) => (
             <span class={i === copy.hero.platforms.length - 1 ? 'muted' : ''}>{platform}</span>
           ))}
-        </div>
+        </p>
       </div>
 
-      <MarginNote
-        class="hero-note"
-        text={copy.mnote.heroFirst}
-        variant="scrap"
-        arrow
-        heroNote={{ first: copy.mnote.heroFirst, section: copy.mnote.heroBackSection, days: copy.mnote.heroBackDays }}
-      />
-      <div class="hero-side" data-thread-anchor="presence">
+      <div class="hero-side">
+        <MarginNote
+          class="hero-note"
+          text={copy.mnote.heroFirst}
+          variant="scrap"
+          arrow
+          heroNote={{ first: copy.mnote.heroFirst, section: copy.mnote.heroBackSection, days: copy.mnote.heroBackDays }}
+        />
         <PresenceCard lang={lang} />
       </div>
     </div>
   </section>
 
-  <!-- H2 · Why -->
-  <section class="section section--paper2 why" data-section-name={sectionNames.why}>
+  <!-- Why -->
+  <section class="section section--paper2 why" data-section-name={copy.why.label}>
     <div class="container">
-      <SectionHead
-        class="reveal"
-        label={copy.why.label}
-        h2a={copy.why.h2a}
-        h2b={copy.why.h2b}
-      />
-      <div class="fractures reveal">
-        {copy.why.cards.map((card) => (
-          <TornCard no={card.no} title={card.title} desc={card.desc} anchor={`torn-${card.no}`} />
+      <SectionHead class="reveal" label={copy.why.label} h2a={copy.why.h2a} h2b={copy.why.h2b} node />
+      <div class="fractures">
+        {copy.why.cards.map((card, i) => (
+          <TornCard title={card.title} desc={card.desc} class="reveal" style={`--i:${i}`} />
         ))}
-        <MarginNote class="why-note" text={copy.mnote.why} />
       </div>
-      <p class="stitch reveal">
-        {stitch.pre}
-        {stitch.marks.map((mark, i) => (
-          <>
-            <mark style={`--i:${i}`}>{mark}</mark>
-            {stitch.mid[i] && <span>{stitch.mid[i]}</span>}
-          </>
-        ))}
-        {stitch.post}
-      </p>
+      <p class="stitch reveal">{stitch.pre}{stitch.marks.map((mark, i) => <><mark style={`--i:${i}`}>{mark}</mark>{stitch.mid[i] ?? ''}</>)}{stitch.post}</p>
     </div>
   </section>
 
-  <!-- H3 · The loop -->
-  <section class="section loop-sec" id="loop" data-loop-section data-section-name={sectionNames.loop}>
+  <!-- A day with her: five steps, pinned on desktop -->
+  <section class="section loop-sec" id="loop" data-loop-section data-section-name={copy.loop.label}>
     <div class="container">
-      <div class="loop-top reveal">
-        <div class="in-pill">
-          <span class="label">{copy.loop.inputOuterTitle}</span>
-          <span>{copy.loop.inputOuterText}</span>
-        </div>
-        <svg class="merge" viewBox="0 0 1200 64" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M170 4C210 40 250 54 310 58" />
-          <path d="M1030 4C990 40 950 54 890 58" />
-          <path d="M310 58H890" opacity="0" />
-        </svg>
-        <div class="in-pill in-pill--right">
-          <span class="label">{copy.loop.inputInnerTitle}</span>
-          <span>{copy.loop.inputInnerText}</span>
-        </div>
-      </div>
-
       <div class="loop-grid loop-desktop">
         <div class="stage-col">
-          <LoopStage steps={copy.loop.steps} lang={lang} active={0} anchor="loop" />
+          <LoopStage steps={copy.loop.steps} lang={lang} active={0} />
         </div>
         <div class="loop-copy">
-          <SectionHead class="reveal" label={copy.loop.label} h2a={copy.loop.h2a} h2b={copy.loop.h2b} lede={copy.loop.lede} />
+          <SectionHead label={copy.loop.label} h2a={copy.loop.h2a} h2b={copy.loop.h2b} lede={copy.loop.lede} node />
           <ol class="steps" data-loop-steps>
             {copy.loop.steps.map((step, i) => (
               <li class={i === 0 ? 'on' : ''} data-loop-step={i}>
@@ -163,13 +124,14 @@ const stitch = copy.why.stitch;
                   <span class="h">
                     <span class="no mono">0{i + 1}</span>
                     <span class="name">{step.name}</span>
-                    <span class="en latin">{step.en}</span>
+                    {lang === 'zh' && <span class="en latin">{step.en}</span>}
                   </span>
                   <span class="d">{step.desc}</span>
                 </button>
               </li>
             ))}
           </ol>
+          <p class="loop-closing">{copy.loop.closing}</p>
         </div>
       </div>
 
@@ -177,143 +139,97 @@ const stitch = copy.why.stitch;
         <SectionHead class="reveal" label={copy.loop.label} h2a={copy.loop.h2a} h2b={copy.loop.h2b} lede={copy.loop.lede} />
         <div class="loop-mobile-list">
           {copy.loop.steps.map((step, i) => (
-            <div class="loop-mobile-step" data-loop-mobile-step={i}>
+            <div class="loop-mobile-step reveal" data-loop-mobile-step={i}>
               <div class="lm-head">
-                <span class="mono">{step.time}</span>
+                <span class="mono">0{i + 1} · {step.time}</span>
                 <h3>{step.name}</h3>
-                <span class="latin">{step.en}</span>
+                {lang === 'zh' && <span class="latin">{step.en}</span>}
               </div>
               <p>{step.desc}</p>
               <LoopStage steps={copy.loop.steps} lang={lang} active={i} single compact />
             </div>
           ))}
         </div>
+        <p class="loop-closing">{copy.loop.closing}</p>
       </div>
-
-      <p class="loop-closing reveal">{copy.loop.closing}</p>
     </div>
   </section>
 
-  <!-- H4 · Values -->
-  <section class="section values-sec" data-section-name={sectionNames.values}>
+  <!-- What she does -->
+  <section class="section values-sec" data-section-name={copy.values.label}>
     <div class="container">
       <div class="values-head">
-        <SectionHead class="reveal" label={copy.values.label} h2a={copy.values.h2} />
-        <a class="tlink" href={p('/features.html')}>{copy.common.allCapabilities}</a>
-        <MarginNote class="values-note" text={copy.mnote.values} />
+        <SectionHead class="reveal" label={copy.values.label} h2a={copy.values.h2} lede={copy.values.lede} node />
+        <a class="tlink reveal" href={p('/features.html')}>{copy.common.allCapabilities}</a>
       </div>
       <div class="values">
         {copy.values.cards.map((card, i) => (
-          <ValueCard card={card} lang={lang} index={i} anchor={`value-${i + 1}`} />
+          <ValueCard card={card} lang={lang} index={i} />
         ))}
       </div>
-      <p class="foundation reveal">
-        <b>{copy.values.foundationLabel}</b>
-        <span>{copy.values.foundation}</span>
-      </p>
     </div>
   </section>
 
-  <!-- H5 · Compare -->
-  <section class="section section--paper2 compare-sec" data-section-name={sectionNames.compare}>
-    <div class="container">
-      <div class="compare-grid">
-        <div class="compare-left">
-          <SectionHead class="reveal" label={copy.compare.label} h2a={copy.compare.h2a} h2b={copy.compare.h2b} />
-          <div class="insight reveal">{copy.compare.insight}</div>
-        </div>
-        <div class="compare-right reveal">
-          <CompareTable lang={lang} anchor="compare" />
-        </div>
-      </div>
-      <p class="big-quote reveal">{copy.compare.quote}</p>
-    </div>
-  </section>
-
-  <!-- H6 · Foundation -->
-  <section class="section band-night foundation-sec" data-section-name={sectionNames.foundation}>
-    <div class="container">
-      <SectionHead class="reveal" label={copy.foundation.label} h2a={copy.foundation.h2a} h2b={copy.foundation.h2b} lede={copy.foundation.lede} />
-      <div class="metrics reveal">
-        <MetricCard
-          value="−25%"
-          captionA={copy.foundation.metrics[0].captionA}
-          captionB={copy.foundation.metrics[0].captionB}
-          to="25"
-          prefix="−"
-          suffix="%"
-          index={0}
-        />
-        <MetricCard
-          value="90–97%"
-          captionA={copy.foundation.metrics[1].captionA}
-          captionB={copy.foundation.metrics[1].captionB}
-          to="90"
-          rangeTo="97"
-          suffix="%"
-          index={1}
-        />
-        <div class="layers-card reveal" style="--i:2" data-thread-anchor="layers">
-          <MemoryLayers title={copy.foundation.layersTitle} desc={copy.foundation.layersDesc} />
-          <MarginNote class="layers-note" text={copy.mnote.foundation} />
-        </div>
-      </div>
-      <div class="pillars reveal">
-        {copy.foundation.pillars.map((pillar) => (
-          <div class="pillar">
-            <span class="label">{pillar.key}</span>
-            <h3>{pillar.title}</h3>
-            <p>{pillar.desc}</p>
-          </div>
-        ))}
-      </div>
-      <div class="foundation-foot reveal">
-        <p class="footnote">{copy.foundation.footnote}</p>
-        <a class="tlink" href={p('/how-it-works.html')}>{copy.common.howItWorks}</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- H7 · Who -->
-  <section class="section who-sec" data-section-name={sectionNames.who}>
-    <div class="container who-grid">
-      <div class="who-photo reveal">
-        <Polaroid src="/assets/fea-hero-illustration.webp" alt={copy.aboutPage.feaName} caption={copy.who.feaCaption} />
-      </div>
-      <div class="who-copy">
-        <SectionHead class="reveal" label={copy.who.label} h2a={copy.who.h2} />
-        <ul class="who-rows">
-          {copy.who.rows.map((row) => (
-            <li>
-              <span class="no mono">{row.no}</span>
-              <div><h3>{row.title}</h3><p>{row.desc}</p></div>
+  <!-- Your boundaries -->
+  <section class="section section--paper2 trust-sec" data-section-name={copy.trust.label}>
+    <div class="container trust-grid">
+      <div class="trust-copy">
+        <SectionHead class="reveal" label={copy.trust.label} h2a={copy.trust.h2a} h2b={copy.trust.h2b} lede={copy.trust.lede} node />
+        <ul class="trust-list">
+          {copy.trust.items.map((item, i) => (
+            <li class="reveal" style={`--i:${i}`}>
+              <span class="trust-ic"><Icon name={item.icon} size={20} /></span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
             </li>
           ))}
         </ul>
-        <p class="who-fea reveal">{copy.who.feaIntro}</p>
-        <a class="tlink reveal" href={p('/about.html')}>{copy.who.feaLink}</a>
+        <a class="tlink reveal" href={p('/privacy.html')}>{copy.trust.link}</a>
+      </div>
+      <div class="trust-visual reveal" style="--i:2">
+        <PermissionPanel lang={lang} />
       </div>
     </div>
   </section>
 
-  <!-- H8 · Road -->
-  <section class="section road-sec" data-section-name={sectionNames.road}>
-    <div class="container">
-      <div class="road-head reveal">
-        <SectionHead class="reveal" label={copy.road.label} h2a={copy.road.h2} />
-        <a class="tlink" href={`${p('/beta.html')}#roadmap`}>{copy.road.link}</a>
+  <!-- Meet Fea: the night band is her side of the screen -->
+  <section class="section band-night fea-sec" data-section-name={copy.fea.label}>
+    <div class="container fea-grid">
+      <div class="fea-photo reveal">
+        <Polaroid src="/assets/fea-hero-illustration.webp" alt={copy.fea.alt} caption={copy.fea.caption} rotate={-3} />
+        <MarginNote class="fea-note" text={copy.mnote.fea} />
       </div>
+      <div class="fea-copy">
+        <SectionHead class="reveal" label={copy.fea.label} h2a={copy.fea.h2a} h2b={copy.fea.h2b} node />
+        <p class="fea-body reveal">{copy.fea.body}</p>
+        <ul class="fea-principles">
+          {copy.fea.principles.map((item, i) => (
+            <li class="reveal" style={`--i:${i + 1}`}>
+              <span class="latin">{item.title}</span>
+              <span>{item.desc}</span>
+            </li>
+          ))}
+        </ul>
+        <a class="tlink reveal" href={p('/about.html')}>{copy.fea.link}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join -->
+  <section class="section join-sec" id="join" data-section-name={copy.waitlist.label}>
+    <div class="container">
       <div class="reveal">
-        <Timeline nodes={copy.road.nodes} anchor="road" />
+        <WaitlistLetter lang={lang} id="home-letter" node />
       </div>
-    </div>
-  </section>
-
-  <!-- H9 · Waitlist -->
-  <section class="section section--paper2 waitlist-sec" id="join" data-section-name={sectionNames.waitlist}>
-    <div class="container">
-      <WaitlistLetter lang={lang} id="join" anchor="stamp" />
-      <span class="thread-end" data-thread-anchor="end" aria-hidden="true"></span>
+      {status !== 'public-beta' && (
+        <p class="join-alt reveal">
+          <span>{copy.join.lead}</span>
+          <a class="tlink" href={p('/download.html')}>{copy.join.link}</a>
+        </p>
+      )}
+      <span class="thread-end" data-thread-end aria-hidden="true"></span>
     </div>
   </section>
 </div>
@@ -327,6 +243,8 @@ const stitch = copy.why.stitch;
   .home {
     position: relative;
   }
+
+  /* ── the thread ───────────────────────────────────── */
   .thread {
     position: absolute;
     inset: 0;
@@ -335,23 +253,46 @@ const stitch = copy.why.stitch;
     z-index: 1;
     pointer-events: none;
     overflow: visible;
+    display: none;
   }
-  .thread path {
+  .thread:global(.is-on) {
+    display: block;
+  }
+  .thread-path {
     fill: none;
-    stroke: url(#thread-grad);
-    stroke-opacity: 0.55;
-    stroke-width: 1.5;
+    stroke: url(#thread-ink);
+    stroke-width: 1.4;
     stroke-linecap: round;
-    vector-effect: non-scaling-stroke;
+    stroke-linejoin: round;
+    stroke-opacity: 0.5;
   }
-  html[data-daypart="night"] .thread path {
-    stroke-opacity: 0.6;
+  .thread :global(.thread-bead) {
+    stroke: var(--ink);
+    stroke-opacity: 0.5;
+    stroke-width: 1.4;
+    transition: fill var(--t-mid) var(--ease), stroke var(--t-mid) var(--ease), stroke-opacity var(--t-mid);
+  }
+  .thread :global(.thread-bead.on-dark) {
+    stroke: var(--night-text);
+  }
+  .thread :global(.thread-bead.lit) {
+    fill: var(--lime) !important;
+    stroke: var(--lime-deep);
+    stroke-opacity: 1;
+  }
+  .thread-tip {
+    fill: var(--lime);
+    stroke: var(--lime-deep);
+    stroke-width: 1;
+    opacity: 0;
+    filter: drop-shadow(0 0 5px rgba(200, 241, 105, 0.9));
+    transition: opacity var(--t-fast);
   }
 
   /* ── hero ─────────────────────────────────────────── */
   .hero {
     position: relative;
-    min-height: clamp(760px, 100svh, 980px);
+    min-height: clamp(720px, 100svh, 960px);
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -392,8 +333,8 @@ const stitch = copy.why.stitch;
   }
   .hero-fade {
     background:
-      linear-gradient(90deg, var(--paper) 0%, color-mix(in srgb, var(--paper) 94%, transparent) 28%, color-mix(in srgb, var(--paper) 60%, transparent) 46%, transparent 64%),
-      linear-gradient(0deg, var(--paper) 0%, transparent 22%);
+      linear-gradient(90deg, var(--paper) 0%, color-mix(in srgb, var(--paper) 94%, transparent) 30%, color-mix(in srgb, var(--paper) 62%, transparent) 48%, transparent 66%),
+      linear-gradient(0deg, var(--paper) 0%, transparent 20%);
   }
   .hero-lamp {
     opacity: 0;
@@ -423,27 +364,49 @@ const stitch = copy.why.stitch;
   html[data-daypart="night"] .hero-fade {
     background:
       linear-gradient(90deg, var(--paper) 0%, color-mix(in srgb, var(--paper) 92%, transparent) 30%, color-mix(in srgb, var(--paper) 50%, transparent) 50%, transparent 68%),
-      linear-gradient(0deg, var(--paper) 0%, transparent 24%);
+      linear-gradient(0deg, var(--paper) 0%, transparent 22%);
   }
 
   .hero-inner {
-    min-height: clamp(760px, 100svh, 980px);
+    width: 100%;
+    min-height: inherit;
     display: flex;
     align-items: center;
-    padding-top: 72px;
+    padding-top: var(--nav-h);
   }
   .hero-copy {
     position: relative;
     z-index: 3;
-    max-width: min(720px, 100%);
+    max-width: 700px;
+  }
+  /* Entrance runs on CSS alone, so the first screen never waits for scripts. */
+  .hero-pill,
+  .hero h1,
+  .hero-lede,
+  .hero-actions,
+  .hero-meta,
+  .hero-side {
+    animation: heroIn 1s var(--ease) both;
+  }
+  .hero h1 { animation-delay: 0.08s; }
+  .hero-lede { animation-delay: 0.5s; }
+  .hero-actions { animation-delay: 0.62s; }
+  .hero-meta { animation-delay: 0.74s; }
+  .hero-side { animation-delay: 0.9s; }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+  .hero-pill {
+    display: inline-block;
   }
   .hero h1 {
-    margin: 22px 0 16px;
+    margin: 22px 0 14px;
     font-size: var(--fs-display);
   }
   html[lang="en"] .hero h1 {
-    font-size: clamp(2.5rem, 1.2rem + 3vw, 4.25rem);
-    line-height: 1.02;
+    font-size: clamp(2.75rem, 1.3rem + 3.4vw, 4.75rem);
+    line-height: 1;
     max-width: 760px;
   }
   .hero h1 .ln {
@@ -452,7 +415,6 @@ const stitch = copy.why.stitch;
   }
   html[lang="en"] .hero h1 .ln {
     white-space: normal;
-    text-wrap: balance;
   }
   .live-word {
     position: relative;
@@ -461,9 +423,9 @@ const stitch = copy.why.stitch;
   .live-word svg {
     position: absolute;
     left: -4%;
-    bottom: -0.18em;
+    bottom: -0.16em;
     width: 108%;
-    height: 0.42em;
+    height: 0.4em;
     overflow: visible;
   }
   .live-word path {
@@ -473,7 +435,7 @@ const stitch = copy.why.stitch;
     stroke-linecap: round;
     stroke-dasharray: 240;
     stroke-dashoffset: 240;
-    animation: draw 1.2s 0.6s var(--ease) forwards;
+    animation: draw 1.2s 0.7s var(--ease) forwards;
   }
   html[data-daypart="night"] .live-word path {
     stroke: var(--lime);
@@ -482,41 +444,45 @@ const stitch = copy.why.stitch;
     to { stroke-dashoffset: 0; }
   }
   .verbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.42em;
     font-family: var(--f-latin-display);
     font-style: italic;
-    font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+    font-size: clamp(1.4rem, 1.05rem + 1vw, 2rem);
     color: var(--ink-2);
     line-height: 1.25;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
   .verbs span {
-    display: inline-block;
     opacity: 0;
     transform: translateY(6px);
     animation: rise 0.7s var(--ease) forwards;
-    animation-delay: calc(0.9s + var(--v) * 0.15s);
+    animation-delay: calc(0.32s + var(--v) * 0.13s);
   }
   @keyframes rise {
     to { opacity: 1; transform: none; }
   }
-  .hero .lede {
-    margin-bottom: 30px;
+  .hero-lede {
+    max-width: 31em;
+    margin-bottom: 32px;
+    text-wrap: balance;
+  }
+  html[lang="en"] .hero-lede {
+    max-width: 33em;
   }
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 14px 20px;
+    gap: 12px 14px;
   }
   .hero-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 22px;
-    margin-top: 34px;
+    gap: 8px 20px;
+    margin-top: 30px;
     font-size: 13px;
-    color: var(--ink-3);
-  }
-  .hero-meta .muted {
     color: var(--ink-3);
   }
   .hero-meta span:not(.muted) {
@@ -525,99 +491,105 @@ const stitch = copy.why.stitch;
   }
   .hero-side {
     position: absolute;
-    right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
-    top: clamp(300px, 44vh, 440px);
+    right: var(--gutter);
+    top: calc(50% + 10px);
     width: 340px;
     z-index: 3;
   }
-  :global(.hero-note) {
-    right: calc(max(var(--gutter), (100vw - var(--container)) / 2 + var(--gutter)) + 250px);
-    top: clamp(190px, 30vh, 300px);
+  .hero-side :global(.hero-note) {
+    right: 196px;
+    bottom: calc(100% + 30px);
+    width: max-content;
+    max-width: 236px;
+  }
+  @media (max-width: 1180px) {
+    .hero-copy {
+      max-width: 600px;
+    }
   }
   @media (max-width: 1120px) {
     .hero {
       min-height: 0;
-      padding: 120px 0 64px;
+      padding: 128px 0 72px;
     }
     .hero-inner {
-      min-height: 0;
       flex-direction: column;
       align-items: flex-start;
       padding-top: 0;
     }
     .hero h1 {
-      font-size: clamp(2.25rem, 9vw, 3.5rem);
+      font-size: clamp(2.25rem, 8.6vw, 3.5rem);
     }
     .hero-side {
       position: relative;
       inset: auto;
-      margin: 44px 0 0;
+      margin: 48px 0 0;
       width: 100%;
       max-width: 380px;
     }
-    :global(.hero-note) {
+    .hero-side :global(.hero-note) {
       display: none;
     }
     .hero-media :global(img) {
       object-position: 80% 50%;
     }
     .hero-fade {
-      background:
-        linear-gradient(180deg, color-mix(in srgb, var(--paper) 20%, transparent) 0%, color-mix(in srgb, var(--paper) 86%, transparent) 38%, var(--paper) 70%);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--paper) 20%, transparent) 0%, color-mix(in srgb, var(--paper) 86%, transparent) 38%, var(--paper) 70%);
     }
     html[data-daypart="night"] .hero-fade {
-      background:
-        linear-gradient(180deg, color-mix(in srgb, var(--paper) 30%, transparent) 0%, color-mix(in srgb, var(--paper) 90%, transparent) 38%, var(--paper) 70%);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--paper) 30%, transparent) 0%, color-mix(in srgb, var(--paper) 90%, transparent) 38%, var(--paper) 70%);
+    }
+  }
+  @media (max-width: 520px) {
+    .hero-actions :global(.btn) {
+      flex: 1 1 100%;
     }
   }
 
   /* ── why ──────────────────────────────────────────── */
-  .why {
-    padding-top: clamp(96px, 12vw, 150px);
-  }
   .fractures {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-    margin-top: 26px;
-    position: relative;
-  }
-    :global(.why-note) {
-    right: -10px;
-    top: -54px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.6vw, 34px);
+    margin-top: 18px;
   }
   .stitch {
-    margin-top: clamp(48px, 6vw, 72px);
+    margin-top: clamp(56px, 7vw, 88px);
     font-family: var(--f-zh-display);
     font-weight: 700;
-    font-size: clamp(1.3rem, 1rem + 1vw, 1.9rem);
+    font-size: clamp(1.35rem, 1rem + 1.1vw, 2rem);
     line-height: 1.6;
-    max-width: 940px;
+    max-width: 980px;
+    text-wrap: balance;
+  }
+  :lang(zh) .stitch {
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   html[lang="en"] .stitch {
     font-family: var(--f-latin-display);
     font-weight: 400;
-    line-height: 1.35;
+    font-size: clamp(1.6rem, 1.1rem + 1.4vw, 2.5rem);
+    line-height: 1.3;
   }
   .stitch mark {
     background: linear-gradient(transparent 62%, rgba(200, 241, 105, 0.7) 62%) no-repeat left center;
     background-size: 0% 100%;
     color: inherit;
     padding: 0 0.08em;
-    transition: background-size 0.6s var(--ease) calc(var(--i) * 0.2s + 0.2s);
+    transition: background-size 0.6s var(--ease) calc(var(--i) * 0.2s + 0.3s);
   }
-  .stitch.in mark {
+  html[data-daypart="night"] .stitch mark {
+    background-image: linear-gradient(transparent 62%, rgba(200, 241, 105, 0.32) 62%);
+  }
+  .stitch:global(.in) mark,
+  :global(html.reveal-all) .stitch mark {
     background-size: 100% 100%;
   }
-  @media (max-width: 1023px) {
-    .fractures {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     .fractures {
       grid-template-columns: 1fr;
-      gap: 26px;
+      max-width: 560px;
     }
   }
 
@@ -626,80 +598,30 @@ const stitch = copy.why.stitch;
     overflow: clip;
   }
   @media (min-width: 1024px) {
-    html.js .loop-sec {
+    :global(html.js) .loop-sec {
       min-height: 100svh;
       display: flex;
-      align-items: flex-start;
-      padding-top: 110px;
-      padding-bottom: 60px;
+      align-items: center;
+      padding: calc(var(--nav-h) + 24px) 0 40px;
     }
-    html.js .loop-sec > .container {
+    :global(html.js) .loop-sec > .container {
       width: 100%;
     }
   }
-  .loop-top {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    align-items: start;
-    margin-bottom: 34px;
-    position: relative;
-  }
-  .in-pill {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 12px 16px;
-    border-radius: var(--r-full);
-    background: var(--sage-wash);
-    border: 1px solid transparent;
-    max-width: 430px;
-  }
-  .in-pill--right {
-    justify-self: end;
-    text-align: right;
-  }
-  .in-pill .label {
-    color: var(--sage-deep);
-    font-size: 10px;
-  }
-  .in-pill > span:last-child {
-    font-size: 12.5px;
-    color: var(--ink-2);
-    line-height: 1.5;
-  }
-  .merge {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 8px;
-    width: min(56%, 620px);
-    height: 64px;
-    overflow: visible;
-    pointer-events: none;
-  }
-  .merge path {
-    fill: none;
-    stroke: var(--line-2);
-    stroke-width: 1;
-    stroke-dasharray: 260;
-    stroke-dashoffset: 260;
-    transition: stroke-dashoffset 1s var(--ease) 0.2s;
-  }
-  .loop-top.in .merge path {
-    stroke-dashoffset: 0;
-  }
   .loop-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(32px, 4vw, 60px);
-    align-items: start;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(36px, 5vw, 80px);
+    align-items: center;
   }
   .stage-col {
     min-width: 0;
   }
   .loop-copy :global(.sec-head) {
-    margin-bottom: 26px;
+    margin-bottom: 24px;
+  }
+  .loop-copy :global(.sec-head .lede) {
+    font-size: 1.0625rem;
   }
   .steps {
     border-top: 1px solid var(--line);
@@ -709,12 +631,11 @@ const stitch = copy.why.stitch;
   }
   .steps button {
     display: grid;
-    grid-template-columns: 58px 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 60px 1fr;
     gap: 2px 12px;
     width: 100%;
     text-align: left;
-    padding: 15px 0;
+    padding: 13px 0;
     color: var(--ink-3);
     transition: color var(--t-fast);
   }
@@ -723,79 +644,70 @@ const stitch = copy.why.stitch;
   }
   .steps .t {
     grid-row: 1 / 3;
-    font-size: 11px;
+    font-size: 11.5px;
     letter-spacing: 0.04em;
-    padding-top: 4px;
+    padding-top: 5px;
   }
   .steps .h {
     display: flex;
     align-items: baseline;
-    gap: 9px;
+    gap: 10px;
   }
   .steps .no {
-    font-size: 10px;
-    color: var(--ink-3);
+    font-size: 11px;
   }
   .steps .name {
     font-family: var(--f-zh-display);
     font-weight: 700;
     font-size: 19px;
-    color: inherit;
   }
   html[lang="en"] .steps .name {
     font-family: var(--f-latin-display);
     font-weight: 400;
-    font-size: 22px;
+    font-size: 23px;
   }
   .steps .en {
-    font-size: 13px;
-    color: var(--ink-3);
-    opacity: 0.9;
+    font-size: 14px;
+    opacity: 0.85;
   }
   .steps .d {
     grid-column: 2;
-    font-size: 13.5px;
+    font-size: 14.5px;
     line-height: 1.65;
   }
-  html.js .loop-sec.js-loop .steps .d {
+  :global(html.js) .loop-sec:global(.js-loop) .steps .d {
     max-height: 0;
     overflow: hidden;
     transition: max-height var(--t-mid) var(--ease), margin var(--t-mid);
   }
-  html.js .loop-sec.js-loop .steps li.on .d {
+  :global(html.js) .loop-sec:global(.js-loop) .steps li.on .d {
     max-height: 120px;
     margin-top: 4px;
   }
   .steps li.on button {
     color: var(--ink);
   }
-  .steps li.on .name {
-    color: var(--ink);
-  }
   .loop-closing {
-    margin-top: clamp(36px, 5vw, 56px);
-    max-width: 700px;
+    margin-top: 22px;
     font-size: 14.5px;
     line-height: 1.75;
     color: var(--ink-3);
-    border-left: 2px solid var(--sage);
-    padding-left: 18px;
   }
   .loop-mobile {
     display: none;
   }
-  @media (max-width: 1023px) {
-    .loop-top {
-      grid-template-columns: 1fr;
-      gap: 10px;
+  @media (max-height: 820px) and (min-width: 1024px) {
+    .steps button {
+      padding: 10px 0;
     }
-    .merge {
+    .loop-copy :global(.sec-head h2) {
+      font-size: clamp(1.9rem, 1.2rem + 1.8vw, 2.6rem);
+    }
+    .loop-closing {
       display: none;
     }
-    .in-pill--right {
-      justify-self: start;
-      text-align: left;
-    }
+  }
+  @media (max-width: 1023px) {
     .loop-grid.loop-desktop {
       display: none;
     }
@@ -805,10 +717,7 @@ const stitch = copy.why.stitch;
     .loop-mobile-list {
       display: grid;
       gap: 48px;
-      margin-top: 36px;
-    }
-    .loop-mobile-step {
-      scroll-margin-top: 90px;
+      margin-top: 8px;
     }
     .lm-head {
       display: flex;
@@ -817,36 +726,24 @@ const stitch = copy.why.stitch;
       margin-bottom: 6px;
     }
     .lm-head .mono {
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--ink-3);
     }
     .lm-head h3 {
       font-size: 22px;
     }
     .lm-head .latin {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--ink-3);
     }
     .loop-mobile-step > p {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--ink-2);
       margin-bottom: 14px;
-      max-width: 520px;
+      max-width: 540px;
     }
-  }
-  @media (max-height: 820px) and (min-width: 1024px) {
-    .loop-sec {
-      padding-top: 96px;
-      padding-bottom: 64px;
-    }
-    .loop-top {
-      margin-bottom: 20px;
-    }
-    .steps button {
-      padding: 12px 0;
-    }
-    :global(.stage) {
-      min-height: 380px;
+    .loop-mobile .loop-closing {
+      margin-top: 40px;
     }
   }
 
@@ -855,282 +752,189 @@ const stitch = copy.why.stitch;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 24px;
+    gap: 24px 48px;
+    margin-bottom: clamp(36px, 4vw, 52px);
   }
   .values-head :global(.sec-head) {
-    margin-bottom: 32px;
-    max-width: 1000px;
+    margin-bottom: 0;
+  }
+  .values-head .tlink {
+    flex: none;
+    margin-bottom: 10px;
   }
   .values {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    position: relative;
-  }
-  :global(.values-note) {
-    right: 0;
-    top: 2px;
-    max-width: 240px;
-    font-size: 17px;
-  }
-  .foundation {
-    margin-top: 28px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: center;
-    gap: 6px 14px;
-    text-align: center;
-    font-size: 13.5px;
-    color: var(--ink-3);
-  }
-  .foundation b {
-    color: var(--sage-deep);
-    font-weight: 600;
   }
   @media (max-width: 1100px) {
     .values {
-      grid-template-columns: 1fr;
+      gap: 14px;
     }
     .values-head {
       flex-direction: column;
       align-items: flex-start;
     }
   }
+  @media (max-width: 900px) {
+    .values {
+      grid-template-columns: 1fr;
+      max-width: 620px;
+    }
+  }
 
-  /* ── compare ──────────────────────────────────────── */
-  .compare-grid {
+  /* ── trust ────────────────────────────────────────── */
+  .trust-grid {
     display: grid;
-    grid-template-columns: 4fr 8fr;
-    gap: clamp(32px, 4vw, 64px);
-    align-items: start;
+    grid-template-columns: 7fr 5fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
   }
-  .compare-left :global(.sec-head) {
-    margin-bottom: 30px;
+  .trust-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 36px;
+    margin: 4px 0 36px;
   }
-  .compare-left :global(.sec-head h2) {
-    font-size: clamp(1.6rem, 1.1rem + 1.3vw, 2.25rem);
-    line-height: 1.3;
+  .trust-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
   }
-  .insight {
-    position: relative;
-    padding: 22px 24px 22px 26px;
-    background: var(--sage-wash);
-    border-radius: var(--r-md);
-    font-size: 14.5px;
-    line-height: 1.8;
+  .trust-ic {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    flex: none;
+    background: var(--card);
+    border: 1px solid var(--line);
+    color: var(--sage-deep);
+  }
+  .trust-list h3 {
+    font-size: 19px;
+    margin: 2px 0 6px;
+  }
+  html[lang="en"] .trust-list h3 {
+    font-size: 23px;
+  }
+  .trust-list p {
+    font-size: 15px;
+    line-height: 1.75;
     color: var(--ink-2);
   }
-  .insight::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 14px;
-    bottom: 14px;
-    width: 3px;
-    background: var(--sage-deep);
-    border-radius: 3px;
-  }
-  .big-quote {
-    margin: clamp(48px, 6vw, 80px) auto 0;
-    max-width: 1040px;
-    text-align: center;
-    text-wrap: balance;
-    font-family: var(--f-latin-display);
-    font-style: italic;
-    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
-    line-height: 1.35;
-    color: var(--ink);
-  }
-  html[lang="zh"] .big-quote {
-    font-family: var(--f-zh-display);
-    font-style: normal;
-    font-weight: 700;
-    font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
-    line-height: 1.6;
-  }
-  @media (max-width: 1023px) {
-    .compare-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* ── foundation ───────────────────────────────────── */
-  .foundation-sec {
-    border-radius: var(--r-xl) var(--r-xl) 0 0;
-    margin-top: -24px;
-  }
-  .foundation-sec :global(.sec-head) {
-    max-width: 1080px;
-  }
-  .foundation-sec :global(.sec-head) p {
-    color: var(--night-dim);
-  }
-  .foundation-sec .label {
-    color: var(--lime);
-  }
-  .metrics {
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    gap: 18px;
-  }
-  .layers-card {
-    position: relative;
-    border: 1px solid var(--night-line);
-    border-radius: var(--r-lg);
-    padding: 26px;
-    background: var(--night-2);
+  .trust-visual {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    min-height: 190px;
-  }
-  html[data-daypart="night"] .layers-card {
-    background: var(--night-3);
-  }
-  .layers-card {
-    padding-bottom: 64px;
-  }
-  :global(.layers-note) {
-    right: 18px;
-    bottom: 10px;
-    max-width: 200px;
-    font-size: 16px;
-  }
-  .pillars {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(24px, 4vw, 54px);
-    margin-top: clamp(48px, 7vw, 72px);
-  }
-  .pillar {
-    border-top: 1px solid var(--night-line);
-    padding-top: 20px;
-  }
-  .pillar .label {
-    color: rgba(233, 239, 230, 0.45);
-    font-size: 10px;
-  }
-  .pillar h3 {
-    color: var(--night-text);
-    font-size: 19px;
-    margin: 10px 0 8px;
-  }
-  .pillar p {
-    font-size: 14px;
-    line-height: 1.75;
-    color: var(--night-dim);
-  }
-  .foundation-foot {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 14px 30px;
-    margin-top: clamp(40px, 5vw, 56px);
-  }
-  .footnote {
-    font-size: 11.5px;
-    line-height: 1.7;
-    color: rgba(233, 239, 230, 0.42);
-    max-width: 640px;
-  }
-  .foundation-foot .tlink {
-    color: var(--night-text);
-    border-color: rgba(233, 239, 230, 0.28);
   }
   @media (max-width: 1023px) {
-    .metrics {
-      grid-template-columns: 1fr 1fr;
-    }
-    .layers-card {
-      grid-column: 1 / -1;
-    }
-    .pillars {
+    .trust-grid {
       grid-template-columns: 1fr;
+    }
+    .trust-visual {
+      justify-content: flex-start;
     }
   }
   @media (max-width: 640px) {
-    .metrics {
+    .trust-list {
       grid-template-columns: 1fr;
+      gap: 24px;
     }
   }
 
-  /* ── who ──────────────────────────────────────────── */
-  .who-grid {
+  /* ── fea (night band) ─────────────────────────────── */
+  .fea-sec {
+    overflow: clip;
+    background-image: radial-gradient(48% 70% at 24% 52%, rgba(134, 184, 173, 0.13), transparent 70%);
+  }
+  :global(html[data-daypart="night"]) .fea-sec {
+    background-color: #0a130f;
+  }
+  .fea-grid {
     display: grid;
     grid-template-columns: 5fr 7fr;
-    gap: clamp(36px, 6vw, 90px);
+    gap: clamp(48px, 7vw, 112px);
     align-items: center;
   }
-  .who-photo {
+  .fea-photo {
+    position: relative;
     display: flex;
     justify-content: center;
+    padding: 20px 0 40px;
   }
-  .who-rows {
-    border-top: 1px solid var(--line);
+  .fea-photo :global(.pola) {
+    max-width: 380px;
   }
-  .who-rows li {
-    display: flex;
-    gap: 22px;
-    padding: 18px 0;
-    border-bottom: 1px solid var(--line);
+  .fea-photo :global(.fea-note) {
+    right: -6%;
+    bottom: -4px;
+    rotate: 4deg;
+    transform: none;
+    font-size: 20px;
   }
-  .who-rows .no {
-    font-size: 11px;
-    color: var(--ink-3);
-    padding-top: 5px;
+  .fea-copy :global(.sec-head h2) {
+    font-size: clamp(2rem, 1.3rem + 2.2vw, 3.1rem);
   }
-  .who-rows h3 {
-    font-size: 19px;
-    margin-bottom: 4px;
+  .fea-body {
+    max-width: 34em;
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--night-dim);
   }
-  .who-rows p {
-    font-size: 14px;
-    color: var(--ink-2);
-    line-height: 1.65;
+  .fea-principles {
+    display: grid;
+    gap: 0;
+    margin: 32px 0 34px;
+    border-top: 1px solid var(--night-line);
   }
-  .who-fea {
-    margin: 26px 0 16px;
-    font-size: 14.5px;
-    line-height: 1.8;
-    color: var(--ink-2);
+  .fea-principles li {
+    display: grid;
+    gap: 4px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--night-line);
+  }
+  .fea-principles .latin {
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--lime);
+  }
+  .fea-principles span:last-child {
+    font-size: 15px;
+    color: var(--night-dim);
+  }
+  .fea-copy .tlink {
+    color: var(--night-text);
+    border-color: rgba(233, 239, 230, 0.3);
   }
   @media (max-width: 900px) {
-    .who-grid {
+    .fea-grid {
       grid-template-columns: 1fr;
     }
-    .who-photo {
+    .fea-photo {
       justify-content: flex-start;
-      max-width: 360px;
+      max-width: 340px;
     }
   }
 
-  /* ── road ─────────────────────────────────────────── */
-  .road-head {
+  /* ── join ─────────────────────────────────────────── */
+  .join-sec {
+    padding-bottom: clamp(96px, 11vw, 150px);
+  }
+  .join-alt {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-  }
-  .road-head :global(.sec-head) {
-    margin-bottom: 34px;
-  }
-  @media (max-width: 767px) {
-    .road-head {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  /* ── waitlist ─────────────────────────────────────── */
-  .waitlist-sec {
-    overflow: clip;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px 16px;
+    margin-top: 40px;
+    font-size: 15px;
+    color: var(--ink-3);
   }
   .thread-end {
     position: absolute;
     left: 50%;
-    bottom: 12px;
+    bottom: 0;
     width: 1px;
     height: 1px;
   }

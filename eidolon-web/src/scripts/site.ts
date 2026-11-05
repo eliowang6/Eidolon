@@ -103,7 +103,8 @@ function paintTheme(pref: ThemePref, persist: boolean) {
   if (part === 'dawn' || part === 'day' || part === 'dusk' || part === 'night') {
     root.dataset.daypart = part;
   }
-  metaTheme?.setAttribute('content', root.dataset.daypart === 'night' ? '#0E1A15' : '#F5F2EA');
+  const paper: Record<string, string> = { dawn: '#F6F0E9', day: '#F5F2EA', dusk: '#F4ECE1', night: '#0E1A15' };
+  metaTheme?.setAttribute('content', paper[root.dataset.daypart ?? 'day'] ?? paper.day);
   if (persist) {
     if (pref === 'auto') removeStored(themeKey);
     else setStored(themeKey, pref);
@@ -147,6 +148,7 @@ if (langHint) {
 }
 
 /* ── reveal ─────────────────────────────────────────── */
+root.classList.add('reveal-ready');
 const revealItems = [...document.querySelectorAll<HTMLElement>('.reveal')];
 if (revealItems.length) {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) {

@@ -1,6 +1,8 @@
 ---
 import PageHero from '../PageHero.astro';
 import SectionHead from '../SectionHead.astro';
+import Eyebrow from '../Eyebrow.astro';
+import PermissionPanel from '../PermissionPanel.astro';
 import MetricCard from '../MetricCard.astro';
 import MemoryLayers from '../MemoryLayers.astro';
 import Icon from '../Icon.astro';
@@ -15,7 +17,7 @@ const copy = t(lang);
 const page = copy.howPage;
 const p = (href: string) => localizePath(lang, href);
 const steps = copy.loop.steps;
-const metrics = copy.foundation.metrics;
+const metrics = page.cache.metrics;
 const splitTitle = (title: string) => title.split(/[，,]\s*/);
 const memoryTitle = splitTitle(page.memory.h2);
 const cacheTitle = splitTitle(page.cache.h2);
@@ -32,11 +34,11 @@ const comma = lang === 'zh' ? '，' : ',';
     <div class="feed-bands reveal">
       <div class="feed-band">
         <span class="label">{page.loop.outer}</span>
-        <p>{copy.loop.inputOuterText}</p>
+        <p>{page.loop.outerText}</p>
       </div>
       <div class="feed-band">
         <span class="label">{page.loop.inner}</span>
-        <p>{copy.loop.inputInnerText}</p>
+        <p>{page.loop.innerText}</p>
       </div>
     </div>
 
@@ -68,7 +70,7 @@ const comma = lang === 'zh' ? '，' : ',';
 <section class="section section--paper2 memory-sec">
   <div class="container memory-grid">
     <div class="memory-copy">
-      <span class="label">{page.memory.label}</span>
+      <Eyebrow text={page.memory.label} />
       <h2>{memoryTitle[0]}{memoryTitle.length > 1 && comma}{memoryTitle.length > 1 && <><br />{memoryTitle[1]}</>}</h2>
       <p class="lede">{page.memory.body}</p>
     </div>
@@ -105,7 +107,7 @@ const comma = lang === 'zh' ? '，' : ',';
       <p class="footnote">{page.cache.footnote}</p>
     </div>
     <div class="cache-copy">
-      <span class="label">{page.cache.label}</span>
+      <Eyebrow text={page.cache.label} />
       <h2>{cacheTitle[0]}{cacheTitle.length > 1 && comma}{cacheTitle.length > 1 && <><br />{cacheTitle[1]}</>}</h2>
       <p class="lede">{page.cache.body}</p>
     </div>
@@ -159,19 +161,24 @@ const comma = lang === 'zh' ? '，' : ',';
 </section>
 
 <section class="section boundary-sec">
-  <div class="container">
-    <SectionHead class="reveal" label={page.boundary.label} h2a={page.boundary.h2} />
-    <div class="boundary-grid">
-      {page.boundary.cards.map((card, i) => (
-        <article class="boundary-card reveal" style={`--i:${i}`}>
-          <span class="b-icon"><Icon name={card.icon} size={19} /></span>
-          <h3>{card.title}</h3>
-          <p>{card.desc}</p>
-        </article>
-      ))}
+  <div class="container boundary-grid">
+    <div>
+      <SectionHead class="reveal" label={page.boundary.label} h2a={page.boundary.h2} />
+      <ul class="boundary-list">
+        {page.boundary.cards.map((card, i) => (
+          <li class="reveal" style={`--i:${i}`}>
+            <span class="b-icon"><Icon name={card.icon} size={20} /></span>
+            <div>
+              <h3>{card.title}</h3>
+              <p>{card.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <a class="tlink reveal" href={p('/privacy.html')}>{page.boundary.link}</a>
     </div>
-    <div class="boundary-foot reveal">
-      <a class="tlink" href={p('/privacy.html')}>{page.boundary.link}</a>
+    <div class="boundary-visual reveal" style="--i:2">
+      <PermissionPanel lang={lang} />
     </div>
   </div>
 </section>
@@ -202,7 +209,7 @@ const comma = lang === 'zh' ? '，' : ',';
     color: color-mix(in srgb, var(--sage-deep) 78%, var(--ink));
   }
   .feed-band p {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.6;
     color: var(--ink-2);
   }
@@ -282,7 +289,7 @@ const comma = lang === 'zh' ? '，' : ',';
     letter-spacing: 0.02em;
   }
   .loop-node p {
-    font-size: 12.5px;
+    font-size: 14px;
     line-height: 1.7;
     color: var(--ink-2);
     margin-top: 10px;
@@ -351,8 +358,7 @@ const comma = lang === 'zh' ? '，' : ',';
   }
   .memory-caption {
     margin-top: 14px;
-    font-size: 10.5px;
-    letter-spacing: 0.06em;
+    font-size: 12px;
     color: var(--ink-3);
     text-align: right;
   }
@@ -381,7 +387,7 @@ const comma = lang === 'zh' ? '，' : ',';
     line-height: 1.7;
     color: rgba(233, 239, 230, 0.42);
   }
-  .cache-copy .label {
+  .cache-copy :global(.label) {
     color: var(--lime);
   }
   .cache-copy h2 {
@@ -509,7 +515,7 @@ const comma = lang === 'zh' ? '，' : ',';
     border-radius: var(--r-full);
     background: var(--paper);
     padding: 12px 10px;
-    font-size: 12.5px;
+    font-size: 14px;
     color: var(--ink-2);
     text-align: center;
   }
@@ -562,38 +568,45 @@ const comma = lang === 'zh' ? '，' : ',';
 
   .boundary-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    grid-template-columns: 7fr 5fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
   }
-  .boundary-card {
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    background: var(--card);
-    padding: 26px;
+  .boundary-list {
+    display: grid;
+    gap: 26px;
+    margin: 4px 0 34px;
+  }
+  .boundary-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
   }
   .b-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    flex: none;
     background: var(--sage-wash);
     color: var(--sage-deep);
     display: grid;
     place-items: center;
-    margin-bottom: 18px;
   }
-  .boundary-card h3 {
-    font-size: 17px;
-    margin-bottom: 8px;
+  .boundary-list h3 {
+    font-size: 19px;
+    margin: 2px 0 6px;
   }
-  .boundary-card p {
-    font-size: 13.5px;
-    line-height: 1.7;
+  html[lang="en"] .boundary-list h3 {
+    font-size: 23px;
+  }
+  .boundary-list p {
+    font-size: 15px;
+    line-height: 1.75;
     color: var(--ink-2);
   }
-  .boundary-foot {
+  .boundary-visual {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 28px;
+    justify-content: center;
   }
 
   @media (max-width: 1023px) {
@@ -626,6 +639,9 @@ const comma = lang === 'zh' ? '，' : ',';
     }
     .boundary-grid {
       grid-template-columns: 1fr;
+    }
+    .boundary-visual {
+      justify-content: flex-start;
     }
     .feed-bands {
       grid-template-columns: 1fr;

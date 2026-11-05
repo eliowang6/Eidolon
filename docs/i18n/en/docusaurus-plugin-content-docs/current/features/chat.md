@@ -7,7 +7,7 @@ description: Everything about text chatting with your AI companion
 
 # Smart Chat
 
-Chat is the core feature of Eidolon. Talk to AI just like chatting with a friend. AI has long-term memory — it remembers what you share, and understands you better over time.
+Chat is the core feature of Sholarel. Talk to AI just like chatting with a friend. AI has long-term memory — it remembers what you share, and understands you better over time.
 
 ---
 
@@ -140,7 +140,7 @@ AI may respond in various formats:
 
 ## Conversation Memory
 
-Eidolon's AI features **long-term memory**:
+Sholarel's AI features **long-term memory**:
 
 - AI automatically remembers important information from conversations
 - Memory persists across sessions — even after closing and reopening the app, AI still remembers you

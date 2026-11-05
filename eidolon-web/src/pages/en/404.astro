@@ -8,7 +8,7 @@ const lang = 'en' as const;
 const copy = t(lang);
 const page = copy.notFound;
 ---
-<Base lang={lang} path="/404.html" title={copy.meta.notFound.title} description={copy.meta.notFound.description} noindex>
+<Base lang={lang} path="/404.html" title={copy.meta.notFound.title} description={copy.meta.notFound.description} keywords={copy.meta.notFound.keywords} noindex>
   <section class="notfound">
     <div class="nf-inner">
       <div class="nf-frame">

@@ -7,7 +7,7 @@ description: Face-to-face video companionship with AI
 
 # Video Call
 
-Video call is Eidolon's most immersive feature — turn on your camera, let AI see you, and experience true face-to-face companionship.
+Video call is Sholarel's most immersive feature — turn on your camera, let AI see you, and experience true face-to-face companionship.
 
 ---
 
@@ -85,7 +85,7 @@ You can disable this protection in **Settings → Preferences → 60-min Auto-Ha
 
 ## Privacy Protection
 
-Eidolon takes your privacy seriously:
+Sholarel takes your privacy seriously:
 
 - Video feeds are used only for real-time conversation and are not stored
 - Call transcripts save only text content
@@ -106,7 +106,7 @@ After the call ends, a call record card appears in chat history:
 
 ## Two Call Modes
 
-Eidolon supports two video call backends:
+Sholarel supports two video call backends:
 
 | Mode | Features |
 |------|----------|

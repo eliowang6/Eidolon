@@ -1,6 +1,12 @@
 User-agent: *
 Allow: /
 Disallow: /web/
-Disallow: /eidolon/login.html
 
+# The documentation lives on the product sub-domain now. The old
+# /docs/build/* URLs answer with a 301 (edgeone.json), so they must not be
+# advertised here as canonical pages of this host.
+#
+# The former /eidolon/login.html stub is not disallowed either: it answers with
+# a 301 to the download page, and a Disallow would stop the crawler from ever
+# reading that redirect.
 Sitemap: https://instarmony.com/sitemap.xml

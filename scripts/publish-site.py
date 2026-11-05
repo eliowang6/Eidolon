@@ -2,7 +2,7 @@
 """Build, package and publish the instarmony.com website to Cloudflare R2.
 
 This is the site's own release channel; it no longer rides along with the
-Eidolon desktop release. The server picks the package up with install-site.sh.
+Sholarel desktop release. The server picks the package up with install-site.sh.
 
     python scripts/publish-site.py                 # docs build + SEO + package + upload
     python scripts/publish-site.py --no-upload     # stop at the local tarball

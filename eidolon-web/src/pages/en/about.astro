@@ -6,6 +6,6 @@ import { t } from '../../i18n';
 const lang = 'en' as const;
 const copy = t(lang);
 ---
-<Base lang={lang} path="/about.html" title={copy.meta.about.title} description={copy.meta.about.description}>
+<Base lang={lang} path="/about.html" title={copy.meta.about.title} description={copy.meta.about.description} keywords={copy.meta.about.keywords}>
   <AboutPage lang={lang} />
 </Base>

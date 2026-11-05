@@ -7,7 +7,7 @@ description: Let AI create, manage, and track your to-do items
 
 # To-Do Management
 
-Eidolon's to-do management lets you and AI manage daily tasks together. Just tell AI what you need to do, and it creates a to-do card with priority and due date.
+Sholarel's to-do management lets you and AI manage daily tasks together. Just tell AI what you need to do, and it creates a to-do card with priority and due date.
 
 ---
 

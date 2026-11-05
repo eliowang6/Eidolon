@@ -6,6 +6,6 @@ import { t } from '../../i18n';
 const lang = 'en' as const;
 const copy = t(lang);
 ---
-<Base lang={lang} path="/privacy.html" title={copy.meta.privacy.title} description={copy.meta.privacy.description}>
+<Base lang={lang} path="/privacy.html" title={copy.meta.privacy.title} description={copy.meta.privacy.description} keywords={copy.meta.privacy.keywords}>
   <LegalPage lang={lang} page={copy.privacyPage} />
 </Base>

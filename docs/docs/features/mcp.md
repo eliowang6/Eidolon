@@ -7,7 +7,7 @@ description: 通过 MCP 协议扩展 AI 的能力
 
 # MCP 工具扩展
 
-MCP（Model Context Protocol，模型上下文协议）是 Eidolon 提供的工具扩展机制。通过配置 MCP 服务器，你可以让 AI 获得额外的能力，比如访问数据库、调用外部 API 等。
+MCP（Model Context Protocol，模型上下文协议）是 Sholarel 提供的工具扩展机制。通过配置 MCP 服务器，你可以让 AI 获得额外的能力，比如访问数据库、调用外部 API 等。
 
 :::info 面向高级用户
 MCP 配置需要一定的技术基础。如果你不了解 JSON 配置和命令行，可以跳过此章节。

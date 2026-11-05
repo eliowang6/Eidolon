@@ -93,15 +93,21 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
           </ul>
 
           <div class="plan-cta">
-            <button
-              type="button"
-              class={`btn ${plan.variant === 'night' ? 'btn-ink' : 'btn-ghost'} sub-trigger-btn`}
-              data-tier={plan.id}
-              data-currency={lang === 'zh' ? 'CNY' : 'USD'}
-              data-plan-name={plan.name}
-            >
-              <span class="btn-text">{plan.cta}</span>
-            </button>
+            {lang === 'zh' && plan.id === 'fable' ? (
+              <a href={p('/contact.html')} class="btn btn-ghost">
+                联系创始人开通
+              </a>
+            ) : (
+              <button
+                type="button"
+                class={`btn ${plan.variant === 'night' ? 'btn-ink' : 'btn-ghost'} sub-trigger-btn`}
+                data-tier={plan.id}
+                data-currency={lang === 'zh' ? 'CNY' : 'USD'}
+                data-plan-name={plan.name}
+              >
+                <span class="btn-text">{plan.cta}</span>
+              </button>
+            )}
             <a href={p('/download.html')} class="plan-download-link">
               {lang === 'zh' ? '在客户端内订阅 →' : 'Subscribe in app →'}
             </a>
@@ -113,11 +119,11 @@ const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', 
     <div class="dew-entry">
       <p>
         {lang === 'zh'
-          ? '只想补充回响额度？星露无需注册，填邮箱即可购买，付款后在 App 内归户。'
+          ? '只想补充回响额度？溯时星露无需注册，填邮箱即可购买，付款后在 App 内归户。'
           : 'Only need more echo credits? Chrono Dew needs no signup — pay with your email, then claim it in the app.'}
       </p>
       <a href={p('/dew.html')} class="btn btn-ghost">
-        {lang === 'zh' ? '购买星露（免注册）→' : 'Buy Chrono Dew →'}
+        {lang === 'zh' ? '购买溯时星露（免注册）→' : 'Buy Chrono Dew →'}
       </a>
     </div>
   </div>

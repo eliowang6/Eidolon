@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "eidolon.instarmony.com — Daylight Margin product site (Astro source, builds into ../eidolon-site)",
+  "description": "sholarel.instarmony.com — Daylight Margin product site (Astro source, builds into ../eidolon-site)",
   "scripts": {
     "dev": "astro dev",
     "build": "node scripts/clean-out.mjs && astro build && node scripts/check-i18n.mjs && node scripts/check-copy.mjs",

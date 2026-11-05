@@ -2,36 +2,36 @@
 sidebar_position: 1
 slug: /quick-start
 title: 快速上手
-description: 从零开始，5 分钟上手 Eidolon
+description: 从零开始，5 分钟上手 Sholarel
 ---
 
 # 快速上手
 
-欢迎使用 Eidolon！这是一份面向零基础用户的入门指南，帮助你从安装到第一次对话，快速体验 AI 伴侣的魅力。
+欢迎使用 Sholarel！这是一份面向零基础用户的入门指南，帮助你从安装到第一次对话，快速体验 AI 伴侣的魅力。
 
 ---
 
 ## 第一步：下载安装
 
-Eidolon 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端** 三种使用方式。
+Sholarel 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端** 三种使用方式。
 
 ### Windows 桌面端
 
-1. 前往 [Eidolon 官网](https://eidolon.ai) 或项目 [GitHub Releases](https://github.com/instarmony/eidolon/releases) 页面
+1. 前往 [Sholarel 官网下载页](https://sholarel.instarmony.com/download)
 2. 下载最新版本的 `.msi` 安装包
 3. 双击安装包，按照向导完成安装
-4. 安装完成后，桌面会出现 Eidolon 图标，双击即可启动
+4. 安装完成后，桌面会出现 Sholarel 图标，双击即可启动
 
 ### Android 手机端
 
-1. 在 GitHub Releases 页面下载 `.apk` 文件
+1. 在[官网下载页](https://sholarel.instarmony.com/download)下载 `.apk` 文件
 2. 在手机上打开下载的 APK 文件
 3. 如提示"未知来源"，请在设置中允许安装
-4. 安装完成后，在应用列表中找到 Eidolon 打开
+4. 安装完成后，在应用列表中找到 Sholarel 打开
 
 ### 网页端
 
-直接在浏览器中访问 Eidolon 网页地址即可使用，无需安装任何软件。
+直接在浏览器中访问 [https://web.eidolon.instarmony.com/](https://web.eidolon.instarmony.com/) 即可使用，无需安装任何软件。网页版目前为邀请制内测，注册需要邀请码，尚未正式对外开放。
 
 :::tip 推荐
 桌面端体验最完整，支持悬浮窗、桌宠模式、开机自启动等独有功能。条件允许的话，推荐优先使用桌面端。
@@ -41,7 +41,7 @@ Eidolon 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端** �
 
 ## 第二步：注册账号
 
-首次打开 Eidolon，你会看到登录页面。
+首次打开 Sholarel，你会看到登录页面。
 
 1. 点击 **「注册」** 标签页
 2. 填写以下信息：
@@ -53,7 +53,7 @@ Eidolon 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端** �
    - **性别**：选择男或女
 3. 点击 **「创建账号并进入」**
 
-注册成功后会自动登录，进入 Eidolon 主界面。
+注册成功后会自动登录，进入 Sholarel 主界面。
 
 :::info 邀请码从哪来？
 内测期间，邀请码由群主或 Up 主发放。加入社区群即可获取。
@@ -63,7 +63,7 @@ Eidolon 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端** �
 
 ## 第三步：认识主界面
 
-登录后你会看到 Eidolon 的 **「今天」** 主页，这是你每天的起点：
+登录后你会看到 Sholarel 的 **「今天」** 主页，这是你每天的起点：
 
 | 区域 | 说明 |
 |------|------|
@@ -100,7 +100,7 @@ Eidolon 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端** �
 - 「给我讲个笑话吧」
 
 :::tip 对话技巧
-Eidolon 的 AI 拥有长期记忆，它会记住你说过的重要事情。越真诚地交流，AI 就越了解你。
+Sholarel 的 AI 拥有长期记忆，它会记住你说过的重要事情。越真诚地交流，AI 就越了解你。
 :::
 
 ---
@@ -136,5 +136,5 @@ Eidolon 的 AI 拥有长期记忆，它会记住你说过的重要事情。越�
 ---
 
 :::success 恭喜！
-你已经完成了 Eidolon 的基本入门。接下来，深入探索每个功能，找到最适合你的使用方式吧！
+你已经完成了 Sholarel 的基本入门。接下来，深入探索每个功能，找到最适合你的使用方式吧！
 :::

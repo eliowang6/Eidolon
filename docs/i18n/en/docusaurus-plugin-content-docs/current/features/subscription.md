@@ -2,18 +2,18 @@
 sidebar_position: 1
 slug: /features/subscription
 title: Subscription & Benefits
-description: Understand Eidolon's subscription tiers and their benefits
+description: Understand Sholarel's subscription tiers and their benefits
 ---
 
 # Subscription & Benefits
 
-Eidolon uses a subscription tier system where different tiers unlock different AI capabilities and feature access. Choose the tier that fits your needs.
+Sholarel uses a subscription tier system where different tiers unlock different AI capabilities and feature access. Choose the tier that fits your needs.
 
 ---
 
 ## Subscription Tiers
 
-Eidolon offers four tiers, from basic to premium:
+Sholarel offers four tiers, from basic to premium:
 
 ### Awakening
 

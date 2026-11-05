@@ -7,13 +7,13 @@ description: 3D character rendering, VRM/Live2D models, and avatar settings
 
 # Character Model
 
-One of Eidolon's core experiences is **3D character companionship**. The AI companion appears as a character on your desktop, reacting to conversations with expressions, animations, and lip-syncing.
+One of Sholarel's core experiences is **3D character companionship**. The AI companion appears as a character on your desktop, reacting to conversations with expressions, animations, and lip-syncing.
 
 ---
 
 ## Character Rendering Modes
 
-Eidolon supports multiple character rendering modes:
+Sholarel supports multiple character rendering modes:
 
 | Mode | Description | Features |
 |------|-------------|----------|
@@ -100,7 +100,7 @@ In **Settings → Preferences → Home Character Scale**, adjust the character d
 
 ## Privacy Protection
 
-Eidolon enables **privacy rendering protection** by default:
+Sholarel enables **privacy rendering protection** by default:
 
 - When the camera angle approaches sensitive areas, the character automatically enables blur and shake protection
 - Can be disabled in **Settings → Preferences → Privacy Rendering Protection**

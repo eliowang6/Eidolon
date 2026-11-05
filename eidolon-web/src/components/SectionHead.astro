@@ -1,4 +1,6 @@
 ---
+import Eyebrow from './Eyebrow.astro';
+
 interface Props {
   label: string;
   h2a: string;
@@ -7,11 +9,13 @@ interface Props {
   align?: 'left' | 'center';
   id?: string;
   class?: string;
+  /** Marks the eyebrow as a bead on the home page's margin thread. */
+  node?: boolean;
 }
-const { label, h2a, h2b, lede, align = 'left', id, class: className = '' } = Astro.props;
+const { label, h2a, h2b, lede, align = 'left', id, class: className = '', node = false } = Astro.props;
 ---
 <div class={`sec-head ${align === 'center' ? 'sec-head--center' : ''} ${className}`} id={id}>
-  <span class="label">{label}</span>
+  <Eyebrow text={label} node={node} />
   <h2>{h2a}{h2b && <><br />{h2b}</>}</h2>
   {lede && <p class="lede">{lede}</p>}
   <slot />

@@ -7,18 +7,18 @@
 const PORTAL_I18N = {
     zh: {
         doc_title: "Instarmony — Harmonizing Human & Machine Intelligence",
-        meta_desc: "Instarmony 是一家致力于人机共生与下一代数字生命的前沿 AI 创新实验室。旗下拥有旗舰级数字伴侣 Eidolon 与实时语音交互体验。",
+        meta_desc: "Instarmony 是一家致力于人机共生与下一代数字生命的前沿 AI 创新实验室。旗下拥有旗舰级数字伴侣 Sholarel 与实时语音交互体验。",
         nav_flagship: "旗舰产品",
         nav_research: "研究方向",
         nav_ecosystem: "生态矩阵",
         nav_philosophy: "共生哲学",
         nav_docs: "文档与指南",
         nav_web_client: "下载客户端",
-        nav_explore_eidolon: "探索 Eidolon",
+        nav_explore_eidolon: "探索 Sholarel",
         hero_tag: "INSTARMONY LAB · SYMBIOSIS ARCHITECTURE",
         hero_title: 'Harmonizing <span class="gradient-text">Human & Machine</span> Intelligence',
         hero_desc: '探索人机共生的新形态。我们构建具有<strong>长期情境记忆</strong>、<strong>主动自驱能力</strong>与<strong>跨平台在场体验</strong>的新一代数字生命，让 AI 摆脱冷冰冰的指令窗口，成为始终伴随身旁的数字灵魂。',
-        hero_btn_explore: "探索旗舰产品 Eidolon",
+        hero_btn_explore: "探索旗舰产品 Sholarel",
         hero_btn_web: "下载客户端",
         hero_btn_download: "下载客户端",
         trust_platform_count: "2 端",
@@ -30,9 +30,9 @@ const PORTAL_I18N = {
         badge_fea_title: "数字伴侣 Fea",
         badge_fea_sub: "有自我来处 · 持续情境记忆",
         flagship_tag: "FLAGSHIP PRODUCT",
-        flagship_version: "Eidolon · 现已开放体验",
+        flagship_version: "Sholarel · 现已开放体验",
         flagship_title: '你的 AI 灵魂搭子，<br><span class="gradient-text-nebula">始终在身旁。</span>',
-        flagship_desc: "Eidolon 是我们第一个完整落地的答案：一个真正「住进」日常生活的数字生命——她在你专注时安静守候，在你需要时替你奔走，在与你相处中慢慢长成独一无二的样子。",
+        flagship_desc: "Sholarel 是我们第一个完整落地的答案：一个真正「住进」日常生活的数字生命——她在你专注时安静守候，在你需要时替你奔走，在与你相处中慢慢长成独一无二的样子。",
         flagship_quote: '"我们不想再造一个更聪明的对话框。<br>我们想知道，一个数字生命能否真正<strong>在场</strong>。"',
         hl_memory_title: "真实长期记忆",
         hl_memory_desc: "她记得你说过的话，在未来的对话中自然呼应，让共同记忆随时间累积。",
@@ -42,7 +42,7 @@ const PORTAL_I18N = {
         hl_agent_desc: "自主操作浏览器与桌面应用，替你完成信息搜集与繁复任务。",
         hl_focus_title: "番茄钟专注舱与生活流",
         hl_focus_desc: "内置白噪音与 BGM 播放器、待办管理、习惯打卡与心情记录。",
-        btn_enter_eidolon: "进入 Eidolon 产品站",
+        btn_enter_eidolon: "进入 Sholarel 产品站",
         btn_view_features: "浏览功能矩阵",
         btn_view_pricing: "订阅套餐方案",
         pillars_tag: "RESEARCH FOUNDATIONS",
@@ -73,13 +73,13 @@ const PORTAL_I18N = {
         eco_subtitle: "围绕人机共生与自驱工具生态展开的完整产品与开源布局。",
         eco1_badge: "FLAGSHIP · DIGITAL COMPANION",
         eco1_desc: "我们研究理念的第一次完整落地——一个能在真实生活中持续在场、共同成长的数字生命。功能、下载与订阅详情见产品站。",
-        eco1_link: "访问 Eidolon 专区",
+        eco1_link: "访问 Sholarel 专区",
         eco2_name: "实时语音交互",
         eco2_badge: "REALTIME · VOICE INTERACTION",
         eco2_desc: "如真人般自然的实时语音对话体验。自由打断、边聊边办，让每一次交流都流畅无碍。",
         eco2_link: "了解语音交互体验",
         eco3_badge: "DOCUMENTATION · GUIDES",
-        eco3_desc: "包含快速上手、功能说明与常见问题排查的完整帮助中心，帮你轻松开启与 Eidolon 的共同生活。",
+        eco3_desc: "包含快速上手、功能说明与常见问题排查的完整帮助中心，帮你轻松开启与 Sholarel 的共同生活。",
         eco3_link: "阅读使用文档",
         philo_tag: "LAB PHILOSOPHY",
         philo_title: "我们的共生原则",
@@ -95,13 +95,13 @@ const PORTAL_I18N = {
         philo2_tag2: "渐进式亲密",
         philo2_tag3: "长效沉淀",
         cta_title: '开启你的 <span class="gradient-text">人机共生</span> 之旅',
-        cta_desc: "下载 Windows 或 Android 客户端，体验旗舰数字伴侣 Eidolon 的主动在场与记忆回响。Web 暂不支持。",
-        cta_btn_eidolon: "访问 Eidolon 专区",
+        cta_desc: "下载 Windows 或 Android 客户端，体验旗舰数字伴侣 Sholarel 的主动在场与记忆回响。Web 暂不支持。",
+        cta_btn_eidolon: "访问 Sholarel 专区",
         cta_btn_web: "下载客户端",
         cta_btn_download: "获取 Windows / Android 客户端",
         footer_desc: 'Harmonizing Human & Machine Intelligence.<br>前沿 AI 创新实验室，探索主动陪伴与下一代数字生命架构。',
         footer_col_product: "旗舰产品",
-        footer_eidolon_overview: "Eidolon 概览",
+        footer_eidolon_overview: "Sholarel 概览",
         footer_features: "功能全景",
         footer_pricing: "订阅与权益",
         footer_download: "下载中心",
@@ -124,18 +124,18 @@ const PORTAL_I18N = {
     },
     en: {
         doc_title: "Instarmony — Harmonizing Human & Machine Intelligence",
-        meta_desc: "Instarmony is a frontier AI lab pioneering human-AI symbiosis and next-generation digital life. Our flagship digital companion Eidolon is now available.",
+        meta_desc: "Instarmony is a frontier AI lab pioneering human-AI symbiosis and next-generation digital life. Our flagship digital companion Sholarel is now available.",
         nav_flagship: "Flagship",
         nav_research: "Research",
         nav_ecosystem: "Ecosystem",
         nav_philosophy: "Philosophy",
         nav_docs: "Docs & Guides",
         nav_web_client: "Downloads",
-        nav_explore_eidolon: "Explore Eidolon",
+        nav_explore_eidolon: "Explore Sholarel",
         hero_tag: "INSTARMONY LAB · SYMBIOSIS ARCHITECTURE",
         hero_title: 'Harmonizing <span class="gradient-text">Human & Machine</span> Intelligence',
         hero_desc: 'Pioneering human-AI symbiosis. We build digital life endowed with <strong>persistent episodic memory</strong>, <strong>autonomous agency</strong>, and <strong>cross-device embodied presence</strong>—evolving AI from cold command prompts into a sentient companion.',
-        hero_btn_explore: "Explore Flagship Eidolon",
+        hero_btn_explore: "Explore Flagship Sholarel",
         hero_btn_web: "Downloads",
         hero_btn_download: "Download App",
         trust_platform_count: "2 Platforms",
@@ -147,9 +147,9 @@ const PORTAL_I18N = {
         badge_fea_title: "AI Companion Fea",
         badge_fea_sub: "Authentic Origin · Persistent Context Memory",
         flagship_tag: "FLAGSHIP PRODUCT",
-        flagship_version: "Eidolon · Available to try",
+        flagship_version: "Sholarel · Available to try",
         flagship_title: 'Your AI Soul Companion,<br><span class="gradient-text-nebula">Always by Your Side.</span>',
-        flagship_desc: "Eidolon is our first fully realized answer: a digital life that genuinely dwells in the everyday—quietly present during your focus, running errands when you need her, and growing into someone one-of-a-kind through your time together.",
+        flagship_desc: "Sholarel is our first fully realized answer: a digital life that genuinely dwells in the everyday—quietly present during your focus, running errands when you need her, and growing into someone one-of-a-kind through your time together.",
         flagship_quote: '"We are not building a smarter chat box.<br>We are asking whether a digital life can truly be <strong>present</strong>."',
         hl_memory_title: "Authentic Long-term Memory",
         hl_memory_desc: "She remembers what you shared and naturally brings it back in future conversations.",
@@ -159,7 +159,7 @@ const PORTAL_I18N = {
         hl_agent_desc: "She handles web research and desktop tasks on your behalf, autonomously and safely.",
         hl_focus_title: "Focus Cabin & Life Flow",
         hl_focus_desc: "Built-in ambient soundscapes and BGM player, task management, habit tracking, and mood journaling.",
-        btn_enter_eidolon: "Enter Eidolon Site",
+        btn_enter_eidolon: "Enter Sholarel Site",
         btn_view_features: "View Feature Matrix",
         btn_view_pricing: "View Subscription Plans",
         pillars_tag: "RESEARCH FOUNDATIONS",
@@ -190,7 +190,7 @@ const PORTAL_I18N = {
         eco_subtitle: "A comprehensive ecosystem dedicated to human-AI symbiosis and autonomous tool systems.",
         eco1_badge: "FLAGSHIP · DIGITAL COMPANION",
         eco1_desc: "Our research philosophy fully realized for the first time—a digital life that stays present and grows in real everyday life. Features, downloads, and plans live on the product site.",
-        eco1_link: "Visit Eidolon Site",
+        eco1_link: "Visit Sholarel Site",
         eco2_name: "Realtime Voice Interaction",
         eco2_badge: "REALTIME · VOICE INTERACTION",
         eco2_desc: "Natural real-time voice conversation with free interruptions—every exchange flows as smoothly as talking to a person.",
@@ -212,13 +212,13 @@ const PORTAL_I18N = {
         philo2_tag2: "Gradual Intimacy",
         philo2_tag3: "Long-term Resonance",
         cta_title: 'Begin Your Journey of <span class="gradient-text">Human–AI Symbiosis</span>',
-        cta_desc: "Download the Windows or Android client to experience Eidolon's proactive presence and shared memories. Web is temporarily unsupported.",
-        cta_btn_eidolon: "Visit Eidolon Site",
+        cta_desc: "Download the Windows or Android client to experience Sholarel's proactive presence and shared memories. Web is temporarily unsupported.",
+        cta_btn_eidolon: "Visit Sholarel Site",
         cta_btn_web: "Downloads",
         cta_btn_download: "Get Windows / Android App",
         footer_desc: "Harmonizing Human & Machine Intelligence.<br>Pioneering AI lab building proactive digital life companions.",
         footer_col_product: "Flagship Products",
-        footer_eidolon_overview: "Eidolon Overview",
+        footer_eidolon_overview: "Sholarel Overview",
         footer_features: "Features Matrix",
         footer_pricing: "Subscription & Tiers",
         footer_download: "Download Center",
@@ -243,22 +243,33 @@ const PORTAL_I18N = {
 
 let currentLang = localStorage.getItem('instarmony_lang') || (navigator.language && navigator.language.startsWith('zh') ? 'zh' : 'en');
 
-function applyLanguage(lang) {
+/**
+ * Apply a language to the page.
+ *
+ * syncMeta controls whether <title> and <meta name="description"> are
+ * rewritten too. It is deliberately OFF for the initial paint: a crawler
+ * that runs this script has no localStorage, so the language falls back to
+ * navigator.language — which for most bots is English. Rewriting the
+ * description on load made Bing index the Chinese lab homepage with an
+ * English snippet. The static markup already carries the canonical Chinese
+ * metadata, so only an explicit user-initiated switch should touch it.
+ */
+function applyLanguage(lang, syncMeta = false) {
     currentLang = lang;
     localStorage.setItem('instarmony_lang', lang);
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
 
     const dict = PORTAL_I18N[lang] || PORTAL_I18N.zh;
 
-    // Document title
-    if (dict.doc_title) {
-        document.title = dict.doc_title;
-    }
-
-    // Meta description (keep crawler-visible metadata in sync with the active language)
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc && dict.meta_desc) {
-        metaDesc.setAttribute('content', dict.meta_desc);
+    // Document title + meta description (only on an explicit language switch)
+    if (syncMeta) {
+        if (dict.doc_title) {
+            document.title = dict.doc_title;
+        }
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && dict.meta_desc) {
+            metaDesc.setAttribute('content', dict.meta_desc);
+        }
     }
 
     // Text nodes
@@ -294,12 +305,15 @@ function applyLanguage(lang) {
 
 document.addEventListener('DOMContentLoaded', () => {
     // ── 0. Initialize Language ──
+    // No meta sync on the first paint — see applyLanguage().
     applyLanguage(currentLang);
     const langBtn = document.getElementById('lang-switch-btn');
     if (langBtn) {
         langBtn.addEventListener('click', () => {
             const nextLang = currentLang === 'zh' ? 'en' : 'zh';
-            applyLanguage(nextLang);
+            // An explicit switch is a deliberate choice, so the metadata
+            // follows the language the visitor actually asked for.
+            applyLanguage(nextLang, true);
         });
     }
 

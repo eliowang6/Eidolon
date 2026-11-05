@@ -7,13 +7,13 @@ description: Registration, login, password management, and account switching
 
 # Account Management
 
-Eidolon uses a simple username + password authentication system — no email verification required. Register and start using immediately.
+Sholarel uses a simple username + password authentication system — no email verification required. Register and start using immediately.
 
 ---
 
 ## Register an Account
 
-1. Open Eidolon and click the **"Register"** tab on the login page
+1. Open Sholarel and click the **"Register"** tab on the login page
 2. Fill in the registration form:
 
 | Field | Requirements | Description |
@@ -28,14 +28,14 @@ Eidolon uses a simple username + password authentication system — no email ver
 3. Click **"Create Account & Enter"** — you'll be automatically logged in after registration
 
 :::info About Invite Codes
-Eidolon is currently in beta testing and requires an invite code to register. Invite codes are distributed by community admins or content creators. Join the official community to get one.
+Sholarel is currently in beta testing and requires an invite code to register. Invite codes are distributed by community admins or content creators. Join the official community to get one.
 :::
 
 ---
 
 ## Login
 
-1. Open Eidolon — the login page is shown by default
+1. Open Sholarel — the login page is shown by default
 2. Enter your username and password
 3. Click **"Login & Enter"**
 
@@ -70,7 +70,7 @@ After logging out, locally cached messages are cleared, but cloud data is unaffe
 
 ## Switch Accounts
 
-Eidolon supports switching between multiple accounts on the same device:
+Sholarel supports switching between multiple accounts on the same device:
 
 1. Log out of the current account
 2. Enter a different username and password on the login page

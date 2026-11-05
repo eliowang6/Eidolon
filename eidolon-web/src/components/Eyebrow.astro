@@ -1,0 +1,29 @@
+---
+/**
+ * Section eyebrow. Dictionary labels come in three shapes:
+ *   "为什么"              → plain text
+ *   "01 / 记忆"           → mono step number + text (only for real sequences)
+ *   "能力 / Capabilities" → text + small English kicker
+ */
+interface Props {
+  text: string;
+  class?: string;
+  node?: boolean;
+}
+const { text, class: className = '', node = false } = Astro.props;
+const [head, tail] = text.split(' / ');
+const numbered = Boolean(tail) && /^\d+$/.test(head);
+---
+<span class={`label ${className}`} data-thread-node={node ? '' : undefined}>
+  {numbered ? (
+    <>
+      <span class="label-no">{head}</span>
+      <span class="label-tx">{tail}</span>
+    </>
+  ) : (
+    <>
+      <span>{head}</span>
+      {tail && <span class="label-en">{tail}</span>}
+    </>
+  )}
+</span>

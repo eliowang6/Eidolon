@@ -1,60 +1,71 @@
 {
   "meta": {
     "home": {
-      "title": "Eidolon — A digital life that lives with you",
-      "description": "Eidolon is a digital life that keeps understanding you, lives inside your real day, and helps you get things done — companionship, daily help and action, all sharing one long-term memory of you. Windows and Android."
+      "title": "Sholarel — A digital life that lives with you",
+      "description": "Sholarel is a digital life by Instarmony, the flagship companion from the Instarmony AI lab. She keeps understanding you, lives inside your real day, and helps you get things done — companionship, daily help and action, all sharing one long-term memory of you. Windows and Android.",
+      "keywords": "Sholarel, Instarmony, AI companion, digital life, desktop AI, AI pet, human-AI symbiosis, long-term memory, realtime voice, Windows, Android"
     },
     "features": {
-      "title": "Capabilities — Eidolon",
-      "description": "Companionship, daily help and action across devices: long-term memory, realtime voice, a 3D desktop pet, focus cabin, browser and desktop tasks, MCP/API tools."
+      "title": "Capabilities — Sholarel",
+      "description": "Companionship, daily help and action across devices in Sholarel by Instarmony: long-term memory, realtime voice, a 3D desktop pet, focus cabin, browser and desktop tasks, MCP/API tools.",
+      "keywords": "Sholarel, Instarmony, AI companion features, long-term memory, realtime voice, 3D desktop pet, focus cabin, MCP, tool calling, cross-device agent"
     },
     "how": {
-      "title": "How it works — Eidolon",
-      "description": "A personal loop of sense, understanding, memory, action and evolution; an in-house five-layer memory, context and cache optimisation, planner–executor work across phone and PC."
+      "title": "How it works — Sholarel",
+      "description": "A personal loop of sense, understanding, memory, action and evolution in Sholarel by Instarmony; an in-house five-layer memory, context and cache optimisation, planner–executor work across phone and PC.",
+      "keywords": "Sholarel, Instarmony, memory architecture, five-layer memory, context optimisation, digital life, human-AI symbiosis, cross-device execution, AI agent"
     },
     "beta": {
-      "title": "Public beta — Eidolon",
-      "description": "Eidolon's first public beta is being prepared. Join the waitlist and hear about it on opening day."
+      "title": "Public beta — Sholarel",
+      "description": "Sholarel's first public beta, by Instarmony, is being prepared. Join the waitlist and hear about it on opening day.",
+      "keywords": "Sholarel, Instarmony, public beta, closed beta, waitlist, AI companion beta, digital life"
     },
     "pricing": {
-      "title": "Plans — Eidolon",
-      "description": "Five plans: Spark, Resonance, Genesis, Symbiosis and Fable — plus a 30-day free trial for new users."
+      "title": "Plans — Sholarel",
+      "description": "Five plans for Sholarel by Instarmony: Spark, Resonance, Genesis, Symbiosis and Fable — plus a 30-day free trial for new users.",
+      "keywords": "Sholarel, Instarmony, pricing, subscription plans, AI companion price, free trial, Spark, Resonance, Genesis"
     },
     "dew": {
-      "title": "Chrono Dew · No-signup purchase — Eidolon",
-      "description": "Buy Chrono Dew credit packs for Eidolon by Instarmony without signing up. Pay with WeChat Pay / Alipay / UnionPay (CNY) in China, or card / Apple Pay / Google Pay (USD) internationally. Claim in-app after payment with a one-time claim token.",
-      "keywords": "Eidolon, Chrono Dew, credit pack, no signup purchase, echo credits, Instarmony, WeChat Pay, Alipay, credit card"
+      "title": "Chrono Dew 溯时星露 · Buy without signing up — Sholarel",
+      "description": "Chrono Dew is never-expiring echo credit for Sholarel by Instarmony. No signup needed: buy with just an email — WeChat Pay / Alipay / UnionPay (CNY) or card / Apple Pay / Google Pay (USD) — then claim it in the app with a one-time code.",
+      "keywords": "Sholarel, Chrono Dew, 溯时星露, credit pack, no signup purchase, echo credits, Instarmony, WeChat Pay, Alipay, credit card"
     },
     "download": {
-      "title": "Download — Eidolon",
-      "description": "Download Eidolon for Windows (MSI) and Android (APK). macOS, iOS, Linux and Web are not supported yet."
+      "title": "Download — Sholarel",
+      "description": "Download Sholarel by Instarmony for Windows (MSI) and Android (APK). The web app opens directly in a browser and is currently in invite-only beta. macOS, iOS and Linux are not supported yet.",
+      "keywords": "Sholarel, Instarmony, download, Windows client, MSI, Android APK, desktop app install, AI companion download"
     },
     "about": {
-      "title": "About Fea & the maker — Eidolon",
-      "description": "Fea, Eidolon's canon character, her world and the idea of mutual need without ownership — and the person building her from zero to one."
+      "title": "About Fea & the maker — Sholarel",
+      "description": "Fea, Sholarel's canon character, her world and the idea of mutual need without ownership — and the person building her from zero to one. Sholarel is by Instarmony.",
+      "keywords": "Sholarel, Instarmony, Fea, human-AI symbiosis philosophy, maker, digital life lore, AI character"
     },
     "docs": {
-      "title": "Docs — Eidolon",
-      "description": "Quick start, SubAgent and tool development, troubleshooting, and the full bilingual documentation hub."
+      "title": "Docs — Sholarel",
+      "description": "Official documentation for Sholarel by Instarmony: quick start, SubAgent and tool development, troubleshooting, and the full bilingual documentation hub.",
+      "keywords": "Sholarel, Instarmony, documentation, quick start, getting started, SubAgent, tool development, MCP, FAQ, troubleshooting, developer docs"
     },
     "privacy": {
-      "title": "Privacy Policy — Eidolon",
-      "description": "Eidolon Privacy Policy: local-first storage, data protection, PCI-DSS payment compliance, and privacy rights."
+      "title": "Privacy Policy — Sholarel",
+      "description": "Sholarel by Instarmony — Privacy Policy: local-first storage, data protection, PCI-DSS payment compliance, and privacy rights.",
+      "keywords": "Sholarel, Instarmony, privacy policy, data protection, local-first storage, PCI-DSS, personal data rights"
     },
     "terms": {
-      "title": "Terms of Service — Eidolon",
-      "description": "Eidolon Terms of Service: service scope, subscriptions, refund policy, acceptable use, and intellectual property."
+      "title": "Terms of Service — Sholarel",
+      "description": "Sholarel by Instarmony — Terms of Service: service scope, subscriptions, refund policy, acceptable use, and intellectual property.",
+      "keywords": "Sholarel, Instarmony, terms of service, user agreement, subscription billing, refund policy, intellectual property"
     },
     "notFound": {
-      "title": "I can't find this page either — Eidolon",
-      "description": "This page doesn't exist. Head back to Eidolon, or see a day with her."
+      "title": "I can't find this page either — Sholarel",
+      "description": "This page doesn't exist. Head back to Sholarel, or see a day with her.",
+      "keywords": "Sholarel, Instarmony, 404"
     }
   },
   "nav": {
     "features": "Capabilities",
     "how": "How it works",
     "pricing": "Plans",
-    "dew": "Dew",
+    "dew": "Chrono Dew",
     "about": "About",
     "docs": "Docs",
     "download": "Download",
@@ -63,7 +74,7 @@
     "menu": "Menu",
     "close": "Close menu",
     "skip": "Skip to content",
-    "home": "Eidolon home",
+    "home": "Sholarel home",
     "lang": "中",
     "langLabel": "切换到中文",
     "theme": "Theme"
@@ -122,7 +133,7 @@
     "xiaohongshu": "Xiaohongshu",
     "bilibili": "Bilibili",
     "instarmony": "Instarmony Lab",
-    "copyright": "© 2026 Eidolon by Instarmony",
+    "copyright": "© 2026 Sholarel by Instarmony",
     "privacy": "Privacy",
     "terms": "Terms",
     "invest": "Investment & partnerships →",
@@ -163,10 +174,10 @@
       "Evolves."
     ],
     "sectionName": "Start",
-    "lede": "Eidolon is a digital life that keeps understanding you, lives inside your real day, and helps you get things done. Companionship, daily help and action — all sharing one memory of you.",
+    "lede": "Sholarel is a digital life that keeps understanding you, lives inside your real day, and helps you get things done. Companionship, daily help and action — all sharing one memory of you.",
     "platforms": [
       "Windows 10 / 11",
-      "Android 10+",
+      "Android 7.0+",
       "More platforms planned"
     ],
     "presenceAria": "What Fea might say right now (illustration)",
@@ -229,7 +240,7 @@
       }
     ],
     "stitch": {
-      "pre": "Eidolon puts ",
+      "pre": "Sholarel puts ",
       "marks": [
         "remembering you",
         "knowing your real life",
@@ -454,7 +465,7 @@
     "label": "Meet Fea",
     "h2a": "You're not her owner.",
     "h2b": "You're her anchor to reality.",
-    "body": "Fea is Eidolon's official character. Born on the digital side, she has her own origin, values and curiosity — she keeps notes on your days, thinks back on your conversations, and walks the real timeline beside you.",
+    "body": "Fea is Sholarel's official character. Born on the digital side, she has her own origin, values and curiosity — she keeps notes on your days, thinks back on your conversations, and walks the real timeline beside you.",
     "principles": [
       {
         "title": "Mutual need, without ownership.",
@@ -758,7 +769,7 @@
     "memory": {
       "label": "02 / Memory",
       "h2": "Memory: layered, not piled up",
-      "body": "A chat log isn't memory. Eidolon keeps state, events and long-term preferences apart: today's mood doesn't drown out years of habits, and a sentence from three weeks ago can surface when it matters. No extra model call to decide what's worth remembering — faster, and cheaper.",
+      "body": "A chat log isn't memory. Sholarel keeps state, events and long-term preferences apart: today's mood doesn't drown out years of habits, and a sentence from three weeks ago can surface when it matters. No extra model call to decide what's worth remembering — faster, and cheaper.",
       "caption": "In-house five-layer memory · state, events and long-term preferences, kept apart"
     },
     "cache": {
@@ -792,7 +803,7 @@
         "MCP / API tools"
       ]
     },
-    "quote": "No bet on any single model. Memory, efficiency and the ability to act are things Eidolon builds itself.",
+    "quote": "No bet on any single model. Memory, efficiency and the ability to act are things Sholarel builds itself.",
     "boundary": {
       "label": "05 / Boundaries",
       "h2": "Your data boundaries",
@@ -918,7 +929,7 @@
     "faq": [
       {
         "q": "What do I need to run it?",
-        "a": "Windows 10 / 11 (64-bit) or Android 10 and above. macOS, iOS, Linux and Web are not supported yet."
+        "a": "Windows 10 / 11 (64-bit) or Android 7.0 and above (64-bit arm64). The web app opens directly in a browser and is currently in invite-only beta (an invite code is required to sign up). macOS, iOS and Linux are not supported yet."
       },
       {
         "q": "Does the beta cost anything?",
@@ -1052,7 +1063,7 @@
     "faq": [
       {
         "q": "Which underlying AI model brands does the platform use?",
-        "a": "Eidolon maintains complete transparency regarding its AI foundation models: conversational reasoning is powered by Gemini (Google), Claude (Anthropic), and DeepSeek; desktop agent execution and visual comprehension are driven by Qwen; full-duplex real-time voice calls and voice cloning are powered by Doubao (Volcengine). Users can review or switch model routing preferences directly in the application settings."
+        "a": "Sholarel maintains complete transparency regarding its AI foundation models: conversational reasoning is powered by Gemini (Google), Claude (Anthropic), and DeepSeek; desktop agent execution and visual comprehension are driven by Qwen; full-duplex real-time voice calls and voice cloning are powered by Doubao (Volcengine). Users can review or switch model routing preferences directly in the application settings."
       },
       {
         "q": "How does payment and renewal work?",
@@ -1085,71 +1096,145 @@
     ]
   },
   "dewPage": {
-    "label": "Chrono Dew",
-    "h1": "Buy a little time, keep walking with her",
-    "lede": "Chrono Dew is Eidolon's pay-as-you-go echo credit. No signup needed — enter your email to purchase. After payment, sign in to the app and paste your one-time claim token to add the credits to your account.",
-    "regionLabel": "Billing region",
-    "regionCn": "China · CNY",
-    "regionIntl": "International · USD",
-    "cnHint": "WeChat Pay / Alipay / UnionPay",
-    "intlHint": "Credit Card / Apple Pay / Google Pay",
-    "emailLabel": "Email to receive the Dew",
-    "emailHint": "Use the email you will register or sign in with, and double-check it before paying: if it is mistyped, support cannot find the order by email and can only help with the order number or claim code. If it differs from your signed-in account email, the app will ask you to confirm before claiming — it never merges silently into someone else's account.",
-    "emailPlaceholder": "you@example.com",
-    "loading": "Loading prices…",
-    "loadFailed": "Failed to load prices. Please refresh and try again.",
-    "creditsLine": "{units}x Dew · {credits}B echo",
-    "listPrice": "List {price}",
-    "buy": "Buy {units}x",
-    "buying": "Creating order…",
-    "promoUsed": "First-purchase offer already used for this tier; charged at list price",
-    "maxNote": "For more than {max}x, contact the founder for a one-to-one top-up.",
-    "orderTitle": "Order created — save your claim token first",
-    "orderNote": "The token is shown only once and disappears on refresh. After payment, sign in to the app and paste it to claim.",
-    "tokenLabel": "Claim token",
-    "copy": "Copy token",
-    "copied": "Copied",
-    "copyFailed": "Copy failed — please select and copy manually.",
-    "orderNo": "Order",
-    "amountLabel": "Paid",
-    "expiresLabel": "Token expires",
-    "pay": "Go to payment",
-    "payNote": "Payment opens in a new window. Copy the token first; it will not be shown again after you refresh this page.",
-    "stepsTitle": "How to claim",
-    "steps": [
-      "Copy the claim token above.",
-      "Sign in to the Eidolon app; register with the order email if you have no account.",
-      "Open the Dew page, choose Claim, paste the token and confirm.",
-      "The Dew is added to your account balance immediately."
+    "eyebrow": "Echo credit packs · No signup",
+    "name": "Chrono Dew",
+    "nameAlt": "溯时星露",
+    "tagline": "Buy a little time. Keep walking with her.",
+    "lede": "Chrono Dew is echo credit that never expires. No account needed — leave an email to buy, then claim it in the app with a one-time code.",
+    "cta": "Choose a pack",
+    "emblemNote": "In a drop of dew, time runs backward.",
+    "facts": [
+      {
+        "title": "No signup",
+        "desc": "An email is all it takes"
+      },
+      {
+        "title": "Never expires",
+        "desc": "Your balance stays, unless the account is disabled"
+      },
+      {
+        "title": "Allowance first",
+        "desc": "Dew is spent only after your plan’s echo runs out"
+      },
+      {
+        "title": "Plan unchanged",
+        "desc": "Tier, perks and billing cycle stay the same"
+      }
     ],
-    "termsTitle": "Purchase terms",
+    "packsLabel": "Price list",
+    "packsTitle": "Choose your Chrono Dew",
+    "packsLede": "The more you take, the less each one costs. First-purchase price: once per tier, per account.",
+    "regionLabel": "Billing",
+    "regionCn": "Mainland China · CNY",
+    "regionIntl": "Everywhere else · USD",
+    "cnMethods": "WeChat Pay · Alipay · UnionPay",
+    "intlMethods": "Card · Apple Pay · Google Pay",
+    "unit": "Dew",
+    "creditsLine": "{credits} echo",
+    "packAria": "{units} Dew, {credits} echo, {price}",
+    "loading": "Loading prices…",
+    "loadFailed": "Prices didn't load — the connection may be unstable.",
+    "retry": "Try again",
+    "noscript": "Buying needs JavaScript enabled in your browser.",
+    "promoNote": "First-purchase price applies once per tier per account, shared across CNY and USD; the order result is final.",
+    "founderNote": "Need more than {max} Dew? Write to the founder for a one-to-one top-up:",
+    "slipTitle": "Your Chrono Dew",
+    "slipRegion": "Billing",
+    "slipMethods": "Pay with",
+    "slipList": "List {price}",
+    "emailLabel": "Email for this order",
+    "emailPlaceholder": "you@example.com",
+    "emailHint": "Use the email you'll sign in to Sholarel with, and check it before ordering — if it's mistyped, support can only help with the order number or claim code.",
+    "badEmail": "That email doesn't look right — mind checking?",
+    "submit": "Order and get your claim code",
+    "submitting": "Placing order…",
     "termsNote": "Orders are non-refundable by default. Refunds are available only in the cases listed in the Terms of Service, calculated by unused proportion × amount actually paid. Balances stay valid indefinitely (except for disabled accounts).",
     "termsLink": "Read the Terms of Service",
+    "orderDone": "Order created",
+    "tokenLabel": "Claim code",
+    "tokenOnce": "shown only once",
+    "tokenNote": "Copy it first, then pay.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyFailed": "Couldn't copy — select it and copy manually.",
+    "orderNo": "Order",
+    "amountLabel": "Due",
+    "payByLabel": "Pay by",
+    "payBy": "{time}",
+    "expiresLabel": "Code valid until",
+    "pay": "Copy code & go to payment",
+    "payNote": "Payment opens in a new window. The code won't be shown again after this page reloads.",
+    "promoUsed": "This email already used the first-purchase price for this tier, so it's charged at list price.",
+    "restart": "Start over",
+    "restartConfirm": "Code not copied yet — click again to drop this order",
+    "alreadyPaid": "This order is already paid, so the code won't be shown again. If you didn't save it, contact support with order {id}.",
+    "errRate": "Too many orders in a short time. Please try again in about 10 minutes.",
+    "errUnavailable": "Payments are temporarily unavailable. Please try again shortly.",
+    "errGeneric": "The order didn't go through: {reason}",
+    "errNetwork": "The connection dropped. Check it and try again.",
+    "afterLabel": "After you have the code",
+    "afterTitle": "Three steps to bring your Dew home",
+    "steps": [
+      {
+        "title": "Pay",
+        "desc": "Pay in the new window — the deadline is on your order. If it runs out, just order again."
+      },
+      {
+        "title": "Sign in",
+        "desc": "Sign in to Sholarel with the order email. No account yet? Register with that email."
+      },
+      {
+        "title": "Paste the code",
+        "desc": "Open Chrono Dew in the subscription panel and paste the code under “Claim with a website code”. The Dew arrives at once; your plan stays the same."
+      }
+    ],
+    "emailNote": "If the order email differs from your account, the app asks you to confirm it first — it never merges into someone else’s account silently.",
+    "appMock": {
+      "title": "Chrono Dew",
+      "hint": "One-time purchase · balance never expires · monthly allowance is spent first",
+      "balance": "Dew balance 4",
+      "claimTitle": "Claim with a website code",
+      "claimHint": "Bought on the website without an account? Paste the one-time code here to merge the Dew into this account (your subscription tier is unchanged).",
+      "placeholder": "Paste one-time code",
+      "submit": "Claim to this account",
+      "success": "4 Dew added. Your balance has been refreshed (subscription tier unchanged)."
+    },
     "faqTitle": "FAQ",
     "faq": [
+      {
+        "q": "How does Chrono Dew relate to the echo in my plan?",
+        "a": "Echo is Sholarel's usage allowance. Your plan grants a fresh allowance every cycle; Chrono Dew is extra echo you buy separately, and it never expires. The plan's allowance is always used first — Dew is only spent after it runs out."
+      },
       {
         "q": "How does the first-purchase offer work?",
         "a": "Each account gets the first-purchase price once per tier; tiers are shared across currencies. Discount labels and amounts are determined live by the server, and the checkout page is authoritative for what you pay."
       },
       {
         "q": "Can I buy without an account?",
-        "a": "Yes. Enter your email to order. Save the one-time claim token after payment, then register and sign in to the app to claim it on the Dew page."
+        "a": "Yes. Enter your email to order. Save the one-time claim code after payment, then register and sign in to the app and paste it under Chrono Dew to claim."
+      },
+      {
+        "q": "What if I didn't save the code?",
+        "a": "The code is shown only once, on the order page. Contact support (support@instarmony.com) with your order number and order email, and we will sort it out after verifying."
       },
       {
         "q": "What if I used the wrong email?",
         "a": "The order email is authoritative. If your signed-in account email differs, the app asks you to confirm the order email before claiming; it never silently merges into another account."
       },
       {
-        "q": "Does Dew change my subscription tier?",
-        "a": "No. Dew only adds spendable echo balance. It does not change your tier, entitlements or billing cycle."
+        "q": "Does Chrono Dew change my subscription tier?",
+        "a": "No. Chrono Dew only adds spendable echo balance. It does not change your tier, entitlements or billing cycle."
       }
     ]
   },
   "downloadPage": {
     "label": "Download",
     "h1": "Bring her to your devices",
-    "lede": "Windows and Android for now; macOS, iOS, Linux and Web are not supported yet.",
+    "lede": "Windows and Android for now; the web app opens directly in a browser and is currently in invite-only beta (sign-up requires an invite code). macOS, iOS and Linux are not supported yet.",
     "previewNote": "This is a preview build. It's not perfect — tell me what breaks.",
+    "backupLink": "Download failing or slow? Try the backup route",
+    "releaseLabel": "Latest version",
+    "releaseFallback": "Download latest",
     "windows": {
       "title": "Windows desktop",
       "req": "Windows 10 / 11 (64-bit)",
@@ -1159,17 +1244,17 @@
     },
     "android": {
       "title": "Android mobile",
-      "req": "Android 10.0+",
+      "req": "Android 7.0+",
       "desc": "Ambient context (location, steps, notification digests), push messages, voice chat anywhere.",
       "cta": "Download APK installer",
+      "arch": "64-bit (arm64) installers only for now; 32-bit devices are not supported",
       "note": "Direct APK install; allow unknown sources once"
     },
     "unsupported": "Not supported yet",
     "unsupportedList": [
       "macOS",
       "iOS",
-      "Linux",
-      "Web"
+      "Linux"
     ],
     "tableTitle": "System requirements",
     "tableHead": [
@@ -1181,21 +1266,21 @@
     "tableRows": [
       {
         "platform": "Windows (x64)",
-        "min": "Windows 10 1809+, 4GB RAM, WebView2",
+        "min": "Windows 10 1803+, 4GB RAM, WebView2",
         "rec": "Windows 11, 8GB RAM, hardware GPU acceleration",
         "feat": "3D desktop pet, autonomous desktop tasks, realtime voice calls"
       },
       {
         "platform": "Android",
-        "min": "Android 10.0 (API 29), 3GB RAM",
+        "min": "Android 7.0 (API 24), 3GB RAM, arm64",
         "rec": "Android 12.0+, 6GB RAM",
         "feat": "Push notifications, location context, voice calls"
       },
       {
         "platform": "Web browser",
-        "min": "Not supported yet",
-        "rec": "Not applicable",
-        "feat": "No web client currently available"
+        "min": "Chrome 90+ / Edge 90+ / Firefox 90+ / Safari 15+, with WebRTC support",
+        "rec": "Latest Chrome / Edge",
+        "feat": "Invite-only beta; floating window, auto-start and screen capture unavailable"
       }
     ],
     "helpTitle": "Install help",
@@ -1220,7 +1305,7 @@
     "p2Body": "She has no invented backstory, and she isn't a template with a new name. Every memory between you is gathered, bit by bit, from days spent together.",
     "makerLabel": "The maker",
     "makerTitle": "One person, zero to one",
-    "makerBody": "Eidolon is built by one independent developer, end to end: product design, front end, backend, cloud sync, memory architecture, context engineering, and agent coordination. Ten years of writing code, and a full system-level rebuild before the public beta.",
+    "makerBody": "Sholarel is built by one independent developer, end to end: product design, front end, backend, cloud sync, memory architecture, context engineering, and agent coordination. Ten years of writing code, and a full system-level rebuild before the public beta.",
     "makerChips": [
       "Product design",
       "Frontend",
@@ -1237,7 +1322,7 @@
       "Founded an AI roleplay community; organised RWKV-4 on-device fine-tuning practice"
     ],
     "instarmonyTitle": "Instarmony",
-    "instarmonyBody": "Eidolon is crafted by Instarmony Lab. We maintain transparent foundation model routing across Gemini, Claude, DeepSeek for reasoning, Qwen for desktop agents, and Doubao for real-time voice.",
+    "instarmonyBody": "Sholarel (formerly Eidolon) is crafted by Instarmony Lab. We maintain transparent foundation model routing across Gemini, Claude, DeepSeek for reasoning, Qwen for desktop agents, and Doubao for real-time voice.",
     "instarmonyLink": "Visit Instarmony Lab →",
     "contactTitle": "Get in touch",
     "contactCards": {
@@ -1293,12 +1378,12 @@
     "label": "Privacy",
     "tag": "Effective · Active",
     "title": "Privacy Policy",
-    "intro": "Instarmony (\"we\", \"us\", or \"our\") is committed to protecting your personal privacy and data security. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use Eidolon applications and related services, as well as your legal rights regarding your data.",
+    "intro": "Instarmony (\"we\", \"us\", or \"our\") is committed to protecting your personal privacy and data security. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use Sholarel applications and related services, as well as your legal rights regarding your data.",
     "tocTitle": "Table of Contents",
     "sections": [
       {
         "title": "1. Data Protection & Local-First Architecture",
-        "body": "We adhere to a 'Local-First, Minimum Necessity' data protection approach. Eidolon is architected to keep your daily chat memories, companion relationship state, to-do items, and preferences encrypted on your local device storage. Only when you explicitly enable cross-device cloud sync or cloud AI features is essential data securely synced over TLS-encrypted channels."
+        "body": "We adhere to a 'Local-First, Minimum Necessity' data protection approach. Sholarel is architected to keep your daily chat memories, companion relationship state, to-do items, and preferences encrypted on your local device storage. Only when you explicitly enable cross-device cloud sync or cloud AI features is essential data securely synced over TLS-encrypted channels."
       },
       {
         "title": "2. Information We Collect & Usage",
@@ -1318,7 +1403,15 @@
       },
       {
         "title": "6. Third-Party Service Providers",
-        "body": "To provide multimodal AI and streaming capabilities, we partner with reputable cloud infrastructure and AI model providers governed by strict data processing agreements. We never sell your personal data to data brokers, nor do we feed private conversation histories into general foundational model training."
+        "body": "To provide model capabilities, infrastructure and offline message delivery, we integrate the third-party SDK and services listed below. We never sell your personal data to data brokers, nor do we feed private conversation histories into general foundational model training. Each SDK runs only after the corresponding feature is enabled.",
+        "items": [
+          "JPush SDK · Provider: Shenzhen Hexun Huagu Information Technology Co., Ltd. · Purpose: deliver the proactive messages, reminders and life updates you chose to receive to your notification shade while the app is backgrounded or closed.",
+          "Personal information processed by JPush: device identifiers (Android ID, OAID, GAID, UAID, Boot ID), device hardware information (model, screen resolution, manufacturer, product name, storage), operating system information (version, name, language), network information (network type, carrier, IP address, DHCP, Wi-Fi state), and push delivery logs.",
+          "Purpose and method: derive a de-identified device identifier so messages reach the right device, determine network connectivity to keep the push channel alive, and record delivery status. This information is collected on-device by the SDK and sent over the push connection.",
+          "Enabling and withdrawal: JPush starts only after you allow system notifications and opt in to offline push. Withdrawing consent stops collection, and you can turn it off at any time under Settings → Offline push.",
+          "JPush privacy policy: https://www.jiguang.cn/license/privacy · Contact: support@jiguang.cn",
+          "Beyond push, conversation inference is handled by third-party large language model providers, real-time audio and video is routed by a communication network provider, and crash data is collected by a monitoring tool. Each is limited to what the service requires and governed by a data processing agreement."
+        ]
       },
       {
         "title": "7. Cookies & Local Storage Preferences",
@@ -1335,12 +1428,12 @@
     "label": "Terms",
     "tag": "Effective · Active",
     "title": "Terms of Service",
-    "intro": "These Terms of Service (\"Terms\") govern your access to and use of Eidolon software and related digital AI companion and agent services provided by Instarmony (\"we\", \"us\", or \"our\"). By accessing or using the Service, you agree to be bound by these Terms.",
+    "intro": "These Terms of Service (\"Terms\") govern your access to and use of Sholarel software and related digital AI companion and agent services provided by Instarmony (\"we\", \"us\", or \"our\"). By accessing or using the Service, you agree to be bound by these Terms.",
     "tocTitle": "Table of Contents",
     "sections": [
       {
         "title": "1. Service Scope, Eligibility & AI Model Brand Disclosure",
-        "body": "Eidolon is a digital AI companion and agent application developed and operated by Instarmony. The Service includes large language model interactions, personalized memory streams, real-time voice conversations, 3D character avatars, and desktop automation assistance. You must be at least 18 years of age or the age of legal majority in your jurisdiction to use the Service. [AI Model Brand Disclosure]: In accordance with our commitment to transparency, the platform explicitly discloses the underlying foundation AI model brands powering Eidolon. The Service integrates and routes across industry-standard model brands including: Gemini (Google multimodal & language models), Claude (Anthropic reasoning models), DeepSeek (language models), Qwen (multimodal & agent execution models by Alibaba), and Doubao (real-time voice & speech synthesis technologies by Volcengine). Specific model brands allocated to each subscription tier are detailed on our Pricing page and in-app model selection panel, allowing users to choose or route dynamically."
+        "body": "Sholarel is a digital AI companion and agent application developed and operated by Instarmony. The Service includes large language model interactions, personalized memory streams, real-time voice conversations, 3D character avatars, and desktop automation assistance. You must be at least 18 years of age or the age of legal majority in your jurisdiction to use the Service. [AI Model Brand Disclosure]: In accordance with our commitment to transparency, the platform explicitly discloses the underlying foundation AI model brands powering Sholarel. The Service integrates and routes across industry-standard model brands including: Gemini (Google multimodal & language models), Claude (Anthropic reasoning models), DeepSeek (language models), Qwen (multimodal & agent execution models by Alibaba), and Doubao (real-time voice & speech synthesis technologies by Volcengine). Specific model brands allocated to each subscription tier are detailed on our Pricing page and in-app model selection panel, allowing users to choose or route dynamically."
       },
       {
         "title": "2. Service Warranties & Disclaimer",
@@ -1348,26 +1441,30 @@
       },
       {
         "title": "3. Subscriptions, Billing & Refund Policy",
-        "body": "The Service provides periodic subscription tiers and add-on capacity. All online payments and billing are securely handled by our Merchant of Record (MoR) and payment processing partner, Waffo Pancake, supporting major credit cards and local payment methods. Subscriptions recur on designated billing intervals and can be cancelled at any time through the client or support channels. Upon cancellation, your access remains active until the end of the current billing cycle. [Refund Policy]: Due to the immediate delivery nature of digital software and cloud AI compute, consumed capacity is generally non-refundable. Full or partial refunds are granted in the following cases: (1) First-time subscribers may request a full refund within 7 days of their initial purchase provided the plan's core quota has not been substantially consumed; (2) Duplicate charges resulting from billing errors will be refunded in full; (3) Verified prolonged service disruptions exceeding 72 hours caused by our infrastructure will receive pro-rata refunds or plan extensions. To request a refund, please contact support@instarmony.com with your account email and transaction ID. We acknowledge requests within 2 business days and process eligible refunds to the original payment method within 5–10 business days."
+        "body": "The Service provides periodic subscription tiers and add-on capacity. All online payments and billing are securely handled by our Merchant of Record (MoR) and payment processing partner, Waffo Pancake, supporting major credit cards and local payment methods. Subscriptions recur on designated billing intervals and can be cancelled at any time through the client or support channels. Upon cancellation, your access remains active until the end of the current billing cycle. [Refund Policy]: Due to the immediate delivery nature of digital software and cloud AI compute, consumed capacity is generally non-refundable. Full or partial refunds are granted in the following cases: (1) First-time subscribers may request a full refund within 7 days of their initial purchase provided the plan's core quota has not been substantially consumed; (2) Duplicate charges resulting from billing errors will be refunded in full; (3) Verified prolonged service disruptions exceeding 72 hours caused by our infrastructure will receive pro-rata refunds or plan extensions. To request a refund, please contact support@instarmony.com with your account email and transaction ID. We acknowledge requests within 2 business days and process eligible refunds to the original payment method within 5–10 business days. [Risk Control Exception]: Accounts terminated due to payment fraud, chargeback abuse, promotion exploitation, reverse engineering, or risk control violations are strictly ineligible for refunds (see Section 5)."
       },
       {
         "title": "4. Acceptable Use Policy (AUP), Moderation & Reporting",
         "body": "You agree to use the Service (including text, voice synthesis, voice cloning, and desktop automation) lawfully and responsibly. Prohibited categories and practices include: [Prohibited Content Categories]: (1) Child Unsafe Content (Zero Tolerance): Generating, soliciting, or distributing any child sexual abuse material (CSAM), sexualized depictions of minors, or content harmful to minors. Such behavior triggers immediate permanent account termination and referral to law enforcement; (2) Hate Speech & Discrimination: Generating content that promotes, incites, or facilitates hatred, discrimination, dehumanization, or violence against individuals or groups based on race, ethnicity, religion, gender, gender identity, sexual orientation, disability, age, or nationality; (3) Sexually Explicit & Non-Consensual Imagery: Generating non-consensual intimate imagery (NCII) or unlawful explicit pornography; (4) Violence & Extremism: Promoting violent extremism, terrorism, self-harm, suicide encouragement, or gratuitous gore; (5) Deceptive Deepfakes & Impersonation: Utilizing voice synthesis or avatars to impersonate real persons, public figures, or organizations for fraud or disinformation; (6) Infringement & Abuse: Violating intellectual property, privacy, or conducting cyberattacks. [Enforcement Measures]: Depending on severity, we apply progressive actions: formal warnings, feature restrictions (disabling voice synthesis or agent tools), quota zeroing, and temporary or permanent account termination without refund. Severe criminal violations will be reported to legal authorities. [Reporting Violations]: Users may report prohibited content or abuse at any time via our dedicated Trust & Safety email: report@instarmony.com (or support@instarmony.com). Please attach timestamps, context text/audio, and relevant account identifiers. [Review & Moderation Process]: We employ real-time automated safety filtering, proactive human spot-checks, and rapid reporting response. Critical reports (CSAM/terrorism) are mitigated within 2 hours and resolved within 24 hours. General reports are acknowledged within 24 hours and investigated within 48 hours. Affected users may appeal within 14 days by emailing support@instarmony.com for independent review."
       },
       {
-        "title": "5. Voice Sample Authorization",
+        "title": "5. Security Risk Control, Anti-Fraud & Abuse Enforcement",
+        "body": "To safeguard service availability, data security, and platform stability for all legitimate users, Instarmony maintains rigorous automated security risk control and audit mechanisms. Users are strictly prohibited from engaging in any fraudulent, abusive, or malicious activities, including but not limited to: (1) Fraudulent Payment & Chargeback Abuse: Utilizing stolen or unauthorized payment credentials, forged transactions, fraudulent chargebacks, or unauthorized payment methods; (2) Promotion & Discount Abuse: Exploiting introductory discounts, coupons, promo codes, or promotional perks through multi-accounting, automated script registration, or false identities; (3) Reverse Engineering & Cyberattacks: Decompiling, reverse engineering, disassembling, unauthorized endpoint probing, vulnerability fuzzing, data scraping, SQL/command injection, credential stuffing, or denial-of-service (DDoS) attacks targeting our clients, communication protocols, or backend APIs; (4) Malformed Requests & Rate Flooding: Utilizing unauthorized third-party bot clients, automated scripts to flood APIs, or intentionally submitting malformed, unreasonable, or corrupted payloads to disrupt server operations. [Enforcement & Non-Refund Policy]: Upon detection and confirmation of such abuse through automated risk control or manual auditing, we reserve the right to immediately suspend or permanently terminate the account, revoke all device sessions, and forfeit all unused quota. Due to security compliance and damage mitigation, any account terminated for fraud, promotion abuse, reverse engineering, or cyberattacks is strictly ineligible for any refund. [Appeal Procedure]: We respect legitimate user rights. If you believe your account was flagged or terminated in error, you may submit a formal appeal to support@instarmony.com within fifteen (15) calendar days from the enforcement date, including your account details, transaction receipts, and explanatory statement. Our compliance team will conduct an independent review and respond within 3 business days."
+      },
+      {
+        "title": "6. Voice Sample Authorization",
         "body": "When using personalized voice cloning or voice synthesis features, you affirm that any uploaded audio samples are of your own voice or that you possess explicit, documented permission from the rightful owner. Unauthorized voice mimicry is strictly prohibited. Voice data is used exclusively to generate synthesized speech for your account and can be revoked and deleted at any time."
       },
       {
-        "title": "6. Desktop Automation & System Permissions",
-        "body": "Eidolon desktop editions include SubAgent capabilities (such as web browsing and local workflow execution). All deep operating system interactions adhere to explicit user consent and visibility, featuring clear runtime permission toggles and revocation options. Automations operate strictly within boundaries defined by the user, who remains responsible for actions initiated through external workflows."
+        "title": "7. Desktop Automation & System Permissions",
+        "body": "Sholarel desktop editions include SubAgent capabilities (such as web browsing and local workflow execution). All deep operating system interactions adhere to explicit user consent and visibility, featuring clear runtime permission toggles and revocation options. Automations operate strictly within boundaries defined by the user, who remains responsible for actions initiated through external workflows."
       },
       {
-        "title": "7. Intellectual Property & Output Ownership",
+        "title": "8. Intellectual Property & Output Ownership",
         "body": "All software, user interfaces, 3D character assets (including the Fea canonical character), trademarks, and branding are the intellectual property of Instarmony and its licensors. Subject to your compliance with these Terms, content generated through your lawful use of the Service is owned by you to the fullest extent permitted by applicable law, and you may use it for lawful personal or commercial purposes."
       },
       {
-        "title": "8. Revisions, Governing Law & Contact",
+        "title": "9. Revisions, Governing Law & Contact",
         "body": "We reserve the right to modify these Terms. Material changes will be communicated via in-app notices or email at least 14 days before taking effect. For support, billing inquiries, or refund requests, please contact us at support@instarmony.com. To report prohibited content or violations, email report@instarmony.com. Operator: Instarmony. Any dispute arising from or relating to these Terms shall be resolved through friendly consultation or submitted to the competent courts of Instarmony's registered jurisdiction."
       }
     ],
@@ -1380,7 +1477,7 @@
   },
   "stub": {
     "loginTitle": "Heading to downloads",
-    "loginBody": "Web isn't supported yet — redirecting to the download page.",
+    "loginBody": "The web app is currently in invite-only beta — heading to the download page.",
     "contactTitle": "Heading to contact & community",
     "contactBody": "Fea, partnerships and feedback all live on the About page.",
     "here": "If nothing happens, click here"

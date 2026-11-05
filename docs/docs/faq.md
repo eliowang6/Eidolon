@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /faq
 title: 常见问题
-description: Eidolon 使用中的常见问题与解答
+description: Sholarel 使用中的常见问题与解答
 ---
 
 # 常见问题
@@ -10,7 +10,7 @@ description: Eidolon 使用中的常见问题与解答
 ## 安装与启动
 
 ### 支持哪些平台？
-Eidolon 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端**。macOS 和 iOS 版本正在规划中。
+Sholarel 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端**。macOS 和 iOS 版本正在规划中。
 
 ### Windows 安装时提示"已保护你的电脑"？
 这是 Windows SmartScreen 对未签名应用的提示。点击「更多信息」→「仍要运行」即可正常安装。
@@ -21,7 +21,7 @@ Eidolon 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端**�
 - 确认系统版本满足要求（Windows 10 1803+）
 
 ### Android 安装失败？
-- 确认系统版本 Android 8.0+
+- 确认系统版本 Android 7.0+，且为 64 位（arm64）设备
 - 开启"允许安装未知来源应用"
 - 检查存储空间是否充足
 
@@ -77,7 +77,7 @@ Eidolon 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端**�
 ## 订阅与额度
 
 ### "回声"额度是什么？
-"回声"是 Eidolon 的 AI 使用额度。每次对话、画图、通话都会消耗一定额度。额度在订阅周期内刷新。
+"回声"是 Sholarel 的 AI 使用额度。每次对话、画图、通话都会消耗一定额度。额度在订阅周期内刷新。
 
 ### 额度用完了怎么办？
 - 升级订阅等级

@@ -1,5 +1,6 @@
 ---
 import PageHero from '../PageHero.astro';
+import Eyebrow from '../Eyebrow.astro';
 import PhoneFrame from '../PhoneFrame.astro';
 import WindowFrame from '../WindowFrame.astro';
 import Polaroid from '../Polaroid.astro';
@@ -41,7 +42,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
       <header class="chapter-head reveal">
         <span class="chapter-no" aria-hidden="true">{chapter.no}</span>
         <div class="chapter-intro">
-          <span class="label">{chapter.no} / {chapter.name}</span>
+          <Eyebrow text={`${chapter.no} / ${chapter.name}`} />
           <h2>{chapter.h2}</h2>
           <p class="lede">{chapter.lede}</p>
         </div>
@@ -52,7 +53,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
           {chapter.rows.map((row, i) => (
             <article class={`feature-row ${i % 2 === 1 ? 'feature-row--flip' : ''} reveal`}>
               <div class="feature-copy">
-                <span class="label">{row.label}</span>
+                <span class="label-no">{row.label}</span>
                 <h3>{row.title}</h3>
                 <p>{row.desc}</p>
                 <ul>
@@ -182,7 +183,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
                         <line x1="310" y1="200" x2="500" y2="200" />
                         <line x1="310" y1="200" x2="310" y2="340" />
                       </svg>
-                      <span class="node node--center"><Logo size={30} /><b>Eidolon</b><small>{demos.nodes.center}</small></span>
+                      <span class="node node--center"><Logo size={30} /><b>Sholarel</b><small>{demos.nodes.center}</small></span>
                       <span class="node node--left">{copy.howPage.action.targets[0]}</span>
                       <span class="node node--right">{copy.howPage.action.targets[1]}</span>
                       <span class="node node--bottom">{copy.howPage.action.targets[2]}</span>
@@ -199,7 +200,6 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
         <div class="plays">
           {chapter.plays.map((play, i) => (
             <article class="play reveal" style={`--i:${i}`}>
-              <span class="play-index mono">04.{i + 1}</span>
               {play.media === 'theater' ? (
                 <div class="play-thumb"><img src="/assets/screenshots/app-theater.webp" alt="" width="1028" height="852" loading="lazy" /></div>
               ) : (
@@ -339,7 +339,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     margin: 12px 0 12px;
   }
   .feature-copy p {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.8;
     color: var(--ink-2);
   }
@@ -352,7 +352,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     display: flex;
     align-items: baseline;
     gap: 10px;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--ink-2);
     line-height: 1.6;
   }
@@ -426,8 +426,12 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
   @keyframes ring-turn {
     to { transform: translate(-50%, -50%) rotate(360deg); }
   }
+  /* Fea's illustration is from the digital side; give it a window of night. */
   .stage--polaroid {
-    background: linear-gradient(160deg, var(--paper-2), var(--sage-wash));
+    background:
+      radial-gradient(70% 80% at 50% 42%, rgba(134, 184, 173, 0.18), transparent 70%),
+      #12241d;
+    border-color: transparent;
   }
   .stage--cabin {
     background: linear-gradient(160deg, var(--paper-2), var(--card));
@@ -519,7 +523,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
   }
   .call-hint {
     text-align: center;
-    font-size: 10.5px;
+    font-size: 11.5px;
     color: var(--ink-3);
     letter-spacing: 0.04em;
   }
@@ -585,7 +589,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     display: flex;
     gap: 10px;
     align-items: center;
-    font-size: 13.5px;
+    font-size: 14.5px;
     color: var(--ink-2);
   }
   .cbox {
@@ -645,18 +649,18 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     display: flex;
     gap: 10px;
     align-items: baseline;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--ink-2);
     line-height: 1.5;
   }
   .notify-ui time {
-    font-size: 10px;
+    font-size: 11px;
     color: var(--ink-3);
     flex: none;
   }
   .notify-foot {
     margin-top: auto;
-    font-size: 11.5px;
+    font-size: 12.5px;
     line-height: 1.6;
     color: var(--ink-3);
   }
@@ -688,7 +692,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     display: flex;
     gap: 10px;
     align-items: flex-start;
-    font-size: 13.5px;
+    font-size: 14.5px;
     line-height: 1.55;
     color: var(--ink-2);
   }
@@ -710,7 +714,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     margin-top: 16px;
     padding-top: 10px;
     border-top: 1px dashed var(--line-2);
-    font-size: 10.5px;
+    font-size: 11.5px;
     color: var(--ink-3);
   }
 
@@ -740,11 +744,11 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     align-items: baseline;
     padding: 12px 0;
     border-bottom: 1px solid var(--line);
-    font-size: 13.5px;
+    font-size: 14.5px;
     color: var(--ink-2);
   }
   .src {
-    font-size: 9.5px;
+    font-size: 10.5px;
     color: var(--sage-deep);
     border: 1px solid var(--sage);
     border-radius: var(--r-full);
@@ -791,7 +795,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     background: var(--card);
     border: 1px solid var(--line);
     padding: 9px 16px;
-    font-size: 12.5px;
+    font-size: 13.5px;
     color: var(--ink-2);
     white-space: nowrap;
   }
@@ -818,7 +822,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     line-height: 1;
   }
   .node--center small {
-    font-size: 10px;
+    font-size: 11px;
     opacity: 0.65;
   }
   .node--left { left: 0; top: 50%; transform: translateY(-50%); }
@@ -845,13 +849,6 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
   .play:hover {
     transform: translateY(-4px);
     box-shadow: var(--sh-paper);
-  }
-  .play-index {
-    position: absolute;
-    top: 18px;
-    right: 20px;
-    font-size: 10px;
-    color: var(--ink-3);
   }
   .play-thumb {
     margin: -4px -4px 8px;
@@ -1002,10 +999,13 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
   .bubbles i::before { left: 14px; }
   .bubbles i::after { left: 24px; }
   .play h3 {
-    font-size: 19px;
+    font-size: 20px;
+  }
+  html[lang="en"] .play h3 {
+    font-size: 24px;
   }
   .play p {
-    font-size: 13.5px;
+    font-size: 15px;
     line-height: 1.65;
     color: var(--ink-2);
   }
@@ -1025,7 +1025,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 13px;
+    font-size: 14.5px;
     color: var(--night-text);
   }
   .bb-item :global(svg) {
@@ -1035,7 +1035,7 @@ const wave = Array.from({ length: 32 }, (_, i) => 18 + Math.round(Math.abs(Math.
   .baseband .tlink {
     color: var(--night-text);
     border-color: var(--line-2);
-    font-size: 13px;
+    font-size: 14px;
     white-space: nowrap;
   }
 

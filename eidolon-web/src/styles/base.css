@@ -145,7 +145,7 @@ ol {
 
 .section {
   position: relative;
-  padding: clamp(80px, 10vw, 140px) 0;
+  padding: clamp(80px, 9vw, 128px) 0;
   transition: background-color 900ms var(--ease);
 }
 .section--paper2 {
@@ -155,15 +155,55 @@ ol {
   padding-top: clamp(24px, 4vw, 48px);
 }
 
+/* Eyebrows: Latin in spaced mono capitals; Chinese in the body face, because
+   tracked-out CJK in a monospace fallback reads as broken type. */
 .label {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font-family: var(--f-mono);
-  font-size: var(--fs-label);
+  font-size: 11.5px;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-3);
   line-height: 1.4;
+}
+:lang(zh) .label {
+  font-family: var(--f-body);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+.label-no {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--sage-deep);
+}
+.label-en {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  opacity: 0.85;
+}
+.label-en::before,
+.label-no + .label-tx::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+.label-tx {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .latin {
@@ -228,6 +268,13 @@ html[lang="en"] h3 {
   color: var(--ink-2);
   max-width: 38em;
   text-wrap: pretty;
+}
+
+/* Chinese display lines and ledes break at punctuation, not mid-word
+   ("数 / 字生命"); overlong phrases still wrap rather than overflow. */
+:lang(zh) :is(h1, h2, h3, .sec-head .lede, .page-head .lede, .hero-lede) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .small {
@@ -401,7 +448,8 @@ html.js .reveal {
   transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
   transition-delay: calc(var(--i, 0) * 80ms);
 }
-html.js .reveal.in {
+html.js .reveal.in,
+html.reveal-all .reveal {
   opacity: 1;
   transform: none;
 }

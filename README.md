@@ -1,32 +1,39 @@
 # instarmony_website
 
-Source for **instarmony.com** — the Instarmony AI Lab site, the Eidolon product pages under
-`/eidolon/`, and the bilingual documentation site. It used to live inside the Eidolon app
+Source for **instarmony.com** — the Instarmony AI Lab site, the Sholarel product pages under
+`/eidolon/`, and the bilingual documentation site. It used to live inside the Sholarel app
 repository as `eidolon_github/`, a git submodule; it is now its own repository with its own
 build and release path, so shipping a page no longer waits on a desktop release.
 
 ```
 instarmony.com/                →  index.html          Instarmony lab homepage
-instarmony.com/eidolon/        →  eidolon/index.html  0-second redirect to eidolon.instarmony.com
-instarmony.com/eidolon/<page>  →  eidolon/*.html      0-second redirects to the product sub-domain
-eidolon.instarmony.com/        →  eidolon-site/       Astro build of eidolon-web/ (zh + en)
+instarmony.com/eidolon/        →  301                 to sholarel.instarmony.com/ (edgeone.json)
+instarmony.com/eidolon/<page>  →  301                 to the same page on the product sub-domain
+instarmony.com/docs/build/     →  301                 to sholarel.instarmony.com/docs/
+sholarel.instarmony.com/        →  eidolon-site/       Astro build of eidolon-web/ (zh + en)
+sholarel.instarmony.com/docs/   →  docs/build/         Docusaurus output (zh-Hans); /docs/en/ is English
 instarmony.com/team/<handle>/  →  team/<handle>/index.html
-instarmony.com/docs/build/     →  docs/build/         Docusaurus output (zh-Hans)
-instarmony.com/docs/build/en/  →  docs/build/en/      Docusaurus output (en)
 ```
+
+The product pages and the documentation both live on the product sub-domain now. The
+old lab-host paths answer with a **real 301** — see `edgeone.json` — instead of the
+`meta refresh` stubs this repo used to ship. Bing does not honour `meta refresh`,
+so the stubs kept the pre-migration pages in the index with their old titles.
 
 ## Layout
 
 | Path | What it is |
 |------|------------|
 | `index.html`, `style.css`, `script.js` | Root brand page and its own CSS/JS (no build step) |
-| `404.html` | Not-found page, served by both GitHub Pages and the Eidolon server |
-| `eidolon/` | Legacy product directory: `login`/`contact` stubs plus 0-second redirect stubs to the sub-domain. `eidolon/assets/` stays untouched because the Web client resolves `/assets/...` here |
-| `eidolon-web/` | Astro 5 source for the Eidolon product sub-domain (bilingual zh/en, Daylight Margin design system). Builds into `eidolon-site/` |
+| `404.html` | Not-found page, served by both GitHub Pages and the Sholarel server |
+| `eidolon/` | Legacy product directory: `login`/`contact` stubs plus redirect stubs to the sub-domain. `eidolon/assets/` stays untouched because the Web client resolves `/assets/...` here. The stubs are now only a fallback — `edgeone.json` answers the same paths with a 301 first |
+| `eidolon-web/` | Astro 5 source for the Sholarel product sub-domain (bilingual zh/en, Daylight Margin design system). Builds into `eidolon-site/` |
 | `eidolon-site/` | Generated Astro output; the EdgeOne product ZIP is packaged from this directory (never edited by hand) |
 | `team/` | One directory per person, e.g. `team/eli0wang6/index.html` |
 | `assets/` | Shared images, screenshots and sticker art (root and `eidolon/assets/` are separate sets) |
-| `docs/` | Docusaurus 3 project. `docs/docs/` is the zh-Hans source, `docs/i18n/en/docusaurus-plugin-content-docs/current/` the English source |
+| `docs/` | Docusaurus 3 project. `docs/docs/` is the zh-Hans source, `docs/i18n/en/docusaurus-plugin-content-docs/current/` the English source. Built with `baseUrl: /docs/` so it deploys onto the product sub-domain |
+| `edgeone.json` | Path-level 301s applied by EdgeOne Pages at the root of the main-site ZIP: the old `/eidolon/*` stubs and the old `/docs/build/*` documentation tree, plus a redirect that keeps `edgeone.json` itself from being served as a static file. Also injects the HSTS header |
+| `edgeone.sub.json` | The same HSTS header, but for the **product sub-domain** ZIP. The sub-domain is a separate Pages project on its own host, so it needs its own rules file — the lab's path-level 301s would send sub-domain traffic to the wrong place |
 | `scripts/seo-submit.mjs` | Regenerates `sitemap.xml` + `robots.txt`, then pings IndexNow / Baidu / Google |
 | `scripts/publish-site.py` | Builds, packages and uploads the production release to Cloudflare R2 |
 | `scripts/publish-edgeone.py` | Builds, packages and deploys both sites to EdgeOne Pages (Makers) |
@@ -41,7 +48,7 @@ visitors read — the publish script builds it before packaging, and Pages CI bu
 Nothing needs a server for the main marketing pages: open `index.html`, or serve the repo root with
 `python -m http.server 8080`.
 
-The Eidolon product sub-domain is a real Astro build (`eidolon-web/`, outputs to
+The Sholarel product sub-domain is a real Astro build (`eidolon-web/`, outputs to
 `../eidolon-site/`):
 
 ```bash
@@ -123,10 +130,73 @@ consequences worth keeping in mind:
   reports a false failure.
 
 > **Reachable ≠ usable for production traffic.** The `overseas` area works
-> without ICP filing, but mainland visitors are blocked, so `instarmony.com`
-> stays on the Azure origin until the domain is filed. At that point switch
-> `EDGEONE_AREA=global`, bind the domain, and the same script publishes to a
-> mainland-reachable site.
+> without ICP filing, but mainland visitors are blocked. `instarmony.com` is
+> currently bound to the `overseas` EdgeOne project (its responses carry
+> `Server: edgeone makers`), so mainland reachability is a live constraint —
+> when the domain is filed, switch `EDGEONE_AREA=global` and rebind.
+>
+> **Host normalisation.** `source` in `edgeone.json` matches the request *path*
+> only — it never resolves a scheme. Host matching needs the two `$` variables:
+>
+> ```json
+> { "source": "$wwwhost", "destination": "$host", "statusCode": 301 }
+> ```
+>
+> As the **first** entry of `redirects` this fires on the live custom domains
+> and collapses `www` onto the apex: `https://www.instarmony.com/team/x/`
+> answers `301 → https://instarmony.com/team/x/`, path and query preserved.
+> The apex is the canonical host — every `canonical`, `og:url` and sitemap
+> entry points there — so this is the redirect that consolidates the two
+> Baidu listings.
+>
+> Two limits worth knowing:
+>
+> - **the scheme is inherited from the request.** `destination: "https://$host"`
+>   behaves exactly like `destination: "$host"` — the `https://` prefix is
+>   ignored. `http://www.…` therefore lands on `http://apex`, not `https://apex`;
+> - - **a scheme-specific rule is impossible.** `redirects` cannot match http
+>   without also matching https, so forcing http → https cannot be expressed
+>   here (an https request would loop). That half is a console switch.
+>
+> What was ruled out, all measured against the live domains:
+>
+> - a rule whose source names a host (`www.instarmony.com/*`) passes config
+>   validation but never fires;
+> - a catch-all `/*` → `https://host/*` rule does not fire on a custom domain
+>   (it works on the `*.edgeone.dev` default domain, where the platform's own
+>   http→https hop runs first);
+> - `publish.rule` is not a runtime redirect engine;
+> - an Edge Function cannot intercept it, because **static assets win over
+>   function routes**: `edge-functions/` never sees a request that matches an
+>   existing file, including `404.html`;
+> - the Pages API exposes no domain-binding or HTTPS action at all
+>   (`DeletePagesProject` exists, `*Domain*` does not).
+>
+> **What still needs the console** — under the project's custom-domain
+> entries, the *HTTPS 配置* column:
+>
+> - force `http` → `https` on the apex (and on `www`, if the switch is offered
+>   per domain — the two hosts are bound independently, so a site-wide toggle
+>   may not cover both);
+> - pick **301** over 302 there: http is a permanent invalid variant, and a 302
+>   is read as temporary, so crawlers keep re-fetching the http copy and the
+>   weight does not consolidate.
+>
+> As a code-level stopgap, both sites ship
+> `Strict-Transport-Security: max-age=31536000; includeSubDomains` via the
+> `headers` block of `edgeone.json` / `edgeone.sub.json`, so browsers upgrade
+> http → https on their own after the first visit. That is not a server-side
+> 301 — a crawler that ignores HSTS still sees the http copy — but it covers
+> real visitors.
+>
+> **百度 quota.** `SEO_BAIDU_SITE` / `SEO_BAIDU_SITE_EIDOLON` must be the bare
+> host (`instarmony.com`), not `https://instarmony.com` — with the protocol the
+> API answers `site init fail` and never reaches the URL check. With the bare
+> host the apex property answers `over quota`, which means the site *is*
+> registered on the apex and only the daily allowance is spent. The 普通收录 API
+> grants very little per day (around 10 URLs), so run the submit in the morning
+> rather than after a deploy. IndexNow has no such limit and is the channel
+> that actually moves Bing.
 
 Deployment shells out to the EdgeOne CLI:
 
@@ -176,10 +246,10 @@ a directory that contains `.git`). That is the Azure host; the retired AWS path
 ### GitHub Pages
 
 A push to `main` runs `.github/workflows/static.yml`, which builds the docs with
-`DOCS_BASE_URL=/Eidolon/docs/build/` and publishes the repository root to
+`DOCS_BASE_URL=/Sholarel/docs/build/` and publishes the repository root to
 `https://eliowang6.github.io/Eidolon/`. That is why `docs/docusaurus.config.ts` reads
 `DOCS_URL` / `DOCS_BASE_URL` from the environment: production serves the docs at `/docs/build/`
-and Pages at `/Eidolon/docs/build/`.
+and Pages at `/Sholarel/docs/build/`.
 
 ### Search engines
 
@@ -189,7 +259,7 @@ Search Console. Both degrade gracefully when `SEO_INDEXNOW_KEY` / `SEO_GSC_ACCES
 unset. Register a new crawlable page in the `PAGES` list at the top of that script — the sitemap
 is generated from the list, not discovered.
 
-## Contract with the Eidolon server
+## Contract with the Sholarel server
 
 `instarmony.com` is served by the FastAPI app in the neighbouring `eidolon` repository, which
 reads this directory and owns these behaviours (see `server/app/main.py` there):

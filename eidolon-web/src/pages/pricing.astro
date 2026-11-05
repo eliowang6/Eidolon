@@ -9,10 +9,13 @@ const copy = t(lang);
 const software = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Eidolon',
-  url: `${SITE.url}/pricing.html`,
+  '@id': `${SITE.url}/#software`,
+  name: 'Sholarel',
+  url: SITE.url,
+  publisher: { '@id': 'https://instarmony.com/#organization' },
+  brand: { '@type': 'Brand', name: 'Sholarel' },
   applicationCategory: 'LifestyleApplication',
-  operatingSystem: 'Windows 10, Windows 11, Android 10+',
+  operatingSystem: 'Windows 10, Windows 11, Android 7.0+',
   description: copy.meta.pricing.description,
   offers: copy.pricingPage.plans.map((plan) => ({
     '@type': 'Offer',
@@ -31,6 +34,6 @@ const faq = {
   })),
 };
 ---
-<Base lang={lang} path="/pricing.html" title={copy.meta.pricing.title} description={copy.meta.pricing.description} jsonLd={[software, faq]}>
+<Base lang={lang} path="/pricing.html" title={copy.meta.pricing.title} description={copy.meta.pricing.description} keywords={copy.meta.pricing.keywords} jsonLd={[software, faq]}>
   <PricingPage lang={lang} />
 </Base>

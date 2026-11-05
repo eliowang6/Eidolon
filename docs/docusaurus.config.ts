@@ -3,15 +3,18 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Eidolon Docs',
+  title: 'Sholarel 文档',
   tagline: 'Your other self in the AI era',
   favicon: 'img/favicon.ico',
 
-  url: process.env.DOCS_URL ?? 'https://instarmony.com',
-  baseUrl: process.env.DOCS_BASE_URL ?? '/docs/build/',
+  // The docs ship on the product sub-domain, next to the pages they describe.
+  // The old instarmony.com/docs/build/ paths are kept alive by 301 rules in
+  // edgeone.json, so the two never compete in the index.
+  url: process.env.DOCS_URL ?? 'https://sholarel.instarmony.com',
+  baseUrl: process.env.DOCS_BASE_URL ?? '/docs/',
 
   organizationName: 'eliowang6',
-  projectName: 'Eidolon',
+  projectName: 'Sholarel',
 
   onBrokenLinks: 'throw',
   markdown: {
@@ -60,9 +63,9 @@ const config: Config = {
       },
     },
     navbar: {
-      title: 'Eidolon',
+      title: 'Sholarel',
       logo: {
-        alt: 'Eidolon Logo',
+        alt: 'Sholarel Logo',
         src: 'img/logo.svg',
         srcDark: 'img/logo.svg',
       },
@@ -143,7 +146,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Eidolon. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Sholarel. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

@@ -7,7 +7,7 @@ description: AI remembers every important moment you share
 
 # Long-Term Memory
 
-Eidolon's AI has **long-term memory** — it automatically remembers important information you share and retains that understanding across sessions. The more you chat, the better it knows you.
+Sholarel's AI has **long-term memory** — it automatically remembers important information you share and retains that understanding across sessions. The more you chat, the better it knows you.
 
 ---
 

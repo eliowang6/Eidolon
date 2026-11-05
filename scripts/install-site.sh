@@ -19,7 +19,9 @@ set -euo pipefail
 DIGEST="${1:-}"
 shift || true
 
-SITE_ROOT="${SITE_ROOT:-/home/ec2-user/instarmony_website}"
+# The production host is Azure (azureuser@172.197.160.219). The AWS path
+# /home/ec2-user/ is retired and kept here only as a fallback for an old box.
+SITE_ROOT="${SITE_ROOT:-/home/azureuser/instarmony_website}"
 BASE_URL="${CF_R2_PUBLIC_URL:-https://storage.instarmony.com}"
 ARCHIVE=""
 
