@@ -1,7 +1,7 @@
-# Eidolon 外链提交资料包
+# Sholarel 外链提交资料包
 
 > 用途：注册任何目录站 / 社区 / 博客时，从这里复制文案，不要每次重新想。
-> 最后更新：2026-10-31
+> 最后更新：2026-11-06
 
 ---
 
@@ -9,13 +9,13 @@
 
 | 字段 | 值 |
 |---|---|
-| 产品名 | Eidolon |
+| 产品名 | Sholarel |
 | 厂商 | Instarmony |
-| 官网 | https://eidolon.instarmony.com/ |
-| 中文站 | https://eidolon.instarmony.com/ （同一站，`/en/` 为英文） |
-| 定价页 | https://eidolon.instarmony.com/pricing.html |
-| Beta 页 | https://eidolon.instarmony.com/beta.html |
-| 图标 / Logo | https://eidolon.instarmony.com/assets/logo-icon.jpg |
+| 官网 | https://sholarel.instarmony.com/ |
+| 中文站 | https://sholarel.instarmony.com/ （同一站，`/en/` 为英文） |
+| 定价页 | https://sholarel.instarmony.com/pricing.html |
+| Beta 页 | https://sholarel.instarmony.com/beta.html |
+| 图标 / Logo | https://sholarel.instarmony.com/assets/logo-icon.jpg |
 | GitHub | https://github.com/eliowang6/Eidolon |
 | 平台 | Windows、Android |
 | 定价模式 | Freemium（免费档 + 4 档订阅：29.9 / 99 / 189 / 349） |
@@ -29,7 +29,7 @@
 **英文（首选，用于绝大多数目录站）**
 
 ```
-Eidolon is a digital life that remembers you — an AI companion with one persistent memory shared across companionship, daily life, and cross-device action.
+Sholarel is a digital life that remembers you — an AI companion with one persistent memory shared across companionship, daily life, and cross-device action.
 ```
 
 **英文短版（限 100 字符以内时用）**
@@ -41,7 +41,7 @@ A digital life that truly lives with you.
 **中文**
 
 ```
-Eidolon 是一个持续理解你、融入真实生活、也能帮你把事情做成的数字生命。
+Sholarel 是一个持续理解你、融入真实生活、也能帮你把事情做成的数字生命。
 ```
 
 ---
@@ -57,15 +57,15 @@ An AI companion with persistent memory that also gets things done.
 ### 3.2 短（≤ 160 字符 / meta description 位）
 
 ```
-Eidolon is a digital life that keeps understanding you — companionship, daily help and action across devices, all sharing one long-term memory of you. Windows and Android.
+Sholarel is a digital life that keeps understanding you — companionship, daily help and action across devices, all sharing one long-term memory of you. Windows and Android.
 ```
 
 ### 3.3 标准（150–200 词 / 目录站主描述位）
 
 ```
-Most AI companions reset the moment you close the tab. Eidolon doesn't.
+Most AI companions reset the moment you close the tab. Sholarel doesn't.
 
-Eidolon is a digital life built around one idea: a single, persistent memory of you
+Sholarel is a digital life built around one idea: a single, persistent memory of you
 should carry across everything — the conversations you have, the small things it helps
 you handle day to day, and the actions it takes on your behalf across devices.
 
@@ -87,9 +87,9 @@ public beta. Free tier available; paid tiers from $29.9.
 ### 3.4 中文标准版（国内平台用）
 
 ```
-大多数 AI 伴侣在你关掉窗口的那一刻就失忆了。Eidolon 不会。
+大多数 AI 伴侣在你关掉窗口的那一刻就失忆了。Sholarel 不会。
 
-Eidolon 是一个数字生命，围绕一个核心设计：关于你的同一份长期记忆，应该贯穿一切——
+Sholarel 是一个数字生命，围绕一个核心设计：关于你的同一份长期记忆，应该贯穿一切——
 你与它的对话、它帮你处理的日常琐事、以及它替你在不同设备上完成的操作。
 
 它的能力分五层：
@@ -182,7 +182,7 @@ Freemium
 | **Medium** | https://medium.com/new-story | nofollow | 权重高、收录好，但 2026 年自然流量已经很差，主要价值是「有个像样的第三方页面」 |
 | **Quora** | https://www.quora.com/ | nofollow | **长尾价值最高的一个。** 别自己提问自答，去找已有的 "best AI companion app" "AI that remembers you" 问题，写真实回答，链接放最后。被举报会封号 |
 | **Reddit** | r/SideProject、r/artificial、r/AICompanion | nofollow | **规则最严。** r/SideProject 允许 self-promo，其他 sub 基本秒删。发之前先读版规、先攒 karma |
-| **Hacker News** | https://news.ycombinator.com/submit ✅ 已验证 200 | nofollow | **只有一次机会**，标题格式 `Show HN: Eidolon – ...`。产品不够硬会被 flag 到死。建议等有真实用户后再发 |
+| **Hacker News** | https://news.ycombinator.com/submit ✅ 已验证 200 | nofollow | **只有一次机会**，标题格式 `Show HN: Sholarel – ...`。产品不够硬会被 flag 到死。建议等有真实用户后再发 |
 | **Substack** | https://substack.com/ | dofollow | 建个 newsletter 记录开发过程。没人订阅就是自嗨，但页面本身能被索引 |
 
 ### C 类：明确劝退（花钱买罪受）
