@@ -1,9 +1,17 @@
 ---
-import PageHero from '../PageHero.astro';
-import Button from '../Button.astro';
-import Icon from '../Icon.astro';
+/**
+ * Plans. The masthead reads the five plans as depths — rings spreading from the ∞ —
+ * and every card carries the same gauge, lit to its own depth. Checkout is plan-first:
+ * a plan's button opens one dialog that asks which account to add it to, then hands
+ * off to the hosted cashier (endpoints and payload unchanged from the old page).
+ */
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
 import Faq from '../Faq.astro';
-import { localizePath, t, type Lang } from '../../i18n';
+import Logo from '../Logo.astro';
+import PageHero from '../PageHero.astro';
+import { SITE } from '../../config/site';
+import { localizePath, pr, t, type Lang } from '../../i18n';
 
 interface Props {
   lang: Lang;
@@ -11,667 +19,1468 @@ interface Props {
 const { lang } = Astro.props;
 const copy = t(lang);
 const page = copy.pricingPage;
+const co = page.checkout;
 const p = (href: string) => localizePath(lang, href);
-const firstLabel = (price: string) => copy.common.firstMonth.replace('{price}', price);
+const currencyCode = lang === 'zh' ? 'CNY' : 'USD';
+
+/* gauge radii: hero (viewBox 560, centre 280) and card badge (viewBox 76, centre 38) */
+const RINGS = [56, 104, 152, 200, 248];
+const BADGE = [14, 19.5, 25, 30.5, 36];
+
+const plans = page.plans.map((plan, i) => {
+  const [latin, ...rest] = plan.name.split(' ');
+  const regular = `${plan.currency}${plan.price}`;
+  const summary = [
+    plan.first
+      ? `${page.firstTag} ${plan.currency}${plan.first} · ${page.then.replace('{price}', regular)}`
+      : `${regular} ${plan.period}`,
+    plan.bonus,
+  ]
+    .filter(Boolean)
+    .join(' · ');
+  return {
+    ...plan,
+    latin,
+    local: rest.join(' '),
+    depth: i + 1,
+    regular,
+    summary,
+    depthLabel: page.depth.replace('{n}', String(i + 1)),
+    // zh Fable is opened with the founder rather than at the cashier
+    contactOnly: lang === 'zh' && plan.id === 'fable',
+  };
+});
+const grid = plans.filter((plan) => plan.variant !== 'night');
+const fable = plans.find((plan) => plan.variant === 'night')!;
+const fableMail = `mailto:${SITE.founder.email}?subject=${encodeURIComponent(page.fableMail)}`;
+
+/** "轻语心智：日常搭话" → lead term set apart from the rest. */
+const splitFeature = (text: string) => {
+  const m = text.match(/^([^：:]{2,16})(：|: )(.+)$/);
+  return m ? { lead: m[1], sep: m[2], rest: m[3] } : { lead: '', sep: '', rest: text };
+};
+
+const ICON = {
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/>',
+  card: '<rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6.5 15h4"/>',
+  tick: '<path d="m5 12.5 4.3 4.3L19 7.2"/>',
+  glass: '<path d="M6.5 3h11M6.5 21h11M8 3v2.6c0 2.6 4 4.1 4 6.4s-4 3.8-4 6.4V21M16 3v2.6c0 2.6-4 4.1-4 6.4s4 3.8 4 6.4V21"/>',
+  drop: '<path d="M12 3s6.2 6.8 6.2 11.3a6.2 6.2 0 0 1-12.4 0C5.8 9.8 12 3 12 3Z"/><path d="M9.2 14.6a2.9 2.9 0 0 0 2.6 2.6"/>',
+  mail: '<rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 6.5 8.5 6.3 8.5-6.3"/>',
+  palette:
+    '<path d="M12 21.5a9.5 9.5 0 1 1 9.5-9.5c0 2.6-2 3.9-3.9 3.9h-1.8a1.7 1.7 0 0 0-1.3 2.8 1.7 1.7 0 0 1-1.3 2.8H12Z"/><circle cx="7.6" cy="11" r="1.1"/><circle cx="10.6" cy="7" r="1.1"/><circle cx="15.4" cy="7.6" r="1.1"/>',
+  bolt: '<path d="M13.2 2.5 4.8 13.4h6.6l-.6 8.1 8.4-10.9h-6.6l.6-8.1Z"/>',
+  close: '<path d="M6 6l12 12M18 6 6 18"/>',
+} as const;
+const upcomingIcon = (name: string) => (name === 'palette' ? ICON.palette : ICON.bolt);
+const facts = [
+  { key: 'region', text: co.region },
+  { key: 'terms', text: co.terms },
+  { key: 'methods', text: co.methods },
+];
 ---
 
-<PageHero label={page.label} h1a={page.h1} lede={page.lede} />
+<PageHero class="price-head" label={page.label} h1a={page.h1} lede={page.lede}>
+  <ul class="bill reveal" style="--i:3" aria-label={co.title}>
+    {
+      facts.map((fact) => (
+        <li>
+          {fact.key === 'region' ? (
+            <span class="bill-cur" aria-hidden="true">
+              {grid[0].currency}
+            </span>
+          ) : (
+            <svg viewBox="0 0 24 24" aria-hidden="true" set:html={fact.key === 'terms' ? ICON.calendar : ICON.card} />
+          )}
+          <span>{fact.text}</span>
+        </li>
+      ))
+    }
+  </ul>
 
-<section class="section plans-sec">
+  <nav class="gauge reveal" style="--i:2" aria-label={page.gauge}>
+    <svg class="g-svg" viewBox="0 0 560 560" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="g-core-glow">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0.5" />
+          <stop offset="0.4" stop-color="#cdb6ff" stop-opacity="0.28" />
+          <stop offset="1" stop-color="#cdb6ff" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="280" cy="280" r="110" fill="url(#g-core-glow)" />
+      <circle class="g-wave" cx="280" cy="280" r="248" />
+      <circle class="g-wave g-wave--late" cx="280" cy="280" r="248" />
+      {RINGS.map((r, k) => <circle class="g-ring" cx="280" cy="280" r={r} style={`--k:${k}`} />)}
+      <line class="g-plumb" x1="280" y1="300" x2="280" y2="528" />
+    </svg>
+    <span class="g-core" aria-hidden="true"><Logo size={58} stroke={1.8} /></span>
+    <ol class="g-pins">
+      {
+        plans.map((plan, k) => (
+          <li style={`--k:${k};--y:${(((280 + RINGS[k]) / 560) * 100).toFixed(2)}%`}>
+            <a class="g-pin" href={`#${plan.id}`} data-k={k + 1}>
+              <span class="g-dot" aria-hidden="true" />
+              <span class="g-glyph" aria-hidden="true">
+                {plan.greek}
+              </span>
+              <span class="g-name">
+                <span lang="en">{plan.latin}</span>
+                {plan.local && <span class="g-local">{plan.local}</span>}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </nav>
+</PageHero>
+
+<!-- ── the five plans ─────────────────────────────────── -->
+<section class="section plans-sec" aria-labelledby="plans-h">
   <div class="container">
-    <div class="billing-header-bar">
-      <div class="channel-card">
-        <div class="channel-meta">
-          <span class="channel-pill">{lang === 'zh' ? '🇨🇳 中国大陆结算区' : '🌐 Global Billing'}</span>
-          <span class="channel-type">{lang === 'zh' ? '单月按需购买 · 无自动续费' : 'Monthly Recurring Subscription'}</span>
-          <span class="channel-methods">{lang === 'zh' ? '支持 微信支付 · 支付宝 · 银联' : 'Supports Credit Card · Apple Pay · Google Pay'}</span>
+    <h2 id="plans-h" class="sr-only">{page.plansH}</h2>
+    <ol class="plans">
+      {
+        grid.map((plan, i) => (
+          <li
+            class:list={['plan reveal', plan.id === 'spark' && 'plan--start']}
+            id={plan.id}
+            style={`--i:${i}`}
+            aria-labelledby={`${plan.id}-name`}
+          >
+            <div class="plan-top">
+              <span class="badge" aria-hidden="true">
+                <svg viewBox="0 0 76 76" focusable="false">
+                  {BADGE.map((r, k) => (
+                    <circle class:list={['b-ring', k < plan.depth && 'is-lit']} cx="38" cy="38" r={r} style={`--k:${k}`} />
+                  ))}
+                  <text class="b-glyph" x="38" y="39">
+                    {plan.greek}
+                  </text>
+                </svg>
+              </span>
+              <span class="plan-depth">{plan.depthLabel}</span>
+              {plan.id === 'spark' && <span class="plan-start">{page.startHere}</span>}
+            </div>
+
+            <h3 class="plan-name" id={`${plan.id}-name`}>
+              <span class="pn-latin" lang="en">
+                {plan.latin}
+              </span>
+              {plan.local && <span class="pn-local">{plan.local}</span>}
+            </h3>
+            <p class="plan-tag">{plan.tagline}</p>
+
+            <div class="plan-price" data-whisper={plan.id === 'spark' ? 'pricing' : undefined}>
+              <p class="pp-main">
+                <span class="pp-cur">{plan.currency}</span>
+                <span class="pp-num">{plan.first || plan.price}</span>
+                {plan.first ? (
+                  <span class="pp-first">{page.firstTag}</span>
+                ) : (
+                  <span class="pp-per">{plan.period}</span>
+                )}
+              </p>
+              <p class="pp-sub">
+                {plan.first ? (
+                  page.then.replace('{price}', plan.regular)
+                ) : plan.bonus ? (
+                  <span class="pp-bonus">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" set:html={ICON.glass} />
+                    {plan.bonus}
+                  </span>
+                ) : null}
+              </p>
+            </div>
+
+            <p class="plan-model">
+              <span>{page.modelLabel}</span>
+              <b>{plan.model}</b>
+            </p>
+
+            <ul class="plan-feats">
+              {plan.features.map((feature) => {
+                const f = splitFeature(feature);
+                return (
+                  <li>
+                    <svg class="tick" viewBox="0 0 24 24" aria-hidden="true" set:html={ICON.tick} />
+                    <span>{f.lead && <b>{f.lead}</b>}{f.sep}{f.rest}</span>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <button
+              type="button"
+              class:list={['btn plan-cta sub-trigger-btn', plan.id === 'spark' ? 'btn-holo' : 'btn-ink']}
+              data-tier={plan.id}
+              data-currency={currencyCode}
+              data-plan-name={plan.name}
+              data-plan-sum={plan.summary}
+              aria-haspopup="dialog"
+            >
+              {plan.cta}
+            </button>
+          </li>
+        ))
+      }
+    </ol>
+
+    <article class="fable band-night stars reveal" id={fable.id} aria-labelledby={`${fable.id}-name`}>
+      <div class="fable-badge" aria-hidden="true">
+        <svg viewBox="0 0 76 76" focusable="false">
+          <circle class="f-wave" cx="38" cy="38" r="36" />
+          {BADGE.map((r, k) => <circle class="b-ring is-lit" cx="38" cy="38" r={r} style={`--k:${k}`} />)}
+          <text class="b-glyph" x="38" y="39">
+            {fable.greek}
+          </text>
+        </svg>
+      </div>
+
+      <div class="fable-main">
+        <span class="plan-depth">{fable.depthLabel}</span>
+        <h3 class="plan-name" id={`${fable.id}-name`}>
+          <span class="pn-latin" lang="en">
+            {fable.latin}
+          </span>
+          {fable.local && <span class="pn-local">{fable.local}</span>}
+        </h3>
+        <p class="plan-tag">{fable.tagline}</p>
+        <div class="plan-price">
+          <p class="pp-main">
+            <span class="pp-cur">{fable.currency}</span>
+            <span class="pp-num">{fable.price}</span>
+            <span class="pp-per">{fable.period}</span>
+          </p>
+          {
+            fable.bonus && (
+              <p class="pp-sub">
+                <span class="pp-bonus">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" set:html={ICON.glass} />
+                  {fable.bonus}
+                </span>
+              </p>
+            )
+          }
         </div>
-        <p class="channel-note">
-          {lang === 'zh'
-            ? '由 Waffo MoR 提供合规担保与支付收银。支持在网页端直接为指定账号开通：已注册账号即时充入；未注册账号以此邮箱注册后自动激活。'
-            : 'Powered by Waffo MoR payment gateway. You can subscribe for any account email directly on the web. Activated upon payment.'}
+        <p class="plan-model">
+          <span>{page.modelLabel}</span>
+          <b>{fable.model}</b>
         </p>
       </div>
 
-      <div class="email-sub-panel">
-        <div class="email-sub-label-row">
-          <label for="sub-account-email" class="email-label">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-            <span>{lang === 'zh' ? '为指定账号邮箱开通' : 'Subscribe for Account Email'}</span>
-          </label>
-          <span class="email-hint" id="sub-email-hint">
-            {lang === 'zh' ? '输入接收订阅的账号邮箱后，点击下方套餐即可直接结账' : 'Enter email, then click any plan below to proceed to checkout'}
-          </span>
-        </div>
-        <div class="email-input-group">
-          <input
-            id="sub-account-email"
-            type="email"
-            class="email-sub-input"
-            placeholder={lang === 'zh' ? '输入要接收订阅的账号邮箱，例如 user@example.com' : 'Enter recipient account email (e.g. user@example.com)'}
-            autocomplete="email"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div class="plans">
-      {page.plans.map((plan, i) => (
-        <article
-          class={`plan ${plan.variant === 'night' ? 'plan--night band-night' : ''}`}
-          style={`--i:${i}`}
-        >
-          <span class="greek" aria-hidden="true">{plan.greek}</span>
-          {plan.variant === 'night' && <span class="plan-badge">{copy.common.flagship}</span>}
-          <h2 class="plan-name">{plan.name}</h2>
-          <p class="plan-tag">{plan.tagline}</p>
-
-          <div class="price">
-            <span class="cur">{plan.currency}</span>
-            <b>{plan.first || plan.price}</b>
-            <span class="period">{plan.first ? (lang === 'zh' ? '/ 首月' : '/ 1st mo') : plan.period}</span>
-            {plan.first && (
-              <span class="price-orig" title={lang === 'zh' ? `正价 ${plan.currency}${plan.price}/月` : `Regular ${plan.currency}${plan.price}/mo`}>
-                {plan.currency}{plan.price}
-              </span>
-            )}
-          </div>
-          {plan.first && (
-            <span class="first-pill first-pill--promo">
-              {lang === 'zh' ? `首月特惠 · 续费 ${plan.currency}${plan.price} / 月` : `Intro offer · renews at ${plan.currency}${plan.price}/mo`}
-            </span>
-          )}
-          {plan.bonus && <span class="first-pill first-pill--gift">{plan.bonus}</span>}
-
-          <ul class="plan-features">
-            {plan.features.map((feature) => (
-              <li><Icon name="check" size={12} stroke={2.4} />{feature}</li>
-            ))}
-          </ul>
-
-          <div class="plan-cta">
-            {lang === 'zh' && plan.id === 'fable' ? (
-              <a href={p('/contact.html')} class="btn btn-ghost">
-                联系创始人开通
+      <div class="fable-side">
+        <ul class="plan-feats">
+          {
+            fable.features.map((feature) => {
+              const f = splitFeature(feature);
+              return (
+                <li>
+                  <svg class="tick" viewBox="0 0 24 24" aria-hidden="true" set:html={ICON.tick} />
+                  <span>{f.lead && <b>{f.lead}</b>}{f.sep}{f.rest}</span>
+                </li>
+              );
+            })
+          }
+        </ul>
+        {
+          fable.contactOnly ? (
+            <div class="fable-act">
+              <a class="btn btn-holo btn-lg plan-cta" href={fableMail}>
+                <svg class="btn-ico" viewBox="0 0 24 24" aria-hidden="true" set:html={ICON.mail} />
+                {fable.cta}
               </a>
-            ) : (
+              <span class="fable-addr">{SITE.founder.email}</span>
+            </div>
+          ) : (
+            <div class="fable-act">
               <button
                 type="button"
-                class={`btn ${plan.variant === 'night' ? 'btn-ink' : 'btn-ghost'} sub-trigger-btn`}
-                data-tier={plan.id}
-                data-currency={lang === 'zh' ? 'CNY' : 'USD'}
-                data-plan-name={plan.name}
+                class="btn btn-holo btn-lg plan-cta sub-trigger-btn"
+                data-tier={fable.id}
+                data-currency={currencyCode}
+                data-plan-name={fable.name}
+                data-plan-sum={fable.summary}
+                aria-haspopup="dialog"
               >
-                <span class="btn-text">{plan.cta}</span>
+                {fable.cta}
               </button>
-            )}
-            <a href={p('/download.html')} class="plan-download-link">
-              {lang === 'zh' ? '在客户端内订阅 →' : 'Subscribe in app →'}
-            </a>
-          </div>
-        </article>
-      ))}
-    </div>
+            </div>
+          )
+        }
+      </div>
+    </article>
 
-    <div class="dew-entry">
-      <p>
-        {lang === 'zh'
-          ? '只想补充回响额度？溯时星露无需注册，填邮箱即可购买，付款后在 App 内归户。'
-          : 'Only need more echo credits? Chrono Dew needs no signup — pay with your email, then claim it in the app.'}
+    <div class="plans-foot reveal">
+      <p class="dew-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true" set:html={ICON.drop} />
+        <span>
+          {page.dew.text}
+          <a class="tlink" href={p('/dew.html')}>{page.dew.link}</a>
+        </span>
       </p>
-      <a href={p('/dew.html')} class="btn btn-ghost">
-        {lang === 'zh' ? '购买溯时星露（免注册）→' : 'Buy Chrono Dew →'}
-      </a>
+      <a class="tlink" href={p('/download.html')}>{page.appLink}</a>
     </div>
   </div>
 </section>
 
-<section class="section section--paper2 upcoming-sec">
-  <div class="container">
-    <div class="upcoming reveal">
-      <div class="up-head">
-        <span class="label">{page.upcomingLabel}</span>
-      </div>
-      <div class="up-grid">
-        {page.upcoming.map((item) => (
-          <article class="up-card">
-            <span class="up-icon"><Icon name={item.icon} size={19} /></span>
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
-          </article>
-        ))}
-      </div>
-      <p class="up-note">{page.upcomingNote}</p>
+<!-- ── coming next ───────────────────────────────────── -->
+<section class="soon" aria-labelledby="soon-h">
+  <div class="container soon-inner">
+    <div class="soon-head reveal">
+      <h2 id="soon-h" class="soon-h">
+        <Eyebrow text={lang === 'zh' ? `${page.upcomingLabel} / Coming soon` : page.upcomingLabel} />
+      </h2>
+      <p class="soon-note">{page.upcomingNote}</p>
     </div>
+    <ul class="soon-list">
+      {
+        page.upcoming.map((item, i) => (
+          <li class="reveal" style={`--i:${i + 1}`}>
+            <span class="soon-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" set:html={upcomingIcon(item.icon)} />
+            </span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </section>
 
-<section class="section faq-sec">
-  <div class="container">
-    <Faq items={page.faq} lang={lang} title={page.faqTitle} />
+<!-- ── questions ─────────────────────────────────────── -->
+<section class="section section--paper2 ask" aria-labelledby="faq-h">
+  <div class="container ask-grid">
+    <div class="ask-head reveal">
+      <Eyebrow text={lang === 'zh' ? `${copy.footer.faq} / FAQ` : copy.footer.faq} />
+      <h2 id="faq-h" set:html={pr(page.faqTitle)} />
+      <a class="tlink" href={`mailto:${SITE.contactEmail}`}>{page.faqMore} →</a>
+    </div>
+    <Faq items={page.faq} lang={lang} />
   </div>
 </section>
+
+<CtaBand lang={lang} h2={page.cta.h2} lede={page.cta.lede} secondary="features" />
+
+<!-- ── checkout: one dialog for every plan ───────────── -->
+<dialog
+  class="co"
+  id="checkout"
+  aria-labelledby="co-title"
+  data-title={co.dialogTitle}
+  data-hint={co.hint}
+  data-invalid={co.invalid}
+  data-creating={co.creating}
+  data-redirecting={co.redirecting}
+  data-failed={co.failed}
+  data-go={co.go}
+>
+  <form class="co-card" novalidate>
+    <button class="co-x" type="button" data-co-close aria-label={co.close}>
+      <svg viewBox="0 0 24 24" aria-hidden="true" set:html={ICON.close} />
+    </button>
+    <span class="co-mark" aria-hidden="true"><Logo size={34} stroke={1.8} /></span>
+    <h2 class="co-title" id="co-title" data-co-title>{co.title}</h2>
+    <p class="co-sum" data-co-sum></p>
+    <ul class="co-facts">
+      {facts.map((fact) => <li>{fact.text}</li>)}
+    </ul>
+    <label class="co-label" for="sub-account-email">{co.emailLabel}</label>
+    <input
+      class="co-input"
+      id="sub-account-email"
+      name="email"
+      type="email"
+      inputmode="email"
+      autocomplete="email"
+      autocapitalize="off"
+      spellcheck="false"
+      required
+      placeholder={co.placeholder}
+      aria-describedby="sub-email-hint"
+    />
+    <p class="co-hint" id="sub-email-hint" aria-live="polite">{co.hint}</p>
+    <button class="btn btn-holo btn-lg co-go" type="submit" data-co-go>{co.go}</button>
+    <p class="co-note">{co.note}</p>
+  </form>
+</dialog>
 
 <style>
+  /* ── masthead ───────────────────────────────────── */
+  .bill {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 26px;
+    margin: 34px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .bill li {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--night-dim);
+  }
+  .bill svg {
+    width: 19px;
+    height: 19px;
+    flex: none;
+    fill: none;
+    stroke: var(--accent-ink);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .bill-cur {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    flex: none;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-ink);
+    color: var(--accent-ink);
+    font: 700 11px/1 var(--f-body);
+  }
+
+  /* the depth gauge: five rings spreading from the ∞, one pin per plan */
+  .gauge {
+    display: none;
+  }
+  .g-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .g-ring {
+    --on: clamp(0, var(--lit, 0) - var(--k), 1);
+    fill: none;
+    stroke: color-mix(in oklab, #f8a8d0 calc(100% - var(--k) * 25%), #92c6ff);
+    stroke-opacity: calc(0.42 + var(--on) * 0.58);
+    stroke-width: calc(1.2px + var(--on) * 1.2px);
+    vector-effect: non-scaling-stroke;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      transform 1.4s var(--ease) calc(var(--k) * 110ms),
+      opacity 1.4s var(--ease) calc(var(--k) * 110ms),
+      stroke-opacity var(--t-fast) var(--ease),
+      stroke-width var(--t-fast) var(--ease);
+  }
+  .g-wave {
+    fill: none;
+    stroke: #cdb6ff;
+    stroke-width: 1.2;
+    vector-effect: non-scaling-stroke;
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    animation: g-wave 8s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+  }
+  .g-wave--late {
+    animation-delay: 4s;
+  }
+  @keyframes g-wave {
+    0% {
+      transform: scale(0.18);
+      opacity: 0;
+    }
+    12% {
+      opacity: 0.55;
+    }
+    100% {
+      transform: scale(1.04);
+      opacity: 0;
+    }
+  }
+  .g-plumb {
+    stroke: rgba(238, 240, 255, 0.24);
+    stroke-width: 1;
+    stroke-dasharray: 2 6;
+    vector-effect: non-scaling-stroke;
+  }
+  .g-core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    display: inline-flex;
+    filter: drop-shadow(0 0 14px rgba(205, 182, 255, 0.7));
+  }
+  .g-pins {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .g-pins li {
+    --tint: color-mix(in oklab, #f8a8d0 calc(100% - var(--k) * 25%), #92c6ff);
+    position: absolute;
+    left: 50%;
+    top: var(--y);
+    transition:
+      opacity 700ms var(--ease) calc(650ms + var(--k) * 90ms),
+      translate 700ms var(--ease) calc(650ms + var(--k) * 90ms);
+  }
+  .g-pin {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    translate: -8px -50%;
+    color: var(--night-text);
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: var(--r-full);
+  }
+  .g-dot {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--night);
+    border: 2px solid var(--tint);
+    box-shadow: 0 0 0 4px rgba(14, 17, 49, 0.85);
+    transition: background var(--t-fast) var(--ease);
+  }
+  .g-glyph {
+    min-width: 0.9em;
+    font-family: var(--f-latin-display);
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1;
+    color: var(--tint);
+    text-align: center;
+  }
+  .g-name {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: var(--r-full);
+    border: 1px solid var(--night-line);
+    background: rgba(14, 17, 49, 0.78);
+    font-size: 14px;
+    font-weight: 600;
+    transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+  }
+  .g-local {
+    font-weight: 500;
+    color: var(--night-dim);
+  }
+  .g-pin:is(:hover, :focus-visible) .g-name {
+    border-color: var(--tint);
+    background: rgba(35, 42, 102, 0.9);
+  }
+  .g-pin:is(:hover, :focus-visible) .g-dot {
+    background: var(--tint);
+  }
+  .gauge:has([data-k='1']:is(:hover, :focus-visible)) {
+    --lit: 1;
+  }
+  .gauge:has([data-k='2']:is(:hover, :focus-visible)) {
+    --lit: 2;
+  }
+  .gauge:has([data-k='3']:is(:hover, :focus-visible)) {
+    --lit: 3;
+  }
+  .gauge:has([data-k='4']:is(:hover, :focus-visible)) {
+    --lit: 4;
+  }
+  .gauge:has([data-k='5']:is(:hover, :focus-visible)) {
+    --lit: 5;
+  }
+  :global(html.js) .gauge:not(.in) .g-ring {
+    transform: scale(0.55);
+    opacity: 0;
+  }
+  :global(html.js) .gauge:not(.in) .g-pins li {
+    opacity: 0;
+    translate: -10px 0;
+  }
+  @media (min-width: 1040px) {
+    .gauge {
+      display: block;
+      position: absolute;
+      right: calc(var(--gutter) + 3%);
+      top: 50%;
+      width: min(500px, 36vw);
+      aspect-ratio: 1;
+      translate: 0 -50%;
+    }
+    :global(.price-head .ph-sky) {
+      display: none;
+    }
+    :global(.price-head.page-head) {
+      padding-bottom: clamp(96px, 9vw, 140px);
+    }
+    :global(html[lang] .price-head.page-head .ph-inner > h1),
+    :global(html[lang] .price-head.page-head .ph-inner > .lede) {
+      max-width: min(56%, 36em);
+    }
+    :global(html[lang='zh'] .price-head.page-head .ph-inner > h1) {
+      font-size: clamp(2.5rem, 1.6rem + 2.9vw, 4.4rem);
+    }
+    :global(html[lang='en'] .price-head.page-head .ph-inner > h1) {
+      font-size: clamp(2.7rem, 1.5rem + 3vw, 4.5rem);
+    }
+    .bill {
+      max-width: 56%;
+    }
+  }
+
+  /* ── plans ──────────────────────────────────────── */
   .plans-sec {
-    padding-top: 0;
+    padding-top: clamp(56px, 6vw, 92px);
   }
   .plans {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.16fr);
-    gap: 12px;
-    align-items: stretch;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(14px, 1.5vw, 20px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
   .plan {
     position: relative;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    padding: 26px 24px 24px;
+    border-radius: var(--r-lg);
+    background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 18px;
-    background: var(--card);
-    padding: 24px 20px 20px;
-    min-height: 540px;
+    box-shadow: var(--sh-1);
+    scroll-margin-top: calc(var(--nav-h) + 28px);
+    transition:
+      translate var(--t-fast) var(--ease),
+      box-shadow var(--t-fast) var(--ease),
+      border-color var(--t-fast) var(--ease);
   }
-  .plan--night {
-    border-color: transparent;
+  /* every card shares the same seven rows, so the prices, models and buttons line up across a row */
+  @supports (grid-template-rows: subgrid) {
+    .plan {
+      display: grid;
+      grid-row: span 7;
+      grid-template-rows: subgrid;
+      row-gap: 0;
+    }
+    .plan .plan-cta {
+      align-self: end;
+    }
   }
-  .greek {
-    position: absolute;
-    top: 4px;
-    right: 10px;
-    font-family: var(--f-latin-display);
-    font-size: clamp(84px, 6.4vw, 100px);
-    line-height: 1;
-    color: var(--line-2);
-    opacity: 0.55;
-    pointer-events: none;
-    user-select: none;
+  .plan:hover {
+    translate: 0 -4px;
+    box-shadow: var(--sh-2);
   }
-  .plan--night .greek {
-    color: var(--lime);
-    opacity: 0.22;
+  .plan--start {
+    border: 1.5px solid transparent;
+    background:
+      linear-gradient(var(--card), var(--card)) padding-box,
+      var(--holo) border-box;
   }
-  .plan-badge {
-    position: absolute;
-    top: 22px;
-    left: 20px;
-    font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    color: var(--lime);
-    border: 1px solid rgba(200, 241, 105, 0.4);
-    border-radius: var(--r-full);
-    padding: 4px 9px;
-  }
-  .plan-name {
-    position: relative;
-    font-size: 21px;
-    line-height: 1.2;
-    margin-top: 104px;
-    color: var(--ink);
-  }
-  .plan--night .plan-name {
-    color: var(--night-text);
-  }
-  html[lang="en"] .plan-name {
-    font-size: 25px;
-  }
-  .plan-tag {
-    position: relative;
-    margin-top: 10px;
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: var(--ink-2);
-    min-height: 4.8em;
-    text-wrap: pretty;
-  }
-  .plan--night .plan-tag {
-    color: var(--night-dim);
-  }
-  .price {
-    position: relative;
-    display: flex;
-    align-items: baseline;
-    gap: 3px;
-    margin-top: 18px;
-    color: var(--ink);
-  }
-  .plan--night .price {
-    color: var(--lime);
-  }
-  .cur {
-    font-size: 20px;
-    font-family: var(--f-latin-display);
-    transform: translateY(-8px);
-  }
-  .price b {
-    font-family: var(--f-latin-display);
-    font-weight: 400;
-    font-size: clamp(2.8rem, 2.3rem + 1.4vw, 3.5rem);
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-  .period {
-    font-size: 13px;
-    color: var(--ink-3);
-    margin-left: 3px;
-  }
-  .plan--night .period {
-    color: var(--night-dim);
-  }
-  .price-orig {
-    font-size: 15px;
-    color: var(--ink-3);
-    text-decoration: line-through;
-    margin-left: 6px;
-    font-family: var(--f-latin-display);
-    opacity: 0.65;
-    align-self: center;
-    transform: translateY(-2px);
-  }
-  .plan--night .price-orig {
-    color: var(--night-dim);
-  }
-  .first-pill {
-    align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    margin-top: 10px;
-    padding: 3px 9px;
-    border-radius: var(--r-full);
-    background: var(--sage-wash);
-    color: color-mix(in srgb, var(--sage-deep) 78%, var(--ink));
-    font-size: 12px;
-    letter-spacing: 0.02em;
-  }
-  .plan--night .first-pill {
-    background: rgba(200, 241, 105, 0.14);
-    color: var(--lime);
-  }
-  .first-pill--promo {
-    background: color-mix(in srgb, var(--sage-wash) 90%, var(--card));
-    border: 1px solid color-mix(in srgb, var(--sage-deep) 25%, transparent);
-    font-weight: 500;
-  }
-  .first-pill--gift {
-    background: transparent;
-    border: 1px dashed color-mix(in srgb, var(--sage-deep) 45%, transparent);
-  }
-  .plan--night .first-pill--gift {
-    border-color: rgba(200, 241, 105, 0.4);
-  }
-  .plan-features {
-    position: relative;
-    margin-top: 22px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-    display: grid;
-    align-content: start;
-    gap: 10px;
-    flex: 1;
-  }
-  .plan--night .plan-features {
-    border-color: var(--night-line);
-  }
-  .plan-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 7px;
-    font-size: 13.5px;
-    line-height: 1.5;
-    color: var(--ink-2);
-    text-wrap: pretty;
-  }
-  .plan--night .plan-features li {
-    color: var(--night-dim);
-  }
-  .plan-features :global(svg) {
-    flex: none;
-    margin-top: 3px;
-    color: var(--sage-deep);
-  }
-  .plan--night .plan-features :global(svg) {
-    color: var(--lime);
-  }
-  .plan-cta {
-    position: relative;
-    margin-top: 22px;
-  }
-  .plan-cta :global(.btn) {
-    width: 100%;
-    justify-content: center;
-    font-size: 13.5px;
-    padding-inline: 8px;
-  }
-  .upcoming {
-    border-radius: var(--r-xl);
-    background: var(--sage-wash);
-    padding: clamp(30px, 4vw, 48px);
-  }
-  .up-head {
-    margin-bottom: 22px;
-  }
-  .up-head .label {
-    color: var(--sage-deep);
-  }
-  .up-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-  .up-card {
-    border: 1px solid rgba(79, 127, 116, 0.22);
-    border-radius: 16px;
-    padding: 22px;
-    background: color-mix(in srgb, var(--card) 60%, transparent);
-  }
-  .up-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 11px;
-    display: grid;
-    place-items: center;
-    background: var(--card);
-    color: var(--sage-deep);
-    margin-bottom: 16px;
-  }
-  .up-card h3 {
-    font-size: 19px;
-    margin-bottom: 6px;
-  }
-  html[lang="en"] .up-card h3 {
-    font-size: 23px;
-  }
-  .up-card p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--ink-2);
-  }
-  .up-note {
-    margin-top: 22px;
-    font-size: 12.5px;
-    color: var(--sage-deep);
+  .plan:target {
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--accent) 34%, transparent),
+      var(--sh-2);
   }
 
-  .billing-header-bar {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    background: var(--card);
-    padding: 20px 24px;
-  }
-  .channel-card {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .channel-meta {
+  .plan-top {
     display: flex;
     align-items: center;
     gap: 12px;
-    flex-wrap: wrap;
+    margin-bottom: 20px;
   }
-  .channel-pill {
-    display: inline-flex;
-    align-items: center;
+  .badge {
+    width: 58px;
+    height: 58px;
+    flex: none;
+  }
+  .badge svg,
+  .fable-badge svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .b-ring {
+    fill: none;
+    stroke: var(--line-2);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+  .b-ring.is-lit {
+    stroke: color-mix(in oklab, var(--fea) calc(100% - var(--k) * 25%), var(--ael));
+    stroke-width: 1.8;
+  }
+  .b-glyph {
+    font-family: var(--f-latin-display);
+    font-style: italic;
+    font-size: 17px;
+    fill: var(--ink);
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+  .plan-depth {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--ink-3);
+  }
+  .plan-start {
+    position: absolute;
+    top: 0;
+    right: 22px;
+    translate: 0 -50%;
+    padding: 5px 12px;
+    border-radius: var(--r-full);
+    background: var(--holo);
+    color: #141838;
+    font-size: 12.5px;
+    font-weight: 650;
+    white-space: nowrap;
+    box-shadow: 0 8px 18px -10px rgba(146, 120, 230, 0.8);
+  }
+
+  .plan-name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 10px;
+    margin: 0 0 10px;
+  }
+  .pn-latin {
+    font-family: var(--f-latin-display);
+    font-size: 2.15rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.012em;
+  }
+  .pn-local {
+    font-family: var(--f-zh-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink-2);
+  }
+  .plan-tag {
+    margin-bottom: 22px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+
+  .plan-price {
+    margin-bottom: 18px;
+  }
+  .pp-main {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .pp-cur {
+    align-self: flex-start;
+    margin-top: 0.45em;
+    font-family: var(--f-body);
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  .pp-num {
+    font-family: var(--f-latin-display);
+    font-size: clamp(2.9rem, 2.3rem + 1.3vw, 3.7rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    /* a text-size cut: display-size hairlines turn "149" into "1 19" */
+    font-optical-sizing: none;
+    font-variation-settings: 'opsz' 20;
+  }
+  .pp-per {
+    margin-left: 5px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-3);
+  }
+  .pp-first {
+    align-self: center;
+    margin-left: 9px;
     padding: 4px 10px;
     border-radius: var(--r-full);
-    background: var(--lime);
-    color: #111;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  .channel-type {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-  }
-  .channel-methods {
+    background: var(--accent-wash);
+    color: var(--accent-ink);
     font-size: 12.5px;
-    color: var(--ink-2);
-    padding-left: 8px;
-    border-left: 1px solid var(--line);
+    font-weight: 650;
   }
-  .channel-note {
-    font-size: 12.5px;
+  .pp-sub {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 13.5px;
     color: var(--ink-3);
-    line-height: 1.5;
-    margin: 0;
   }
-  .email-sub-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-top: 14px;
-    border-top: 1px solid var(--line);
-  }
-  .email-sub-label-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .email-label {
+  .pp-bonus {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
+    padding: 4px 11px 4px 9px;
+    border-radius: var(--r-full);
+    border: 1px dashed color-mix(in srgb, var(--accent-ink) 45%, transparent);
+    color: var(--accent-ink);
+    font-size: 12.5px;
     font-weight: 600;
-    color: var(--ink);
   }
-  .email-hint {
+  .pp-bonus svg {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .plan-model {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 18px;
+    padding: 12px 0;
+    border-block: 1px solid var(--line);
+  }
+  .plan-model span {
     font-size: 12px;
     color: var(--ink-3);
   }
-  .email-hint.hint-error {
-    color: #e04545;
-    font-weight: 600;
-  }
-  .email-input-group {
-    width: 100%;
-  }
-  .email-sub-input {
-    width: 100%;
-    height: 44px;
-    padding: 0 14px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 14px;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .email-sub-input:focus {
-    border-color: var(--ink);
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
-  }
-  .email-sub-input.input-error {
-    border-color: #e04545;
-    box-shadow: 0 0 0 2px rgba(224, 69, 69, 0.2);
-  }
-  .plan-cta {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
-  }
-  .sub-trigger-btn {
-    width: 100%;
-    cursor: pointer;
-  }
-  .plan-download-link {
-    display: inline-block;
-    text-align: center;
-    font-size: 11.5px;
-    color: var(--ink-3);
-    text-decoration: none;
-    transition: color 0.18s ease;
-  }
-  .plan-download-link:hover {
+  .plan-model b {
+    font-family: var(--f-mono);
+    font-size: 13.5px;
+    font-weight: 500;
     color: var(--ink);
   }
 
-  @media (max-width: 1279px) {
-    .plans {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .plan {
-      min-height: 0;
-    }
+  .plan-feats {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    margin: 0 0 26px;
+    padding: 0;
+    list-style: none;
   }
-  @media (max-width: 1023px) {
+  .plan-feats li {
+    display: flex;
+    gap: 9px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .plan-feats b {
+    font-weight: 650;
+    color: var(--ink);
+  }
+  .tick {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    margin-top: 2px;
+    fill: none;
+    stroke: var(--accent-ink);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .plan-cta {
+    width: 100%;
+    margin-top: auto;
+  }
+  @media (max-width: 1179px) {
     .plans {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-  @media (max-width: 640px) {
+  @media (max-width: 680px) {
     .plans {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      margin-inline: calc(var(--gutter) * -1);
-      padding: 4px var(--gutter) 18px;
-      scrollbar-width: none;
-    }
-    .plans::-webkit-scrollbar {
-      display: none;
+      grid-template-columns: minmax(0, 1fr);
     }
     .plan {
-      flex: 0 0 84vw;
-      scroll-snap-align: center;
-    }
-    .greek {
-      font-size: 96px;
-    }
-    .up-grid {
-      grid-template-columns: 1fr;
+      padding: 24px 22px 22px;
     }
   }
-  .dew-entry {
+
+  /* Fable: the deepest ring, at night */
+  .fable {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: 28px clamp(28px, 4vw, 64px);
+    margin-top: clamp(14px, 1.5vw, 20px);
+    padding: clamp(30px, 4vw, 52px);
+    border-radius: var(--r-xl);
+    scroll-margin-top: calc(var(--nav-h) + 28px);
+    background:
+      radial-gradient(55% 120% at 0% 0%, rgba(239, 143, 187, 0.24), transparent 62%),
+      radial-gradient(55% 120% at 100% 100%, rgba(110, 169, 242, 0.26), transparent 62%),
+      var(--night);
+    box-shadow: var(--sh-2);
+  }
+  .fable::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1.5px;
+    border-radius: inherit;
+    background: var(--holo);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.75;
+    pointer-events: none;
+  }
+  .fable:target {
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--accent) 40%, transparent),
+      var(--sh-2);
+  }
+  .fable-badge {
+    position: relative;
+    width: clamp(120px, 12vw, 168px);
+    aspect-ratio: 1;
+    filter: drop-shadow(0 0 22px rgba(205, 182, 255, 0.35));
+  }
+  .fable .b-ring.is-lit {
+    stroke: color-mix(in oklab, #f8a8d0 calc(100% - var(--k) * 25%), #92c6ff);
+    stroke-width: 1.6;
+  }
+  .fable .b-glyph {
+    font-size: 15px;
+    fill: var(--night-text);
+  }
+  .f-wave {
+    fill: none;
+    stroke: #cdb6ff;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    animation: g-wave 6s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+  }
+  .fable-main .plan-depth {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--night-faint);
+  }
+  .fable .pn-latin {
+    font-size: clamp(2.4rem, 1.9rem + 1.4vw, 3.2rem);
+  }
+  .fable .plan-tag {
+    margin-bottom: 20px;
+    max-width: 26em;
+  }
+  .fable .plan-model {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .fable-side .plan-feats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 22px;
+  }
+  .fable .tick {
+    stroke: var(--mint);
+  }
+  .fable-act {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+  }
+  .fable-act .plan-cta {
+    width: auto;
+    margin-top: 0;
+  }
+  .btn-ico {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .fable-addr {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    color: var(--night-dim);
+    user-select: all;
+  }
+  @media (max-width: 1100px) {
+    .fable {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+    .fable-side {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 640px) {
+    .fable {
+      grid-template-columns: minmax(0, 1fr);
+      border-radius: var(--r-lg);
+    }
+    .fable-badge {
+      width: 96px;
+    }
+    .fable-side .plan-feats {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .fable-act .plan-cta {
+      width: 100%;
+    }
+  }
+
+  .plans-foot {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 22px;
-    padding: 16px 18px;
-    border: 1px dashed var(--line);
-    border-radius: var(--r-xl);
+    gap: 18px 36px;
+    margin-top: clamp(32px, 4vw, 48px);
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
   }
-  .dew-entry p {
+  .dew-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    max-width: 48em;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  .dew-note svg {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    margin-top: 1px;
+    fill: none;
+    stroke: var(--accent-ink);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .dew-note .tlink {
+    margin-left: 6px;
+  }
+
+  /* ── coming next ────────────────────────────────── */
+  .soon {
+    padding: 0 0 clamp(72px, 9vw, 128px);
+  }
+  .soon-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
+    gap: 24px clamp(32px, 5vw, 80px);
+    align-items: start;
+  }
+  .soon-h {
+    margin: 6px 0 12px;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .soon-note {
+    font-size: 14px;
+    color: var(--ink-3);
+  }
+  .soon-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .soon-list li {
+    display: flex;
+    gap: 16px;
+    padding: 22px 24px;
+    border-radius: var(--r-md);
+    border: 1px dashed var(--line-2);
+  }
+  .soon-ico {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    flex: none;
+    border-radius: 13px;
+    background: var(--accent-wash);
+    color: var(--accent-ink);
+  }
+  .soon-ico svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .soon-list h3 {
+    margin-bottom: 6px;
+    font-size: 1.15rem;
+  }
+  :global(html[lang='en']) .soon-list h3 {
+    font-size: 1.35rem;
+  }
+  .soon-list p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+  @media (max-width: 900px) {
+    .soon-inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .soon-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  /* ── questions ──────────────────────────────────── */
+  .ask-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: 32px clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+  .ask-head {
+    position: sticky;
+    top: calc(var(--nav-h) + 40px);
+  }
+  .ask-head h2 {
+    margin: 16px 0 26px;
+  }
+  @media (max-width: 900px) {
+    .ask-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .ask-head {
+      position: static;
+    }
+  }
+
+  /* ── checkout dialog ────────────────────────────── */
+  .co {
+    width: min(460px, calc(100vw - 32px));
+    max-width: none;
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    border-radius: var(--r-lg);
+    background: transparent;
+    color: var(--ink);
+    overflow: visible;
+  }
+  .co::backdrop {
+    background: rgba(14, 17, 49, 0.56);
+    backdrop-filter: blur(6px);
+  }
+  .co[open] .co-card {
+    animation: co-in 420ms var(--ease);
+  }
+  .co[open]::backdrop {
+    animation: co-fade 320ms var(--ease);
+  }
+  @keyframes co-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.98);
+    }
+  }
+  @keyframes co-fade {
+    from {
+      opacity: 0;
+    }
+  }
+  .co-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100dvh - 32px);
+    overflow: auto;
+    padding: 34px 32px 28px;
+    border-radius: inherit;
+    background:
+      radial-gradient(90% 60% at 100% 0%, color-mix(in srgb, var(--accent-wash) 80%, transparent), transparent 70%),
+      var(--card);
+    box-shadow: 0 50px 120px -40px rgba(14, 17, 49, 0.7);
+  }
+  .co-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: var(--holo);
+  }
+  .co-x {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink-3);
+    cursor: pointer;
+    transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+  }
+  .co-x:hover {
+    background: var(--pearl-2);
+    color: var(--ink);
+  }
+  .co-x svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+  .co-mark {
+    display: inline-flex;
+    margin-bottom: 16px;
+  }
+  .co-title {
+    padding-right: 36px;
+    font-size: clamp(1.6rem, 1.3rem + 1vw, 2rem);
+  }
+  .co-sum {
+    margin-top: 8px;
+    font-family: var(--f-mono);
+    font-size: 13.5px;
+    color: var(--accent-ink);
+  }
+  .co-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 18px 0 24px;
+    padding: 0;
+    list-style: none;
+  }
+  .co-facts li {
+    padding: 4px 10px;
+    border-radius: var(--r-full);
+    background: var(--pearl);
+    border: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+  .co-label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 650;
+  }
+  .co-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    border: 1.5px solid var(--line-2);
+    border-radius: 14px;
+    background: var(--card);
+    color: var(--ink);
+    font: 500 16px var(--f-body);
+    outline: none;
+    transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+  }
+  .co-input::placeholder {
+    color: var(--ink-3);
+    font-weight: 400;
+  }
+  .co-input:focus {
+    border-color: var(--accent-ink);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 24%, transparent);
+  }
+  .co-input[aria-invalid='true'] {
+    border-color: #c9364f;
+    box-shadow: 0 0 0 4px rgba(201, 54, 79, 0.14);
+  }
+  .co-hint {
+    min-height: 1.6em;
+    margin: 8px 0 20px;
     font-size: 13px;
     line-height: 1.6;
-    color: var(--ink-2);
-    max-width: 52ch;
+    color: var(--ink-3);
+  }
+  .co-hint.is-error {
+    color: #b3263e;
+    font-weight: 600;
+  }
+  .co-go {
+    width: 100%;
+  }
+  .co-go:disabled {
+    cursor: progress;
+    opacity: 0.75;
+    transform: none;
+  }
+  .co-note {
+    margin-top: 16px;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--ink-3);
+  }
+  @media (max-width: 559px) {
+    /* a sheet from the bottom on phones */
+    .co {
+      width: 100%;
+      margin: auto 0 0;
+      border-radius: var(--r-lg) var(--r-lg) 0 0;
+    }
+    .co-card {
+      padding: 30px 22px calc(22px + env(safe-area-inset-bottom));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .g-wave,
+    .f-wave {
+      animation: none;
+    }
+    .co[open] .co-card,
+    .co[open]::backdrop {
+      animation: none;
+    }
   }
 </style>
 
 <script>
-  const emailInput = document.getElementById('sub-account-email') as HTMLInputElement | null;
-  const hintEl = document.getElementById('sub-email-hint');
-  const triggerBtns = document.querySelectorAll<HTMLButtonElement>('.sub-trigger-btn');
+  const dlg = document.getElementById('checkout') as HTMLDialogElement | null;
+  const form = dlg?.querySelector('form');
+  const input = document.getElementById('sub-account-email') as HTMLInputElement | null;
+  const hint = document.getElementById('sub-email-hint');
+  const titleEl = dlg?.querySelector<HTMLElement>('[data-co-title]');
+  const sumEl = dlg?.querySelector<HTMLElement>('[data-co-sum]');
+  const go = dlg?.querySelector<HTMLButtonElement>('[data-co-go]');
 
-  const API_ENDPOINT = 'https://api.eidolon.instarmony.com/eidolon/api/subscription/checkout-public';
+  const endpoints = [
+    'https://api.eidolon.instarmony.com/subscription/checkout-public',
+    'https://api.eidolon.instarmony.com/eidolon/api/subscription/checkout-public',
+  ];
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  triggerBtns.forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      const email = (emailInput?.value || '').trim();
-      const isZh = btn.dataset.currency === 'CNY';
+  if (dlg && form && input && hint && go) {
+    const msg = dlg.dataset;
+    let tierId = 'spark';
+    let currency = 'CNY';
+    let opener: HTMLElement | null = null;
 
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        if (emailInput) {
-          emailInput.focus();
-          emailInput.classList.add('input-error');
-          setTimeout(() => emailInput.classList.remove('input-error'), 2000);
-        }
-        if (hintEl) {
-          hintEl.textContent = isZh
-            ? '⚠️ 请先输入有效的接收账号邮箱地址'
-            : '⚠️ Please enter a valid account email first';
-          hintEl.classList.add('hint-error');
-        }
+    const say = (text: string, error = false, badEmail = false) => {
+      hint.textContent = text;
+      hint.classList.toggle('is-error', error);
+      input.setAttribute('aria-invalid', String(badEmail));
+    };
+    const idle = () => {
+      go.disabled = false;
+      go.textContent = msg.go ?? '';
+      form.removeAttribute('aria-busy');
+    };
+
+    document.querySelectorAll<HTMLButtonElement>('.sub-trigger-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        tierId = btn.dataset.tier || 'spark';
+        currency = btn.dataset.currency || 'CNY';
+        opener = btn;
+        if (titleEl) titleEl.textContent = (msg.title ?? '').replace('{plan}', btn.dataset.planName ?? '');
+        if (sumEl) sumEl.textContent = btn.dataset.planSum ?? '';
+        say(msg.hint ?? '');
+        idle();
+        if (typeof dlg.showModal === 'function') dlg.showModal();
+        else dlg.setAttribute('open', '');
+        input.focus();
+      });
+    });
+
+    input.addEventListener('input', () => {
+      if (hint.classList.contains('is-error')) say(msg.hint ?? '');
+    });
+    dlg.querySelector('[data-co-close]')?.addEventListener('click', () => dlg.close());
+    // the dialog box itself has no padding, so a click that lands on it is a click on the backdrop
+    dlg.addEventListener('click', (event) => {
+      if (event.target === dlg && !go.disabled) dlg.close();
+    });
+    dlg.addEventListener('close', () => opener?.focus());
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const email = input.value.trim();
+      if (!EMAIL.test(email)) {
+        say(msg.invalid ?? '', true, true);
+        input.focus();
         return;
       }
-
-      if (hintEl) {
-        hintEl.textContent = isZh
-          ? `正在为 ${email} 创建收银会话…`
-          : `Creating checkout session for ${email}…`;
-        hintEl.classList.remove('hint-error');
-      }
-
-      const tierId = btn.dataset.tier || 'spark';
-      const currency = btn.dataset.currency || 'CNY';
-      const originalText = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = `<span class="btn-text">${isZh ? '正在跳转收银台…' : 'Redirecting…'}</span>`;
+      say((msg.creating ?? '').replace('{email}', email));
+      go.disabled = true;
+      go.textContent = msg.redirecting ?? '';
+      form.setAttribute('aria-busy', 'true');
 
       try {
         let resp: Response | null = null;
-        let lastErr: any = null;
-        const endpoints = [
-          'https://api.eidolon.instarmony.com/subscription/checkout-public',
-          'https://api.eidolon.instarmony.com/eidolon/api/subscription/checkout-public',
-        ];
-
+        let lastErr: unknown = null;
         for (const ep of endpoints) {
           try {
             const r = await fetch(ep, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                email,
-                tierId,
-                currency,
-              }),
+              body: JSON.stringify({ email, tierId, currency }),
             });
             if (r.ok || r.status !== 404) {
               resp = r;
               break;
             }
-          } catch (e) {
-            lastErr = e;
+          } catch (err) {
+            lastErr = err;
           }
         }
-
-        if (!resp) {
-          throw lastErr || new Error('网络请求失败');
-        }
-
+        if (!resp) throw lastErr ?? new Error('network');
         if (!resp.ok) {
           const errData = await resp.json().catch(() => ({}));
-          throw new Error(errData.detail || `HTTP ${resp.status}`);
+          throw new Error(typeof errData.detail === 'string' && errData.detail ? errData.detail : `HTTP ${resp.status}`);
         }
-
         const data = await resp.json();
-        if (data.checkoutUrl) {
-          window.location.href = data.checkoutUrl;
-        } else {
-          throw new Error('未获取到有效收银台链接');
-        }
-      } catch (err: any) {
-        alert((isZh ? '发起结算失败：' : 'Failed to start checkout: ') + (err?.message || err));
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-        if (hintEl) {
-          hintEl.textContent = isZh
-            ? '输入接收订阅的账号邮箱后，点击下方套餐即可直接结账'
-            : 'Enter email, then click any plan below to proceed to checkout';
-        }
+        if (!data.checkoutUrl) throw new Error('no checkout link');
+        window.location.href = data.checkoutUrl;
+      } catch (err) {
+        const reason = err instanceof Error ? err.message : String(err);
+        say((msg.failed ?? '').replace('{error}', reason), true);
+        idle();
       }
     });
-  });
+
+    // Coming back from the cashier restores this page from the back-forward cache mid-redirect.
+    window.addEventListener('pageshow', (event) => {
+      if (!event.persisted) return;
+      idle();
+      say(msg.hint ?? '');
+      if (dlg.open) dlg.close();
+    });
+  }
 </script>

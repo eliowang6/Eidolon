@@ -1,27 +1,31 @@
 # Sholarel
 
-> Sholarel 是一个持续理解你、融入真实生活、也能帮你把事情做成的数字生命——陪伴、生活协助与跨端行动共享同一份长期记忆。支持 Windows、Android 与网页版（邀请制内测）。由 Instarmony 开发。
+> Sholarel 是 Instarmony 出品的 AI 陪伴应用（曾用名 Eidolon）。你可以选 Fea 或 Ael 作为伙伴：它们记得你说过的话，会主动问候，也能帮你查路线、读文件、设提醒。支持 Windows 与 Android，公开测试中。
 
 ## 关键事实
 
-- 产品名：Sholarel
+- 产品名：Sholarel（曾用名 Eidolon；只用英文名，没有中文名）
 - 开发商：Instarmony（https://instarmony.com/）
-- 平台：Windows 10 / 11（64 位）、Android 7.0 及以上（仅 64 位 arm64）；网页版可在浏览器直接打开，目前为邀请制内测（注册需邀请码）；macOS、iOS、Linux 暂不支持
-- 状态：首次公测筹备中，候补名单开放
+- 伙伴：两位官方角色 Fea 与 Ael，能力相同，性格和说话方式不同；可以随时切换，也可以给伙伴改名
+- 平台：Windows 10 / 11（64 位）、Android 7.0 及以上（64 位 arm64）；网页版为邀请制内测（注册需邀请码）；macOS、iOS、Linux 暂不支持
+- 状态：公开测试中，2026 年 11 月 1 日开放
+- 付费：Spark、Resonance、Genesis、Symbiosis、Fable 五档订阅；另有不会过期的额度包“溯时星露”（Chrono Dew），免注册、填邮箱即可购买
 - 官网：https://sholarel.instarmony.com/
 - 文档：https://sholarel.instarmony.com/docs/
-- 源码：https://github.com/eliowang6/Eidolon
+- 联系：support@instarmony.com
 
 ## 主要页面
 
-- [产品首页](https://sholarel.instarmony.com/)：定位与整体介绍
-- [功能](https://sholarel.instarmony.com/features.html)：对话、实时语音与视频通话、长期记忆、桌面操作、生活管理
-- [工作原理](https://sholarel.instarmony.com/how-it-works.html)：感知、记忆、行动的闭环
-- [下载](https://sholarel.instarmony.com/download.html)：Windows 与 Android 客户端，以及网页版（邀请制内测）
-- [订阅](https://sholarel.instarmony.com/pricing.html)：各档位与权益对比
-- [公测](https://sholarel.instarmony.com/beta.html)：公测范围与常见问题
-- [关于](https://sholarel.instarmony.com/about.html)：团队与理念
+- [首页](https://sholarel.instarmony.com/)：住在你桌面和手机上的 AI 陪伴，认识 Fea 与 Ael
+- [全部能力](https://sholarel.instarmony.com/features.html)：悬浮在桌面的 3D / Live2D 伙伴、长期记忆与主动问候、语音与视频通话、附件理解、需你授权的主动视觉、交换手账、安排与专注舱、AI 自主探索
+- [隐私与授权](https://sholarel.instarmony.com/how-it-works.html)：本地优先、最小必要；看屏幕、拍照、推送都先征求你的同意
+- [订阅方案](https://sholarel.instarmony.com/pricing.html)：五档订阅的模型、回响额度与权益对比
+- [溯时星露](https://sholarel.instarmony.com/dew.html)：不会过期的回响额度包，免注册购买，付款后在 App 内粘贴口令归户
+- [下载](https://sholarel.instarmony.com/download.html)：Windows（EXE）与 Android（APK）客户端
+- [更新日志](https://sholarel.instarmony.com/beta.html)：公开测试以来的每一次更新
+- [关于](https://sholarel.instarmony.com/about.html)：名字的由来、Fea 与 Ael、做它的人，以及投资人与合作伙伴的联系方式
 - [隐私政策](https://sholarel.instarmony.com/privacy.html)
+- [服务条款](https://sholarel.instarmony.com/terms.html)
 
 ## 文档
 
@@ -30,8 +34,17 @@
 - [账号管理](https://sholarel.instarmony.com/docs/account/)
 - [功能说明](https://sholarel.instarmony.com/docs/features/chat/)
 - [常见问题](https://sholarel.instarmony.com/docs/faq/)
-- [English docs](https://sholarel.instarmony.com/docs/en/)
 
-## 可选
+## English
 
-- [English](https://sholarel.instarmony.com/en/)
+> Sholarel (formerly Eidolon) is an AI companion app by Instarmony. Choose Fea or Ael: they remember what you’ve said, check in first, and help with routes, files and reminders. Windows and Android, now in public beta.
+
+- [Home](https://sholarel.instarmony.com/en/)
+- [Features](https://sholarel.instarmony.com/en/features.html)
+- [Privacy & consent](https://sholarel.instarmony.com/en/how-it-works.html)
+- [Plans](https://sholarel.instarmony.com/en/pricing.html)
+- [Chrono Dew](https://sholarel.instarmony.com/en/dew.html)
+- [Download](https://sholarel.instarmony.com/en/download.html)
+- [Changelog](https://sholarel.instarmony.com/en/beta.html)
+- [About](https://sholarel.instarmony.com/en/about.html)
+- [Documentation](https://sholarel.instarmony.com/docs/en/)

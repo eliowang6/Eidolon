@@ -1,678 +1,684 @@
 ---
-import PageHero from '../PageHero.astro';
-import SectionHead from '../SectionHead.astro';
-import Eyebrow from '../Eyebrow.astro';
-import PermissionPanel from '../PermissionPanel.astro';
-import MetricCard from '../MetricCard.astro';
-import MemoryLayers from '../MemoryLayers.astro';
-import Icon from '../Icon.astro';
+/**
+ * Privacy & consent (/how-it-works.html): the consent dialog itself opens the
+ * page, then the permission ledger, payments, the Echo rule and your rights —
+ * all in plain words, no architecture talk.
+ */
 import CtaBand from '../CtaBand.astro';
-import { localizePath, t, type Lang } from '../../i18n';
+import Eyebrow from '../Eyebrow.astro';
+import PageHero from '../PageHero.astro';
+import { localizePath, pr, t, type Lang } from '../../i18n';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const copy = t(lang);
-const page = copy.howPage;
+const tp = copy.trustPage;
 const p = (href: string) => localizePath(lang, href);
-const steps = copy.loop.steps;
-const metrics = page.cache.metrics;
-const splitTitle = (title: string) => title.split(/[，,]\s*/);
-const memoryTitle = splitTitle(page.memory.h2);
-const cacheTitle = splitTitle(page.cache.h2);
-const actionTitle = splitTitle(page.action.h2);
-const comma = lang === 'zh' ? '，' : ',';
+const permHead = tp.perms.label.split(' / ')[0];
+// Turn a known address inside already-escaped copy into a mail link.
+const mailLinks = (html: string) =>
+  html.replace(/\b(privacy|report|support)@instarmony\.com\b/g, (addr) => `<a href="mailto:${addr}">${addr}</a>`);
 ---
 
-<PageHero label={page.label} h1a={page.h1a} h1b={page.h1b} lede={page.lede} />
+<PageHero class="trust-head" label={tp.label} h1a={tp.h1a} h1b={tp.h1b} lede={tp.lede}>
+  <figure class="ask">
+    <img
+      src="/assets/shots/consent-card.webp"
+      width="556"
+      height="551"
+      alt={tp.perms.shotAlt}
+      loading="eager"
+      decoding="async"
+    />
+  </figure>
+</PageHero>
 
-<section class="section loop-sec">
+<!-- ── three principles ──────────────────────────────────── -->
+<section class="section principles" aria-labelledby="pr-h">
   <div class="container">
-    <SectionHead class="reveal" label={page.loop.label} h2a={page.loop.h2} lede={page.loop.lede} />
-
-    <div class="feed-bands reveal">
-      <div class="feed-band">
-        <span class="label">{page.loop.outer}</span>
-        <p>{page.loop.outerText}</p>
-      </div>
-      <div class="feed-band">
-        <span class="label">{page.loop.inner}</span>
-        <p>{page.loop.innerText}</p>
-      </div>
+    <div class="sec-head reveal">
+      <Eyebrow text={tp.principles.label} />
+      <h2 id="pr-h" set:html={pr(tp.principles.h2)} />
     </div>
-
-    <svg class="feed-merge" viewBox="0 0 1200 54" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M300 1 V20 H600 V46" />
-      <path d="M900 1 V20 H600" />
-      <path class="head" d="M594 40 L600 47 L606 40" />
-    </svg>
-
-    <div class="loop-track reveal">
-      {steps.map((step, i) => (
-        <article class={`loop-node ${i === 2 ? 'loop-node--night' : ''}`}>
-          <div class="node-top">
-            <span class="node-no mono">{String(i + 1).padStart(2, '0')}</span>
-            <span class="node-time mono">{step.time}</span>
-          </div>
-          <h3>{step.name}{lang === 'zh' && <small>{step.en}</small>}</h3>
-          <p>{step.desc}</p>
-        </article>
-      ))}
-    </div>
-
-    <div class="loop-back" aria-hidden="true"></div>
-
-    <p class="loop-closing reveal">{copy.loop.closing}</p>
-  </div>
-</section>
-
-<section class="section section--paper2 memory-sec">
-  <div class="container memory-grid">
-    <div class="memory-copy">
-      <Eyebrow text={page.memory.label} />
-      <h2>{memoryTitle[0]}{memoryTitle.length > 1 && comma}{memoryTitle.length > 1 && <><br />{memoryTitle[1]}</>}</h2>
-      <p class="lede">{page.memory.body}</p>
-    </div>
-    <div class="memory-visual reveal">
-      <div class="memory-card band-night">
-        <MemoryLayers variant="large" />
-      </div>
-      <p class="memory-caption mono">{page.memory.caption}</p>
-    </div>
-  </div>
-</section>
-
-<section class="section band-night cache-sec">
-  <div class="container cache-grid">
-    <div class="cache-metrics reveal">
-      <MetricCard
-        value={metrics[0].to}
-        captionA={metrics[0].captionA}
-        captionB={metrics[0].captionB}
-        to="25"
-        prefix="−"
-        suffix="%"
-        index={0}
-      />
-      <MetricCard
-        value={metrics[1].to}
-        captionA={metrics[1].captionA}
-        captionB={metrics[1].captionB}
-        to="90"
-        rangeTo="97"
-        suffix="%"
-        index={1}
-      />
-      <p class="footnote">{page.cache.footnote}</p>
-    </div>
-    <div class="cache-copy">
-      <Eyebrow text={page.cache.label} />
-      <h2>{cacheTitle[0]}{cacheTitle.length > 1 && comma}{cacheTitle.length > 1 && <><br />{cacheTitle[1]}</>}</h2>
-      <p class="lede">{page.cache.body}</p>
-    </div>
-  </div>
-</section>
-
-<section class="section action-sec">
-  <div class="container">
-    <SectionHead class="reveal" label={page.action.label} h2a={`${actionTitle[0]}${actionTitle[1] ? comma : ''}`} h2b={actionTitle[1]} />
-
-    <div class="ad-flow">
-      <div class="ad-card ad-main reveal">
-        <span class="ad-badge"><Icon name="sparkles" size={15} /></span>
-        <h3>{page.action.main}</h3>
-        <span class="ad-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-      </div>
-
-      <div class="ad-link" aria-hidden="true"></div>
-
-      <div class="ad-card ad-exec reveal">
-        <span class="ad-badge"><Icon name="bolt" size={15} /></span>
-        <h3>{page.action.exec}</h3>
-        <span class="ad-pulse" aria-hidden="true"></span>
-      </div>
-
-      <svg class="ad-fan reveal" viewBox="0 0 100 48" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M50 0 V10 M50 10 C50 26 16 24 16 46" />
-        <path d="M50 10 C50 26 50 24 50 46" />
-        <path d="M50 10 C50 26 84 24 84 46" />
-      </svg>
-
-      <div class="ad-targets reveal">
-        {page.action.targets.map((target, i) => (
-          <span class="ad-target">
-            <Icon name={['smartphone', 'monitor', 'terminal'][i]} size={17} />
-            {target}
-          </span>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--paper2 quote-sec">
-  <div class="container">
-    <blockquote class="reveal">
-      <span class="quote-mark" aria-hidden="true">“</span>
-      <p>{page.quote}</p>
-    </blockquote>
-  </div>
-</section>
-
-<section class="section boundary-sec">
-  <div class="container boundary-grid">
-    <div>
-      <SectionHead class="reveal" label={page.boundary.label} h2a={page.boundary.h2} />
-      <ul class="boundary-list">
-        {page.boundary.cards.map((card, i) => (
+    <ul class="pr-grid">
+      {
+        tp.principles.items.map((item, i) => (
           <li class="reveal" style={`--i:${i}`}>
-            <span class="b-icon"><Icon name={card.icon} size={20} /></span>
-            <div>
-              <h3>{card.title}</h3>
-              <p>{card.desc}</p>
-            </div>
+            <h3 set:html={pr(item.t)} />
+            <p set:html={pr(item.d)} />
           </li>
-        ))}
-      </ul>
-      <a class="tlink reveal" href={p('/privacy.html')}>{page.boundary.link}</a>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ── the permission ledger ─────────────────────────────── -->
+<section class="section section--paper2 perms" aria-labelledby="pe-h">
+  <div class="container">
+    <div class="sec-head reveal">
+      <Eyebrow text={tp.perms.label} />
+      <h2 id="pe-h" set:html={pr(tp.perms.h2)} />
+      <p class="lede" set:html={pr(tp.perms.lede)} />
     </div>
-    <div class="boundary-visual reveal" style="--i:2">
-      <PermissionPanel lang={lang} />
+    <div class="ledger reveal" data-whisper="trust">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{permHead}</th>
+            <th scope="col">{tp.perms.useLabel}</th>
+            <th scope="col">{tp.perms.defLabel}</th>
+            <th scope="col">{tp.perms.offLabel}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            tp.perms.items.map((item) => (
+              <tr>
+                <th scope="row" set:html={pr(item.t)} />
+                <td data-label={tp.perms.useLabel} set:html={pr(item.use)} />
+                <td data-label={tp.perms.defLabel} set:html={pr(item.def)} />
+                <td data-label={tp.perms.offLabel}>
+                  <span class="path" set:html={pr(item.off)} />
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<CtaBand lang={lang} h2={page.cta.h2} lede={page.cta.lede} variant="paper2" />
+<!-- ── payments ──────────────────────────────────────────── -->
+<section class="section pay" aria-labelledby="pay-h">
+  <div class="container pay-grid">
+    <div class="pay-copy">
+      <Eyebrow text={tp.pay.label} class="reveal" />
+      <h2 id="pay-h" class="reveal" style="--i:1" set:html={pr(tp.pay.h2)} />
+      <p class="lede reveal" style="--i:2" set:html={pr(tp.pay.body)} />
+      <dl class="pay-rows">
+        {
+          tp.pay.rows.map((row, i) => (
+            <div class="reveal" style={`--i:${i + 3}`}>
+              <dt set:html={pr(row.t)} />
+              <dd set:html={pr(row.d)} />
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+    <div class="pay-vis reveal" style="--i:1" aria-hidden="true">
+      <div class="paycard paycard--back"></div>
+      <div class="paycard">
+        <div class="pc-top">
+          <span class="pc-chip"></span>
+          <svg class="pc-lock" viewBox="0 0 24 24">
+            <rect x="5" y="10.5" width="14" height="10" rx="2.5" />
+            <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+          </svg>
+        </div>
+        <p class="pc-num">•••• •••• •••• ••••</p>
+        <div class="pc-foot">
+          <span>•• / ••</span>
+          <span>CVV •••</span>
+          <span>PCI-DSS L1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── the Echo rule ─────────────────────────────────────── -->
+<section class="section section--tight fair-sec" aria-labelledby="fair-h">
+  <div class="container">
+    <div class="fair reveal">
+      <span class="fair-mark" aria-hidden="true"><i></i><i></i></span>
+      <div>
+        <Eyebrow text={tp.fair.label} />
+        <h2 id="fair-h" set:html={pr(tp.fair.h2)} />
+        <p set:html={pr(tp.fair.body)} />
+        <a class="tlink" href={p('/pricing.html')}>{tp.fair.link}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── your rights ───────────────────────────────────────── -->
+<section class="section section--paper2 rights" aria-labelledby="ri-h">
+  <div class="container rights-grid">
+    <div class="sec-head reveal">
+      <Eyebrow text={tp.rights.label} />
+      <h2 id="ri-h" set:html={pr(tp.rights.h2)} />
+    </div>
+    <ul class="rights-list">
+      {
+        tp.rights.items.map((item, i) => (
+          <li class="reveal" style={`--i:${i}`}>
+            <h3 set:html={pr(item.t)} />
+            <p set:html={mailLinks(pr(item.d))} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ── report & the full terms ───────────────────────────── -->
+<section class="section ends" aria-label={tp.legal.label}>
+  <div class="container ends-grid">
+    <article class="end-card reveal">
+      <Eyebrow text={tp.report.label} />
+      <h2 class="end-h" set:html={pr(tp.report.h2)} />
+      <p set:html={mailLinks(pr(tp.report.body))} />
+    </article>
+    <div class="end-card end-card--legal reveal" style="--i:1">
+      <Eyebrow text={tp.legal.label} />
+      <a class="legal-link" href={p('/privacy.html')}>
+        <span class="ll-t">{tp.legal.privacy}</span>
+        <span class="ll-d">{tp.legal.privacyD}</span>
+        <span class="ll-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="legal-link" href={p('/terms.html')}>
+        <span class="ll-t">{tp.legal.terms}</span>
+        <span class="ll-d">{tp.legal.termsD}</span>
+        <span class="ll-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<CtaBand lang={lang} h2={tp.cta.h2} lede={tp.cta.lede} secondary="features" />
 
 <style>
-  .loop-sec {
-    padding-top: 0;
+  /* ── masthead: the real consent dialog, floating in the night ── */
+  .ask {
+    margin: 36px 0 0;
+    width: min(380px, 100%);
   }
-  .feed-bands {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: clamp(40px, 5vw, 56px);
-  }
-  .feed-band {
-    display: flex;
-    align-items: baseline;
-    gap: 18px;
-    border: 1px dashed var(--line-2);
-    border-radius: var(--r-full);
-    padding: 16px 24px;
-    background: var(--paper);
-  }
-  .feed-band .label {
-    flex: none;
-    color: color-mix(in srgb, var(--sage-deep) 78%, var(--ink));
-  }
-  .feed-band p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--ink-2);
-  }
-  .feed-merge {
+  .ask img {
     display: block;
     width: 100%;
-    height: 54px;
-    margin-top: 2px;
+    height: auto;
+    border-radius: 22px;
+    box-shadow:
+      0 50px 100px -40px rgba(0, 0, 0, 0.75),
+      0 0 0 1px rgba(255, 255, 255, 0.4),
+      0 0 80px -10px color-mix(in srgb, var(--accent) 45%, transparent);
+    rotate: 2.5deg;
   }
-  .feed-merge path {
-    fill: none;
-    stroke: var(--line-2);
-    stroke-width: 1.2;
-    stroke-dasharray: 4 7;
-    vector-effect: non-scaling-stroke;
-  }
-  .feed-merge .head {
-    stroke-dasharray: none;
-    stroke: var(--ink-3);
-  }
-
-  .loop-track {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 26px;
-  }
-  .loop-node {
-    position: relative;
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    background: var(--card);
-    padding: 18px 16px 20px;
-    min-height: 208px;
-    display: flex;
-    flex-direction: column;
-    transition: transform var(--t-mid) var(--ease), box-shadow var(--t-mid);
-  }
-  .loop-node:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--sh-paper);
-  }
-  .loop-node:not(:last-of-type)::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -18px;
-    width: 7px;
-    height: 7px;
-    border-top: 1px solid var(--ink-3);
-    border-right: 1px solid var(--ink-3);
-    transform: translateY(-50%) rotate(45deg);
-  }
-  .node-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 8px;
-    color: var(--ink-3);
-    font-size: 11px;
-  }
-  .node-no {
-    font-size: 11px;
-    letter-spacing: 0.08em;
-  }
-  .loop-node h3 {
-    font-size: 22px;
-    margin: 18px 0 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .loop-node h3 small {
-    font-family: var(--f-latin-display);
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--ink-3);
-    letter-spacing: 0.02em;
-  }
-  .loop-node p {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--ink-2);
-    margin-top: 10px;
-  }
-  .loop-node--night {
-    background: var(--night);
-    border-color: transparent;
-    color: var(--night-text);
-  }
-  .loop-node--night .node-top,
-  .loop-node--night h3 small {
-    color: var(--lime);
-    opacity: 0.8;
-  }
-  .loop-node--night p {
-    color: var(--night-dim);
-  }
-  .loop-node--night:not(:last-of-type)::after {
-    border-color: var(--lime);
-    opacity: 0.5;
-  }
-  .loop-back {
-    position: relative;
-    height: 46px;
-    margin: 22px 9% 0;
-  }
-  .loop-back::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 1px solid var(--line-2);
-    border-top: 0;
-    border-radius: 0 0 22px 22px;
-  }
-  .loop-back::after {
-    content: "";
-    position: absolute;
-    left: -4px;
-    top: -1px;
-    width: 8px;
-    height: 8px;
-    border-top: 1px solid var(--ink-3);
-    border-left: 1px solid var(--ink-3);
-    transform: rotate(45deg);
-  }
-  .loop-closing {
-    margin-top: 26px;
-    text-align: center;
-    font-size: 14px;
-    color: var(--ink-2);
+  @media (min-width: 1040px) {
+    .ask {
+      position: absolute;
+      right: var(--gutter);
+      top: 50%;
+      width: min(380px, 31vw);
+      margin: 0;
+      translate: 0 -50%;
+    }
+    /* out-rank PageHero's own (lang-scoped) h1 sizing so the copy never runs under the dialog */
+    :global(html[lang] .trust-head.page-head .ph-inner > h1),
+    :global(html[lang] .trust-head.page-head .ph-inner > .lede) {
+      max-width: min(60%, 38em);
+    }
+    :global(html[lang='en'] .trust-head.page-head .ph-inner > h1) {
+      font-size: clamp(2.7rem, 1.5rem + 3vw, 4.5rem);
+    }
   }
 
-  .memory-grid {
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    gap: clamp(36px, 6vw, 88px);
-    align-items: center;
-  }
-  .memory-copy h2 {
-    margin: 14px 0 18px;
-    max-width: 500px;
-    text-wrap: balance;
-  }
-  .memory-copy .lede {
-    max-width: 470px;
-  }
-  .memory-caption {
-    margin-top: 14px;
-    font-size: 12px;
-    color: var(--ink-3);
-    text-align: right;
-  }
-  .memory-card {
-    border-radius: var(--r-xl);
-    padding: clamp(26px, 4vw, 44px);
-  }
-
-  .cache-sec {
-    border-radius: var(--r-xl);
-  }
-  .cache-grid {
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: clamp(36px, 6vw, 80px);
-    align-items: center;
-  }
-  .cache-metrics {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .cache-metrics .footnote {
-    grid-column: 1 / -1;
-    font-size: 11px;
-    line-height: 1.7;
-    color: rgba(233, 239, 230, 0.42);
-  }
-  .cache-copy :global(.label) {
-    color: var(--lime);
-  }
-  .cache-copy h2 {
-    color: var(--night-text);
-    margin: 14px 0 18px;
-    text-wrap: balance;
-  }
-  .cache-copy .lede {
-    color: var(--night-dim);
-    max-width: 420px;
-  }
-
-  .ad-flow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .ad-card {
-    position: relative;
-    width: min(640px, 100%);
-    border-radius: 20px;
-    padding: 24px 26px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--card);
-    border: 1px solid var(--line);
-  }
-  .ad-main {
-    background: var(--night);
-    color: var(--night-text);
-    border-color: transparent;
-    box-shadow: var(--sh-paper);
-  }
-  .ad-main .ad-badge {
-    background: rgba(200, 241, 105, 0.14);
-    color: var(--lime);
-  }
-  .ad-badge {
-    flex: none;
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    display: grid;
-    place-items: center;
-    background: var(--sage-wash);
-    color: var(--sage-deep);
-  }
-  .ad-card h3 {
-    font-size: 16px;
-    font-weight: 700;
-  }
-  .ad-dots {
-    margin-left: auto;
-    display: flex;
-    gap: 5px;
-  }
-  .ad-dots i {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--lime);
-    opacity: 0.3;
-    animation: ad-blink 2.4s infinite;
-  }
-  .ad-dots i:nth-child(2) { animation-delay: 0.35s; }
-  .ad-dots i:nth-child(3) { animation-delay: 0.7s; }
-  @keyframes ad-blink {
-    0%, 100% { opacity: 0.25; }
-    50% { opacity: 1; }
-  }
-  .ad-link {
-    width: 1px;
-    height: 46px;
-    background-image: linear-gradient(var(--line-2) 55%, transparent 55%);
-    background-size: 1px 8px;
-  }
-  .ad-exec {
-    background: var(--sage-wash);
-    border-color: var(--sage);
-  }
-  .ad-pulse {
-    margin-left: auto;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--sage-deep);
-    box-shadow: 0 0 0 0 rgba(74, 112, 96, 0.35);
-    animation: ad-ping 2.6s infinite;
-  }
-  @keyframes ad-ping {
-    0% { box-shadow: 0 0 0 0 rgba(74, 112, 96, 0.35); }
-    70% { box-shadow: 0 0 0 12px rgba(74, 112, 96, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(74, 112, 96, 0); }
-  }
-  .ad-fan {
-    width: min(640px, 100%);
-    height: 48px;
-    margin-top: 2px;
-  }
-  .ad-fan path {
-    fill: none;
-    stroke: var(--ink-3);
-    stroke-width: 1;
-    stroke-dasharray: 4 6;
-    vector-effect: non-scaling-stroke;
-    animation: fan-flow 3.2s linear infinite;
-  }
-  @keyframes fan-flow {
-    to { stroke-dashoffset: -40; }
-  }
-  .ad-targets {
-    width: min(640px, 100%);
+  /* ── principles ─────────────────────────────────── */
+  .pr-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
+    gap: 28px clamp(24px, 4vw, 56px);
   }
-  .ad-target {
+  .pr-grid li {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border: 1px solid var(--line);
-    border-radius: var(--r-full);
-    background: var(--paper);
-    padding: 12px 10px;
-    font-size: 14px;
-    color: var(--ink-2);
-    text-align: center;
+    padding-top: 28px;
   }
-  .ad-target::before {
-    content: "";
+  .pr-grid li::before {
+    content: '';
     position: absolute;
-    top: -4px;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    border-bottom: 1px solid var(--ink-3);
-    border-right: 1px solid var(--ink-3);
-    transform: translateX(-50%) rotate(45deg);
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--holo);
   }
-  .ad-target :global(svg) {
-    color: var(--sage-deep);
-    flex: none;
+  .pr-grid h3 {
+    margin-bottom: 12px;
+  }
+  .pr-grid p {
+    color: var(--ink-2);
+    font-size: 15.5px;
+    line-height: 1.85;
+  }
+  @media (max-width: 860px) {
+    .pr-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
-  .quote-sec {
-    padding-block: clamp(64px, 9vw, 120px);
+  /* ── the ledger ─────────────────────────────────── */
+  .ledger {
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
   }
-  .quote-sec blockquote {
-    position: relative;
-    max-width: 940px;
-    margin-inline: auto;
-    text-align: center;
+  .ledger table {
+    width: 100%;
+    border-collapse: collapse;
   }
-  .quote-mark {
-    font-family: var(--f-latin-display);
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 0.6;
-    color: var(--sage);
-    display: block;
-    margin-bottom: 18px;
+  .ledger thead th {
+    padding: 18px 24px;
+    text-align: left;
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    background: var(--pearl);
+    border-bottom: 1px solid var(--line);
   }
-  .quote-sec p {
-    font-family: var(--f-zh-display);
+  :global(html[lang='zh-CN']) .ledger thead th {
+    font-family: var(--f-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .ledger tbody th,
+  .ledger td {
+    padding: 26px 24px;
+    vertical-align: top;
+    text-align: left;
+  }
+  .ledger tbody tr + tr > * {
+    border-top: 1px solid var(--line);
+  }
+  .ledger tbody th {
+    width: 21%;
+    font-family: var(--f-display);
+    font-size: 1.12rem;
     font-weight: 700;
-    font-size: clamp(1.6rem, 1.1rem + 1.7vw, 2.4rem);
-    line-height: 1.5;
-    letter-spacing: -0.01em;
-    text-wrap: balance;
+    line-height: 1.4;
+    color: var(--ink);
   }
-  html[lang="en"] .quote-sec p {
-    font-family: var(--f-latin-display);
-    font-weight: 400;
-    line-height: 1.25;
+  :global(html[lang='en']) .ledger tbody th {
+    font-weight: 500;
+    font-size: 1.22rem;
   }
-
-  .boundary-grid {
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: clamp(40px, 6vw, 96px);
-    align-items: center;
-  }
-  .boundary-list {
-    display: grid;
-    gap: 26px;
-    margin: 4px 0 34px;
-  }
-  .boundary-list li {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-  .b-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    flex: none;
-    background: var(--sage-wash);
-    color: var(--sage-deep);
-    display: grid;
-    place-items: center;
-  }
-  .boundary-list h3 {
-    font-size: 19px;
-    margin: 2px 0 6px;
-  }
-  html[lang="en"] .boundary-list h3 {
-    font-size: 23px;
-  }
-  .boundary-list p {
+  .ledger td {
     font-size: 15px;
     line-height: 1.75;
     color: var(--ink-2);
   }
-  .boundary-visual {
-    display: flex;
-    justify-content: center;
+  .ledger td:nth-child(2) {
+    width: 27%;
+  }
+  .ledger td:nth-child(3) {
+    width: 31%;
+  }
+  .path {
+    display: inline-block;
+    padding: 5px 11px;
+    border-radius: 9px;
+    background: var(--accent-wash);
+    color: var(--accent-ink);
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  @media (max-width: 860px) {
+    .ledger {
+      background: none;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
+    .ledger thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+    .ledger table,
+    .ledger tbody,
+    .ledger tr,
+    .ledger tbody th,
+    .ledger td {
+      display: block;
+      width: auto !important;
+    }
+    .ledger tr {
+      margin-bottom: 14px;
+      padding: 22px 22px 8px;
+      border-radius: var(--r-md);
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--sh-1);
+    }
+    .ledger tbody tr + tr > * {
+      border-top: 0;
+    }
+    .ledger tbody th {
+      padding: 0 0 6px;
+    }
+    .ledger td {
+      padding: 12px 0;
+      border-top: 1px solid var(--line) !important;
+    }
+    .ledger tbody th + td {
+      border-top: 0 !important;
+    }
+    .ledger td::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--ink-3);
+    }
   }
 
-  @media (max-width: 1023px) {
-    .loop-track {
+  /* ── payments ───────────────────────────────────── */
+  /* the tilted back card may poke past a phone's edge; never let it pan the page */
+  .pay {
+    overflow-x: clip;
+  }
+  .pay-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+  .pay-copy h2 {
+    margin: 16px 0 18px;
+  }
+  .pay-rows {
+    display: grid;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .pay-rows > div {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: var(--r-md);
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+  .pay-rows dt {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  :global(html[lang='en']) .pay-rows dt {
+    font-weight: 500;
+    font-size: 1.15rem;
+  }
+  .pay-rows dd {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+  .pay-vis {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 340px;
+  }
+  .paycard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: min(380px, 92%);
+    aspect-ratio: 1.586;
+    padding: clamp(20px, 2.4vw, 28px);
+    border-radius: 22px;
+    color: #1b1e3a;
+    background:
+      radial-gradient(120% 140% at 0% 0%, rgba(255, 255, 255, 0.85), transparent 52%),
+      var(--holo);
+    box-shadow:
+      0 46px 90px -40px rgba(80, 60, 160, 0.6),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    rotate: -6deg;
+  }
+  .paycard--back {
+    position: absolute;
+    background:
+      radial-gradient(80% 100% at 100% 0%, rgba(110, 169, 242, 0.35), transparent 60%),
+      var(--night);
+    box-shadow: 0 40px 80px -40px rgba(14, 17, 49, 0.7);
+    rotate: 5deg;
+    translate: 9% -8%;
+  }
+  .pc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pc-chip {
+    width: 46px;
+    height: 34px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #fbf3dc, #d9c290);
+    box-shadow: inset 0 0 0 1px rgba(27, 30, 58, 0.14);
+  }
+  .pc-lock {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: #1b1e3a;
+    stroke-width: 1.6;
+    opacity: 0.7;
+  }
+  .pc-num {
+    font-family: var(--f-mono);
+    font-size: clamp(17px, 1.9vw, 23px);
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+  .pc-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    opacity: 0.72;
+  }
+  @media (max-width: 900px) {
+    .pay-grid {
       grid-template-columns: 1fr;
-      gap: 14px;
     }
-    .loop-node {
-      min-height: 0;
-    }
-    .loop-node:not(:last-of-type)::after {
-      top: auto;
-      right: 50%;
-      bottom: -12px;
-      transform: translateX(50%) rotate(135deg);
-    }
-    .loop-back {
-      display: none;
-    }
-    .memory-grid,
-    .cache-grid {
-      grid-template-columns: 1fr;
-    }
-    .memory-copy .lede,
-    .cache-copy .lede {
-      max-width: 620px;
-    }
-    .cache-copy {
-      order: -1;
-    }
-    .boundary-grid {
-      grid-template-columns: 1fr;
-    }
-    .boundary-visual {
-      justify-content: flex-start;
-    }
-    .feed-bands {
-      grid-template-columns: 1fr;
-    }
-    .feed-merge {
-      display: none;
+    .pay-vis {
+      min-height: 280px;
     }
   }
+  @media (max-width: 480px) {
+    .pay-rows > div {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+
+  /* ── Echo ───────────────────────────────────────── */
+  .fair-sec {
+    padding-top: 0;
+  }
+  .fair {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+    padding: clamp(30px, 4.5vw, 60px);
+    border-radius: var(--r-xl);
+    background:
+      radial-gradient(60% 120% at 100% 0%, var(--accent-wash), transparent 70%),
+      var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+  }
+  .fair-mark {
+    display: flex;
+    gap: 12px;
+    padding-top: 6px;
+  }
+  .fair-mark i {
+    width: 16px;
+    height: 72px;
+    border-radius: 8px;
+    background: var(--holo);
+  }
+  .fair h2 {
+    margin: 14px 0 14px;
+    font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem);
+  }
+  .fair p {
+    max-width: 44em;
+    margin-bottom: 22px;
+    color: var(--ink-2);
+    line-height: 1.85;
+  }
   @media (max-width: 640px) {
-    .cache-metrics {
+    .fair {
       grid-template-columns: 1fr;
     }
-    .feed-band {
-      flex-direction: column;
-      gap: 6px;
-      border-radius: 18px;
+    .fair-mark i {
+      height: 48px;
+      width: 12px;
     }
-    .ad-card {
-      padding: 20px;
+  }
+
+  /* ── rights ─────────────────────────────────────── */
+  .rights-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 24px clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+  .rights-grid .sec-head {
+    position: sticky;
+    top: calc(var(--nav-h) + 40px);
+  }
+  .rights-list {
+    border-top: 1px solid var(--line-2);
+  }
+  .rights-list li {
+    padding: 26px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .rights-list h3 {
+    margin-bottom: 8px;
+  }
+  .rights-list p {
+    color: var(--ink-2);
+    line-height: 1.85;
+  }
+  .rights-list :global(a),
+  .end-card :global(a[href^='mailto']) {
+    color: var(--accent-ink);
+    font-weight: 600;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent-ink) 35%, transparent);
+  }
+  @media (max-width: 860px) {
+    .rights-grid {
+      grid-template-columns: 1fr;
     }
-    .ad-card h3 {
-      font-size: 14.5px;
+    .rights-grid .sec-head {
+      position: static;
+      margin-bottom: 8px;
     }
-    .ad-fan {
-      height: 40px;
-    }
-    .ad-target {
-      font-size: 11px;
-      flex-direction: column;
-      gap: 5px;
-      border-radius: 16px;
+  }
+
+  /* ── report & legal ─────────────────────────────── */
+  .ends-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .end-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: clamp(26px, 3.4vw, 44px);
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+  }
+  .end-h {
+    font-size: clamp(1.45rem, 1.2rem + 0.9vw, 1.95rem);
+  }
+  .end-card p {
+    color: var(--ink-2);
+    line-height: 1.85;
+  }
+  .end-card--legal {
+    gap: 0;
+  }
+  .end-card--legal > :global(.label) {
+    margin-bottom: 10px;
+  }
+  .legal-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 16px;
+    width: 100%;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .legal-link:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .ll-t {
+    font-family: var(--f-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  :global(html[lang='en']) .ll-t {
+    font-weight: 500;
+    font-size: 1.3rem;
+  }
+  .ll-d {
+    grid-column: 1;
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .ll-arrow {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-size: 20px;
+    color: var(--ink-3);
+    transition:
+      transform var(--t-fast) var(--ease),
+      color var(--t-fast) var(--ease);
+  }
+  .legal-link:hover .ll-arrow {
+    transform: translateX(4px);
+    color: var(--accent-ink);
+  }
+  @media (max-width: 760px) {
+    .ends-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

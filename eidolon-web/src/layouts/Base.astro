@@ -4,7 +4,7 @@ import '../styles/base.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { SITE } from '../config/site';
-import { localizePath, t, type Lang } from '../i18n';
+import { localizePath, pr, t, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -16,6 +16,8 @@ interface Props {
   noindex?: boolean;
   jsonLd?: Record<string, unknown>[];
   bodyClass?: string;
+  /** What sits under the nav at the top of the page. Every page opens on night unless it says otherwise. */
+  navTone?: 'night' | 'pearl';
 }
 const {
   lang,
@@ -27,6 +29,7 @@ const {
   noindex = false,
   jsonLd = [],
   bodyClass = '',
+  navTone = 'night',
 } = Astro.props;
 
 const copy = t(lang);
@@ -60,14 +63,19 @@ const website = {
   '@type': 'WebSite',
   '@id': `${SITE.url}/#website`,
   name: 'Sholarel',
+  alternateName: ['Eidolon'],
   url: SITE.url,
   inLanguage: ['zh-CN', 'en'],
   publisher: { '@id': 'https://instarmony.com/#organization' },
 };
 const structured = [organization, website, ...jsonLd];
+
+// Whispers are short notes in the companion's own handwriting. Both voices are
+// rendered; CSS shows whichever companion the visitor walks with.
+const whispers = Object.fromEntries(Object.entries(copy.whisper.lines).map(([key, text]) => [key, pr(text)]));
 ---
 <!doctype html>
-<html lang={lang === 'zh' ? 'zh-CN' : 'en'}>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'} data-companion="fea">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -75,15 +83,12 @@ const structured = [organization, website, ...jsonLd];
       (function () {
         var d = document.documentElement;
         d.classList.add('js');
-        var q = new URLSearchParams(location.search).get('t');
-        var pref = null;
-        try { pref = localStorage.getItem('eidolon_theme'); } catch (e) {}
-        var h = new Date().getHours();
-        var auto = h >= 5 && h < 10 ? 'dawn' : h >= 10 && h < 16 ? 'day' : h >= 16 && h < 19 ? 'dusk' : 'night';
-        var p = q === 'dawn' || q === 'day' || q === 'dusk' || q === 'night'
-          ? q
-          : pref === 'light' ? 'day' : pref === 'dark' ? 'night' : auto;
-        d.dataset.daypart = p;
+        var c = null;
+        try { c = new URLSearchParams(location.search).get('c'); } catch (e) {}
+        if (c !== 'fea' && c !== 'ael') {
+          try { c = localStorage.getItem('sholarel_companion'); } catch (e) {}
+        }
+        d.dataset.companion = c === 'ael' ? 'ael' : 'fea';
         // If the page script is slow or blocked, never leave content invisible.
         setTimeout(function () {
           if (!d.classList.contains('reveal-ready')) d.classList.add('reveal-all');
@@ -115,14 +120,14 @@ const structured = [organization, website, ...jsonLd];
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={og} />
-    <meta name="theme-color" content="#F5F2EA" id="meta-theme" />
+    <meta name="theme-color" content="#0e1131" />
 
     <link rel="icon" type="image/jpeg" href="/assets/logo-icon.jpg" />
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/noto-serif-sc-700.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/instrument-serif-400.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/bodoni-moda-opsz.woff2" crossorigin />
+    {lang === 'zh' && <link rel="preload" as="font" type="font/woff2" href="/fonts/noto-serif-sc-700.woff2" crossorigin />}
 
     {structured.map((item) => (
       <script type="application/ld+json" set:html={JSON.stringify(item)} />
@@ -130,15 +135,25 @@ const structured = [organization, website, ...jsonLd];
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#main">{copy.nav.skip}</a>
-    <Nav lang={lang} path={path} />
+    <Nav lang={lang} path={path} tone={navTone} />
     <main id="main">
       <slot />
     </main>
     <Footer lang={lang} path={path} />
 
-    <aside class="stay-note" id="stay-note" role="note" hidden>
-      <span class="stay-scrap">{copy.mnote.stay}</span>
+    <aside class="whisper" id="whisper" hidden aria-live="polite">
+      <span class="whisper-face" aria-hidden="true">
+        <img class="cf" src="/assets/art/fea-avatar.webp" alt="" width="44" height="44" />
+        <img class="ca" src="/assets/art/ael-avatar.webp" alt="" width="44" height="44" />
+      </span>
+      <div class="whisper-body">
+        <span class="whisper-who"><span class="cf">Fea</span><span class="ca">Ael</span></span>
+        <p class="whisper-text" data-whisper-text></p>
+        <button type="button" class="whisper-quiet" data-whisper-quiet>{copy.whisper.quiet}</button>
+      </div>
+      <button type="button" class="whisper-close" data-whisper-close aria-label={copy.whisper.close}>×</button>
     </aside>
+    <script type="application/json" id="whisper-lines" set:html={JSON.stringify(whispers)} />
 
     {lang === 'zh' && (
       <aside class="lang-hint" id="lang-hint" hidden>
@@ -152,45 +167,107 @@ const structured = [organization, website, ...jsonLd];
     </script>
 
     <style>
-      .stay-note {
-        position: fixed;
-        right: clamp(16px, 3vw, 32px);
-        bottom: clamp(16px, 3vw, 32px);
-        z-index: 70;
-        pointer-events: none;
+      main {
+        position: relative;
       }
-      .stay-scrap {
-        display: inline-block;
-        padding: 10px 16px 9px;
-        border-radius: 3px;
-        background: color-mix(in srgb, var(--card) 88%, transparent);
+      .whisper {
+        position: fixed;
+        right: clamp(14px, 3vw, 30px);
+        bottom: clamp(14px, 3vw, 30px);
+        z-index: 80;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        max-width: min(360px, calc(100vw - 28px));
+        padding: 14px 40px 14px 14px;
+        border-radius: 22px 22px 6px 22px;
+        background: color-mix(in srgb, #ffffff 92%, transparent);
         border: 1px solid var(--line);
-        box-shadow: 0 14px 30px -18px rgba(18, 36, 29, 0.5);
-        font-family: var(--f-hand);
-        font-size: 18px;
-        color: var(--annot);
-        transform: rotate(-2deg);
+        box-shadow: 0 30px 60px -30px rgba(14, 17, 49, 0.55), 0 8px 18px -12px rgba(14, 17, 49, 0.3);
+        backdrop-filter: blur(14px);
         opacity: 0;
-        translate: 0 10px;
+        translate: 0 14px;
         transition: opacity var(--t-mid) var(--ease), translate var(--t-mid) var(--ease);
       }
-      .stay-note.show .stay-scrap {
+      .whisper.show {
         opacity: 1;
         translate: 0 0;
       }
+      .whisper-face {
+        flex: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent);
+      }
+      .whisper-face img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .whisper-body {
+        min-width: 0;
+      }
+      .whisper-who {
+        display: block;
+        font-family: var(--f-latin-display);
+        font-style: italic;
+        font-size: 14px;
+        color: var(--accent-ink);
+        line-height: 1.2;
+      }
+      .whisper-text {
+        margin-top: 4px;
+        font-family: var(--f-hand);
+        font-size: 17px;
+        line-height: 1.55;
+        color: var(--ink);
+        text-wrap: pretty;
+      }
+      html[lang='en'] .whisper-text {
+        font-family: var(--f-latin-display);
+        font-style: italic;
+        font-size: 17px;
+        line-height: 1.45;
+      }
+      .whisper-quiet {
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--ink-3);
+        border-bottom: 1px dashed var(--line-2);
+      }
+      .whisper-quiet:hover {
+        color: var(--ink);
+      }
+      .whisper-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        font-size: 18px;
+        line-height: 1;
+        color: var(--ink-3);
+      }
+      .whisper-close:hover {
+        background: var(--pearl-2);
+        color: var(--ink);
+      }
       .lang-hint {
         position: fixed;
-        right: clamp(16px, 3vw, 32px);
-        bottom: clamp(16px, 3vw, 32px);
+        left: clamp(14px, 3vw, 30px);
+        bottom: clamp(14px, 3vw, 30px);
         z-index: 75;
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 10px 10px 10px 16px;
+        padding: 9px 9px 9px 16px;
         border-radius: var(--r-full);
         background: var(--card);
         border: 1px solid var(--line-2);
-        box-shadow: var(--sh-paper);
+        box-shadow: var(--sh-1);
         font-size: 13px;
       }
       .lang-hint a {
@@ -204,11 +281,8 @@ const structured = [organization, website, ...jsonLd];
         line-height: 1;
       }
       .lang-hint button:hover {
-        background: var(--sage-wash);
+        background: var(--pearl-2);
         color: var(--ink);
-      }
-      main {
-        position: relative;
       }
     </style>
   </body>

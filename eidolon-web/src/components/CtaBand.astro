@@ -1,47 +1,113 @@
 ---
-import Button from './Button.astro';
-import { SITE } from '../config/site';
-import { localizePath, t, type Lang } from '../i18n';
+/** Closing call to action: the night again, with the mark and the two ways forward. */
+import Logo from './Logo.astro';
+import Release from './Release.astro';
+import { localizePath, pr, t, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
   h2: string;
   lede?: string;
-  variant?: 'paper' | 'paper2';
+  /** Second button: plans (default) or the full feature list. */
+  secondary?: 'pricing' | 'features';
+  whisper?: string;
 }
-const { lang, h2, lede, variant = 'paper2' } = Astro.props;
+const { lang, h2, lede, secondary = 'pricing', whisper } = Astro.props;
 const copy = t(lang);
-const joinHref = SITE.status === 'public-beta' ? localizePath(lang, '/download.html') : localizePath(lang, '/beta.html') + '#join';
+const p = (href: string) => localizePath(lang, href);
 ---
-<section class={`section section--${variant} cta`}>
-  <div class="container cta-inner reveal">
-    <h2>{h2}</h2>
-    {lede && <p class="lede">{lede}</p>}
-    <div class="cta-actions">
-      <Button href={joinHref} variant="ink"><span>{copy.common.joinFirstBeta}</span></Button>
-      <Button href={localizePath(lang, '/download.html')} variant="ghost">{copy.common.downloadPreview}</Button>
-      <a class="btn-text" href={localizePath(lang, '/pricing.html')}>{copy.common.viewPlans}</a>
+
+<section class="cta band-night stars" data-whisper={whisper}>
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="container cta-inner">
+    <span class="cta-mark reveal" aria-hidden="true"><Logo size={64} stroke={1.6} /></span>
+    <h2 class="reveal" style="--i:1" set:html={pr(h2)} />
+    {lede && <p class="lede reveal" style="--i:2" set:html={pr(lede)} />}
+    <div class="cta-actions reveal" style="--i:3">
+      <a class="btn btn-holo btn-lg" href={p('/download.html')}>{copy.common.ctaDownload}</a>
+      {
+        secondary === 'pricing' ? (
+          <a class="btn btn-ghost btn-lg" href={p('/pricing.html')}>{copy.common.ctaPlans}</a>
+        ) : (
+          <a class="btn btn-ghost btn-lg" href={p('/features.html')}>{copy.common.ctaFeatures}</a>
+        )
+      }
     </div>
+    <p class="cta-meta mono reveal" style="--i:4">
+      <span>{copy.common.platforms}</span>
+      <Release label={copy.common.releaseLabel} fallback={copy.common.releaseFallback} />
+    </p>
   </div>
 </section>
 
 <style>
+  .cta {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(96px, 12vw, 168px) 0;
+    background:
+      radial-gradient(38% 60% at 30% 100%, rgba(239, 143, 187, 0.2), transparent 70%),
+      radial-gradient(38% 60% at 72% 100%, rgba(110, 169, 242, 0.22), transparent 70%),
+      var(--night);
+  }
+  .cta-glow {
+    position: absolute;
+    left: 50%;
+    bottom: -40%;
+    width: min(1100px, 120vw);
+    aspect-ratio: 2.2;
+    translate: -50% 0;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(205, 182, 255, 0.16), transparent);
+    pointer-events: none;
+  }
   .cta-inner {
-    max-width: 760px;
+    max-width: 860px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-mark {
+    display: inline-flex;
+    margin-bottom: 28px;
+    filter: drop-shadow(0 0 18px rgba(205, 182, 255, 0.45));
   }
   .cta h2 {
-    font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.75rem);
-    margin-bottom: 12px;
+    /* a centred flex item sizes to its longest unbreakable run; never let that exceed the
+       column (Chinese lines only break at punctuation, so a long one would be cut off) */
+    max-width: 100%;
+    font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.6rem);
+    margin-bottom: 18px;
   }
   .cta .lede {
-    margin: 0 auto 30px;
+    margin: 0 auto 36px;
+    color: var(--night-dim);
+    text-wrap: balance;
+  }
+  /* Chinese: break at punctuation like the headline does; `anywhere` stops a long run
+     without punctuation from widening this centred item past the column. `pretty`, not
+     `balance`: with keep-all, Chrome's balance picks the space before a Latin word over the
+     comma and leaves the longer half below. */
+  .cta .lede:lang(zh) {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
   }
   .cta-actions {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 14px 20px;
+    gap: 14px;
+  }
+  .cta-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 18px;
+    margin-top: 26px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--night-faint);
   }
 </style>

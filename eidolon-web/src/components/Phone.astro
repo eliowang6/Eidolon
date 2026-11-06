@@ -1,0 +1,129 @@
+---
+/**
+ * A real app screen in a pearl phone body. `pair` swaps the Fea and Ael
+ * captures with the site's companion switch (both live in the DOM; the hidden
+ * one is display:none + lazy, so it is only fetched if someone switches).
+ * `layers` stacks several screens; a page script toggles `.on` on [data-layer].
+ */
+import { prPlain } from '../i18n';
+
+interface Layer {
+  shot: string;
+  alt: string;
+  pair?: boolean;
+}
+interface Props {
+  shot?: string;
+  pair?: boolean;
+  alt?: string;
+  layers?: Layer[];
+  eager?: boolean;
+  sizes?: string;
+  /** object-position / zoom origin for the crop, e.g. "50% 62%" */
+  focus?: string;
+  /** zoom into the screen (1 = whole screen) */
+  zoom?: number;
+  class?: string;
+}
+const {
+  shot = '',
+  pair = false,
+  alt = '',
+  layers,
+  eager = false,
+  sizes = '(max-width: 760px) 64vw, 320px',
+  focus,
+  zoom,
+  class: className = '',
+} = Astro.props;
+
+const variantsOf = (name: string, isPair: boolean) =>
+  isPair
+    ? [
+        { name: `${name}-fea`, cls: 'cf', who: 'fea' as const },
+        { name: `${name}-ael`, cls: 'ca', who: 'ael' as const },
+      ]
+    : [{ name, cls: '', who: 'fea' as const }];
+const stack = layers ?? [{ shot, alt, pair }];
+const style = [focus && `--focus:${focus}`, zoom && `--zoom:${zoom}`].filter(Boolean).join(';') || undefined;
+---
+
+<figure class:list={['phone', className]} style={style}>
+  <div class="phone-body">
+    <div class:list={['phone-screen', layers && 'is-stack']}>
+      {
+        stack.map((layer, li) => (
+          <div class:list={['layer', li === 0 && 'on']} data-layer={layers ? li : undefined}>
+            {variantsOf(layer.shot, Boolean(layer.pair)).map((v, i) => (
+              <img
+                class={v.cls || undefined}
+                src={`/assets/shots/${v.name}.webp`}
+                srcset={`/assets/shots/${v.name}-400.webp 400w, /assets/shots/${v.name}.webp 640w`}
+                sizes={sizes}
+                width="640"
+                height="1385"
+                alt={prPlain(layer.alt, v.who)}
+                loading={eager && li === 0 && i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <slot />
+</figure>
+
+<style>
+  .phone {
+    container-type: inline-size;
+    margin: 0;
+    width: 100%;
+  }
+  .phone-body {
+    position: relative;
+    padding: 3.2cqi;
+    border-radius: 15.5cqi;
+    background: linear-gradient(150deg, #ffffff 0%, #e3dfef 38%, #f7f5fc 58%, #d6d1e6 100%);
+    box-shadow:
+      var(--sh-device),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+      inset 0 0 0 2px rgba(27, 30, 58, 0.07);
+  }
+  :global(.band-night) .phone-body {
+    background: linear-gradient(150deg, #3b4180 0%, #1c2050 40%, #2d336e 60%, #151839 100%);
+    box-shadow:
+      0 60px 100px -40px rgba(0, 0, 0, 0.7),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  }
+  .phone-screen {
+    position: relative;
+    aspect-ratio: 640 / 1385;
+    border-radius: 12.6cqi;
+    overflow: hidden;
+    background: #eef3ee;
+    box-shadow: 0 0 0 1px rgba(14, 17, 49, 0.35);
+    isolation: isolate;
+  }
+  .layer {
+    position: absolute;
+    inset: 0;
+  }
+  .is-stack .layer {
+    opacity: 0;
+    transition: opacity 700ms var(--ease);
+  }
+  .is-stack .layer.on {
+    opacity: 1;
+  }
+  .layer img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--focus, 50% 0%);
+    transform: scale(var(--zoom, 1));
+    transform-origin: var(--focus, 50% 0%);
+  }
+</style>

@@ -5,8 +5,10 @@ const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const base = process.argv[2] ?? 'http://localhost:4321/';
 const width = Number(process.argv[3] ?? 1440);
 const height = Number(process.argv[4] ?? 900);
-const query = process.argv[5] ?? '?t=day';
-const targets = (process.argv[6] ?? '.hero,.why,.loop-sec,.values-sec,.compare-sec,.foundation-sec,.who-sec,.road-sec,.waitlist-sec,#site-footer').split(',');
+// e.g. '?c=ael' to see the page with Ael
+const query = process.argv[5] ?? '';
+// the home page's sections, top to bottom
+const targets = (process.argv[6] ?? '.hero,.day,.desk,.powers,.trust,.log,.plans,.investors,.home-faq,#site-footer').split(',');
 mkdirSync('.shots', { recursive: true });
 
 const browser = await puppeteer.launch({
@@ -33,15 +35,10 @@ for (const selector of targets) {
   const el = await page.$(selector);
   if (!el) { console.log('missing', selector); continue; }
   await page.evaluate((sel) => {
-    const node = document.querySelector(sel);
-    const y = node.getBoundingClientRect().top + window.scrollY;
-    if (sel === '.loop-sec') window.scrollTo(0, y + 320);
-    else {
-      node.scrollIntoView({ block: 'start', behavior: 'auto' });
-      window.scrollBy(0, -80);
-    }
+    document.querySelector(sel).scrollIntoView({ block: 'start', behavior: 'auto' });
+    window.scrollBy(0, -80);
   }, selector);
-  await new Promise((r) => setTimeout(r, selector === '.loop-sec' ? 1800 : 500));
+  await new Promise((r) => setTimeout(r, 500));
   const name = selector.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '');
   const path = `.shots/${width}-${name}.png`;
   await page.screenshot({ path });

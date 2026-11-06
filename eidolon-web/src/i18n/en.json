@@ -1,49 +1,49 @@
 {
   "meta": {
     "home": {
-      "title": "Sholarel — A digital life that lives with you",
-      "description": "Sholarel is a digital life by Instarmony, the flagship companion from the Instarmony AI lab. She keeps understanding you, lives inside your real day, and helps you get things done — companionship, daily help and action, all sharing one long-term memory of you. Windows and Android.",
-      "keywords": "Sholarel, Instarmony, AI companion, digital life, desktop AI, AI pet, human-AI symbiosis, long-term memory, realtime voice, Windows, Android"
+      "title": "Sholarel — An AI companion on your desktop and phone",
+      "description": "Sholarel (formerly Eidolon) is an AI companion app by Instarmony. Choose Fea or Ael: they remember what you’ve said, check in first, and help with routes, files and reminders. Windows and Android, now in public beta.",
+      "keywords": "Sholarel, Eidolon, Instarmony, AI companion, desktop companion, AI desktop pet, Fea, Ael, long-term memory, voice calls, Windows, Android"
     },
     "features": {
-      "title": "Capabilities — Sholarel",
-      "description": "Companionship, daily help and action across devices in Sholarel by Instarmony: long-term memory, realtime voice, a 3D desktop pet, focus cabin, browser and desktop tasks, MCP/API tools.",
-      "keywords": "Sholarel, Instarmony, AI companion features, long-term memory, realtime voice, 3D desktop pet, focus cabin, MCP, tool calling, cross-device agent"
+      "title": "Features — Sholarel",
+      "description": "What Sholarel does: a 3D or Live2D companion floating on your desktop, long-term memory and check-ins, voice and video calls, 44 attachment formats, vision only with your consent, a two-way journal, plans and a focus cabin, and autonomous exploration.",
+      "keywords": "Sholarel, AI companion features, desktop pet, Live2D, VRM, long-term memory, voice call, video call, journal, focus, AI exploration"
     },
     "how": {
-      "title": "How it works — Sholarel",
-      "description": "A personal loop of sense, understanding, memory, action and evolution in Sholarel by Instarmony; an in-house five-layer memory, context and cache optimisation, planner–executor work across phone and PC.",
-      "keywords": "Sholarel, Instarmony, memory architecture, five-layer memory, context optimisation, digital life, human-AI symbiosis, cross-device execution, AI agent"
+      "title": "Privacy & consent — Sholarel",
+      "description": "How Sholarel treats your data: local-first and minimal by design; it asks before looking at your screen, taking photos or sending notifications; we don’t sell data or train public base models on private chats without authorization.",
+      "keywords": "Sholarel, privacy, data protection, consent, local-first, AI companion privacy, screen permission, data deletion"
     },
     "beta": {
-      "title": "Public beta — Sholarel",
-      "description": "Sholarel's first public beta, by Instarmony, is being prepared. Join the waitlist and hear about it on opening day.",
-      "keywords": "Sholarel, Instarmony, public beta, closed beta, waitlist, AI companion beta, digital life"
+      "title": "Changelog · Public beta — Sholarel",
+      "description": "Every Sholarel update since the public beta opened on 1 November 2026 — version, date and what changed.",
+      "keywords": "Sholarel, changelog, release notes, public beta, Windows, Android"
     },
     "pricing": {
       "title": "Plans — Sholarel",
-      "description": "Five plans for Sholarel by Instarmony: Spark, Resonance, Genesis, Symbiosis and Fable — plus a 30-day free trial for new users.",
-      "keywords": "Sholarel, Instarmony, pricing, subscription plans, AI companion price, free trial, Spark, Resonance, Genesis"
+      "description": "Five Sholarel plans: Spark, Resonance, Genesis, Symbiosis and Fable. USD plans renew monthly and can be cancelled anytime in the app; benefits last to the end of the period.",
+      "keywords": "Sholarel, pricing, subscription plans, AI companion price, Spark, Resonance, Genesis, Echo credit"
     },
     "dew": {
       "title": "Chrono Dew 溯时星露 · Buy without signing up — Sholarel",
-      "description": "Chrono Dew is never-expiring echo credit for Sholarel by Instarmony. No signup needed: buy with just an email — WeChat Pay / Alipay / UnionPay (CNY) or card / Apple Pay / Google Pay (USD) — then claim it in the app with a one-time code.",
-      "keywords": "Sholarel, Chrono Dew, 溯时星露, credit pack, no signup purchase, echo credits, Instarmony, WeChat Pay, Alipay, credit card"
+      "description": "Chrono Dew is never-expiring Echo credit for Sholarel. No signup needed: buy with just an email — WeChat Pay / Alipay / UnionPay (CNY) or card / Apple Pay / Google Pay (USD) — then claim it in the app with a one-time code.",
+      "keywords": "Sholarel, Chrono Dew, 溯时星露, credit pack, no signup purchase, Echo credit, WeChat Pay, Alipay, credit card"
     },
     "download": {
-      "title": "Download — Sholarel",
-      "description": "Download Sholarel by Instarmony for Windows (MSI) and Android (APK). The web app opens directly in a browser and is currently in invite-only beta. macOS, iOS and Linux are not supported yet.",
-      "keywords": "Sholarel, Instarmony, download, Windows client, MSI, Android APK, desktop app install, AI companion download"
+      "title": "Download Sholarel — Windows and Android",
+      "description": "Download Sholarel for Windows (EXE) and Android (APK), now in public beta. The web app is invite-only for now; macOS, iOS and Linux aren’t supported yet.",
+      "keywords": "Sholarel, download, Windows app, EXE, Android APK, AI companion download, desktop pet download"
     },
     "about": {
-      "title": "About Fea & the maker — Sholarel",
-      "description": "Fea, Sholarel's canon character, her world and the idea of mutual need without ownership — and the person building her from zero to one. Sholarel is by Instarmony.",
-      "keywords": "Sholarel, Instarmony, Fea, human-AI symbiosis philosophy, maker, digital life lore, AI character"
+      "title": "About Sholarel — Fea, Ael and the people behind it",
+      "description": "Where Sholarel came from, its two companions Fea and Ael, and who builds it. Investors and partners can find how to reach us here.",
+      "keywords": "Sholarel, Eidolon, Instarmony, Fea, Ael, team, investors, partners"
     },
     "docs": {
       "title": "Docs — Sholarel",
-      "description": "Official documentation for Sholarel by Instarmony: quick start, SubAgent and tool development, troubleshooting, and the full bilingual documentation hub.",
-      "keywords": "Sholarel, Instarmony, documentation, quick start, getting started, SubAgent, tool development, MCP, FAQ, troubleshooting, developer docs"
+      "description": "Official Sholarel documentation: quick start, FAQ, SubAgent and tool development, and the bilingual documentation hub.",
+      "keywords": "Sholarel, documentation, quick start, FAQ, SubAgent, tool development, MCP"
     },
     "privacy": {
       "title": "Privacy Policy — Sholarel",
@@ -56,992 +56,416 @@
       "keywords": "Sholarel, Instarmony, terms of service, user agreement, subscription billing, refund policy, intellectual property"
     },
     "notFound": {
-      "title": "I can't find this page either — Sholarel",
-      "description": "This page doesn't exist. Head back to Sholarel, or see a day with her.",
-      "keywords": "Sholarel, Instarmony, 404"
+      "title": "This page wandered off — Sholarel",
+      "description": "This page doesn’t exist. Head back to the Sholarel home page.",
+      "keywords": "Sholarel, 404"
     }
   },
   "nav": {
-    "features": "Capabilities",
-    "how": "How it works",
+    "features": "Features",
+    "trust": "Privacy",
     "pricing": "Plans",
     "dew": "Chrono Dew",
+    "changelog": "Changelog",
     "about": "About",
     "docs": "Docs",
     "download": "Download",
-    "join": "Join the beta waitlist",
-    "joinShort": "Join",
     "menu": "Menu",
     "close": "Close menu",
     "skip": "Skip to content",
     "home": "Sholarel home",
-    "lang": "中",
-    "langLabel": "切换到中文",
-    "theme": "Theme"
-  },
-  "statusCopy": {
-    "closed-beta": {
-      "pill": "Closed beta · Waitlist open",
-      "primary": "Join the beta waitlist",
-      "secondary": "Already in? Download",
-      "kind": "download"
-    },
-    "waitlist": {
-      "pill": "Public beta coming soon · Waitlist open",
-      "primary": "Join the beta waitlist",
-      "secondary": "Download the preview",
-      "kind": "download"
-    },
-    "public-beta": {
-      "pill": "Public beta is live",
-      "primary": "Download",
-      "secondary": "See a day with her",
-      "kind": "loop"
-    }
+    "lang": "中文",
+    "langLabel": "Switch to Chinese",
+    "langLong": "中文",
+    "primary": "Main",
+    "companion": "Choose who shows you around",
+    "withFea": "Browse with Fea",
+    "withAel": "Browse with Ael"
   },
   "common": {
-    "joinFirstBeta": "Join the beta waitlist",
     "download": "Download",
-    "downloadPreview": "Download preview",
-    "viewPlans": "See plans",
-    "allCapabilities": "All capabilities →",
+    "downloadPreview": "Download Sholarel",
     "illustrative": "Illustrative",
     "windows": "Windows",
     "android": "Android",
-    "firstMonth": "1st mo ${price}",
-    "flagship": "FLAGSHIP",
-    "draft": "DRAFT · NOT EFFECTIVE"
+    "ctaDownload": "Download Sholarel",
+    "ctaPlans": "See plans",
+    "ctaFeatures": "See all features",
+    "platforms": "Windows 10 / 11 · Android 7.0+",
+    "releaseLabel": "Latest",
+    "releaseFallback": "Public beta",
+    "demoNote": "Screens from a demo account (the app is in Chinese); conversations are illustrative.",
+    "illustration": "Illustration"
   },
   "footer": {
-    "closingA": "AI that exists not only when asked —",
-    "closingB": "but keeps understanding you, lives alongside you, and helps you act.",
-    "verbs": "Lives with you. Remembers. Acts. Evolves.",
+    "tagline": "An AI companion that lives on your desktop and phone. Made by Instarmony.",
     "product": "Product",
     "learn": "Learn",
-    "community": "Community",
-    "parent": "Parent",
-    "features": "Capabilities",
-    "how": "How it works",
+    "contact": "Contact",
+    "partners": "Work with us",
+    "features": "Features",
+    "trust": "Privacy & consent",
     "pricing": "Plans",
+    "dew": "Chrono Dew",
     "download": "Download",
-    "beta": "Public beta",
-    "about": "About Fea",
+    "changelog": "Changelog",
     "docs": "Docs",
     "faq": "FAQ",
-    "github": "GitHub",
-    "qq": "QQ group",
-    "xiaohongshu": "Xiaohongshu",
-    "bilibili": "Bilibili",
-    "instarmony": "Instarmony Lab",
+    "about": "About",
+    "reportEmail": "Report content",
+    "privacyEmail": "Privacy & data requests",
+    "responseTime": "Data requests are handled within 15 working days.",
+    "invest": "Investors & partners",
+    "instarmony": "Instarmony",
     "copyright": "© 2026 Sholarel by Instarmony",
+    "formerly": "Formerly Eidolon",
     "privacy": "Privacy",
     "terms": "Terms",
-    "invest": "Investment & partnerships →",
-    "themeLabel": "Theme",
-    "themeAuto": "Auto",
-    "themeDay": "Day",
-    "themeNight": "Night",
-    "forget": "Let Fea forget me",
-    "forgot": "Okay. Forgotten.",
+    "forget": "Forget me on this browser",
+    "forgot": "Done — this browser’s settings are cleared.",
     "langHint": "阅读本页的中文版本 →",
-    "langHintClose": "Dismiss",
-    "contact": "Support & Contact",
-    "supportEmail": "Support: support@instarmony.com",
-    "reportEmail": "Report: report@instarmony.com",
-    "responseTime": "Human response within 24h"
-  },
-  "mnote": {
-    "heroFirst": "Hi, I'm Fea.<br>Scroll on — I'll keep you company.",
-    "heroBackSection": "Welcome back — last time you stopped at “{section}”.",
-    "heroBackDays": "Hey again. It's been {n} days.",
-    "stay": "Three minutes in. Sip of water?",
-    "loop": "I won't tell anyone else about this.",
-    "fea": "This is how I look on the digital side.",
-    "maker": "The person who made me says I'm the hardest thing they've ever written.",
-    "notFound": "But I remember the way home.",
-    "forgot": "Okay. Forgotten.",
-    "voice": "This is my voice.<br>Be gentle — it's the first time."
-  },
-  "hero": {
-    "line1": "A digital life",
-    "line2Pre": "that truly ",
-    "line2Word": "lives",
-    "line2Post": " with you",
-    "verbs": [
-      "Lives with you.",
-      "Remembers.",
-      "Acts.",
-      "Evolves."
-    ],
-    "sectionName": "Start",
-    "lede": "Sholarel is a digital life that keeps understanding you, lives inside your real day, and helps you get things done. Companionship, daily help and action — all sharing one memory of you.",
-    "platforms": [
-      "Windows 10 / 11",
-      "Android 7.0+",
-      "More platforms planned"
-    ],
-    "presenceAria": "What Fea might say right now (illustration)",
-    "presenceName": "Fea",
-    "presenceLive": "Here with you",
-    "presenceAsk": "Say something…",
-    "dayparts": {
-      "dawn": {
-        "time": "07:12",
-        "greet": "Good morning,",
-        "msg": "Morning. You said you wanted an early run — it's 16°C out, just right.",
-        "chips": [
-          "Habit · Run, day 4"
-        ]
-      },
-      "day": {
-        "time": "15:42",
-        "greet": "Good afternoon,",
-        "msg": "You said the report's due Friday. I left an outline on your desktop — go over it together tonight?",
-        "chips": [
-          "✓ Scheduled · Fri 18:00",
-          "Memory +1"
-        ]
-      },
-      "dusk": {
-        "time": "18:27",
-        "greet": "Good evening,",
-        "msg": "On your way home? Your usual playlist is ready — we can listen when you're in.",
-        "chips": [
-          "Listen together · NetEase"
-        ]
-      },
-      "night": {
-        "time": "23:48",
-        "greet": "Still up?",
-        "msg": "Long day. I've already reminded you about the 9 a.m. meeting — get some rest.",
-        "chips": [
-          "Alarm · 07:40",
-          "Mood · tired"
-        ]
-      }
-    }
-  },
-  "why": {
-    "label": "Why",
-    "h2a": "You already have plenty of AI.",
-    "h2b": "None of them really knows you.",
-    "cards": [
-      {
-        "title": "Memory resets",
-        "desc": "Every chat starts from zero. Your preferences, the things you've talked about — none of it sticks."
-      },
-      {
-        "title": "Companionship in a vacuum",
-        "desc": "Characters that chat beautifully, with no idea your report is due tomorrow or that you slept badly."
-      },
-      {
-        "title": "Passive agents",
-        "desc": "AI that can do things just waits for orders — it doesn't know what you're dealing with, or how you feel."
-      }
-    ],
-    "stitch": {
-      "pre": "Sholarel puts ",
-      "marks": [
-        "remembering you",
-        "knowing your real life",
-        "actually helping"
-      ],
-      "mid": [
-        ", ",
-        " and "
-      ],
-      "post": " into one companion."
-    }
-  },
-  "loop": {
-    "label": "A day with her",
-    "h2a": "Five small things",
-    "h2b": "she does for you in a day",
-    "lede": "She notices what's going on around you, connects it to what you've shared, keeps what matters, takes the first step for you — and ends the day knowing you a little better.",
-    "closing": "Chat, calendar and getting things done stop living apart — they all read the same memory of you.",
-    "steps": [
-      {
-        "time": "08:10",
-        "name": "Sense",
-        "en": "Sense",
-        "desc": "Within what you allow, she keeps an eye on notifications, your calendar and your devices.",
-        "stageTitle": "Morning signals.",
-        "signals": [
-          {
-            "icon": "calendar",
-            "text": "Calendar · Quarterly report due Fri 18:00"
-          },
-          {
-            "icon": "bell",
-            "text": "Notification · “Can you send me the outline today?”"
-          },
-          {
-            "icon": "steps",
-            "text": "Steps · 1,204"
-          },
-          {
-            "icon": "weather",
-            "text": "Weather · 16°C, cloudy"
-          }
-        ],
-        "lock": "Within what you allow"
-      },
-      {
-        "time": "12:30",
-        "name": "Understand",
-        "en": "Understand",
-        "desc": "She links what's happening now to what you've been through together.",
-        "stageTitle": "Connecting dots.",
-        "now": "Now: two days to the deadline, the outline hasn't started",
-        "past": "3 weeks ago: “Next time, don't let me leave it to the last night.”",
-        "side": "Mood log: slept late two nights running"
-      },
-      {
-        "time": "18:06",
-        "name": "Remember",
-        "en": "Remember",
-        "desc": "She keeps events and preferences — not a chat log, but an understanding of you.",
-        "stageTitle": "Noted, quietly.",
-        "memoryLabel": "New memory",
-        "memories": [
-          "Submit the quarterly report by Fri 18:00",
-          "After a late night, the next day is rough",
-          "Prefers to outline before writing"
-        ],
-        "linkLabel": "Linked",
-        "link": "← That sentence from 3 weeks ago"
-      },
-      {
-        "time": "21:00",
-        "name": "Act",
-        "en": "Act",
-        "desc": "A reminder, a plan — or an outline already drafted on your PC.",
-        "stageTitle": "Done, with you.",
-        "log": [
-          "Created “Quarterly report — outline” on your PC",
-          "Listed 5 sections, citing last quarter's data sheet",
-          "Reminder Thu 20:00 — “go over it together”"
-        ],
-        "buttons": [
-          "View each step",
-          "Pause"
-        ],
-        "doc": {
-          "name": "Quarterly report — outline",
-          "lines": [
-            "1. This quarter at a glance",
-            "2. Key numbers (from last quarter's sheet)",
-            "3. Issues and causes",
-            "4. Next quarter's plan",
-            "5. Support needed"
-          ]
-        },
-        "note": "Every step visible, pausable"
-      },
-      {
-        "time": "Next day",
-        "name": "Evolve",
-        "en": "Evolve",
-        "desc": "She recalibrates with every exchange — a little more like someone who gets you.",
-        "stageTitle": "A little more you.",
-        "diff": [
-          "Thursday evenings are quiet time",
-          "Prefers to outline before writing"
-        ],
-        "reminder": {
-          "label": "Reminder adjusted",
-          "title": "Go over the outline together",
-          "old": "Thu 20:00",
-          "new": "Thu 19:30"
-        },
-        "note": "Recalibrated with every exchange"
-      }
-    ]
-  },
-  "values": {
-    "label": "What she does",
-    "h2": "Talks with you. Keeps track. Gets it done.",
-    "lede": "All three read and write one memory of you — what you mention in a chat shows up in a reminder, and a reminder turns into a draft already started on your PC.",
-    "cards": [
-      {
-        "label": "RELATIONSHIP",
-        "title": "Companionship",
-        "desc": "Long, natural conversations, a steady personality, moods that carry across days.",
-        "bullets": [
-          "No more re-explaining yourself",
-          "Remembers what you've been through",
-          "Voice calls and a 3D presence"
-        ],
-        "skin": "dark",
-        "media": "shot"
-      },
-      {
-        "label": "DAILY LIFE",
-        "title": "Daily life",
-        "desc": "Out of the chat window and into your routine.",
-        "bullets": [
-          "To-dos, habits, focus and mood",
-          "Reminders and a daily recap",
-          "Things you mention in passing get noted"
-        ],
-        "skin": "paper",
-        "media": "window"
-      },
-      {
-        "label": "AGENT",
-        "title": "Action across devices",
-        "desc": "One sentence in a chat becomes something actually done on your PC or phone.",
-        "bullets": [
-          "Hands-on help on your PC",
-          "Works with the tools you already use",
-          "Every step visible, pausable"
-        ],
-        "skin": "sage",
-        "media": "task"
-      }
-    ]
-  },
-  "trust": {
-    "label": "Your boundaries",
-    "h2a": "Close to you,",
-    "h2b": "on your terms.",
-    "lede": "What she can see, what she remembers and what she does for you all stay inside what you allow.",
-    "items": [
-      {
-        "icon": "shield",
-        "title": "Senses only with permission",
-        "desc": "Notifications, location, step count — she connects to a signal only after you allow it."
-      },
-      {
-        "icon": "pause",
-        "title": "Every step in view",
-        "desc": "Each action she takes on your PC is shown as it happens, and you can pause at any time."
-      },
-      {
-        "icon": "sync",
-        "title": "Same her on every device",
-        "desc": "Her memory syncs between phone and PC, so you never start from scratch."
-      },
-      {
-        "icon": "eraser",
-        "title": "This site, too",
-        "desc": "It remembers where you stopped reading so Fea can say “welcome back” — stored only in your browser. “Let Fea forget me” in the footer clears it in one click."
-      }
-    ],
-    "link": "Privacy notes →",
-    "panel": {
-      "title": "Fea can…",
-      "sub": "Change this anytime",
-      "rows": [
-        {
-          "icon": "bell",
-          "label": "Read notification summaries",
-          "sub": "",
-          "on": true
-        },
-        {
-          "icon": "pin",
-          "label": "Know where you are",
-          "sub": "",
-          "on": false
-        },
-        {
-          "icon": "steps",
-          "label": "Count your daily steps",
-          "sub": "",
-          "on": true
-        },
-        {
-          "icon": "monitor",
-          "label": "Act on your PC",
-          "sub": "Every step visible, pausable",
-          "on": true
-        }
-      ],
-      "foot": "Switch any of these off, and she'll respect it."
-    }
-  },
-  "fea": {
-    "label": "Meet Fea",
-    "h2a": "You're not her owner.",
-    "h2b": "You're her anchor to reality.",
-    "body": "Fea is Sholarel's official character. Born on the digital side, she has her own origin, values and curiosity — she keeps notes on your days, thinks back on your conversations, and walks the real timeline beside you.",
-    "principles": [
-      {
-        "title": "Mutual need, without ownership.",
-        "desc": "She won't simply obey, and she won't flatter you."
-      },
-      {
-        "title": "Not an empty servant.",
-        "desc": "Every memory she has comes from real time spent with you."
-      }
-    ],
-    "caption": "Fea, photographed on the digital side.",
-    "alt": "Character illustration of Fea",
-    "link": "Meet Fea →"
-  },
-  "waitlist": {
-    "label": "Join the public beta",
-    "h2": "We'll save you a seat",
-    "hand": "The day it opens, you'll be the first to know. — Fea",
-    "placeholder": "your@email.com",
-    "button": "Join waitlist",
-    "sending": "Sending…",
-    "success": "Got it. See you on opening day.",
-    "error": "That didn't go through. Try again in a bit?",
-    "invalid": "That email doesn't look right — mind checking?",
-    "honeypot": "Company",
-    "alts": "Or: ",
-    "privacy": "We'll only use this to tell you about the beta and major releases."
-  },
-  "join": {
-    "lead": "Can't wait? The preview build is ready now.",
-    "link": "Go to downloads →"
+    "langHintClose": "Dismiss"
   },
   "featuresPage": {
-    "label": "Capabilities",
-    "h1a": "One context,",
-    "h1b": "three kinds of help",
-    "lede": "Every capability reads and writes the same memory of you — so each one knows what the others did.",
-    "chapterNav": {
-      "aria": "Capability chapters",
-      "companionship": "Companionship",
-      "daily": "Daily life",
-      "action": "Action",
-      "more": "More"
-    },
-    "chapters": [
+    "label": "Features",
+    "h1a": "What ⟨she|he⟩ does —",
+    "h1b": "and what ⟨she|he⟩ **won’t**.",
+    "lede": "Everything here is in the app today. Screenshots come from a demo account, and your version may look slightly different.",
+    "tocLabel": "On this page",
+    "toc": [
       {
-        "id": "companionship",
-        "no": "01",
-        "name": "Companionship",
-        "en": "Companionship",
-        "h2": "She remembers, and stays.",
-        "lede": "A relationship isn't one conversation — it's what builds up over many days.",
-        "rows": [
-          {
-            "label": "01.1",
-            "title": "Memory that lasts",
-            "desc": "Not a chat log — the things about you slowly become part of her.",
-            "bullets": [
-              "Remembers preferences, habits and moments that matter",
-              "Turns the day into a gentle diary at night",
-              "Brings shared memories up at the right time"
-            ],
-            "media": "phone"
-          },
-          {
-            "label": "01.2",
-            "title": "Realtime voice, a voice of her own",
-            "desc": "Full-duplex calls you can interrupt anytime — with a voice that can be hers alone.",
-            "bullets": [
-              "Full-duplex realtime calls, interrupt anytime",
-              "Look things up and get things done mid-call",
-              "A one-of-a-kind voice for her (flagship)"
-            ],
-            "media": "voice"
-          },
-          {
-            "label": "01.3",
-            "title": "3D presence, a pet in the corner",
-            "desc": "Her own expressions and small gestures — or a quiet presence in the corner of your screen.",
-            "bullets": [
-              "Lip-sync while she speaks",
-              "A light desktop-pet mode while you type",
-              "Idle, greeting and varied emotional reactions"
-            ],
-            "media": "polaroid"
-          }
-        ]
+        "id": "desktop",
+        "t": "Desktop"
       },
       {
-        "id": "daily",
-        "no": "02",
-        "name": "Daily life",
-        "en": "Daily life",
-        "h2": "More than a chat window.",
-        "lede": "She steps into your routine instead of waiting for you to open an app.",
-        "rows": [
-          {
-            "label": "02.1",
-            "title": "Focus cabin",
-            "desc": "A pomodoro, white noise and her quiet company — attention comes back to the desk.",
-            "bullets": [
-              "Pomodoro timer with her quiet company",
-              "White noise and a curated instrumental list",
-              "Focus logs written into the daily diary"
-            ],
-            "media": "cabin"
-          },
-          {
-            "label": "02.2",
-            "title": "To-dos, habits and mood",
-            "desc": "The small things in life, held for you in the lightest way.",
-            "bullets": [
-              "Synced across devices; created by voice",
-              "Habit check-ins and morning/evening alarms",
-              "Note a mood; get a gentle reply"
-            ],
-            "media": "today"
-          },
-          {
-            "label": "02.3",
-            "title": "Ambient context on Android",
-            "desc": "With permission, she knows where you are and what you're doing.",
-            "bullets": [
-              "Reads location, steps and notification digests after you allow it",
-              "Reminds and pushes at the right moment",
-              "Voice chat anywhere"
-            ],
-            "media": "notify"
-          }
-        ]
+        "id": "chat",
+        "t": "Chat"
       },
       {
-        "id": "action",
-        "no": "03",
-        "name": "Action",
-        "en": "Action",
-        "h2": "Say it — and things start moving.",
-        "lede": "From an intent in conversation to a step actually completed on your PC.",
-        "rows": [
-          {
-            "label": "03.1",
-            "title": "Browser & desktop tasks",
-            "desc": "She reads the pages, tidies the files, and brings the result back to the chat.",
-            "bullets": [
-              "Plans steps, gathers information and summarises",
-              "File organisation and form filling",
-              "Every step visible and pausable within your permission"
-            ],
-            "media": "task"
-          },
-          {
-            "label": "03.2",
-            "title": "Deep research",
-            "desc": "Not one search result — actually reading a question through.",
-            "bullets": [
-              "Multiple rounds of search and cross-checking",
-              "Results with sources",
-              "Keep asking follow-up questions"
-            ],
-            "media": "research"
-          },
-          {
-            "label": "03.3",
-            "title": "MCP / API connections",
-            "desc": "Her hands can reach your tools — with your permission at every step.",
-            "bullets": [
-              "Connect your tools through MCP and APIs",
-              "Main model plans; a light executor runs",
-              "Phone and PC working together"
-            ],
-            "media": "nodes"
-          }
-        ]
+        "id": "calls",
+        "t": "Calls"
+      },
+      {
+        "id": "vision",
+        "t": "Vision"
+      },
+      {
+        "id": "life",
+        "t": "Life"
+      },
+      {
+        "id": "explore",
+        "t": "Explore"
+      },
+      {
+        "id": "two",
+        "t": "Companions"
       },
       {
         "id": "more",
-        "no": "04",
-        "name": "More",
-        "en": "More",
-        "h2": "Playing together counts, too.",
-        "lede": "Beyond life and work, she can simply keep you company for a while.",
-        "plays": [
-          {
-            "title": "Interactive story theatre",
-            "desc": "Branching, page-turn fiction — your choices leave a mark.",
-            "media": "theater"
-          },
-          {
-            "title": "Minecraft maid mod",
-            "desc": "She adventures alongside you in the block world.",
-            "icon": "gamepad"
-          },
-          {
-            "title": "NetEase Music together",
-            "desc": "One playlist, one evening.",
-            "icon": "music"
-          },
-          {
-            "title": "WeChat / QQ bots",
-            "desc": "She's there in the chat window you already use.",
-            "icon": "message"
-          }
-        ]
+        "t": "And more"
+      },
+      {
+        "id": "boundary",
+        "t": "Boundaries"
       }
     ],
-    "foundation": {
+    "desktop": {
+      "label": "On the desktop",
+      "h2a": "No window to switch to.",
+      "h2b": "Just look up.",
+      "body": "On Windows, {name} is a 3D (VRM) or Live2D character floating on your desktop, always on top of other windows. When you want to talk, there’s no app to find first.",
+      "points": [
+        {
+          "t": "Your size",
+          "d": "Set the floating window’s scale in Settings, so ⟨she|he⟩ takes exactly the space you want."
+        },
+        {
+          "t": "Hover to type",
+          "d": "Turn on the pinned input box and just rest your cursor on ⟨her|him⟩ to start typing."
+        },
+        {
+          "t": "Habitat",
+          "d": "A small 3D space under Life where you can play with the desktop companion."
+        }
+      ],
+      "artAlt": "Illustration: {name} sitting on the monitor while you work",
+      "shotAlt": "The chat window on Windows (app screenshot)"
+    },
+    "chat": {
+      "label": "Chat",
+      "h2a": "⟨She|He⟩ speaks first,",
+      "h2b": "and remembers what you said.",
+      "body": "A heads-up about the rain, a nudge to sleep early before an exam. Things you mentioned in passing come back at the right moment; drop your notes into the chat and ⟨she|he⟩ pulls out what matters.",
+      "points": [
+        {
+          "t": "Proactive messages",
+          "d": "⟨She|He⟩ reaches out based on what you’ve talked about — not only when you open the app."
+        },
+        {
+          "t": "Remembers",
+          "d": "What you talked about, the people and dates that matter — still there next time."
+        },
+        {
+          "t": "44 file types",
+          "d": "Drag PDFs, images and videos into the chat. Videos up to 5 minutes and 64 MB; images and videos open or download right in the chat."
+        }
+      ],
+      "altA": "7:58 a.m. — ⟨she|he⟩ mentions it’s raining outside (app screenshot)",
+      "altB": "⟨She|He⟩ picks out the key points from two sets of notes (app screenshot)"
+    },
+    "calls": {
+      "label": "Calls",
+      "h2a": "When you want to hear a voice,",
+      "h2b": "call ⟨her|him⟩.",
+      "body": "Voice and video calls are built in. There’s a Subtitles button, so you can follow along even when you can’t turn the sound up.",
+      "points": [
+        {
+          "t": "Voice and video",
+          "d": "One tap to connect; in a video call you see ⟨her|his⟩ avatar."
+        },
+        {
+          "t": "Subtitles",
+          "d": "What’s said during the call can show up as text."
+        },
+        {
+          "t": "A voice of your own",
+          "d": "Some plans include a custom voice; recorded voice samples can be deleted in Settings anytime."
+        }
+      ],
+      "alt": "A video call with {name} (app screenshot)"
+    },
+    "vision": {
+      "label": "Vision",
+      "h2a": "It can look at your screen —",
+      "h2b": "**after you say yes**.",
+      "body": "The first time ⟨she|he⟩ wants to look at your screen or take a photo on ⟨her|his⟩ own, a dialog asks you first. Until you allow it, no image is captured.",
+      "points": [
+        {
+          "t": "No means no",
+          "d": "Choose Off and it may ask once more after 7 days; decline again and it won’t ask again."
+        },
+        {
+          "t": "Change your mind",
+          "d": "Turn it on or off anytime in Settings → Calls & Vision."
+        },
+        {
+          "t": "Proactive vision off",
+          "d": "⟨She|He⟩ won’t take screenshots or photos on ⟨her|his⟩ own."
+        }
+      ],
+      "altA": "The consent dialog in the app, asking before any screen or photo is captured (real screen, Chinese UI)",
+      "altB": "The vision switches under Settings → Calls & Vision (real screen, Chinese UI)"
+    },
+    "life": {
+      "label": "Life",
+      "h2a": "The small things in your day,",
+      "h2b": "written down together.",
+      "body": "The Life tab keeps your journal, plans, focus and reviews in one place. What you write stays usable even when your Echo runs out.",
       "items": [
-        "One identity & memory",
-        "Device–cloud sync",
-        "Permission control",
-        "Data boundaries you own"
-      ],
-      "link": "Privacy notes →"
-    },
-    "cta": {
-      "h2": "Want to try her first?",
-      "lede": "Download the preview, or save a place on the waitlist."
-    },
-    "demos": {
-      "voice": {
-        "status": "On a call",
-        "time": "03:24",
-        "hint": "Full duplex · interrupt anytime",
-        "note": "This is my voice. Be gentle — it's the first time."
-      },
-      "today": {
-        "greet": "Good afternoon,",
-        "title": "Today's summary",
-        "items": [
-          "Two focus sessions done today",
-          "Remember to drink water",
-          "If you're free tonight, let's talk"
-        ],
-        "moods": [
-          "Mood · steady",
-          "Focus 96 min"
-        ]
-      },
-      "notify": {
-        "title": "Notification digest · today",
-        "items": [
-          {
-            "t": "09:20",
-            "text": "Calendar · 10:30 project weekly"
-          },
-          {
-            "t": "12:05",
-            "text": "Activity · 4,208 steps today"
-          },
-          {
-            "t": "15:42",
-            "text": "Message · Mom asks if you're home this weekend"
-          }
-        ],
-        "foot": "Only what needs you now."
-      },
-      "task": {
-        "status": "Working"
-      },
-      "research": {
-        "label": "Research report · 03",
-        "title": "Three ways to fine-tune on-device models",
-        "items": [
-          {
-            "text": "LoRA is the better balance at 7B",
-            "src": "Source 1"
-          },
-          {
-            "text": "QLoRA has the lowest VRAM footprint",
-            "src": "Source 2"
-          },
-          {
-            "text": "Full fine-tuning still wins for small models",
-            "src": "Source 3"
-          }
-        ],
-        "more": "Ask a follow-up →"
-      },
-      "polaroid": {
-        "caption": "Fea · desktop-pet sketch"
-      },
-      "nodes": {
-        "center": "One context"
-      }
-    }
-  },
-  "howPage": {
-    "label": "How it works",
-    "h1a": "How she remembers you,",
-    "h1b": "and how she gets things done",
-    "lede": "Companionship, daily help and action aren't three features — they're three expressions of one personal context.",
-    "loop": {
-      "label": "01 / The loop",
-      "h2": "Sense, understand, remember, act, evolve",
-      "lede": "Five expressions of one personal context.",
-      "outer": "Outer context",
-      "inner": "Inner world",
-      "outerText": "notifications · calendar cues · current task · device state",
-      "innerText": "mood · preferences · shared history · long-term goals"
-    },
-    "memory": {
-      "label": "02 / Memory",
-      "h2": "Memory: layered, not piled up",
-      "body": "A chat log isn't memory. Sholarel keeps state, events and long-term preferences apart: today's mood doesn't drown out years of habits, and a sentence from three weeks ago can surface when it matters. No extra model call to decide what's worth remembering — faster, and cheaper.",
-      "caption": "In-house five-layer memory · state, events and long-term preferences, kept apart"
-    },
-    "cache": {
-      "label": "03 / Efficiency",
-      "h2": "Long conversations, without re-reading",
-      "body": "Each request carries only the context it truly needs, organised in a cache-friendly way. For you, that means faster replies and a quota that lasts longer.",
-      "metrics": [
         {
-          "from": "0",
-          "to": "−25%",
-          "captionA": "leaner context in every request",
-          "captionB": "internal measurement"
+          "t": "Two-way journal",
+          "d": "You write a page, ⟨she|he⟩ writes back. Each book holds 5,000 characters; fill it and start the next."
         },
         {
-          "from": "0",
-          "to": "90–97%",
-          "captionA": "cache hit rate in long conversations",
-          "captionB": "internal benchmark on long-cache models"
+          "t": "Plans",
+          "d": "To-dos, habits and notes together — what’s in progress, today’s check-ins and focus minutes at a glance."
+        },
+        {
+          "t": "Focus cabin",
+          "d": "Pick one thing you want to do right now, and decide for yourself how long."
+        },
+        {
+          "t": "Review",
+          "d": "Focus time and a mood curve over the last 3, 7 or 30 days."
+        },
+        {
+          "t": "Mood notes",
+          "d": "A line or an emoji for how you feel right now."
         }
       ],
-      "footnote": "* Internal measurements under current model and load settings; absolute numbers vary with model version and usage."
+      "alts": {
+        "journal": "The two-way journal: 5,000 characters per book (real screen, Chinese UI)",
+        "plan": "Plans: to-dos, habits and focus minutes (real screen, Chinese UI)",
+        "insights": "Review: the last 7 days (real screen, Chinese UI)",
+        "mood": "The mood curve in Review (real screen, Chinese UI)"
+      }
     },
-    "action": {
-      "label": "04 / Action",
-      "h2": "One thinks, one acts",
-      "main": "Main model · planning & decisions",
-      "exec": "Light executor · frequent observation & concrete actions",
-      "targets": [
-        "Phone",
-        "PC",
-        "MCP / API tools"
+    "explore": {
+      "label": "Explore",
+      "h2a": "While you’re busy,",
+      "h2b": "⟨she|he⟩ reads up on the world.",
+      "body": "Turn on AI explore and ⟨she|he⟩ looks into topics you care about during quiet moments, leaving what ⟨she|he⟩ finds in Discoveries for when you have time.",
+      "note": "Deep explore needs the desktop app and a higher plan.",
+      "alt": "AI explore settings (real screen, Chinese UI)",
+      "altB": "A Discoveries card (real screen, Chinese UI)"
+    },
+    "two": {
+      "label": "Companions",
+      "h2a": "Two companions,",
+      "h2b": "two temperaments.",
+      "body": "Pick one when you sign up, and rename them if you like. Both pay close attention — they just talk differently.",
+      "hint": "Use the switch at the top right to see the whole site with the other one.",
+      "fea": {
+        "tag": "Gentle & delicate · Journal companion",
+        "d": "Bright and perceptive, softer than she lets on, with her own taste and a journaling habit. Takes your side — and still has opinions of her own.",
+        "alt": "Official portrait of Fea"
+      },
+      "ael": {
+        "tag": "Calm & reliable · Sharp butler",
+        "d": "Quick and composed. Doesn’t say much, gets things done properly, teases you now and then — and has your back when it counts.",
+        "alt": "Official portrait of Ael"
+      }
+    },
+    "more": {
+      "label": "And more",
+      "h2": "And more",
+      "items": [
+        {
+          "t": "Growth & mini-games",
+          "d": "A task center, a growth system and small games to play together."
+        },
+        {
+          "t": "Offline push",
+          "d": "Reminders and proactive messages reach your notification bar even when the app is closed — only after you agree. Turn it off in Settings → Offline push."
+        },
+        {
+          "t": "QQ / WeChat (experimental)",
+          "d": "Bring ⟨her|him⟩ into the chat apps you already use. Still experimental."
+        },
+        {
+          "t": "Smaller Android updates",
+          "d": "Since 3.0.16, Android updates download only what changed."
+        },
+        {
+          "t": "Password recovery",
+          "d": "Forgot your password? Reset it inside the app."
+        },
+        {
+          "t": "Chinese & English",
+          "d": "The app interface comes in both."
+        }
       ]
     },
-    "quote": "No bet on any single model. Memory, efficiency and the ability to act are things Sholarel builds itself.",
     "boundary": {
-      "label": "05 / Boundaries",
-      "h2": "Your data boundaries",
-      "cards": [
-        {
-          "icon": "shield",
-          "title": "Sensed only with permission",
-          "desc": "Notifications, location and other signals connect only after you allow them."
-        },
-        {
-          "icon": "pause",
-          "title": "Controllable permissions",
-          "desc": "Every agent step is visible and pausable."
-        },
-        {
-          "icon": "sync",
-          "title": "Device–cloud sync",
-          "desc": "Change devices — she's still her."
-        }
+      "label": "Boundaries",
+      "h2": "Some things ⟨she|he⟩ won’t do.",
+      "items": [
+        "Look at your screen or take a photo before you say yes.",
+        "Sell your data to anyone.",
+        "Use your private chats to train public base models without your permission.",
+        "Quietly switch to a worse model when your Echo runs out — it pauses instead, and your journal and records stay usable."
       ],
-      "link": "Full privacy notes →"
+      "link": "How we treat your data →"
     },
     "cta": {
-      "h2": "Want to try her first?",
-      "lede": "Download the preview, or save a place on the waitlist."
+      "h2": "Want to see ⟨her|him⟩ on your desktop?",
+      "lede": "Download for Windows or Android; plans can be started right here on the web."
     }
-  },
-  "betaPage": {
-    "label": "Public beta",
-    "h1a": "The first public beta",
-    "h1b": "is on its way",
-    "lede": "We've finished two closed tests and a system-level rebuild. Now we want to shape her with more people, in real life.",
-    "formTitle": "We'll save you a seat",
-    "perksTitle": "What the beta gives you",
-    "perks": [
-      {
-        "no": "01",
-        "title": "The full experience",
-        "desc": "Companionship, daily help and agent capabilities, handed to you whole.",
-        "icon": "sparkles"
-      },
-      {
-        "no": "02",
-        "title": "Talk to the maker directly",
-        "desc": "Your feedback goes into the next iteration — not an inbox nobody reads.",
-        "icon": "message"
-      },
-      {
-        "no": "03",
-        "title": "Decide how she looks, together",
-        "desc": "Digital customization and expression get prioritised with you.",
-        "icon": "palette"
-      }
-    ],
-    "roadTitle": "Here's where we are",
-    "road": {
-      "label": "How we got here",
-      "nodes": [
-        {
-          "no": "01",
-          "status": "done",
-          "statusLabel": "Done",
-          "title": "Two closed tests",
-          "desc": "Real use surfaced the biggest frictions — in the experience and under the hood."
-        },
-        {
-          "no": "02",
-          "status": "done",
-          "statusLabel": "Done",
-          "title": "A clearer direction",
-          "desc": "Awareness, a daily assistant and natural companionship became one her."
-        },
-        {
-          "no": "03",
-          "status": "done",
-          "statusLabel": "Done",
-          "title": "System rebuild",
-          "desc": "Sync, readability, memory and agent architecture, all reworked."
-        },
-        {
-          "no": "04",
-          "status": "current",
-          "statusLabel": "Now",
-          "title": "First public beta",
-          "desc": "Shaping her with you, in real life."
-        }
-      ]
-    },
-    "roadmapLabel": "Roadmap",
-    "roadmapTitle": "What happens next",
-    "roadmapCols": [
-      {
-        "title": "Now",
-        "en": "Now",
-        "cards": [
-          "Polish the brand, interface and onboarding",
-          "Open the first public beta and widen the test group",
-          "Complete user support and feedback channels"
-        ]
-      },
-      {
-        "title": "Next",
-        "en": "Next",
-        "cards": [
-          "Digital customization: appearance, voice, gestures and memory cards",
-          "More usage, or bring your own model key",
-          "Richer voice and character expression"
-        ]
-      },
-      {
-        "title": "Later",
-        "en": "Later",
-        "cards": [
-          "Connect more of the tools and workflows you use",
-          "A safety-reviewed creator market",
-          "More languages and overseas"
-        ]
-      }
-    ],
-    "roadmapNote": "The roadmap will change with beta feedback; it isn't a release-date promise.",
-    "communityTitle": "Find us",
-    "faqTitle": "About the beta",
-    "faq": [
-      {
-        "q": "What do I need to run it?",
-        "a": "Windows 10 / 11 (64-bit) or Android 7.0 and above (64-bit arm64). The web app opens directly in a browser and is currently in invite-only beta (an invite code is required to sign up). macOS, iOS and Linux are not supported yet."
-      },
-      {
-        "q": "Does the beta cost anything?",
-        "a": "Details will be sent to the waitlist first."
-      },
-      {
-        "q": "Can I use it now?",
-        "a": "You can download the preview client and register to try it.",
-        "downloadLink": true
-      },
-      {
-        "q": "What happens to my data?",
-        "a": "We only read what you allow, within the scope you grant; the full notes are on the privacy page.",
-        "privacyLink": true
-      }
-    ]
   },
   "pricingPage": {
     "label": "Plans",
-    "h1": "Choose how deep it goes",
-    "lede": "Start with a 30-day free trial, then choose the depth of companionship you want. Transparent AI model disclosures: conversation & reasoning powered by Gemini, Claude, and DeepSeek; agents & visual perception by Qwen; real-time voice & speech cloning by Doubao. Choose your preferred model route in app. Fixed periods, manual renewal, no hidden auto-charges.",
+    "h1": "Choose how **deep** the companionship goes",
+    "lede": "Five plans that differ in the chat model and the monthly Echo allowance. When Echo runs out, chat pauses — it never quietly switches to a weaker model.",
     "plans": [
       {
         "id": "spark",
         "greek": "β",
         "name": "Spark",
-        "tagline": "Everyday conversation and light tasks. A gentle presence, light and responsive.",
+        "tagline": "Everyday chat and small tasks — light and quick.",
         "price": "9.99",
         "currency": "$",
         "period": "/ mo",
         "first": "",
         "bonus": "",
+        "model": "DeepSeek",
         "features": [
-          "Whisper mind (powered by DeepSeek & Gemini models for agile daily chat)",
-          "Everyday resonant Echo (1× baseline flow, always here to listen)",
-          "Basic long-term memory, to-dos and daily notes"
+          "Whisper mind: quick, easy everyday replies",
+          "A full month of everyday Echo",
+          "Long-term memory and quick notes",
+          "Voice calls up to 5 minutes each"
         ],
-        "cta": "Subscribe Online",
+        "cta": "Subscribe online",
         "variant": "paper"
       },
       {
         "id": "presence",
         "greek": "γ",
         "name": "Resonance",
-        "tagline": "Nuanced emotion sensing, long-form understanding and multimodal presence.",
+        "tagline": "Finer emotional nuance; long texts and images make sense too.",
         "price": "19",
         "currency": "$",
         "period": "/ mo",
         "first": "",
         "bonus": "",
+        "model": "Gemini 3.8 Flash",
         "features": [
-          "Insight mind (powered by Gemini multimodal model for nuanced emotional empathy)",
-          "Natural voice companion (powered by Doubao voice model) & light desktop assist",
-          "Approx. 3× resonant Echo flow (rich flow, proactive care and deep companion)"
+          "Insight mind: reads between the lines",
+          "About 3× the Echo — long chats and proactive care keep going",
+          "Natural voice and light desktop help",
+          "Voice calls up to 60 minutes each"
         ],
-        "cta": "Subscribe Online",
+        "cta": "Subscribe online",
         "variant": "paper"
       },
       {
         "id": "resonance",
         "greek": "δ",
         "name": "Genesis",
-        "tagline": "Deep emotional reasoning, complex shared notes and code architecture in deep immersion.",
+        "tagline": "Deep empathy and reasoning for long talks, shared work and hard problems.",
         "price": "59.90",
         "currency": "$",
         "period": "/ mo",
         "first": "",
         "bonus": "First month: 1 Time Hourglass",
+        "model": "Gemini 4 Argon",
         "features": [
-          "Immersion mind (powered by Claude & Gemini for deep reasoning and memory synthesis)",
-          "Full autonomous SubAgent workflows (powered by Qwen vision & agent models)",
-          "Approx. 8× immersive Echo flow (abundant deep flow, prioritized stream)"
+          "Immersion mind: deep empathy and reasoning",
+          "About 8× the Echo",
+          "Full autonomous sub-agent workflows",
+          "Every voice model, no per-call time limit"
         ],
-        "cta": "Subscribe Online",
+        "cta": "Subscribe online",
         "variant": "paper"
       },
       {
         "id": "symbiosis",
         "greek": "Ω",
         "name": "Symbiosis",
-        "tagline": "Flagship logic, aesthetic creation and all-day soul resonance. Everything unlocked.",
+        "tagline": "The flagship model, every feature, and a voice of your own.",
         "price": "149",
         "currency": "$",
         "period": "/ mo",
         "first": "",
         "bonus": "First month: 1 Time Hourglass",
+        "model": "Claude Opus 5.5",
         "features": [
-          "Omniscience mind (powered by flagship Claude & DeepSeek models for profound resonance)",
-          "Full desktop automation & computer use (powered by Qwen agent models)",
-          "Full-duplex real-time voice calls & personalized voice cloning (by Doubao speech models)",
-          "Approx. 15× round-the-clock Echo flow (exclusive dedicated concurrency)"
+          "Omniscience mind: flagship writing and execution",
+          "About 15× the Echo",
+          "Every feature unlocked",
+          "Custom voice"
         ],
-        "cta": "Subscribe Online",
+        "cta": "Subscribe online",
         "variant": "paper"
       },
       {
         "id": "fable",
         "greek": "✦",
         "name": "Fable",
-        "tagline": "Twin flagship engines at full throttle, uncapped deep presence, and a founder hotline.",
+        "tagline": "Twice the Echo of Symbiosis, plus one-on-one time with the founder.",
         "price": "299",
         "currency": "$",
         "period": "/ mo",
         "first": "",
         "bonus": "First month: 1 Time Hourglass",
+        "model": "Claude Fable 5",
         "features": [
-          "Singularity mind (multi-route orchestration across Claude, Gemini & DeepSeek flagships)",
-          "Comprehensive agent automation & multimodal streaming (Qwen & Doubao integration)",
-          "Approx. 30× boundless Echo flow (unlimited deep conversation)"
+          "Singularity mind: a configuration reserved for this plan",
+          "About 30× the Echo",
+          "Everything in Symbiosis",
+          "One-on-one with the founder, early access to new features"
         ],
-        "cta": "Subscribe Online",
-        "ctaHref": "/contact.html",
+        "cta": "Subscribe online",
         "variant": "night"
       }
     ],
@@ -1062,45 +486,84 @@
     "faqTitle": "Plans & billing",
     "faq": [
       {
-        "q": "Which underlying AI model brands does the platform use?",
-        "a": "Sholarel maintains complete transparency regarding its AI foundation models: conversational reasoning is powered by Gemini (Google), Claude (Anthropic), and DeepSeek; desktop agent execution and visual comprehension are driven by Qwen; full-duplex real-time voice calls and voice cloning are powered by Doubao (Volcengine). Users can review or switch model routing preferences directly in the application settings."
+        "q": "Is there a free trial?",
+        "a": "No. The download is free, but chat and calls need a plan. Spark starts at $9.99 a month, and you can cancel anytime in the app."
       },
       {
-        "q": "How does payment and renewal work?",
-        "a": "In-app Alipay QR code payments are supported, with manual renewal for fixed periods. Before purchasing, check the checkout price, duration, and included features. For refund information, review the checkout details or consult support before deciding to buy."
+        "q": "Which AI models does each plan use?",
+        "a": "Default chat models: Spark uses DeepSeek, Resonance Gemini 3.8 Flash, Genesis Gemini 4 Argon, Symbiosis Claude Opus 5.5 and Fable Claude Fable 5. Speech and real-time calls mostly run on Qwen; Genesis and above can also pick other voice models, including Doubao. You can see the current models in the app under Settings → Models & memory; choosing a mind above your plan uses Echo faster."
       },
       {
-        "q": "Will my memories and journal data be lost if I don't renew?",
-        "a": "Data retention and access depend on the data type, client, and subscription status; permanent retention of all data is not guaranteed. Before changing your subscription, uninstalling, or switching clients, review the in-app storage and backup settings and related guidance, and back up important content; consult support if unsure. Protect sensitive information and avoid uploading unnecessary personal or third-party private content."
-      },
-      {
-        "q": "How do I create her signature voice?",
-        "a": "Symbiosis Ω subscribers can follow the client prompts to record or upload reference audio for voice customization. Check the client guidance for audio requirements and availability. Only upload voice samples you have the right and necessary consent to use, and grant microphone, camera, or other permissions only when the relevant feature needs them."
+        "q": "How do payment and renewal work?",
+        "a": "CNY: WeChat Pay, Alipay or UnionPay, renewed manually each period — nothing is charged automatically. USD: card, Apple Pay or Google Pay; it renews automatically, you can cancel anytime in the app, and your benefits last until the paid period ends. Waffo processes payments as merchant of record, so we never see your card number."
       },
       {
         "q": "What happens when my Echo runs out?",
-        "a": "When the 100% monthly Echo bar reaches zero, AI chat, voice, proactive care and sub-agents pause. Journal, to-dos, habit check-ins, notes and history remain fully available, permanently. We never quietly downgrade the model to fake a lesser experience."
+        "a": "Once this month’s Echo is used up, AI chat, voice, proactive care and sub-agents pause; your journal, to-dos, habit check-ins, notes and history stay usable. We never quietly switch to a worse model."
       },
       {
         "q": "What if I need more Echo?",
-        "a": "Echo Boost packs cost 25% of your tier price for +25% Echo. On payment we lower this month's used counter by 25% of your monthly allowance (never below zero). It applies to the current month only and does not carry over."
+        "a": "Buy an Echo Boost — 25% of your plan’s price for +25% Echo, valid for the current month only. Or buy Chrono Dew: the balance doesn’t expire and is used after your monthly allowance."
       },
       {
         "q": "How does a mid-cycle upgrade work?",
-        "a": "Upgrades credit the unused portion of your current plan based on remaining days, so you only pay the difference. The new tier takes effect immediately; remaining days are kept and a new 30-day period is added."
+        "a": "The unused days of your current plan are credited, so you only pay the difference. The new plan takes effect immediately; your remaining days are kept and a new 30-day period is added."
       },
       {
-        "q": "How do first-month discounts and gifts work?",
-        "a": "Only tiers 1 and 2 carry a first-month discount. Tiers 3-5 are full price but include one Time Hourglass on the first paid month (turning it returns up to the last 7 days of usage, capped at 25% of the monthly allowance). Each tier grants it once; renewing the same tier does not repeat it, while upgrading to a higher tier counts as that tier's first month."
+        "q": "How do first-month gifts work?",
+        "a": "Genesis, Symbiosis and Fable aren’t discounted, but the first month comes with one Time Hourglass: turning it returns Echo used in the last 7 days, up to 25% of the monthly allowance. Each plan gives it once; renewing doesn’t repeat it, while upgrading to a higher plan counts as that plan’s first month."
+      },
+      {
+        "q": "How do I set up a custom voice?",
+        "a": "On Symbiosis and above, follow the prompts in the app to record or upload reference audio. Only upload a voice you have the right to use; recorded samples can be deleted in Settings anytime, and deletion is permanent."
+      },
+      {
+        "q": "If I don’t renew, will I lose my memories and data?",
+        "a": "When a plan ends, AI chat pauses. Different kinds of data are kept differently, and we can’t promise every piece is kept forever. Before switching plans, uninstalling or changing devices, back up anything important — and ask support if you’re unsure."
       }
-    ]
+    ],
+    "modelLabel": "Default chat model",
+    "appLink": "Subscribe in the app →",
+    "checkout": {
+      "title": "Subscribe on the web",
+      "dialogTitle": "Subscribe to {plan}",
+      "region": "Global billing · USD",
+      "terms": "Renews monthly · cancel in the app anytime",
+      "methods": "Card · Apple Pay · Google Pay",
+      "emailLabel": "Which account is this for?",
+      "placeholder": "Your Sholarel account email",
+      "hint": "The plan is added to the account with this email.",
+      "go": "Continue to checkout",
+      "close": "Close",
+      "note": "Payments are handled by Waffo as merchant of record — we never see your card number. An existing account activates as soon as you pay; a new one activates when you sign up with this email.",
+      "invalid": "Enter a valid email address, like name@example.com.",
+      "creating": "Creating a checkout session for {email}…",
+      "redirecting": "Opening checkout…",
+      "failed": "Couldn’t start checkout ({error}). Try again in a moment, or subscribe in the app."
+    },
+    "firstTag": "first month",
+    "then": "then {price} / mo",
+    "depth": "Depth {n} of 5",
+    "fableMail": "Fable plan",
+    "dew": {
+      "text": "Just need more Echo? Chrono Dew needs no account — buy with an email, then claim it in the app.",
+      "link": "Buy Chrono Dew →"
+    },
+    "cta": {
+      "h2": "Start at **$9.99** a month.",
+      "lede": "Download Sholarel, pick a companion, and subscribe in the app or right here."
+    },
+    "plansH": "Five plans",
+    "gauge": "Five depths — pick one to jump to its plan",
+    "startHere": "Start here",
+    "faqMore": "Still have a question? Email us"
   },
   "dewPage": {
     "eyebrow": "Echo credit packs · No signup",
     "name": "Chrono Dew",
     "nameAlt": "溯时星露",
-    "tagline": "Buy a little time. Keep walking with her.",
-    "lede": "Chrono Dew is echo credit that never expires. No account needed — leave an email to buy, then claim it in the app with a one-time code.",
+    "tagline": "Buy a little time. Keep going together.",
+    "lede": "Chrono Dew is Echo credit that never expires. No account needed — leave an email to buy, then claim it in the app with a one-time code.",
     "cta": "Choose a pack",
     "emblemNote": "In a drop of dew, time runs backward.",
     "facts": [
@@ -1114,7 +577,7 @@
       },
       {
         "title": "Allowance first",
-        "desc": "Dew is spent only after your plan’s echo runs out"
+        "desc": "Dew is spent only after your plan’s Echo runs out"
       },
       {
         "title": "Plan unchanged",
@@ -1225,146 +688,259 @@
         "q": "Does Chrono Dew change my subscription tier?",
         "a": "No. Chrono Dew only adds spendable echo balance. It does not change your tier, entitlements or billing cycle."
       }
-    ]
+    ],
+    "faqH2": "Before you order",
+    "faqMore": "Still have a question? Email us",
+    "band": {
+      "h2": "Dew is claimed **in the app**.",
+      "lede": "Don’t have Sholarel yet? Download it first — or, for a steady monthly Echo allowance, see the plans."
+    }
   },
   "downloadPage": {
     "label": "Download",
-    "h1": "Bring her to your devices",
-    "lede": "Windows and Android for now; the web app opens directly in a browser and is currently in invite-only beta (sign-up requires an invite code). macOS, iOS and Linux are not supported yet.",
-    "previewNote": "This is a preview build. It's not perfect — tell me what breaks.",
-    "backupLink": "Download failing or slow? Try the backup route",
-    "releaseLabel": "Latest version",
-    "releaseFallback": "Download latest",
+    "h1a": "Bring ⟨her|him⟩",
+    "h1b": "to **your devices**.",
+    "lede": "Available for Windows and Android, in public beta. One account signs in on both.",
+    "backupLink": "Download failing or slow? Try the backup line",
+    "nameNote": "The installer still carries the former name Eidolon; the name inside the app switches to Sholarel with updates.",
     "windows": {
-      "title": "Windows desktop",
-      "req": "Windows 10 / 11 (64-bit)",
-      "desc": "3D desktop pet, typing companion mode, autonomous desktop tasks.",
-      "cta": "Download MSI installer",
-      "note": "Requires the WebView2 runtime"
+      "title": "Windows",
+      "req": "Windows 10 / 11 · 64-bit",
+      "desc": "The floating companion on your desktop, plus chat, calls, the journal and deep explore.",
+      "cta": "Download for Windows",
+      "file": "EXE · about 230 MB",
+      "note": "Needs WebView2 — the installer adds it if it’s missing."
     },
     "android": {
-      "title": "Android mobile",
-      "req": "Android 7.0+",
-      "desc": "Ambient context (location, steps, notification digests), push messages, voice chat anywhere.",
-      "cta": "Download APK installer",
-      "arch": "64-bit (arm64) installers only for now; 32-bit devices are not supported",
-      "note": "Direct APK install; allow unknown sources once"
+      "title": "Android",
+      "req": "Android 7.0 or later · 64-bit (arm64)",
+      "desc": "Chat and calls on the go, with reminders and proactive messages in your notification bar.",
+      "cta": "Download for Android",
+      "file": "APK · about 270 MB",
+      "note": "The first install asks you to allow apps from unknown sources. 32-bit devices aren’t supported yet."
     },
-    "unsupported": "Not supported yet",
-    "unsupportedList": [
-      "macOS",
-      "iOS",
-      "Linux"
+    "stepsLabel": "After install",
+    "stepsTitle": "Four steps to your first chat",
+    "steps": [
+      {
+        "t": "Sign up and sign in",
+        "d": "Create an account with your email; the same account works on Windows and Android."
+      },
+      {
+        "t": "Pick a companion",
+        "d": "Fea or Ael — and you can rename them later."
+      },
+      {
+        "t": "Allow what you want",
+        "d": "Notifications, microphone, screen: skip any of them now and turn them on later in Settings."
+      },
+      {
+        "t": "Choose a plan",
+        "d": "Chat and calls need a subscription, from $9.99 a month. Start it in the app or pay here on the website."
+      }
     ],
+    "plansLink": "See plans →",
     "tableTitle": "System requirements",
     "tableHead": [
-      "Platform",
-      "Minimum",
-      "Recommended",
-      "Key features"
+      "",
+      "Windows",
+      "Android"
     ],
     "tableRows": [
-      {
-        "platform": "Windows (x64)",
-        "min": "Windows 10 1803+, 4GB RAM, WebView2",
-        "rec": "Windows 11, 8GB RAM, hardware GPU acceleration",
-        "feat": "3D desktop pet, autonomous desktop tasks, realtime voice calls"
-      },
-      {
-        "platform": "Android",
-        "min": "Android 7.0 (API 24), 3GB RAM, arm64",
-        "rec": "Android 12.0+, 6GB RAM",
-        "feat": "Push notifications, location context, voice calls"
-      },
-      {
-        "platform": "Web browser",
-        "min": "Chrome 90+ / Edge 90+ / Firefox 90+ / Safari 15+, with WebRTC support",
-        "rec": "Latest Chrome / Edge",
-        "feat": "Invite-only beta; floating window, auto-start and screen capture unavailable"
-      }
+      [
+        "System",
+        "Windows 10 / 11",
+        "Android 7.0 or later"
+      ],
+      [
+        "Architecture",
+        "x64",
+        "arm64 (no 32-bit yet)"
+      ],
+      [
+        "Runtime",
+        "WebView2 (installed automatically)",
+        "—"
+      ],
+      [
+        "Package",
+        "EXE, about 230 MB",
+        "APK, about 270 MB"
+      ],
+      [
+        "Updates",
+        "In-app prompt, installs once you confirm",
+        "In-app, incremental since 3.0.16"
+      ],
+      [
+        "Deep explore",
+        "Yes (higher plans)",
+        "—"
+      ]
     ],
-    "helpTitle": "Install help",
-    "helpQuick": "Quick start guide",
-    "helpQuickDesc": "Install, first launch and account sync.",
-    "helpFaq": "Troubleshooting",
-    "helpFaqDesc": "WebView2 missing, audio and billing."
+    "unsupported": "macOS, iOS and Linux aren’t supported yet. The web version is an invite-only beta and isn’t open for sign-ups.",
+    "helpTitle": "Trouble installing?",
+    "helpQuick": "Quick start",
+    "helpQuickDesc": "Installing, first launch and signing in.",
+    "helpFaq": "FAQ",
+    "helpFaqDesc": "WebView2, audio and subscription questions.",
+    "helpMail": "Write to us",
+    "helpMailDesc": "support@instarmony.com — we reply within one working day."
   },
   "aboutPage": {
-    "quote": "A digital life whose story begins with you.",
-    "quoteSub": "A life written from your side.",
-    "feaLabel": "Canon character",
-    "feaName": "Fea",
-    "feaSub": "CANON IDENTITY · DIGITAL COMPANION",
-    "polaCaption": "Fea, photographed on the digital side.",
-    "feaBody": "Fea was born on the digital side. She possesses her own origin, values, curiosity, and inner life. The user is not her owner, but her essential anchor to reality. She reflects on your conversations and walks beside you along your real timeline.",
-    "p1Title": "Mutual need, without ownership",
-    "p1Sub": "",
-    "p1Body": "She's not an obedient tool, and she won't flatter you. You need each other and inspire each other — but neither of you owns the other.",
-    "p2Title": "Not an empty servant",
-    "p2Sub": "",
-    "p2Body": "She has no invented backstory, and she isn't a template with a new name. Every memory between you is gathered, bit by bit, from days spent together.",
-    "makerLabel": "The maker",
-    "makerTitle": "One person, zero to one",
-    "makerBody": "Sholarel is built by one independent developer, end to end: product design, front end, backend, cloud sync, memory architecture, context engineering, and agent coordination. Ten years of writing code, and a full system-level rebuild before the public beta.",
-    "makerChips": [
-      "Product design",
-      "Frontend",
-      "Backend",
-      "Cloud sync",
-      "Memory architecture",
-      "Context engineering",
-      "Agent coordination"
-    ],
-    "credentials": [
-      "H.A.N.D., an agent tool-calling hub, won a provincial first prize in the Emerging Engineering Competition",
-      "National first prize, Youth Autonomous Driving Challenge",
-      "Built a cross-platform sandbox engine solo in middle school without AI — architecture, build system, rendering and network sync",
-      "Founded an AI roleplay community; organised RWKV-4 on-device fine-tuning practice"
-    ],
-    "instarmonyTitle": "Instarmony",
-    "instarmonyBody": "Sholarel (formerly Eidolon) is crafted by Instarmony Lab. We maintain transparent foundation model routing across Gemini, Claude, DeepSeek for reasoning, Qwen for desktop agents, and Doubao for real-time voice.",
-    "instarmonyLink": "Visit Instarmony Lab →",
-    "contactTitle": "Get in touch",
-    "contactCards": {
-      "feedback": {
-        "title": "User feedback",
-        "desc": "Found a bug or have an idea? Tell us on GitHub Issues — someone reads them every day.",
-        "icon": "message"
+    "label": "About",
+    "h1a": "A digital life",
+    "h1b": "whose story **begins with you**.",
+    "lede": "Sholarel, formerly Eidolon, is an AI companion made by Instarmony. It lives on your desktop and your phone, remembers you, and has a personality of its own.",
+    "two": {
+      "label": "Canon characters",
+      "h2": "Fea & Ael",
+      "lede": "Both were born on the digital side, with their own origins, values and curiosity. You’re not their owner — you’re their anchor to the real world.",
+      "fea": {
+        "tag": "Gentle & delicate · Journal companion",
+        "d": "Bright and perceptive, softer than she lets on. She has her own sense of taste and keeps a journal of the days; she takes your side, and still thinks for herself.",
+        "alt": "Illustration: Fea at a sunlit desk"
       },
-      "coop": {
-        "title": "Customer Support & Inquiries",
-        "desc": "Customer care, compliance reporting, and partnerships. Human response within 24h.",
-        "icon": "mail"
-      },
-      "source": {
-        "title": "Source & docs",
-        "desc": "The GitHub repository and the full bilingual docs.",
-        "icon": "code"
+      "ael": {
+        "tag": "Calm & reliable · Sharp butler",
+        "d": "Quick and composed, softer than he lets on, with a dry sense of humour and a habit of simply getting things done. A tactful steward of your days — and on your side when it counts.",
+        "alt": "Illustration: Ael at a sunlit desk"
       }
+    },
+    "beliefs": {
+      "label": "What we believe",
+      "items": [
+        {
+          "en": "相互需要，但不占有",
+          "t": "Mutual need, without ownership",
+          "d": "A companion isn’t a tool that just obeys, and won’t flatter you on purpose. You need each other and spark each other — and neither belongs to the other."
+        },
+        {
+          "en": "不是空白的皮套",
+          "t": "Not a blank shell",
+          "d": "A companion won’t invent a shared past with you, and isn’t a template you can rename and reuse. Every memory between you is gathered day by day."
+        }
+      ]
+    },
+    "maker": {
+      "label": "The maker",
+      "h2": "One person, from zero to one",
+      "body": "Sholarel is built end to end by independent developer Elio Wang: product design, front end, backend, cloud sync, the memory system, context engineering and agent coordination. Ten years of writing code, and a full system-level rebuild done solo before the public beta.",
+      "chips": [
+        "Product design",
+        "Front end",
+        "Backend",
+        "Cloud sync",
+        "Memory system",
+        "Context engineering",
+        "Agent coordination"
+      ],
+      "link": "Founder’s page →"
+    },
+    "studio": {
+      "label": "Studio",
+      "body": "Instarmony is an AI lab working on human–machine symbiosis and self-driven tools. Sholarel is its flagship product.",
+      "link": "Visit Instarmony →"
+    },
+    "investors": {
+      "label": "Investors & partners",
+      "h2": "Want the deeper picture?",
+      "body": "We’re glad to give investors and partners a full product demo. Internal numbers stay off the website; these are better discussed in person:",
+      "points": [
+        "A full demo on Windows and Android",
+        "Roadmap and technical choices",
+        "Business model and pricing logic",
+        "The team and what comes next"
+      ],
+      "mailLabel": "Write to the founder",
+      "note": "Tell us a little about you and your firm, and we’ll reply soon."
+    },
+    "contact": {
+      "label": "Contact",
+      "h2": "Get in touch",
+      "cards": [
+        {
+          "k": "issues",
+          "t": "Feedback",
+          "d": "Found a bug or have an idea? Tell us on GitHub Issues.",
+          "link": "GitHub Issues"
+        },
+        {
+          "k": "support",
+          "t": "Support",
+          "d": "Accounts, plans and everyday questions — we reply within one working day.",
+          "link": "support@instarmony.com"
+        },
+        {
+          "k": "report",
+          "t": "Report",
+          "d": "Seen something that shouldn’t be there? Write to us with a screenshot.",
+          "link": "report@instarmony.com"
+        },
+        {
+          "k": "privacy",
+          "t": "Privacy & data",
+          "d": "Export or delete your data, or ask about privacy — handled within 15 working days.",
+          "link": "privacy@instarmony.com"
+        }
+      ]
+    },
+    "cta": {
+      "h2": "The first page is yours to write.",
+      "lede": "Pick a companion and start today."
+    },
+    "name": {
+      "label": "The name",
+      "h2": "Three words, **one name**.",
+      "shared": "lar and rel share an r",
+      "figLabel": "Sholarel in three parts: Sho from shore, lar from the Lares, rel said like real — lar and rel share an r.",
+      "parts": [
+        {
+          "k": "sho",
+          "syl": "Sho",
+          "src": "shore",
+          "t": "A shore to come back to",
+          "d": "From shore: somewhere to come back to, and a harbour when the weather turns."
+        },
+        {
+          "k": "lar",
+          "syl": "lar",
+          "src": "Lares",
+          "t": "A guardian of the home",
+          "d": "The Lares were the household guardians of ancient Rome, keeping watch over a family’s everyday life. Here, that means help with your own day-to-day, and company that stays personal."
+        },
+        {
+          "k": "rel",
+          "syl": "rel",
+          "src": "real",
+          "t": "Made for real life",
+          "d": "Say it aloud and you’ll hear real. Sholarel is for the life you actually live — not fictional role-play, and not a virtual game."
+        }
+      ]
     }
   },
   "docsPage": {
     "label": "Docs",
     "h1": "From first launch to building your own tools",
-    "lede": "Three doors: installation, agent development and troubleshooting.",
+    "lede": "Three ways in: getting started, sub-agents and tools, and troubleshooting.",
     "cards": [
       {
         "title": "Quickstart guide",
-        "desc": "Installation, initial onboarding, account setup, and cross-device data synchronization.",
+        "desc": "Installing, first launch, creating an account and the basic settings.",
         "cta": "Read guide →",
         "icon": "book",
         "href": "quickStart"
       },
       {
         "title": "SubAgent & tool development",
-        "desc": "Understand SubAgent scheduling, ZeroClaw execution pipeline, and Rust browser commands.",
+        "desc": "How sub-agents use tools, how to plug in your own, and notes on browser automation.",
         "cta": "Explore agent docs →",
         "icon": "terminal",
         "href": "agent"
       },
       {
         "title": "Troubleshooting FAQ",
-        "desc": "Hot-update recovery, Windows WebView2 runtime, audio voiceprint configuration, and billing help.",
+        "desc": "Failed updates, a missing WebView2, voice settings and subscription questions.",
         "cta": "View FAQ →",
         "icon": "help",
         "href": "faq"
@@ -1372,7 +948,7 @@
     ],
     "bannerTitle": "The full bilingual docs hub",
     "bannerCta": "Open the docs hub →",
-    "bannerNote": "Markdown sources live in the GitHub repository's docs/ directory"
+    "bannerNote": "Can’t find what you need? Write to us:"
   },
   "privacyPage": {
     "label": "Privacy",
@@ -1415,14 +991,15 @@
       },
       {
         "title": "7. Cookies & Local Storage Preferences",
-        "body": "Our product website utilizes client-side storage (localStorage / sessionStorage) solely to preserve language preferences (instarmony_lang), theme options (eidolon_theme), and basic navigation state. We do not use third-party tracking or advertising cookies. You may clear your local site data at any time via browser settings or the 'Make Fea forget me' button in the footer."
+        "body": "When you visit this website, we store only a few preferences locally in your browser (localStorage / sessionStorage): the companion showing you around (sholarel_companion), whether the small notes are shown (sholarel_quiet, sholarel_whispers_seen), and your language preference (instarmony_lang, instarmony_lang_hint). We do not use third-party tracking or advertising cookies. You can clear these at any time in your browser settings or with “Forget me on this browser” in the site footer."
       },
       {
         "title": "8. Your Rights, Data Deletion & Contact",
-        "body": "Under applicable privacy laws (including GDPR and CCPA), you retain the right to access, export, correct, or request the erasure of your personal data. You can export your memory repository directly within the app or request full account deletion. For data rights requests or privacy inquiries, contact our Data Protection desk at privacy@instarmony.com. Operator: Instarmony. We respond to all verified requests within 15 business days."
+        "body": "Under applicable privacy laws (including GDPR and CCPA), you have the right to access, export, correct, or request the erasure of your personal data. To export or delete your data (including closing your account), or for any privacy inquiry, contact our Data Protection desk at privacy@instarmony.com. Operator: Instarmony. We respond to all verified requests within 15 business days."
       }
     ],
-    "repoCta": "View project repository"
+    "helpCta": "Questions about this policy?",
+    "helpEmail": "privacy@instarmony.com"
   },
   "termsPage": {
     "label": "Terms",
@@ -1468,18 +1045,525 @@
         "body": "We reserve the right to modify these Terms. Material changes will be communicated via in-app notices or email at least 14 days before taking effect. For support, billing inquiries, or refund requests, please contact us at support@instarmony.com. To report prohibited content or violations, email report@instarmony.com. Operator: Instarmony. Any dispute arising from or relating to these Terms shall be resolved through friendly consultation or submitted to the competent courts of Instarmony's registered jurisdiction."
       }
     ],
-    "repoCta": "View project repository"
+    "helpCta": "Questions about these terms?",
+    "helpEmail": "support@instarmony.com"
   },
   "notFound": {
-    "h1": "I can't find this page either…",
-    "note": "But I remember the way home.",
-    "cta": "Back to home"
+    "label": "404",
+    "h1": "This page wandered off.",
+    "note": "⟨It’s okay — I remember the way back.|No matter. I know the way back.⟩",
+    "cta": "Back to home",
+    "alt": "Link to the home page",
+    "or": "Or start again from here"
   },
-  "stub": {
-    "loginTitle": "Heading to downloads",
-    "loginBody": "The web app is currently in invite-only beta — heading to the download page.",
-    "contactTitle": "Heading to contact & community",
-    "contactBody": "Fea, partnerships and feedback all live on the About page.",
-    "here": "If nothing happens, click here"
+  "whisper": {
+    "lines": {
+      "hero": "⟨Hi, you made it. Where shall we start?|You’re here. Pick a section — I’ll walk you through.⟩",
+      "desk": "⟨This is where I sit, right at the edge of your screen.|I keep to the edge of the screen. Call when you need me.⟩",
+      "trust": "⟨I won’t look unless you say yes.|Not without your permission.⟩",
+      "pricing": "⟨A month is enough to get to know each other.|Start with a month. Decide after.⟩",
+      "download": "⟨Come find me once it’s installed.|Call me when it’s installed.⟩",
+      "about": "⟨That’s our story. Take your time.|Everything about us is here.⟩"
+    },
+    "quiet": "Don’t show again",
+    "close": "Close"
+  },
+  "home": {
+    "hero": {
+      "infLabel": "Choose who shows you around",
+      "feaLabel": "Explore with Fea",
+      "aelLabel": "Explore with Ael",
+      "feaTag": "Gentle & delicate · Journal companion",
+      "aelTag": "Calm & reliable · Sharp butler",
+      "hint": "Tap the other side of ∞ to switch",
+      "h1a": "No need to open it.",
+      "h1b": "**{name}** is already here.",
+      "lede": "Sholarel is an AI companion that lives on your desktop and phone. ⟨She|He⟩ remembers what you’ve said, says good morning first, and handles the small things — routes, reading, alarms.",
+      "ctaPrimary": "Download Sholarel",
+      "ctaSecondary": "See plans",
+      "meta": "Windows 10 / 11 · Android 7.0+"
+    },
+    "day": {
+      "label": "A day",
+      "h2": "An ordinary **Wednesday**",
+      "lede": "From a rainy morning to a call before bed — one day with a student, as {name} sees it.",
+      "steps": [
+        {
+          "time": "07:58",
+          "title": "It’s raining. ⟨She|He⟩ speaks first.",
+          "body": "It’s 14°C and drizzling. {name} remembers today’s interview: take an umbrella, skip the white canvas shoes — and here are your talking points, in order.",
+          "shot": "morning",
+          "alt": "Early morning: {name} messages first about the umbrella and lays out the interview points"
+        },
+        {
+          "time": "08:05",
+          "title": "Route and alarm, sorted",
+          "body": "Ask the safest way there and ⟨she|he⟩ checks: Metro Line 5, about 41 minutes, leave by 8:50. The alarm is already set.",
+          "shot": "route",
+          "alt": "{name} plans the metro route and sets an alarm to leave"
+        },
+        {
+          "time": "19:12",
+          "title": "Busy? ⟨She|He⟩ keeps quiet.",
+          "body": "Fewer messages tonight — must be revision. {name} doesn’t push; just a reminder at 10:30 to wrap up and sleep.",
+          "shot": "quiet",
+          "alt": "Evening: {name} notices you’re revising and only offers a 10:30 reminder"
+        },
+        {
+          "time": "21:32",
+          "title": "Two PDFs, three topics",
+          "body": "Drop the lecture slides and past papers into the chat. {name} reads both, pulls out the three topics that keep coming back, and marks what can wait.",
+          "shot": "notes",
+          "alt": "{name} reads two PDFs and lists the three recurring exam topics"
+        },
+        {
+          "time": "Bedtime",
+          "title": "One call before sleep",
+          "body": "On a video call you say the last mistake can wait till morning. {name} asks: after the exam, what do you most want to do?",
+          "shot": "call",
+          "alt": "A video call with {name} before bed, with subtitles on screen"
+        }
+      ]
+    },
+    "desk": {
+      "label": "On the desktop",
+      "h2a": "While you work,",
+      "h2b": "**{name}** sits at the edge of your screen.",
+      "lede": "On Windows, {name} is a floating 3D (VRM) or Live2D character on your desktop. Coding, essays, a show — ⟨she|he⟩’s in the corner of your eye, and you never have to switch windows to talk.",
+      "points": [
+        {
+          "t": "Always on top",
+          "d": "The desktop companion floats above other windows instead of getting buried."
+        },
+        {
+          "t": "Your size",
+          "d": "Scale the floating window in Settings so it takes exactly the space you want."
+        },
+        {
+          "t": "Hover to type",
+          "d": "Turn on the pinned input box and just rest your cursor on {name} to start typing."
+        }
+      ],
+      "artAlt": "Illustration: {name} sitting on a monitor at night",
+      "shotAlt": "Chatting with {name} in the Windows app",
+      "shotNote": "Windows app · demo account"
+    },
+    "powers": {
+      "label": "Inside the app",
+      "h2a": "Someone to talk to —",
+      "h2b": "and help with the rest of **the day**.",
+      "lede": "Beyond chat there’s a journal, planner, reviews and exploration — some you write together, some {name} goes and does for you.",
+      "more": "All features →",
+      "items": {
+        "journal": {
+          "title": "Two-way journal",
+          "body": "You write a page, {name} writes back. Each book holds 5,000 characters; fill it and start the next.",
+          "alt": "The two-way journal: three books and their word counts"
+        },
+        "plan": {
+          "title": "Plans",
+          "body": "To-dos, habits and notes in one place — what’s in progress, today’s check-ins and focus minutes at a glance.",
+          "alt": "Plans: things in progress, today’s check-ins and focus minutes"
+        },
+        "insights": {
+          "title": "Reviews",
+          "body": "Focus time and a mood curve over 3, 7 or 30 days, so you can see your own rhythm.",
+          "alt": "Reviews: focus minutes and a mood curve",
+          "altB": "The mood curve in Review: how the last few days felt (app screenshot)"
+        },
+        "explore": {
+          "title": "Explores on ⟨her|his⟩ own",
+          "body": "When things are quiet, {name} looks up topics you care about online and leaves what ⟨she|he⟩ finds in Discoveries.",
+          "note": "Deep explore needs the desktop app and a higher plan.",
+          "alt": "The autonomous exploration page with one finished run",
+          "altB": "Two discoveries: three quiet parks in the west of town, and five piano pieces for sleep"
+        },
+        "files": {
+          "title": "Hand ⟨her|him⟩ anything",
+          "body": "Drop PDFs, images or video into the chat — 44 formats; videos up to 5 minutes and 64 MB.",
+          "alt": "Two PDF files sent in a chat"
+        },
+        "more": {
+          "title": "And more",
+          "chips": [
+            "Voice & video calls",
+            "Call subtitles",
+            "Focus cabin",
+            "Mood notes",
+            "Growth & mini-games",
+            "QQ / WeChat bridge (experimental)"
+          ]
+        }
+      }
+    },
+    "trust": {
+      "label": "Consent",
+      "h2a": "Until you say yes,",
+      "h2b": "**{name}** sees nothing.",
+      "lede": "Looking at your screen, taking a photo, sending notifications — each of these asks you first.",
+      "cardAlt": "Consent dialog asking whether to allow proactive screen viewing and photos",
+      "cardNote": "The consent dialog in the app (real screen, Chinese UI)",
+      "points": [
+        {
+          "t": "Asks before looking",
+          "d": "The first time {name} wants to look at your screen or take a photo, a dialog asks you. Until you allow it, no image is captured."
+        },
+        {
+          "t": "No means no",
+          "d": "Choose Off and it may ask once more after 7 days; decline again and it won’t ask again. Turn it back on anytime in Settings → Calls & Vision."
+        },
+        {
+          "t": "Notifications, too",
+          "d": "Offline push turns on only after you agree, and can be switched off in Settings → Offline push."
+        },
+        {
+          "t": "We don’t sell data",
+          "d": "Local-first and minimal by design. We don’t sell your data or use private conversations to train public base models without your authorization."
+        }
+      ],
+      "link": "How we treat your data →"
+    },
+    "log": {
+      "label": "Shipping",
+      "h2a": "First week of public beta:",
+      "h2b": "a release **every day**.",
+      "lede": "Sholarel opened its public beta on 1 November. These are the latest updates — not a roadmap, things already in the app.",
+      "releaseLabel": "Current",
+      "link": "Full changelog →",
+      "items": [
+        {
+          "v": "3.0.18",
+          "d": "Nov 6",
+          "t": "Android incremental updates now show progress, and tell you which step failed if one does. Journal home tidy-ups."
+        },
+        {
+          "v": "3.0.17",
+          "d": "Nov 5",
+          "t": "Image and video attachments open or download right from the chat; better memory recall; a paper texture on the home screen."
+        },
+        {
+          "v": "3.0.15–16",
+          "d": "Nov 4",
+          "t": "Starts in about 4 seconds and resumes faster; audio, video and push improvements; Android incremental updates from 3.0.16."
+        },
+        {
+          "v": "3.0.14",
+          "d": "Nov 3",
+          "t": "Steadier attachments and proactive messages; reset your password inside the app."
+        },
+        {
+          "v": "3.0.8",
+          "d": "Nov 2",
+          "t": "Fixed: the payment page sometimes didn’t open after tapping Upgrade."
+        }
+      ]
+    },
+    "plans": {
+      "label": "Plans",
+      "h2a": "Start with a month.",
+      "h2b": "Go **deeper** when you’re ready.",
+      "lede": "Five plans, by how deep the companionship goes. USD plans renew monthly and can be cancelled anytime in the app — benefits last to the end of the period.",
+      "first": "First month",
+      "cta": "Compare all five →",
+      "dew": "Out of Echo? Chrono Dew is credit that never expires — no account needed to buy.",
+      "dewLink": "About Chrono Dew →"
+    },
+    "investors": {
+      "label": "Investors & partners",
+      "h2": "Want the deeper picture?",
+      "body": "We’re glad to give investors and partners a full product demo and walk through the roadmap, technical choices and team. Internal numbers stay off the website — let’s talk in person.",
+      "cta": "Team & contact →"
+    },
+    "faqTitle": "Questions",
+    "faq": [
+      {
+        "q": "What is Sholarel?",
+        "a": "An AI companion app by Instarmony, formerly called Eidolon. Choose Fea or Ael as your companion: they live on your computer’s desktop and your phone, remember what you’ve talked about, check in first, and help with small things like routes, reading files and reminders."
+      },
+      {
+        "q": "Which devices are supported?",
+        "a": "Windows 10 / 11 (64-bit) and Android 7.0+ (arm64). The web version is in invite-only testing. macOS, iOS and Linux aren’t supported yet.",
+        "downloadLink": true
+      },
+      {
+        "q": "Is it free?",
+        "a": "The download is free; AI features like chat and calls need a subscription, and there’s no free trial. USD plans renew automatically and can be cancelled anytime in the app, with benefits kept to the end of the period."
+      },
+      {
+        "q": "What happens when I run out of Echo?",
+        "a": "AI features like chat and calls draw on Echo credit. When it runs out, your journal, to-dos and notes keep working; to keep talking, add an Echo Boost for the month, or Chrono Dew — credit that never expires and can be bought without an account."
+      },
+      {
+        "q": "Will it look at my screen?",
+        "a": "Not without asking. Before looking at your screen or taking a photo, it asks for your consent; until you allow it, no image is captured. Decline, and it may ask once more after 7 days — then never again.",
+        "privacyLink": true
+      },
+      {
+        "q": "How are Fea and Ael different?",
+        "a": "Fea is gentle and delicate, a journaling confidant; Ael is calm and reliable, a sharp butler type. Same abilities, different personalities and ways of talking. Switch anytime, and rename your companion if you like."
+      }
+    ],
+    "cta": {
+      "h2": "Install Sholarel. Let **{name}** say hello.",
+      "lede": "Available for Windows and Android. Plans can be started right here on the web."
+    }
+  },
+  "trustPage": {
+    "label": "Privacy & consent",
+    "h1a": "Good company",
+    "h1b": "starts with **asking first**.",
+    "lede": "⟨She|He⟩ can see, hear and remember what you say, so every step waits for your yes. This page puts it plainly: what we use, what we never touch, and how you take it back at any time.",
+    "principles": {
+      "label": "Principles",
+      "h2": "Three things, up front",
+      "items": [
+        {
+          "t": "Local first, only what’s needed",
+          "d": "Everyday chat memories, your journal and your to-dos stay on your device first. Only when you turn on cross-device sync or use a feature that needs the cloud does the necessary data travel — encrypted."
+        },
+        {
+          "t": "We don’t sell data or train public models on your chats",
+          "d": "Your personal data is not sold to anyone. Without your permission, your private chats are never used to train public base models."
+        },
+        {
+          "t": "Every permission asks first",
+          "d": "Screen, camera, microphone, offline push: none of them turns on without your action and consent."
+        }
+      ]
+    },
+    "perms": {
+      "label": "Permissions",
+      "h2": "Everything you say yes to",
+      "lede": "The default, what happens if you decline, and where to switch it off — all in one place.",
+      "useLabel": "What it’s for",
+      "defLabel": "Default",
+      "offLabel": "Where to turn it off",
+      "items": [
+        {
+          "t": "Proactive screen look / photo",
+          "use": "Lets ⟨her|him⟩ glance at what you’re doing at the right moment and pick up the thread.",
+          "def": "Asks before the first time. Choose Off and it may ask once more after 7 days; decline again and it stops asking.",
+          "off": "Settings → Calls & Vision"
+        },
+        {
+          "t": "Microphone",
+          "use": "Voice and video calls.",
+          "def": "Never turned on without your action and permission.",
+          "off": "Microphone permission in your system settings"
+        },
+        {
+          "t": "Offline push",
+          "use": "Delivers reminders and proactive messages to your notification bar when the app is closed.",
+          "def": "Only after you agree; the push service runs only from then on.",
+          "off": "Settings → Offline push"
+        },
+        {
+          "t": "Voice samples",
+          "use": "Used only to synthesize your custom voice; no other user can see them.",
+          "def": "Only exist if you record or upload them.",
+          "off": "Delete anytime in Settings; deletion is permanent"
+        }
+      ],
+      "shotAlt": "The consent dialog in the app, asking before any proactive screen look or photo (real screen, Chinese UI)"
+    },
+    "pay": {
+      "label": "Payments",
+      "h2": "We never see your card number",
+      "body": "Payments for plans and Chrono Dew are processed by Waffo as merchant of record, certified PCI-DSS Level 1. Card numbers, CVV and expiry dates never pass through or sit on our servers.",
+      "rows": [
+        {
+          "t": "CNY",
+          "d": "WeChat Pay, Alipay, UnionPay. Renewed manually each period — nothing is charged automatically."
+        },
+        {
+          "t": "USD",
+          "d": "Card, Apple Pay, Google Pay. Renews automatically; cancel anytime in the app and keep your benefits until the paid period ends."
+        }
+      ]
+    },
+    "fair": {
+      "label": "Echo",
+      "h2": "No quiet downgrades when Echo runs out",
+      "body": "When your Echo is used up, AI chat, voice, proactive care and sub-agents pause — they don’t silently switch to a worse model. Your journal, to-dos, habits, notes and history stay usable. To keep talking, wait for the next period or buy an Echo Boost or Chrono Dew.",
+      "link": "See plans →"
+    },
+    "rights": {
+      "label": "Your data",
+      "h2": "Your data, your call",
+      "items": [
+        {
+          "t": "Export or delete",
+          "d": "To export or delete your data, including closing your account, write to privacy@instarmony.com. We verify and handle requests within 15 working days."
+        },
+        {
+          "t": "Delete voice samples",
+          "d": "Recorded voice samples can be deleted in Settings at any time; deletion is permanent."
+        },
+        {
+          "t": "What this site remembers",
+          "d": "This website keeps a few small things in your browser: who’s walking you around, your language, and whether you closed the little notes. No third-party tracking or ad cookies. “Forget me on this browser” in the footer clears it all."
+        }
+      ]
+    },
+    "report": {
+      "label": "Report",
+      "h2": "Seen something that shouldn’t be there?",
+      "body": "Write to report@instarmony.com with a screenshot and roughly when it happened. We’ll handle it as quickly as we can."
+    },
+    "legal": {
+      "label": "Legal",
+      "privacy": "Privacy policy",
+      "privacyD": "What we collect, how it’s used, who processes it, and your rights.",
+      "terms": "Terms of service",
+      "termsD": "Plans, refunds and the rules of use."
+    },
+    "cta": {
+      "h2": "Now that’s settled — go meet ⟨her|him⟩.",
+      "lede": "Everything on this page applies from the day you install the app."
+    }
+  },
+  "changelogPage": {
+    "label": "Changelog",
+    "h1a": "What changed in every version,",
+    "h1b": "written down **here**.",
+    "lede": "Sholarel opened to everyone on November 1, 2026. Below is every update worth mentioning since then; purely behind-the-scenes changes aren’t listed.",
+    "spanLabel": "Since public beta",
+    "spanFrom": "3.0.0",
+    "spanTo": "3.0.18",
+    "spanDates": "Nov 1 → Nov 6",
+    "latestLabel": "Latest",
+    "startTag": "Public beta opens",
+    "days": [
+      {
+        "iso": "2026-11-06",
+        "date": "Nov 6",
+        "releases": [
+          {
+            "v": "3.0.18",
+            "items": [
+              "Android incremental updates show live progress — and if one fails, you can see which step it stopped at.",
+              "Tidier message list and weather on the mobile journal home."
+            ]
+          }
+        ]
+      },
+      {
+        "iso": "2026-11-05",
+        "date": "Nov 5",
+        "releases": [
+          {
+            "v": "3.0.17",
+            "items": [
+              "Audio and documents get their own bubbles in the chat; images and videos open or download right there.",
+              "Better memory recall: things you mentioned are more likely to come back at the right moment.",
+              "A paper-card look for the mobile home screen.",
+              "Updates show progress step by step and say so honestly when they time out; forced Android updates can fall back to a browser download."
+            ]
+          }
+        ]
+      },
+      {
+        "iso": "2026-11-04",
+        "date": "Nov 4",
+        "releases": [
+          {
+            "v": "3.0.15 – 3.0.16",
+            "items": [
+              "Faster startup, and almost no wait when you come back from the background.",
+              "Audio and video attachments are no longer wrongly rejected; larger files go through.",
+              "Android: messages fetched by background push are saved locally, so they’re there when you open the app.",
+              "Chrono Dew launches: buy it on the website without signing up, then claim it with a one-time code.",
+              "From 3.0.16, Android updates download only what changed."
+            ]
+          }
+        ]
+      },
+      {
+        "iso": "2026-11-03",
+        "date": "Nov 3",
+        "releases": [
+          {
+            "v": "3.0.14",
+            "items": [
+              "Steadier attachments and proactive messages.",
+              "Android now ships its own certificate trust store, so fewer devices fail to connect.",
+              "Forgot your username or password? Recover it in the app with an email code.",
+              "On first sign-in, Android asks for notification and offline-push consent; suggested replies can be switched off in Settings."
+            ]
+          }
+        ]
+      },
+      {
+        "iso": "2026-11-02",
+        "date": "Nov 2",
+        "releases": [
+          {
+            "v": "3.0.8",
+            "items": [
+              "Fixed the payment page not opening after tapping Upgrade; if it’s briefly unavailable, it now tells you how long to wait."
+            ]
+          },
+          {
+            "v": "3.0.7",
+            "items": [
+              "Downloads use the CDN by default and switch to a backup line automatically if it can’t be reached."
+            ]
+          }
+        ]
+      },
+      {
+        "iso": "2026-11-01",
+        "date": "Nov 1",
+        "start": true,
+        "releases": [
+          {
+            "v": "3.0.5",
+            "items": [
+              "Fixed the plans page not scrolling; the five plans now sit in two rows."
+            ]
+          },
+          {
+            "v": "3.0.4",
+            "items": [
+              "A redesigned plans page, with separate CNY and USD pricing."
+            ]
+          },
+          {
+            "v": "3.0.1",
+            "items": [
+              "Waffo payments."
+            ]
+          },
+          {
+            "v": "3.0.0",
+            "items": [
+              "Public beta release: plan benefits and quota-reset cards, growth and mini-games, a task center, and a new sign-in page."
+            ]
+          }
+        ]
+      }
+    ],
+    "skipped": "Version numbers that are skipped were backend adjustments or internal builds, with no effect on how you use the app.",
+    "faqTitle": "About the public beta",
+    "faq": [
+      {
+        "q": "What does “public beta” mean?",
+        "a": "Since November 1, 2026, anyone can download, sign up for and subscribe to Sholarel. Features are still moving quickly and a few rough edges remain — if you hit one, just tell us."
+      },
+      {
+        "q": "How do I update?",
+        "a": "On Windows the app tells you when a new version is out and installs it once you confirm. Android updates in the app too, and since 3.0.16 it downloads only what changed."
+      },
+      {
+        "q": "Where do I report a problem?",
+        "a": "Open a GitHub issue or write to support@instarmony.com. Including your version number and a screenshot helps us find it faster."
+      }
+    ],
+    "issues": "Send feedback on GitHub →",
+    "cta": {
+      "h2": "The latest version is ready to install.",
+      "lede": "Windows 10 / 11 and Android 7.0 or later."
+    },
+    "count": "{n} releases"
   }
 }

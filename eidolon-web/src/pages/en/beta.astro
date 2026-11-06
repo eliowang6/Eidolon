@@ -9,7 +9,7 @@ const copy = t(lang);
 const faq = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: copy.betaPage.faq.map((item) => ({
+  mainEntity: copy.changelogPage.faq.map((item) => ({
     '@type': 'Question',
     name: item.q,
     acceptedAnswer: { '@type': 'Answer', text: item.a },

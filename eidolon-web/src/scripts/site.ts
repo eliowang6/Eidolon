@@ -1,27 +1,43 @@
-type ThemePref = 'auto' | 'light' | 'dark';
+type Companion = 'fea' | 'ael';
 
 const root = document.documentElement;
-const stored = <T,>(key: string): T | null => {
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const getStored = (key: string, area: Storage | null = safeLocal()): string | null => {
   try {
-    return JSON.parse(localStorage.getItem(key) ?? 'null') as T | null;
+    return area?.getItem(key) ?? null;
   } catch {
     return null;
   }
 };
-const setStored = (key: string, value: string) => {
+const setStored = (key: string, value: string, area: Storage | null = safeLocal()) => {
   try {
-    localStorage.setItem(key, value);
+    area?.setItem(key, value);
   } catch {
-    /* private mode — the site still works, it just forgets */
+    /* private mode: the site still works, it just forgets */
   }
 };
-const removeStored = (key: string) => {
+const removeStored = (key: string, area: Storage | null = safeLocal()) => {
   try {
-    localStorage.removeItem(key);
+    area?.removeItem(key);
   } catch {
     /* ignore */
   }
 };
+function safeLocal(): Storage | null {
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+}
+function safeSession(): Storage | null {
+  try {
+    return window.sessionStorage;
+  } catch {
+    return null;
+  }
+}
 
 /* ── nav ─────────────────────────────────────────────── */
 const nav = document.getElementById('site-nav');
@@ -36,13 +52,16 @@ let drawerOpen = false;
 
 function focusables(): HTMLElement[] {
   if (!drawer) return [];
-  return [...drawer.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')];
+  return [...drawer.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')].filter(
+    (el) => el.offsetParent !== null || el === document.activeElement,
+  );
 }
 function openDrawer() {
   if (!drawer || drawerOpen) return;
   drawerOpen = true;
   lastFocus = document.activeElement as HTMLElement;
   drawer.hidden = false;
+  requestAnimationFrame(() => drawer.classList.add('open'));
   root.classList.add('drawer-open');
   openButton?.setAttribute('aria-expanded', 'true');
   document.body.style.overflow = 'hidden';
@@ -51,6 +70,7 @@ function openDrawer() {
 function closeDrawer(returnFocus = true) {
   if (!drawer || !drawerOpen) return;
   drawerOpen = false;
+  drawer.classList.remove('open');
   drawer.hidden = true;
   root.classList.remove('drawer-open');
   openButton?.setAttribute('aria-expanded', 'false');
@@ -80,44 +100,43 @@ addEventListener('keydown', (e) => {
     first.focus();
   }
 });
-
-/* ── daylight / theme ───────────────────────────────── */
-const metaTheme = document.getElementById('meta-theme');
-const themeButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-theme]')];
-const themeKey = 'eidolon_theme';
-const qaOverride = new URLSearchParams(location.search).get('t');
-const autoPart = () => {
-  const h = new Date().getHours();
-  return h >= 5 && h < 10 ? 'dawn' : h >= 10 && h < 16 ? 'day' : h >= 16 && h < 19 ? 'dusk' : 'night';
-};
-const currentTheme = (): ThemePref => {
-  try {
-    const value = localStorage.getItem(themeKey);
-    return value === 'light' || value === 'dark' ? value : 'auto';
-  } catch {
-    return 'auto';
-  }
-};
-function paintTheme(pref: ThemePref, persist: boolean) {
-  const part = qaOverride && !persist ? qaOverride : pref === 'light' ? 'day' : pref === 'dark' ? 'night' : autoPart();
-  if (part === 'dawn' || part === 'day' || part === 'dusk' || part === 'night') {
-    root.dataset.daypart = part;
-  }
-  const paper: Record<string, string> = { dawn: '#F6F0E9', day: '#F5F2EA', dusk: '#F4ECE1', night: '#0E1A15' };
-  metaTheme?.setAttribute('content', paper[root.dataset.daypart ?? 'day'] ?? paper.day);
-  if (persist) {
-    if (pref === 'auto') removeStored(themeKey);
-    else setStored(themeKey, pref);
-  }
-  themeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.theme === pref)));
-}
-paintTheme(currentTheme(), false);
-themeButtons.forEach((button) => {
-  button.addEventListener('click', () => paintTheme((button.dataset.theme as ThemePref) ?? 'auto', true));
+matchMedia('(min-width: 1101px)').addEventListener('change', (e) => {
+  if (e.matches) closeDrawer(false);
 });
-setInterval(() => {
-  if (currentTheme() === 'auto' && !qaOverride) paintTheme('auto', false);
-}, 5 * 60 * 1000);
+
+/* ── who you walk with ──────────────────────────────── */
+const companionKey = 'sholarel_companion';
+const current = (): Companion => (root.dataset.companion === 'ael' ? 'ael' : 'fea');
+
+function paintCompanion(who: Companion) {
+  root.dataset.companion = who;
+  document.querySelectorAll<HTMLElement>('[data-companion-set]').forEach((button) => {
+    const on = button.dataset.companionSet === who;
+    button.setAttribute('aria-pressed', String(on));
+    button.classList.toggle('is-on', on);
+  });
+}
+function setCompanion(who: Companion, persist = true) {
+  const changed = who !== current();
+  paintCompanion(who);
+  if (persist) setStored(companionKey, who);
+  if (changed) dispatchEvent(new CustomEvent('companionchange', { detail: who }));
+}
+// A shared link (?c=ael) counts as a choice.
+const fromQuery = new URLSearchParams(location.search).get('c');
+if (fromQuery === 'fea' || fromQuery === 'ael') setStored(companionKey, fromQuery);
+paintCompanion(current());
+
+document.querySelectorAll<HTMLElement>('[data-companion-set]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const who = button.dataset.companionSet === 'ael' ? 'ael' : 'fea';
+    setCompanion(who);
+  });
+});
+// Keep other tabs in step.
+addEventListener('storage', (e) => {
+  if (e.key === companionKey && (e.newValue === 'fea' || e.newValue === 'ael')) paintCompanion(e.newValue);
+});
 
 /* ── language ───────────────────────────────────────── */
 document.querySelectorAll<HTMLAnchorElement>('[data-lang-switch]').forEach((a) => {
@@ -128,18 +147,8 @@ document.querySelectorAll<HTMLAnchorElement>('[data-lang-switch]').forEach((a) =
 const langHint = document.getElementById('lang-hint');
 const hintKey = 'instarmony_lang_hint';
 if (langHint) {
-  let dismissed = false;
-  try {
-    dismissed = localStorage.getItem(hintKey) === '1';
-  } catch {
-    /* ignore */
-  }
-  let wantsEnglish = false;
-  try {
-    wantsEnglish = localStorage.getItem('instarmony_lang') === 'en';
-  } catch {
-    /* ignore */
-  }
+  const dismissed = getStored(hintKey) === '1';
+  const wantsEnglish = getStored('instarmony_lang') === 'en';
   if (wantsEnglish && !dismissed) langHint.hidden = false;
   langHint.querySelector('[data-lang-hint-close]')?.addEventListener('click', () => {
     langHint.hidden = true;
@@ -151,7 +160,7 @@ if (langHint) {
 root.classList.add('reveal-ready');
 const revealItems = [...document.querySelectorAll<HTMLElement>('.reveal')];
 if (revealItems.length) {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (reducedMotion || !('IntersectionObserver' in window)) {
     revealItems.forEach((el) => el.classList.add('in'));
   } else {
     const io = new IntersectionObserver(
@@ -162,141 +171,224 @@ if (revealItems.length) {
           io.unobserve(entry.target);
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' },
     );
     revealItems.forEach((el) => io.observe(el));
   }
 }
 
-/* ── visit memory + Fea's notes ─────────────────────── */
-type Visit = { v: number; first: number; last: number; count: number; lastSection: string | null };
-const visitKey = 'eidolon_visit';
-const now = Date.now();
-const previous = stored<Visit>(visitKey) ?? { v: 1, first: now, last: 0, count: 0, lastSection: null };
-const returning = previous.count > 0;
-const sameSession = returning && now - previous.last < 30 * 60 * 1000;
-const gapDays = previous.last ? Math.floor((now - previous.last) / 86_400_000) : 0;
-const visit: Visit = {
-  v: 1,
-  first: previous.first || now,
-  last: now,
-  count: sameSession ? Math.max(previous.count, 1) : previous.count + 1,
-  lastSection: previous.lastSection,
-};
-setStored(visitKey, JSON.stringify(visit));
-
-const escapeHtml = (value: string) =>
-  value.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] ?? c);
-
-const heroNote = document.querySelector<HTMLElement>('[data-hero-note]');
-const heroNoteText = heroNote?.querySelector<HTMLElement>('[data-mnote-text]') ?? null;
-function firstNote() {
-  if (!heroNote) return '';
-  return heroNote.dataset.noteFirst ?? '';
+/* ── whispers ───────────────────────────────────────── */
+// Short notes in the companion's handwriting, tied to a few sections. They are
+// rare by design: at most two per page, three per visit, never back to back,
+// and one tap on "quiet" stops them for good.
+const whisper = document.getElementById('whisper');
+const whisperText = whisper?.querySelector<HTMLElement>('[data-whisper-text]') ?? null;
+const quietKey = 'sholarel_quiet';
+let whisperLines: Record<string, string> = {};
+try {
+  whisperLines = JSON.parse(document.getElementById('whisper-lines')?.textContent ?? '{}');
+} catch {
+  whisperLines = {};
 }
-function renderHeroNote() {
-  if (!heroNote || !heroNoteText) return;
-  let html = firstNote();
-  if (returning && previous.lastSection) {
-    html = (heroNote.dataset.noteSection ?? html).replace('{section}', escapeHtml(previous.lastSection));
-  } else if (returning && gapDays >= 2) {
-    html = (heroNote.dataset.noteDays ?? html).replace('{n}', String(gapDays));
-  }
-  heroNoteText.innerHTML = html;
-}
-renderHeroNote();
+const session = safeSession();
+const seenKey = 'sholarel_whispers_seen';
+const seen = new Set<string>((getStored(seenKey, session) ?? '').split(',').filter(Boolean));
+let shownThisPage = 0;
+let lastShown = 0;
+let hideTimer = 0;
 
-const sections = [...document.querySelectorAll<HTMLElement>('[data-section-name]')];
-if (sections.length) {
+function hideWhisper() {
+  if (!whisper) return;
+  whisper.classList.remove('show');
+  window.clearTimeout(hideTimer);
+  window.setTimeout(() => {
+    if (!whisper.classList.contains('show')) whisper.hidden = true;
+  }, 520);
+}
+function showWhisper(key: string) {
+  if (!whisper || !whisperText) return;
+  const line = whisperLines[key];
+  if (!line || seen.has(key)) return;
+  if (getStored(quietKey) === '1') return;
+  if (shownThisPage >= 2 || seen.size >= 3) return;
+  if (Date.now() - lastShown < 25_000) return;
+  if (drawerOpen) return;
+  seen.add(key);
+  setStored(seenKey, [...seen].join(','), session);
+  shownThisPage += 1;
+  lastShown = Date.now();
+  whisperText.innerHTML = line;
+  whisper.hidden = false;
+  requestAnimationFrame(() => whisper.classList.add('show'));
+  window.clearTimeout(hideTimer);
+  hideTimer = window.setTimeout(hideWhisper, 9000);
+}
+whisper?.querySelector('[data-whisper-close]')?.addEventListener('click', hideWhisper);
+whisper?.querySelector('[data-whisper-quiet]')?.addEventListener('click', () => {
+  setStored(quietKey, '1');
+  hideWhisper();
+});
+whisper?.addEventListener('mouseenter', () => window.clearTimeout(hideTimer));
+whisper?.addEventListener('mouseleave', () => {
+  hideTimer = window.setTimeout(hideWhisper, 4000);
+});
+
+const whisperTargets = [...document.querySelectorAll<HTMLElement>('[data-whisper]')];
+if (whisper && whisperTargets.length && 'IntersectionObserver' in window) {
+  const dwell = new Map<Element, number>();
   const io = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        const name = (entry.target as HTMLElement).dataset.sectionName?.trim();
-        if (!name || name === '开始' || name === 'Start') continue;
-        visit.lastSection = name;
-        setStored(visitKey, JSON.stringify(visit));
+        const el = entry.target as HTMLElement;
+        if (entry.isIntersecting) {
+          const delay = Number(el.dataset.whisperDelay ?? 1600);
+          dwell.set(
+            el,
+            window.setTimeout(() => {
+              showWhisper(el.dataset.whisper ?? '');
+              io.unobserve(el);
+            }, delay),
+          );
+        } else {
+          window.clearTimeout(dwell.get(el));
+        }
       }
     },
-    { threshold: 0.5 }
+    { threshold: 0.45 },
   );
-  sections.forEach((section) => io.observe(section));
+  whisperTargets.forEach((el) => io.observe(el));
 }
 
-const stayNote = document.getElementById('stay-note');
-if (stayNote) {
-  let shown = false;
-  try {
-    shown = sessionStorage.getItem('eidolon_stay_note') === '1';
-  } catch {
-    /* ignore */
-  }
-  if (!shown) {
-    setTimeout(() => {
-      stayNote.hidden = false;
-      requestAnimationFrame(() => stayNote.classList.add('show'));
-      try {
-        sessionStorage.setItem('eidolon_stay_note', '1');
-      } catch {
-        /* ignore */
-      }
-      setTimeout(() => {
-        stayNote.classList.remove('show');
-        setTimeout(() => {
-          stayNote.hidden = true;
-        }, 500);
-      }, 8000);
-    }, 180_000);
-  }
-}
-
-/* ── forget me ──────────────────────────────────────── */
-const forgetButton = document.querySelector<HTMLButtonElement>('[data-forget]');
-const forgetNote = document.querySelector<HTMLElement>('[data-forget-note]');
-forgetButton?.addEventListener('click', () => {
-  removeStored(visitKey);
-  removeStored(themeKey);
-  removeStored('instarmony_theme');
-  visit.count = 1;
-  visit.lastSection = null;
-  paintTheme('auto', false);
-  if (heroNoteText) heroNoteText.innerHTML = firstNote();
-  if (forgetNote) {
-    forgetNote.hidden = false;
-    setTimeout(() => {
-      forgetNote.hidden = true;
-    }, 6000);
-  }
+/* ── forget this browser ────────────────────────────── */
+document.querySelectorAll<HTMLButtonElement>('[data-forget]').forEach((button) => {
+  button.addEventListener('click', () => {
+    ['sholarel_companion', quietKey, 'instarmony_lang', hintKey, 'eidolon_theme', 'eidolon_visit', 'instarmony_theme'].forEach(
+      (key) => removeStored(key),
+    );
+    removeStored(seenKey, session);
+    paintCompanion('fea');
+    const note = document.querySelector<HTMLElement>('[data-forget-note]');
+    if (note) {
+      note.hidden = false;
+      window.setTimeout(() => {
+        note.hidden = true;
+      }, 6000);
+    }
+  });
 });
 
-/* ── metric count-up ────────────────────────────────── */
-const metrics = [...document.querySelectorAll<HTMLElement>('[data-metric]')];
-if (metrics.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        const el = entry.target as HTMLElement;
-        observer.unobserve(el);
-        const targetA = Number(el.dataset.to ?? 0);
-        const targetB = el.dataset.rangeTo ? Number(el.dataset.rangeTo) : null;
-        const prefix = el.dataset.prefix ?? '';
-        const suffix = el.dataset.suffix ?? '';
-        const start = performance.now();
-        const duration = 800;
-        const tick = (time: number) => {
-          const progress = Math.min(1, (time - start) / duration);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const a = Math.round(targetA * eased);
-          el.textContent = targetB === null
-            ? `${prefix}${a}${suffix}`
-            : `${a}–${Math.round(targetB * eased)}${suffix}`;
-          if (progress < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      }
-    },
-    { threshold: 0.5 }
-  );
-  metrics.forEach((metric) => observer.observe(metric));
+/* ── live release version ───────────────────────────── */
+// The version comes from the app server's release manifest (CORS-enabled,
+// written by the release pipeline), so a release never needs a site rebuild.
+// If it can't be fetched, the static text stays — never blank, never "undefined".
+const RELEASE_TIMEOUT_MS = 4000;
+const formatSize = (bytes: unknown) =>
+  typeof bytes === 'number' && bytes > 0 ? `${Math.round(bytes / 1024 / 1024)} MB` : '';
+// pub_date is UTC; render it in UTC+8 so both languages show the same date.
+const formatDate = (value: unknown) => {
+  if (typeof value !== 'string' || !value) return '';
+  const parsed = Date.parse(value);
+  if (Number.isNaN(parsed)) return value.slice(0, 10);
+  return new Date(parsed + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+};
+type Manifest = {
+  version?: unknown;
+  pub_date?: unknown;
+  size?: unknown;
+  url?: unknown;
+  fallback_url?: unknown;
+};
+const manifests = new Map<string, Promise<Manifest>>();
+function loadManifest(endpoint: string): Promise<Manifest> {
+  let pending = manifests.get(endpoint);
+  if (!pending) {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), RELEASE_TIMEOUT_MS);
+    pending = fetch(`${endpoint}?ts=${Date.now()}`, { cache: 'no-store', signal: controller.signal })
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error(String(response.status)))))
+      .then((data: Manifest) => {
+        if (typeof data.version !== 'string' || !data.version) throw new Error('missing version');
+        return data;
+      })
+      .finally(() => window.clearTimeout(timeout));
+    manifests.set(endpoint, pending);
+  }
+  return pending;
 }
+document.querySelectorAll<HTMLElement>('[data-release]').forEach((node) => {
+  const endpoint = node.dataset.releaseEndpoint;
+  if (!endpoint) return;
+  const label = node.dataset.releaseLabel ?? '';
+  const fallback = node.dataset.releaseFallback ?? node.textContent ?? '';
+  const parts = (node.dataset.releaseParts ?? 'version,date,size').split(',');
+  loadManifest(endpoint)
+    .then((data) => {
+      const values: Record<string, string> = {
+        version: String(data.version),
+        date: formatDate(data.pub_date),
+        size: formatSize(data.size),
+      };
+      const text = parts.map((part) => values[part.trim()]).filter(Boolean).join(' · ');
+      node.textContent = `${label} ${text}`.trim();
+      node.classList.add('is-live');
+    })
+    .catch(() => {
+      node.textContent = fallback;
+    });
+});
+
+/* ── Windows installer: take it from the release manifest ── */
+// The MSI channel is retired (3.0.20): an MSI install never runs the NSIS hooks,
+// so it cannot migrate the old install directory, and `Eidolon_latest.msi` has
+// no producer any more. There is no fixed Windows filename to link to, so the
+// anchor starts on the manifest endpoint and is rewritten here to the manifest's
+// versioned NSIS `url` (and its R2 `fallback_url`). A release therefore needs
+// neither a site rebuild nor a hardcoded version.
+document.querySelectorAll<HTMLAnchorElement>('a[data-dl-manifest]').forEach((link) => {
+  const endpoint = link.dataset.dlManifest;
+  if (!endpoint) return;
+  loadManifest(endpoint)
+    .then((data) => {
+      const primary = typeof data.url === 'string' ? data.url : '';
+      if (!primary) throw new Error('manifest has no url');
+      const fallback = typeof data.fallback_url === 'string' ? data.fallback_url : '';
+      if (link.hasAttribute('data-dl-backup')) {
+        // 备用线路本身就指向 R2 直链，不参与主/备探测。
+        link.href = fallback || primary;
+        return;
+      }
+      link.href = primary;
+      if (fallback) link.dataset.dlFallback = fallback;
+    })
+    .catch(() => {
+      // 清单拿不到就保留占位（仍是清单端点而不是任何死掉的文件名）。
+    });
+});
+
+/* ── download links with a backup line ──────────────── */
+// The primary line is the CDN host, the backup is R2 direct. A static site
+// can't check availability server-side, so probe on click with a no-cors HEAD:
+// only DNS / TLS / connection failures reject. A timeout counts as reachable so
+// the probe never holds anyone up.
+const PROBE_TIMEOUT_MS = 3000;
+document.querySelectorAll<HTMLAnchorElement>('a[data-dl-primary]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const fallback = link.dataset.dlFallback;
+    if (!fallback) return;
+    event.preventDefault();
+    const primary = link.href;
+    const timer = new Promise<boolean>((resolve) => setTimeout(() => resolve(true), PROBE_TIMEOUT_MS));
+    const probe = fetch(primary, { method: 'HEAD', mode: 'no-cors', cache: 'no-store' })
+      .then(() => true)
+      .catch(() => false);
+    Promise.race([probe, timer]).then((ok) => {
+      window.location.href = ok ? primary : fallback;
+    });
+  });
+});
+
+/* ── platform hint ──────────────────────────────────── */
+// Point the main download button at the visitor's own platform.
+const isAndroid = /android/i.test(navigator.userAgent);
+if (isAndroid) root.classList.add('is-android');

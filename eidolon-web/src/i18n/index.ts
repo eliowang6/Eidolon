@@ -37,3 +37,25 @@ export function localizeDocsPath(lang: Lang, zhPath: string): string {
   if (!zhPath.startsWith(DOCS_BASE)) return zhPath;
   return `/docs/en/${zhPath.slice(DOCS_BASE.length)}`;
 }
+
+/**
+ * Copy is written once for both companions. `⟨她|他⟩` keeps both forms and
+ * CSS shows the one that matches html[data-companion]; `{name}` becomes
+ * Fea / Ael the same way. Only for trusted strings from our own dictionaries.
+ */
+const escapeHtml = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+export function pr(text: string): string {
+  return escapeHtml(text)
+    .replace(/⟨([^|⟩]*)\|([^⟩]*)⟩/g, '<span class="cf">$1</span><span class="ca">$2</span>')
+    .replace(/\{name\}/g, '<span class="cf">Fea</span><span class="ca">Ael</span>')
+    .replace(/\*\*([^*]+)\*\*/g, '<em>$1</em>');
+}
+
+/** Same strings, flattened for attributes (alt, aria-label) where markup can't live. */
+export function prPlain(text: string, who: 'fea' | 'ael' = 'fea'): string {
+  return text
+    .replace(/⟨([^|⟩]*)\|([^⟩]*)⟩/g, (_, a: string, b: string) => (who === 'fea' ? a : b))
+    .replace(/\{name\}/g, who === 'fea' ? 'Fea' : 'Ael')
+    .replace(/\*\*([^*]+)\*\*/g, '$1');
+}

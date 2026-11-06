@@ -1,392 +1,505 @@
 ---
-import StatusPill from '../StatusPill.astro';
+/**
+ * Changelog (/beta.html): every public release since the beta opened, newest
+ * first, grouped by day. The masthead card plots releases per day — counted
+ * from this same list, so it can never drift from what's written below.
+ */
+import CtaBand from '../CtaBand.astro';
 import Eyebrow from '../Eyebrow.astro';
-import WaitlistLetter from '../WaitlistLetter.astro';
-import Icon from '../Icon.astro';
-import Timeline from '../Timeline.astro';
 import Faq from '../Faq.astro';
-import { SITE } from '../../config/site';
-import { t, type Lang } from '../../i18n';
+import PageHero from '../PageHero.astro';
+import Release from '../Release.astro';
+import { GITHUB_ISSUES } from '../../config/site';
+import { pr, t, type Lang } from '../../i18n';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const copy = t(lang);
-const page = copy.betaPage;
-const status = copy.statusCopy[SITE.status];
-type Community = { label: string; desc: string; href: string; icon: string };
-const community = (href: string, label: string, desc: string, icon: string): Community | null =>
-  href ? { label, desc, href, icon } : null;
-const communities = [
-  community(SITE.social.qqGroup, copy.footer.qq, lang === 'zh' ? '第一时间收到公测通知，也能直接找到我们。' : 'Beta news first — and a direct line to us.', 'message'),
-  community(SITE.social.xiaohongshu, copy.footer.xiaohongshu, lang === 'zh' ? '看她的一天，也看我们怎么把她做出来。' : "Her days, and how we're building her.", 'heart'),
-  community(SITE.social.bilibili, copy.footer.bilibili, lang === 'zh' ? '开发日志、演示与更长的记录。' : 'Devlogs, demos and longer records.', 'book'),
-].filter((item): item is Community => item !== null);
+const cl = copy.changelogPage;
+
+type Day = (typeof cl.days)[number] & { start?: boolean };
+const days = cl.days as Day[];
+// "3.0.15 – 3.0.16" is two releases shipped together.
+const releaseCount = (v: string) => {
+  const [from, to] = v.split('–').map((part) => Number(part.trim().split('.').pop()));
+  return Number.isFinite(to) ? to - from + 1 : 1;
+};
+const cadence = [...days].reverse().map((day) => ({
+  iso: day.iso,
+  n: day.releases.reduce((sum, rel) => sum + releaseCount(rel.v), 0),
+}));
+const tallest = Math.max(...cadence.map((c) => c.n));
+const total = cadence.reduce((sum, c) => sum + c.n, 0);
 ---
 
-<section class="beta-hero">
-  <div class="container beta-grid">
-    <div class="beta-copy">
-      <StatusPill text={status.pill} />
-      <h1>{page.h1a}<br />{page.h1b}</h1>
-      <p class="lede">{page.lede}</p>
-      <p class="beta-meta">
-        {copy.hero.platforms.map((platform, i) => (
-          <span class={i === copy.hero.platforms.length - 1 ? 'muted' : ''}>{platform}</span>
-        ))}
-      </p>
-    </div>
-    <div class="beta-form" id="join">
-      <h2 class="sr-only">{page.formTitle}</h2>
-      <WaitlistLetter lang={lang} compact id="beta-letter" />
-    </div>
-  </div>
-</section>
-
-<section class="section section--paper2 perks-sec">
-  <div class="container">
-    <div class="perks-head reveal">
-      <h2>{page.perksTitle}</h2>
-    </div>
-    <div class="perks">
-      {page.perks.map((perk, i) => (
-        <article class="perk reveal" style={`--i:${i}`}>
-          <span class="perk-icon"><Icon name={perk.icon} size={20} /></span>
-          <h3>{perk.title}</h3>
-          <p>{perk.desc}</p>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-<section class="section road-sec">
-  <div class="container road-grid">
-    <div class="road-copy">
-      <Eyebrow text={page.road.label} />
-      <h2>{page.roadTitle}</h2>
-    </div>
-    <div class="road-visual reveal">
-      <Timeline nodes={page.road.nodes} orientation="vertical" />
-    </div>
-  </div>
-</section>
-
-<section class="section section--paper2 roadmap-sec" id="roadmap">
-  <div class="container">
-    <div class="roadmap-head reveal">
-      <Eyebrow text={page.roadmapLabel} />
-      <h2>{page.roadmapTitle}</h2>
-    </div>
-    <div class="board">
-      {page.roadmapCols.map((col, ci) => (
-        <div class={`board-col board-col--${ci} reveal`} style={`--i:${ci}`}>
-          <div class="board-head">
-            <h3>{col.title}</h3>
-            {lang === 'zh' && <span class="mono">{col.en}</span>}
+<PageHero class="log-head" label={cl.label} h1a={cl.h1a} h1b={cl.h1b} lede={cl.lede}>
+  <aside class="span reveal" style="--i:3" aria-label={`${cl.spanLabel}: ${cl.spanFrom} → ${cl.spanTo}, ${cl.spanDates}`}>
+    <p class="span-top">
+      <span>{cl.spanLabel}</span>
+      <span class="span-dates">{cl.spanDates}</span>
+    </p>
+    <p class="span-vs" aria-hidden="true">
+      <span class="sv">{cl.spanFrom}</span>
+      <span class="sv-track"></span>
+      <span class="sv sv--to">{cl.spanTo}</span>
+    </p>
+    <div class="cad" style={`--rows:${tallest}`} aria-hidden="true">
+      {
+        cadence.map((c, i) => (
+          <div class:list={['cad-col', i === cadence.length - 1 && 'is-last']}>
+            <span class="cad-dots">
+              {Array.from({ length: c.n }, (_, k) => (
+                <i style={`--k:${k}`} />
+              ))}
+            </span>
+            <span class="cad-d mono">{c.iso.slice(8)}</span>
           </div>
-          <div class="board-cards">
-            {col.cards.map((card, i) => (
-              <div class="rm-card" style={`--r:${(i % 2 === 0 ? -0.8 : 0.7)}deg`}>
-                <p>{card}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
-    <p class="roadmap-note reveal">{page.roadmapNote}</p>
-  </div>
-</section>
+    <p class="span-live">
+      <span class="live" aria-hidden="true"></span>
+      <Release label={cl.latestLabel} fallback={`${cl.latestLabel} ${cl.spanTo}`} />
+      <span class="span-total">{cl.count.replace('{n}', String(total))}</span>
+    </p>
+  </aside>
+</PageHero>
 
-{communities.length > 0 && (
-  <section class="section community-sec">
-    <div class="container">
-      <div class="community-head reveal">
-        <Eyebrow text={copy.footer.community} />
-        <h2>{page.communityTitle}</h2>
-      </div>
-      <div class="community-grid">
-        {communities.map((item, i) => (
-          <a class="community-card reveal" style={`--i:${i}`} href={item.href} target="_blank" rel="noopener noreferrer">
-            <span class="c-icon"><Icon name={item.icon} size={20} /></span>
-            <h3>{item.label}</h3>
-            <p>{item.desc}</p>
-            <span class="c-arrow" aria-hidden="true">↗</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-)}
-
-<section class="section faq-sec">
+<!-- ── the record, newest first ──────────────────────── -->
+<section class="section record" aria-label={cl.label.split(' / ')[0]}>
   <div class="container">
-    <Faq items={page.faq} lang={lang} title={page.faqTitle} />
+    <ol class="days">
+      {
+        days.map((day, d) => (
+          <li class:list={['day', d === 0 && 'day--latest', day.start && 'day--start']}>
+            <div class="day-mark">
+              <span class="day-no" aria-hidden="true">
+                {day.iso.slice(8)}
+              </span>
+              <h2 class="day-date">
+                <time datetime={day.iso}>{day.date}</time>
+              </h2>
+              {d === 0 && <span class="tag tag--latest">{cl.latestLabel}</span>}
+              {day.start && <span class="tag tag--start">{cl.startTag}</span>}
+            </div>
+            <span class="node" aria-hidden="true" />
+            <div class="day-card reveal">
+              {day.releases.map((rel) => (
+                <article class="rel">
+                  <h3 class="rel-v">
+                    {rel.v.split(' – ').map((part, k) => (
+                      <span>{k ? `– ${part}` : part}</span>
+                    ))}
+                  </h3>
+                  <ul>
+                    {rel.items.map((item) => (
+                      <li set:html={pr(item)} />
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="skipped" set:html={pr(cl.skipped)} />
   </div>
 </section>
+
+<!-- ── questions & feedback ──────────────────────────── -->
+<section class="section section--paper2 ask" aria-labelledby="faq-h">
+  <div class="container ask-grid">
+    <div class="ask-head reveal">
+      <Eyebrow text={lang === 'zh' ? `${copy.footer.faq} / FAQ` : copy.footer.faq} />
+      <h2 id="faq-h" set:html={pr(cl.faqTitle)} />
+      <a class="btn btn-ghost btn-sm" href={GITHUB_ISSUES} target="_blank" rel="noopener">{cl.issues}</a>
+    </div>
+    <Faq items={cl.faq} lang={lang} />
+  </div>
+</section>
+
+<CtaBand lang={lang} h2={cl.cta.h2} lede={cl.cta.lede} />
 
 <style>
-  .beta-hero {
-    padding: calc(var(--nav-h) + clamp(40px, 6vw, 80px)) 0 clamp(64px, 8vw, 110px);
-    background:
-      radial-gradient(60% 80% at 12% 0%, var(--sage-wash), transparent 65%),
-      var(--paper);
-  }
-  .beta-grid {
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: clamp(36px, 6vw, 88px);
-    align-items: center;
-  }
-  .beta-copy h1 {
-    margin: 20px 0 18px;
-  }
-  .beta-copy .lede {
-    max-width: 560px;
-  }
-  .beta-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 20px;
-    margin-top: 34px;
-    padding-top: 18px;
-    border-top: 1px solid var(--line);
-    font-size: 13px;
-    color: var(--ink-3);
-  }
-  .beta-meta span:not(.muted) {
-    color: var(--ink-2);
-    font-weight: 600;
-  }
-  .beta-form :global(.letter-wrap) {
-    max-width: none;
-  }
-  .beta-form :global(.letter) {
-    transform: rotate(0.8deg);
-  }
-
-  .perks-head {
-    display: flex;
-    align-items: baseline;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin-bottom: clamp(32px, 5vw, 48px);
-  }
-  .perks-head h2 {
-    font-size: clamp(1.6rem, 1.2rem + 1.1vw, 2.1rem);
-  }
-  .perks {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-  .perk {
+  /* ── masthead card: releases per day ───────────────── */
+  .span {
     position: relative;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    padding: 28px 26px;
+    margin-top: 40px;
+    width: min(420px, 100%);
+    padding: 26px 28px 22px;
+    border-radius: var(--r-lg);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 40px 90px -50px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
-  .perk-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 13px;
-    background: var(--sage-wash);
-    color: var(--sage-deep);
-    display: grid;
-    place-items: center;
-    margin-bottom: 40px;
+  @media (min-width: 1040px) {
+    .span {
+      position: absolute;
+      right: var(--gutter);
+      bottom: 0;
+      margin: 0;
+      width: min(400px, 32vw);
+    }
+    :global(html[lang] .log-head.page-head .ph-inner > h1),
+    :global(html[lang] .log-head.page-head .ph-inner > .lede) {
+      max-width: min(56%, 36em);
+    }
+    :global(html[lang='en'] .log-head.page-head .ph-inner > h1) {
+      font-size: clamp(2.7rem, 1.5rem + 3vw, 4.5rem);
+    }
   }
-  .perk h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-  html[lang="en"] .perk h3 {
-    font-size: 24px;
-  }
-  .perk p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--ink-2);
-    text-wrap: pretty;
-  }
-
-  .road-grid {
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    gap: clamp(36px, 6vw, 88px);
-    align-items: start;
-  }
-  .road-copy {
-    position: sticky;
-    top: calc(var(--nav-h) + 40px);
-  }
-  .road-copy h2 {
-    margin: 14px 0 16px;
-    text-wrap: balance;
-  }
-  .road-copy .lede {
-    max-width: 400px;
-  }
-  .road-visual {
-    padding-top: 6px;
-  }
-
-  .roadmap-head {
-    text-align: center;
-    margin-bottom: clamp(36px, 5vw, 56px);
-  }
-  .roadmap-head h2 {
-    margin-top: 14px;
-  }
-  .board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(16px, 2.4vw, 26px);
-    align-items: start;
-  }
-  .board-col {
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    padding: 20px 18px 24px;
-    background: color-mix(in srgb, var(--card) 55%, transparent);
-  }
-  .board-col--0 {
-    border-color: var(--sage);
-    background: var(--card);
-  }
-  .board-head {
+  .span-top {
     display: flex;
-    align-items: baseline;
-    gap: 10px;
-    padding: 2px 4px 16px;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 18px;
-  }
-  .board-head h3 {
-    font-size: 18px;
-  }
-  .board-head span.mono {
-    font-size: 11px;
-    color: var(--ink-3);
-    letter-spacing: 0.08em;
-  }
-  .board-cards {
-    display: grid;
+    justify-content: space-between;
     gap: 12px;
-  }
-  .rm-card {
-    position: relative;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 18px 16px 16px;
-    transform: rotate(var(--r, 0deg));
-    box-shadow: 0 1px 0 rgba(18, 36, 29, 0.04);
-    transition: transform var(--t-mid) var(--ease), box-shadow var(--t-mid);
-  }
-  .rm-card:hover {
-    transform: rotate(0deg) translateY(-3px);
-    box-shadow: var(--sh-paper);
-  }
-  .rm-card::before {
-    content: "";
-    position: absolute;
-    top: -7px;
-    left: 50%;
-    width: 44px;
-    height: 14px;
-    background: var(--tape, rgba(225, 205, 148, 0.55));
-    transform: translateX(-50%) rotate(-2deg);
-  }
-  .board-col--1 .rm-card {
-    --tape: rgba(200, 241, 105, 0.45);
-  }
-  .board-col--2 .rm-card {
-    --tape: rgba(176, 88, 63, 0.18);
-  }
-  .rm-card p {
-    font-size: 14.5px;
-    line-height: 1.65;
+    font-size: 13px;
     color: var(--ink-2);
   }
-  .roadmap-note {
-    margin-top: 24px;
-    text-align: center;
+  .span-dates {
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-3);
+  }
+  .span-vs {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 14px 0 22px;
+  }
+  .sv {
+    font-family: var(--f-latin-display);
+    font-size: clamp(1.7rem, 1.3rem + 1vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+  .sv--to {
+    font-style: italic;
+    background: var(--holo);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .sv-track {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.25), rgba(205, 182, 255, 0.9));
+    position: relative;
+  }
+  .sv-track::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -3px;
+    border-left: 6px solid rgba(205, 182, 255, 0.9);
+    border-block: 3.5px solid transparent;
+  }
+  .cad {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: end;
+    gap: 6px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .cad-col {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+  }
+  .cad-dots {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 6px;
+    min-height: calc(var(--rows) * 16px);
+    justify-content: flex-start;
+  }
+  .cad-dots i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(238, 240, 255, 0.55);
+  }
+  .is-last .cad-dots i {
+    background: var(--mint);
+    box-shadow: 0 0 12px var(--mint);
+  }
+  .cad-d {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .is-last .cad-d {
+    color: var(--ink);
+  }
+  .span-live {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+  .span-total {
+    margin-left: auto;
+    font-family: var(--f-body);
     font-size: 12.5px;
     color: var(--ink-3);
   }
+  @media (prefers-reduced-motion: no-preference) {
+    .span:global(.in) .cad-dots i {
+      animation: dot-in 0.5s var(--ease) both;
+      animation-delay: calc(0.35s + var(--k) * 0.09s);
+    }
+  }
+  @keyframes dot-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.4);
+    }
+  }
 
-  .community-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+  /* ── the record ─────────────────────────────────── */
+  .record {
+    --mark: clamp(150px, 15vw, 210px);
+    --gap: clamp(28px, 4vw, 64px);
   }
-  .community-card {
+  .days {
     position: relative;
-    display: block;
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    background: var(--card);
-    padding: 28px 26px;
-    transition: transform var(--t-mid) var(--ease), box-shadow var(--t-mid);
   }
-  .community-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--sh-paper);
+  /* the spine runs node to node and stops at the day the beta opened */
+  .day:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--mark) + var(--gap) / 2);
+    top: 26px;
+    bottom: -14px;
+    width: 2px;
+    translate: -50% 0;
+    background: var(--line-2);
   }
-  .c-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: var(--sage-wash);
-    color: var(--sage-deep);
+  .day--latest::after {
+    background: linear-gradient(180deg, var(--accent), var(--line-2)) !important;
+  }
+  .day {
+    position: relative;
     display: grid;
-    place-items: center;
-    margin-bottom: 26px;
+    grid-template-columns: var(--mark) minmax(0, 1fr);
+    column-gap: var(--gap);
+    padding-bottom: clamp(48px, 6vw, 80px);
   }
-  .community-card h3 {
-    font-size: 17px;
-    margin-bottom: 6px;
+  .day:last-child {
+    padding-bottom: 0;
   }
-  .community-card p {
-    font-size: 15px;
-    line-height: 1.7;
+  .day-mark {
+    position: sticky;
+    top: calc(var(--nav-h) + 32px);
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    text-align: right;
+  }
+  .day-no {
+    font-family: var(--f-latin-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(3.6rem, 2.4rem + 3vw, 5.6rem);
+    line-height: 0.82;
+    letter-spacing: -0.02em;
+    color: var(--ink-3);
+    opacity: 0.55;
+  }
+  .day--latest .day-no {
+    opacity: 1;
+    background: var(--holo);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .day-date {
+    font-family: var(--f-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
     color: var(--ink-2);
   }
-  .c-arrow {
-    position: absolute;
-    top: 26px;
-    right: 26px;
-    color: var(--ink-3);
-    font-size: 16px;
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 11px;
+    border-radius: var(--r-full);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
   }
-  .faq-sec {
-    padding-top: clamp(48px, 6vw, 80px);
+  .tag--latest {
+    background: var(--night);
+    color: #fff;
+  }
+  .tag--latest::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 8px var(--mint);
+  }
+  .tag--start {
+    color: var(--ink);
+    background:
+      linear-gradient(var(--pearl), var(--pearl)) padding-box,
+      var(--holo) border-box;
+    border: 1.5px solid transparent;
+  }
+  .node {
+    position: absolute;
+    z-index: 1;
+    left: calc(var(--mark) + var(--gap) / 2);
+    top: 14px;
+    width: 12px;
+    height: 12px;
+    translate: -50% 0;
+    border-radius: 50%;
+    background: var(--pearl);
+    border: 2px solid var(--accent);
+  }
+  .day--latest .node {
+    background: var(--accent);
+    box-shadow: 0 0 0 6px var(--accent-wash);
+  }
+  .day--start .node {
+    width: 16px;
+    height: 16px;
+    top: 12px;
+    border: 0;
+    background: var(--holo);
+    box-shadow: 0 0 0 6px var(--pearl-2), 0 0 18px rgba(205, 182, 255, 0.8);
+  }
+  .day-card {
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+    overflow: hidden;
+  }
+  .day--latest .day-card {
+    background:
+      radial-gradient(60% 140% at 100% 0%, var(--accent-wash), transparent 62%),
+      var(--card);
+  }
+  .rel {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 6px 24px;
+    padding: clamp(22px, 2.4vw, 30px) clamp(22px, 3vw, 36px);
+  }
+  .rel + .rel {
+    border-top: 1px solid var(--line);
+  }
+  .rel-v {
+    font-family: var(--f-latin-display);
+    font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.7rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .rel-v span {
+    display: block;
+  }
+  .day--latest .rel:first-child .rel-v {
+    color: var(--accent-ink);
+  }
+  .rel ul {
+    display: grid;
+    gap: 8px;
+    padding-top: 2px;
+  }
+  .rel li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--ink-2);
+  }
+  .rel li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.72em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--holo);
+  }
+  .skipped {
+    margin: clamp(48px, 6vw, 72px) 0 0 calc(var(--mark) + var(--gap) * 1.5);
+    padding-top: 20px;
+    border-top: 1px dashed var(--line-2);
+    max-width: 40em;
+    font-size: 14px;
+    color: var(--ink-3);
+  }
+  @media (max-width: 860px) {
+    .day::after,
+    .node {
+      display: none;
+    }
+    .day {
+      grid-template-columns: 1fr;
+      row-gap: 18px;
+    }
+    .day-mark {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px 12px;
+      text-align: left;
+    }
+    .day-no {
+      font-size: 3.2rem;
+    }
+    .rel {
+      grid-template-columns: 1fr;
+    }
+    .skipped {
+      margin-left: 0;
+    }
   }
 
-  @media (max-width: 1023px) {
-    .beta-grid,
-    .road-grid {
+  /* ── questions ──────────────────────────────────── */
+  .ask-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: 32px clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+  .ask-head {
+    position: sticky;
+    top: calc(var(--nav-h) + 40px);
+  }
+  .ask-head h2 {
+    margin: 16px 0 26px;
+  }
+  @media (max-width: 900px) {
+    .ask-grid {
       grid-template-columns: 1fr;
     }
-    .beta-form {
-      max-width: 640px;
-    }
-    .road-copy {
+    .ask-head {
       position: static;
-    }
-    .perks,
-    .community-grid {
-      grid-template-columns: 1fr;
-    }
-    .perk-icon {
-      margin-bottom: 22px;
-    }
-    .board {
-      grid-template-columns: 1fr;
     }
   }
 </style>

@@ -5,7 +5,9 @@
  * Chinese display type (Noto Serif SC 700) and the handwriting face
  * (LXGW WenKai) are subset to the characters this site actually renders, so the
  * whole CJK payload stays in the low hundreds of KB instead of tens of MB.
- * Re-run after any copy change in src/i18n/zh.json.
+ * Re-run after any copy change in src/i18n/zh.json or en.json — the English
+ * pages set some Chinese too (the belief keys on the About page).
+ * Needs Python with fontTools (pip install fonttools brotli).
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
@@ -28,34 +30,27 @@ function walkStrings(value, out) {
   return out;
 }
 
-const dict = JSON.parse(readFileSync(resolve(ROOT, 'src/i18n/zh.json'), 'utf8'));
-const strings = walkStrings(dict, []);
+const load = (lang) => JSON.parse(readFileSync(resolve(ROOT, `src/i18n/${lang}.json`), 'utf8'));
+const dicts = [load('zh'), load('en')];
+const strings = dicts.flatMap((d) => walkStrings(d, []));
 
 const symbols = 'αβγδΩ∞—–·…“”‘’「」『』〔〕≈×✓←→↑↓°';
 const ascii = Array.from({ length: 95 }, (_, i) => String.fromCharCode(32 + i)).join('');
 const displayChars = new Set([...(strings.join('') + ascii + symbols)]);
-const handwriting = [
-  ...walkStrings(dict.mnote, []),
-  dict.waitlist.hand,
-  dict.waitlist.success,
-  dict.footer.forgot,
-  dict.notFound.note,
-  dict.aboutPage.polaCaption,
-  dict.downloadPage.previewNote,
-  dict.featuresPage.demos.voice.note,
-  dict.featuresPage.demos.polaroid.caption,
-  dict.fea.caption,
-  dict.trust.panel.foot,
-  // Home section names are dropped into Fea's "welcome back" note at runtime.
-  dict.why.label,
-  dict.loop.label,
-  dict.values.label,
-  dict.trust.label,
-  dict.fea.label,
-  dict.waitlist.label,
-  dict.dewPage.emblemNote,
-  dict.dewPage.tokenNote,
-].join('');
+/* Everything set in var(--f-hand): her words (the whispers, the 404 and footer
+   notes, the home hint, the Dew captions), the etymology note on the About page,
+   and the belief keys there (English on the Chinese page, Chinese on the English). */
+const handStrings = (d) => [
+  ...walkStrings(d.whisper.lines, []),
+  d.footer.forgot,
+  d.notFound.note,
+  d.home.hero.hint,
+  d.dewPage.emblemNote,
+  d.dewPage.tokenNote,
+  d.aboutPage.name.shared,
+  ...d.aboutPage.beliefs.items.map((item) => item.en),
+];
+const handwriting = dicts.flatMap(handStrings).join('');
 const annotationChars = new Set([...(handwriting + '——～·…“”‘’「」' + ascii)]);
 
 const displayText = [...displayChars].join('');
@@ -92,8 +87,8 @@ subset(noto, displayText, 'noto-serif-sc-700.woff2');
 subset(lxgw, annotationText, 'lxgw-wenkai-400.woff2');
 
 const latin = [
-  ['@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2', 'instrument-serif-400.woff2'],
-  ['@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2', 'instrument-serif-400-italic.woff2'],
+  ['@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-opsz-normal.woff2', 'bodoni-moda-opsz.woff2'],
+  ['@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-opsz-italic.woff2', 'bodoni-moda-opsz-italic.woff2'],
   ['@fontsource-variable/inter/files/inter-latin-wght-normal.woff2', 'inter-var-latin.woff2'],
   ['@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2', 'jetbrains-mono-500.woff2'],
 ];

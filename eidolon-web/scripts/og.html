@@ -2,86 +2,147 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
+<!--
+  Social card (1200×630) for sholarel.instarmony.com — the splash screen of the site:
+  the night, the ∞ with Fea and Ael in its two lobes, the name under it.
+  Rendered to public/assets/og-{zh,en}.png by scripts/make-og.mjs (serve the project root first).
+-->
 <style>
   @font-face { font-family: "Noto Serif SC"; src: url("../public/fonts/noto-serif-sc-700.woff2") format("woff2"); font-weight: 700; }
-  @font-face { font-family: "Instrument Serif"; src: url("../public/fonts/instrument-serif-400.woff2") format("woff2"); }
-  @font-face { font-family: "Instrument Serif"; src: url("../public/fonts/instrument-serif-400-italic.woff2") format("woff2"); font-style: italic; }
-  @font-face { font-family: "Inter Variable"; src: url("../public/fonts/inter-var-latin.woff2") format("woff2-variations"); font-weight: 100 900; }
+  @font-face { font-family: "Bodoni Moda"; src: url("../public/fonts/bodoni-moda-opsz.woff2") format("woff2-variations"); font-weight: 400 900; }
+  @font-face { font-family: "Bodoni Moda"; src: url("../public/fonts/bodoni-moda-opsz-italic.woff2") format("woff2-variations"); font-weight: 400 900; font-style: italic; }
   @font-face { font-family: "JetBrains Mono"; src: url("../public/fonts/jetbrains-mono-500.woff2") format("woff2"); font-weight: 500; }
-  @font-face { font-family: "LXGW WenKai"; src: url("../public/fonts/lxgw-wenkai-400.woff2") format("woff2"); font-weight: 400; }
   * { box-sizing: border-box; margin: 0; }
-  body { background: #d9d4c8; }
+  body { background: #0b0d26; }
   #og {
     position: relative;
     width: 1200px;
     height: 630px;
     overflow: hidden;
+    color: #eef0ff;
     background:
-      radial-gradient(90% 120% at 88% 0%, #dfe8dc 0%, rgba(223, 232, 220, 0) 60%),
-      radial-gradient(70% 90% at 10% 100%, rgba(200, 241, 105, 0.18), transparent 65%),
-      #f5f2ea;
-    color: #12241d;
-    padding: 62px 72px;
+      radial-gradient(34% 52% at 30% 30%, rgba(239, 143, 187, 0.2), transparent 72%),
+      radial-gradient(34% 52% at 70% 30%, rgba(110, 169, 242, 0.22), transparent 72%),
+      radial-gradient(80% 60% at 50% 118%, rgba(60, 68, 150, 0.75), transparent 70%),
+      #0e1131;
+  }
+  .stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1.6px 1.6px at 6% 14%, rgba(255, 255, 255, 0.8), transparent 70%),
+      radial-gradient(1.1px 1.1px at 13% 58%, rgba(255, 255, 255, 0.5), transparent 70%),
+      radial-gradient(1.3px 1.3px at 21% 86%, rgba(255, 235, 245, 0.6), transparent 70%),
+      radial-gradient(1px 1px at 33% 8%, rgba(255, 255, 255, 0.5), transparent 70%),
+      radial-gradient(1.4px 1.4px at 47% 92%, rgba(255, 255, 255, 0.55), transparent 70%),
+      radial-gradient(1.2px 1.2px at 52% 6%, rgba(225, 235, 255, 0.6), transparent 70%),
+      radial-gradient(1px 1px at 66% 90%, rgba(255, 255, 255, 0.45), transparent 70%),
+      radial-gradient(1.5px 1.5px at 81% 9%, rgba(255, 255, 255, 0.75), transparent 70%),
+      radial-gradient(1px 1px at 88% 62%, rgba(220, 232, 255, 0.55), transparent 70%),
+      radial-gradient(1.3px 1.3px at 95% 84%, rgba(255, 255, 255, 0.5), transparent 70%),
+      radial-gradient(1px 1px at 3% 40%, rgba(255, 255, 255, 0.45), transparent 70%),
+      radial-gradient(1.2px 1.2px at 97% 30%, rgba(255, 255, 255, 0.5), transparent 70%);
+  }
+  .mark {
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    width: 860px;
+    translate: -50% 0;
+    overflow: visible;
+  }
+  .halo { fill: none; stroke-width: 26; opacity: 0.34; }
+  .trace { fill: none; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+  .comet { fill: none; stroke: #fff; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 0.045 1; stroke-dashoffset: -0.71; }
+  .copy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 388px;
+    text-align: center;
+  }
+  .word {
+    font: 500 92px/1 "Bodoni Moda", serif;
+    font-optical-sizing: auto;
+    letter-spacing: -0.012em;
+  }
+  .tag {
+    margin-top: 18px;
+    font: 700 28px/1.3 "Noto Serif SC", serif;
+    letter-spacing: 0.02em;
+    color: rgba(238, 240, 255, 0.74);
+  }
+  .en .tag {
+    font: italic 400 32px/1.3 "Bodoni Moda", serif;
+    letter-spacing: 0;
+  }
+  .row {
+    position: absolute;
+    left: 64px;
+    right: 64px;
+    bottom: 42px;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    font: 500 15px/1 "JetBrains Mono", monospace;
+    letter-spacing: 0.14em;
+    color: rgba(238, 240, 255, 0.5);
   }
-  .grain {
-    position: absolute; inset: 0; opacity: 0.4; mix-blend-mode: multiply;
-    background-image: radial-gradient(rgba(18, 36, 29, 0.1) 0.6px, transparent 0.7px);
-    background-size: 4px 4px;
-  }
-  .top { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
-  .brand { display: flex; align-items: center; gap: 16px; }
-  .brand svg { width: 62px; height: 40px; }
-  .brand b { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 44px; letter-spacing: -0.01em; }
-  .meta { font-family: "JetBrains Mono", monospace; font-size: 15px; letter-spacing: 0.16em; color: #4a7060; }
-  .main { position: relative; z-index: 1; max-width: 980px; }
-  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 500 16px/1 "JetBrains Mono", monospace; letter-spacing: 0.12em; color: #4f7f74; margin-bottom: 26px; }
-  .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: #4f7f74; box-shadow: 0 0 0 5px rgba(79, 127, 116, 0.15); }
-  h1 { font-family: "Noto Serif SC", serif; font-size: 76px; line-height: 1.18; letter-spacing: -0.01em; }
-  h1 em { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
-  .en h1 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 88px; line-height: 1.02; letter-spacing: -0.02em; }
-  .rule { width: 120px; height: 3px; background: #c8f169; margin: 30px 0 22px; }
-  .sub { font: 500 22px/1.5 "Inter Variable", sans-serif; color: #3c4f47; }
-  .bottom { position: relative; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; }
-  .url { font: 500 19px/1 "JetBrains Mono", monospace; letter-spacing: 0.04em; color: #12241d; }
-  .stamp { font-family: "LXGW WenKai", "Noto Serif SC", serif; font-size: 24px; color: #b0583f; transform: rotate(-3deg); }
-  .arc { position: absolute; right: -120px; top: 90px; width: 520px; height: 520px; border-radius: 50%; border: 1px solid rgba(18, 36, 29, 0.14); }
-  .arc::before { content: ""; position: absolute; inset: 48px; border-radius: 50%; border: 1px dashed rgba(18, 36, 29, 0.12); }
-  .arc::after { content: ""; position: absolute; width: 300px; height: 300px; right: 110px; top: 110px; background: radial-gradient(circle, rgba(200, 241, 105, 0.45), transparent 68%); }
+  .row b { font-weight: 500; color: rgba(238, 240, 255, 0.82); letter-spacing: 0.06em; }
   .lang-hidden { display: none; }
 </style>
 </head>
 <body>
   <div id="og">
-    <div class="grain"></div>
-    <div class="arc"></div>
-    <div class="top">
-      <div class="brand">
-        <svg viewBox="2 4 20 16" fill="none" stroke="#4a7060" stroke-width="1.6" stroke-linecap="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>
-        <b>Sholarel</b>
-      </div>
-      <span class="meta">INSTARMONY · 2026</span>
+    <div class="stars"></div>
+    <svg class="mark" viewBox="40 60 880 400" aria-hidden="true">
+      <defs>
+        <linearGradient id="holo" x1="80" y1="260" x2="880" y2="260" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#f8a8d0" />
+          <stop offset="0.38" stop-color="#e2b8f4" />
+          <stop offset="0.55" stop-color="#cdb6ff" />
+          <stop offset="0.78" stop-color="#92c6ff" />
+          <stop offset="1" stop-color="#a8f0dc" />
+        </linearGradient>
+        <radialGradient id="rimF" cx="240" cy="250" r="190" gradientUnits="userSpaceOnUse">
+          <stop offset="0.62" stop-color="#ef8fbb" stop-opacity="0" />
+          <stop offset="1" stop-color="#ef8fbb" stop-opacity="0.55" />
+        </radialGradient>
+        <radialGradient id="rimA" cx="720" cy="250" r="190" gradientUnits="userSpaceOnUse">
+          <stop offset="0.62" stop-color="#6ea9f2" stop-opacity="0" />
+          <stop offset="1" stop-color="#6ea9f2" stop-opacity="0.55" />
+        </radialGradient>
+        <clipPath id="clipL"><path d="M480 260c-80-106.8-160-160-240-160a160 160 0 1 0 0 320c80 0 160-53.2 240-160Z" /></clipPath>
+        <clipPath id="clipR"><path d="M480 260c80 106.8 160 160 240 160a160 160 0 0 0 0-320c-80 0-160 53.2-240 160Z" /></clipPath>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="6" result="b" />
+          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14" /></filter>
+      </defs>
+      <path class="halo" filter="url(#soft)" stroke="url(#holo)" d="M480 260c-80-106.8-160-160-240-160a160 160 0 1 0 0 320c80 0 160-53.2 240-160Zm0 0c80 106.8 160 160 240 160a160 160 0 0 0 0-320c-80 0-160 53.2-240 160Z" />
+      <g clip-path="url(#clipL)">
+        <rect x="60" y="80" width="430" height="360" fill="#fbf7fb" />
+        <image href="../public/assets/art/fea-portrait.webp" x="34" y="92" width="446.4" height="558" preserveAspectRatio="xMidYMid slice" />
+        <rect x="60" y="80" width="430" height="360" fill="url(#rimF)" />
+      </g>
+      <g clip-path="url(#clipR)">
+        <rect x="470" y="80" width="430" height="360" fill="#f7f8fd" />
+        <image href="../public/assets/art/ael-portrait.webp" x="466" y="96" width="446.4" height="558" preserveAspectRatio="xMidYMid slice" />
+        <rect x="470" y="80" width="430" height="360" fill="url(#rimA)" />
+      </g>
+      <path class="trace" stroke="url(#holo)" pathLength="1" d="M480 260c-80-106.8-160-160-240-160a160 160 0 1 0 0 320c80 0 160-53.2 240-160Zm0 0c80 106.8 160 160 240 160a160 160 0 0 0 0-320c-80 0-160 53.2-240 160Z" />
+      <path class="comet" filter="url(#glow)" pathLength="1" d="M480 260c-80-106.8-160-160-240-160a160 160 0 1 0 0 320c80 0 160-53.2 240-160Zm0 0c80 106.8 160 160 240 160a160 160 0 0 0 0-320c-80 0-160 53.2-240 160Z" />
+    </svg>
+
+    <div class="copy">
+      <h1 class="word">Sholarel</h1>
+      <p class="tag zh">住在你桌面和手机上的 AI 陪伴</p>
+      <p class="tag en lang-hidden">An AI companion on your desktop and phone</p>
     </div>
 
-    <div class="main zh">
-      <span class="eyebrow"><i></i>WINDOWS · ANDROID</span>
-      <h1>让数字生命<br />真正生活在你身边</h1>
-      <div class="rule"></div>
-      <p class="sub">陪伴、生活协助与跨端行动，共享同一份长期记忆。</p>
-    </div>
-    <div class="main en lang-hidden">
-      <span class="eyebrow"><i></i>WINDOWS · ANDROID</span>
-      <h1>A digital life that <em>lives beside you.</em></h1>
-      <div class="rule"></div>
-      <p class="sub">Companionship, daily help and action — one long memory.</p>
-    </div>
-
-    <div class="bottom">
-      <span class="url">sholarel.instarmony.com</span>
-      <span class="stamp zh">她一直在。</span>
-      <span class="stamp en lang-hidden">She stays.</span>
+    <div class="row">
+      <b>sholarel.instarmony.com</b>
+      <span>WINDOWS · ANDROID</span>
     </div>
   </div>
   <script>
@@ -89,10 +150,8 @@
     if (lang === 'en') {
       document.documentElement.lang = 'en';
       document.getElementById('og').classList.add('en');
-      document.querySelector('.zh.main').classList.add('lang-hidden');
-      document.querySelector('.en.main').classList.remove('lang-hidden');
-      document.querySelector('.stamp.zh').classList.add('lang-hidden');
-      document.querySelector('.stamp.en').classList.remove('lang-hidden');
+      document.querySelector('.tag.zh').classList.add('lang-hidden');
+      document.querySelector('.tag.en').classList.remove('lang-hidden');
     }
   </script>
 </body>

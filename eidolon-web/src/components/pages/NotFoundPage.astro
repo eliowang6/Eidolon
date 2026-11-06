@@ -1,0 +1,83 @@
+---
+/** 404: the night again, the ∞ still looping behind, and a few ways back. */
+import PageHero from '../PageHero.astro';
+import { SITE } from '../../config/site';
+import { localizeDocsPath, localizePath, pr, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const page = copy.notFound;
+const p = (href: string) => localizePath(lang, href);
+const links = [
+  { href: p('/features.html'), label: copy.nav.features },
+  { href: p('/pricing.html'), label: copy.nav.pricing },
+  { href: p('/download.html'), label: copy.nav.download },
+  { href: localizeDocsPath(lang, SITE.docs.home), label: copy.nav.docs },
+];
+---
+
+<PageHero label={page.label} h1a={page.h1} align="center" class="nf-head">
+  <p class="hand nf-note reveal" style="--i:2" set:html={pr(page.note)} />
+  <div class="nf-actions reveal" style="--i:3">
+    <a class="btn btn-holo btn-lg" href={p('/')}>{page.cta}</a>
+  </div>
+  <nav class="nf-links reveal" style="--i:4" aria-label={page.or}>
+    <span class="nf-or">{page.or}</span>
+    <span class="nf-list">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </span>
+  </nav>
+</PageHero>
+
+<style>
+  :global(html body .nf-head.page-head) {
+    display: grid;
+    align-content: center;
+    min-height: min(100svh, 880px);
+  }
+  .nf-note {
+    margin: 4px auto 0;
+    font-size: clamp(19px, 1rem + 0.6vw, 24px);
+    line-height: 1.5;
+    rotate: -1.5deg;
+  }
+  .nf-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(30px, 4vw, 44px);
+  }
+  .nf-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: clamp(36px, 5vw, 56px);
+  }
+  .nf-or {
+    font-size: 13px;
+    color: var(--night-faint);
+  }
+  .nf-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .nf-list a {
+    padding: 7px 16px;
+    border: 1px solid var(--night-line);
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 14px;
+    color: var(--night-dim);
+    transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+  }
+  .nf-list a:hover {
+    color: var(--night-text);
+    border-color: rgba(238, 240, 255, 0.32);
+    background: rgba(255, 255, 255, 0.08);
+  }
+</style>

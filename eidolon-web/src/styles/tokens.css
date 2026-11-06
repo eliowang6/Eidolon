@@ -1,7 +1,10 @@
 /* ─────────────────────────────────────────────────────────────
-   Daylight Margin · tokens
-   Paper, forest ink, sage, and one lime signal that means “she's here”.
-   Fonts are self-hosted subsets (see scripts/build-fonts.mjs).
+   Sholarel · Pearl Night
+   The app opens on an indigo night where one stroke of light draws ∞ —
+   pink lobe for Fea, blue lobe for Ael. The site starts there and walks
+   into pearl daylight. Holo foil is reserved for the ∞ and the one
+   action that matters on each screen.
+   Fonts are self-hosted (see scripts/build-fonts.mjs).
    ───────────────────────────────────────────────────────────── */
 
 @font-face {
@@ -19,18 +22,20 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("/fonts/instrument-serif-400.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Bodoni Moda";
+  src: url("/fonts/bodoni-moda-opsz.woff2") format("woff2-variations");
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212;
 }
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("/fonts/instrument-serif-400-italic.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Bodoni Moda";
+  src: url("/fonts/bodoni-moda-opsz-italic.woff2") format("woff2-variations");
+  font-weight: 400 900;
   font-style: italic;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212;
 }
 @font-face {
   font-family: "Inter Variable";
@@ -48,102 +53,91 @@
 }
 
 :root {
-  --paper: #f5f2ea;
-  --paper-2: #ece7da;
-  --card: #fcfbf7;
-  --line: rgba(18, 36, 29, 0.12);
-  --line-2: rgba(18, 36, 29, 0.2);
-  --ink: #12241d;
-  --ink-2: #2f4a3f;
-  --ink-3: #586960;
-  --sage: #86b8ad;
-  --sage-deep: #467268;
-  --sage-wash: #e3ede7;
-  --lime: #c8f169;
-  --lime-deep: #4d6a10;
-  --honey: #e9b964;
-  --annot: #a34f38;
-  --night: #0e1a15;
-  --night-2: #15251e;
-  --night-3: #1d3229;
-  --night-line: rgba(233, 239, 230, 0.12);
-  --night-text: #e9efe6;
-  --night-dim: rgba(233, 239, 230, 0.62);
+  /* pearl — the daylight canvas, cool and faintly violet, never cream */
+  --pearl: #f6f4fa;
+  --pearl-2: #eeeaf6;
+  --pearl-3: #e4dff0;
+  --card: #ffffff;
+  --ink: #1b1e3a;
+  --ink-2: #474b6c;
+  --ink-3: #757999;
+  --line: rgba(27, 30, 58, 0.1);
+  --line-2: rgba(27, 30, 58, 0.18);
 
+  /* night — the splash screen */
+  --night: #0e1131;
+  --night-2: #161a45;
+  --night-text: #eef0ff;
+  --night-dim: rgba(238, 240, 255, 0.68);
+  --night-faint: rgba(238, 240, 255, 0.42);
+  --night-line: rgba(238, 240, 255, 0.14);
+
+  /* the two of them */
+  --fea: #ef8fbb;
+  --fea-ink: #b03a70;
+  --fea-wash: #fbe7f0;
+  --ael: #6ea9f2;
+  --ael-ink: #2f5fb6;
+  --ael-wash: #e5eefc;
+
+  /* whoever is with you right now (switches with data-companion) */
+  --accent: var(--fea);
+  --accent-ink: var(--fea-ink);
+  --accent-wash: var(--fea-wash);
+
+  --holo: linear-gradient(100deg, #f8a8d0 0%, #cdb6ff 34%, #92c6ff 66%, #a8f0dc 100%);
+  --holo-ink: linear-gradient(100deg, #c2457f 0%, #8a55d6 48%, #2f6fc4 100%);
+  --mint: #a8f0dc;
+
+  --f-display: "Bodoni Moda", "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", Didot, serif;
   --f-zh-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
-  --f-latin-display: "Instrument Serif", "Times New Roman", serif;
+  --f-latin-display: "Bodoni Moda", Didot, "Times New Roman", serif;
   --f-body: "Inter Variable", "Inter", -apple-system, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
   --f-hand: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", cursive;
   /* CJK inside mono runs falls through to the body sans, not a monospaced CJK face. */
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", monospace;
 
-  --fs-display: clamp(2.75rem, 1.6rem + 4.2vw, 5.25rem);
-  --fs-h2: clamp(2rem, 1.3rem + 2.4vw, 3.25rem);
-  --fs-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
-  --fs-lede: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --fs-display: clamp(2.5rem, 1.5rem + 3.6vw, 4.6rem);
+  --fs-h2: clamp(1.95rem, 1.3rem + 2.3vw, 3.2rem);
+  --fs-h3: clamp(1.2rem, 1.06rem + 0.55vw, 1.5rem);
+  --fs-lede: clamp(1.04rem, 0.98rem + 0.3vw, 1.22rem);
   --fs-body: 1rem;
   --fs-small: 0.875rem;
-  --fs-label: 0.75rem;
 
   --r-sm: 10px;
-  --r-md: 16px;
-  --r-lg: 22px;
-  --r-xl: 32px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --r-xl: 40px;
   --r-full: 999px;
-  --sh-paper: 0 1px 0 rgba(18, 36, 29, 0.04), 0 18px 40px -18px rgba(18, 36, 29, 0.22);
-  --sh-float: 0 2px 0 rgba(255, 255, 255, 0.6) inset, 0 30px 60px -24px rgba(18, 36, 29, 0.35);
+  --sh-1: 0 1px 2px rgba(27, 30, 58, 0.06), 0 10px 24px -14px rgba(27, 30, 58, 0.22);
+  --sh-2: 0 2px 4px rgba(27, 30, 58, 0.05), 0 34px 70px -34px rgba(27, 30, 58, 0.38);
+  --sh-device: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 50px 90px -40px rgba(14, 17, 49, 0.55), 0 18px 36px -24px rgba(14, 17, 49, 0.4);
   --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
-  --t-fast: 240ms;
+  --t-fast: 220ms;
   --t-mid: 480ms;
   --t-slow: 900ms;
   --container: 1240px;
   --gutter: clamp(20px, 4vw, 56px);
-  --nav-h: 72px;
+  --nav-h: 68px;
 }
 
-/* The paper itself takes the local light: rosier at dawn, amber at dusk. */
-html[data-daypart="dawn"] {
-  --paper: #f6f0e9;
-  --paper-2: #eee4d9;
-  --card: #fdfaf6;
-}
-html[data-daypart="dusk"] {
-  --paper: #f4ece1;
-  --paper-2: #ebdfcd;
-  --card: #fcf9f3;
+html[data-companion="ael"] {
+  --accent: var(--ael);
+  --accent-ink: var(--ael-ink);
+  --accent-wash: var(--ael-wash);
 }
 
-html[data-daypart="night"] {
-  --paper: #0e1a15;
-  --paper-2: #15251e;
-  --card: #15251e;
-  --line: rgba(233, 239, 230, 0.12);
-  --line-2: rgba(233, 239, 230, 0.22);
-  --ink: #e9efe6;
-  --ink-2: rgba(233, 239, 230, 0.82);
-  --ink-3: rgba(233, 239, 230, 0.56);
-  --sage-wash: rgba(134, 184, 173, 0.14);
-  --sage-deep: #a9d3c8;
-  --annot: #e7a58f;
-  color-scheme: dark;
-}
-
-/* Dark bands keep their own palette in both day and night modes. */
+/* Night bands keep their own palette wherever they sit. */
 .band-night {
-  --paper: #0e1a15;
-  --paper-2: #15251e;
-  --card: #15251e;
+  --card: var(--night-2);
+  --ink: var(--night-text);
+  --ink-2: var(--night-dim);
+  --ink-3: var(--night-faint);
   --line: var(--night-line);
-  --line-2: rgba(233, 239, 230, 0.22);
-  --ink: #e9efe6;
-  --ink-2: rgba(233, 239, 230, 0.82);
-  --ink-3: rgba(233, 239, 230, 0.56);
-  --sage-wash: rgba(134, 184, 173, 0.14);
-  --sage-deep: #a9d3c8;
-  --annot: #e7a58f;
+  --line-2: rgba(238, 240, 255, 0.24);
+  --accent-ink: #ffc2dc;
   color-scheme: dark;
 }
-html[data-daypart="night"] .band-night {
-  --paper: #15251e;
-  --card: #1d3229;
+html[data-companion="ael"] .band-night {
+  --accent-ink: #b9d6ff;
 }

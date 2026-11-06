@@ -1,6 +1,5 @@
 ---
-import Icon from '../Icon.astro';
-import { SITE } from '../../config/site';
+import PageHero from '../PageHero.astro';
 import type { Lang } from '../../i18n';
 
 interface LegalPage {
@@ -10,7 +9,8 @@ interface LegalPage {
   intro: string;
   tocTitle: string;
   sections: { title: string; body: string; items?: string[] }[];
-  repoCta: string;
+  helpCta: string;
+  helpEmail: string;
 }
 interface Props {
   lang: Lang;
@@ -18,47 +18,54 @@ interface Props {
 }
 const { lang, page } = Astro.props;
 const slug = (i: number) => `sec-${i + 1}`;
+/** "8. 您的权利…" → clause number + title, so the number can be set apart from the words. */
+const split = (title: string) => {
+  const m = /^(\d+)\.\s*(.+)$/.exec(title);
+  return m ? { no: m[1], text: m[2] } : { no: '', text: title };
+};
+const sections = page.sections.map((s, i) => ({ ...s, id: slug(i), ...split(s.title) }));
 ---
 
-<header class="legal-head">
-  <div class="container">
-    <span class="label reveal">{page.label}</span>
-    <div class="legal-title-row reveal" style="--i:1">
-      <h1>{page.title}</h1>
-      <span class="draft-tag"><span class="live" aria-hidden="true"></span>{page.tag}</span>
-    </div>
-    <p class="legal-intro reveal" style="--i:2">{page.intro}</p>
-  </div>
-</header>
+<PageHero label={page.label} h1a={page.title} lede={page.intro} class="legal-hero">
+  <p class="legal-tag reveal" style="--i:3"><span class="live" aria-hidden="true"></span>{page.tag}</p>
+</PageHero>
 
 <section class="section legal-sec">
   <div class="container legal-grid">
     <aside class="toc">
-      <span class="toc-title mono">{page.tocTitle}</span>
+      <span class="toc-title">{page.tocTitle}</span>
       <nav aria-label={page.tocTitle}>
-        {page.sections.map((section, i) => (
-          <a href={`#${slug(i)}`} data-toc-link={slug(i)}>{section.title}</a>
+        {sections.map((s) => (
+          <a href={`#${s.id}`} data-toc-link={s.id}>
+            {s.no && <span class="toc-no">{s.no}</span>}
+            <span>{s.text}</span>
+          </a>
         ))}
       </nav>
-      <a class="toc-repo" href={SITE.social.github} target="_blank" rel="noopener noreferrer">
-        <Icon name="github" size={14} />{page.repoCta}
-      </a>
+      <p class="toc-help">
+        <span>{page.helpCta}</span>
+        <a href={`mailto:${page.helpEmail}`}>{page.helpEmail}</a>
+      </p>
     </aside>
 
     <article class="legal-body" lang={lang}>
-      {page.sections.map((section, i) => (
-        <section id={slug(i)} data-legal-section>
-          <h2>{section.title}</h2>
-          <p>{section.body}</p>
-          {section.items && section.items.length > 0 && (
+      {sections.map((s) => (
+        <section id={s.id} data-legal-section>
+          <h2>
+            {s.no && <span class="sec-no">{s.no}</span>}
+            <span>{s.text}</span>
+          </h2>
+          <p>{s.body}</p>
+          {s.items && s.items.length > 0 && (
             <ul class="legal-items">
-              {section.items.map((item) => <li>{item}</li>)}
+              {s.items.map((item) => <li>{item}</li>)}
             </ul>
           )}
         </section>
       ))}
       <p class="legal-foot">
-        <a class="tlink" href={SITE.social.github} target="_blank" rel="noopener noreferrer">{page.repoCta} →</a>
+        <span>{page.helpCta}</span>
+        <a class="tlink" href={`mailto:${page.helpEmail}`}>{page.helpEmail} <span aria-hidden="true">→</span></a>
       </p>
     </article>
   </div>
@@ -69,103 +76,120 @@ const slug = (i: number) => `sec-${i + 1}`;
 </script>
 
 <style>
-  .legal-head {
-    padding: clamp(124px, 16vh, 168px) 0 clamp(36px, 5vw, 52px);
+  :global(html[lang] body .legal-hero.page-head .ph-inner > h1) {
+    font-size: clamp(2.4rem, 1.6rem + 3vw, 4.25rem);
   }
-  .legal-title-row {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    flex-wrap: wrap;
-    margin: 14px 0 20px;
+  /* a paragraph, not a display line: let Chinese break anywhere instead of only at punctuation */
+  :global(html[lang] body .legal-hero.page-head .ph-inner > .lede) {
+    word-break: normal;
+    max-width: 44em;
+    font-size: clamp(15px, 0.86rem + 0.2vw, 17px);
+    line-height: 1.85;
   }
-  .legal-title-row h1 {
-    font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
-  }
-  .draft-tag {
+  .legal-tag {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    border: 1px solid var(--annot);
+    gap: 10px;
+    margin-top: 26px;
+    padding: 7px 15px 7px 13px;
+    border: 1px solid var(--night-line);
     border-radius: var(--r-full);
-    color: var(--annot);
-    font-size: 12.5px;
-    letter-spacing: 0.02em;
-  }
-  .draft-tag .live {
-    background: var(--annot);
-  }
-  .legal-intro {
-    max-width: 720px;
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--ink-2);
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--night-dim);
   }
 
   .legal-sec {
-    padding-top: 0;
+    padding-top: clamp(48px, 6vw, 84px);
   }
   .legal-grid {
     display: grid;
-    grid-template-columns: 220px minmax(0, 720px);
-    gap: clamp(36px, 5vw, 72px);
+    grid-template-columns: 240px minmax(0, 720px);
+    gap: clamp(36px, 5vw, 80px);
     justify-content: center;
     align-items: start;
   }
+
+  /* ── table of contents ── */
   .toc {
     position: sticky;
     top: calc(var(--nav-h) + 36px);
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
   }
   .toc-title {
-    font-size: 12px;
-    letter-spacing: 0.08em;
+    font: 500 11.5px/1.4 var(--f-mono);
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--ink-3);
+  }
+  :lang(zh) .toc-title {
+    font: 600 13px/1.4 var(--f-body);
+    letter-spacing: 0.08em;
   }
   .toc nav {
     display: flex;
     flex-direction: column;
-    gap: 9px;
     border-left: 1px solid var(--line);
-    padding-left: 14px;
   }
   .toc nav a {
-    font-size: 13px;
+    display: grid;
+    grid-template-columns: 1.5em minmax(0, 1fr);
+    gap: 4px;
+    margin-left: -1px;
+    padding: 6px 0 6px 14px;
+    border-left: 2px solid transparent;
+    font-size: 13.5px;
     line-height: 1.5;
     color: var(--ink-3);
-    transition: color var(--t-fast);
+    transition: color var(--t-fast), border-color var(--t-fast);
   }
   .toc nav a:hover {
-    color: var(--ink-2);
+    color: var(--ink);
   }
   .toc nav a.active {
     color: var(--ink);
+    border-left-color: var(--accent);
   }
-  .toc-repo {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    margin-top: 12px;
-    padding-left: 15px;
-    font-size: 13px;
+  .toc-no {
+    font: 500 12px/1.9 var(--f-mono);
     color: var(--ink-3);
   }
-  .toc-repo:hover {
-    color: var(--sage-deep);
+  .toc nav a.active .toc-no {
+    color: var(--accent-ink);
+  }
+  .toc-help {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 10px;
+    padding: 16px 18px;
+    border-radius: var(--r-md);
+    background: var(--pearl-2);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .toc-help a {
+    font-weight: 600;
+    color: var(--accent-ink);
+    overflow-wrap: anywhere;
+  }
+  .toc-help a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
+  /* ── body ── */
   .legal-body {
     font-size: 17px;
     line-height: 1.85;
     color: var(--ink-2);
   }
   .legal-body section {
-    scroll-margin-top: calc(var(--nav-h) + 90px);
-    padding-top: 8px;
+    scroll-margin-top: calc(var(--nav-h) + 40px);
   }
   .legal-body section + section {
     margin-top: 40px;
@@ -173,25 +197,40 @@ const slug = (i: number) => `sec-${i + 1}`;
     border-top: 1px solid var(--line);
   }
   .legal-body h2 {
-    font-size: 19px;
-    line-height: 1.5;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+    font-size: clamp(19px, 1.05rem + 0.3vw, 21px);
+    line-height: 1.45;
     color: var(--ink);
-    margin-bottom: 12px;
+  }
+  .sec-no {
+    flex: none;
+    min-width: 0.9em;
+    font-family: var(--f-latin-display);
+    font-optical-sizing: none;
+    font-variation-settings: 'opsz' 20;
+    font-size: 1.6em;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--accent-ink);
   }
   .legal-body p {
     text-wrap: pretty;
+    overflow-wrap: anywhere;
   }
   .legal-items {
-    list-style: none;
-    margin: 14px 0 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
   }
   .legal-items li {
     position: relative;
-    padding-left: 18px;
+    padding-left: 20px;
     font-size: 15.5px;
     line-height: 1.8;
     color: var(--ink-2);
@@ -201,57 +240,79 @@ const slug = (i: number) => `sec-${i + 1}`;
   .legal-items li::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 2px;
     top: 0.72em;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: var(--annot);
+    background: var(--accent);
   }
   .legal-foot {
-    margin-top: 48px;
-    padding-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 14px;
+    margin-top: 52px;
+    padding-top: 28px;
     border-top: 1px solid var(--line-2);
+    font-size: 15px;
+    color: var(--ink-2);
   }
 
   @media (max-width: 1023px) {
     .legal-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       max-width: 720px;
       margin-inline: auto;
+      gap: 28px;
     }
     .toc {
       position: static;
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--line);
+      gap: 12px;
+      min-width: 0;
     }
+    /* one swipeable row of clause chips */
     .toc nav {
       flex-direction: row;
-      flex-wrap: wrap;
-      gap: 6px 16px;
+      gap: 8px;
+      margin-inline: calc(-1 * var(--gutter));
+      padding: 2px var(--gutter) 6px;
       border-left: 0;
-      padding-left: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-mask: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - 40px), transparent);
+      mask: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - 40px), transparent);
+    }
+    .toc nav::-webkit-scrollbar {
+      display: none;
     }
     .toc nav a {
-      font-size: 11.5px;
-      border: 1px solid var(--line);
+      display: inline-flex;
+      flex: none;
+      gap: 8px;
+      margin: 0;
+      padding: 7px 14px;
+      border: 1px solid var(--line-2);
       border-radius: var(--r-full);
-      padding: 4px 10px;
+      background: var(--card);
+      font-size: 13px;
+      white-space: nowrap;
     }
     .toc nav a.active {
-      border-color: var(--ink);
+      border-color: var(--accent);
     }
-    .toc-repo {
-      padding-left: 0;
+    .toc-no {
+      line-height: 1.5;
+    }
+    .toc-help {
+      display: none;
     }
   }
   @media (max-width: 640px) {
     .legal-body {
       font-size: 16px;
     }
-    .legal-title-row {
-      align-items: flex-start;
-      flex-direction: column;
+    .legal-body h2 {
       gap: 12px;
     }
   }

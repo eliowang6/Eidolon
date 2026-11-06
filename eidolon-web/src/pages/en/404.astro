@@ -1,67 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Logo from '../../components/Logo.astro';
-import Button from '../../components/Button.astro';
-import { localizePath, t } from '../../i18n';
+import NotFoundPage from '../../components/pages/NotFoundPage.astro';
+import { t } from '../../i18n';
 
 const lang = 'en' as const;
 const copy = t(lang);
-const page = copy.notFound;
 ---
 <Base lang={lang} path="/404.html" title={copy.meta.notFound.title} description={copy.meta.notFound.description} keywords={copy.meta.notFound.keywords} noindex>
-  <section class="notfound">
-    <div class="nf-inner">
-      <div class="nf-frame">
-        <img src="/assets/stickers/polaroid_frame.png" alt="" width="141" height="156" />
-        <span class="nf-mark"><Logo size={46} /></span>
-      </div>
-      <h1>{page.h1}</h1>
-      <p class="hand nf-note">{page.note}</p>
-      <Button href={localizePath(lang, '/')} variant="ink">{page.cta}</Button>
-    </div>
-  </section>
+  <NotFoundPage lang={lang} />
 </Base>
-
-<style>
-  .notfound {
-    min-height: 68vh;
-    display: grid;
-    place-items: center;
-    padding: clamp(120px, 18vh, 180px) 0 clamp(80px, 10vw, 120px);
-  }
-  .nf-inner {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-inline: var(--gutter);
-  }
-  .nf-frame {
-    position: relative;
-    width: 150px;
-    transform: rotate(-5deg);
-    margin-bottom: 34px;
-    filter: drop-shadow(0 18px 28px rgba(18, 36, 29, 0.16));
-  }
-  .nf-frame img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .nf-mark {
-    position: absolute;
-    left: 50%;
-    top: 44%;
-    transform: translate(-50%, -50%) rotate(3deg);
-    color: var(--paper);
-    opacity: 0.94;
-  }
-  h1 {
-    font-size: clamp(1.8rem, 1.4rem + 2vw, 2.8rem);
-  }
-  .nf-note {
-    margin: 16px 0 30px;
-    font-size: 20px;
-    transform: rotate(-1.4deg);
-  }
-</style>

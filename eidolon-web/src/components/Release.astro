@@ -1,0 +1,22 @@
+---
+/** Live version from the updater manifest (see scripts/site.ts); static text if it can't load. */
+import { SITE } from '../config/site';
+
+interface Props {
+  label: string;
+  fallback: string;
+  platform?: 'windows' | 'android';
+  parts?: string;
+  class?: string;
+}
+const { label, fallback, platform = 'windows', parts = 'version,date', class: className = '' } = Astro.props;
+---
+
+<span
+  class:list={['release', className]}
+  data-release
+  data-release-endpoint={SITE.release[platform]}
+  data-release-label={label}
+  data-release-fallback={fallback}
+  data-release-parts={parts}>{fallback}</span
+>
