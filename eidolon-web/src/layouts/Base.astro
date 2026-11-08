@@ -65,7 +65,7 @@ const website = {
   name: 'Sholarel',
   alternateName: ['Eidolon'],
   url: SITE.url,
-  inLanguage: ['zh-CN', 'en'],
+  inLanguage: ['zh-Hans', 'en'],
   publisher: { '@id': 'https://instarmony.com/#organization' },
 };
 const structured = [organization, website, ...jsonLd];
@@ -75,7 +75,7 @@ const structured = [organization, website, ...jsonLd];
 const whispers = Object.fromEntries(Object.entries(copy.whisper.lines).map(([key, text]) => [key, pr(text)]));
 ---
 <!doctype html>
-<html lang={lang === 'zh' ? 'zh-CN' : 'en'} data-companion="fea">
+<html lang={lang === 'zh' ? 'zh-Hans' : 'en'} data-companion="fea">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -102,7 +102,7 @@ const whispers = Object.fromEntries(Object.entries(copy.whisper.lines).map(([key
     <meta name="waffo-verify" content="ac0a33903ae6481423d0aed79e1e6e00" />
     <meta name="waffo-verification" content="ac0a33903ae6481423d0aed79e1e6e00" />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="zh-CN" href={zhUrl} />
+    <link rel="alternate" hreflang="zh-Hans" href={zhUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />
     <link rel="alternate" hreflang="x-default" href={zhUrl} />
     {noindex && <meta name="robots" content="noindex, follow" />}

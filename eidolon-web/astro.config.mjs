@@ -57,7 +57,7 @@ export default defineConfig({
       filter: (page) => !/\/(404|login|contact)\/?$/.test(new URL(page).pathname),
       i18n: {
         defaultLocale: 'zh',
-        locales: { zh: 'zh-CN', en: 'en' },
+        locales: { zh: 'zh-Hans', en: 'en' },
       },
       serialize(item) {
         const lastmod = lastmodFor(item.url);

@@ -47,7 +47,7 @@ const isCurrent = (href: string) => path === href;
           <span class="sr-only">{copy.nav.withAel}</span>
         </button>
       </div>
-      <a class="lang" href={localizePath(other, path)} data-lang-switch={other} hreflang={other === 'zh' ? 'zh-CN' : 'en'} aria-label={copy.nav.langLabel}>{copy.nav.lang}</a>
+      <a class="lang" href={localizePath(other, path)} data-lang-switch={other} hreflang={other === 'zh' ? 'zh-Hans' : 'en'} aria-label={copy.nav.langLabel}>{copy.nav.lang}</a>
       <a class="nav-cta" href={p('/download.html')}>{copy.nav.download}</a>
       <button type="button" class="burger" data-drawer-open aria-controls="nav-drawer" aria-expanded="false">
         <span class="sr-only">{copy.nav.menu}</span>

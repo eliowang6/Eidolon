@@ -22,7 +22,7 @@ const duo = ['fea', 'ael'] as const;
 const names = { fea: 'Fea', ael: 'Ael' } as const;
 const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
 // The belief kicker is always in the other language.
-const otherLang = lang === 'zh' ? 'en' : 'zh-CN';
+const otherLang = lang === 'zh' ? 'en' : 'zh-Hans';
 
 const contactHref: Record<string, string> = {
   issues: GITHUB_ISSUES,

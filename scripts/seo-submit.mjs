@@ -11,6 +11,7 @@
  * Usage:
  *   node scripts/seo-submit.mjs generate   # build sitemap.xml + robots.txt (before packaging)
  *   node scripts/seo-submit.mjs push       # incremental push after a deploy (state-aware)
+ *   node scripts/seo-submit.mjs push --full # force IndexNow to re-submit every URL
  *   node scripts/seo-submit.mjs push --site=main   # only the host that was deployed
  *   node scripts/seo-submit.mjs push --dry-run   # print the plan, send nothing, keep state
  *   node scripts/seo-submit.mjs submit     # force push every sitemap URL (manual, quota-bound)
@@ -55,7 +56,7 @@
  * page hash changed since it was accepted.
  */
 
-import { writeFileSync, existsSync, readFileSync, mkdirSync, rmSync } from 'node:fs';
+import { writeFileSync, appendFileSync, existsSync, readFileSync, mkdirSync, rmSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -170,6 +171,18 @@ const STATE_PATH = process.env.SEO_PUSH_STATE_PATH
   ? resolve(process.env.SEO_PUSH_STATE_PATH)
   : resolve(ROOT, 'seo', 'push-state.json');
 
+// One JSON line per submitted URL, so the quota spend is auditable after the
+// fact (Baidu only returns a count, never which URLs it kept).
+const BAIDU_LOG_PATH = process.env.SEO_BAIDU_LOG_PATH
+  ? resolve(process.env.SEO_BAIDU_LOG_PATH)
+  : resolve(ROOT, 'seo', 'baidu-push-log.jsonl');
+
+function logBaiduPush(entries) {
+  if (!entries.length) return;
+  mkdirSync(dirname(BAIDU_LOG_PATH), { recursive: true });
+  appendFileSync(BAIDU_LOG_PATH, entries.map((e) => JSON.stringify(e)).join('\n') + '\n', 'utf8');
+}
+
 function loadState() {
   if (existsSync(STATE_PATH)) {
     try {
@@ -197,6 +210,28 @@ function hostState(state, host) {
 }
 
 const isEnglish = (u) => /\/en(\/|$)/.test(new URL(u).pathname);
+
+// Baidu 普通收录 API has a hard daily quota (10 URLs/day on this account), so
+// the queue is spent in product-priority order instead of sitemap order:
+// 首页 > 下载页 > 定价页 > features > how-it-works > 文档首页 > FAQ > 其余.
+const BAIDU_PRIORITY = [
+  '/',
+  '/download.html',
+  '/pricing.html',
+  '/features.html',
+  '/how-it-works.html',
+  '/docs/',
+  '/docs/faq',
+];
+
+/** Priority slot for a URL; unlisted docs pages come before other marketing pages. */
+function baiduRank(rawUrl) {
+  let p = new URL(rawUrl).pathname;
+  if (p.startsWith('/en/')) p = p.slice(3);
+  const i = BAIDU_PRIORITY.indexOf(p);
+  if (i !== -1) return i;
+  return p.startsWith('/docs/') ? BAIDU_PRIORITY.length : BAIDU_PRIORITY.length + 1;
+}
 
 /** Candidate local files for a sitemap URL, in serve order. */
 function pageCandidates(site, rawUrl) {
@@ -236,7 +271,7 @@ function pageHash(site, url) {
  * so its queue is split zh-first / en-last and anything already accepted with
  * the same page hash is dropped.
  */
-function planPush(site, urls, state, { force }) {
+function planPush(site, urls, state, { forceIndexNow, forceBaidu }) {
   const hs = hostState(state, site.host);
   const hashes = {};
   const indexNow = [];
@@ -245,15 +280,19 @@ function planPush(site, urls, state, { force }) {
     const hash = pageHash(site, url);
     hashes[url] = hash;
 
-    if (force || !hs.indexnow?.[url] || hs.indexnow[url].status !== 'ok') {
+    if (forceIndexNow || !hs.indexnow?.[url] || hs.indexnow[url].status !== 'ok') {
       indexNow.push(url);
     }
 
     const record = hs.baidu?.[url];
     const changed = !!(hash && record?.hash && hash !== record.hash);
-    const stale = force || !record || record.status !== 'accepted' || changed;
+    const stale = forceBaidu || !record || record.status !== 'accepted' || changed;
     if (stale) (isEnglish(url) ? baidu.en : baidu.zh).push(url);
   }
+  // The quota is the scarce resource, so spend it on the pages that matter
+  // first. Array#sort is stable, so same-rank URLs keep their sitemap order.
+  baidu.zh.sort((a, b) => baiduRank(a) - baiduRank(b));
+  baidu.en.sort((a, b) => baiduRank(a) - baiduRank(b));
   return { hashes, indexNow, baidu };
 }
 
@@ -375,6 +414,24 @@ function generateSub() {
     }
   } else {
     console.log('[WARN] no docs sitemap found — the documentation pages are not in sitemap.xml');
+  }
+
+  // Astro's i18n sitemap emits one <xhtml:link> per locale but no x-default, while
+  // the pages declare x-default in <head>. A sitemap annotation supersedes the
+  // head one for the same URL, so mirror x-default here (→ the Chinese page, the
+  // default locale) and keep both channels saying the same thing.
+  const beforeDefault = readFileSync(flat, 'utf8');
+  const withDefault = beforeDefault.replace(/<url>[\s\S]*?<\/url>/g, (block) => {
+    if (block.includes('x-default')) return block;
+    const zhLink = block.match(/<xhtml:link[^>]*hreflang="zh-Hans"[^>]*>/);
+    const href = zhLink && zhLink[0].match(/href="([^"]+)"/);
+    if (!href) return block;
+    return block.replace('</url>', `<xhtml:link rel="alternate" hreflang="x-default" href="${href[1]}"/></url>`);
+  });
+  if (withDefault !== beforeDefault) {
+    writeFileSync(flat, withDefault, 'utf8');
+    const count = (withDefault.match(/hreflang="x-default"/g) || []).length;
+    console.log(`[OK] sholarel.instarmony.com: x-default added to ${count} sitemap URLs`);
   }
 
   writeFileSync(
@@ -624,10 +681,36 @@ async function pushBaidu(site, queues, hashes, state, dryRun) {
     // after them stays pending for the next run.
     hs.baidu ??= {};
     const pushedAt = new Date().toISOString();
-    for (let i = 0; i < success && i < chunk.length; i++) {
+    const notSame = new Set(json.not_same_site ?? []);
+    const notValid = new Set(json.not_valid ?? []);
+    const rejectReason = json.error
+      ? `api error ${json.error}: ${json.message ?? ''}`
+      : `quota-limited: ${success}/${chunk.length} accepted, remain ${json.remain ?? 'unknown'}`;
+    const logEntries = [];
+    for (let i = 0; i < chunk.length; i++) {
       const sourceUrl = planned[cursor + i];
-      hs.baidu[sourceUrl] = { hash: hashes[sourceUrl] ?? null, pushedAt, status: 'accepted' };
+      const acceptedHere = i < success;
+      if (acceptedHere) {
+        hs.baidu[sourceUrl] = { hash: hashes[sourceUrl] ?? null, pushedAt, status: 'accepted' };
+      }
+      logEntries.push({
+        at: pushedAt,
+        host: site.host,
+        site: baiduSite,
+        url: sourceUrl,
+        submitted: chunk[i],
+        status: acceptedHere ? 'accepted' : 'rejected',
+        reason: acceptedHere
+          ? null
+          : notSame.has(chunk[i])
+            ? 'not_same_site'
+            : notValid.has(chunk[i])
+              ? 'not_valid'
+              : rejectReason,
+        remain: json.remain ?? null,
+      });
     }
+    logBaiduPush(logEntries);
 
     if (json.error) {
       stopReason = json.message ? `error ${json.error}: ${json.message}` : `error ${json.error}`;
@@ -643,10 +726,11 @@ async function pushBaidu(site, queues, hashes, state, dryRun) {
   const acceptedZh = Math.min(accepted, zhPlan.length);
   const acceptedEn = Math.max(0, accepted - acceptedZh);
   console.log(
-    `[Baidu] ${site.host}: 提交 ${planned.length} 条，成功 ${accepted} 条` +
+    `[Baidu] ${site.host}: 提交 ${planned.length} 条，成功 ${accepted} 条，被拒 ${planned.length - accepted} 条` +
       `，剩余配额 ${remain === null ? '未知（本次响应未返回 remain）' : remain}` +
       (stopReason ? `，停止原因：${stopReason}` : '')
   );
+  console.log(`[Baidu] ${site.host}: 逐条结果已追加到 ${BAIDU_LOG_PATH}`);
   console.log(
     `[Baidu] ${site.host}: 仍待推 zh ${queues.zh.length - acceptedZh}` +
       ` / en ${enPending.length - acceptedEn}（下次发布继续，不会重复推送已成功的 URL）`
@@ -676,11 +760,13 @@ async function pushGoogle(site, urls, dryRun) {
 /**
  * Push after a deploy.
  *
- * force=false is the incremental path (`push`): only new/changed URLs.
- * force=true is `submit`, kept for manual full re-submission (still capped by
- * the Baidu budget).
+ * forceIndexNow=false is the incremental path (`push`): only new/changed URLs.
+ * `push --full` forces every URL through IndexNow (it has no quota), while the
+ * Baidu queue stays incremental so a full re-index never burns the daily cap.
+ * forceBaidu=true is `submit`, kept for manual full re-submission (still capped
+ * by the Baidu budget).
  */
-async function push({ force = false, dryRun = false, sites = null } = {}) {
+async function push({ forceIndexNow = false, forceBaidu = false, dryRun = false, sites = null } = {}) {
   const state = loadState();
   console.log(`[push] state: ${STATE_PATH}${dryRun ? ' (dry-run: state will not be written)' : ''}`);
   const selected = sites ? SITES.filter((site) => site.key === sites) : SITES;
@@ -694,7 +780,7 @@ async function push({ force = false, dryRun = false, sites = null } = {}) {
       console.log(`[WARN] ${site.host}: no URLs from sitemap — skipping`);
       continue;
     }
-    const plan = planPush(site, urls, state, { force });
+    const plan = planPush(site, urls, state, { forceIndexNow, forceBaidu });
     console.log(
       `\n--- ${site.host}: sitemap ${urls.length} URLs` +
         `，本次变更 ${plan.indexNow.length}` +
@@ -743,12 +829,12 @@ const siteArg = process.argv.find((a) => a.startsWith('--site='))?.split('=')[1]
 if (cmd === 'generate') {
   generate();
 } else if (cmd === 'push') {
-  await push({ dryRun: flags.has('--dry-run'), sites: siteArg });
+  await push({ forceIndexNow: flags.has('--full'), dryRun: flags.has('--dry-run'), sites: siteArg });
 } else if (cmd === 'submit') {
-  await push({ force: true, dryRun: flags.has('--dry-run'), sites: siteArg });
+  await push({ forceIndexNow: true, forceBaidu: true, dryRun: flags.has('--dry-run'), sites: siteArg });
 } else if (cmd === 'urls') {
   writeUrlLists();
 } else {
-  console.error('Usage: node scripts/seo-submit.mjs <generate|push|submit|urls> [--site=main|sub] [--dry-run]');
+  console.error('Usage: node scripts/seo-submit.mjs <generate|push|submit|urls> [--site=main|sub] [--full] [--dry-run]');
   process.exit(1);
 }
