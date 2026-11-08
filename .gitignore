@@ -14,6 +14,10 @@ docs/build/
 # Deployment packages produced by scripts/publish-site.py.
 dist/
 
+# Incremental search-engine push ledger (URL + page hash + result), written by
+# scripts/seo-submit.mjs push. Local machine state, never part of the site.
+seo/push-state.json
+
 # Eidolon Astro build output. The source lives in eidolon-web/ (which carries
 # its own .gitignore); the Pages payload is rebuilt by publish-edgeone.py.
 eidolon-site/

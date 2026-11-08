@@ -10,7 +10,11 @@
  *
  * Usage:
  *   node scripts/seo-submit.mjs generate   # build sitemap.xml + robots.txt (before packaging)
- *   node scripts/seo-submit.mjs submit     # push URLs to IndexNow / Baidu / Google (after deploy)
+ *   node scripts/seo-submit.mjs push       # incremental push after a deploy (state-aware)
+ *   node scripts/seo-submit.mjs push --site=main   # only the host that was deployed
+ *   node scripts/seo-submit.mjs push --dry-run   # print the plan, send nothing, keep state
+ *   node scripts/seo-submit.mjs submit     # force push every sitemap URL (manual, quota-bound)
+ *   node scripts/seo-submit.mjs urls       # plain-text URL lists for manual submission
  *
  * Optional environment (every submit path degrades to "skipped" when absent):
  *   SEO_INDEXNOW_KEY           IndexNow key; served as /<key>.txt on BOTH hosts
@@ -24,15 +28,29 @@
  *   SEO_BAIDU_REWRITE_HOST_EIDOLON   Same for sholarel.instarmony.com
  *                              (use when 百度 registered www.x but the site's
  *                               canonical host is the bare domain)
- *   SEO_BAIDU_INCLUDE_EN=1     Also push /en/ pages (off by default — they waste
- *                              the ~10/day quota and never rank for zh queries)
+ *   SEO_BAIDU_INCLUDE_EN=1     Legacy switch; /en/ pages are now queued behind
+ *                              every zh page and only pushed with leftover quota
+ *                              (see SEO_BAIDU_EN_MAX). Set to 0 to drop them.
+ *   SEO_BAIDU_MAX_PER_RUN      Baidu URLs per deploy run (default: 10)
+ *   SEO_BAIDU_EN_MAX           Max /en/ URLs per run once zh is drained (default: 2)
  *   SEO_GSC_ACCESS_TOKEN       Google OAuth2 token with Search Console scope
+ *   SEO_PUSH_STATE_PATH        Override the incremental state file location
+ *   SEO_BAIDU_ENDPOINT / SEO_INDEXNOW_ENDPOINT
+ *                              Override the submit endpoint (local mock only —
+ *                              used by the dry-run rehearsal, never in prod)
  *
- * Reads .env from the repo root, so a local `node scripts/seo-submit.mjs submit`
+ * Reads .env from the repo root, so a local `node scripts/seo-submit.mjs push`
  * behaves like the deploy.
+ *
+ * Incremental state lives in seo/push-state.json (untracked; override with
+ * SEO_PUSH_STATE_PATH). It records, per host and per engine, the URL, the
+ * SHA-1 of the page file that was live at push time, the push time and the
+ * result. `push` only sends URLs that are missing from that record, or whose
+ * page hash changed since it was accepted.
  */
 
 import { writeFileSync, existsSync, readFileSync, mkdirSync, rmSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { resolve, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -75,6 +93,7 @@ loadEnvFile(resolve(ROOT, '.env'));
 
 const SITES = [
   {
+    key: 'main',
     host: 'instarmony.com',
     origin: 'https://instarmony.com',
     // sitemap file name, relative to the deployed root
@@ -88,6 +107,7 @@ const SITES = [
     baiduRewriteEnv: 'SEO_BAIDU_REWRITE_HOST',
   },
   {
+    key: 'sub',
     host: 'sholarel.instarmony.com',
     origin: 'https://sholarel.instarmony.com',
     // Astro emits sitemap-index.xml → sitemap-0.xml; generate() flattens the
@@ -135,6 +155,107 @@ Allow: /
 
 Sitemap: https://sholarel.instarmony.com/sitemap.xml
 `;
+
+// ---------------------------------------------------------------------------
+// incremental push state
+// ---------------------------------------------------------------------------
+
+const STATE_PATH = process.env.SEO_PUSH_STATE_PATH
+  ? resolve(process.env.SEO_PUSH_STATE_PATH)
+  : resolve(ROOT, 'seo', 'push-state.json');
+
+function loadState() {
+  if (existsSync(STATE_PATH)) {
+    try {
+      const raw = JSON.parse(readFileSync(STATE_PATH, 'utf8'));
+      if (raw && raw.version === 1 && raw.hosts && typeof raw.hosts === 'object') return raw;
+      console.log(`[WARN] ${STATE_PATH}: unexpected shape — starting from an empty state`);
+    } catch (error) {
+      // A truncated file must not abort a deploy; losing the state only costs
+      // quota on the next run, whereas throwing would take the publish with it.
+      console.log(`[WARN] ${STATE_PATH}: unreadable (${error.message}) — treating every URL as pending`);
+    }
+  }
+  return { version: 1, updatedAt: null, hosts: {} };
+}
+
+function saveState(state) {
+  state.updatedAt = new Date().toISOString();
+  mkdirSync(dirname(STATE_PATH), { recursive: true });
+  writeFileSync(STATE_PATH, JSON.stringify(state, null, 2) + '\n', 'utf8');
+}
+
+function hostState(state, host) {
+  state.hosts[host] ??= {};
+  return state.hosts[host];
+}
+
+const isEnglish = (u) => /\/en(\/|$)/.test(new URL(u).pathname);
+
+/** Candidate local files for a sitemap URL, in serve order. */
+function pageCandidates(site, rawUrl) {
+  const rel = new URL(rawUrl).pathname.replace(/^\//, '');
+  const variants = (r) => {
+    if (!r) return ['index.html'];
+    const bare = r.replace(/\/$/, '');
+    return [r, `${bare}.html`, `${bare}/index.html`];
+  };
+  const files = [];
+  const add = (base, rels) => {
+    for (const r of rels) files.push(resolve(base, r));
+  };
+  add(site.outRoot, variants(rel));
+  // The docs are built by Docusaurus into docs/build and shipped under /docs/,
+  // so they are not inside the product site's outRoot.
+  if (/^docs(\/|$)/.test(rel)) {
+    add(resolve(ROOT, 'docs', 'build'), variants(rel.replace(/^docs\/?/, '')));
+  }
+  return files;
+}
+
+/** SHA-1 of the page file that is about to be served; null when unresolvable. */
+function pageHash(site, url) {
+  for (const file of pageCandidates(site, url)) {
+    if (file.endsWith('.html') && existsSync(file)) {
+      return createHash('sha1').update(readFileSync(file)).digest('hex').slice(0, 16);
+    }
+  }
+  return null;
+}
+
+/**
+ * Split the sitemap into what still needs pushing.
+ *
+ * IndexNow has no quota, so it takes every changed URL. Baidu is quota-bound,
+ * so its queue is split zh-first / en-last and anything already accepted with
+ * the same page hash is dropped.
+ */
+function planPush(site, urls, state, { force }) {
+  const hs = hostState(state, site.host);
+  const hashes = {};
+  const indexNow = [];
+  const baidu = { zh: [], en: [] };
+  for (const url of urls) {
+    const hash = pageHash(site, url);
+    hashes[url] = hash;
+
+    if (force || !hs.indexnow?.[url] || hs.indexnow[url].status !== 'ok') {
+      indexNow.push(url);
+    }
+
+    const record = hs.baidu?.[url];
+    const changed = !!(hash && record?.hash && hash !== record.hash);
+    const stale = force || !record || record.status !== 'accepted' || changed;
+    if (stale) (isEnglish(url) ? baidu.en : baidu.zh).push(url);
+  }
+  return { hashes, indexNow, baidu };
+}
+
+function countRecorded(host, engine, status) {
+  const bucket = host[engine] ?? {};
+  return Object.values(bucket).filter((record) => record.status === status).length;
+}
+
 
 // ---------------------------------------------------------------------------
 // generate
@@ -329,10 +450,18 @@ function urlsFromSitemap(site) {
   return [...new Set(all)];
 }
 
-async function submitIndexNow(site, urls) {
+async function pushIndexNow(site, urls, state, dryRun) {
   const key = process.env.SEO_INDEXNOW_KEY;
   if (!key) {
     console.log(`[IndexNow] ${site.host}: skipped (SEO_INDEXNOW_KEY not set)`);
+    return;
+  }
+  if (!urls.length) {
+    console.log(`[IndexNow] ${site.host}: nothing to push (no new or changed URL)`);
+    return;
+  }
+  if (dryRun) {
+    console.log(`[DRY-RUN] [IndexNow] ${site.host}: would submit ${urls.length} changed URL(s)`);
     return;
   }
   const body = JSON.stringify({
@@ -341,7 +470,7 @@ async function submitIndexNow(site, urls) {
     keyLocation: `${site.origin}/${key}.txt`,
     urlList: urls,
   });
-  const r = await request('https://api.indexnow.org/indexnow', {
+  const r = await request(process.env.SEO_INDEXNOW_ENDPOINT || 'https://api.indexnow.org/indexnow', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
     body,
@@ -355,100 +484,164 @@ async function submitIndexNow(site, urls) {
         : r.status === 429
           ? ' — too many requests'
           : '';
-  console.log(`[IndexNow] ${site.host}: ${r.ok ? 'OK' : 'FAILED'} (status ${r.status}, ${urls.length} URLs)${note}`);
+  const ok = r.status >= 200 && r.status < 300;
+  const hs = hostState(state, site.host);
+  hs.indexnow ??= {};
+  const pushedAt = new Date().toISOString();
+  for (const url of urls) {
+    // Failures stay unrecorded so the next deploy retries them; IndexNow has no
+    // quota, so a retry costs nothing.
+    hs.indexnow[url] = { pushedAt, status: ok ? 'ok' : `http-${r.status}` };
+  }
+  console.log(`[IndexNow] ${site.host}: ${ok ? 'OK' : 'FAILED'} (status ${r.status}, ${urls.length} URLs)${note}`);
 }
 
-async function submitBaidu(site, urls) {
+async function pushBaidu(site, queues, hashes, state, dryRun) {
   const token = process.env[site.baiduEnv];
   if (!token) {
     console.log(`[Baidu] ${site.host}: skipped (${site.baiduEnv} not set)`);
     return;
   }
+
+  // Quota is per site and starts around 10 URLs/day, so a run is capped and
+  // zh pages are spent first. /en/ pages are not dropped outright — they are
+  // queued behind every zh page and only take the leftover budget, because
+  // they do get indexed for English queries but cannot compete for the scarce
+  // allowance.
+  const maxPerRun = Math.max(1, Number(process.env.SEO_BAIDU_MAX_PER_RUN || 10));
+  const enMax = Math.max(0, Number(process.env.SEO_BAIDU_EN_MAX ?? 2));
+  const dropEn = process.env.SEO_BAIDU_INCLUDE_EN === '0';
+  const enPending = dropEn ? [] : queues.en;
+  const zhPlan = queues.zh.slice(0, maxPerRun);
+  const enPlan = enPending.slice(0, Math.min(enMax, Math.max(0, maxPerRun - zhPlan.length)));
+  const planned = [...zhPlan, ...enPlan];
+  const hs = hostState(state, site.host);
+  const alreadyAccepted = countRecorded(hs, 'baidu', 'accepted');
+
+  console.log(
+    `[Baidu] ${site.host}: 待推 zh ${queues.zh.length} / en ${enPending.length}` +
+      `，本次计划 zh ${zhPlan.length} / en ${enPlan.length}` +
+      `，历史已成功 ${alreadyAccepted}，每次上限 ${maxPerRun}` +
+      (dropEn ? '（SEO_BAIDU_INCLUDE_EN=0，/en/ 不推）' : '')
+  );
+  if (!planned.length) {
+    console.log(`[Baidu] ${site.host}: 无新增或变更 URL，跳过（不消耗配额）`);
+    return;
+  }
+  if (dryRun) {
+    console.log(`[DRY-RUN] [Baidu] ${site.host}: would submit ${planned.length} URL(s); 未发送请求，配额未知，state 不写入`);
+    return;
+  }
+
   // The `site` parameter must match the property exactly as registered in
-  // 百度搜索资源平台, protocol included — a mismatch comes back as
-  // {"error":400,"message":"site init fail"}. Overridable per host for the case
-  // where the platform shows the bare domain.
+  // 百度搜索资源平台. A mismatch comes back as {"error":400,"message":"site init fail"}.
   const baiduSite = process.env[site.baiduSiteEnv] || site.origin;
-
-  // Quota is per site and starts around 10 URLs/day for a new property, so
-  // spend it on pages Baidu can actually rank. It does not meaningfully index
-  // /en/ pages for Chinese queries — those come back as not_valid/ignored and
-  // just burn the daily allowance. Opt back in with SEO_BAIDU_INCLUDE_EN=1.
-  let queue = urls;
-  if (process.env.SEO_BAIDU_INCLUDE_EN !== '1') {
-    const before = queue.length;
-    queue = queue.filter((u) => !/\/en(\/|$)/.test(new URL(u).pathname));
-    if (queue.length !== before) {
-      console.log(`[Baidu] ${site.host}: skipping ${before - queue.length} /en/ URLs (SEO_BAIDU_INCLUDE_EN=1 to include)`);
-    }
-  }
-
-  // If 百度 registered the site under a different host than the canonical one
-  // (e.g. www.instarmony.com vs instarmony.com), every pushed URL comes back in
-  // not_same_site. This rewrites the host instead of dropping the submission.
+  // If 百度 registered a different host (www vs bare domain), rewrite instead of
+  // dropping the submission.
   const rewriteHost = process.env[site.baiduRewriteEnv];
-  if (rewriteHost) {
-    queue = queue.map((u) => {
-      const url = new URL(u);
-      url.host = rewriteHost;
-      return url.href;
-    });
-    console.log(`[Baidu] ${site.host}: rewriting host to ${rewriteHost}`);
-  }
+  if (rewriteHost) console.log(`[Baidu] ${site.host}: rewriting host to ${rewriteHost}`);
+  const sentUrls = rewriteHost
+    ? planned.map((u) => {
+        const url = new URL(u);
+        url.host = rewriteHost;
+        return url.href;
+      })
+    : planned;
 
   let accepted = 0;
   let remain = null;
-  const rejected = [];
-  for (let i = 0; i < queue.length; i += 50) {
-    const chunk = queue.slice(i, i + 50);
+  let stopReason = '';
+  let cursor = 0;
+  while (cursor < sentUrls.length) {
+    if (remain === 0) {
+      stopReason = 'API 返回 remain=0（当日配额已用尽）';
+      break;
+    }
+    const chunk = sentUrls.slice(cursor, cursor + 50);
     const r = await request(
-      `http://data.zz.baidu.com/urls?site=${encodeURIComponent(baiduSite)}&token=${encodeURIComponent(token)}`,
+      `${process.env.SEO_BAIDU_ENDPOINT || 'http://data.zz.baidu.com/urls'}?site=${encodeURIComponent(baiduSite)}&token=${encodeURIComponent(token)}`,
       { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: chunk.join('\n') }
     );
+    let json = null;
     try {
-      const json = JSON.parse(r.text);
-      accepted += json.success ?? 0;
-      if (json.remain !== undefined) remain = json.remain;
-      if (json.not_same_site?.length) {
-        rejected.push(...json.not_same_site);
+      json = JSON.parse(r.text);
+    } catch {
+      json = null;
+    }
+    if (!json) {
+      stopReason = `HTTP ${r.status}（响应不是 JSON）`;
+      console.log(`[Baidu] ${site.host}: HTTP ${r.status} ${r.text.slice(0, 120)} — 本轮停止，未记为成功`);
+      break;
+    }
+
+    const success = json.success ?? 0;
+    accepted += success;
+    if (json.remain !== undefined) remain = json.remain;
+    if (json.not_same_site?.length) {
+      console.log(
+        `[Baidu] ${site.host}: ${json.not_same_site.length} URL(s) not_same_site — ` +
+          `registered site is ${baiduSite}, URLs are on ${site.host}. ` +
+          `Set ${site.baiduRewriteEnv} or register ${site.origin} in 百度平台.`
+      );
+    }
+    if (json.error) {
+      console.log(`[Baidu] ${site.host}: error ${json.error} — ${json.message ?? ''}`);
+      if (/site init fail/i.test(json.message ?? '')) {
         console.log(
-          `[Baidu] ${site.host}: ${json.not_same_site.length} URL(s) not_same_site — ` +
-            `registered site is ${baiduSite}, URLs are on ${site.host}. ` +
-            `Set ${site.baiduRewriteEnv} or register ${site.origin} in 百度平台.`
+          `[Baidu]   hint: "site" 参数必须与平台上注册的站点完全一致（含协议）。` +
+            `当前用的是 ${baiduSite}，可用 ${site.baiduSiteEnv} 覆盖。`
         );
       }
-      if (json.error) {
-        console.log(`[Baidu] ${site.host}: error ${json.error} — ${json.message ?? ''}`);
-        if (/site init fail/i.test(json.message ?? '')) {
-          console.log(
-            `[Baidu]   hint: "site" 参数必须与平台上注册的站点完全一致（含协议）。` +
-              `当前用的是 ${baiduSite}，可用 ${site.baiduSiteEnv} 覆盖。`
-          );
-        }
-        if (/over quota/i.test(json.message ?? '')) {
-          console.log(
-            `[Baidu]   hint: 当日配额用完了。普通收录 API 的额度按站点计、每天重置，` +
-              `额度很紧（通常 10 条/天起）——明天再跑一次即可。`
-          );
-        }
+      if (/over quota/i.test(json.message ?? '')) {
+        console.log(
+          `[Baidu]   hint: 当日配额用完了。普通收录 API 的额度按站点计、每天重置，` +
+            `额度很紧（通常 10 条/天起）——明天再跑一次即可。`
+        );
       }
-    } catch {
-      if (!r.ok) console.log(`[Baidu] ${site.host}: HTTP ${r.status} ${r.text.slice(0, 120)}`);
     }
+
+    // The API reports a count, not which URLs, but it processes the list in
+    // order — the first `success` entries are the accepted ones. Everything
+    // after them stays pending for the next run.
+    hs.baidu ??= {};
+    const pushedAt = new Date().toISOString();
+    for (let i = 0; i < success && i < chunk.length; i++) {
+      const sourceUrl = planned[cursor + i];
+      hs.baidu[sourceUrl] = { hash: hashes[sourceUrl] ?? null, pushedAt, status: 'accepted' };
+    }
+
+    if (json.error) {
+      stopReason = json.message ? `error ${json.error}: ${json.message}` : `error ${json.error}`;
+      break;
+    }
+    if (success < chunk.length) {
+      stopReason = `接口本次只接受 ${success}/${chunk.length} 条（配额或 URL 校验限制）`;
+      break;
+    }
+    cursor += chunk.length;
   }
+
+  const acceptedZh = Math.min(accepted, zhPlan.length);
+  const acceptedEn = Math.max(0, accepted - acceptedZh);
   console.log(
-    `[Baidu] ${site.host}: ${accepted}/${queue.length} URLs accepted` +
-      (remain !== null ? ` (daily quota left: ${remain})` : '')
+    `[Baidu] ${site.host}: 提交 ${planned.length} 条，成功 ${accepted} 条` +
+      `，剩余配额 ${remain === null ? '未知（本次响应未返回 remain）' : remain}` +
+      (stopReason ? `，停止原因：${stopReason}` : '')
   );
-  if (remain !== null && remain < queue.length - accepted) {
-    console.log(`[Baidu] ${site.host}: quota is the bottleneck — re-run tomorrow for the rest`);
-  }
+  console.log(
+    `[Baidu] ${site.host}: 仍待推 zh ${queues.zh.length - acceptedZh}` +
+      ` / en ${enPending.length - acceptedEn}（下次发布继续，不会重复推送已成功的 URL）`
+  );
 }
 
-async function submitGoogle(site, urls) {
+async function pushGoogle(site, urls, dryRun) {
   const token = process.env.SEO_GSC_ACCESS_TOKEN;
   if (!token) {
-    console.log(`[Google] ${site.host}: skipped (SEO_GSC_ACCESS_TOKEN not set)`);
+    console.log(`[Google] ${site.host}: skipped (SEO_GSC_ACCESS_TOKEN not set — see README「搜索引擎」)`);
+    return;
+  }
+  if (dryRun) {
+    console.log(`[DRY-RUN] [Google] ${site.host}: would re-submit sitemap ${site.origin}/${site.sitemap} (${urls.length} URLs)`);
     return;
   }
   // Google needs a Search Console property per host; sc-domain: covers subdomains.
@@ -461,22 +654,47 @@ async function submitGoogle(site, urls) {
   console.log(`[Google] ${site.host}: ${r.ok ? 'OK' : 'FAILED'} (status ${r.status}, ${urls.length} URLs in sitemap)`);
 }
 
-async function submit() {
-  for (const site of SITES) {
-    const urls = urlsFromSitemap(site);
-    if (urls.length === 0) continue;
-    console.log(`\n--- ${site.host} (${urls.length} URLs)`);
-    await submitIndexNow(site, urls);
-    await submitBaidu(site, urls);
-    await submitGoogle(site, urls);
+/**
+ * Push after a deploy.
+ *
+ * force=false is the incremental path (`push`): only new/changed URLs.
+ * force=true is `submit`, kept for manual full re-submission (still capped by
+ * the Baidu budget).
+ */
+async function push({ force = false, dryRun = false, sites = null } = {}) {
+  const state = loadState();
+  console.log(`[push] state: ${STATE_PATH}${dryRun ? ' (dry-run: state will not be written)' : ''}`);
+  const selected = sites ? SITES.filter((site) => site.key === sites) : SITES;
+  if (sites && selected.length === 0) {
+    console.log(`[WARN] unknown --site=${sites} — nothing to push`);
+    return;
   }
+  for (const site of selected) {
+    const urls = urlsFromSitemap(site);
+    if (urls.length === 0) {
+      console.log(`[WARN] ${site.host}: no URLs from sitemap — skipping`);
+      continue;
+    }
+    const plan = planPush(site, urls, state, { force });
+    console.log(
+      `\n--- ${site.host}: sitemap ${urls.length} URLs` +
+        `，本次变更 ${plan.indexNow.length}` +
+        `，Baidu 待推 zh ${plan.baidu.zh.length} / en ${plan.baidu.en.length}`
+    );
+    await pushIndexNow(site, plan.indexNow, state, dryRun);
+    await pushBaidu(site, plan.baidu, plan.hashes, state, dryRun);
+    await pushGoogle(site, urls, dryRun);
+  }
+  if (dryRun) {
+    console.log(`[DRY-RUN] state untouched: ${STATE_PATH}`);
+    return;
+  }
+  saveState(state);
 }
 
 // ---------------------------------------------------------------------------
 // urls — plain-text lists, one URL per line, for 百度手动提交 / copy-paste
 // ---------------------------------------------------------------------------
-
-const isEnglish = (u) => /\/en(\/|$)/.test(new URL(u).pathname);
 
 function writeUrlLists() {
   const dir = resolve(ROOT, 'dist');
@@ -501,13 +719,17 @@ function writeUrlLists() {
 // ---------------------------------------------------------------------------
 
 const cmd = process.argv[2];
+const flags = new Set(process.argv.slice(3));
+const siteArg = process.argv.find((a) => a.startsWith('--site='))?.split('=')[1] ?? null;
 if (cmd === 'generate') {
   generate();
+} else if (cmd === 'push') {
+  await push({ dryRun: flags.has('--dry-run'), sites: siteArg });
 } else if (cmd === 'submit') {
-  await submit();
+  await push({ force: true, dryRun: flags.has('--dry-run'), sites: siteArg });
 } else if (cmd === 'urls') {
   writeUrlLists();
 } else {
-  console.error('Usage: node scripts/seo-submit.mjs <generate|submit|urls>');
+  console.error('Usage: node scripts/seo-submit.mjs <generate|push|submit|urls> [--site=main|sub] [--dry-run]');
   process.exit(1);
 }

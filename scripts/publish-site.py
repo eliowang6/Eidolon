@@ -92,6 +92,29 @@ def generate_seo() -> None:
     run(["node", str(script), "generate"], cwd=ROOT)
 
 
+def push_links(dry_run: bool) -> None:
+    """Announce the deployed URLs to IndexNow / Baidu (incremental, quota-capped).
+
+    Runs after the upload succeeded and is deliberately best-effort: a network
+    error, an exhausted Baidu quota or a malformed response only gets logged.
+    """
+    script = ROOT / "scripts" / "seo-submit.mjs"
+    if not script.is_file():
+        print("[WARN] scripts/seo-submit.mjs not found — skipping link push")
+        return
+    command = ["node", str(script), "push"]
+    if dry_run:
+        command.append("--dry-run")
+    print(f"[RUN] {' '.join(command)}  (cwd: {ROOT.name})", flush=True)
+    try:
+        completed = subprocess.run(command, cwd=str(ROOT), shell=False)
+    except Exception as error:  # noqa: BLE001 - never fail the publish
+        print(f"[WARN] link push could not run: {error}")
+        return
+    if completed.returncode != 0:
+        print(f"[WARN] link push exited {completed.returncode} — publish result is unchanged")
+
+
 def iter_payload():
     """Yield site files in a stable order, pruning build scratch from the walk."""
     stack = [ROOT]
@@ -213,6 +236,7 @@ def main() -> int:
     parser.add_argument("--skip-docs-build", action="store_true", help="reuse the existing docs/build output")
     parser.add_argument("--dry-run", action="store_true", help="resolve everything, upload nothing")
     parser.add_argument("--purge-cache", action="store_true", help="purge the uploaded object URL on the CDN")
+    parser.add_argument("--no-push", action="store_true", help="skip the post-upload IndexNow/Baidu link push")
     args = parser.parse_args()
 
     print(f"Site root: {ROOT}")
@@ -244,6 +268,11 @@ def main() -> int:
 
     if args.purge_cache:
         purge_cache(public_url)
+
+    if not args.no_push:
+        print()
+        push_links(args.dry_run)
+
     print()
     print("Publish complete. Install it on the server with:")
     print(f"  ssh <server> 'cd ~/instarmony_website && git pull && bash scripts/install-site.sh {digest}'")

@@ -253,11 +253,57 @@ and Pages at `/Sholarel/docs/build/`.
 
 ### Search engines
 
-`node scripts/seo-submit.mjs generate` runs inside `publish-site.py`; run
-`node scripts/seo-submit.mjs submit` yourself after a deploy to ping IndexNow, Baidu and Google
-Search Console. Both degrade gracefully when `SEO_INDEXNOW_KEY` / `SEO_GSC_ACCESS_TOKEN` are
-unset. Register a new crawlable page in the `PAGES` list at the top of that script — the sitemap
-is generated from the list, not discovered.
+**Deploy now pushes links automatically.** `publish-edgeone.py` / `publish-site.py`
+run `node scripts/seo-submit.mjs push` as the last step, after the upload/deploy
+has already succeeded. It is best-effort: a network error, a non-2xx response,
+an exhausted Baidu quota or a malformed body only prints a `[WARN]`/log line and
+never changes the publish result. Skip it with `--no-push`; `--dry-run` runs it
+in plan-only mode (no requests, no state written).
+
+What gets pushed:
+
+- **IndexNow** (Bing/Yandex/Naver share it) — every URL whose page file is new
+  or whose SHA-1 changed since the last successful push. No quota.
+- **Baidu 普通收录主动推送** (`data.zz.baidu.com/urls`) — same change set, but
+  quota-bound and capped per run.
+- **Google** — nothing to push without a token; when `SEO_GSC_ACCESS_TOKEN` is
+  set the script only re-submits the sitemap through the Search Console API
+  (the URL-push Indexing API is not used — it is not a general-purpose endpoint).
+
+**Incremental ledger.** `seo/push-state.json` (untracked, override with
+`SEO_PUSH_STATE_PATH`) records per host and per engine: URL, page SHA-1, push
+time and result. `push` only sends URLs missing from the ledger, whose recorded
+status is not `accepted`, or whose page hash changed since acceptance — so a
+routine deploy with no content change sends **zero** Baidu URLs.
+
+**Baidu quota policy.** `SEO_BAIDU_MAX_PER_RUN` (default 10) caps URLs per run.
+Chinese pages are queued first; `/en/` pages are queued last and only consume
+leftover budget, capped by `SEO_BAIDU_EN_MAX` (default 2) — they are not dropped
+outright because they do rank for English queries, but they must not compete
+with zh pages for the ~10/day allowance. Set `SEO_BAIDU_INCLUDE_EN=0` to drop
+them entirely. The API's `remain` is reported in the run summary; `remain=0`
+or `over quota` stops the run cleanly, and unaccepted URLs stay pending for the
+next deploy.
+
+Run it by hand only for a forced full re-submission (still budget-capped):
+`node scripts/seo-submit.mjs submit`. Plain-text URL lists for manual copy-paste:
+`node scripts/seo-submit.mjs urls`.
+
+**Google: what is still missing.** `SEO_GSC_ACCESS_TOKEN` is not configured, so
+that branch is always skipped. To enable it you need an OAuth2 access token with
+the `https://www.googleapis.com/auth/webmasters` scope, issued for an account
+that owns the `sc-domain:instarmony.com` Search Console property (OAuth client
+in Google Cloud → consent once → refresh token → mint access tokens). No new
+dependency is required for this; until then Google relies on organic crawl of
+the sitemap declared in `robots.txt`.
+
+**Not available: Baidu 站点改版 / sitemap 提交.** The site has no ICP filing
+(备案). Baidu's 站点改版 tool and its sitemap-submission entry both require a
+verified, filed property, so neither can be used today. Nothing in this repo
+attempts them and no submission record is fabricated; the only working Baidu
+channel is 普通收录主动推送 above. Register a new crawlable page in `MAIN_PAGES`
+(main host) or let Astro/the docs build emit it — the sitemap is generated from
+those sources, not discovered.
 
 ## Contract with the Sholarel server
 

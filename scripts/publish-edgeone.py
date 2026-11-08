@@ -15,6 +15,7 @@ cut over.
                                                 # main|sub|dashboard|web
     python scripts/publish-edgeone.py --env preview   # deploy to the preview environment
     python scripts/publish-edgeone.py --dry-run       # resolve everything, deploy nothing
+    python scripts/publish-edgeone.py --no-push      # deploy but skip the link push
 
 Credentials and project names come from the environment, optionally seeded from
 <site root>/.env:
@@ -198,6 +199,33 @@ def generate_seo() -> None:
     if not script.is_file():
         raise SystemExit("[ERROR] scripts/seo-submit.mjs not found — sitemap.xml would go stale.")
     run(["node", str(script), "generate"], cwd=ROOT)
+
+
+def push_links(dry_run: bool, site: str | None = None) -> None:
+    """Announce the deployed URLs to IndexNow / Baidu (incremental, quota-capped).
+
+    Deliberately best-effort: this runs *after* the deploy succeeded, and a
+    network blip, an exhausted Baidu quota or a malformed response must not
+    turn a good release into a failed one. `run()` would raise SystemExit on a
+    non-zero child, so this calls subprocess directly.
+    """
+    script = ROOT / "scripts" / "seo-submit.mjs"
+    if not script.is_file():
+        print("[WARN] scripts/seo-submit.mjs not found — skipping link push")
+        return
+    command = ["node", str(script), "push"]
+    if site in ("main", "sub"):
+        command.append(f"--site={site}")
+    if dry_run:
+        command.append("--dry-run")
+    print(f"[RUN] {' '.join(command)}  (cwd: {ROOT.name})", flush=True)
+    try:
+        completed = subprocess.run(command, cwd=str(ROOT), shell=False)
+    except Exception as error:  # noqa: BLE001 - never fail the publish
+        print(f"[WARN] link push could not run: {error}")
+        return
+    if completed.returncode != 0:
+        print(f"[WARN] link push exited {completed.returncode} — publish result is unchanged")
 
 
 def add_tree(zf: zipfile.ZipFile, base: Path, at_repo_root: bool = False,
@@ -413,6 +441,8 @@ def main() -> int:
     parser.add_argument("--env", choices=["production", "preview"], default="production",
                         help="EdgeOne Pages environment (default: production)")
     parser.add_argument("--dry-run", action="store_true", help="resolve everything, deploy nothing")
+    parser.add_argument("--no-push", action="store_true",
+                        help="skip the post-deploy IndexNow/Baidu link push")
     args = parser.parse_args()
 
     print(f"Site root: {ROOT}")
@@ -503,6 +533,12 @@ def main() -> int:
 
     for archive, project in targets:
         deploy(archive, project, args.env, area, args.dry_run)
+
+    # Link push runs only when a site payload (main / sub) actually went out.
+    # The dashboard and web-client projects are SPAs with no crawlable pages.
+    if not args.no_push and args.only in (None, "main", "sub"):
+        print()
+        push_links(args.dry_run, args.only)
 
     print()
     print("Publish complete. Verify the live sites:")
