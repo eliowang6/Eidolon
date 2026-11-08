@@ -1,0 +1,505 @@
+---
+/**
+ * Changelog (/beta.html): every public release since the beta opened, newest
+ * first, grouped by day. The masthead card plots releases per day — counted
+ * from this same list, so it can never drift from what's written below.
+ */
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Faq from '../Faq.astro';
+import PageHero from '../PageHero.astro';
+import Release from '../Release.astro';
+import { GITHUB_ISSUES } from '../../config/site';
+import { pr, prPlain, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const cl = copy.changelogPage;
+
+type Day = (typeof cl.days)[number] & { start?: boolean };
+const days = cl.days as Day[];
+// "3.0.15 – 3.0.16" is two releases shipped together.
+const releaseCount = (v: string) => {
+  const [from, to] = v.split('–').map((part) => Number(part.trim().split('.').pop()));
+  return Number.isFinite(to) ? to - from + 1 : 1;
+};
+const cadence = [...days].reverse().map((day) => ({
+  iso: day.iso,
+  n: day.releases.reduce((sum, rel) => sum + releaseCount(rel.v), 0),
+}));
+const tallest = Math.max(...cadence.map((c) => c.n));
+const total = cadence.reduce((sum, c) => sum + c.n, 0);
+---
+
+<PageHero class="log-head" label={cl.label} h1a={cl.h1a} h1b={cl.h1b} lede={cl.lede}>
+  <aside class="span reveal" style="--i:3" aria-label={`${cl.spanLabel}: ${cl.spanFrom} → ${cl.spanTo}, ${cl.spanDates}`}>
+    <p class="span-top">
+      <span>{cl.spanLabel}</span>
+      <span class="span-dates">{cl.spanDates}</span>
+    </p>
+    <p class="span-vs" aria-hidden="true">
+      <span class="sv">{cl.spanFrom}</span>
+      <span class="sv-track"></span>
+      <span class="sv sv--to">{cl.spanTo}</span>
+    </p>
+    <div class="cad" style={`--rows:${tallest}`} aria-hidden="true">
+      {
+        cadence.map((c, i) => (
+          <div class:list={['cad-col', i === cadence.length - 1 && 'is-last']}>
+            <span class="cad-dots">
+              {Array.from({ length: c.n }, (_, k) => (
+                <i style={`--k:${k}`} />
+              ))}
+            </span>
+            <span class="cad-d mono">{c.iso.slice(8)}</span>
+          </div>
+        ))
+      }
+    </div>
+    <p class="span-live">
+      <span class="live" aria-hidden="true"></span>
+      <Release label={cl.latestLabel} fallback={`${cl.latestLabel} ${cl.spanTo}`} />
+      <span class="span-total">{cl.count.replace('{n}', String(total))}</span>
+    </p>
+  </aside>
+</PageHero>
+
+<!-- ── the record, newest first ──────────────────────── -->
+<section class="section record" aria-label={cl.label.split(' / ')[0]}>
+  <div class="container">
+    <ol class="days">
+      {
+        days.map((day, d) => (
+          <li class:list={['day', d === 0 && 'day--latest', day.start && 'day--start']}>
+            <div class="day-mark">
+              <span class="day-no" aria-hidden="true">
+                {day.iso.slice(8)}
+              </span>
+              <h2 class="day-date">
+                <time datetime={day.iso}>{day.date}</time>
+              </h2>
+              {d === 0 && <span class="tag tag--latest">{cl.latestLabel}</span>}
+              {day.start && <span class="tag tag--start">{cl.startTag}</span>}
+            </div>
+            <span class="node" aria-hidden="true" />
+            <div class="day-card reveal">
+              {day.releases.map((rel) => (
+                <article class="rel">
+                  <h3 class="rel-v">
+                    {rel.v.split(' – ').map((part, k) => (
+                      <span>{k ? `– ${part}` : part}</span>
+                    ))}
+                  </h3>
+                  <ul>
+                    {rel.items.map((item) => (
+                      <li set:html={pr(item)} />
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="skipped" set:html={pr(cl.skipped)} />
+  </div>
+</section>
+
+<!-- ── questions & feedback ──────────────────────────── -->
+<section class="section section--paper2 ask" aria-labelledby="faq-h">
+  <div class="container ask-grid">
+    <div class="ask-head reveal">
+      <Eyebrow text={lang === 'zh' ? `${copy.footer.faq} / FAQ` : copy.footer.faq} />
+      <h2 id="faq-h" set:html={prPlain(cl.faqTitle)} />
+      <a class="btn btn-ghost btn-sm" href={GITHUB_ISSUES} target="_blank" rel="noopener">{cl.issues}</a>
+    </div>
+    <Faq items={cl.faq} lang={lang} />
+  </div>
+</section>
+
+<CtaBand lang={lang} h2={cl.cta.h2} lede={cl.cta.lede} />
+
+<style>
+  /* ── masthead card: releases per day ───────────────── */
+  .span {
+    position: relative;
+    margin-top: 40px;
+    width: min(420px, 100%);
+    padding: 26px 28px 22px;
+    border-radius: var(--r-lg);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 40px 90px -50px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  @media (min-width: 1040px) {
+    .span {
+      position: absolute;
+      right: var(--gutter);
+      bottom: 0;
+      margin: 0;
+      width: min(400px, 32vw);
+    }
+    :global(html[lang] .log-head.page-head .ph-inner > h1),
+    :global(html[lang] .log-head.page-head .ph-inner > .lede) {
+      max-width: min(56%, 36em);
+    }
+    :global(html[lang='en'] .log-head.page-head .ph-inner > h1) {
+      font-size: clamp(2.7rem, 1.5rem + 3vw, 4.5rem);
+    }
+  }
+  .span-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .span-dates {
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-3);
+  }
+  .span-vs {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 14px 0 22px;
+  }
+  .sv {
+    font-family: var(--f-latin-display);
+    font-size: clamp(1.7rem, 1.3rem + 1vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+  .sv--to {
+    font-style: italic;
+    background: var(--holo);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .sv-track {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.25), rgba(205, 182, 255, 0.9));
+    position: relative;
+  }
+  .sv-track::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -3px;
+    border-left: 6px solid rgba(205, 182, 255, 0.9);
+    border-block: 3.5px solid transparent;
+  }
+  .cad {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: end;
+    gap: 6px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .cad-col {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+  }
+  .cad-dots {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 6px;
+    min-height: calc(var(--rows) * 16px);
+    justify-content: flex-start;
+  }
+  .cad-dots i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(238, 240, 255, 0.55);
+  }
+  .is-last .cad-dots i {
+    background: var(--mint);
+    box-shadow: 0 0 12px var(--mint);
+  }
+  .cad-d {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+  }
+  .is-last .cad-d {
+    color: var(--ink);
+  }
+  .span-live {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+  .span-total {
+    margin-left: auto;
+    font-family: var(--f-body);
+    font-size: 12.5px;
+    color: var(--ink-3);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .span:global(.in) .cad-dots i {
+      animation: dot-in 0.5s var(--ease) both;
+      animation-delay: calc(0.35s + var(--k) * 0.09s);
+    }
+  }
+  @keyframes dot-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.4);
+    }
+  }
+
+  /* ── the record ─────────────────────────────────── */
+  .record {
+    --mark: clamp(150px, 15vw, 210px);
+    --gap: clamp(28px, 4vw, 64px);
+  }
+  .days {
+    position: relative;
+  }
+  /* the spine runs node to node and stops at the day the beta opened */
+  .day:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--mark) + var(--gap) / 2);
+    top: 26px;
+    bottom: -14px;
+    width: 2px;
+    translate: -50% 0;
+    background: var(--line-2);
+  }
+  .day--latest::after {
+    background: linear-gradient(180deg, var(--accent), var(--line-2)) !important;
+  }
+  .day {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--mark) minmax(0, 1fr);
+    column-gap: var(--gap);
+    padding-bottom: clamp(48px, 6vw, 80px);
+  }
+  .day:last-child {
+    padding-bottom: 0;
+  }
+  .day-mark {
+    position: sticky;
+    top: calc(var(--nav-h) + 32px);
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    text-align: right;
+  }
+  .day-no {
+    font-family: var(--f-latin-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(3.6rem, 2.4rem + 3vw, 5.6rem);
+    line-height: 0.82;
+    letter-spacing: -0.02em;
+    color: var(--ink-3);
+    opacity: 0.55;
+  }
+  .day--latest .day-no {
+    opacity: 1;
+    background: var(--holo);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .day-date {
+    font-family: var(--f-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    color: var(--ink-2);
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 11px;
+    border-radius: var(--r-full);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .tag--latest {
+    background: var(--night);
+    color: #fff;
+  }
+  .tag--latest::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 8px var(--mint);
+  }
+  .tag--start {
+    color: var(--ink);
+    background:
+      linear-gradient(var(--pearl), var(--pearl)) padding-box,
+      var(--holo) border-box;
+    border: 1.5px solid transparent;
+  }
+  .node {
+    position: absolute;
+    z-index: 1;
+    left: calc(var(--mark) + var(--gap) / 2);
+    top: 14px;
+    width: 12px;
+    height: 12px;
+    translate: -50% 0;
+    border-radius: 50%;
+    background: var(--pearl);
+    border: 2px solid var(--accent);
+  }
+  .day--latest .node {
+    background: var(--accent);
+    box-shadow: 0 0 0 6px var(--accent-wash);
+  }
+  .day--start .node {
+    width: 16px;
+    height: 16px;
+    top: 12px;
+    border: 0;
+    background: var(--holo);
+    box-shadow: 0 0 0 6px var(--pearl-2), 0 0 18px rgba(205, 182, 255, 0.8);
+  }
+  .day-card {
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+    overflow: hidden;
+  }
+  .day--latest .day-card {
+    background:
+      radial-gradient(60% 140% at 100% 0%, var(--accent-wash), transparent 62%),
+      var(--card);
+  }
+  .rel {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 6px 24px;
+    padding: clamp(22px, 2.4vw, 30px) clamp(22px, 3vw, 36px);
+  }
+  .rel + .rel {
+    border-top: 1px solid var(--line);
+  }
+  .rel-v {
+    font-family: var(--f-latin-display);
+    font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.7rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .rel-v span {
+    display: block;
+  }
+  .day--latest .rel:first-child .rel-v {
+    color: var(--accent-ink);
+  }
+  .rel ul {
+    display: grid;
+    gap: 8px;
+    padding-top: 2px;
+  }
+  .rel li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--ink-2);
+  }
+  .rel li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.72em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--holo);
+  }
+  .skipped {
+    margin: clamp(48px, 6vw, 72px) 0 0 calc(var(--mark) + var(--gap) * 1.5);
+    padding-top: 20px;
+    border-top: 1px dashed var(--line-2);
+    max-width: 40em;
+    font-size: 14px;
+    color: var(--ink-3);
+  }
+  @media (max-width: 860px) {
+    .day::after,
+    .node {
+      display: none;
+    }
+    .day {
+      grid-template-columns: 1fr;
+      row-gap: 18px;
+    }
+    .day-mark {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px 12px;
+      text-align: left;
+    }
+    .day-no {
+      font-size: 3.2rem;
+    }
+    .rel {
+      grid-template-columns: 1fr;
+    }
+    .skipped {
+      margin-left: 0;
+    }
+  }
+
+  /* ── questions ──────────────────────────────────── */
+  .ask-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: 32px clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+  .ask-head {
+    position: sticky;
+    top: calc(var(--nav-h) + 40px);
+  }
+  .ask-head h2 {
+    margin: 16px 0 26px;
+  }
+  @media (max-width: 900px) {
+    .ask-grid {
+      grid-template-columns: 1fr;
+    }
+    .ask-head {
+      position: static;
+    }
+  }
+</style>

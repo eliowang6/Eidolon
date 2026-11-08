@@ -1,0 +1,208 @@
+---
+/**
+ * /login.html and /register.html: the site no longer signs anyone in on the web.
+ * Both routes explain that sign-in and registration happen inside the desktop /
+ * mobile app, and offer download entry points. No redirect, no form.
+ */
+import PageHero from '../PageHero.astro';
+import { SITE } from '../../config/site';
+import { localizePath, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const ap = copy.accountPage;
+const p = (href: string) => localizePath(lang, href);
+---
+
+<PageHero class="ac-head" label={ap.label} h1a={ap.h1} lede={ap.lede}>
+  <div class="ac-grid">
+    <article class="ac-card reveal" style="--i:3">
+      <h2>{ap.loginTitle}</h2>
+      <p>{ap.loginDesc}</p>
+    </article>
+    <article class="ac-card reveal" style="--i:4">
+      <h2>{ap.registerTitle}</h2>
+      <p>{ap.registerDesc}</p>
+    </article>
+  </div>
+</PageHero>
+
+<section class="page-sec">
+  <div class="container">
+    <div class="ac-dl">
+      <a class="ac-plat reveal" href={p('/download.html')}>
+        <span class="ac-plat-name">{ap.windows}</span>
+        <span class="ac-plat-req">{ap.windowsDesc}</span>
+        <span class="ac-plat-go">{ap.download} →</span>
+      </a>
+      <a class="ac-plat reveal" style="--i:1" href={SITE.downloads.android}>
+        <span class="ac-plat-name">{ap.android}</span>
+        <span class="ac-plat-req">{ap.androidDesc}</span>
+        <span class="ac-plat-go">{ap.download} →</span>
+      </a>
+    </div>
+    <p class="ac-note reveal" style="--i:2">
+      {ap.note}
+      <a href={p('/download.html')}>{ap.allDownloads} →</a>
+    </p>
+  </div>
+</section>
+
+<section class="page-sec">
+  <div class="container">
+    <div class="ac-invite">
+      <div class="ac-invite-head reveal">
+        <h2>{ap.inviteTitle}</h2>
+        <p>{ap.inviteLede}</p>
+      </div>
+      <div class="ac-invite-grid">
+        <div class="ac-invite-card reveal" style="--i:1">
+          <span class="ac-invite-region">{ap.cnLabel}</span>
+          <p class="ac-invite-desc">{ap.cnDesc}</p>
+          <a class="ac-invite-go" href={SITE.social.qqGroup} target="_blank" rel="noopener">{ap.cnCta} →</a>
+        </div>
+        <div class="ac-invite-card reveal" style="--i:2">
+          <span class="ac-invite-region">{ap.intlLabel}</span>
+          <p class="ac-invite-desc">{ap.intlDesc}</p>
+          <a class="ac-invite-go" href={SITE.social.discord} target="_blank" rel="noopener">{ap.intlCta} →</a>
+        </div>
+      </div>
+      <p class="ac-note reveal" style="--i:3">{ap.inviteNote}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ac-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 760px;
+    margin-top: 34px;
+  }
+  .ac-card {
+    padding: 20px 22px;
+    border: 1px solid rgba(238, 240, 255, 0.14);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .ac-card h2 {
+    margin: 0 0 8px;
+    font-family: var(--f-body);
+    font-size: 1.02rem;
+    letter-spacing: 0.01em;
+  }
+  .ac-card p {
+    margin: 0;
+    color: var(--night-dim);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .ac-dl {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 760px;
+  }
+  .ac-plat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 118px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--card);
+    text-decoration: none;
+    transition: border-color 0.2s ease, translate 0.2s ease;
+  }
+  .ac-plat:hover {
+    border-color: var(--accent);
+    translate: 0 -3px;
+  }
+  .ac-plat-name {
+    font-family: var(--f-body);
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+  .ac-plat-req {
+    color: var(--ink-2);
+    font-size: 0.9rem;
+  }
+  .ac-plat-go {
+    margin-top: auto;
+    padding-top: 14px;
+    color: var(--accent);
+    font-size: 0.9rem;
+  }
+  .ac-note {
+    max-width: 760px;
+    margin-top: 18px;
+    color: var(--ink-2);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .ac-note a {
+    margin-left: 6px;
+    color: var(--accent);
+  }
+  .ac-invite {
+    max-width: 760px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .ac-invite-head h2 {
+    margin: 0 0 8px;
+    font-family: var(--f-body);
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+  }
+  .ac-invite-head p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+  .ac-invite-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 20px;
+  }
+  .ac-invite-card {
+    padding: 20px 22px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--card);
+  }
+  .ac-invite-region {
+    display: block;
+    font-family: var(--f-body);
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+  .ac-invite-desc {
+    margin: 8px 0 0;
+    color: var(--ink-2);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+  .ac-invite-go {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 10px;
+    color: var(--accent);
+    font-size: 0.9rem;
+  }
+  @media (max-width: 720px) {
+    .ac-grid,
+    .ac-dl,
+    .ac-invite-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

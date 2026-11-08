@@ -2,12 +2,12 @@
 sidebar_position: 4
 slug: /features/focus-timer
 title: Focus Mode
-description: Pomodoro timer + ambient sounds — focus together with AI
+description: "Pomodoro inside Sholarel: Classic 25, Sprint 40 and Deep 50 with valley, rain and stream ambience, while AI stays quiet during focus and chats on breaks."
 ---
 
 # Focus Mode
 
-Focus Mode is Eidolon's Pomodoro timer feature, helping you enter deep work states. AI accompanies you while you focus and chats with you during breaks.
+Focus Mode is Sholarel's Pomodoro timer feature, helping you enter deep work states. AI accompanies you while you focus and chats with you during breaks.
 
 ---
 
@@ -21,7 +21,7 @@ Focus Mode is Eidolon's Pomodoro timer feature, helping you enter deep work stat
 
 ## Focus Profiles
 
-Eidolon offers three focus profiles:
+Sholarel offers three focus profiles:
 
 | Profile | Focus + Break | Best For |
 |---------|---------------|----------|

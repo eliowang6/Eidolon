@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import DownloadPage from '../../components/pages/DownloadPage.astro';
+import { t } from '../../i18n';
+
+const lang = 'en' as const;
+const copy = t(lang);
+---
+<Base lang={lang} path="/download.html" title={copy.meta.download.title} description={copy.meta.download.description} keywords={copy.meta.download.keywords}>
+  <DownloadPage lang={lang} />
+</Base>

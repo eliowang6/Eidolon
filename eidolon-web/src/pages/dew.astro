@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import DewPage from '../components/pages/DewPage.astro';
+import { t } from '../i18n';
+
+const lang = 'zh' as const;
+const copy = t(lang);
+const faq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: copy.dewPage.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+<Base
+  lang={lang}
+  path="/dew.html"
+  title={copy.meta.dew.title}
+  description={copy.meta.dew.description}
+  keywords={copy.meta.dew.keywords}
+  jsonLd={[faq]}
+>
+  <DewPage lang={lang} />
+</Base>

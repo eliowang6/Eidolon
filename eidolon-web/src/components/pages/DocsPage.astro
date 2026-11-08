@@ -1,0 +1,211 @@
+---
+import PageHero from '../PageHero.astro';
+import Icon from '../Icon.astro';
+import { SITE } from '../../config/site';
+import { t, localizeDocsPath, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const page = copy.docsPage;
+const hrefs = {
+  quickStart: localizeDocsPath(lang, SITE.docs.quickStart),
+  agent: localizeDocsPath(lang, SITE.docs.agent),
+  faq: localizeDocsPath(lang, SITE.docs.faq),
+} as const;
+const docsHome = localizeDocsPath(lang, SITE.docs.home);
+---
+
+<PageHero label={page.label} h1a={page.h1} lede={page.lede} />
+
+<section class="section docs-sec">
+  <div class="container">
+    <div class="doc-cards">
+      {page.cards.map((card, i) => (
+        <a class="doc-card reveal" style={`--i:${i}`} href={hrefs[card.href as keyof typeof hrefs]}>
+          <span class="doc-icon" aria-hidden="true"><Icon name={card.icon} size={26} stroke={1.4} /></span>
+          <h2>{card.title}</h2>
+          <p>{card.desc}</p>
+          <span class="doc-cta">{card.cta}</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="docs-banner band-night stars reveal">
+      <div class="db-copy">
+        <span class="db-mark" aria-hidden="true"><Icon name="book" size={22} stroke={1.5} /></span>
+        <div>
+          <h2>{page.bannerTitle}</h2>
+          <p class="db-note">
+            {page.bannerNote}
+            <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
+          </p>
+        </div>
+      </div>
+      <a class="btn btn-holo btn-lg" href={docsHome}>{page.bannerCta}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .docs-sec {
+    padding-top: clamp(48px, 6vw, 84px);
+  }
+  .doc-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 2.2vw, 24px);
+  }
+  .doc-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 300px;
+    padding: 30px 28px 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--card);
+    box-shadow: var(--sh-1);
+    transition:
+      translate var(--t-mid) var(--ease),
+      box-shadow var(--t-mid) var(--ease),
+      border-color var(--t-mid) var(--ease);
+  }
+  /* a holo hairline that only shows on hover */
+  .doc-card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    padding: 1.5px;
+    border-radius: inherit;
+    background: var(--holo);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--t-mid) var(--ease);
+    pointer-events: none;
+  }
+  .doc-card:hover {
+    translate: 0 -4px;
+    border-color: transparent;
+    box-shadow: var(--sh-2);
+  }
+  .doc-card:hover::after {
+    opacity: 1;
+  }
+  .doc-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 36px;
+    border-radius: 16px;
+    background: var(--accent-wash);
+    color: var(--accent-ink);
+    transition: background var(--t-mid) var(--ease), color var(--t-mid) var(--ease);
+  }
+  .doc-card:hover .doc-icon {
+    background: var(--holo);
+    color: #141838;
+  }
+  .doc-card h2 {
+    margin-bottom: 10px;
+    font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.45rem);
+    line-height: 1.3;
+  }
+  .doc-card p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .doc-cta {
+    margin-top: auto;
+    padding-top: 24px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--accent-ink);
+  }
+
+  .docs-banner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px 40px;
+    margin-top: clamp(28px, 4vw, 48px);
+    padding: clamp(30px, 4vw, 48px);
+    border-radius: var(--r-xl);
+    background:
+      radial-gradient(50% 140% at 0% 0%, rgba(239, 143, 187, 0.2), transparent 62%),
+      radial-gradient(50% 140% at 100% 100%, rgba(110, 169, 242, 0.22), transparent 62%),
+      var(--night);
+  }
+  .db-copy {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .db-mark {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--night-line);
+    color: var(--night-text);
+  }
+  .docs-banner h2 {
+    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.9rem);
+    color: var(--night-text);
+  }
+  .db-note {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--night-dim);
+  }
+  .db-note a {
+    color: var(--night-text);
+    border-bottom: 1px solid rgba(238, 240, 255, 0.3);
+    transition: border-color var(--t-fast);
+  }
+  .db-note a:hover {
+    border-color: var(--night-text);
+  }
+  .docs-banner .btn {
+    position: relative;
+  }
+
+  @media (max-width: 1023px) {
+    .doc-cards {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .doc-card {
+      min-height: 0;
+    }
+    .doc-icon {
+      margin-bottom: 24px;
+    }
+  }
+  @media (max-width: 640px) {
+    .docs-banner .btn {
+      width: 100%;
+    }
+    .db-copy {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+</style>

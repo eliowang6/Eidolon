@@ -1,0 +1,997 @@
+---
+/**
+ * About: the two companions, what we believe, who builds Sholarel, and how to
+ * reach us — for users and for investors who want the deeper picture.
+ * Nothing here is internal: no metrics, no architecture beyond plain labels.
+ */
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Logo from '../Logo.astro';
+import PageHero from '../PageHero.astro';
+import { GITHUB_ISSUES, SITE } from '../../config/site';
+import { pr, prPlain, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const a = copy.aboutPage;
+
+const duo = ['fea', 'ael'] as const;
+const names = { fea: 'Fea', ael: 'Ael' } as const;
+const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
+// The belief kicker is always in the other language.
+const otherLang = lang === 'zh' ? 'en' : 'zh-Hans';
+
+const contactHref: Record<string, string> = {
+  issues: GITHUB_ISSUES,
+  support: `mailto:${SITE.contactEmail}`,
+  report: 'mailto:report@instarmony.com',
+  privacy: 'mailto:privacy@instarmony.com',
+};
+const contactIcon: Record<string, string> = {
+  issues: '<path d="M20.5 12a8.5 8.5 0 0 1-12.3 7.6L3.5 20.5l1-4.4A8.5 8.5 0 1 1 20.5 12Z"/><path d="M12 7.8v4.6M12 15.8v.1"/>',
+  support: '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4.5 7.5 7.5 5.5 7.5-5.5"/>',
+  report: '<path d="M5.5 21V4"/><path d="M5.5 4.5h11.5l-2.2 4 2.2 4H5.5"/>',
+  privacy: '<path d="M12 3 5 6v5.2c0 4.3 2.9 8.1 7 9.8 4.1-1.7 7-5.5 7-9.8V6l-7-3Z"/><path d="m9.2 12.2 2 2 3.8-4"/>',
+};
+---
+
+<PageHero class="about-head" label={a.label} h1a={a.h1a} h1b={a.h1b} lede={a.lede} />
+
+<!-- ── the two of them: one sunlit desk, two companions ───────── -->
+<section class="section two" aria-labelledby="two-h">
+  <div class="container two-grid">
+    <div class="two-head reveal">
+      <Eyebrow text={a.two.label} />
+      <h2 id="two-h" data-whisper="about" set:html={prPlain(a.two.h2)} />
+      <p class="lede" set:html={pr(a.two.lede)} />
+    </div>
+    {
+      duo.map((w, i) => (
+        <article class:list={['who', `who--${w}`]} aria-labelledby={`who-${w}`}>
+          <div class="who-pic">
+            <img
+              src={`/assets/art/${w}-sunlit.webp`}
+              width="1200"
+              height="800"
+              alt={a.two[w].alt}
+              loading="eager"
+              decoding="async"
+              fetchpriority={i === 0 ? 'high' : 'auto'}
+            />
+          </div>
+          <div class="who-copy reveal" style={`--i:${i + 1}`}>
+            <h3 id={`who-${w}`} class="who-name" lang="en">
+              {names[w]}
+            </h3>
+            <p class="who-tag">{a.two[w].tag}</p>
+            <p class="who-d">{a.two[w].d}</p>
+            <button type="button" class="btn btn-ghost btn-sm who-btn" data-companion-set={w} aria-pressed="false">
+              <span class="who-check" aria-hidden="true" />
+              {walkWith[w]}
+            </button>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<!-- ── the name: shore + Lares + real, with lar and rel sharing the r ── -->
+<section class="section section--paper2 name-sec" aria-labelledby="name-h">
+  <div class="container">
+    <div class="name-head reveal">
+      <Eyebrow text={a.name.label} />
+      <h2 id="name-h" set:html={prPlain(a.name.h2)} />
+    </div>
+    <div class="name-grid">
+      <figure class="etym reveal" style="--i:1" role="img" aria-label={a.name.figLabel}>
+        {/* Two copies of the word, stacked: the top one underlines Sho and lar, the
+            transparent one over it underlines rel, so the shared r carries both lines. */}
+        <span class="etym-word" lang="en">
+          <span class="etym-a"><span class="g g--sho">Sho</span><span class="g g--lar">lar</span>el</span>
+          <span class="etym-b">Shola<span class="g g--rel">r<span class="etym-note"><svg class="etym-arrow" viewBox="0 0 28 34" aria-hidden="true"><path d="M24 31C10 29 4 19 6 3" /><path d="M1.5 8.5 6 2.5l5 5.5" /></svg>{a.name.shared}</span>el</span></span>
+        </span>
+      </figure>
+      <ol class="parts">
+        {
+          a.name.parts.map((p, i) => (
+            <li class:list={['part', `part--${p.k}`, 'reveal']} style={`--i:${i + 2}`}>
+              <p class="part-syl">
+                <b lang="en">{p.syl}</b>
+                <span>{p.src}</span>
+              </p>
+              <div class="part-copy">
+                <h3>{p.t}</h3>
+                <p class="part-d">{p.d}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ── what we believe: two beliefs, joined by the ∞ ──────────── -->
+<section class="section section--paper2 beliefs" aria-labelledby="bel-h">
+  <div class="container">
+    <h2 id="bel-h" class="bel-h reveal"><Eyebrow text={a.beliefs.label} /></h2>
+    <div class="bel-grid">
+      {
+        a.beliefs.items.map((b, i) => (
+          <>
+            {i > 0 && (
+              <span class="bel-join reveal" style="--i:1" aria-hidden="true">
+                <Logo size={46} stroke={1.5} />
+              </span>
+            )}
+            <article class="bel reveal" style={`--i:${i * 2}`}>
+              <p class="bel-k" lang={otherLang}>
+                {b.en}
+              </p>
+              <h3 class="bel-t" set:html={prPlain(b.t)} />
+              <p class="bel-d" set:html={pr(b.d)} />
+            </article>
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── the maker: every layer, one person ─────────────────────── -->
+<section class="section maker" aria-labelledby="maker-h">
+  <div class="container maker-grid">
+    <div class="maker-copy">
+      <Eyebrow text={a.maker.label} class="reveal" />
+      <h2 id="maker-h" class="reveal" style="--i:1" set:html={prPlain(a.maker.h2)} />
+      <p class="maker-body reveal" style="--i:2" set:html={pr(a.maker.body)} />
+      <p class="maker-link reveal" style="--i:3">
+        <a class="tlink" href={SITE.founder.page} target="_blank" rel="noopener">{a.maker.link}</a>
+      </p>
+      <div class="studio reveal" style="--i:4">
+        <Eyebrow text={a.studio.label} />
+        <p set:html={pr(a.studio.body)} />
+        <a class="tlink" href={SITE.studio} target="_blank" rel="noopener">{a.studio.link}</a>
+      </div>
+    </div>
+    <figure class="stack reveal" style="--i:2" aria-labelledby="stack-sign">
+      <ul class="plates">
+        {
+          a.maker.chips.map((chip, k) => (
+            <li class="layer" style={`--k:${k}`}>
+              <span class="plate-wrap" aria-hidden="true">
+                <span class="plate" />
+              </span>
+              <span class="layer-t">{chip}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <figcaption id="stack-sign" class="stack-sign" lang="en">Elio Wang</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ── investors & partners ───────────────────────────────────── -->
+<section class="section band-night stars inv" id="investors" aria-labelledby="inv-h">
+  <div class="inv-glow" aria-hidden="true"></div>
+  <div class="container inv-grid">
+    <div class="inv-copy">
+      <Eyebrow text={a.investors.label} class="reveal" />
+      <h2 id="inv-h" class="reveal" style="--i:1" set:html={prPlain(a.investors.h2)} />
+      <p class="lede reveal" style="--i:2" set:html={pr(a.investors.body)} />
+    </div>
+    <div class="inv-card reveal" style="--i:2">
+      <ul class="inv-points">
+        {
+          a.investors.points.map((point) => (
+            <li>
+              <span class="inv-dia" aria-hidden="true" />
+              {point}
+            </li>
+          ))
+        }
+      </ul>
+      <div class="inv-actions">
+        <a class="btn btn-ink btn-lg" href={`mailto:${SITE.founder.email}`}>
+          <svg class="inv-ico" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+            <path d="m4.5 7.5 7.5 5.5 7.5-5.5"></path>
+          </svg>
+          {a.investors.mailLabel}
+        </a>
+        <span class="inv-addr">{SITE.founder.email}</span>
+      </div>
+      <p class="inv-note">{a.investors.note}</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── contact ────────────────────────────────────────────────── -->
+<section class="section contact" id="contact" aria-labelledby="contact-h">
+  <div class="container">
+    <div class="sec-head reveal">
+      <Eyebrow text={a.contact.label} />
+      <h2 id="contact-h" set:html={prPlain(a.contact.h2)} />
+    </div>
+    <ul class="ct-grid">
+      {
+        a.contact.cards.map((c, i) => {
+          const ext = c.k === 'issues';
+          return (
+            <li class="reveal" style={`--i:${i}`}>
+              <a
+                class:list={['ct-card', `ct-card--${c.k}`]}
+                href={contactHref[c.k]}
+                target={ext ? '_blank' : undefined}
+                rel={ext ? 'noopener' : undefined}
+              >
+                <svg class="ct-ico" viewBox="0 0 24 24" aria-hidden="true" set:html={contactIcon[c.k]} />
+                <span class="ct-t">{c.t}</span>
+                <span class="ct-d">{c.d}</span>
+                <span class="ct-link">
+                  {c.link}
+                  <span aria-hidden="true">{ext ? ' ↗' : ' →'}</span>
+                </span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<CtaBand lang={lang} h2={a.cta.h2} lede={a.cta.lede} secondary="features" />
+
+<style>
+  /* ── hero: room at the foot for the two windows that rise into it ── */
+  @media (min-width: 1040px) {
+    :global(.about-head.page-head) {
+      padding-bottom: calc(clamp(150px, 14vw, 210px) + clamp(44px, 4.4vw, 64px));
+    }
+    :global(.about-head .ph-sky) {
+      top: 30%;
+      right: -24%;
+    }
+  }
+
+  /* ── the two of them ─────────────────────────────── */
+  .two {
+    --pt: clamp(48px, 5vw, 72px);
+    --overlap: clamp(150px, 14vw, 210px);
+    padding-top: var(--pt);
+  }
+  .two-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) repeat(2, minmax(0, 1fr));
+    column-gap: clamp(20px, 2.4vw, 32px);
+    align-items: start;
+  }
+  .two-head {
+    padding-top: 4px;
+  }
+  .two-head h2 {
+    margin: 16px 0 18px;
+    font-size: clamp(2.3rem, 1.6rem + 2.2vw, 3.5rem);
+  }
+  .two-head .lede {
+    font-size: 16.5px;
+  }
+  .who {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+  }
+  .who-pic {
+    position: relative;
+    margin-top: calc(-1 * (var(--pt) + var(--overlap)));
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    background: var(--pearl-2);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.5),
+      0 44px 80px -44px rgba(14, 17, 49, 0.6);
+    transition: box-shadow var(--t-mid) var(--ease);
+  }
+  .who-pic img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .who--fea .who-pic img {
+    object-position: 22% 50%;
+  }
+  .who--ael .who-pic img {
+    object-position: 34% 50%;
+  }
+  :global(html[data-companion='fea']) .who--fea .who-pic {
+    box-shadow:
+      0 0 0 2px var(--fea),
+      0 44px 80px -44px rgba(176, 58, 112, 0.6);
+  }
+  :global(html[data-companion='ael']) .who--ael .who-pic {
+    box-shadow:
+      0 0 0 2px var(--ael),
+      0 44px 80px -44px rgba(47, 95, 182, 0.6);
+  }
+  .who-copy {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 4px 0;
+  }
+  .who-name {
+    font-family: var(--f-latin-display);
+    font-size: clamp(2.3rem, 1.8rem + 1.5vw, 3.2rem);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .who--fea .who-name {
+    color: var(--fea-ink);
+  }
+  .who--ael .who-name {
+    color: var(--ael-ink);
+  }
+  .who-tag {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+  }
+  .who-d {
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--ink-2);
+  }
+  .who-btn {
+    margin-top: auto;
+  }
+  .who-d {
+    margin-bottom: 22px;
+  }
+  .who-check {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    opacity: 0.5;
+  }
+  .who-btn.is-on {
+    background: var(--night);
+    color: var(--night-text);
+    border-color: var(--night);
+  }
+  .who-btn.is-on .who-check {
+    border-color: var(--mint);
+    background: var(--mint);
+    opacity: 1;
+  }
+  @media (max-width: 1039px) {
+    .two {
+      padding-top: clamp(56px, 8vw, 96px);
+    }
+    .two-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: clamp(36px, 5vw, 56px);
+    }
+    .two-head {
+      grid-column: 1 / -1;
+      max-width: 640px;
+    }
+    .who-pic {
+      margin-top: 0;
+      aspect-ratio: 4 / 3;
+    }
+  }
+  @media (max-width: 719px) {
+    .two-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .who-pic {
+      aspect-ratio: 3 / 2;
+    }
+    .who-pic img {
+      object-position: 50% 50%;
+    }
+    .who-copy {
+      padding-top: 22px;
+    }
+  }
+
+  /* ── the name: a dictionary entry ─────────────────── */
+  .name-sec {
+    --sho: #2f6fc4;
+    --lar: #c2457f;
+    --rel: #8a55d6;
+    overflow: hidden;
+  }
+  .name-head h2 {
+    margin-top: 16px;
+    font-size: clamp(2.1rem, 1.5rem + 2vw, 3.2rem);
+  }
+  .name-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+    align-items: center;
+    column-gap: clamp(40px, 5vw, 88px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .etym {
+    margin: 0;
+    padding: 0.3em 0 92px;
+    /* the word is ~3.8em wide; keep it inside its column */
+    font-size: clamp(4.4rem, 10.2vw, 9.2rem);
+  }
+  .etym-word {
+    position: relative;
+    display: inline-block;
+    font-family: var(--f-latin-display);
+    font-weight: 500;
+    font-size: 1em;
+    line-height: 1;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .etym-a,
+  .etym-b {
+    display: block;
+  }
+  /* the copy that only carries the third underline */
+  .etym-b {
+    position: absolute;
+    inset: 0;
+    color: transparent;
+    pointer-events: none;
+    user-select: none;
+  }
+  .g {
+    position: relative;
+    text-decoration-line: underline;
+    text-decoration-color: var(--c);
+    text-decoration-thickness: clamp(3px, 0.026em, 6px);
+    text-decoration-skip-ink: none;
+    text-underline-offset: 0.08em;
+  }
+  .g--sho {
+    --c: var(--sho);
+  }
+  .g--lar {
+    --c: var(--lar);
+  }
+  .g--rel {
+    --c: var(--rel);
+    text-underline-offset: 0.25em;
+  }
+  /* hangs under the third line and points up at the shared r */
+  .etym-note {
+    position: absolute;
+    top: calc(100% + 0.1em);
+    left: 0.1em;
+    padding: 30px 0 0 30px;
+    font-family: var(--f-hand);
+    font-size: clamp(15px, 0.7rem + 0.5vw, 19px);
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--accent-ink);
+    rotate: -2deg;
+    transform-origin: left top;
+  }
+  .etym-arrow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 34px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .parts {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .part {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7.5em minmax(0, 1fr);
+    column-gap: 20px;
+    padding: 24px 0 26px;
+    border-top: 1px solid var(--line-2);
+  }
+  .part:last-child {
+    border-bottom: 1px solid var(--line-2);
+  }
+  .part::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 44px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--c);
+  }
+  .part--sho {
+    --c: var(--sho);
+  }
+  .part--lar {
+    --c: var(--lar);
+  }
+  .part--rel {
+    --c: var(--rel);
+  }
+  .part-syl {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .part-syl b {
+    font-family: var(--f-latin-display);
+    font-size: 32px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--c);
+  }
+  .part-syl span {
+    font: 500 12px/1.3 var(--f-mono);
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+  }
+  .part h3 {
+    margin: 2px 0 8px;
+    font-size: clamp(1.2rem, 1.05rem + 0.45vw, 1.4rem);
+    line-height: 1.3;
+  }
+  .part-d {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  /* the name and the beliefs read as one band */
+  .name-sec + .beliefs {
+    padding-top: 0;
+  }
+  @media (max-width: 1039px) {
+    .name-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .etym {
+      font-size: clamp(3.4rem, 18vw, 9rem);
+    }
+  }
+  @media (max-width: 560px) {
+    .etym-note {
+      width: 7.5em;
+      white-space: normal;
+    }
+    .part {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 12px;
+    }
+    .part-syl {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 12px;
+    }
+  }
+
+  /* ── beliefs ─────────────────────────────────────── */
+  .bel-h {
+    margin: 0 0 clamp(40px, 5vw, 64px);
+    font: inherit;
+  }
+  .bel-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: clamp(28px, 4.5vw, 72px);
+  }
+  .bel-k {
+    font-family: var(--f-hand);
+    font-size: 1.3rem;
+    line-height: 1.3;
+    color: var(--accent-ink);
+    rotate: -1.5deg;
+    transform-origin: left center;
+  }
+  .bel-t {
+    margin: 12px 0 20px;
+    font-size: clamp(2rem, 1.35rem + 2.3vw, 3.25rem);
+    line-height: 1.15;
+  }
+  .bel-d {
+    max-width: 30em;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--ink-2);
+  }
+  .bel-join {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .bel-join::before,
+  .bel-join::after {
+    content: '';
+    flex: 1;
+    width: 1px;
+  }
+  .bel-join::before {
+    background: linear-gradient(transparent, var(--line-2));
+  }
+  .bel-join::after {
+    background: linear-gradient(var(--line-2), transparent);
+  }
+  @media (max-width: 859px) {
+    .bel-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .bel-join {
+      flex-direction: row;
+      margin: 36px 0;
+    }
+    .bel-join::before,
+    .bel-join::after {
+      width: auto;
+      height: 1px;
+    }
+    .bel-join::before {
+      background: linear-gradient(90deg, transparent, var(--line-2));
+    }
+    .bel-join::after {
+      background: linear-gradient(90deg, var(--line-2), transparent);
+    }
+  }
+
+  /* ── the maker ───────────────────────────────────── */
+  .maker-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+  .maker-copy h2 {
+    margin: 16px 0 20px;
+  }
+  .maker-body {
+    max-width: 34em;
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--ink-2);
+  }
+  .maker-link {
+    margin-top: 22px;
+  }
+  .studio {
+    max-width: 34em;
+    margin-top: clamp(36px, 4vw, 52px);
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+  }
+  .studio p {
+    margin: 12px 0 16px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink-2);
+  }
+
+  /*
+   * Seven glass plates, one per layer of the product, projected flat
+   * (rotateX 60° · rotateZ −45°, no perspective). Each label sits at its
+   * plate's right corner. They gather on reveal and part a little on hover.
+   */
+  .stack {
+    --p: 200px;
+    --w: calc(var(--p) * 1.4142);
+    --h: calc(var(--p) * 0.7071);
+    --step: 34px;
+    --step-max: 44px;
+    --lead: 28px;
+    justify-self: center;
+    margin: 0;
+  }
+  .plates {
+    position: relative;
+    width: calc(var(--w) + var(--lead) + 10.5em);
+    height: calc(6 * var(--step-max) + var(--h));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(50% - var(--h) / 2 + (var(--k) - 3) * var(--step));
+    height: var(--h);
+    z-index: calc(10 - var(--k));
+    transition: top 1s var(--ease) calc(var(--k) * 50ms);
+  }
+  .plate-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--w);
+    height: var(--h);
+    filter: drop-shadow(0 12px 14px rgba(14, 17, 49, 0.13));
+  }
+  .plate {
+    --tint: color-mix(in oklab, var(--fea) calc(100% - var(--k) * 16.66%), var(--ael));
+    position: absolute;
+    left: calc((var(--w) - var(--p)) / 2);
+    top: calc((var(--h) - var(--p)) / 2);
+    width: var(--p);
+    height: var(--p);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0) 58%),
+      color-mix(in srgb, var(--tint) 46%, rgba(255, 255, 255, 0.3));
+    transform: rotateX(60deg) rotateZ(-45deg);
+  }
+  .layer-t {
+    position: absolute;
+    left: calc(var(--w) + var(--lead));
+    top: 50%;
+    translate: 0 -50%;
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-2);
+    transition: opacity 600ms var(--ease) calc(450ms + var(--k) * 70ms);
+  }
+  .layer-t::before {
+    content: '';
+    position: absolute;
+    right: calc(100% + 8px);
+    top: 50%;
+    width: calc(var(--lead) - 12px);
+    border-top: 1px dashed var(--line-2);
+  }
+  .stack-sign {
+    margin-top: -14px;
+    padding-right: 10px;
+    text-align: right;
+    font-family: var(--f-hand);
+    font-size: 1.75rem;
+    line-height: 1;
+    color: var(--accent-ink);
+    rotate: -4deg;
+  }
+  .stack:hover {
+    --step: var(--step-max);
+  }
+  :global(html.js) .stack:not(.in) {
+    --step: 4px;
+  }
+  :global(html.js) .stack:not(.in) .layer-t {
+    opacity: 0;
+  }
+  @media (max-width: 959px) {
+    .maker-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .stack {
+      justify-self: start;
+    }
+  }
+  @media (max-width: 520px) {
+    .stack {
+      --p: 128px;
+      --step: 22px;
+      --step-max: 27px;
+      --lead: 18px;
+    }
+    .layer-t {
+      font-size: 13px;
+    }
+    .stack-sign {
+      font-size: 1.5rem;
+    }
+  }
+  /* 360-wide phones: plates + leader + the longest label ("Context engineering") must fit 320px */
+  @media (max-width: 400px) {
+    .stack {
+      --p: 104px;
+      --step: 20px;
+      --step-max: 24px;
+      --lead: 14px;
+    }
+    .plates {
+      width: calc(var(--w) + var(--lead) + 9em);
+    }
+    .layer-t {
+      font-size: 12.5px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .layer,
+    .layer-t {
+      transition: none;
+    }
+  }
+
+  /* ── investors ───────────────────────────────────── */
+  .inv {
+    overflow: hidden;
+    scroll-margin-top: var(--nav-h);
+  }
+  .inv-glow {
+    position: absolute;
+    right: -12%;
+    bottom: -45%;
+    width: 62%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 32%, transparent), transparent);
+    filter: blur(24px);
+    pointer-events: none;
+  }
+  .inv-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+  .inv-copy h2 {
+    margin: 16px 0 20px;
+  }
+  .inv-card {
+    padding: clamp(26px, 3vw, 40px);
+    border-radius: var(--r-xl);
+    background: linear-gradient(170deg, rgba(52, 58, 122, 0.55), rgba(22, 26, 70, 0.7) 70%);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 50px 100px -60px rgba(0, 0, 0, 0.9);
+  }
+  .inv-points {
+    margin: 0 0 30px;
+    padding: 0;
+    list-style: none;
+  }
+  .inv-points li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+  .inv-points li:first-child {
+    padding-top: 0;
+  }
+  .inv-dia {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: var(--holo);
+    rotate: 45deg;
+  }
+  .inv-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 18px;
+  }
+  .inv-ico {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .inv-addr {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    color: var(--ink-2);
+    user-select: all;
+  }
+  .inv-note {
+    margin-top: 16px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink-3);
+  }
+  @media (max-width: 959px) {
+    .inv-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  /* ── contact ─────────────────────────────────────── */
+  .ct-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ct-grid li {
+    display: flex;
+  }
+  .ct-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 26px 24px 22px;
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    transition:
+      border-color var(--t-fast) var(--ease),
+      box-shadow var(--t-fast) var(--ease),
+      transform var(--t-fast) var(--ease);
+  }
+  .ct-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+    box-shadow: var(--sh-1);
+    transform: translateY(-2px);
+  }
+  .ct-ico {
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+    border-radius: 13px;
+    background: var(--accent-wash);
+    color: var(--accent-ink);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .ct-t {
+    margin-top: 18px;
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+  .ct-d {
+    flex: 1;
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+  .ct-link {
+    margin-top: 18px;
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    color: var(--accent-ink);
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 1080px) {
+    .ct-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 560px) {
+    .ct-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

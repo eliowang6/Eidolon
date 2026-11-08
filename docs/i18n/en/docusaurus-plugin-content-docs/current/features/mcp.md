@@ -2,12 +2,12 @@
 sidebar_position: 5
 slug: /features/mcp
 title: MCP Tool Extensions
-description: Extend AI's capabilities through the MCP protocol
+description: "MCP servers act like plugins: each adds a capability such as database access or a third-party API. Includes the JSON format, startup and troubleshooting."
 ---
 
 # MCP Tool Extensions
 
-MCP (Model Context Protocol) is Eidolon's tool extension mechanism. By configuring MCP servers, you can give AI additional capabilities like accessing databases, calling external APIs, and more.
+MCP (Model Context Protocol) is Sholarel's tool extension mechanism. By configuring MCP servers, you can give AI additional capabilities like accessing databases, calling external APIs, and more.
 
 :::info For Advanced Users
 MCP configuration requires some technical background. If you're unfamiliar with JSON configuration and command lines, feel free to skip this chapter.

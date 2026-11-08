@@ -33,6 +33,22 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
+      - name: Build documentation for Pages
+        working-directory: docs
+        env:
+          DOCS_URL: https://eliowang6.github.io
+          DOCS_BASE_URL: /Sholarel/docs/build/
+        run: |
+          npm ci --include=dev
+          npx --no-install tsc --noEmit
+          npm run build
+          rm -rf node_modules .docusaurus
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

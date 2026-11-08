@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# The only pages excluded from indexing are the two 0-second redirect stubs
+# (login.html, contact.html). They carry <meta name="robots" content="noindex">
+# themselves, so they are deliberately NOT disallowed here — a Disallow would
+# stop crawlers from ever reading the noindex and keep the stub in the index.
+
+Sitemap: https://sholarel.instarmony.com/sitemap.xml

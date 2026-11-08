@@ -1,0 +1,134 @@
+---
+/** Inner-page masthead: a slice of the splash-screen night with the ∞ drawn faintly behind. */
+import Eyebrow from './Eyebrow.astro';
+import { pr, prPlain } from '../i18n';
+
+interface Props {
+  label: string;
+  h1a: string;
+  h1b?: string;
+  lede?: string;
+  align?: 'left' | 'center';
+  class?: string;
+}
+const { label, h1a, h1b, lede, align = 'left', class: className = '' } = Astro.props;
+const FULL =
+  'M480 260c-80-106.8-160-160-240-160a160 160 0 1 0 0 320c80 0 160-53.2 240-160Zm0 0c80 106.8 160 160 240 160a160 160 0 0 0 0-320c-80 0-160 53.2-240 160Z';
+const gid = `ph-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<header class:list={['page-head band-night stars', align === 'center' && 'page-head--center', className]}>
+  <div class="ph-sky" aria-hidden="true">
+    <svg viewBox="40 60 880 400">
+      <defs>
+        <linearGradient id={gid} x1="80" y1="260" x2="880" y2="260" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#f8a8d0" />
+          <stop offset="0.5" stop-color="#cdb6ff" />
+          <stop offset="1" stop-color="#92c6ff" />
+        </linearGradient>
+      </defs>
+      <path class="ph-line" d={FULL} />
+      <path class="ph-glint" d={FULL} pathLength="1" stroke={`url(#${gid})`} />
+    </svg>
+  </div>
+  <div class="container ph-inner">
+    <Eyebrow text={label} class="reveal" />
+    <h1 class="reveal" style="--i:1">
+      <Fragment set:html={prPlain(h1a)} />
+      {
+        h1b && (
+          <>
+            <br />
+            <Fragment set:html={prPlain(h1b)} />
+          </>
+        )
+      }
+    </h1>
+    {lede && <p class="lede reveal" style="--i:2" set:html={pr(lede)} />}
+    <slot />
+  </div>
+</header>
+
+<style>
+  .page-head {
+    position: relative;
+    overflow: hidden;
+    padding: calc(var(--nav-h) + clamp(52px, 8vw, 112px)) 0 clamp(60px, 8vw, 108px);
+    background:
+      radial-gradient(48% 90% at 92% 0%, rgba(110, 169, 242, 0.22), transparent 70%),
+      radial-gradient(42% 80% at 4% 0%, rgba(239, 143, 187, 0.18), transparent 70%),
+      linear-gradient(180deg, var(--night) 0%, #12163d 100%);
+  }
+  .ph-sky {
+    position: absolute;
+    right: -14%;
+    top: 54%;
+    width: min(1040px, 96vw);
+    translate: 0 -50%;
+    pointer-events: none;
+  }
+  .ph-sky svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .ph-line {
+    fill: none;
+    stroke: rgba(238, 240, 255, 0.08);
+    stroke-width: 1.4;
+  }
+  .ph-glint {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 0.12 1;
+    stroke-dashoffset: 0.12;
+    opacity: 0.7;
+    animation: ph-glint 14s linear infinite;
+  }
+  @keyframes ph-glint {
+    to {
+      stroke-dashoffset: -0.88;
+    }
+  }
+  .ph-inner {
+    position: relative;
+  }
+  .page-head h1 {
+    margin: 18px 0 22px;
+    max-width: 15em;
+    font-size: clamp(2.5rem, 1.6rem + 3.4vw, 4.75rem);
+  }
+  :global(html[lang='en']) .page-head h1 {
+    max-width: 13em;
+    font-size: clamp(2.7rem, 1.7rem + 3.8vw, 5.25rem);
+  }
+  .page-head .lede {
+    max-width: 38em;
+  }
+  .page-head--center {
+    text-align: center;
+  }
+  .page-head--center h1,
+  .page-head--center .lede {
+    margin-inline: auto;
+  }
+  .page-head--center .ph-sky {
+    right: 50%;
+    translate: 50% -50%;
+  }
+  @media (max-width: 760px) {
+    .ph-sky {
+      right: -40%;
+      width: 150vw;
+      opacity: 0.7;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ph-glint {
+      animation: none;
+      opacity: 0;
+    }
+  }
+</style>

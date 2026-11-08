@@ -1,0 +1,229 @@
+---
+import Logo from './Logo.astro';
+import { SITE } from '../config/site';
+import { localizeDocsPath, localizePath, t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const f = copy.footer;
+const p = (href: string) => localizePath(lang, href);
+---
+
+<footer class="foot band-night">
+  <div class="foot-sky" aria-hidden="true">
+    <svg viewBox="40 60 880 400" preserveAspectRatio="xMidYMid meet">
+      <path d="M480 260c-80-106.8-160-160-240-160a160 160 0 1 0 0 320c80 0 160-53.2 240-160Zm0 0c80 106.8 160 160 240 160a160 160 0 0 0 0-320c-80 0-160 53.2-240 160Z" />
+    </svg>
+  </div>
+
+  <div class="container foot-top">
+    <div class="foot-brand">
+      <p class="foot-word">Sholarel</p>
+      <p class="foot-tag">{f.tagline}</p>
+    </div>
+
+    <div class="foot-cols">
+      <nav aria-label={f.product}>
+        <h2>{f.product}</h2>
+        <ul>
+          <li><a href={p('/features.html')}>{f.features}</a></li>
+          <li><a href={p('/how-it-works.html')}>{f.trust}</a></li>
+          <li><a href={p('/pricing.html')}>{f.pricing}</a></li>
+          <li><a href={p('/dew.html')}>{f.dew}</a></li>
+          <li><a href={p('/download.html')}>{f.download}</a></li>
+        </ul>
+      </nav>
+      <nav aria-label={f.learn}>
+        <h2>{f.learn}</h2>
+        <ul>
+          <li><a href={p('/beta.html')}>{f.changelog}</a></li>
+          <li><a href={p('/docs.html')}>{f.docs}</a></li>
+          <li><a href={p('/login.html')}>{f.account}</a></li>
+          <li><a href={localizeDocsPath(lang, SITE.docs.faq)}>{f.faq}</a></li>
+          <li><a href={p('/about.html')}>{f.about}</a></li>
+          <li><a href={SITE.social.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>{f.contact}</h2>
+        <ul>
+          <li><a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></li>
+          <li><a href="mailto:report@instarmony.com">{f.reportEmail}</a></li>
+          <li><a href="mailto:privacy@instarmony.com">{f.privacyEmail}</a></li>
+          <li class="foot-note">{f.responseTime}</li>
+        </ul>
+      </div>
+      <div>
+        <h2>{f.partners}</h2>
+        <ul>
+          <li><a href={`${p('/about.html')}#investors`}>{f.invest}</a></li>
+          <li><a href="https://instarmony.com/" target="_blank" rel="noopener noreferrer">{f.instarmony}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container foot-bottom">
+    <span class="foot-mark"><Logo size={20} /> {f.copyright}</span>
+    <span class="foot-formerly">{f.formerly}</span>
+    <span class="foot-legal">
+      <a href={p('/privacy.html')}>{f.privacy}</a>
+      <a href={p('/terms.html')}>{f.terms}</a>
+      <button type="button" data-forget>{f.forget}</button>
+      <span class="foot-forgot" data-forget-note hidden role="status">{f.forgot}</span>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(80px, 11vw, 140px) 0 28px;
+    background:
+      radial-gradient(60% 70% at 18% 0%, rgba(239, 143, 187, 0.14), transparent 70%),
+      radial-gradient(60% 70% at 85% 10%, rgba(110, 169, 242, 0.16), transparent 70%),
+      var(--night);
+  }
+  .foot-sky {
+    position: absolute;
+    left: 50%;
+    top: -6%;
+    width: min(1300px, 140vw);
+    translate: -50% 0;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .foot-sky path {
+    fill: none;
+    stroke: rgba(238, 240, 255, 0.07);
+    stroke-width: 1.2;
+  }
+  .foot-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+  .foot-word {
+    font-family: var(--f-latin-display);
+    font-size: clamp(3.6rem, 2rem + 6vw, 7rem);
+    font-weight: 500;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    font-variation-settings: 'opsz' 96;
+    background: linear-gradient(100deg, #ffffff 0%, #f6dbe9 35%, #d9d2ff 62%, #cfe3ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .foot-tag {
+    margin-top: 18px;
+    max-width: 26em;
+    color: var(--night-dim);
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+  .foot-cols {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: 28px;
+    padding-top: 10px;
+  }
+  .foot-cols h2 {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--night-faint);
+    margin-bottom: 16px;
+  }
+  :global(html[lang='zh-Hans']) .foot-cols h2 {
+    font-family: var(--f-body);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+  }
+  .foot-cols ul {
+    display: grid;
+    gap: 10px;
+  }
+  .foot-cols a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-block: -11px;
+    padding-block: 11px;
+    font-size: 14.5px;
+    color: var(--night-dim);
+    overflow-wrap: break-word;
+    transition: color var(--t-fast);
+  }
+  .foot-cols a:hover {
+    color: var(--night-text);
+  }
+  .foot-note {
+    font-size: 13px;
+    color: var(--night-faint);
+    word-break: keep-all;
+  }
+  .foot-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 24px;
+    margin-top: clamp(56px, 8vw, 96px);
+    padding-top: 22px;
+    border-top: 1px solid var(--night-line);
+    font-size: 13px;
+    color: var(--night-faint);
+  }
+  .foot-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--night-dim);
+  }
+  .foot-legal {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 18px;
+    margin-left: auto;
+  }
+  .foot-legal a,
+  .foot-legal button {
+    color: var(--night-dim);
+    font-size: 13px;
+  }
+  .foot-legal a:hover,
+  .foot-legal button:hover {
+    color: var(--night-text);
+  }
+  .foot-legal button {
+    border-bottom: 1px dashed rgba(238, 240, 255, 0.3);
+  }
+  .foot-forgot {
+    font-family: var(--f-hand);
+    font-size: 15px;
+    color: var(--accent-ink);
+  }
+  @media (max-width: 980px) {
+    .foot-top {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .foot-cols {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 20px;
+    }
+    .foot-legal {
+      margin-left: 0;
+    }
+  }
+</style>

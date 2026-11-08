@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactPage from '../components/pages/ContactPage.astro';
+import { t } from '../i18n';
+
+const lang = 'zh' as const;
+const copy = t(lang);
+---
+<Base lang={lang} path="/contact.html" title={copy.meta.contact.title} description={copy.meta.contact.description} keywords={copy.meta.contact.keywords}>
+  <ContactPage lang={lang} />
+</Base>

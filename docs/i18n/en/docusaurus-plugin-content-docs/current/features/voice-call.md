@@ -2,7 +2,7 @@
 sidebar_position: 2
 slug: /features/voice-call
 title: Voice Call
-description: Have a real-time voice conversation with AI
+description: "Talk to AI like on a phone call: just speak and hear the reply. Covers starting a call, mute and speaker controls, and how lip-sync follows the voice."
 ---
 
 # Voice Call

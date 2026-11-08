@@ -1,0 +1,40 @@
+---
+interface Props {
+  size?: number;
+  stroke?: number;
+  class?: string;
+  /** Plain currentColor stroke instead of the iridescent one. */
+  mono?: boolean;
+}
+const { size = 30, stroke = 2, class: className = '', mono = false } = Astro.props;
+// Several marks can share a page; each needs its own gradient id.
+const gid = `lg-${Math.random().toString(36).slice(2, 8)}`;
+---
+<svg
+  class={`logo ${className}`}
+  width={size}
+  height={size * 0.8}
+  viewBox="2 4 20 16"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  {!mono && (
+    <defs>
+      <linearGradient id={gid} x1="2" y1="12" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#f8a8d0" />
+        <stop offset="0.42" stop-color="#cdb6ff" />
+        <stop offset="0.7" stop-color="#92c6ff" />
+        <stop offset="1" stop-color="#a8f0dc" />
+      </linearGradient>
+    </defs>
+  )}
+  <path
+    d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"
+    stroke={mono ? 'currentColor' : `url(#${gid})`}
+    stroke-width={stroke}
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    vector-effect="non-scaling-stroke"
+  />
+</svg>

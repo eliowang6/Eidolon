@@ -1,0 +1,319 @@
+---
+import PageHero from '../PageHero.astro';
+import type { Lang } from '../../i18n';
+
+interface LegalPage {
+  label: string;
+  tag: string;
+  title: string;
+  intro: string;
+  tocTitle: string;
+  sections: { title: string; body: string; items?: string[] }[];
+  helpCta: string;
+  helpEmail: string;
+}
+interface Props {
+  lang: Lang;
+  page: LegalPage;
+}
+const { lang, page } = Astro.props;
+const slug = (i: number) => `sec-${i + 1}`;
+/** "8. 您的权利…" → clause number + title, so the number can be set apart from the words. */
+const split = (title: string) => {
+  const m = /^(\d+)\.\s*(.+)$/.exec(title);
+  return m ? { no: m[1], text: m[2] } : { no: '', text: title };
+};
+const sections = page.sections.map((s, i) => ({ ...s, id: slug(i), ...split(s.title) }));
+---
+
+<PageHero label={page.label} h1a={page.title} lede={page.intro} class="legal-hero">
+  <p class="legal-tag reveal" style="--i:3"><span class="live" aria-hidden="true"></span>{page.tag}</p>
+</PageHero>
+
+<section class="section legal-sec">
+  <div class="container legal-grid">
+    <aside class="toc">
+      <span class="toc-title">{page.tocTitle}</span>
+      <nav aria-label={page.tocTitle}>
+        {sections.map((s) => (
+          <a href={`#${s.id}`} data-toc-link={s.id}>
+            {s.no && <span class="toc-no">{s.no}</span>}
+            <span>{s.text}</span>
+          </a>
+        ))}
+      </nav>
+      <p class="toc-help">
+        <span>{page.helpCta}</span>
+        <a href={`mailto:${page.helpEmail}`}>{page.helpEmail}</a>
+      </p>
+    </aside>
+
+    <article class="legal-body" lang={lang}>
+      {sections.map((s) => (
+        <section id={s.id} data-legal-section>
+          <h2>
+            {s.no && <span class="sec-no">{s.no}</span>}
+            <span>{s.text}</span>
+          </h2>
+          <p>{s.body}</p>
+          {s.items && s.items.length > 0 && (
+            <ul class="legal-items">
+              {s.items.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+        </section>
+      ))}
+      <p class="legal-foot">
+        <span>{page.helpCta}</span>
+        <a class="tlink" href={`mailto:${page.helpEmail}`}>{page.helpEmail} <span aria-hidden="true">→</span></a>
+      </p>
+    </article>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/legal';
+</script>
+
+<style>
+  :global(html[lang] body .legal-hero.page-head .ph-inner > h1) {
+    font-size: clamp(2.4rem, 1.6rem + 3vw, 4.25rem);
+  }
+  /* a paragraph, not a display line: let Chinese break anywhere instead of only at punctuation */
+  :global(html[lang] body .legal-hero.page-head .ph-inner > .lede) {
+    word-break: normal;
+    max-width: 44em;
+    font-size: clamp(15px, 0.86rem + 0.2vw, 17px);
+    line-height: 1.85;
+  }
+  .legal-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 26px;
+    padding: 7px 15px 7px 13px;
+    border: 1px solid var(--night-line);
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--night-dim);
+  }
+
+  .legal-sec {
+    padding-top: clamp(48px, 6vw, 84px);
+  }
+  .legal-grid {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 720px);
+    gap: clamp(36px, 5vw, 80px);
+    justify-content: center;
+    align-items: start;
+  }
+
+  /* ── table of contents ── */
+  .toc {
+    position: sticky;
+    top: calc(var(--nav-h) + 36px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .toc-title {
+    font: 500 11.5px/1.4 var(--f-mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  :lang(zh) .toc-title {
+    font: 600 13px/1.4 var(--f-body);
+    letter-spacing: 0.08em;
+  }
+  .toc nav {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--line);
+  }
+  .toc nav a {
+    display: grid;
+    grid-template-columns: 1.5em minmax(0, 1fr);
+    gap: 4px;
+    margin-left: -1px;
+    padding: 6px 0 6px 14px;
+    border-left: 2px solid transparent;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-3);
+    transition: color var(--t-fast), border-color var(--t-fast);
+  }
+  .toc nav a:hover {
+    color: var(--ink);
+  }
+  .toc nav a.active {
+    color: var(--ink);
+    border-left-color: var(--accent);
+  }
+  .toc-no {
+    font: 500 12px/1.9 var(--f-mono);
+    color: var(--ink-3);
+  }
+  .toc nav a.active .toc-no {
+    color: var(--accent-ink);
+  }
+  .toc-help {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 10px;
+    padding: 16px 18px;
+    border-radius: var(--r-md);
+    background: var(--pearl-2);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .toc-help a {
+    font-weight: 600;
+    color: var(--accent-ink);
+    overflow-wrap: anywhere;
+  }
+  .toc-help a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ── body ── */
+  .legal-body {
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--ink-2);
+  }
+  .legal-body section {
+    scroll-margin-top: calc(var(--nav-h) + 40px);
+  }
+  .legal-body section + section {
+    margin-top: 40px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+  .legal-body h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+    font-size: clamp(19px, 1.05rem + 0.3vw, 21px);
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .sec-no {
+    flex: none;
+    min-width: 0.9em;
+    font-family: var(--f-latin-display);
+    font-optical-sizing: none;
+    font-variation-settings: 'opsz' 20;
+    font-size: 1.6em;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--accent-ink);
+  }
+  .legal-body p {
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+  .legal-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .legal-items li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--ink-2);
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+  .legal-items li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.72em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .legal-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 14px;
+    margin-top: 52px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line-2);
+    font-size: 15px;
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 1023px) {
+    .legal-grid {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 720px;
+      margin-inline: auto;
+      gap: 28px;
+    }
+    .toc {
+      position: static;
+      gap: 12px;
+      min-width: 0;
+    }
+    /* one swipeable row of clause chips */
+    .toc nav {
+      flex-direction: row;
+      gap: 8px;
+      margin-inline: calc(-1 * var(--gutter));
+      padding: 2px var(--gutter) 6px;
+      border-left: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-mask: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - 40px), transparent);
+      mask: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - 40px), transparent);
+    }
+    .toc nav::-webkit-scrollbar {
+      display: none;
+    }
+    .toc nav a {
+      display: inline-flex;
+      flex: none;
+      gap: 8px;
+      margin: 0;
+      padding: 7px 14px;
+      border: 1px solid var(--line-2);
+      border-radius: var(--r-full);
+      background: var(--card);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .toc nav a.active {
+      border-color: var(--accent);
+    }
+    .toc-no {
+      line-height: 1.5;
+    }
+    .toc-help {
+      display: none;
+    }
+  }
+  @media (max-width: 640px) {
+    .legal-body {
+      font-size: 16px;
+    }
+    .legal-body h2 {
+      gap: 12px;
+    }
+  }
+</style>

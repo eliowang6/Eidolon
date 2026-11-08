@@ -1,404 +1,347 @@
-<div align="center">
+# instarmony_website
 
-<img src="./assets/icon.png" alt="Eidolon Icon" width="180" />
+Source for **instarmony.com** — the Instarmony AI Lab site, the Sholarel product pages under
+`/eidolon/`, and the bilingual documentation site. It used to live inside the Sholarel app
+repository as `eidolon_github/`, a git submodule; it is now its own repository with its own
+build and release path, so shipping a page no longer waits on a desktop release.
 
-# Eidolon
+```
+instarmony.com/                →  index.html          Instarmony lab homepage
+instarmony.com/eidolon/        →  301                 to sholarel.instarmony.com/ (edgeone.json)
+instarmony.com/eidolon/<page>  →  301                 to the same page on the product sub-domain
+instarmony.com/docs/build/     →  301                 to sholarel.instarmony.com/docs/
+sholarel.instarmony.com/        →  eidolon-site/       Astro build of eidolon-web/ (zh + en)
+sholarel.instarmony.com/docs/   →  docs/build/         Docusaurus output (zh-Hans); /docs/en/ is English
+instarmony.com/team/<handle>/  →  team/<handle>/index.html
+```
 
-### Your Cross-Platform, Zero-Config, Cloud-Synced AI Secretary  
-### And Your Super AI Companion
+The product pages and the documentation both live on the product sub-domain now. The
+old lab-host paths answer with a **real 301** — see `edgeone.json` — instead of the
+`meta refresh` stubs this repo used to ship. Bing does not honour `meta refresh`,
+so the stubs kept the pre-migration pages in the index with their old titles.
 
-<p>
-  <a href="https://instarmony.com/docs/build/">
-    <img src="https://img.shields.io/badge/📖 Documentation-Read%20the%20Docs-7c3aed?style=for-the-badge" alt="documentation" />
-  </a>
-  <a href="https://eidolon.instarmony.com/">
-    <img src="https://img.shields.io/badge/🌐 Website-Visit%20Now-111827?style=for-the-badge" alt="website" />
-  </a>
-</p>
+## Layout
 
-<p>
-  <a href="https://github.com/eliowang6/Eidolon/stargazers">
-    <img src="https://img.shields.io/github/stars/eliowang6/Eidolon?style=for-the-badge&logo=github&color=8b5cf6" alt="stars" />
-  </a>
-  <a href="https://github.com/eliowang6/Eidolon/network/members">
-    <img src="https://img.shields.io/github/forks/eliowang6/Eidolon?style=for-the-badge&logo=github&color=06b6d4" alt="forks" />
-  </a>
-  <a href="https://github.com/eliowang6/Eidolon/issues">
-    <img src="https://img.shields.io/github/issues/eliowang6/Eidolon?style=for-the-badge&logo=github&color=f43f5e" alt="issues" />
-  </a>
-  <a href="https://github.com/eliowang6/Eidolon/discussions">
-    <img src="https://img.shields.io/github/discussions/eliowang6/Eidolon?style=for-the-badge&logo=github&color=14b8a6" alt="discussions" />
-  </a>
-</p>
+| Path | What it is |
+|------|------------|
+| `index.html`, `style.css`, `script.js` | Root brand page and its own CSS/JS (no build step) |
+| `404.html` | Not-found page, served by both GitHub Pages and the Sholarel server |
+| `eidolon/` | Legacy product directory: `login`/`contact` stubs plus redirect stubs to the sub-domain. `eidolon/assets/` stays untouched because the Web client resolves `/assets/...` here. The stubs are now only a fallback — `edgeone.json` answers the same paths with a 301 first |
+| `eidolon-web/` | Astro 5 source for the Sholarel product sub-domain (bilingual zh/en, Daylight Margin design system). Builds into `eidolon-site/` |
+| `eidolon-site/` | Generated Astro output; the EdgeOne product ZIP is packaged from this directory (never edited by hand) |
+| `team/` | One directory per person, e.g. `team/eli0wang6/index.html` |
+| `assets/` | Shared images, screenshots and sticker art (root and `eidolon/assets/` are separate sets) |
+| `docs/` | Docusaurus 3 project. `docs/docs/` is the zh-Hans source, `docs/i18n/en/docusaurus-plugin-content-docs/current/` the English source. Built with `baseUrl: /docs/` so it deploys onto the product sub-domain |
+| `edgeone.json` | Path-level 301s applied by EdgeOne Pages at the root of the main-site ZIP: the old `/eidolon/*` stubs and the old `/docs/build/*` documentation tree, plus a redirect that keeps `edgeone.json` itself from being served as a static file. Also injects the HSTS header |
+| `edgeone.sub.json` | The same HSTS header, but for the **product sub-domain** ZIP. The sub-domain is a separate Pages project on its own host, so it needs its own rules file — the lab's path-level 301s would send sub-domain traffic to the wrong place |
+| `scripts/seo-submit.mjs` | Regenerates `sitemap.xml` + `robots.txt`, then pings IndexNow / Baidu / Google |
+| `scripts/publish-site.py` | Builds, packages and uploads the production release to Cloudflare R2 |
+| `scripts/publish-edgeone.py` | Builds, packages and deploys both sites to EdgeOne Pages (Makers) |
+| `scripts/install-site.sh` | Runs on the server: verifies, extracts and atomically swaps the release |
+| `.github/workflows/static.yml` | GitHub Pages deploy on every push to `main` |
 
-<p>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Android%20%7C%20Linux-111827?style=for-the-badge&logo=windows&logoColor=white" alt="platform" />
-  <img src="https://img.shields.io/badge/Cloud%20Sync-Available-111827?style=for-the-badge" alt="cloud sync" />
-  <img src="https://img.shields.io/badge/AI-Companion%20Mode-c026d3?style=for-the-badge" alt="companion mode" />
-  <img src="https://img.shields.io/badge/AI-Agentic%20Control-0f766e?style=for-the-badge" alt="agentic control" />
-</p>
+`docs/build/` and `docs/node_modules/` are generated, not tracked. `docs/build/` is still what
+visitors read — the publish script builds it before packaging, and Pages CI builds it in the job.
 
-<p>
-  <img src="https://img.shields.io/badge/24%2F7-Voice%20%2F%20Video%20Presence-7c3aed?style=flat-square" alt="24/7 presence" />
-  <img src="https://img.shields.io/badge/Real--Time-Screen%20%26%20Camera%20Analysis-0891b2?style=flat-square" alt="screen and camera analysis" />
-  <img src="https://img.shields.io/badge/Remote-Terminal%20%2F%20Browser%20%2F%20Desktop-ef4444?style=flat-square" alt="remote control" />
-  <img src="https://img.shields.io/badge/Roleplay-Emotionally%20Supportive-f59e0b?style=flat-square" alt="emotion support" />
-</p>
+## Working locally
 
-<p>
-  <a href="https://instarmony.com/docs/build/">Documentation</a> •
-  <a href="#-features">Features</a> •
-  <a href="#-screenshots">Screenshots</a> •
-  <a href="#-why-eidolon">Why Eidolon</a> •
-  <a href="#-community--support">Community</a> •
-  <a href="#-links">Links</a>
-</p>
+Nothing needs a server for the main marketing pages: open `index.html`, or serve the repo root with
+`python -m http.server 8080`.
 
-</div>
+The Sholarel product sub-domain is a real Astro build (`eidolon-web/`, outputs to
+`../eidolon-site/`):
 
----
+```bash
+cd eidolon-web
+npm ci
+npm run dev        # http://localhost:4321, zh at / and en at /en/
+npm run build      # clean output → astro build → i18n shape + banned-copy checks
+npm run preview    # serve the built site
+```
 
-## ✨ What is Eidolon?
+The docs site needs its dependencies once (`npm ci` installs ~330 MB into `docs/node_modules`):
 
-**Eidolon** is a **cross-platform, zero-configuration, cloud-synced AI personal secretary** —  
-but it is also much more than that.
+```bash
+cd docs
+npm ci
+npm start          # http://localhost:3000, hot reload
+npm run build      # writes docs/build (zh-Hans + en)
+```
 
-Think of it as a **super AI companion** that can stay close to you, understand your context, support your emotions, and help with real work.
+`docs/docusaurus.config.ts` keeps `onBrokenLinks: 'throw'`, so a dead internal link fails the
+build rather than shipping a 404.
 
-It can be soft and caring like a companion.  
-It can also be sharp, capable, and practical like a powerful autonomous assistant.
+## Publishing
 
-> **Emotional value when you need warmth.**  
-> **Real capability when you need results.**
+There are two independent release channels. They build the same files but ship
+them to different places, and neither one calls the other.
 
----
+| Channel | Script | Destination | Serves |
+|---------|--------|-------------|--------|
+| **EdgeOne Pages** | `publish-edgeone.py` | Pages projects, one per host | the marketing sites |
+| **R2 + server** | `publish-site.py` | Cloudflare R2 → Azure origin | the API's static mount |
 
-## 🌌 The Vision
+### Release checklist
 
-Most AI tools are either:
-- cold but powerful, or
-- cute but shallow.
+- After every app release, sync `docs/src/version.ts` `LATEST_VERSION` with the
+  version the updater manifest actually serves — it is what the docs version
+  badge shows.
 
-**Eidolon aims to bridge both worlds.**
+### EdgeOne Pages — the marketing sites
 
-It is designed to be:
-- a companion that feels present,
-- an assistant that actually helps,
-- and a safe operator that can interact with your digital world.
+```bash
+python scripts/publish-edgeone.py                        # build → package → deploy both projects
+python scripts/publish-edgeone.py --no-deploy            # stop after writing the ZIPs
+python scripts/publish-edgeone.py --skip-docs-build      # reuse an existing docs/build
+python scripts/publish-edgeone.py --skip-site-build      # reuse an existing eidolon-site
+python scripts/publish-edgeone.py --only sub             # deploy just one project (main|sub)
+python scripts/publish-edgeone.py --env preview          # preview environment instead of production
+python scripts/publish-edgeone.py --dry-run              # resolve everything, deploy nothing
+```
 
-Whether you want someone to talk to, a gaming buddy, a travel partner, a desktop helper, or an always-there AI presence, Eidolon is built to feel **personal, ambient, and useful**.
+Two independent Makers projects, one per host:
 
----
+| ZIP | Project | Default URL |
+|-----|---------|-------------|
+| `dist/instarmony-website-pages.zip` | `instarmony-main-overseas` | `instarmony-main-overseas.edgeone.dev` |
+| `dist/eidolon-product-pages.zip` | `eidolon-overseas-test` | `eidolon-overseas-test.edgeone.dev` |
 
-## 📖 Getting Started
+The main ZIP is built from the repository root minus `eidolon-site/` and the
+`eidolon-web/` source tree; the product ZIP is built from the Astro output in
+`eidolon-site/` after `npm run build` in `eidolon-web/`. Both are checked for
+the entries the site needs before anything is uploaded.
 
-> **New to Eidolon?** Start here!
+After each deploy the script probes the returned URL and prints its status.
+
+#### Choosing an acceleration area
+
+The CLI's `-a` flag only accepts `global` or `overseas`, and they behave very
+differently:
+
+| Area | Default domain | Reachable? | Custom domain |
+|------|----------------|------------|---------------|
+| `overseas` | `*.edgeone.dev` | **Yes, immediately** — no token, no ICP filing | Allowed |
+| `global` | `*.edgeone.cool` | Only via a token preview URL (`?eo_token=…&eo_time=…`, 3 h validity); otherwise **401** | Disabled until the domain is ICP-filed |
+
+This project deploys to **`overseas`** (`EDGEONE_AREA=overseas`). Two
+consequences worth keeping in mind:
+
+- Mainland visitors are blocked by EdgeOne policy on `overseas`. That is fine for
+  a preview/backup channel, but the main site must stay on the Azure origin while
+  the domain is unfiled.
+- On `global`, a bare `*.edgeone.cool` URL answering 401 **does not mean the
+  deploy failed** — it is the token-preview policy. The console's Preview button
+  hands out a working link; the edge answers a 302 that sets `eo_token` /
+  `eo_time` cookies, so a probe must follow redirects *with* a cookie jar or it
+  reports a false failure.
+
+> **Reachable ≠ usable for production traffic.** The `overseas` area works
+> without ICP filing, but mainland visitors are blocked. `instarmony.com` is
+> currently bound to the `overseas` EdgeOne project (its responses carry
+> `Server: edgeone makers`), so mainland reachability is a live constraint —
+> when the domain is filed, switch `EDGEONE_AREA=global` and rebind.
 >
-> Visit our **[Documentation Site](https://instarmony.com/docs/build/)** for:
-> - **[Quick Start Guide](https://instarmony.com/docs/build/quick-start)** — from installation to your first conversation in 5 minutes
-> - **[Installation Guide](https://instarmony.com/docs/build/install)** — detailed setup for Windows, Android, and Web
-> - **[Account Management](https://instarmony.com/docs/build/account)** — registration, login, and security
-> - **[Settings & Preferences](https://instarmony.com/docs/build/features/settings)** — language, AI model, privacy, and desktop features
-> - **[Feature Guide](https://instarmony.com/docs/build/features/chat)** — learn every feature in depth
-> - **[FAQ](https://instarmony.com/docs/build/faq)** — common questions answered
-
-Eidolon supports **Windows Desktop**, **Android**, and **Web**. Download the latest release from [GitHub Releases](https://github.com/eliowang6/Eidolon/releases).
-
----
-
-## 📚 Documentation
-
-Full documentation is available at **[instarmony.com/docs/build/](https://instarmony.com/docs/build/)**.
-
-### Getting Started
-| Guide | Description |
-|-------|-------------|
-| [Quick Start](https://instarmony.com/docs/build/quick-start) | From download to first conversation in 5 minutes |
-| [Installation](https://instarmony.com/docs/build/install) | Detailed setup for all platforms |
-| [Account](https://instarmony.com/docs/build/account) | Registration, login, and password management |
-
-### Core Features
-| Feature | Description |
-|---------|-------------|
-| [Chat](https://instarmony.com/docs/build/features/chat) | Smart conversation with long-term memory |
-| [Voice Call](https://instarmony.com/docs/build/features/voice-call) | Real-time voice conversation |
-| [Video Call](https://instarmony.com/docs/build/features/video-call) | Face-to-face video companionship |
-| [Tool Calls](https://instarmony.com/docs/build/features/tools) | AI creates todos, habits, images for you |
-| [AI Agent](https://instarmony.com/docs/build/features/agent) | Autonomous computer operation (Genesis) |
-
-### Life Management
-| Feature | Description |
-|---------|-------------|
-| [Life Dashboard](https://instarmony.com/docs/build/features/life) | Activity feed, widgets, and insights |
-| [Todo](https://instarmony.com/docs/build/features/todo) | Task management with AI assistance |
-| [Habit Tracker](https://instarmony.com/docs/build/features/habit) | Build good habits together |
-| [Mood Journal](https://instarmony.com/docs/build/features/mood) | Track emotions and well-being |
-| [Focus Timer](https://instarmony.com/docs/build/features/focus-timer) | Pomodoro with AI companionship |
-| [Alarms](https://instarmony.com/docs/build/features/alarm) | AI-powered reminders |
-
-### Creative & Social
-| Feature | Description |
-|---------|-------------|
-| [Theater](https://instarmony.com/docs/build/features/theater) | Interactive story adventures |
-| [AI Image Generation](https://instarmony.com/docs/build/features/image-generation) | Text-to-image creation |
-| [Emoji & Stickers](https://instarmony.com/docs/build/features/emoji-sticker) | Expressive reactions and custom stickers |
-| [Quick Prompts](https://instarmony.com/docs/build/features/quick-prompts) | One-click conversation starters |
-| [WeChat Integration](https://instarmony.com/docs/build/features/wechat) | AI auto-replies on WeChat |
-| [QQ Bot](https://instarmony.com/docs/build/features/qqbot) | AI as a QQ channel bot |
-
-### Personalization
-| Feature | Description |
-|---------|-------------|
-| [Settings](https://instarmony.com/docs/build/features/settings) | All preferences in one place |
-| [Avatar](https://instarmony.com/docs/build/features/avatar) | VRM/Live2D models and floating window |
-| [Themes](https://instarmony.com/docs/build/features/theme) | 9+ visual themes and fonts |
-| [TTS Voice](https://instarmony.com/docs/build/features/tts) | Voice customization and cloning |
-| [Memory](https://instarmony.com/docs/build/features/memory) | Long-term memory and relationship |
-| [MCP Extensions](https://instarmony.com/docs/build/features/mcp) | Plugin system via MCP protocol |
-| [Subscription](https://instarmony.com/docs/build/features/subscription) | Tiers, quotas, and features comparison |
-
-### Help
-| Resource | Description |
-|----------|-------------|
-| [FAQ](https://instarmony.com/docs/build/faq) | Common questions and troubleshooting |
-| [GitHub Issues](https://github.com/eliowang6/Eidolon/issues) | Report bugs and request features |
-
----
-
-## 🧠 Features
-
-### 💬 Natural IM-Style Replies
-Eidolon responds in a natural instant-messaging style, adapting tone, pacing, and expression according to the current conversation context.
-
-It feels less like issuing commands to a bot, and more like talking to someone who is actually there with you.
-
----
-
-### 🎭 Real-Time Character-Specific Meme Reactions
-Based on the ongoing chat situation, Eidolon can generate **role-specific reaction memes and expressive visual responses in real time**.
-
-Not just replies.  
-Not just stickers.  
-A living personality layer that reacts with style.
-
----
-
-### 🎙️ 24/7 Low-Overhead Voice / Video Presence
-Eidolon supports an **always-on, low-consumption voice and video companion mode** for long-duration presence.
-
-That means it can remain with you throughout the day as:
-
-- a companion
-- a co-worker
-- a study partner
-- a chill gaming presence
-- a quiet helper in the background
-
----
-
-### 👁️ Real-Time Screen / Camera Understanding
-Eidolon can analyze your **screen** and **camera** feed in real time to provide deeply contextual assistance.
-
-This enables use cases such as:
-
-- helping you while gaming
-- understanding what you're doing on your PC
-- assisting with software workflows
-- reacting to real-world scenes
-- acting like a visual co-pilot for life and work
-
----
-
-### 🫂 Multiple Companion Roles
-Eidolon is not locked into one identity. It can become whatever role fits your life best.
-
-It can act as:
-
-- **a gaming buddy**
-- **a travel companion**
-- **a computer helper**
-- **a life assistant / maid**
-- **a study partner**
-- **a personalized AI companion**
-
-Warm when needed.  
-Efficient when needed.  
-Playful when needed.
-
----
-
-### 🛡️ Safer and More General Eidoclaw Capability
-Eidolon includes **Eidoclaw** — a more general-purpose and safer capability layer compared with Openclaw.
-
-Through secure remote interaction with:
-
-- terminal
-- browser
-- desktop screen
-- keyboard and mouse
-
-Eidolon can assist with a wide range of tasks, including:
-
-- gaming
-- document creation and editing
-- vibe-coding orchestration
-- development progress management
-- news collection and summarization
-- stock market analysis
-- smart home control
-- desktop automation
-- computer operations across everyday workflows
-
-This is not just chat.  
-This is **actionable AI presence**.
-
----
-
-## 🚀 Example Use Cases
-
-### For daily life
-- keep you company throughout the day
-- talk like a close companion
-- help manage routines and reminders
-- assist with travel planning
-- control smart home devices
-
-### For work
-- help draft and edit documents
-- organize information and news
-- manage development progress
-- support vibe coding workflows
-- operate browser / terminal / desktop safely
-
-### For fun
-- game with you
-- react to gameplay in real time
-- act as a travel buddy
-- generate memes and expressive reactions
-- become a character-like AI partner
-
----
-
-## 🖼️ Screenshots
-
-<div align="center">
-
-<img src="./assets/screenshot-1.png" alt="Eidolon Screenshot 1" width="88%" />
-
-<br/><br/>
-
-<img src="./assets/screenshot-2.png" alt="Eidolon Screenshot 2" width="88%" />
-
-</div>
-
-
----
-
-## 💗 Why Eidolon
-
-Because the future of AI should not feel like a sterile control panel.
-
-It should feel like:
-
-- **someone is with you**
-- **something powerful is helping you**
-- **your digital world is becoming easier to manage**
-- **technology is becoming more intimate, more ambient, and more alive**
-
-Eidolon is built for people who want AI to be both:
-
-**emotionally resonant**  
-and  
-**practically powerful**
-
----
-
-## 📌 Project Note
-
-This repository is the home of the **Eidolon** project.
-
-For:
-- **bug reports**
-- **feature requests**
-- **product feedback**
-
-please open an **Issue**.
-
-For:
-- **broader discussion**
-- **ideas**
-- **community exchange**
-
-please use **Discussions** or join our **Discord**.
-
----
-
-## 🤝 Community & Support
-
-<p>
-  <a href="https://github.com/eliowang6/Eidolon/issues">
-    <img src="https://img.shields.io/badge/Feedback-Issues-ef4444?style=for-the-badge&logo=github" alt="issues" />
-  </a>
-  <a href="https://github.com/eliowang6/Eidolon/discussions">
-    <img src="https://img.shields.io/badge/Discussion-GitHub%20Discussions-14b8a6?style=for-the-badge&logo=github" alt="discussions" />
-  </a>
-  <a href="https://discord.gg/uBFgfV7y">
-    <img src="https://img.shields.io/badge/Chat-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="discord" />
-  </a>
-</p>
-
-We welcome builders, dreamers, developers, creators, roleplay lovers, AI enthusiasts, and everyone who believes that the next generation of AI should be both **capable** and **close**.
-
----
-
-## 🔗 Links
-
-<p align="center">
-  <a href="https://instarmony.com/docs/build/">
-    <img src="https://img.shields.io/badge/📖 Documentation-Read%20the%20Docs-7c3aed?style=for-the-badge" alt="Documentation" />
-  </a>
-  <a href="https://discord.gg/uBFgfV7y">
-    <img src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
-  </a>
-  <a href="https://space.bilibili.com/520926548">
-    <img src="https://img.shields.io/badge/Bilibili-Follow%20Us-00A1D6?style=for-the-badge&logo=bilibili&logoColor=white" alt="Bilibili" />
-  </a>
-  <a href="https://www.xiaohongshu.com/user/profile/62bb8465000000001b0268ac">
-    <img src="https://img.shields.io/badge/Xiaohongshu-Follow%20Us-FF2442?style=for-the-badge&logo=xiaohongshu&logoColor=white" alt="Xiaohongshu" />
-  </a>
-  <a href="https://www.zhihu.com/people/pevernow-89">
-    <img src="https://img.shields.io/badge/Zhihu-Follow%20Us-0084FF?style=for-the-badge&logo=zhihu&logoColor=white" alt="Zhihu" />
-  </a>
-  <a href="https://x.com/eli0wang6">
-    <img src="https://img.shields.io/badge/X-Follow%20Updates-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" />
-  </a>
-  <a href="https://eidolon.instarmony.com/">
-    <img src="https://img.shields.io/badge/Official%20Website-Visit%20Now-111827?style=for-the-badge" alt="Official Website" />
-  </a>
-  <a href="https://qm.qq.com/q/oUgx5EwyVa">
-    <img src="https://img.shields.io/badge/QQ%20Group-277703772-12B7F5?style=for-the-badge" alt="QQ Group" />
-  </a>
-</p>
----
-
-## 🛠️ Status
-
-> Eidolon is actively evolving.
-
-Expect:
-- rapid iteration
-- new interaction modes
-- richer companion behaviors
-- stronger automation capabilities
-- safer and more capable Eidoclaw integrations
-
----
-
-<div align="center">
-
-## Eidolon
-
-**More than an assistant. More than a chatbot.**  
-**A presence. A partner. A capable AI by your side.**
-
-</div>
+> **Host normalisation.** `source` in `edgeone.json` matches the request *path*
+> only — it never resolves a scheme. Host matching needs the two `$` variables:
+>
+> ```json
+> { "source": "$wwwhost", "destination": "$host", "statusCode": 301 }
+> ```
+>
+> As the **first** entry of `redirects` this fires on the live custom domains
+> and collapses `www` onto the apex: `https://www.instarmony.com/team/x/`
+> answers `301 → https://instarmony.com/team/x/`, path and query preserved.
+> The apex is the canonical host — every `canonical`, `og:url` and sitemap
+> entry points there — so this is the redirect that consolidates the two
+> Baidu listings.
+>
+> Two limits worth knowing:
+>
+> - **the scheme is inherited from the request.** `destination: "https://$host"`
+>   behaves exactly like `destination: "$host"` — the `https://` prefix is
+>   ignored. `http://www.…` therefore lands on `http://apex`, not `https://apex`;
+> - - **a scheme-specific rule is impossible.** `redirects` cannot match http
+>   without also matching https, so forcing http → https cannot be expressed
+>   here (an https request would loop). That half is a console switch.
+>
+> What was ruled out, all measured against the live domains:
+>
+> - a rule whose source names a host (`www.instarmony.com/*`) passes config
+>   validation but never fires;
+> - a catch-all `/*` → `https://host/*` rule does not fire on a custom domain
+>   (it works on the `*.edgeone.dev` default domain, where the platform's own
+>   http→https hop runs first);
+> - `publish.rule` is not a runtime redirect engine;
+> - an Edge Function cannot intercept it, because **static assets win over
+>   function routes**: `edge-functions/` never sees a request that matches an
+>   existing file, including `404.html`;
+> - the Pages API exposes no domain-binding or HTTPS action at all
+>   (`DeletePagesProject` exists, `*Domain*` does not).
+>
+> **What still needs the console** — under the project's custom-domain
+> entries, the *HTTPS 配置* column:
+>
+> - force `http` → `https` on the apex (and on `www`, if the switch is offered
+>   per domain — the two hosts are bound independently, so a site-wide toggle
+>   may not cover both);
+> - pick **301** over 302 there: http is a permanent invalid variant, and a 302
+>   is read as temporary, so crawlers keep re-fetching the http copy and the
+>   weight does not consolidate.
+>
+> As a code-level stopgap, both sites ship
+> `Strict-Transport-Security: max-age=31536000; includeSubDomains` via the
+> `headers` block of `edgeone.json` / `edgeone.sub.json`, so browsers upgrade
+> http → https on their own after the first visit. That is not a server-side
+> 301 — a crawler that ignores HSTS still sees the http copy — but it covers
+> real visitors.
+>
+> **百度 quota.** `SEO_BAIDU_SITE` / `SEO_BAIDU_SITE_EIDOLON` must be the bare
+> host (`instarmony.com`), not `https://instarmony.com` — with the protocol the
+> API answers `site init fail` and never reaches the URL check. With the bare
+> host the apex property answers `over quota`, which means the site *is*
+> registered on the apex and only the daily allowance is spent. The 普通收录 API
+> grants very little per day (around 10 URLs), so run the submit in the morning
+> rather than after a deploy. IndexNow has no such limit and is the channel
+> that actually moves Bing.
+
+Deployment shells out to the EdgeOne CLI:
+
+```bash
+npx --yes edgeone@latest pages deploy <zip> -n <project> -e <env> -a <area> -t $EDGEONE_API_TOKEN --json
+```
+
+Credentials and overrides come from the environment, optionally seeded from an
+untracked `.env` in this directory:
+
+- `EDGEONE_API_TOKEN` — API Token from the Pages console. Without it the script
+  still packages and prints what it *would* deploy, then stops.
+- `EDGEONE_MAIN_PROJECT` / `EDGEONE_SUB_PROJECT` — override the project names
+  if the console uses different ones.
+- `EDGEONE_AREA` — `overseas` (default) or `global`.
+
+### R2 + server — the API's static mount
+
+```bash
+python scripts/publish-site.py                 # docs build → sitemap → package → R2 upload
+python scripts/publish-site.py --no-upload     # stop at dist/Instarmony_Website_Release.tar.gz
+python scripts/publish-site.py --skip-docs-build   # reuse an existing docs/build
+```
+
+The script refuses to package unless the four entries the server requires are present
+(`index.html`, `eidolon/index.html`, `docs/build/index.html`, `docs/build/en/index.html`), then
+prints the archive's SHA-256. Credentials come from the environment or an untracked `.env` in
+this directory: `CF_R2_ACCOUNT_ID`, `CF_R2_ACCESS_KEY_ID`, `CF_R2_SECRET_ACCESS_KEY`, and
+optionally `CF_R2_BUCKET_NAME` (default `eidolon`) and `CF_R2_PUBLIC_URL`
+(default `https://storage.instarmony.com`). `--purge-cache` additionally purges the uploaded
+object URL and needs `CF_ZONE_ID` + `CF_API_TOKEN`.
+
+Then install it on the server — no git clone needed there, the script arrives over ssh:
+
+```bash
+ssh <server> "bash -s" "<sha256>" < scripts/install-site.sh
+```
+
+`install-site.sh` downloads `/deploy/Instarmony_Website_Release.tar.gz`, re-checks the digest,
+rejects unsafe member paths, extracts to a staging directory beside the target, verifies the
+required entries, then renames the live directory aside and the staged one in. Any failure after
+that point restores the previous release; a concurrent run is refused by a lock directory. The
+target defaults to `/home/azureuser/instarmony_website` (`--site-root` to change, and it refuses
+a directory that contains `.git`). That is the Azure host; the retired AWS path
+`/home/ec2-user/` is no longer the default.
+
+### GitHub Pages
+
+A push to `main` runs `.github/workflows/static.yml`, which builds the docs with
+`DOCS_BASE_URL=/Sholarel/docs/build/` and publishes the repository root to
+`https://eliowang6.github.io/Eidolon/`. That is why `docs/docusaurus.config.ts` reads
+`DOCS_URL` / `DOCS_BASE_URL` from the environment: production serves the docs at `/docs/build/`
+and Pages at `/Sholarel/docs/build/`.
+
+### Search engines
+
+**Deploy now pushes links automatically.** `publish-edgeone.py` / `publish-site.py`
+run `node scripts/seo-submit.mjs push` as the last step, after the upload/deploy
+has already succeeded. It is best-effort: a network error, a non-2xx response,
+an exhausted Baidu quota or a malformed body only prints a `[WARN]`/log line and
+never changes the publish result. Skip it with `--no-push`; `--dry-run` runs it
+in plan-only mode (no requests, no state written).
+
+**Baidu is switched off by default.** `SEO_BAIDU_ENABLED` is a master switch and
+only `1` (or `true`) turns it on. While it is off — the default, because the
+`sholarel.instarmony.com` property has not passed 百度 verification yet — a
+normal deploy sends **zero** requests to `data.zz.baidu.com` even when the sitemap
+and the state file still contain pending URLs. Those URLs stay pending in the
+ledger untouched, so publishing the switch on later resumes exactly where it
+stopped. To enable it: put `SEO_BAIDU_ENABLED=1` in the repo-root `.env` (that
+file is read automatically) or prefix the command
+(`SEO_BAIDU_ENABLED=1 node scripts/seo-submit.mjs push`). To disable it again,
+remove the line or set it to `0`. `--dry-run` still reports the pending Baidu
+counts while the switch is off.
+
+What gets pushed:
+
+- **IndexNow** (Bing/Yandex/Naver share it) — every URL whose page file is new
+  or whose SHA-1 changed since the last successful push. No quota.
+- **Baidu 普通收录主动推送** (`data.zz.baidu.com/urls`) — same change set, but
+  quota-bound and capped per run.
+- **Google** — nothing to push without a token; when `SEO_GSC_ACCESS_TOKEN` is
+  set the script only re-submits the sitemap through the Search Console API
+  (the URL-push Indexing API is not used — it is not a general-purpose endpoint).
+
+**Incremental ledger.** `seo/push-state.json` (untracked, override with
+`SEO_PUSH_STATE_PATH`) records per host and per engine: URL, page SHA-1, push
+time and result. `push` only sends URLs missing from the ledger, whose recorded
+status is not `accepted`, or whose page hash changed since acceptance — so a
+routine deploy with no content change sends **zero** Baidu URLs.
+
+**Baidu quota policy.** `SEO_BAIDU_MAX_PER_RUN` (default 10) caps URLs per run.
+Chinese pages are queued first; `/en/` pages are queued last and only consume
+leftover budget, capped by `SEO_BAIDU_EN_MAX` (default 2) — they are not dropped
+outright because they do rank for English queries, but they must not compete
+with zh pages for the ~10/day allowance. Set `SEO_BAIDU_INCLUDE_EN=0` to drop
+them entirely. The API's `remain` is reported in the run summary; `remain=0`
+or `over quota` stops the run cleanly, and unaccepted URLs stay pending for the
+next deploy.
+
+Run it by hand only for a forced full re-submission (still budget-capped):
+`node scripts/seo-submit.mjs submit`. Plain-text URL lists for manual copy-paste:
+`node scripts/seo-submit.mjs urls`.
+
+**Google: what is still missing.** `SEO_GSC_ACCESS_TOKEN` is not configured, so
+that branch is always skipped. To enable it you need an OAuth2 access token with
+the `https://www.googleapis.com/auth/webmasters` scope, issued for an account
+that owns the `sc-domain:instarmony.com` Search Console property (OAuth client
+in Google Cloud → consent once → refresh token → mint access tokens). No new
+dependency is required for this; until then Google relies on organic crawl of
+the sitemap declared in `robots.txt`.
+
+**Not available: Baidu 站点改版 / sitemap 提交.** The site has no ICP filing
+(备案). Baidu's 站点改版 tool and its sitemap-submission entry both require a
+verified, filed property, so neither can be used today. Nothing in this repo
+attempts them and no submission record is fabricated; the only working Baidu
+channel is 普通收录主动推送 above. Register a new crawlable page in `MAIN_PAGES`
+(main host) or let Astro/the docs build emit it — the sitemap is generated from
+those sources, not discovered.
+
+## Contract with the Sholarel server
+
+`instarmony.com` is served by the FastAPI app in the neighbouring `eidolon` repository, which
+reads this directory and owns these behaviours (see `server/app/main.py` there):
+
+- `/` → root `index.html`; `/eidolon` → `/eidolon/`; `/eidolon/index.html` → `/eidolon/`
+- `/about.html`, `/pricing.html`, `/features.html`, `/contact.html` → 308 to the same name
+  under `/eidolon/`
+- `/docs` and `/docs/` → `/eidolon/docs.html`; extensionless page aliases such as
+  `/eidolon/pricing` → `/eidolon/pricing.html`
+- `/assets/...` falls back to `/eidolon/assets/...` so the web client's absolute asset URLs work
+- dot-prefixed paths (`.git`, `.env`) are never served, even if they exist in the directory
+- the directory itself is configurable as `INSTARMONY_WEBSITE_PATH`; the default is the sibling
+  `instarmony_website` checkout, and `/eidolon/api/health` reports `public_site_mounted`
+
+So a page added here is reachable at `instarmony.com/<path>` without touching the server, but a
+new *redirect* belongs to the server, not to this repository.
+
+Note that `instarmony.com` is expected to be served by EdgeOne Pages, with the Azure
+origin kept only as a fallback for the API. The server-side mapping above still
+governs `INSTARMONY_WEBSITE_PATH` while that fallback is in place; the Pages
+release path is `scripts/publish-edgeone.py`.

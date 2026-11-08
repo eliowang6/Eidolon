@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import HomePage from '../components/pages/HomePage.astro';
+import { SITE } from '../config/site';
+import { t } from '../i18n';
+
+const lang = 'zh' as const;
+const copy = t(lang);
+const software = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  '@id': `${SITE.url}/#software`,
+  name: 'Sholarel',
+  url: SITE.url,
+  publisher: { '@id': 'https://instarmony.com/#organization' },
+  brand: { '@type': 'Brand', name: 'Sholarel' },
+  applicationCategory: 'LifestyleApplication',
+  operatingSystem: 'Windows 10, Windows 11, Android 7.0+',
+  description: copy.meta.home.description,
+  image: `${SITE.url}/assets/og-zh.png`,
+  offers: copy.pricingPage.plans.map((plan) => ({
+    '@type': 'Offer',
+    name: plan.name,
+    price: plan.price,
+    priceCurrency: 'CNY',
+  })),
+};
+---
+<Base lang={lang} path="/" title={copy.meta.home.title} description={copy.meta.home.description} keywords={copy.meta.home.keywords} jsonLd={[software]}>
+  <HomePage lang={lang} />
+</Base>

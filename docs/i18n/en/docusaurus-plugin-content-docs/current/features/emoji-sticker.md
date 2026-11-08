@@ -2,12 +2,12 @@
 sidebar_position: 3
 slug: /features/emoji-sticker
 title: Emoji & Stickers
-description: Search emoji packs and upload custom stickers
+description: "Forty quick emoji, keyword search across sticker packs, and your own image or GIF stickers. Includes tips, format limits and how to send or remove them."
 ---
 
 # Emoji & Stickers
 
-Eidolon supports rich emoji and sticker features to make conversations more lively and fun. Search from a massive emoji library or upload your own exclusive stickers.
+Sholarel supports rich emoji and sticker features to make conversations more lively and fun. Search from a massive emoji library or upload your own exclusive stickers.
 
 ---
 
@@ -23,7 +23,7 @@ Tap to insert into your message.
 
 ## Search Emoji Packs
 
-Eidolon has built-in emoji search — enter a keyword to find matching emoji:
+Sholarel has built-in emoji search — enter a keyword to find matching emoji:
 
 1. Click the **Emoji** button in the input box
 2. Enter a keyword in the search box (e.g. "happy", "cat", "cheer")

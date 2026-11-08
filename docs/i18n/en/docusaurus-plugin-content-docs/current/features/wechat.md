@@ -2,12 +2,12 @@
 sidebar_position: 1
 slug: /features/wechat
 title: WeChat Integration
-description: Let AI auto-reply to your WeChat messages
+description: "Connect AI to WeChat: after a QR login, incoming messages are answered automatically. Covers setup, login flow, message order and disconnecting."
 ---
 
 # WeChat Integration
 
-Eidolon can connect to your WeChat account, letting the AI assistant auto-reply to messages. Even when you're busy, AI can respond to your friends on your behalf.
+Sholarel can connect to your WeChat account, letting the AI assistant auto-reply to messages. Even when you're busy, AI can respond to your friends on your behalf.
 
 ---
 
@@ -31,7 +31,7 @@ Eidolon can connect to your WeChat account, letting the AI assistant auto-reply 
 
 Once enabled, when someone sends you a WeChat message:
 
-1. The message is forwarded to Eidolon AI
+1. The message is forwarded to Sholarel AI
 2. AI generates a reply based on conversation context
 3. The reply is automatically sent to the WeChat conversation
 

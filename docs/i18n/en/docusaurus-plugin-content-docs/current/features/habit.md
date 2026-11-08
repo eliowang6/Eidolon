@@ -2,7 +2,7 @@
 sidebar_position: 2
 slug: /features/habit
 title: Habit Tracking
-description: Build good habits together with AI
+description: "Turn an intention into a daily record. Create a habit in one sentence, set daily, weekly or monthly targets, check in from a widget, and watch streaks."
 ---
 
 # Habit Tracking

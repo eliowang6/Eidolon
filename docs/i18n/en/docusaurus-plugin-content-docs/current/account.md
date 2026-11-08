@@ -2,18 +2,18 @@
 sidebar_position: 3
 slug: /account
 title: Account Management
-description: Registration, login, password management, and account switching
+description: "Sign up with a username and password, no email needed. Covers nickname and invite-code rules, password resets, account switching and cross-device sync. Invite codes are only for registration: join the QQ group in mainland China, or fill in the waitlist and join Discord elsewhere."
 ---
 
 # Account Management
 
-Eidolon uses a simple username + password authentication system — no email verification required. Register and start using immediately.
+Sholarel uses a simple username + password authentication system — no email verification required. Register and start using immediately.
 
 ---
 
 ## Register an Account
 
-1. Open Eidolon and click the **"Register"** tab on the login page
+1. Open Sholarel and click the **"Register"** tab on the login page
 2. Fill in the registration form:
 
 | Field | Requirements | Description |
@@ -22,20 +22,22 @@ Eidolon uses a simple username + password authentication system — no email ver
 | Nickname | Any text | The name AI uses to address you |
 | Password | At least 8 characters | Include letters and numbers recommended |
 | Confirm Password | Must match password | Prevents typos |
-| Invite Code | Required during beta | Get from the community |
+| Invite Code | Required for registration | Join the QQ group in mainland China, or fill in the waitlist and join Discord elsewhere |
 | Gender | Male/Female | Helps AI understand you better |
 
 3. Click **"Create Account & Enter"** — you'll be automatically logged in after registration
 
 :::info About Invite Codes
-Eidolon is currently in beta testing and requires an invite code to register. Invite codes are distributed by community admins or content creators. Join the official community to get one.
+Invite codes are only for registration. In mainland China, join the QQ group — codes are handed out there. Everywhere else, fill in the waitlist and join our [Discord](https://discord.gg/nKMe6vrkZD).
+
+Subscriptions and Chrono Dew never need an invite code — you can check out directly.
 :::
 
 ---
 
 ## Login
 
-1. Open Eidolon — the login page is shown by default
+1. Open Sholarel — the login page is shown by default
 2. Enter your username and password
 3. Click **"Login & Enter"**
 
@@ -70,7 +72,7 @@ After logging out, locally cached messages are cleared, but cloud data is unaffe
 
 ## Switch Accounts
 
-Eidolon supports switching between multiple accounts on the same device:
+Sholarel supports switching between multiple accounts on the same device:
 
 1. Log out of the current account
 2. Enter a different username and password on the login page

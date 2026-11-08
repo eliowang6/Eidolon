@@ -2,12 +2,12 @@
 sidebar_position: 3
 slug: /features/tts
 title: TTS Voice Settings
-description: Customize AI's speaking voice and style
+description: "Give AI a natural voice: drag the emotion slider from restrained to vivid, or upload 10-30 seconds of reference audio to steer the timbre."
 ---
 
 # TTS Voice Settings
 
-Eidolon's TTS (Text-to-Speech) feature lets AI reply with natural-sounding voice. You can adjust emotional intensity and even upload your own voice sample so AI speaks in your voice.
+Sholarel's TTS (Text-to-Speech) feature lets AI reply with natural-sounding voice. You can adjust emotional intensity and even upload your own voice sample so AI speaks in your voice.
 
 ---
 

@@ -1,0 +1,1012 @@
+---
+/**
+ * Features: what the companion does today, chapter by chapter, each one shown
+ * with a real screen — and, at the end, the things it will not do.
+ */
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import PageHero from '../PageHero.astro';
+import Phone from '../Phone.astro';
+import Screen from '../Screen.astro';
+import { localizePath, pr, prPlain, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const f = copy.featuresPage;
+const p = (href: string) => localizePath(lang, href);
+const duo = ['fea', 'ael'] as const;
+const names = { fea: 'Fea', ael: 'Ael' } as const;
+const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
+---
+
+<PageHero label={f.label} h1a={f.h1a} h1b={f.h1b} lede={f.lede} />
+
+<div class="chapters">
+  <nav class="toc" aria-label={f.tocLabel} data-toc>
+    <div class="toc-in" data-toc-scroll>
+      <ol>
+        {
+          f.toc.map((item, i) => (
+            <li>
+              <a href={`#${item.id}`} data-toc-link={item.id} class:list={[i === 0 && 'on']}>
+                {item.t}
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ── on the desktop ─────────────────────────────────────── -->
+  <section class="chap" id="desktop" data-chap aria-labelledby="desktop-h">
+    <div class="container">
+      <div class="desk-head">
+        <div>
+          <Eyebrow text={f.desktop.label} class="reveal" />
+          <h2 id="desktop-h" class="reveal" style="--i:1">
+            <Fragment set:html={prPlain(f.desktop.h2a)} /><br /><Fragment set:html={prPlain(f.desktop.h2b)} />
+          </h2>
+        </div>
+        <p class="lede reveal" style="--i:2" set:html={pr(f.desktop.body)} />
+      </div>
+
+      <div class="desk-stage reveal" data-whisper="desk">
+        <Screen class="desk-screen" shot="d-chat" pair alt={f.desktop.shotAlt} sizes="(max-width: 760px) 92vw, 880px" />
+        <figure class="desk-art">
+          {
+            duo.map((w) => (
+              <img
+                class={w === 'fea' ? 'cf' : 'ca'}
+                src={`/assets/art/desk-${w}.webp`}
+                srcset={`/assets/art/desk-${w}-960.webp 960w, /assets/art/desk-${w}.webp 1536w`}
+                sizes="(max-width: 760px) 80vw, 500px"
+                width="1536"
+                height="1024"
+                alt={prPlain(f.desktop.artAlt, w)}
+                loading="lazy"
+                decoding="async"
+              />
+            ))
+          }
+          <figcaption class="tag">{copy.common.illustration}</figcaption>
+        </figure>
+      </div>
+
+      <ul class="points points--row">
+        {
+          f.desktop.points.map((pt, i) => (
+            <li class="reveal" style={`--i:${i}`}>
+              <h3 set:html={prPlain(pt.t)} />
+              <p set:html={pr(pt.d)} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── chat ───────────────────────────────────────────────── -->
+  <section class="chap chap--alt" id="chat" data-chap aria-labelledby="chat-h">
+    <div class="container chap-grid">
+      <div class="chap-copy">
+        <Eyebrow text={f.chat.label} class="reveal" />
+        <h2 id="chat-h" class="reveal" style="--i:1">
+          <Fragment set:html={prPlain(f.chat.h2a)} /><br /><Fragment set:html={prPlain(f.chat.h2b)} />
+        </h2>
+        <p class="lede reveal" style="--i:2" set:html={pr(f.chat.body)} />
+        <ul class="points">
+          {
+            f.chat.points.map((pt, i) => (
+              <li class="reveal" style={`--i:${i + 2}`}>
+                <h3 set:html={prPlain(pt.t)} />
+                <p set:html={pr(pt.d)} />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="chap-vis vis-pair reveal" style="--i:1">
+        <div class="glow" aria-hidden="true"></div>
+        <Phone class="vp-a" shot="morning" pair alt={f.chat.altA} sizes="(max-width: 980px) 44vw, 270px" />
+        <Phone class="vp-b" shot="notes" pair alt={f.chat.altB} sizes="(max-width: 980px) 44vw, 270px" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── calls ──────────────────────────────────────────────── -->
+  <section class="calls-wrap" id="calls" data-chap aria-labelledby="calls-h">
+    <div class="calls band-night stars">
+      <div class="container chap-grid chap-grid--flip">
+        <div class="chap-copy">
+          <Eyebrow text={f.calls.label} class="reveal" />
+          <h2 id="calls-h" class="reveal" style="--i:1">
+            <Fragment set:html={prPlain(f.calls.h2a)} /><br /><Fragment set:html={prPlain(f.calls.h2b)} />
+          </h2>
+          <p class="lede reveal" style="--i:2" set:html={pr(f.calls.body)} />
+          <ul class="points">
+            {
+              f.calls.points.map((pt, i) => (
+                <li class="reveal" style={`--i:${i + 2}`}>
+                  <h3 set:html={prPlain(pt.t)} />
+                  <p set:html={pr(pt.d)} />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="chap-vis vis-call reveal">
+          <span class="ring" aria-hidden="true"></span>
+          <span class="ring" aria-hidden="true"></span>
+          <span class="ring" aria-hidden="true"></span>
+          <Phone shot="call" pair alt={f.calls.alt} sizes="(max-width: 980px) 60vw, 290px" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── vision, with consent first ─────────────────────────── -->
+  <section class="chap" id="vision" data-chap aria-labelledby="vision-h">
+    <div class="container chap-grid">
+      <div class="chap-copy">
+        <Eyebrow text={f.vision.label} class="reveal" />
+        <h2 id="vision-h" class="reveal" style="--i:1">
+          <Fragment set:html={prPlain(f.vision.h2a)} /><br /><Fragment set:html={prPlain(f.vision.h2b)} />
+        </h2>
+        <p class="lede reveal" style="--i:2" set:html={pr(f.vision.body)} />
+        <ul class="points">
+          {
+            f.vision.points.map((pt, i) => (
+              <li class="reveal" style={`--i:${i + 2}`}>
+                <h3 set:html={prPlain(pt.t)} />
+                <p set:html={pr(pt.d)} />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="chap-vis vis-vision reveal" style="--i:1" data-whisper="trust">
+        <div class="orb" aria-hidden="true"></div>
+        <Phone class="vv-phone" shot="vision" alt={f.vision.altB} sizes="(max-width: 980px) 50vw, 260px" />
+        <img
+          class="vv-card"
+          src="/assets/shots/consent-card.webp"
+          width="556"
+          height="551"
+          alt={f.vision.altA}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── life ───────────────────────────────────────────────── -->
+  <section class="chap chap--alt" id="life" data-chap aria-labelledby="life-h">
+    <div class="container">
+      <div class="sec-head sec-head--center reveal">
+        <Eyebrow text={f.life.label} />
+        <h2 id="life-h"><Fragment set:html={prPlain(f.life.h2a)} /><br /><Fragment set:html={prPlain(f.life.h2b)} /></h2>
+        <p class="lede" set:html={pr(f.life.body)} />
+      </div>
+
+      <div class="life-row reveal">
+        <Phone class="lp" shot="journal" alt={f.life.alts.journal} sizes="(max-width: 680px) 60vw, 250px" />
+        <Phone class="lp lp--mid" shot="plan" alt={f.life.alts.plan} sizes="(max-width: 680px) 60vw, 250px" />
+        <div class="lp lp--last">
+          <Phone shot="insights" alt={f.life.alts.insights} sizes="(max-width: 680px) 60vw, 250px" />
+          <img
+            class="mood"
+            src="/assets/shots/mood-card.webp"
+            width="592"
+            height="364"
+            alt={f.life.alts.mood}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <ul class="life-list">
+        {
+          f.life.items.map((item, i) => (
+            <li class="reveal" style={`--i:${i}`}>
+              <h3 set:html={prPlain(item.t)} />
+              <p set:html={pr(item.d)} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── explore ────────────────────────────────────────────── -->
+  <section class="chap" id="explore" data-chap aria-labelledby="explore-h">
+    <div class="container chap-grid chap-grid--flip">
+      <div class="chap-copy">
+        <Eyebrow text={f.explore.label} class="reveal" />
+        <h2 id="explore-h" class="reveal" style="--i:1">
+          <Fragment set:html={prPlain(f.explore.h2a)} /><br /><Fragment set:html={prPlain(f.explore.h2b)} />
+        </h2>
+        <p class="lede reveal" style="--i:2" set:html={pr(f.explore.body)} />
+        <p class="note reveal" style="--i:3" set:html={pr(f.explore.note)} />
+      </div>
+      <div class="chap-vis vis-explore reveal" style="--i:1">
+        <div class="glow glow--cool" aria-hidden="true"></div>
+        <Phone shot="explore" alt={f.explore.alt} sizes="(max-width: 980px) 46vw, 260px" />
+        <img
+          class="discover"
+          src="/assets/shots/discover-card.webp"
+          width="560"
+          height="590"
+          alt={f.explore.altB}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── the two of them ────────────────────────────────────── -->
+  <section class="chap chap--alt" id="two" data-chap aria-labelledby="two-h">
+    <div class="container">
+      <div class="sec-head sec-head--center reveal">
+        <Eyebrow text={f.two.label} />
+        <h2 id="two-h"><Fragment set:html={prPlain(f.two.h2a)} /><br /><Fragment set:html={prPlain(f.two.h2b)} /></h2>
+        <p class="lede" set:html={pr(f.two.body)} />
+      </div>
+      <div class="duo">
+        {
+          duo.map((w, i) => (
+            <article class:list={['duo-card reveal', `duo-card--${w}`]} style={`--i:${i}`}>
+              <div class="duo-pic">
+                <img
+                  src={`/assets/art/${w}-portrait.webp`}
+                  width="720"
+                  height="900"
+                  alt={f.two[w].alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="duo-copy">
+                <h3 class="duo-name" lang="en">
+                  {names[w]}
+                </h3>
+                <p class="duo-tag">{f.two[w].tag}</p>
+                <p class="duo-d">{f.two[w].d}</p>
+                <button type="button" class="btn btn-ghost btn-sm duo-btn" data-companion-set={w} aria-pressed="false">
+                  <span class="duo-check" aria-hidden="true"></span>
+                  {walkWith[w]}
+                </button>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <p class="duo-hint small reveal">{f.two.hint}</p>
+    </div>
+  </section>
+
+  <!-- ── and more ───────────────────────────────────────────── -->
+  <section class="chap" id="more" data-chap aria-labelledby="more-h">
+    <div class="container">
+      <div class="sec-head reveal">
+        <Eyebrow text={f.more.label} />
+        <h2 id="more-h" set:html={prPlain(f.more.h2)} />
+      </div>
+      <ul class="more-grid">
+        {
+          f.more.items.map((item, i) => (
+            <li class="reveal" style={`--i:${i % 3}`}>
+              <h3 set:html={prPlain(item.t)} />
+              <p set:html={pr(item.d)} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── what she won't do ──────────────────────────────────── -->
+  <section class="chap chap--alt chap--last" id="boundary" data-chap aria-labelledby="boundary-h">
+    <div class="container">
+      <div class="vow reveal">
+        <div class="vow-head">
+          <Eyebrow text={f.boundary.label} />
+          <h2 id="boundary-h" set:html={prPlain(f.boundary.h2)} />
+          <a class="tlink" href={p('/how-it-works.html')}>{f.boundary.link}</a>
+        </div>
+        <ul class="vow-list">
+          {
+            f.boundary.items.map((item) => (
+              <li>
+                <svg class="vow-x" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="11" />
+                  <path d="M8.5 8.5l7 7M15.5 8.5l-7 7" />
+                </svg>
+                <span set:html={pr(item)} />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<CtaBand lang={lang} h2={f.cta.h2} lede={f.cta.lede} />
+
+<script>
+  // The contents pill follows the chapter in the middle of the screen.
+  const toc = document.querySelector<HTMLElement>('[data-toc]');
+  if (toc && 'IntersectionObserver' in window) {
+    const links = [...toc.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
+    const scroller = toc.querySelector<HTMLElement>('[data-toc-scroll]');
+    let current = '';
+    const mark = (id: string) => {
+      if (id === current) return;
+      current = id;
+      links.forEach((a) => {
+        const on = a.dataset.tocLink === id;
+        a.classList.toggle('on', on);
+        if (on) {
+          a.setAttribute('aria-current', 'true');
+          if (scroller && scroller.scrollWidth > scroller.clientWidth + 2) {
+            const left = a.offsetLeft - (scroller.clientWidth - a.offsetWidth) / 2;
+            scroller.scrollTo({ left, behavior: 'smooth' });
+          }
+        } else {
+          a.removeAttribute('aria-current');
+        }
+      });
+    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) mark((entry.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: '-42% 0px -56% 0px' },
+    );
+    document.querySelectorAll<HTMLElement>('[data-chap]').forEach((section) => io.observe(section));
+  }
+</script>
+
+<style>
+  /* ── contents pill ──────────────────────────────── */
+  .chapters {
+    position: relative;
+  }
+  .toc {
+    position: sticky;
+    top: calc(var(--nav-h) + 8px);
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    margin-top: -27px;
+    padding: 0 var(--gutter);
+    pointer-events: none;
+  }
+  .toc-in {
+    position: relative;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 5px;
+    border-radius: var(--r-full);
+    background: color-mix(in srgb, #fbfaff 86%, transparent);
+    border: 1px solid rgba(27, 30, 58, 0.08);
+    box-shadow: 0 20px 44px -26px rgba(14, 17, 49, 0.55);
+    backdrop-filter: blur(18px) saturate(1.3);
+    -webkit-backdrop-filter: blur(18px) saturate(1.3);
+    pointer-events: auto;
+  }
+  .toc-in::-webkit-scrollbar {
+    display: none;
+  }
+  .toc ol {
+    display: flex;
+    gap: 2px;
+  }
+  .toc a {
+    display: block;
+    padding: 9px 15px;
+    border-radius: var(--r-full);
+    font-size: 14px;
+    font-weight: 550;
+    line-height: 1.2;
+    color: var(--ink-2);
+    white-space: nowrap;
+    transition:
+      background var(--t-fast) var(--ease),
+      color var(--t-fast) var(--ease);
+  }
+  .toc a:hover {
+    color: var(--ink);
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+  }
+  .toc a.on {
+    color: var(--night-text);
+    background: var(--night);
+  }
+
+  /* ── chapter frame ──────────────────────────────── */
+  .chap {
+    position: relative;
+    padding: clamp(96px, 11vw, 156px) 0;
+    scroll-margin-top: 40px;
+    /* the glows bleed past the visual on purpose, but must not pan the page */
+    overflow-x: clip;
+  }
+  .chap--alt {
+    background: var(--pearl-2);
+  }
+  .chap h2 {
+    margin: 16px 0 20px;
+  }
+  .chap-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 104px);
+    align-items: center;
+  }
+  .chap-grid--flip > .chap-vis {
+    order: -1;
+  }
+  .chap-copy .lede {
+    max-width: 31em;
+  }
+  .chap-vis {
+    position: relative;
+  }
+  .glow {
+    position: absolute;
+    inset: 6% -6%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--accent-wash), transparent);
+    pointer-events: none;
+  }
+  .glow--cool {
+    background: radial-gradient(closest-side, var(--ael-wash), transparent);
+  }
+  .points {
+    display: grid;
+    gap: 22px;
+    margin-top: 36px;
+  }
+  .points li {
+    padding-left: 20px;
+    border-left: 2px solid transparent;
+    border-image: var(--holo) 1;
+  }
+  .points h3 {
+    font-size: 1.12rem;
+    margin-bottom: 5px;
+  }
+  .points p {
+    max-width: 34em;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  .note {
+    margin-top: 22px;
+    padding: 12px 16px;
+    border-radius: var(--r-sm);
+    background: var(--card);
+    border: 1px solid var(--line);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-2);
+    max-width: 30em;
+  }
+  @media (max-width: 980px) {
+    .chap-grid {
+      grid-template-columns: 1fr;
+    }
+    .chap-grid--flip > .chap-vis {
+      order: 0;
+    }
+  }
+
+  /* ── desktop ────────────────────────────────────── */
+  .desk-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px clamp(40px, 6vw, 104px);
+    align-items: end;
+    margin-bottom: clamp(44px, 6vw, 80px);
+  }
+  .desk-head h2 {
+    margin-bottom: 0;
+  }
+  .desk-head .lede {
+    max-width: 30em;
+  }
+  .desk-stage {
+    position: relative;
+    padding-bottom: 9%;
+  }
+  .desk-stage :global(.desk-screen) {
+    width: 76%;
+    margin-left: auto;
+  }
+  .desk-art {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 43%;
+    margin: 0;
+    border-radius: clamp(16px, 2vw, 26px);
+    overflow: hidden;
+    box-shadow:
+      0 40px 80px -36px rgba(14, 17, 49, 0.55),
+      0 0 0 6px var(--pearl);
+  }
+  .desk-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .tag {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 4px 11px;
+    border-radius: var(--r-full);
+    background: rgba(14, 17, 49, 0.58);
+    backdrop-filter: blur(8px);
+    color: rgba(238, 240, 255, 0.88);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .points--row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px clamp(24px, 4vw, 56px);
+    margin-top: clamp(48px, 6vw, 80px);
+  }
+  @media (max-width: 860px) {
+    .desk-head {
+      grid-template-columns: 1fr;
+    }
+    .points--row {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 760px) {
+    .desk-stage {
+      padding-bottom: 0;
+    }
+    .desk-stage :global(.desk-screen) {
+      width: 100%;
+    }
+    .desk-art {
+      position: relative;
+      width: 80%;
+      margin-top: -12%;
+    }
+  }
+
+  /* ── chat ───────────────────────────────────────── */
+  .vis-pair {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    padding: 20px 0 64px;
+  }
+  .vis-pair :global(.phone) {
+    position: relative;
+    width: min(270px, 45%);
+  }
+  .vis-pair :global(.vp-a) {
+    transform: translateY(56px);
+  }
+
+  /* ── calls ──────────────────────────────────────── */
+  .calls-wrap {
+    padding: 0 clamp(8px, 1.4vw, 20px);
+    background: linear-gradient(180deg, var(--pearl-2) 50%, var(--pearl) 50%);
+    scroll-margin-top: 40px;
+  }
+  .calls {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(84px, 10vw, 140px) 0;
+    border-radius: clamp(28px, 3.4vw, 48px);
+    background:
+      radial-gradient(46% 60% at 24% 50%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+      radial-gradient(50% 60% at 90% 10%, rgba(110, 169, 242, 0.14), transparent 70%),
+      linear-gradient(180deg, var(--night) 0%, #141947 100%);
+  }
+  .vis-call {
+    display: grid;
+    place-items: center;
+    padding: 24px 0;
+  }
+  .vis-call :global(.phone) {
+    position: relative;
+    z-index: 1;
+    width: min(290px, 62%);
+  }
+  .ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(330px, 70%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--accent) 70%, transparent);
+    translate: -50% -50%;
+    opacity: 0;
+    animation: ring 5.4s var(--ease) infinite;
+  }
+  .ring:nth-child(2) {
+    animation-delay: 1.8s;
+  }
+  .ring:nth-child(3) {
+    animation-delay: 3.6s;
+  }
+  @keyframes ring {
+    0% {
+      scale: 0.8;
+      opacity: 0;
+    }
+    18% {
+      opacity: 0.85;
+    }
+    100% {
+      scale: 2.3;
+      opacity: 0;
+    }
+  }
+
+  /* ── vision ─────────────────────────────────────── */
+  .vis-vision {
+    display: grid;
+    place-items: center;
+    padding: 24px 0 48px;
+  }
+  .orb {
+    position: absolute;
+    width: min(500px, 100%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), transparent 55%),
+      conic-gradient(from 200deg, #f8c4dc, #d9cbff, #bcd8ff, #c6f1e4, #f8c4dc);
+    opacity: 0.5;
+    filter: blur(4px);
+  }
+  .vis-vision :global(.vv-phone) {
+    position: relative;
+    width: min(260px, 50%);
+    translate: 22% 0;
+  }
+  .vv-card {
+    position: absolute;
+    left: 2%;
+    bottom: 10%;
+    z-index: 2;
+    width: min(290px, 54%);
+    height: auto;
+    border-radius: 20px;
+    box-shadow: var(--sh-2);
+    rotate: -3deg;
+  }
+
+  /* ── life ───────────────────────────────────────── */
+  .life-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(18px, 3vw, 44px);
+    padding-top: 36px;
+  }
+  .life-row > :global(.lp) {
+    position: relative;
+    flex: 0 0 min(250px, 29%);
+  }
+  .life-row > :global(.lp--mid) {
+    translate: 0 -36px;
+  }
+  .lp--last {
+    position: relative;
+  }
+  .mood {
+    position: absolute;
+    right: -34%;
+    bottom: 12%;
+    width: 98%;
+    height: auto;
+    rotate: 3deg;
+    filter: drop-shadow(0 22px 34px rgba(27, 30, 58, 0.22));
+  }
+  .life-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 28px clamp(18px, 2.4vw, 32px);
+    margin-top: clamp(56px, 7vw, 92px);
+  }
+  .life-list li {
+    padding-top: 18px;
+    border-top: 1px solid var(--line-2);
+  }
+  .life-list h3 {
+    font-size: 1.08rem;
+    margin-bottom: 8px;
+  }
+  .life-list p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  @media (max-width: 1100px) {
+    .life-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .mood {
+      right: -18%;
+      width: 88%;
+    }
+  }
+  @media (max-width: 680px) {
+    .life-row {
+      justify-content: flex-start;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      margin: 0 calc(-1 * var(--gutter));
+      padding: 12px var(--gutter) 24px;
+    }
+    .life-row::-webkit-scrollbar {
+      display: none;
+    }
+    .life-row > :global(.lp) {
+      flex: 0 0 62vw;
+      scroll-snap-align: center;
+    }
+    .life-row > :global(.lp--mid) {
+      translate: none;
+    }
+    .mood {
+      right: 4%;
+      bottom: 4%;
+      width: 92%;
+      rotate: 2deg;
+    }
+    .life-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── explore ────────────────────────────────────── */
+  .vis-explore {
+    display: flex;
+    padding: 12px 0 40px 4%;
+  }
+  .vis-explore :global(.phone) {
+    position: relative;
+    width: min(260px, 48%);
+  }
+  .discover {
+    position: absolute;
+    right: 0;
+    top: 16%;
+    width: min(290px, 52%);
+    height: auto;
+    rotate: 2.5deg;
+    filter: drop-shadow(0 26px 40px rgba(27, 30, 58, 0.22));
+  }
+
+  /* ── the two of them ────────────────────────────── */
+  .duo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2.6vw, 32px);
+  }
+  .duo-card {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+  }
+  .duo-pic {
+    background: var(--fea-wash);
+  }
+  .duo-card--ael .duo-pic {
+    background: var(--ael-wash);
+  }
+  .duo-pic img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: 50% 8%;
+    mix-blend-mode: multiply;
+  }
+  .duo-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(24px, 3vw, 36px) clamp(22px, 2.6vw, 32px);
+  }
+  .duo-name {
+    font-family: var(--f-latin-display);
+    font-size: clamp(2.4rem, 1.9rem + 1.4vw, 3.2rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--fea-ink);
+  }
+  .duo-card--ael .duo-name {
+    color: var(--ael-ink);
+  }
+  .duo-tag {
+    margin: 14px 0 12px;
+    padding: 4px 12px;
+    border-radius: 10px;
+    line-height: 1.5;
+    background: var(--fea-wash);
+    color: var(--fea-ink);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .duo-card--ael .duo-tag {
+    background: var(--ael-wash);
+    color: var(--ael-ink);
+  }
+  .duo-d {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ink-2);
+  }
+  .duo-btn {
+    margin-top: auto;
+    translate: 0 14px;
+  }
+  .duo-check {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    opacity: 0.5;
+  }
+  .duo-btn.is-on {
+    background: var(--night);
+    color: var(--night-text);
+    border-color: var(--night);
+  }
+  .duo-btn.is-on .duo-check {
+    border-color: var(--mint);
+    background: var(--mint);
+    opacity: 1;
+  }
+  .duo-hint {
+    margin-top: 28px;
+    text-align: center;
+  }
+  @media (max-width: 1100px) {
+    .duo {
+      grid-template-columns: 1fr;
+      max-width: 680px;
+      margin-inline: auto;
+    }
+  }
+  @media (max-width: 560px) {
+    .duo-card {
+      grid-template-columns: 1fr;
+    }
+    .duo-pic img {
+      aspect-ratio: 1 / 0.92;
+      height: auto;
+    }
+    .duo-btn {
+      margin-top: 22px;
+      translate: none;
+    }
+  }
+
+  /* ── and more ───────────────────────────────────── */
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .more-grid li {
+    padding: 26px 26px 28px;
+    border-radius: var(--r-md);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+  }
+  .more-grid h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  .more-grid p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  @media (max-width: 980px) {
+    .more-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 600px) {
+    .more-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── what she won't do ──────────────────────────── */
+  .vow {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 36px clamp(40px, 6vw, 88px);
+    padding: clamp(32px, 5vw, 68px);
+    border-radius: var(--r-xl);
+    border: 1.5px solid transparent;
+    background:
+      linear-gradient(var(--pearl), var(--pearl)) padding-box,
+      var(--holo) border-box;
+  }
+  .vow-head h2 {
+    margin: 16px 0 26px;
+  }
+  .vow-list li {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .vow-list li:first-child {
+    padding-top: 4px;
+  }
+  .vow-list li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .vow-x {
+    width: 26px;
+    height: 26px;
+    margin-top: 1px;
+    fill: none;
+    stroke: var(--accent-ink);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+  }
+  .vow-x circle {
+    stroke: var(--line-2);
+  }
+  @media (max-width: 860px) {
+    .vow {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring {
+      animation: none;
+      opacity: 0.35;
+      scale: 1.4;
+    }
+    .ring:nth-child(n + 2) {
+      display: none;
+    }
+  }
+</style>

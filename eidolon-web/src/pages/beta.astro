@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import BetaPage from '../components/pages/BetaPage.astro';
+import { t } from '../i18n';
+
+const lang = 'zh' as const;
+const copy = t(lang);
+
+// These Q&A pairs are already rendered on the page; without FAQPage markup
+// answer engines have to infer them from prose and Google cannot use them as a
+// rich result.
+const faq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: copy.changelogPage.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+<Base lang={lang} path="/beta.html" title={copy.meta.beta.title} description={copy.meta.beta.description} keywords={copy.meta.beta.keywords} jsonLd={[faq]}>
+  <BetaPage lang={lang} />
+</Base>

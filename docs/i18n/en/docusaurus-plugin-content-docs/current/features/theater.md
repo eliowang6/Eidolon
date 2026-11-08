@@ -2,12 +2,12 @@
 sidebar_position: 1
 slug: /features/theater
 title: Theater
-description: Immersive interactive storytelling experience
+description: "Theater is an interactive story world: you play the lead, AI narrates. Build a script or generate one, then let each choice push the plot another way."
 ---
 
 # Theater
 
-Theater is Eidolon's immersive interactive storytelling feature. Create or enter a story world and co-create a unique adventure with AI.
+Theater is Sholarel's immersive interactive storytelling feature. Create or enter a story world and co-create a unique adventure with AI.
 
 ---
 

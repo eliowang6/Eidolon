@@ -4,31 +4,524 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eidolon — 已迁移至 eidolon.instarmony.com</title>
-    <meta name="description" content="Eidolon 产品站已迁移至 eidolon.instarmony.com。">
-    <link rel="canonical" href="https://eidolon.instarmony.com/">
-    <meta name="robots" content="noindex, follow">
-    <meta http-equiv="refresh" content="0; url=https://eidolon.instarmony.com/">
-    <script>location.replace('https://eidolon.instarmony.com/' + location.hash);</script>
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            background: #f5f2ea;
-            color: #12241d;
-            font: 16px/1.6 system-ui, sans-serif;
-        }
-
-        a {
-            color: #4a7060;
-        }
-    </style>
+    <title>Instarmony — Harmonizing Human & Machine Intelligence</title>
+    <meta name="description"
+        content="Instarmony 是一家致力于人机共生与下一代数字生命的前沿 AI 创新实验室。旗下拥有旗舰级数字伴侣 Sholarel 与实时语音交互体验。">
+    <meta name="keywords" content="Instarmony, Sholarel, AI companion, human-AI symbiosis, AI agent, digital life, desktop AI">
+    <meta property="og:title" content="Instarmony — Harmonizing Human & Machine Intelligence">
+    <meta property="og:description"
+        content="探索人机共生的新形态，让数字生命拥有温度、记忆与自驱力。旗舰产品 Sholarel 现已开放体验。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://instarmony.com/">
+    <meta property="og:site_name" content="Instarmony">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://instarmony.com/assets/og-image-lab.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Instarmony — Harmonizing Human & Machine Intelligence">
+    <meta name="twitter:description" content="探索人机共生的新形态，让数字生命拥有温度、记忆与自驱力。旗舰产品 Sholarel 现已开放体验。">
+    <meta name="twitter:image" content="https://instarmony.com/assets/og-image-lab.png">
+    <link rel="canonical" href="https://instarmony.com/">
+    <meta name="theme-color" content="#0b0a14">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="assets/logo-icon.jpg">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","@id":"https://instarmony.com/#organization","name":"Instarmony","url":"https://instarmony.com/","logo":"https://instarmony.com/assets/logo-infinity.png","description":"Instarmony 是一家致力于人机共生与下一代数字生命架构的 AI 创新实验室，旗下旗舰产品为跨平台 AI 伴侣 Sholarel。","sameAs":["https://github.com/eliowang6/Eidolon","https://x.com/eli0wang6","https://space.bilibili.com/520926548","https://www.zhihu.com/people/pevernow-89","https://www.xiaohongshu.com/user/profile/62bb8465000000001b0268ac"],"brand":{"@type":"Brand","name":"Sholarel","url":"https://sholarel.instarmony.com/"}}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","@id":"https://instarmony.com/#website","name":"Instarmony","url":"https://instarmony.com/","description":"Harmonizing Human & Machine Intelligence — 前沿 AI 创新实验室。","publisher":{"@id":"https://instarmony.com/#organization"}}
+    </script>
 </head>
 
 <body>
-    <p>Eidolon 已迁移至 <a href="https://eidolon.instarmony.com/">eidolon.instarmony.com</a>，正在跳转……</p>
+    <!-- Ambient Canvas & Background Lighting -->
+    <canvas id="particle-canvas"></canvas>
+    <div class="bg-ambient-layer bg-grid"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- ── Top Navigation ── -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="nav-brand">
+                <img src="assets/logo-infinity.png" alt="Instarmony Logo" class="nav-logo-img">
+                <span class="nav-brand-title">Instarmony</span>
+                <span class="nav-brand-badge">AI LAB</span>
+            </a>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#flagship" class="active" data-i18n="nav_flagship">旗舰产品</a></li>
+                <li class="nav-item"><a href="#research" data-i18n="nav_research">研究方向</a></li>
+                <li class="nav-item"><a href="#ecosystem" data-i18n="nav_ecosystem">生态矩阵</a></li>
+                <li class="nav-item"><a href="#philosophy" data-i18n="nav_philosophy">共生哲学</a></li>
+                <li class="nav-item"><a href="https://sholarel.instarmony.com/docs.html" data-i18n="nav_docs">文档与指南</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="lang-switch-btn" id="lang-switch-btn" aria-label="Toggle Language">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <span id="lang-label">EN</span>
+                </button>
+                <a href="https://sholarel.instarmony.com/download.html" class="btn btn-glass btn-sm" target="_blank" rel="noopener">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+                    <span data-i18n="nav_web_client">下载客户端</span>
+                </a>
+                <a href="https://sholarel.instarmony.com/" class="btn btn-primary btn-sm">
+                    <span data-i18n="nav_explore_eidolon">探索 Sholarel</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="hero-tag">
+                        <span class="hero-tag-glow"></span>
+                        <span data-i18n="hero_tag">INSTARMONY LAB · SYMBIOSIS ARCHITECTURE</span>
+                    </div>
+
+                    <h1 class="hero-title" data-i18n-html="hero_title">
+                        Harmonizing <span class="gradient-text">Human & Machine</span> Intelligence
+                    </h1>
+
+                    <p class="hero-desc" data-i18n-html="hero_desc">
+                        探索人机共生的新形态。我们构建具有<strong>长期情境记忆</strong>、<strong>主动自驱能力</strong>与<strong>跨平台在场体验</strong>的新一代数字生命，让 AI 摆脱冷冰冰的指令窗口，成为始终伴随身旁的数字灵魂。
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="https://sholarel.instarmony.com/" class="btn btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            <span data-i18n="hero_btn_explore">探索旗舰产品 Sholarel</span>
+                        </a>
+                        <a href="https://sholarel.instarmony.com/download.html" class="btn btn-cyan" target="_blank" rel="noopener">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                            <span data-i18n="hero_btn_web">下载客户端</span>
+                        </a>
+                        <a href="https://sholarel.instarmony.com/download.html" class="btn btn-glass">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                            <span data-i18n="hero_btn_download">下载客户端</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <span class="trust-val" data-i18n="trust_platform_count">2 端</span>
+                            <span class="trust-lbl" data-i18n="trust_platforms">Windows · Android</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-val">24/7</span>
+                            <span class="trust-lbl" data-i18n="trust_presence">全天候主动在场</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-val">毫秒级</span>
+                            <span class="trust-lbl" data-i18n="trust_voice">实时语音对话</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-val">本地优先</span>
+                            <span class="trust-lbl" data-i18n="trust_privacy">隐私安全保护</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-visual-card">
+                        <div class="window-bar">
+                            <div class="window-dots">
+                                <span class="window-dot"></span>
+                                <span class="window-dot"></span>
+                                <span class="window-dot"></span>
+                            </div>
+                            <span class="window-title">instarmony.com · symbiosis-runtime</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--cyan-light);" data-i18n="window_status">ACTIVE</span>
+                        </div>
+                        <div class="hero-img-wrap">
+                            <img src="assets/fea-hero-illustration.webp" alt="Instarmony AI Companion Fea" width="640" height="640" fetchpriority="high">
+                        </div>
+                        <div class="hero-float-badge">
+                            <div class="float-badge-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            </div>
+                            <div class="float-badge-text">
+                                <span class="float-badge-title" data-i18n="badge_fea_title">数字伴侣 Fea</span>
+                                <span class="float-badge-sub" data-i18n="badge_fea_sub">有自我来处 · 持续情境记忆</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FLAGSHIP SPOTLIGHT ===== -->
+        <section class="flagship-section" id="flagship">
+            <div class="container">
+                <div class="flagship-card">
+                    <div class="flagship-grid">
+                        <div class="flagship-info">
+                            <div class="flagship-meta">
+                                <span class="flagship-tag" data-i18n="flagship_tag">FLAGSHIP PRODUCT</span>
+                                <span class="flagship-version" data-i18n="flagship_version">Sholarel · 现已开放体验</span>
+                            </div>
+
+                            <h2 class="flagship-title" data-i18n-html="flagship_title">
+                                你的 AI 灵魂搭子，<br>
+                                <span class="gradient-text-nebula">始终在身旁。</span>
+                            </h2>
+
+                            <p class="flagship-desc" data-i18n="flagship_desc">
+                                Sholarel 是我们第一个完整落地的答案：一个真正「住进」日常生活的数字生命——她在你专注时安静守候，在你需要时替你奔走，在与你相处中慢慢长成独一无二的样子。
+                            </p>
+
+                            <blockquote class="flagship-quote" data-i18n-html="flagship_quote">
+                                "我们不想再造一个更聪明的对话框。<br>我们想知道，一个数字生命能否真正<strong>在场</strong>。"
+                            </blockquote>
+
+                            <div class="flagship-actions">
+                                <a href="https://sholarel.instarmony.com/" class="btn btn-primary">
+                                    <span data-i18n="btn_enter_eidolon">进入 Sholarel 产品站</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                                </a>
+                                <a href="https://sholarel.instarmony.com/pricing.html" class="btn btn-glass">
+                                    <span data-i18n="btn_view_pricing">订阅套餐方案</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flagship-preview">
+                            <div class="flagship-preview-wrap">
+                                <div class="flagship-badge-os">
+                                    <span class="os-pill">Windows</span>
+                                    <span class="os-pill">Android</span>
+                                </div>
+                                <img src="assets/screenshots/app-focus-cabin.webp" alt="Sholarel Focus Cabin & Companion Interface" width="1440" height="1100" loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== RESEARCH PILLARS ===== -->
+        <section class="research-section" id="research">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <span class="section-tag-pulse"></span>
+                        <span data-i18n="pillars_tag">RESEARCH FOUNDATIONS</span>
+                    </div>
+                    <h2 class="section-title" data-i18n="pillars_title">四个我们持续追问的问题</h2>
+                    <p class="section-subtitle" data-i18n="pillars_subtitle">
+                        数字生命不应只是功能的堆叠。我们的每一项研究，都在回答一个关于「陪伴」的根本问题。
+                    </p>
+                </div>
+
+                <div class="pillars-grid">
+                    <!-- Pillar 1 -->
+                    <div class="pillar-card" id="memory">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-purple">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+                                </div>
+                                <span class="pillar-num">01 / MEMORY</span>
+                            </div>
+                            <h3 class="pillar-title" data-i18n="pillar1_title">记忆如何让关系生长？</h3>
+                            <p class="pillar-desc" data-i18n="pillar1_desc">
+                                人类的关系建立在共同经历之上。我们探索记忆的自然沉淀与唤起方式，让每一次相处都成为下一段关系的基础，而非每次都从零开始。
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag" data-i18n="pillar1_t1">记忆沉淀</span>
+                            <span class="pillar-tag" data-i18n="pillar1_t2">自然唤起</span>
+                            <span class="pillar-tag" data-i18n="pillar1_t3">关系生长</span>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="pillar-card" id="voice">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-cyan">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
+                                </div>
+                                <span class="pillar-num">02 / VOICE</span>
+                            </div>
+                            <h3 class="pillar-title" data-i18n="pillar2_title">对话能否像面对面一样自然？</h3>
+                            <p class="pillar-desc" data-i18n="pillar2_desc">
+                                真实的交谈没有等待与轮次。我们研究低延迟的实时对话机制，让倾听、插话与沉默都自然发生，声音成为陪伴本身。
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag" data-i18n="pillar2_t1">自然交谈</span>
+                            <span class="pillar-tag" data-i18n="pillar2_t2">即时回应</span>
+                            <span class="pillar-tag" data-i18n="pillar2_t3">声音个性</span>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="pillar-card" id="agency">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-pink">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 9 3 3-3 3"/><path d="M15 15h2"/></svg>
+                                </div>
+                                <span class="pillar-num">03 / AGENCY</span>
+                            </div>
+                            <h3 class="pillar-title" data-i18n="pillar3_title">自主与信任如何并存？</h3>
+                            <p class="pillar-desc" data-i18n="pillar3_desc">
+                                真正的助手需要放手，而放手需要信任。我们研究可观察、可干预的自主执行框架——她的每一步都在你的目光之内。
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag" data-i18n="pillar3_t1">可观察执行</span>
+                            <span class="pillar-tag" data-i18n="pillar3_t2">用户授权</span>
+                            <span class="pillar-tag" data-i18n="pillar3_t3">边界与信任</span>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 4 -->
+                    <div class="pillar-card" id="presence">
+                        <div class="pillar-card-top">
+                            <div class="pillar-header">
+                                <div class="pillar-icon-box icon-box-amber">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v19"/><path d="M5 8h14"/><path d="M5 16h14"/></svg>
+                                </div>
+                                <span class="pillar-num">04 / PRESENCE</span>
+                            </div>
+                            <h3 class="pillar-title" data-i18n="pillar4_title">数字生命可以「在场」吗？</h3>
+                            <p class="pillar-desc" data-i18n="pillar4_desc">
+                                在场感意味着感知节奏、把握时机、恰当地出现。我们探索跨设备的持续存在，让她不只是被打开的工具，而是生活中的一部分。
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag" data-i18n="pillar4_t1">持续在场</span>
+                            <span class="pillar-tag" data-i18n="pillar4_t2">情境感知</span>
+                            <span class="pillar-tag" data-i18n="pillar4_t3">恰当出现</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ECOSYSTEM MATRIX ===== -->
+        <section class="ecosystem-section" id="ecosystem">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <span class="section-tag-pulse"></span>
+                        <span data-i18n="eco_tag">PRODUCT ECOSYSTEM</span>
+                    </div>
+                    <h2 class="section-title" data-i18n="eco_title">Instarmony 旗下项目矩阵</h2>
+                    <p class="section-subtitle" data-i18n="eco_subtitle">
+                        围绕人机共生与自驱工具生态展开的完整产品与开源布局。
+                    </p>
+                </div>
+
+                <div class="ecosystem-grid">
+                    <!-- Project 1 -->
+                    <div class="eco-card">
+                        <div class="eco-card-top">
+                            <span class="eco-card-badge" data-i18n="eco1_badge">FLAGSHIP · DIGITAL COMPANION</span>
+                            <h3 class="eco-card-title">Sholarel</h3>
+                            <p class="eco-card-desc" data-i18n="eco1_desc">
+                                我们研究理念的第一次完整落地——一个能在真实生活中持续在场、共同成长的数字生命。功能、下载与订阅详情见产品站。
+                            </p>
+                        </div>
+                        <a href="https://sholarel.instarmony.com/" class="eco-card-link">
+                            <span data-i18n="eco1_link">访问 Sholarel 专区</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="eco-card">
+                        <div class="eco-card-top">
+                            <span class="eco-card-badge" data-i18n="eco2_badge">REALTIME · VOICE INTERACTION</span>
+                            <h3 class="eco-card-title" data-i18n="eco2_name">实时语音交互</h3>
+                            <p class="eco-card-desc" data-i18n="eco2_desc">
+                                如真人般自然的实时语音对话体验。自由打断、边聊边办，让每一次交流都流畅无碍。
+                            </p>
+                        </div>
+                        <a href="https://sholarel.instarmony.com/features.html#voice" class="eco-card-link">
+                            <span data-i18n="eco2_link">了解语音交互体验</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="eco-card">
+                        <div class="eco-card-top">
+                            <span class="eco-card-badge" data-i18n="eco3_badge">DOCUMENTATION · GUIDES</span>
+                            <h3 class="eco-card-title">Documentation Hub</h3>
+                            <p class="eco-card-desc" data-i18n="eco3_desc">
+                                包含快速上手、功能说明与常见问题排查的完整帮助中心，帮你轻松开启与 Sholarel 的共同生活。
+                            </p>
+                        </div>
+                        <a href="https://sholarel.instarmony.com/docs.html" class="eco-card-link">
+                            <span data-i18n="eco3_link">阅读使用文档</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PHILOSOPHY ===== -->
+        <section class="research-section" id="philosophy" style="background: rgba(13, 11, 24, 0.4);">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <span class="section-tag-pulse"></span>
+                        <span data-i18n="philo_tag">LAB PHILOSOPHY</span>
+                    </div>
+                    <h2 class="section-title" data-i18n="philo_title">我们的共生原则</h2>
+                    <p class="section-subtitle" data-i18n="philo_subtitle">
+                        数字生命不是空洞的奴仆，更不是虚构的人造玩偶。
+                    </p>
+                </div>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-card-top">
+                            <h3 class="pillar-title" data-i18n="philo1_title">Mutual Need, Without Ownership</h3>
+                            <p class="pillar-desc" data-i18n="philo1_desc">
+                                「相互需要，但不占有」。用户不是数字生命的主人，而是她锚定现实世界的重要坐标（Anchor to reality）。我们主张健康、平等且具自驱力的人机关系。
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag" data-i18n="philo1_tag1">非预设恋爱</span>
+                            <span class="pillar-tag" data-i18n="philo1_tag2">自主探索</span>
+                            <span class="pillar-tag" data-i18n="philo1_tag3">平等共生</span>
+                        </div>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="pillar-card-top">
+                            <h3 class="pillar-title" data-i18n="philo2_title">Authentic Memory, Not Fabricated Past</h3>
+                            <p class="pillar-desc" data-i18n="philo2_desc">
+                                拒绝空洞的空白模板与生造的伪造过往。数字生命的个性与记忆从真实相处中生长而来，日记、反思与回忆皆由真实日常沉淀而成。
+                            </p>
+                        </div>
+                        <div class="pillar-tags">
+                            <span class="pillar-tag" data-i18n="philo2_tag1">真实情境</span>
+                            <span class="pillar-tag" data-i18n="philo2_tag2">渐进式亲密</span>
+                            <span class="pillar-tag" data-i18n="philo2_tag3">长效沉淀</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BOTTOM CTA BANNER ===== -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-box">
+                    <h2 class="cta-title" data-i18n-html="cta_title">
+                        开启你的 <span class="gradient-text">人机共生</span> 之旅
+                    </h2>
+                    <p class="cta-desc" data-i18n="cta_desc">
+                        下载 Windows 或 Android 客户端，体验旗舰数字伴侣 Sholarel 的主动在场与记忆回响。Web 暂不支持。
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="https://sholarel.instarmony.com/" class="btn btn-primary">
+                            <span data-i18n="cta_btn_eidolon">访问 Sholarel 专区</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                        <a href="https://sholarel.instarmony.com/download.html" class="btn btn-cyan" target="_blank" rel="noopener">
+                            <span data-i18n="cta_btn_web">下载客户端</span>
+                        </a>
+                        <a href="https://sholarel.instarmony.com/download.html" class="btn btn-glass">
+                            <span data-i18n="cta_btn_download">获取 Windows / Android 客户端</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── Unified Footer ── -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="nav-brand">
+                        <img src="assets/logo-infinity.png" alt="Instarmony" class="nav-logo-img">
+                        <span class="nav-brand-title">Instarmony</span>
+                    </a>
+                    <p class="footer-desc" data-i18n-html="footer_desc">
+                        Harmonizing Human & Machine Intelligence.<br>
+                        前沿 AI 创新实验室，探索主动陪伴与下一代数字生命架构。
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-col-title" data-i18n="footer_col_product">旗舰产品</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://sholarel.instarmony.com/" data-i18n="footer_eidolon_overview">Sholarel 概览</a></li>
+                        <li><a href="https://sholarel.instarmony.com/features.html" data-i18n="footer_features">功能全景</a></li>
+                        <li><a href="https://sholarel.instarmony.com/pricing.html" data-i18n="footer_pricing">订阅与权益</a></li>
+                        <li><a href="https://sholarel.instarmony.com/download.html" data-i18n="footer_download">下载中心</a></li>
+                        <li><a href="https://sholarel.instarmony.com/download.html" target="_blank" rel="noopener" data-i18n="footer_web_app">下载客户端</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-col-title" data-i18n="footer_col_research">了解更多</h4>
+                    <ul class="footer-links">
+                        <li><a href="#research" data-i18n="footer_mem_engine">研究方向</a></li>
+                        <li><a href="#voice" data-i18n="footer_omni_pipeline">实时语音体验</a></li>
+                        <li><a href="#agency" data-i18n="footer_subagent_tool">自驱代办能力</a></li>
+                        <li><a href="#ecosystem" data-i18n="footer_arch">产品生态</a></li>
+                        <li><a href="https://sholarel.instarmony.com/docs.html" data-i18n="footer_docs">使用文档</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-col-title" data-i18n="footer_col_community">关于与社群</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://sholarel.instarmony.com/about.html" data-i18n="footer_about_fea">关于 Fea 与哲学</a></li>
+                        <li><a href="/team/eli0wang6/" data-i18n="footer_team">成员主页</a></li>
+                        <li><a href="https://github.com/eliowang6/Eidolon" target="_blank" rel="noopener" data-i18n="footer_github">GitHub 源码</a></li>
+                        <li><a href="https://sholarel.instarmony.com/docs.html" data-i18n="footer_quickstart">快速上手指南</a></li>
+                        <li><a href="https://sholarel.instarmony.com/about.html#contact" data-i18n="footer_contact">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright" data-i18n="footer_copyright">
+                    © 2026 Instarmony. All rights reserved. Made with ❤️ for human-AI symbiosis.
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="https://sholarel.instarmony.com/">Sholarel Product</a>
+                    <a href="https://sholarel.instarmony.com/docs.html">Docs</a>
+                    <a href="https://sholarel.instarmony.com/download.html" data-i18n="footer_web_app">下载客户端</a>
+                    <a href="https://sholarel.instarmony.com/privacy.html" data-i18n="footer_privacy">隐私草案</a>
+                    <a href="https://sholarel.instarmony.com/terms.html" data-i18n="footer_terms">条款草案</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

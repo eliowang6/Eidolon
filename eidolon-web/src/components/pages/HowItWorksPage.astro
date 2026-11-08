@@ -1,0 +1,747 @@
+---
+/**
+ * Privacy & consent (/how-it-works.html): the consent dialog itself opens the
+ * page, then the permission ledger, payments, the Echo rule and your rights —
+ * all in plain words, no architecture talk.
+ */
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import PageHero from '../PageHero.astro';
+import { localizePath, pr, prPlain, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const tp = copy.trustPage;
+const p = (href: string) => localizePath(lang, href);
+const permHead = tp.perms.label.split(' / ')[0];
+// Turn a known address inside already-escaped copy into a mail link.
+const mailLinks = (html: string) =>
+  html.replace(/\b(privacy|report|support)@instarmony\.com\b/g, (addr) => `<a href="mailto:${addr}">${addr}</a>`);
+---
+
+<PageHero class="trust-head" label={tp.label} h1a={tp.h1a} h1b={tp.h1b} lede={tp.lede}>
+  <figure class="ask" role="img" aria-label={tp.perms.shotAlt}>
+    <div class="consent" aria-hidden="true">
+      <p class="consent-title">{tp.perms.consent.title}</p>
+      <p class="consent-body">{tp.perms.consent.body}</p>
+      <ul class="consent-points">
+        {tp.perms.consent.points.map((point) => <li>{point}</li>)}
+      </ul>
+      <p class="consent-fine">{tp.perms.consent.fine}</p>
+      <div class="consent-actions">
+        <span class="consent-btn">{tp.perms.consent.deny}</span>
+        <span class="consent-btn consent-btn--allow">{tp.perms.consent.allow}</span>
+      </div>
+    </div>
+  </figure>
+</PageHero>
+
+<!-- ── three principles ──────────────────────────────────── -->
+<section class="section principles" aria-labelledby="pr-h">
+  <div class="container">
+    <div class="sec-head reveal">
+      <Eyebrow text={tp.principles.label} />
+      <h2 id="pr-h" set:html={prPlain(tp.principles.h2)} />
+    </div>
+    <ul class="pr-grid">
+      {
+        tp.principles.items.map((item, i) => (
+          <li class="reveal" style={`--i:${i}`}>
+            <h3 set:html={prPlain(item.t)} />
+            <p set:html={pr(item.d)} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ── the permission ledger ─────────────────────────────── -->
+<section class="section section--paper2 perms" aria-labelledby="pe-h">
+  <div class="container">
+    <div class="sec-head reveal">
+      <Eyebrow text={tp.perms.label} />
+      <h2 id="pe-h" set:html={prPlain(tp.perms.h2)} />
+      <p class="lede" set:html={pr(tp.perms.lede)} />
+    </div>
+    <div class="ledger reveal" data-whisper="trust">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">{permHead}</th>
+            <th scope="col">{tp.perms.useLabel}</th>
+            <th scope="col">{tp.perms.defLabel}</th>
+            <th scope="col">{tp.perms.offLabel}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            tp.perms.items.map((item) => (
+              <tr>
+                <th scope="row" set:html={pr(item.t)} />
+                <td data-label={tp.perms.useLabel} set:html={pr(item.use)} />
+                <td data-label={tp.perms.defLabel} set:html={pr(item.def)} />
+                <td data-label={tp.perms.offLabel}>
+                  <span class="path" set:html={pr(item.off)} />
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── payments ──────────────────────────────────────────── -->
+<section class="section pay" aria-labelledby="pay-h">
+  <div class="container pay-grid">
+    <div class="pay-copy">
+      <Eyebrow text={tp.pay.label} class="reveal" />
+      <h2 id="pay-h" class="reveal" style="--i:1" set:html={prPlain(tp.pay.h2)} />
+      <p class="lede reveal" style="--i:2" set:html={pr(tp.pay.body)} />
+      <dl class="pay-rows">
+        {
+          tp.pay.rows.map((row, i) => (
+            <div class="reveal" style={`--i:${i + 3}`}>
+              <dt set:html={pr(row.t)} />
+              <dd set:html={pr(row.d)} />
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+    <div class="pay-vis reveal" style="--i:1" aria-hidden="true">
+      <div class="paycard paycard--back"></div>
+      <div class="paycard">
+        <div class="pc-top">
+          <span class="pc-chip"></span>
+          <svg class="pc-lock" viewBox="0 0 24 24">
+            <rect x="5" y="10.5" width="14" height="10" rx="2.5" />
+            <path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" />
+          </svg>
+        </div>
+        <p class="pc-num">•••• •••• •••• ••••</p>
+        <div class="pc-foot">
+          <span>•• / ••</span>
+          <span>CVV •••</span>
+          <span>PCI-DSS L1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── the Echo rule ─────────────────────────────────────── -->
+<section class="section section--tight fair-sec" aria-labelledby="fair-h">
+  <div class="container">
+    <div class="fair reveal">
+      <span class="fair-mark" aria-hidden="true"><i></i><i></i></span>
+      <div>
+        <Eyebrow text={tp.fair.label} />
+        <h2 id="fair-h" set:html={prPlain(tp.fair.h2)} />
+        <p set:html={pr(tp.fair.body)} />
+        <a class="tlink" href={p('/pricing.html')}>{tp.fair.link}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── your rights ───────────────────────────────────────── -->
+<section class="section section--paper2 rights" aria-labelledby="ri-h">
+  <div class="container rights-grid">
+    <div class="sec-head reveal">
+      <Eyebrow text={tp.rights.label} />
+      <h2 id="ri-h" set:html={prPlain(tp.rights.h2)} />
+    </div>
+    <ul class="rights-list">
+      {
+        tp.rights.items.map((item, i) => (
+          <li class="reveal" style={`--i:${i}`}>
+            <h3 set:html={prPlain(item.t)} />
+            <p set:html={mailLinks(pr(item.d))} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ── report & the full terms ───────────────────────────── -->
+<section class="section ends" aria-label={tp.legal.label}>
+  <div class="container ends-grid">
+    <article class="end-card reveal">
+      <Eyebrow text={tp.report.label} />
+      <h2 class="end-h" set:html={prPlain(tp.report.h2)} />
+      <p set:html={mailLinks(pr(tp.report.body))} />
+    </article>
+    <div class="end-card end-card--legal reveal" style="--i:1">
+      <Eyebrow text={tp.legal.label} />
+      <a class="legal-link" href={p('/privacy.html')}>
+        <span class="ll-t">{tp.legal.privacy}</span>
+        <span class="ll-d">{tp.legal.privacyD}</span>
+        <span class="ll-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="legal-link" href={p('/terms.html')}>
+        <span class="ll-t">{tp.legal.terms}</span>
+        <span class="ll-d">{tp.legal.termsD}</span>
+        <span class="ll-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<CtaBand lang={lang} h2={tp.cta.h2} lede={tp.cta.lede} secondary="features" />
+
+<style>
+  /* ── masthead: the real consent dialog, floating in the night ── */
+  .ask {
+    margin: 36px 0 0;
+    width: min(380px, 100%);
+  }
+  .consent {
+    padding: 22px 24px 18px;
+    border-radius: 22px;
+    background: #fbfbfa;
+    color: #202521;
+    box-shadow:
+      0 50px 100px -40px rgba(0, 0, 0, 0.75),
+      0 0 0 1px rgba(255, 255, 255, 0.4),
+      0 0 80px -10px color-mix(in srgb, var(--accent) 45%, transparent);
+    rotate: 2.5deg;
+    font-family: var(--f-body);
+  }
+  .consent-title {
+    margin: 0 0 10px;
+    font-size: 17.5px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .consent-body {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  :global(html[lang='zh-Hans']) .consent-body {
+    line-height: 1.75;
+  }
+  .consent-points {
+    margin: 10px 0 12px;
+    padding-left: 1.1em;
+    list-style: disc;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  :global(html[lang='zh-Hans']) .consent-points {
+    line-height: 1.75;
+  }
+  .consent-points li::marker {
+    color: #9aa19c;
+  }
+  .consent-fine {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #6b706c;
+  }
+  :global(html[lang='zh-Hans']) .consent-fine {
+    line-height: 1.75;
+  }
+  .consent-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .consent-btn {
+    min-width: 78px;
+    padding: 9px 20px;
+    border-radius: var(--r-full);
+    background: #fff;
+    color: #333a35;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(20, 25, 22, 0.14), inset 0 0 0 1px rgba(20, 25, 22, 0.08);
+  }
+  .consent-btn--allow {
+    background: #245c3e;
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(20, 25, 22, 0.2);
+  }
+  @media (min-width: 1040px) {
+    .ask {
+      position: absolute;
+      right: var(--gutter);
+      top: 50%;
+      width: min(380px, 31vw);
+      margin: 0;
+      translate: 0 -50%;
+    }
+    /* out-rank PageHero's own (lang-scoped) h1 sizing so the copy never runs under the dialog */
+    :global(html[lang] .trust-head.page-head .ph-inner > h1),
+    :global(html[lang] .trust-head.page-head .ph-inner > .lede) {
+      max-width: min(60%, 38em);
+    }
+    :global(html[lang='en'] .trust-head.page-head .ph-inner > h1) {
+      font-size: clamp(2.7rem, 1.5rem + 3vw, 4.5rem);
+    }
+  }
+
+  /* ── principles ─────────────────────────────────── */
+  .pr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px clamp(24px, 4vw, 56px);
+  }
+  .pr-grid li {
+    position: relative;
+    padding-top: 28px;
+  }
+  .pr-grid li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--holo);
+  }
+  .pr-grid h3 {
+    margin-bottom: 12px;
+  }
+  .pr-grid p {
+    color: var(--ink-2);
+    font-size: 15.5px;
+    line-height: 1.85;
+  }
+  @media (max-width: 860px) {
+    .pr-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── the ledger ─────────────────────────────────── */
+  .ledger {
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+  }
+  .ledger table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .ledger thead th {
+    padding: 18px 24px;
+    text-align: left;
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    background: var(--pearl);
+    border-bottom: 1px solid var(--line);
+  }
+  :global(html[lang='zh-Hans']) .ledger thead th {
+    font-family: var(--f-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .ledger tbody th,
+  .ledger td {
+    padding: 26px 24px;
+    vertical-align: top;
+    text-align: left;
+  }
+  .ledger tbody tr + tr > * {
+    border-top: 1px solid var(--line);
+  }
+  .ledger tbody th {
+    width: 21%;
+    font-family: var(--f-display);
+    font-size: 1.12rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  :global(html[lang='en']) .ledger tbody th {
+    font-weight: 500;
+    font-size: 1.22rem;
+  }
+  .ledger td {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  .ledger td:nth-child(2) {
+    width: 27%;
+  }
+  .ledger td:nth-child(3) {
+    width: 31%;
+  }
+  .path {
+    display: inline-block;
+    padding: 5px 11px;
+    border-radius: 9px;
+    background: var(--accent-wash);
+    color: var(--accent-ink);
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  @media (max-width: 860px) {
+    .ledger {
+      background: none;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
+    .ledger thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+    .ledger table,
+    .ledger tbody,
+    .ledger tr,
+    .ledger tbody th,
+    .ledger td {
+      display: block;
+      width: auto !important;
+    }
+    .ledger tr {
+      margin-bottom: 14px;
+      padding: 22px 22px 8px;
+      border-radius: var(--r-md);
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--sh-1);
+    }
+    .ledger tbody tr + tr > * {
+      border-top: 0;
+    }
+    .ledger tbody th {
+      padding: 0 0 6px;
+    }
+    .ledger td {
+      padding: 12px 0;
+      border-top: 1px solid var(--line) !important;
+    }
+    .ledger tbody th + td {
+      border-top: 0 !important;
+    }
+    .ledger td::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--ink-3);
+    }
+  }
+
+  /* ── payments ───────────────────────────────────── */
+  /* the tilted back card may poke past a phone's edge; never let it pan the page */
+  .pay {
+    overflow-x: clip;
+  }
+  .pay-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+  .pay-copy h2 {
+    margin: 16px 0 18px;
+  }
+  .pay-rows {
+    display: grid;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .pay-rows > div {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: var(--r-md);
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+  .pay-rows dt {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  :global(html[lang='en']) .pay-rows dt {
+    font-weight: 500;
+    font-size: 1.15rem;
+  }
+  .pay-rows dd {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+  .pay-vis {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 340px;
+  }
+  .paycard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: min(380px, 92%);
+    aspect-ratio: 1.586;
+    padding: clamp(20px, 2.4vw, 28px);
+    border-radius: 22px;
+    color: #1b1e3a;
+    background:
+      radial-gradient(120% 140% at 0% 0%, rgba(255, 255, 255, 0.85), transparent 52%),
+      var(--holo);
+    box-shadow:
+      0 46px 90px -40px rgba(80, 60, 160, 0.6),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    rotate: -6deg;
+  }
+  .paycard--back {
+    position: absolute;
+    background:
+      radial-gradient(80% 100% at 100% 0%, rgba(110, 169, 242, 0.35), transparent 60%),
+      var(--night);
+    box-shadow: 0 40px 80px -40px rgba(14, 17, 49, 0.7);
+    rotate: 5deg;
+    translate: 9% -8%;
+  }
+  .pc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pc-chip {
+    width: 46px;
+    height: 34px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #fbf3dc, #d9c290);
+    box-shadow: inset 0 0 0 1px rgba(27, 30, 58, 0.14);
+  }
+  .pc-lock {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: #1b1e3a;
+    stroke-width: 1.6;
+    opacity: 0.7;
+  }
+  .pc-num {
+    font-family: var(--f-mono);
+    font-size: clamp(17px, 1.9vw, 23px);
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+  .pc-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    opacity: 0.72;
+  }
+  @media (max-width: 900px) {
+    .pay-grid {
+      grid-template-columns: 1fr;
+    }
+    .pay-vis {
+      min-height: 280px;
+    }
+  }
+  @media (max-width: 480px) {
+    .pay-rows > div {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+
+  /* ── Echo ───────────────────────────────────────── */
+  .fair-sec {
+    padding-top: 0;
+  }
+  .fair {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+    padding: clamp(30px, 4.5vw, 60px);
+    border-radius: var(--r-xl);
+    background:
+      radial-gradient(60% 120% at 100% 0%, var(--accent-wash), transparent 70%),
+      var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+  }
+  .fair-mark {
+    display: flex;
+    gap: 12px;
+    padding-top: 6px;
+  }
+  .fair-mark i {
+    width: 16px;
+    height: 72px;
+    border-radius: 8px;
+    background: var(--holo);
+  }
+  .fair h2 {
+    margin: 14px 0 14px;
+    font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem);
+  }
+  .fair p {
+    max-width: 44em;
+    margin-bottom: 22px;
+    color: var(--ink-2);
+    line-height: 1.85;
+  }
+  @media (max-width: 640px) {
+    .fair {
+      grid-template-columns: 1fr;
+    }
+    .fair-mark i {
+      height: 48px;
+      width: 12px;
+    }
+  }
+
+  /* ── rights ─────────────────────────────────────── */
+  .rights-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 24px clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+  .rights-grid .sec-head {
+    position: sticky;
+    top: calc(var(--nav-h) + 40px);
+  }
+  .rights-list {
+    border-top: 1px solid var(--line-2);
+  }
+  .rights-list li {
+    padding: 26px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .rights-list h3 {
+    margin-bottom: 8px;
+  }
+  .rights-list p {
+    color: var(--ink-2);
+    line-height: 1.85;
+  }
+  .rights-list :global(a),
+  .end-card :global(a[href^='mailto']) {
+    color: var(--accent-ink);
+    font-weight: 600;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent-ink) 35%, transparent);
+  }
+  @media (max-width: 860px) {
+    .rights-grid {
+      grid-template-columns: 1fr;
+    }
+    .rights-grid .sec-head {
+      position: static;
+      margin-bottom: 8px;
+    }
+  }
+
+  /* ── report & legal ─────────────────────────────── */
+  .ends-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .end-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: clamp(26px, 3.4vw, 44px);
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+  }
+  .end-h {
+    font-size: clamp(1.45rem, 1.2rem + 0.9vw, 1.95rem);
+  }
+  .end-card p {
+    color: var(--ink-2);
+    line-height: 1.85;
+  }
+  .end-card--legal {
+    gap: 0;
+  }
+  .end-card--legal > :global(.label) {
+    margin-bottom: 10px;
+  }
+  .legal-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 16px;
+    width: 100%;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .legal-link:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .ll-t {
+    font-family: var(--f-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  :global(html[lang='en']) .ll-t {
+    font-weight: 500;
+    font-size: 1.3rem;
+  }
+  .ll-d {
+    grid-column: 1;
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .ll-arrow {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-size: 20px;
+    color: var(--ink-3);
+    transition:
+      transform var(--t-fast) var(--ease),
+      color var(--t-fast) var(--ease);
+  }
+  .legal-link:hover .ll-arrow {
+    transform: translateX(4px);
+    color: var(--accent-ink);
+  }
+  @media (max-width: 760px) {
+    .ends-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

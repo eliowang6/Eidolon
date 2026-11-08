@@ -2,18 +2,18 @@
 sidebar_position: 1
 slug: /features/subscription
 title: Subscription & Benefits
-description: Understand Eidolon's subscription tiers and their benefits
+description: "What each tier unlocks: Awakening for chat and to-dos, Presence adds memory and voice or video calls, Genesis and Symbiosis add model choice and AI agent."
 ---
 
 # Subscription & Benefits
 
-Eidolon uses a subscription tier system where different tiers unlock different AI capabilities and feature access. Choose the tier that fits your needs.
+Sholarel uses a subscription tier system where different tiers unlock different AI capabilities and feature access. Choose the tier that fits your needs.
 
 ---
 
 ## Subscription Tiers
 
-Eidolon offers four tiers, from basic to premium:
+Sholarel offers four tiers, from basic to premium:
 
 ### Awakening
 
@@ -118,8 +118,8 @@ Quota refreshes each subscription cycle. When quota runs out:
 2. View your current tier and remaining days
 3. Click the tier you want to upgrade to
 
-:::info During Beta
-During the beta period, upgrading to premium tiers requires contacting the community admin or content creator. The official release will support online payment for self-service upgrades.
+:::info Subscription checkout
+Subscriptions are settled on the pricing page: pick a tier, enter your email, and pay directly (WeChat Pay / Alipay / UnionPay). No invite code is required.
 :::
 
 ---
@@ -142,7 +142,7 @@ New users receive a free trial period to experience premium tier features. Durin
 - Reduce high-quota actions (like video calls, image generation)
 
 ### How to upgrade?
-During beta, contact the community admin/creator. The official release will support online payment.
+Pick a tier on the pricing page and pay directly after entering your email (WeChat Pay / Alipay / UnionPay). No invite code is needed.
 
 ### Will data be lost after downgrading?
 Downgrading makes features above your current tier unavailable, but data is not deleted. Features restore upon re-upgrading.

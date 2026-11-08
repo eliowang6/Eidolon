@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import AccountPage from '../../components/pages/AccountPage.astro';
+import { t } from '../../i18n';
+
+const lang = 'en' as const;
+const copy = t(lang);
+---
+<Base lang={lang} path="/register.html" title={`${copy.accountPage.h1} · Sholarel`} description={copy.accountPage.lede}>
+  <AccountPage lang={lang} />
+</Base>

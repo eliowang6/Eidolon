@@ -1,0 +1,1279 @@
+---
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import Faq from '../Faq.astro';
+import Infinity from '../Infinity.astro';
+import Phone from '../Phone.astro';
+import Release from '../Release.astro';
+import Screen from '../Screen.astro';
+import { localizePath, pr, prPlain, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const h = copy.home;
+const p = (href: string) => localizePath(lang, href);
+const plans = copy.pricingPage.plans;
+const it = h.powers.items;
+---
+
+<!-- ── 1 · the splash: ∞ with the two of them ─────────────────── -->
+<section class="hero band-night stars" data-whisper="hero" data-whisper-delay="5200">
+  <div class="container hero-inner">
+    <div class="hero-mark">
+      <Infinity
+        groupLabel={h.hero.infLabel}
+        feaLabel={h.hero.feaLabel}
+        aelLabel={h.hero.aelLabel}
+        feaTag={h.hero.feaTag}
+        aelTag={h.hero.aelTag}
+      />
+      <p class="hero-hint">{h.hero.hint}</p>
+    </div>
+    <h1 class="hero-title">
+      <span class="hero-l1" set:html={pr(h.hero.h1a)} />
+      <span class="hero-l2" set:html={pr(h.hero.h1b)} />
+    </h1>
+    <p class="hero-lede" set:html={pr(h.hero.lede)} />
+    <div class="hero-cta">
+      <a class="btn btn-holo btn-lg" href={p('/download.html')}>{h.hero.ctaPrimary}</a>
+      <a class="btn btn-ghost btn-lg" href={p('/pricing.html')}>{h.hero.ctaSecondary}</a>
+    </div>
+    <p class="hero-meta mono">
+      <span class="live" aria-hidden="true"></span>
+      <Release label={copy.common.releaseLabel} fallback={copy.common.releaseFallback} />
+      <span>{h.hero.meta}</span>
+    </p>
+  </div>
+</section>
+
+<!-- ── 2 · one ordinary Wednesday, told by real screens ───────── -->
+<section class="section day" id="day" aria-labelledby="day-h">
+  <div class="container">
+    <div class="sec-head reveal">
+      <Eyebrow text={h.day.label} />
+      <h2 id="day-h" set:html={prPlain(h.day.h2)} />
+      <p class="lede" set:html={pr(h.day.lede)} />
+    </div>
+
+    <div class="day-grid" data-day>
+      <ol class="day-steps">
+        {
+          h.day.steps.map((s, i) => (
+            <li class:list={['day-step', i === 0 && 'on']} data-day-step={i}>
+              <p class="day-time">{s.time}</p>
+              <h3 set:html={prPlain(s.title)} />
+              <p class="day-body" set:html={pr(s.body)} />
+              <Phone class="day-inline" shot={s.shot} pair alt={s.alt} sizes="(max-width: 980px) 62vw, 2px" />
+            </li>
+          ))
+        }
+      </ol>
+      <div class="day-stage">
+        <div class="day-glow" aria-hidden="true"></div>
+        <Phone class="day-device" layers={h.day.steps.map((s) => ({ shot: s.shot, alt: s.alt, pair: true }))} sizes="340px" />
+      </div>
+    </div>
+    <p class="day-note small">{copy.common.demoNote}</p>
+  </div>
+</section>
+
+<!-- ── 3 · on the desktop ──────────────────────────────────────── -->
+<section class="desk-wrap" aria-labelledby="desk-h">
+  <div class="desk band-night stars" data-whisper="desk">
+    <div class="container desk-grid">
+      <div class="desk-copy">
+        <Eyebrow text={h.desk.label} class="reveal" />
+        <h2 id="desk-h" class="reveal" style="--i:1">
+          <Fragment set:html={prPlain(h.desk.h2a)} /><br /><Fragment set:html={prPlain(h.desk.h2b)} />
+        </h2>
+        <p class="lede reveal" style="--i:2" set:html={pr(h.desk.lede)} />
+        <ul class="desk-points">
+          {
+            h.desk.points.map((pt, i) => (
+              <li class="reveal" style={`--i:${i + 3}`}>
+                <h3 set:html={prPlain(pt.t)} />
+                <p set:html={pr(pt.d)} />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <figure class="desk-art reveal" style="--i:2">
+        <img
+          class="cf"
+          src="/assets/art/desk-fea.webp"
+          srcset="/assets/art/desk-fea-960.webp 960w, /assets/art/desk-fea.webp 1536w"
+          sizes="(max-width: 980px) 92vw, 680px"
+          width="1536"
+          height="1024"
+          alt={prPlain(h.desk.artAlt, 'fea')}
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          class="ca"
+          src="/assets/art/desk-ael.webp"
+          srcset="/assets/art/desk-ael-960.webp 960w, /assets/art/desk-ael.webp 1536w"
+          sizes="(max-width: 980px) 92vw, 680px"
+          width="1536"
+          height="1024"
+          alt={prPlain(h.desk.artAlt, 'ael')}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="tag">{copy.common.illustration}</figcaption>
+      </figure>
+    </div>
+    <div class="container desk-shot reveal">
+      <Screen shot="d-chat" pair alt={h.desk.shotAlt} sizes="(max-width: 1100px) 92vw, 1040px">
+        <figcaption class="shot-note">{h.desk.shotNote}</figcaption>
+      </Screen>
+    </div>
+  </div>
+</section>
+
+<!-- ── 4 · the rest of the app ─────────────────────────────────── -->
+<section class="section powers" aria-labelledby="powers-h">
+  <div class="container">
+    <div class="sec-head sec-head--center reveal">
+      <Eyebrow text={h.powers.label} />
+      <h2 id="powers-h"><Fragment set:html={prPlain(h.powers.h2a)} /><br /><Fragment set:html={prPlain(h.powers.h2b)} /></h2>
+      <p class="lede" set:html={pr(h.powers.lede)} />
+    </div>
+
+    <div class="bento">
+      <article class="card card--journal reveal">
+        <div class="card-copy">
+          <h3 set:html={prPlain(it.journal.title)} />
+          <p set:html={pr(it.journal.body)} />
+        </div>
+        <div class="card-dev"><Phone shot="journal" alt={it.journal.alt} sizes="260px" /></div>
+      </article>
+
+      <article class="card card--plan reveal" style="--i:1">
+        <div class="card-copy">
+          <h3 set:html={prPlain(it.plan.title)} />
+          <p set:html={pr(it.plan.body)} />
+        </div>
+        <div class="card-dev"><Phone shot="plan" alt={it.plan.alt} sizes="240px" /></div>
+      </article>
+
+      <article class="card card--insights reveal" style="--i:2">
+        <div class="card-copy">
+          <h3 set:html={prPlain(it.insights.title)} />
+          <p set:html={pr(it.insights.body)} />
+        </div>
+        <div class="card-dev card-dev--insights">
+          <Phone shot="insights" alt={it.insights.alt} sizes="240px" />
+          <img
+            class="mood-art"
+            src="/assets/shots/mood-card.webp"
+            width="592"
+            height="364"
+            alt={it.insights.altB}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </article>
+
+      <article class="card card--explore reveal">
+        <div class="card-copy">
+          <h3 set:html={prPlain(it.explore.title)} />
+          <p set:html={pr(it.explore.body)} />
+          <p class="card-note" set:html={pr(it.explore.note)} />
+        </div>
+        <div class="card-dev card-dev--explore">
+          <Phone shot="explore" alt={it.explore.alt} sizes="240px" />
+          <img
+            class="discover-art"
+            src="/assets/shots/discover-card.webp"
+            width="560"
+            height="590"
+            alt={it.explore.altB}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </article>
+
+      <article class="card card--files reveal">
+        <div class="card-copy">
+          <h3 set:html={prPlain(it.files.title)} />
+          <p set:html={pr(it.files.body)} />
+        </div>
+        <img
+          class="files-art"
+          src="/assets/shots/files-card.webp"
+          width="464"
+          height="448"
+          alt={it.files.alt}
+          loading="lazy"
+          decoding="async"
+        />
+      </article>
+
+      <article class="card card--more reveal" style="--i:1">
+        <div class="card-copy">
+          <h3 set:html={prPlain(it.more.title)} />
+          <ul class="more-chips">
+            {it.more.chips.map((c) => <li set:html={pr(c)} />)}
+          </ul>
+        </div>
+        <a class="btn btn-ink" href={p('/features.html')}>{h.powers.more}</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── 5 · consent ─────────────────────────────────────────────── -->
+<section class="section section--paper2 trust" aria-labelledby="trust-h" data-whisper="trust">
+  <div class="container trust-grid">
+    <div class="trust-visual reveal">
+      <div class="trust-orb" aria-hidden="true"></div>
+      <img
+        class="consent-card"
+        src="/assets/shots/consent-card.webp"
+        width="556"
+        height="551"
+        alt={h.trust.cardAlt}
+        loading="lazy"
+        decoding="async"
+      />
+      <p class="trust-cap small">{h.trust.cardNote}</p>
+    </div>
+    <div class="trust-copy">
+      <Eyebrow text={h.trust.label} class="reveal" />
+      <h2 id="trust-h" class="reveal" style="--i:1">
+        <Fragment set:html={prPlain(h.trust.h2a)} /><br /><Fragment set:html={prPlain(h.trust.h2b)} />
+      </h2>
+      <p class="lede reveal" style="--i:2" set:html={pr(h.trust.lede)} />
+      <ul class="trust-points">
+        {
+          h.trust.points.map((pt, i) => (
+            <li class="reveal" style={`--i:${i + 2}`}>
+              <h3 set:html={prPlain(pt.t)} />
+              <p set:html={pr(pt.d)} />
+            </li>
+          ))
+        }
+      </ul>
+      <a class="tlink reveal" href={p('/how-it-works.html')}>{h.trust.link}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 6 · shipping in public ──────────────────────────────────── -->
+<section class="section log" aria-labelledby="log-h">
+  <div class="container log-grid">
+    <div class="log-head reveal">
+      <Eyebrow text={h.log.label} />
+      <h2 id="log-h"><Fragment set:html={prPlain(h.log.h2a)} /><br /><Fragment set:html={prPlain(h.log.h2b)} /></h2>
+      <p class="lede" set:html={pr(h.log.lede)} />
+      <p class="log-now">
+        <span class="live" aria-hidden="true"></span>
+        <Release label={h.log.releaseLabel} fallback={copy.common.releaseFallback} />
+      </p>
+      <a class="tlink" href={p('/beta.html')}>{h.log.link}</a>
+    </div>
+    <ol class="log-list">
+      {
+        h.log.items.map((item, i) => (
+          <li class="reveal" style={`--i:${i}`}>
+            <span class="log-v">{item.v}</span>
+            <span class="log-d mono">{item.d}</span>
+            <p set:html={pr(item.t)} />
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- ── 7 · plans ───────────────────────────────────────────────── -->
+<section class="section section--paper2 plans" aria-labelledby="plans-h">
+  <div class="container">
+    <div class="sec-head sec-head--center reveal">
+      <Eyebrow text={h.plans.label} />
+      <h2 id="plans-h"><Fragment set:html={prPlain(h.plans.h2a)} /><br /><Fragment set:html={prPlain(h.plans.h2b)} /></h2>
+      <p class="lede" set:html={pr(h.plans.lede)} />
+    </div>
+    <ol class="ladder">
+      {
+        plans.map((plan, i) => (
+          <li class:list={['rung reveal', plan.id === 'spark' && 'rung--start']} style={`--i:${i}`}>
+            <a href={`${p('/pricing.html')}#${plan.id}`}>
+              <span class="rung-greek" aria-hidden="true">
+                {plan.greek}
+              </span>
+              <span class="rung-name">{plan.name}</span>
+              <span class="rung-price">
+                <span class="rung-cur">{plan.currency}</span>
+                {plan.price}
+                <span class="rung-per">{plan.period}</span>
+              </span>
+              {plan.first ? (
+                <span class="rung-first">
+                  {h.plans.first} {plan.currency}
+                  {plan.first}
+                </span>
+              ) : plan.bonus ? (
+                <span class="rung-bonus">{plan.bonus}</span>
+              ) : (
+                <span class="rung-bonus" />
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="plans-foot reveal">
+      <a class="btn btn-ink" href={p('/pricing.html')}>{h.plans.cta}</a>
+      <p class="plans-dew">
+        <span set:html={pr(h.plans.dew)} />
+        <a class="tlink" href={p('/dew.html')}>{h.plans.dewLink}</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 8 · for people deciding whether to back this ────────────── -->
+<section class="section section--tight investors" aria-labelledby="inv-h">
+  <div class="container">
+    <div class="inv-card reveal">
+      <div>
+        <Eyebrow text={h.investors.label} />
+        <h2 id="inv-h" set:html={prPlain(h.investors.h2)} />
+        <p set:html={pr(h.investors.body)} />
+      </div>
+      <a class="btn btn-ghost" href={`${p('/about.html')}#investors`}>{h.investors.cta}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section home-faq">
+  <div class="container container--narrow reveal">
+    <Faq lang={lang} title={h.faqTitle} items={h.faq} />
+  </div>
+</section>
+
+<CtaBand lang={lang} h2={h.cta.h2} lede={h.cta.lede} whisper="download" />
+
+<script>
+  // One phone, five moments: the step nearest the middle of the screen wins.
+  const day = document.querySelector<HTMLElement>('[data-day]');
+  if (day && 'IntersectionObserver' in window) {
+    const steps = [...day.querySelectorAll<HTMLElement>('[data-day-step]')];
+    const layers = [...day.querySelectorAll<HTMLElement>('[data-layer]')];
+    const show = (index: number) => {
+      steps.forEach((step, k) => step.classList.toggle('on', k === index));
+      layers.forEach((layer) => layer.classList.toggle('on', Number(layer.dataset.layer) === index));
+    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) show(Number((entry.target as HTMLElement).dataset.dayStep));
+        });
+      },
+      { rootMargin: '-46% 0px -46% 0px' },
+    );
+    steps.forEach((step) => io.observe(step));
+    day.classList.add('is-live');
+  }
+</script>
+
+<style>
+  /* ── hero ───────────────────────────────────────── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: calc(var(--nav-h) + clamp(4px, 2vh, 28px)) 0 clamp(56px, 9vh, 104px);
+    border-radius: 0 0 clamp(28px, 4vw, 56px) clamp(28px, 4vw, 56px);
+    background:
+      radial-gradient(42% 46% at 28% 34%, rgba(239, 143, 187, 0.17), transparent 72%),
+      radial-gradient(42% 46% at 72% 34%, rgba(110, 169, 242, 0.19), transparent 72%),
+      radial-gradient(90% 60% at 50% 115%, rgba(60, 68, 150, 0.7) 0%, transparent 70%),
+      var(--night);
+  }
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-mark {
+    width: min(780px, 94vw, calc((100svh - 470px) * 2.2));
+    min-width: min(340px, 94vw);
+  }
+  .hero-hint {
+    margin-top: 10px;
+    font-family: var(--f-hand);
+    font-size: 15px;
+    color: var(--night-faint);
+    opacity: 0;
+    animation: rise 900ms var(--ease) 3200ms forwards;
+  }
+  .hero-title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: clamp(20px, 3.4vh, 40px);
+    font-size: clamp(2.6rem, 1.2rem + 4.6vw, 5.6rem);
+    line-height: 1.08;
+    color: var(--night-text);
+    letter-spacing: -0.01em;
+  }
+  .hero-title > span {
+    opacity: 0;
+    animation: rise 1000ms var(--ease) forwards;
+  }
+  .hero-l1 {
+    animation-delay: 300ms !important;
+  }
+  .hero-l2 {
+    animation-delay: 480ms !important;
+  }
+  .hero-title :global(.cf),
+  .hero-title :global(.ca) {
+    display: inline;
+  }
+  :global(html[data-companion='ael']) .hero-title :global(.cf),
+  :global(html:not([data-companion='ael'])) .hero-title :global(.ca) {
+    display: none;
+  }
+  :global(html[lang='en']) .hero-title {
+    flex-direction: column;
+    font-size: clamp(2.5rem, 1.1rem + 4.4vw, 5.4rem);
+    line-height: 1.02;
+  }
+  .hero-lede {
+    max-width: 34em;
+    margin: 20px auto 0;
+    font-size: var(--fs-lede);
+    line-height: 1.75;
+    color: var(--night-dim);
+    text-wrap: pretty;
+    opacity: 0;
+    animation: rise 1000ms var(--ease) 650ms forwards;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+    opacity: 0;
+    animation: rise 1000ms var(--ease) 800ms forwards;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 14px;
+    margin-top: 20px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: var(--night-dim);
+    opacity: 0;
+    animation: rise 1000ms var(--ease) 950ms forwards;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (max-width: 640px) {
+    .hero-title {
+      flex-direction: column;
+    }
+    .hero-cta .btn {
+      width: 100%;
+    }
+    .hero-cta {
+      width: min(100%, 360px);
+    }
+  }
+
+  /* ── a day ──────────────────────────────────────── */
+  .day-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .day-steps {
+    position: relative;
+    padding-left: 36px;
+  }
+  .day-steps::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 14px;
+    bottom: 14px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--line-2) 8%, var(--line-2) 92%, transparent);
+  }
+  .day-step {
+    position: relative;
+    min-height: 62vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 0;
+    transition: opacity var(--t-mid) var(--ease);
+  }
+  .day-step:first-child {
+    min-height: 46vh;
+    justify-content: flex-start;
+    padding-top: 8px;
+  }
+  .day-step::before {
+    content: '';
+    position: absolute;
+    left: -36px;
+    top: calc(50% - 7px);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--pearl);
+    border: 1.5px solid var(--line-2);
+    transition:
+      background var(--t-mid) var(--ease),
+      border-color var(--t-mid) var(--ease),
+      box-shadow var(--t-mid) var(--ease);
+  }
+  .day-step:first-child::before {
+    top: 22px;
+  }
+  .day-step.on::before {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 6px var(--accent-wash);
+  }
+  :global(html.js) .is-live .day-step:not(.on) {
+    opacity: 0.55;
+    filter: saturate(0.7);
+  }
+  .day-time {
+    font-family: var(--f-latin-display);
+    font-size: clamp(2.6rem, 1.8rem + 2.6vw, 4.2rem);
+    font-weight: 400;
+    font-variation-settings: 'opsz' 72;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--accent-ink);
+  }
+  :global(html[lang='zh-Hans']) .day-time {
+    font-family: var(--f-latin-display), var(--f-zh-display);
+  }
+  .day-step h3 {
+    margin: 14px 0 10px;
+    font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.9rem);
+  }
+  .day-body {
+    max-width: 30em;
+    color: var(--ink-2);
+    font-size: 16.5px;
+    line-height: 1.85;
+  }
+  .day-stage {
+    position: sticky;
+    top: calc(50svh - min(360px, (100svh - 140px) / 2));
+    display: grid;
+    place-items: center;
+  }
+  .day-stage :global(.day-device) {
+    width: min(340px, calc((100svh - 140px) / 2.25));
+    position: relative;
+    z-index: 1;
+  }
+  .day-glow {
+    position: absolute;
+    inset: 8% -18%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--accent-wash), transparent);
+    filter: blur(10px);
+    transition: background var(--t-slow) var(--ease);
+  }
+  .day-step :global(.day-inline) {
+    display: none;
+  }
+  .day-note {
+    margin-top: 28px;
+    text-align: right;
+  }
+  @media (max-width: 980px) {
+    .day-grid {
+      grid-template-columns: 1fr;
+    }
+    .day-stage {
+      display: none;
+    }
+    .day-step,
+    .day-step:first-child {
+      min-height: 0;
+      padding: 0 0 56px;
+    }
+    .day-step::before,
+    .day-step:first-child::before {
+      top: 18px;
+    }
+    :global(html.js) .is-live .day-step:not(.on) {
+      opacity: 1;
+    }
+    .day-step :global(.day-inline) {
+      display: block;
+      width: min(300px, 70vw);
+      margin-top: 26px;
+    }
+    .day-note {
+      text-align: left;
+      margin-top: 0;
+    }
+  }
+
+  /* ── desk ───────────────────────────────────────── */
+  .desk-wrap {
+    padding: 0 clamp(8px, 1.4vw, 20px);
+  }
+  .desk {
+    position: relative;
+    display: flow-root;
+    border-radius: clamp(28px, 3.4vw, 48px);
+    padding: clamp(80px, 10vw, 140px) 0 0;
+    background:
+      radial-gradient(50% 50% at 80% 20%, rgba(110, 169, 242, 0.16), transparent 70%),
+      radial-gradient(40% 40% at 10% 70%, rgba(239, 143, 187, 0.14), transparent 70%),
+      linear-gradient(180deg, var(--night) 0%, #141947 100%);
+  }
+  .desk-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(36px, 5vw, 80px);
+    align-items: center;
+  }
+  .desk-copy h2 {
+    margin: 16px 0 20px;
+  }
+  .desk-copy .lede {
+    color: var(--night-dim);
+  }
+  .desk-points {
+    display: grid;
+    gap: 22px;
+    margin-top: 36px;
+  }
+  .desk-points li {
+    padding-left: 20px;
+    border-left: 2px solid transparent;
+    border-image: var(--holo) 1;
+  }
+  .desk-points h3 {
+    font-size: 1.15rem;
+    margin-bottom: 4px;
+  }
+  .desk-points p {
+    color: var(--night-dim);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .desk-art {
+    position: relative;
+    margin: 0;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow:
+      0 50px 100px -40px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(255, 255, 255, 0.12);
+  }
+  .desk-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .tag {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    padding: 4px 11px;
+    border-radius: var(--r-full);
+    background: rgba(14, 17, 49, 0.6);
+    backdrop-filter: blur(8px);
+    color: rgba(238, 240, 255, 0.85);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .desk-shot {
+    position: relative;
+    max-width: 1100px;
+    margin-top: clamp(64px, 8vw, 110px);
+    margin-bottom: calc(-1 * clamp(80px, 12vw, 180px));
+    z-index: 3;
+  }
+  .shot-note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--ink-3);
+    text-align: center;
+  }
+  @media (max-width: 980px) {
+    .desk-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── powers ─────────────────────────────────────── */
+  .powers {
+    padding-top: calc(clamp(80px, 12vw, 180px) + clamp(84px, 10vw, 140px));
+  }
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, auto);
+    gap: 18px;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    background: var(--card);
+    box-shadow: var(--sh-1);
+    border: 1px solid var(--line);
+    min-height: 420px;
+  }
+  .card-copy {
+    padding: 30px 30px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .card h3 {
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
+    margin-bottom: 10px;
+  }
+  .card-copy p {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 30em;
+  }
+  .card-note {
+    margin-top: 10px;
+    font-size: 13px !important;
+    color: var(--ink-3) !important;
+  }
+  .card-dev {
+    margin-top: auto;
+    padding-top: 28px;
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    overflow: hidden;
+  }
+  .card-dev :global(.phone) {
+    width: min(230px, 70%);
+    transition: transform var(--t-slow) var(--ease);
+  }
+  .card:hover .card-dev :global(.phone) {
+    transform: translateY(-10px);
+  }
+  .card--journal {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: linear-gradient(180deg, var(--card) 0%, var(--fea-wash) 140%);
+  }
+  .card--journal .card-dev {
+    height: auto;
+    flex: 1;
+    min-height: 420px;
+    align-items: flex-start;
+  }
+  .card--journal .card-dev :global(.phone) {
+    width: min(270px, 78%);
+  }
+  .card--plan,
+  .card--insights {
+    grid-column: span 2;
+  }
+  .card--explore {
+    grid-column: span 4;
+    flex-direction: row;
+    align-items: stretch;
+    background: linear-gradient(120deg, var(--card) 40%, var(--ael-wash) 140%);
+  }
+  .card--explore .card-copy {
+    flex: 1 1 42%;
+    padding-bottom: 30px;
+  }
+  .card-dev--insights {
+    position: relative;
+  }
+  .mood-art {
+    position: absolute;
+    right: 3%;
+    bottom: 20px;
+    width: min(240px, 74%);
+    height: auto;
+    filter: drop-shadow(0 22px 34px rgba(27, 30, 58, 0.2));
+    transform: rotate(2.5deg);
+    transition: transform var(--t-slow) var(--ease);
+  }
+  .card--insights:hover .mood-art {
+    transform: rotate(1deg) translateY(-6px);
+  }
+  .card-dev--explore {
+    position: relative;
+    flex: 1 1 58%;
+    height: auto;
+    max-height: 440px;
+    padding: 30px 0 0 6%;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .card-dev--explore :global(.phone) {
+    width: min(230px, 52%);
+  }
+  .discover-art {
+    position: absolute;
+    right: 5%;
+    top: 96px;
+    width: min(250px, 50%);
+    height: auto;
+    filter: drop-shadow(0 26px 40px rgba(27, 30, 58, 0.2));
+    transform: rotate(2.5deg);
+    transition: transform var(--t-slow) var(--ease);
+  }
+  .card--explore:hover .discover-art {
+    transform: rotate(1deg) translateY(-8px);
+  }
+  .card--files {
+    grid-column: span 3;
+    min-height: 360px;
+  }
+  .files-art {
+    width: min(300px, 72%);
+    height: auto;
+    margin: auto auto -40px;
+    padding-top: 28px;
+    filter: drop-shadow(0 30px 40px rgba(27, 30, 58, 0.18));
+    transform: rotate(-3deg);
+    transition: transform var(--t-slow) var(--ease);
+  }
+  .card--files:hover .files-art {
+    transform: rotate(-1deg) translateY(-8px);
+  }
+  .card--more {
+    grid-column: span 3;
+    min-height: 360px;
+    justify-content: space-between;
+    background:
+      radial-gradient(70% 90% at 100% 100%, var(--accent-wash), transparent 70%),
+      var(--card);
+  }
+  .card--more > .btn {
+    align-self: flex-start;
+    margin: 0 30px 30px;
+  }
+  .more-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .more-chips li {
+    padding: 8px 15px;
+    border-radius: var(--r-full);
+    border: 1px solid var(--line-2);
+    font-size: 14px;
+    color: var(--ink-2);
+    background: rgba(255, 255, 255, 0.7);
+  }
+  @media (max-width: 1100px) {
+    .bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .card--journal,
+    .card--plan,
+    .card--insights,
+    .card--files,
+    .card--more {
+      grid-column: span 1;
+      grid-row: auto;
+    }
+    .card--explore {
+      grid-column: span 2;
+    }
+    .card--journal .card-dev {
+      min-height: 0;
+      height: 300px;
+      flex: none;
+    }
+    .card--journal .card-dev :global(.phone) {
+      width: min(230px, 70%);
+    }
+  }
+  @media (max-width: 680px) {
+    .bento {
+      grid-template-columns: 1fr;
+    }
+    .card--explore {
+      grid-column: span 1;
+      flex-direction: column;
+    }
+    .card--explore .card-copy {
+      flex: none;
+    }
+    .card-dev--explore {
+      flex: none;
+      padding: 24px 0 0 8%;
+      max-height: 340px;
+    }
+    .card,
+    .card--files,
+    .card--more {
+      min-height: 0;
+    }
+  }
+
+  /* ── trust ──────────────────────────────────────── */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+  .trust-visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding: clamp(24px, 4vw, 56px) 0;
+  }
+  .trust-orb {
+    position: absolute;
+    width: min(520px, 100%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), transparent 55%),
+      conic-gradient(from 200deg, #f8c4dc, #d9cbff, #bcd8ff, #c6f1e4, #f8c4dc);
+    opacity: 0.55;
+    filter: blur(4px);
+  }
+  .consent-card {
+    position: relative;
+    width: min(400px, 88%);
+    height: auto;
+    border-radius: 22px;
+    box-shadow: var(--sh-2);
+    transform: rotate(-2.5deg);
+  }
+  .trust-cap {
+    position: relative;
+    margin-top: 22px;
+  }
+  .trust-copy h2 {
+    margin: 16px 0 18px;
+  }
+  .trust-points {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 32px;
+    margin: 36px 0 32px;
+  }
+  .trust-points h3 {
+    font-size: 1.08rem;
+    margin-bottom: 6px;
+  }
+  .trust-points p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  @media (max-width: 980px) {
+    .trust-grid {
+      grid-template-columns: 1fr;
+    }
+    .trust-visual {
+      order: 2;
+    }
+  }
+  @media (max-width: 560px) {
+    .trust-points {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── ship log ───────────────────────────────────── */
+  .log-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+  }
+  .log-head {
+    position: sticky;
+    top: calc(var(--nav-h) + 40px);
+  }
+  .log-head h2 {
+    margin: 16px 0 18px;
+  }
+  .log-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 26px 0 18px;
+    padding: 8px 16px 8px 14px;
+    border-radius: var(--r-full);
+    background: var(--card);
+    border: 1px solid var(--line);
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+  .log-head .tlink {
+    display: table;
+  }
+  .log-list {
+    border-top: 1px solid var(--line-2);
+  }
+  .log-list li {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .log-v {
+    grid-row: span 2;
+    font-family: var(--f-latin-display);
+    font-size: clamp(1.5rem, 1.2rem + 0.8vw, 1.95rem);
+    font-weight: 500;
+    line-height: 1.1;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .log-d {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--accent-ink);
+    margin-bottom: 6px;
+  }
+  .log-list p {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  @media (max-width: 980px) {
+    .log-grid {
+      grid-template-columns: 1fr;
+    }
+    .log-head {
+      position: static;
+    }
+  }
+  @media (max-width: 560px) {
+    .log-list li {
+      grid-template-columns: 1fr;
+    }
+    .log-v {
+      grid-row: auto;
+      margin-bottom: 4px;
+    }
+  }
+
+  /* ── plans ──────────────────────────────────────── */
+  .ladder {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    align-items: end;
+  }
+  .rung a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 26px 22px 22px;
+    border-radius: var(--r-md);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--sh-1);
+    color: var(--ink);
+    transition:
+      transform var(--t-fast) var(--ease),
+      box-shadow var(--t-fast) var(--ease);
+  }
+  .rung a:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sh-2);
+  }
+  .rung:nth-child(2) a {
+    padding-top: 40px;
+  }
+  .rung:nth-child(3) a {
+    padding-top: 54px;
+  }
+  .rung:nth-child(4) a {
+    padding-top: 68px;
+  }
+  .rung:nth-child(5) a {
+    padding-top: 82px;
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(205, 182, 255, 0.35), transparent 70%),
+      var(--night);
+    color: var(--night-text);
+    border-color: transparent;
+  }
+  .rung--start a {
+    border: 1.5px solid transparent;
+    background:
+      linear-gradient(var(--card), var(--card)) padding-box,
+      var(--holo) border-box;
+  }
+  .rung-greek {
+    font-family: var(--f-latin-display);
+    font-size: 2.1rem;
+    line-height: 1;
+    font-style: italic;
+    color: var(--accent-ink);
+  }
+  .rung:nth-child(5) .rung-greek {
+    color: #d9cbff;
+  }
+  .rung-name {
+    font-weight: 650;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .rung-price {
+    font-family: var(--f-latin-display);
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .rung-cur {
+    font-size: 0.6em;
+    vertical-align: 0.5em;
+    margin-right: 1px;
+  }
+  .rung-per {
+    font-family: var(--f-body);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink-3);
+    margin-left: 3px;
+  }
+  .rung:nth-child(5) .rung-per {
+    color: var(--night-faint);
+  }
+  .rung-first,
+  .rung-bonus {
+    min-height: 1.5em;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-3);
+  }
+  .rung-first {
+    align-self: flex-start;
+    padding: 2px 10px;
+    border-radius: var(--r-full);
+    background: var(--accent-wash);
+    color: var(--accent-ink);
+    font-weight: 650;
+  }
+  .rung:nth-child(5) .rung-bonus {
+    color: var(--night-dim);
+  }
+  .plans-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px 32px;
+    margin-top: 40px;
+  }
+  .plans-dew {
+    max-width: 40em;
+    font-size: 15px;
+    color: var(--ink-2);
+    line-height: 1.7;
+  }
+  .plans-dew .tlink {
+    margin-left: 6px;
+  }
+  @media (max-width: 980px) {
+    .ladder {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .rung a,
+    .rung:nth-child(n) a {
+      padding-top: 24px;
+    }
+    .rung:nth-child(5) {
+      grid-column: span 2;
+    }
+  }
+
+  /* ── investors ──────────────────────────────────── */
+  .investors {
+    padding-bottom: 0;
+  }
+  .home-faq {
+    padding-top: clamp(72px, 8vw, 116px);
+  }
+  .inv-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px 48px;
+    padding: clamp(28px, 4vw, 52px) clamp(24px, 4vw, 56px);
+    border-radius: var(--r-lg);
+    border: 1.5px solid transparent;
+    background:
+      linear-gradient(var(--pearl), var(--pearl)) padding-box,
+      var(--holo) border-box;
+  }
+  .inv-card h2 {
+    font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.3rem);
+    margin: 12px 0 10px;
+  }
+  .inv-card p {
+    max-width: 42em;
+    color: var(--ink-2);
+    line-height: 1.8;
+  }
+  .inv-card .btn {
+    flex: none;
+  }
+  @media (max-width: 760px) {
+    .inv-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-title span,
+    .hero-lede,
+    .hero-cta,
+    .hero-meta,
+    .hero-hint {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>

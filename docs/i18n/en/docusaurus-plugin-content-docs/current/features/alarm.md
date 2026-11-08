@@ -2,12 +2,12 @@
 sidebar_position: 5
 slug: /features/alarm
 title: Alarms & Reminders
-description: Set alarms and let AI remind you at the right time
+description: "Set alarms that AI announces in conversation, not a ring. Covers times, one-off or daily, weekly and monthly repeats, and how to dismiss one."
 ---
 
 # Alarms & Reminders
 
-Eidolon's alarm feature lets AI remind you of important things at specified times. Unlike ordinary alarms, AI delivers reminders conversationally and gently.
+Sholarel's alarm feature lets AI remind you of important things at specified times. Unlike ordinary alarms, AI delivers reminders conversationally and gently.
 
 ---
 
@@ -80,7 +80,7 @@ When an alarm triggers:
 Alarms require notification permissions to work properly:
 
 - **Desktop**: System will request notification permission on first use
-- **Android**: Make sure Eidolon's notification permission is enabled
+- **Android**: Make sure Sholarel's notification permission is enabled
 - **Web**: Browser must allow notifications
 
 If alarms aren't triggering, check that notification permissions have been granted.

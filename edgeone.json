@@ -1,0 +1,115 @@
+{
+  "redirects": [
+    {
+      "source": "$wwwhost",
+      "destination": "$host",
+      "statusCode": 301
+    },
+    {
+      "source": "/edgeone.json",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon",
+      "destination": "https://sholarel.instarmony.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/",
+      "destination": "https://sholarel.instarmony.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/index.html",
+      "destination": "https://sholarel.instarmony.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/about.html",
+      "destination": "https://sholarel.instarmony.com/about.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/contact.html",
+      "destination": "https://sholarel.instarmony.com/about.html#contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/docs.html",
+      "destination": "https://sholarel.instarmony.com/docs.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/download.html",
+      "destination": "https://sholarel.instarmony.com/download.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/features.html",
+      "destination": "https://sholarel.instarmony.com/features.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/login.html",
+      "destination": "https://sholarel.instarmony.com/download.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/pricing.html",
+      "destination": "https://sholarel.instarmony.com/pricing.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/privacy.html",
+      "destination": "https://sholarel.instarmony.com/privacy.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/terms.html",
+      "destination": "https://sholarel.instarmony.com/terms.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/eidolon/:page",
+      "destination": "https://sholarel.instarmony.com/:page.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs",
+      "destination": "https://sholarel.instarmony.com/docs.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/",
+      "destination": "https://sholarel.instarmony.com/docs/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/build",
+      "destination": "https://sholarel.instarmony.com/docs/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/build/",
+      "destination": "https://sholarel.instarmony.com/docs/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/build/*",
+      "destination": "https://sholarel.instarmony.com/docs/:splat",
+      "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/*",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        }
+      ]
+    }
+  ]
+}

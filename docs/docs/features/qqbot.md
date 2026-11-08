@@ -2,12 +2,12 @@
 sidebar_position: 2
 slug: /features/qqbot
 title: QQ 机器人
-description: 让 AI 化身 QQ 机器人自动回复
+description: "把 AI 接进 QQ：在 QQ 开放平台创建机器人并拿到 AppID 与 AppSecret，填进 Sholarel 设置里开启，AI 就能在频道或群聊中自动回复。本页说明配置步骤、字段含义、运行状态怎么看，以及连不上时先检查什么。启用后能在设置页看到连接是否正常。"
 ---
 
 # QQ 机器人
 
-Eidolon 支持接入 QQ 开放平台，让 AI 化身为 QQ 机器人，在 QQ 频道或群聊中自动回复消息。
+Sholarel 支持接入 QQ 开放平台，让 AI 化身为 QQ 机器人，在 QQ 频道或群聊中自动回复消息。
 
 ---
 
@@ -15,7 +15,7 @@ Eidolon 支持接入 QQ 开放平台，让 AI 化身为 QQ 机器人，在 QQ �
 
 1. 前往 [QQ 开放平台](https://q.qq.com/) 注册并创建一个机器人应用
 2. 获取机器人的 **AppID** 和 **AppSecret**
-3. 在 Eidolon 中进入 **设置 → QQ 机器人**
+3. 在 Sholarel 中进入 **设置 → QQ 机器人**
 4. 填写 AppID 和 AppSecret
 5. 开启启用开关
 6. 点击保存
@@ -46,7 +46,7 @@ Eidolon 支持接入 QQ 开放平台，让 AI 化身为 QQ 机器人，在 QQ �
 启用后：
 
 1. QQ 用户在频道或群聊中 @你的机器人
-2. 消息转发到 Eidolon AI
+2. 消息转发到 Sholarel AI
 3. AI 生成回复
 4. 回复通过 QQ 机器人发送
 

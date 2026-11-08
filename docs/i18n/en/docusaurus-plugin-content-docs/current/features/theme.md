@@ -2,12 +2,12 @@
 sidebar_position: 2
 slug: /features/theme
 title: Themes & Appearance
-description: Personalize your Eidolon interface
+description: "Nine interface themes, from quiet Iris Atelier and crisp Amber Tide to the polar-night Aurora Circuit and sweeter Petal Pop. Switch instantly, no restart."
 ---
 
 # Themes & Appearance
 
-Eidolon offers multiple carefully designed interface themes, each with a unique visual style and atmosphere. Switch themes anytime based on your mood and preference.
+Sholarel offers multiple carefully designed interface themes, each with a unique visual style and atmosphere. Switch themes anytime based on your mood and preference.
 
 ---
 

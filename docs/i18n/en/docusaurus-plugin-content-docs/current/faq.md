@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /faq
 title: FAQ
-description: Frequently asked questions and answers about using Eidolon
+description: "Answers to the questions we hear most: platforms, the Windows SmartScreen warning, blank screens at launch, Android installs and password recovery."
 ---
 
 # FAQ
@@ -10,7 +10,7 @@ description: Frequently asked questions and answers about using Eidolon
 ## Installation & Launch
 
 ### What platforms are supported?
-Eidolon is available on **Windows Desktop**, **Android**, and **Web**. macOS and iOS versions are planned.
+Sholarel is available on **Windows Desktop**, **Android**, and **Web**. macOS and iOS versions are planned.
 
 ### Windows shows "Windows protected your PC" during installation?
 This is Windows SmartScreen warning for unsigned apps. Click "More info" → "Run anyway" to proceed with installation.
@@ -21,7 +21,7 @@ This is Windows SmartScreen warning for unsigned apps. Click "More info" → "Ru
 - Confirm your system meets requirements (Windows 10 1803+)
 
 ### Android installation failed?
-- Confirm system version is Android 8.0+
+- Confirm system version is Android 7.0+ on a 64-bit (arm64) device
 - Enable "Allow installation from unknown sources"
 - Check available storage space
 
@@ -77,7 +77,7 @@ By default, calls auto-hang up after 60 minutes to prevent quota waste. You can 
 ## Subscription & Quota
 
 ### What is "Echo" quota?
-"Echo" is Eidolon's AI usage quota. Each conversation, image generation, and call consumes a certain amount. Quota refreshes each subscription cycle.
+"Echo" is Sholarel's AI usage quota. Each conversation, image generation, and call consumes a certain amount. Quota refreshes each subscription cycle.
 
 ### Quota used up?
 - Upgrade your subscription tier
@@ -85,7 +85,7 @@ By default, calls auto-hang up after 60 minutes to prevent quota waste. You can 
 - Reduce high-consumption actions
 
 ### How to upgrade subscription?
-During beta, contact the community admin/creator. The official release will support online payment.
+Upgrade in the app, or pick a tier on the pricing page and check out with your email. Subscriptions never need an invite code.
 
 ---
 
@@ -112,7 +112,7 @@ Contact the admin to delete your account and associated data.
 - Each valid report earns 3 days of VIP access
 
 ### How to get an invite code?
-Join the official community and request one from the admin or content creator.
+Invite codes are only for registration. In mainland China, join the QQ group — codes are handed out there. Everywhere else, fill in the waitlist and join our [Discord](https://discord.gg/nKMe6vrkZD). Subscriptions and Chrono Dew never need a code.
 
 ### What languages are supported?
 The interface supports **Simplified Chinese** and **English**, switchable in settings. AI conversations support multiple languages.

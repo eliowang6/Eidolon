@@ -2,12 +2,12 @@
 sidebar_position: 5
 slug: /features/agent
 title: AI Agent (Sub-Agent)
-description: Let AI operate your computer, search information, and execute complex tasks
+description: "The AI agent turns chat into action: it breaks a task into steps, operates your computer, searches the web and reports progress live. Genesis tier only."
 ---
 
 # AI Agent (Sub-Agent)
 
-Eidolon's AI Agent feature goes beyond chatting — it can **operate your computer**, **search the web**, and **execute complex multi-step tasks** on your behalf.
+Sholarel's AI Agent feature goes beyond chatting — it can **operate your computer**, **search the web**, and **execute complex multi-step tasks** on your behalf.
 
 :::info Subscription Requirement
 The AI Agent feature is only available to **Genesis** tier subscribers. See [Subscription & Benefits](/features/subscription).
@@ -17,7 +17,7 @@ The AI Agent feature is only available to **Genesis** tier subscribers. See [Sub
 
 ## What Is an AI Agent?
 
-AI Agent is Eidolon's "action" mode. When you give AI a task, it:
+AI Agent is Sholarel's "action" mode. When you give AI a task, it:
 
 1. **Decomposes the task**: Breaks complex tasks into multiple steps
 2. **Executes step by step**: Completes each operation in order
