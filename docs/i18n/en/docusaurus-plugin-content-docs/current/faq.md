@@ -85,7 +85,7 @@ By default, calls auto-hang up after 60 minutes to prevent quota waste. You can 
 - Reduce high-consumption actions
 
 ### How to upgrade subscription?
-During beta, contact the community admin/creator. The official release will support online payment.
+Upgrade in the app, or pick a tier on the pricing page and check out with your email. Subscriptions never need an invite code.
 
 ---
 
@@ -112,7 +112,7 @@ Contact the admin to delete your account and associated data.
 - Each valid report earns 3 days of VIP access
 
 ### How to get an invite code?
-Join the official community and request one from the admin or content creator.
+Invite codes are only for registration. In mainland China, join the QQ group — codes are handed out there. Everywhere else, fill in the waitlist and join our [Discord](https://discord.gg/nKMe6vrkZD). Subscriptions and Chrono Dew never need a code.
 
 ### What languages are supported?
 The interface supports **Simplified Chinese** and **English**, switchable in settings. AI conversations support multiple languages.

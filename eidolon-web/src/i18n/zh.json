@@ -70,6 +70,7 @@
     "about": "关于",
     "docs": "文档",
     "download": "下载",
+    "login": "登录",
     "menu": "菜单",
     "close": "关闭菜单",
     "skip": "跳到正文",
@@ -111,6 +112,7 @@
     "changelog": "更新日志",
     "docs": "文档中心",
     "faq": "常见问题",
+    "account": "登录 / 注册",
     "about": "关于我们",
     "reportEmail": "举报与内容反馈",
     "privacyEmail": "隐私与数据请求",
@@ -778,7 +780,7 @@
         "—"
       ]
     ],
-    "unsupported": "macOS、iOS 和 Linux 暂不支持。网页版目前是邀请制内测，暂不开放注册。",
+    "unsupported": "macOS、iOS 和 Linux 暂不支持。网页版暂不开放注册。",
     "helpTitle": "装不上？",
     "helpQuick": "快速上手",
     "helpQuickDesc": "安装、第一次启动和登录。",
@@ -1282,12 +1284,16 @@
       },
       {
         "q": "支持哪些设备？",
-        "a": "Windows 10 / 11（64 位）和 Android 7.0 及以上（arm64）。网页版目前为邀请制内测。macOS、iOS 与 Linux 暂不支持。",
+        "a": "Windows 10 / 11（64 位）和 Android 7.0 及以上（arm64）。网页版暂不开放注册。macOS、iOS 与 Linux 暂不支持。",
         "downloadLink": true
       },
       {
         "q": "要付费吗？",
         "a": "下载免费；AI 对话、通话等能力需要订阅，目前不提供免费试用。人民币方案 Spark 首月 ¥9.9，按月手动续费、不会自动扣款；美元方案自动续费，可随时在 App 内取消，权益保留到当期结束。"
+      },
+      {
+        "q": "开通订阅需要邀请码吗？",
+        "a": "不需要。邀请码只用于注册账号；订阅结算只填邮箱，溯时星露也不需要注册或邀请码。"
       },
       {
         "q": "回响额度用完了怎么办？",
@@ -1565,5 +1571,30 @@
       "lede": "Windows 10 / 11 与 Android 7.0 以上。"
     },
     "count": "{n} 次更新"
+  },
+  "accountPage": {
+    "label": "账号 / ACCOUNT",
+    "h1": "登录和注册，都在应用内完成。",
+    "lede": "网页端暂时不提供登录和注册。打开 Sholarel 应用，已有账号直接登录；新用户可在首次启动时注册。",
+    "loginTitle": "已有账号",
+    "loginDesc": "在应用中登录，订阅、设备与个人数据都在应用内管理。",
+    "registerTitle": "还没有账号",
+    "registerDesc": "下载应用，首次启动时注册；注册需要邀请码。",
+    "windows": "Windows 桌面端",
+    "windowsDesc": "Windows 10 / 11",
+    "android": "Android 移动端",
+    "androidDesc": "Android 7.0 以上",
+    "download": "前往下载",
+    "allDownloads": "查看全部下载方式",
+    "note": "本页只做说明：我们不会在网页上收集账号或密码，也不会把登录页跳转到别处。",
+    "inviteTitle": "邀请码怎么拿？",
+    "inviteLede": "邀请码只用于注册，开通订阅和购买溯时星露都不需要邀请码，可以直接结算。",
+    "cnLabel": "中国大陆",
+    "cnDesc": "加入 QQ 群，邀请码在群里发放。",
+    "cnCta": "加入 QQ 群",
+    "intlLabel": "其他地区",
+    "intlDesc": "填写 waitlist，并加入 Discord 获取邀请码。",
+    "intlCta": "加入 Discord",
+    "inviteNote": "订阅与额度购买走独立的结算流程，不需要邀请码。"
   }
 }

@@ -56,7 +56,7 @@ Sholarel 支持 **Windows 桌面端**、**Android 手机端** 和 **网页端** 
 注册成功后会自动登录，进入 Sholarel 主界面。
 
 :::info 邀请码从哪来？
-内测期间，邀请码由群主或 Up 主发放。加入社区群即可获取。
+邀请码只用于注册。国内用户加入 QQ 群获取（邀请码在群里发放）；其他地区请填写 waitlist 并加入 [Discord](https://discord.gg/nKMe6vrkZD)。开通订阅与购买溯时星露不需要邀请码。
 :::
 
 ---

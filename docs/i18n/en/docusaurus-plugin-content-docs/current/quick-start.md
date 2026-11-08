@@ -56,7 +56,7 @@ When you first open Sholarel, you'll see the login page.
 After registration, you'll be automatically logged in and taken to the main interface.
 
 :::info Where to get an invite code?
-During the beta, invite codes are distributed by the community admin or content creators. Join the official community to get one.
+Invite codes are only needed for registration. In mainland China, join the QQ group — codes are handed out there. Everywhere else, fill in the waitlist and join our [Discord](https://discord.gg/nKMe6vrkZD). Subscriptions and Chrono Dew never need a code.
 :::
 
 ---

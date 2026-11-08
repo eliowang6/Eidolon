@@ -22,5 +22,13 @@
   "link.item.label.Website": {
     "message": "Website",
     "description": "The label of footer link with label Website"
+  },
+  "link.item.label.Official Website": {
+    "message": "Official Website",
+    "description": "The label of footer link with label Official Website"
+  },
+  "link.item.label.登录 / 注册": {
+    "message": "Sign in / Sign up",
+    "description": "The label of footer link with label 登录 / 注册"
   }
 }

@@ -150,6 +150,11 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          href: 'https://sholarel.instarmony.com/login.html',
+          label: '登录',
+          position: 'right',
+        },
       ],
     },
     footer: {
@@ -177,7 +182,7 @@ const config: Config = {
             },
             {
               label: 'Discord',
-              href: 'https://discord.gg/uBFgfV7y',
+              href: 'https://discord.gg/nKMe6vrkZD',
             },
             {
               label: 'GitHub',
@@ -190,7 +195,11 @@ const config: Config = {
           items: [
             {
               label: 'Official Website',
-              href: 'https://eliowang6.github.io/Eidolon/',
+              href: 'https://sholarel.instarmony.com/',
+            },
+            {
+              label: '登录 / 注册',
+              href: 'https://sholarel.instarmony.com/login.html',
             },
             {
               label: 'Bilibili',

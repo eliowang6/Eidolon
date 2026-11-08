@@ -70,6 +70,7 @@
     "about": "About",
     "docs": "Docs",
     "download": "Download",
+    "login": "Sign in",
     "menu": "Menu",
     "close": "Close menu",
     "skip": "Skip to content",
@@ -111,6 +112,7 @@
     "changelog": "Changelog",
     "docs": "Docs",
     "faq": "FAQ",
+    "account": "Sign in / Sign up",
     "about": "About",
     "reportEmail": "Report content",
     "privacyEmail": "Privacy & data requests",
@@ -778,7 +780,7 @@
         "—"
       ]
     ],
-    "unsupported": "macOS, iOS and Linux aren’t supported yet. The web version is an invite-only beta and isn’t open for sign-ups.",
+    "unsupported": "macOS, iOS and Linux aren’t supported yet. The web version isn’t open for sign-ups.",
     "helpTitle": "Trouble installing?",
     "helpQuick": "Quick start",
     "helpQuickDesc": "Installing, first launch and signing in.",
@@ -1282,12 +1284,16 @@
       },
       {
         "q": "Which devices are supported?",
-        "a": "Windows 10 / 11 (64-bit) and Android 7.0+ (arm64). The web version is in invite-only testing. macOS, iOS and Linux aren’t supported yet.",
+        "a": "Windows 10 / 11 (64-bit) and Android 7.0+ (arm64). The web version isn’t open for sign-ups. macOS, iOS and Linux aren’t supported yet.",
         "downloadLink": true
       },
       {
         "q": "Is it free?",
         "a": "The download is free; AI features like chat and calls need a subscription, and there’s no free trial. USD plans renew automatically and can be cancelled anytime in the app, with benefits kept to the end of the period."
+      },
+      {
+        "q": "Do I need an invite code to subscribe?",
+        "a": "No. Invite codes are only for creating an account. Subscription checkout only asks for an email, and Chrono Dew needs neither an account nor a code."
       },
       {
         "q": "What happens when I run out of Echo?",
@@ -1565,5 +1571,30 @@
       "lede": "Windows 10 / 11 and Android 7.0 or later."
     },
     "count": "{n} releases"
+  },
+  "accountPage": {
+    "label": "ACCOUNT",
+    "h1": "Sign in and sign up inside the app.",
+    "lede": "The website does not offer sign-in or registration for now. Open the Sholarel app: existing accounts sign in there, and new accounts register on first launch.",
+    "loginTitle": "Already have an account",
+    "loginDesc": "Sign in inside the app. Your subscription, devices and data are managed there.",
+    "registerTitle": "New here",
+    "registerDesc": "Download the app and register on first launch; registration needs an invite code.",
+    "windows": "Windows desktop",
+    "windowsDesc": "Windows 10 / 11",
+    "android": "Android",
+    "androidDesc": "Android 7.0 or later",
+    "download": "Go to downloads",
+    "allDownloads": "See all download options",
+    "note": "This page is informational only: we never collect account details or passwords on the web, and this page will not redirect you elsewhere.",
+    "inviteTitle": "Where to get an invite code",
+    "inviteLede": "Invite codes are only needed for registration. Subscriptions and Chrono Dew don’t require one — you can check out directly.",
+    "cnLabel": "Mainland China",
+    "cnDesc": "Join the QQ group — codes are handed out there.",
+    "cnCta": "Join the QQ group",
+    "intlLabel": "Rest of the world",
+    "intlDesc": "Fill in the waitlist and join our Discord to get a code.",
+    "intlCta": "Join Discord",
+    "inviteNote": "Subscriptions and credit purchases use their own checkout flow and never need an invite code."
   }
 }
