@@ -32,7 +32,7 @@
     },
     "download": {
       "title": "下载 Sholarel — Windows 与 Android",
-      "description": "下载 Sholarel 的 Windows（EXE）与 Android（APK）客户端，公开测试中。网页版为邀请制内测；macOS、iOS 与 Linux 暂不支持。",
+      "description": "下载 Sholarel 的 Windows（EXE）与 Android（APK）客户端，公开测试中。官网只提供下载，注册与登录都在客户端内完成；macOS、iOS 与 Linux 暂不支持。",
       "keywords": "Sholarel, 下载, Windows 客户端, EXE, Android APK, AI 陪伴下载, AI 桌宠下载"
     },
     "about": {

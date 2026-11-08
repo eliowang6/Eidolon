@@ -32,7 +32,7 @@
     },
     "download": {
       "title": "Download Sholarel — Windows and Android",
-      "description": "Download Sholarel for Windows (EXE) and Android (APK), now in public beta. The web app is invite-only for now; macOS, iOS and Linux aren’t supported yet.",
+      "description": "Download Sholarel for Windows (EXE) and Android (APK), now in public beta. The site only serves downloads — sign-up and sign-in both happen inside the app; macOS, iOS and Linux aren’t supported yet.",
       "keywords": "Sholarel, download, Windows app, EXE, Android APK, AI companion download, desktop pet download"
     },
     "about": {
