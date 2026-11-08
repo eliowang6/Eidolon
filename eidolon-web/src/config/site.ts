@@ -10,11 +10,11 @@ export const SITE = {
     // 已无生产者。Windows 按钮的地址由 scripts/site.ts 在页面加载时从
     // release.windows 清单里取**版本化 NSIS 包**回填（见 DownloadPage.astro
     // 的 data-dl-manifest），所以发版既不需要改这里、也不需要重建官网。
-    android: 'https://cdn.instarmony.com/Eidolon_latest.apk',
+    android: 'https://cdn.instarmony.com/Sholarel_latest.apk',
   },
   // 备用线路：R2 直连域名，和主线路是同一个 bucket。主线路探测不通时自动切换。
   downloadsFallback: {
-    android: 'https://storage.instarmony.com/Eidolon_latest.apk',
+    android: 'https://storage.instarmony.com/Sholarel_latest.apk',
   },
   // 下载页版本号的唯一来源：应用服务端的 updater 端点。每次发版由发布管线写入
   // manifest，页面只读不写，所以发版不需要改文案、也不需要重新构建官网。
