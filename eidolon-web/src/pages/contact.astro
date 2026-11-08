@@ -1,21 +1,11 @@
-<!doctype html>
-<html lang="zh-Hans">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sholarel · 正在前往关于页</title>
-  <meta name="robots" content="noindex, follow" />
-  <link rel="canonical" href="https://sholarel.instarmony.com/about.html#contact" />
-  <meta http-equiv="refresh" content="0; url=/about.html#contact" />
-  <script is:inline>location.replace('/about.html#contact');</script>
-  <style>
-    :root { color-scheme: dark; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #0e1131; color: rgba(238, 240, 255, 0.68); font: 15px/1.7 Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; text-align: center; }
-    a { color: #eef0ff; text-decoration: none; border-bottom: 1px solid rgba(238, 240, 255, 0.32); }
-    a:hover { border-color: #eef0ff; }
-  </style>
-</head>
-<body>
-  <p>正在前往联系方式……<a href="/about.html#contact">如果没有自动跳转，请点这里</a></p>
-</body>
-</html>
+---
+import Base from '../layouts/Base.astro';
+import ContactPage from '../components/pages/ContactPage.astro';
+import { t } from '../i18n';
+
+const lang = 'zh' as const;
+const copy = t(lang);
+---
+<Base lang={lang} path="/contact.html" title={copy.meta.contact.title} description={copy.meta.contact.description} keywords={copy.meta.contact.keywords}>
+  <ContactPage lang={lang} />
+</Base>

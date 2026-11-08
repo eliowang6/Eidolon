@@ -677,6 +677,9 @@ const facts = [
     translate: 0 -4px;
     box-shadow: var(--sh-2);
   }
+  .plan:not(.plan--start):hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
   .plan--start {
     border: 1.5px solid transparent;
     background:
@@ -735,9 +738,8 @@ const facts = [
   }
   .plan-start {
     position: absolute;
-    top: 0;
-    right: 22px;
-    translate: 0 -50%;
+    top: 16px;
+    right: 18px;
     padding: 5px 12px;
     border-radius: var(--r-full);
     background: var(--holo);
@@ -860,9 +862,9 @@ const facts = [
     color: var(--ink-3);
   }
   .plan-model b {
-    font-family: var(--f-mono);
+    font-family: var(--f-body);
     font-size: 13.5px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--ink);
   }
 
@@ -1003,9 +1005,9 @@ const facts = [
   }
   .fable-act {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
   .fable-act .plan-cta {
     width: auto;
@@ -1344,9 +1346,9 @@ const facts = [
   }
   .co-note {
     margin-top: 16px;
-    font-size: 12.5px;
+    font-size: 13px;
     line-height: 1.7;
-    color: var(--ink-3);
+    color: var(--ink-2);
   }
   @media (max-width: 559px) {
     /* a sheet from the bottom on phones */

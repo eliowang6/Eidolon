@@ -40,6 +40,11 @@
       "description": "Where Sholarel came from, its two companions Fea and Ael, and who builds it. Investors and partners can find how to reach us here.",
       "keywords": "Sholarel, Eidolon, Instarmony, Fea, Ael, team, investors, partners"
     },
+    "contact": {
+      "title": "Contact Sholarel",
+      "description": "Where to send feedback, get support, report content, or raise a privacy question.",
+      "keywords": "Sholarel, contact, feedback, support, GitHub Issues, privacy"
+    },
     "docs": {
       "title": "Docs — Sholarel",
       "description": "Official Sholarel documentation: quick start, FAQ, SubAgent and tool development, and the bilingual documentation hub.",

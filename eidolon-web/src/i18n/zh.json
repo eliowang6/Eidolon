@@ -40,6 +40,11 @@
       "description": "Sholarel 的由来、两位官方角色 Fea 与 Ael，以及做它的人。投资人与合作伙伴的联系方式也在这里。",
       "keywords": "Sholarel, Eidolon, Instarmony, Fea, Ael, 团队, 投资人, 合作"
     },
+    "contact": {
+      "title": "联系 Sholarel",
+      "description": "用户反馈、客服支持、内容举报与隐私问题的联系入口。",
+      "keywords": "Sholarel, 联系我们, 用户反馈, 客服支持, GitHub Issues"
+    },
     "docs": {
       "title": "文档 — Sholarel",
       "description": "Sholarel 官方文档：快速上手、常见问题、SubAgent 与工具开发，以及中英双语文档中心。",

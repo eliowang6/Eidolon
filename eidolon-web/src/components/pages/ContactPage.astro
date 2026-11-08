@@ -1,0 +1,140 @@
+---
+/** Contact page: the four channels live here so /contact lands on the content itself, not mid-About. */
+import PageHero from '../PageHero.astro';
+import { SITE } from '../../config/site';
+import { t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const a = copy.aboutPage.contact;
+
+const hrefs: Record<string, string> = {
+  issues: `${SITE.social.github}/issues`,
+  support: `mailto:${SITE.contactEmail}`,
+  report: 'mailto:report@instarmony.com',
+  privacy: 'mailto:privacy@instarmony.com',
+};
+const icons: Record<string, string> = {
+  issues:
+    '<path d="M20.5 12a8.5 8.5 0 0 1-12.3 7.6L3.5 20.5l1-4.4A8.5 8.5 0 1 1 20.5 12Z"/><path d="M12 7.8v4.6M12 15.8v.1"/>',
+  support:
+    '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4.5 7.5 7.5 5.5 7.5-5.5"/>',
+  report: '<path d="M5.5 21V4"/><path d="M5.5 4.5h11.5l-2.2 4 2.2 4H5.5"/>',
+  privacy:
+    '<path d="M12 3 5 6v5.2c0 4.3 2.9 8.1 7 9.8 4.1-1.7 7-5.5 7-9.8V6l-7-3Z"/><path d="m9.2 12.2 2 2 3.8-4"/>',
+};
+---
+
+<PageHero label={a.label} h1a={a.h2} />
+
+<section class="section contact">
+  <div class="container">
+    <ul class="ct-grid">
+      {
+        a.cards.map((c, i) => {
+          const ext = c.k === 'issues';
+          return (
+            <li class="reveal" style={`--i:${i}`}>
+              <a
+                class:list={['ct-card', `ct-card--${c.k}`]}
+                href={hrefs[c.k]}
+                target={ext ? '_blank' : undefined}
+                rel={ext ? 'noopener' : undefined}
+              >
+                <svg class="ct-ico" viewBox="0 0 24 24" aria-hidden="true" set:html={icons[c.k]} />
+                <span class="ct-t">{c.t}</span>
+                <span class="ct-d">{c.d}</span>
+                <span class="ct-link">
+                  {c.link}
+                  <span aria-hidden="true">{ext ? ' ↗' : ' →'}</span>
+                </span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: clamp(56px, 8vw, 104px) 0;
+  }
+  .ct-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ct-grid li {
+    display: flex;
+  }
+  .ct-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 26px 24px 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--card);
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color var(--t-fast) var(--ease),
+      box-shadow var(--t-fast) var(--ease),
+      transform var(--t-fast) var(--ease);
+  }
+  .ct-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+    box-shadow: var(--sh-1);
+    transform: translateY(-2px);
+  }
+  .ct-ico {
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+    border-radius: 13px;
+    background: var(--accent-wash);
+    color: var(--accent-ink);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .ct-t {
+    margin-top: 18px;
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+  .ct-d {
+    flex: 1;
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+  .ct-link {
+    margin-top: 18px;
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    color: var(--accent-ink);
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 1080px) {
+    .ct-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 560px) {
+    .ct-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
