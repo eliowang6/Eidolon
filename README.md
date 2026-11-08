@@ -260,6 +260,18 @@ an exhausted Baidu quota or a malformed body only prints a `[WARN]`/log line and
 never changes the publish result. Skip it with `--no-push`; `--dry-run` runs it
 in plan-only mode (no requests, no state written).
 
+**Baidu is switched off by default.** `SEO_BAIDU_ENABLED` is a master switch and
+only `1` (or `true`) turns it on. While it is off — the default, because the
+`sholarel.instarmony.com` property has not passed 百度 verification yet — a
+normal deploy sends **zero** requests to `data.zz.baidu.com` even when the sitemap
+and the state file still contain pending URLs. Those URLs stay pending in the
+ledger untouched, so publishing the switch on later resumes exactly where it
+stopped. To enable it: put `SEO_BAIDU_ENABLED=1` in the repo-root `.env` (that
+file is read automatically) or prefix the command
+(`SEO_BAIDU_ENABLED=1 node scripts/seo-submit.mjs push`). To disable it again,
+remove the line or set it to `0`. `--dry-run` still reports the pending Baidu
+counts while the switch is off.
+
 What gets pushed:
 
 - **IndexNow** (Bing/Yandex/Naver share it) — every URL whose page file is new

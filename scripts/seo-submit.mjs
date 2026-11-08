@@ -28,6 +28,12 @@
  *   SEO_BAIDU_REWRITE_HOST_EIDOLON   Same for sholarel.instarmony.com
  *                              (use when 百度 registered www.x but the site's
  *                               canonical host is the bare domain)
+ *   SEO_BAIDU_ENABLED=1        Master switch for Baidu push. Default is OFF:
+ *                              unless this is exactly 1/true, nothing is sent
+ *                              to data.zz.baidu.com even when the sitemap and
+ *                              the state file still hold pending URLs (the
+ *                              sub-domain property is not verified yet). While
+ *                              off, pending URLs stay in the state untouched.
  *   SEO_BAIDU_INCLUDE_EN=1     Legacy switch; /en/ pages are now queued behind
  *                              every zh page and only pushed with leftover quota
  *                              (see SEO_BAIDU_EN_MAX). Set to 0 to drop them.
@@ -497,6 +503,19 @@ async function pushIndexNow(site, urls, state, dryRun) {
 }
 
 async function pushBaidu(site, queues, hashes, state, dryRun) {
+  // Master switch, checked before anything else so a normal deploy can never
+  // reach data.zz.baidu.com by accident. Default OFF: the sub-domain property
+  // is still pending 百度 verification. Nothing is sent and no state is written
+  // while off, so the pending URLs simply wait for the switch to be turned on.
+  const enabled = process.env.SEO_BAIDU_ENABLED;
+  if (enabled !== '1' && enabled !== 'true') {
+    console.log(
+      `[Baidu] ${site.host}: 推送已关闭（SEO_BAIDU_ENABLED=${enabled ?? '未设置'}，设为 1 才开启）` +
+        `，待推 zh ${queues.zh.length} / en ${queues.en.length} 留在账本，本次发出 0 条`
+    );
+    return;
+  }
+
   const token = process.env[site.baiduEnv];
   if (!token) {
     console.log(`[Baidu] ${site.host}: skipped (${site.baiduEnv} not set)`);
