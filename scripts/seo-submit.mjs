@@ -35,11 +35,10 @@
  *                              the state file still hold pending URLs (the
  *                              sub-domain property is not verified yet). While
  *                              off, pending URLs stay in the state untouched.
- *   SEO_BAIDU_INCLUDE_EN=1     Legacy switch; /en/ pages are now queued behind
- *                              every zh page and only pushed with leftover quota
- *                              (see SEO_BAIDU_EN_MAX). Set to 0 to drop them.
- *   SEO_BAIDU_MAX_PER_RUN      Baidu URLs per deploy run (default: 10)
- *   SEO_BAIDU_EN_MAX           Max /en/ URLs per run once zh is drained (default: 2)
+ *   SEO_BAIDU_INCLUDE_EN=0     Drop /en/ pages from the Baidu queue (they sit
+ *                              behind zh within the same priority tier).
+ *                              There is no per-run cap: every response's
+ *                              `remain` is read and the loop stops at 0.
  *   SEO_GSC_ACCESS_TOKEN       Google OAuth2 token with Search Console scope
  *   SEO_PUSH_STATE_PATH        Override the incremental state file location
  *   SEO_BAIDU_ENDPOINT / SEO_INDEXNOW_ENDPOINT
@@ -163,6 +162,12 @@ Allow: /
 Sitemap: https://sholarel.instarmony.com/sitemap.xml
 `;
 
+// Docusaurus 把搜索页也写进了自己的 sitemap。它是纯前端组件页、没有独立内容，
+// 既不该出现在站点地图里，也不该占百度逐条配额。源头的正确修法是
+// docs/docusaurus.config.ts 的 sitemap.ignorePatterns；这里先把合并这一步兜住，
+// 顺带清掉已经并进去的历史条目。
+const DOCS_SITEMAP_EXCLUDE = new Set(['/docs/search']);
+
 // ---------------------------------------------------------------------------
 // incremental push state
 // ---------------------------------------------------------------------------
@@ -211,26 +216,46 @@ function hostState(state, host) {
 
 const isEnglish = (u) => /\/en(\/|$)/.test(new URL(u).pathname);
 
-// Baidu 普通收录 API has a hard daily quota (10 URLs/day on this account), so
-// the queue is spent in product-priority order instead of sitemap order:
-// 首页 > 下载页 > 定价页 > features > how-it-works > 文档首页 > FAQ > 其余.
-const BAIDU_PRIORITY = [
-  '/',
-  '/download.html',
-  '/pricing.html',
-  '/features.html',
-  '/how-it-works.html',
-  '/docs/',
-  '/docs/faq',
+// 百度普通收录的额度按站点计、每天重置，且紧到只有个位数到十位数——所以配额
+// 只花在最重要的营销页上。文档正文（60 条）不进逐条队列：它们靠 sitemap 让
+// 百度自己爬，拿配额去撞文档是最坏的用法。
+//
+// 档位越靠前越先推；同档内 中文优先 → 从未推过的优先 → 最久没推的优先
+// （按 push-state.json 的 pushedAt）。这样不会每次都从首页重新花额度。
+const BAIDU_TIERS = [
+  { key: 'P0', label: '入口页', paths: ['/', '/download.html', '/docs/'] },
+  {
+    key: 'P1',
+    label: '核心转化页',
+    paths: ['/pricing.html', '/features.html', '/how-it-works.html', '/dew.html', '/beta.html'],
+  },
+  {
+    key: 'P2',
+    label: '其余营销页',
+    paths: ['/about.html', '/register.html', '/privacy.html', '/terms.html'],
+  },
 ];
 
-/** Priority slot for a URL; unlisted docs pages come before other marketing pages. */
-function baiduRank(rawUrl) {
-  let p = new URL(rawUrl).pathname;
-  if (p.startsWith('/en/')) p = p.slice(3);
-  const i = BAIDU_PRIORITY.indexOf(p);
-  if (i !== -1) return i;
-  return p.startsWith('/docs/') ? BAIDU_PRIORITY.length : BAIDU_PRIORITY.length + 1;
+const BAIDU_TIER_BY_PATH = new Map();
+BAIDU_TIERS.forEach((tier, index) => {
+  for (const path of tier.paths) BAIDU_TIER_BY_PATH.set(path, index);
+});
+
+/** 只有中文文档入口进队列；其余 /docs/ 与 /en/docs/ 正文一律不排队。 */
+const BAIDU_DOCS_ENTRY = '/docs/';
+
+/**
+ * 百度优先级档位；-1 表示这条 URL 不进入百度逐条队列。
+ * 中英文同一页共用一档（/en/ 前缀先剥掉再查表）。
+ */
+function baiduTierOf(rawUrl) {
+  const pathname = new URL(rawUrl).pathname;
+  const isDocs = pathname.startsWith('/docs/') || pathname.startsWith('/en/docs/');
+  if (isDocs && pathname !== BAIDU_DOCS_ENTRY) return -1;
+  const path = pathname.startsWith('/en/') ? pathname.slice(3) : pathname;
+  const known = BAIDU_TIER_BY_PATH.get(path);
+  // 新加但没登记档位的营销页不丢弃，排在最后一档之后。
+  return known === undefined ? BAIDU_TIERS.length : known;
 }
 
 /** Candidate local files for a sitemap URL, in serve order. */
@@ -267,15 +292,16 @@ function pageHash(site, url) {
 /**
  * Split the sitemap into what still needs pushing.
  *
- * IndexNow has no quota, so it takes every changed URL. Baidu is quota-bound,
- * so its queue is split zh-first / en-last and anything already accepted with
- * the same page hash is dropped.
+ * IndexNow has no quota, so it takes every changed URL. Baidu is quota-bound, so
+ * its queue is: marketing pages only (docs bodies are left to the sitemap),
+ * ordered by priority tier, then zh before en, then never-pushed, then the one
+ * pushed longest ago.
  */
 function planPush(site, urls, state, { forceIndexNow, forceBaidu }) {
   const hs = hostState(state, site.host);
   const hashes = {};
   const indexNow = [];
-  const baidu = { zh: [], en: [] };
+  const baidu = [];
   for (const url of urls) {
     const hash = pageHash(site, url);
     hashes[url] = hash;
@@ -284,16 +310,24 @@ function planPush(site, urls, state, { forceIndexNow, forceBaidu }) {
       indexNow.push(url);
     }
 
+    const tier = baiduTierOf(url);
+    if (tier < 0) continue; // 文档正文：不占用逐条配额
+    if (process.env.SEO_BAIDU_INCLUDE_EN === '0' && isEnglish(url)) continue;
     const record = hs.baidu?.[url];
     const changed = !!(hash && record?.hash && hash !== record.hash);
     const stale = forceBaidu || !record || record.status !== 'accepted' || changed;
-    if (stale) (isEnglish(url) ? baidu.en : baidu.zh).push(url);
+    if (stale) baidu.push({ url, tier, record });
   }
-  // The quota is the scarce resource, so spend it on the pages that matter
-  // first. Array#sort is stable, so same-rank URLs keep their sitemap order.
-  baidu.zh.sort((a, b) => baiduRank(a) - baiduRank(b));
-  baidu.en.sort((a, b) => baiduRank(a) - baiduRank(b));
-  return { hashes, indexNow, baidu };
+  // The quota is the scarce resource: tier first, then rotation so the homepage
+  // is not re-spent every run. Array#sort is stable, so ties keep sitemap order.
+  baidu.sort(
+    (a, b) =>
+      a.tier - b.tier ||
+      Number(isEnglish(a.url)) - Number(isEnglish(b.url)) ||
+      Number(!!a.record) - Number(!!b.record) ||
+      String(a.record?.pushedAt ?? '').localeCompare(String(b.record?.pushedAt ?? ''))
+  );
+  return { hashes, indexNow, baidu: baidu.map((entry) => entry.url) };
 }
 
 function countRecorded(host, engine, status) {
@@ -384,11 +418,23 @@ function generateSub() {
     if (!existsSync(docSitemap)) continue;
     const xml = readFileSync(docSitemap, 'utf8');
     for (const m of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
-      docsLocs.push(m[1].trim());
+      const loc = m[1].trim();
+      if (DOCS_SITEMAP_EXCLUDE.has(new URL(loc).pathname)) continue;
+      docsLocs.push(loc);
     }
   }
   if (docsLocs.length) {
-    const current = readFileSync(flat, 'utf8');
+    let current = readFileSync(flat, 'utf8');
+    // 之前几轮已经把 /docs/search 并进去了；这里把带排除名单的 <url> 块删掉，
+    // 否则增量合并永远只在“已有”和“新增”之间摇摆，坏条目会一直留着。
+    const purged = current.replace(/[ \t]*<url>\s*<loc>([^<]+)<\/loc>[\s\S]*?<\/url>[ \t]*\r?\n?/g, (block, loc) =>
+      DOCS_SITEMAP_EXCLUDE.has(new URL(loc).pathname) ? '' : block
+    );
+    if (purged !== current) {
+      current = purged;
+      writeFileSync(flat, current, 'utf8');
+      console.log(`[OK] sholarel.instarmony.com: dropped ${[...DOCS_SITEMAP_EXCLUDE].join(', ')} from sitemap.xml`);
+    }
     // Docusaurus emits absolute URLs against the url it was built with, which
     // is the product sub-domain — the same origin this sitemap belongs to.
     //
@@ -559,16 +605,15 @@ async function pushIndexNow(site, urls, state, dryRun) {
   console.log(`[IndexNow] ${site.host}: ${ok ? 'OK' : 'FAILED'} (status ${r.status}, ${urls.length} URLs)${note}`);
 }
 
-async function pushBaidu(site, queues, hashes, state, dryRun) {
+async function pushBaidu(site, queue, hashes, state, dryRun) {
   // Master switch, checked before anything else so a normal deploy can never
-  // reach data.zz.baidu.com by accident. Default OFF: the sub-domain property
-  // is still pending 百度 verification. Nothing is sent and no state is written
-  // while off, so the pending URLs simply wait for the switch to be turned on.
+  // reach data.zz.baidu.com by accident. Nothing is sent and no state is
+  // written while off, so the pending URLs simply wait for the switch.
   const enabled = process.env.SEO_BAIDU_ENABLED;
   if (enabled !== '1' && enabled !== 'true') {
     console.log(
       `[Baidu] ${site.host}: 推送已关闭（SEO_BAIDU_ENABLED=${enabled ?? '未设置'}，设为 1 才开启）` +
-        `，待推 zh ${queues.zh.length} / en ${queues.en.length} 留在账本，本次发出 0 条`
+        `，待推 ${queue.length} 条留在账本，本次发出 0 条`
     );
     return;
   }
@@ -579,33 +624,22 @@ async function pushBaidu(site, queues, hashes, state, dryRun) {
     return;
   }
 
-  // Quota is per site and starts around 10 URLs/day, so a run is capped and
-  // zh pages are spent first. /en/ pages are not dropped outright — they are
-  // queued behind every zh page and only take the leftover budget, because
-  // they do get indexed for English queries but cannot compete for the scarce
-  // allowance.
-  const maxPerRun = Math.max(1, Number(process.env.SEO_BAIDU_MAX_PER_RUN || 10));
-  const enMax = Math.max(0, Number(process.env.SEO_BAIDU_EN_MAX ?? 2));
-  const dropEn = process.env.SEO_BAIDU_INCLUDE_EN === '0';
-  const enPending = dropEn ? [] : queues.en;
-  const zhPlan = queues.zh.slice(0, maxPerRun);
-  const enPlan = enPending.slice(0, Math.min(enMax, Math.max(0, maxPerRun - zhPlan.length)));
-  const planned = [...zhPlan, ...enPlan];
   const hs = hostState(state, site.host);
   const alreadyAccepted = countRecorded(hs, 'baidu', 'accepted');
 
   console.log(
-    `[Baidu] ${site.host}: 待推 zh ${queues.zh.length} / en ${enPending.length}` +
-      `，本次计划 zh ${zhPlan.length} / en ${enPlan.length}` +
-      `，历史已成功 ${alreadyAccepted}，每次上限 ${maxPerRun}` +
-      (dropEn ? '（SEO_BAIDU_INCLUDE_EN=0，/en/ 不推）' : '')
+    `[Baidu] ${site.host}: 待推 ${queue.length} 条（按 P0/P1/P2 优先级，文档正文不排队）` +
+      `，历史已成功 ${alreadyAccepted}，逐条推送并逐条读 remain`
   );
-  if (!planned.length) {
+  if (!queue.length) {
     console.log(`[Baidu] ${site.host}: 无新增或变更 URL，跳过（不消耗配额）`);
     return;
   }
   if (dryRun) {
-    console.log(`[DRY-RUN] [Baidu] ${site.host}: would submit ${planned.length} URL(s); 未发送请求，配额未知，state 不写入`);
+    console.log(
+      `[DRY-RUN] [Baidu] ${site.host}: would submit ${queue.length} URL(s) one by one, ` +
+        `${queue.slice(0, 5).join(', ')}${queue.length > 5 ? ' …' : ''}；未发送请求，配额未知，state 不写入`
+    );
     return;
   }
 
@@ -616,52 +650,119 @@ async function pushBaidu(site, queues, hashes, state, dryRun) {
   // dropping the submission.
   const rewriteHost = process.env[site.baiduRewriteEnv];
   if (rewriteHost) console.log(`[Baidu] ${site.host}: rewriting host to ${rewriteHost}`);
-  const sentUrls = rewriteHost
-    ? planned.map((u) => {
-        const url = new URL(u);
-        url.host = rewriteHost;
-        return url.href;
-      })
-    : planned;
+  const endpoint = process.env.SEO_BAIDU_ENDPOINT || 'http://data.zz.baidu.com/urls';
+  const apiUrl = `${endpoint}?site=${encodeURIComponent(baiduSite)}&token=${encodeURIComponent(token)}`;
 
   let accepted = 0;
+  let attempted = 0;
   let remain = null;
   let stopReason = '';
-  let cursor = 0;
-  while (cursor < sentUrls.length) {
-    if (remain === 0) {
-      stopReason = 'API 返回 remain=0（当日配额已用尽）';
+
+  // 一条一次：配额是唯一稀缺资源，每推一条就知道当天还剩多少，到 0 立刻停。
+  // 额度不写死在代码里——这个账号的额度我们事先并不知道，只有响应里的 remain 才算数。
+  for (const sourceUrl of queue) {
+    if (remain !== null && remain <= 0) {
+      stopReason = `上一条返回 remain=${remain}（当日配额已用尽）`;
       break;
     }
-    const chunk = sentUrls.slice(cursor, cursor + 50);
-    const r = await request(
-      `${process.env.SEO_BAIDU_ENDPOINT || 'http://data.zz.baidu.com/urls'}?site=${encodeURIComponent(baiduSite)}&token=${encodeURIComponent(token)}`,
-      { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: chunk.join('\n') }
-    );
+
+    let submitted = sourceUrl;
+    if (rewriteHost) {
+      const rewritten = new URL(sourceUrl);
+      rewritten.host = rewriteHost;
+      submitted = rewritten.href;
+    }
+
+    attempted++;
+    const pushedAt = new Date().toISOString();
+    const r = await request(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: submitted,
+    });
+
     let json = null;
     try {
       json = JSON.parse(r.text);
     } catch {
       json = null;
     }
+
+    hs.baidu ??= {};
+    const prev = hs.baidu[sourceUrl];
+
     if (!json) {
-      stopReason = `HTTP ${r.status}（响应不是 JSON）`;
-      console.log(`[Baidu] ${site.host}: HTTP ${r.status} ${r.text.slice(0, 120)} — 本轮停止，未记为成功`);
+      const reason = `HTTP ${r.status}（响应不是 JSON）`;
+      console.log(`[Baidu] ${site.host}: ${sourceUrl} → HTTP ${r.status} ${r.text.slice(0, 120)}`);
+      // 失败绝不覆盖已经成功的记录（IndexNow 那边的坑）。
+      if (prev?.status !== 'accepted') {
+        hs.baidu[sourceUrl] = { hash: hashes[sourceUrl] ?? null, pushedAt, status: 'failed', reason };
+      }
+      logBaiduPush([
+        { at: pushedAt, host: site.host, site: baiduSite, url: sourceUrl, submitted, status: 'failed', reason, remain },
+      ]);
+      stopReason = reason;
       break;
     }
 
-    const success = json.success ?? 0;
-    accepted += success;
     if (json.remain !== undefined) remain = json.remain;
-    if (json.not_same_site?.length) {
+    const success = json.success ?? 0;
+
+    if (success >= 1) {
+      accepted++;
+      hs.baidu[sourceUrl] = {
+        hash: hashes[sourceUrl] ?? null,
+        pushedAt,
+        status: 'accepted',
+        remain: json.remain ?? null,
+      };
+      logBaiduPush([
+        {
+          at: pushedAt,
+          host: site.host,
+          site: baiduSite,
+          url: sourceUrl,
+          submitted,
+          status: 'accepted',
+          reason: null,
+          remain: json.remain ?? null,
+        },
+      ]);
       console.log(
-        `[Baidu] ${site.host}: ${json.not_same_site.length} URL(s) not_same_site — ` +
-          `registered site is ${baiduSite}, URLs are on ${site.host}. ` +
-          `Set ${site.baiduRewriteEnv} or register ${site.origin} in 百度平台.`
+        `[Baidu] ${site.host}: ${sourceUrl} → 成功，remain=${json.remain ?? '未知'}`
       );
-    }
-    if (json.error) {
-      console.log(`[Baidu] ${site.host}: error ${json.error} — ${json.message ?? ''}`);
+    } else {
+      const reason = json.error
+        ? `error ${json.error}: ${json.message ?? ''}`
+        : json.not_same_site?.length
+          ? 'not_same_site'
+          : json.not_valid?.length
+            ? 'not_valid'
+            : 'rejected';
+      console.log(`[Baidu] ${site.host}: ${sourceUrl} → 被拒：${reason}`);
+      if (prev?.status !== 'accepted') {
+        hs.baidu[sourceUrl] = {
+          hash: hashes[sourceUrl] ?? null,
+          pushedAt,
+          status: 'failed',
+          reason,
+          remain: json.remain ?? null,
+        };
+      } else {
+        console.log(`[Baidu] ${site.host}: 该 URL 之前已成功过，保留原 accepted 记录不被覆盖`);
+      }
+      logBaiduPush([
+        {
+          at: pushedAt,
+          host: site.host,
+          site: baiduSite,
+          url: sourceUrl,
+          submitted,
+          status: 'rejected',
+          reason,
+          remain: json.remain ?? null,
+        },
+      ]);
       if (/site init fail/i.test(json.message ?? '')) {
         console.log(
           `[Baidu]   hint: "site" 参数必须与平台上注册的站点完全一致（含协议）。` +
@@ -669,71 +770,26 @@ async function pushBaidu(site, queues, hashes, state, dryRun) {
         );
       }
       if (/over quota/i.test(json.message ?? '')) {
-        console.log(
-          `[Baidu]   hint: 当日配额用完了。普通收录 API 的额度按站点计、每天重置，` +
-            `额度很紧（通常 10 条/天起）——明天再跑一次即可。`
-        );
+        console.log(`[Baidu]   hint: 当日配额用完了（remain=${json.remain ?? '未知'}），明天再跑。`);
       }
-    }
-
-    // The API reports a count, not which URLs, but it processes the list in
-    // order — the first `success` entries are the accepted ones. Everything
-    // after them stays pending for the next run.
-    hs.baidu ??= {};
-    const pushedAt = new Date().toISOString();
-    const notSame = new Set(json.not_same_site ?? []);
-    const notValid = new Set(json.not_valid ?? []);
-    const rejectReason = json.error
-      ? `api error ${json.error}: ${json.message ?? ''}`
-      : `quota-limited: ${success}/${chunk.length} accepted, remain ${json.remain ?? 'unknown'}`;
-    const logEntries = [];
-    for (let i = 0; i < chunk.length; i++) {
-      const sourceUrl = planned[cursor + i];
-      const acceptedHere = i < success;
-      if (acceptedHere) {
-        hs.baidu[sourceUrl] = { hash: hashes[sourceUrl] ?? null, pushedAt, status: 'accepted' };
-      }
-      logEntries.push({
-        at: pushedAt,
-        host: site.host,
-        site: baiduSite,
-        url: sourceUrl,
-        submitted: chunk[i],
-        status: acceptedHere ? 'accepted' : 'rejected',
-        reason: acceptedHere
-          ? null
-          : notSame.has(chunk[i])
-            ? 'not_same_site'
-            : notValid.has(chunk[i])
-              ? 'not_valid'
-              : rejectReason,
-        remain: json.remain ?? null,
-      });
-    }
-    logBaiduPush(logEntries);
-
-    if (json.error) {
-      stopReason = json.message ? `error ${json.error}: ${json.message}` : `error ${json.error}`;
+      stopReason = reason;
       break;
     }
-    if (success < chunk.length) {
-      stopReason = `接口本次只接受 ${success}/${chunk.length} 条（配额或 URL 校验限制）`;
+
+    if (remain !== null && remain <= 0) {
+      stopReason = `remain=${remain}（当日配额已用尽）`;
       break;
     }
-    cursor += chunk.length;
   }
 
-  const acceptedZh = Math.min(accepted, zhPlan.length);
-  const acceptedEn = Math.max(0, accepted - acceptedZh);
   console.log(
-    `[Baidu] ${site.host}: 提交 ${planned.length} 条，成功 ${accepted} 条，被拒 ${planned.length - accepted} 条` +
-      `，剩余配额 ${remain === null ? '未知（本次响应未返回 remain）' : remain}` +
+    `[Baidu] ${site.host}: 尝试 ${attempted} 条，成功 ${accepted} 条，剩余配额 ` +
+      `${remain === null ? '未知（响应未返回 remain）' : remain}` +
       (stopReason ? `，停止原因：${stopReason}` : '')
   );
   console.log(`[Baidu] ${site.host}: 逐条结果已追加到 ${BAIDU_LOG_PATH}`);
   console.log(
-    `[Baidu] ${site.host}: 仍待推 zh ${queues.zh.length - acceptedZh}` +
-      ` / en ${enPending.length - acceptedEn}（下次发布继续，不会重复推送已成功的 URL）`
+    `[Baidu] ${site.host}: 队列还剩 ${queue.length - accepted} 条待推（下次发布继续，已成功的不会再推）`
   );
 }
 
@@ -784,7 +840,7 @@ async function push({ forceIndexNow = false, forceBaidu = false, dryRun = false,
     console.log(
       `\n--- ${site.host}: sitemap ${urls.length} URLs` +
         `，本次变更 ${plan.indexNow.length}` +
-        `，Baidu 待推 zh ${plan.baidu.zh.length} / en ${plan.baidu.en.length}`
+        `，Baidu 待推 ${plan.baidu.length}（P0→P2，文档正文不排队）`
     );
     await pushIndexNow(site, plan.indexNow, state, dryRun);
     await pushBaidu(site, plan.baidu, plan.hashes, state, dryRun);
