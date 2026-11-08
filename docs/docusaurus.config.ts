@@ -60,6 +60,15 @@ const config: Config = {
   favicon: 'img/favicon.ico',
   customFields: {faq},
 
+  // Bing Webmaster Tools 域名验证。站点分主站与 /docs/ 两层，两边各放一份同一
+  // 标签，分别验证互不冲突；验证通过后必须长期保留，所以写在配置里而不是构建产物。
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {name: 'msvalidate.01', content: '4F7E04958E75B4572046A5BEC1D96432'},
+    },
+  ],
+
   // The docs ship on the product sub-domain, next to the pages they describe.
   // The old instarmony.com/docs/build/ paths are kept alive by 301 rules in
   // edgeone.json, so the two never compete in the index.
