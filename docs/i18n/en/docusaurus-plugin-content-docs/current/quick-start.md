@@ -29,10 +29,6 @@ Sholarel is available on **Windows Desktop**, **Android**, and **Web**.
 3. If prompted about "unknown sources", enable installation from unknown sources in your settings
 4. After installation, find Sholarel in your app list and open it
 
-### Web
-
-Open [https://web.eidolon.instarmony.com/](https://web.eidolon.instarmony.com/) in your browser — no installation needed. The web app is currently in invite-only beta: sign-up requires an invite code, and it is not publicly launched yet.
-
 :::tip Recommendation
 The desktop app offers the most complete experience, including floating window, desktop pet mode, auto-start on boot, and more. We recommend the desktop version when possible.
 :::

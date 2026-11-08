@@ -153,6 +153,11 @@ const p = (href: string) => localizePath(lang, href);
     gap: 10px;
   }
   .foot-cols a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-block: -11px;
+    padding-block: 11px;
     font-size: 14.5px;
     color: var(--night-dim);
     overflow-wrap: break-word;
@@ -164,6 +169,7 @@ const p = (href: string) => localizePath(lang, href);
   .foot-note {
     font-size: 13px;
     color: var(--night-faint);
+    word-break: keep-all;
   }
   .foot-bottom {
     display: flex;

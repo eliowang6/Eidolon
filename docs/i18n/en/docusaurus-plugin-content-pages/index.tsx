@@ -8,61 +8,68 @@ import {
   siteNameFor,
   websiteJsonLd,
 } from '../../../src/seo/site-meta';
+import FeatureIcon, { type FeatureIconName } from '../../../src/components/FeatureIcon';
+import { LATEST_VERSION } from '../../../src/version';
 
 const HOME_DESCRIPTION =
   'Sholarel docs: install, sign up and your first chat, then guides on text, voice and video calls, to-dos, memory, AI agents and theater, and a FAQ by topic.';
 
-const features = [
+const features: Array<{
+  icon: FeatureIconName;
+  title: string;
+  desc: string;
+  to: string;
+}> = [
   {
-    icon: '💬',
+    icon: 'chat',
     title: 'Smart Chat',
     desc: 'Text, voice, video — communicate with AI your way',
     to: '/features/chat',
   },
   {
-    icon: '🎙️',
+    icon: 'call',
     title: 'Voice & Video Calls',
     desc: 'Talk to AI like a phone call, or go face-to-face with video',
     to: '/features/video-call',
   },
   {
-    icon: '✅',
+    icon: 'todo',
     title: 'To-Do & Habits',
     desc: 'AI helps manage tasks, build habits, and track your mood',
     to: '/features/todo',
   },
   {
-    icon: '🎭',
+    icon: 'theater',
     title: 'Theater',
     desc: 'Immersive interactive stories — co-create with AI',
     to: '/features/theater',
   },
   {
-    icon: '🎨',
+    icon: 'image',
     title: 'AI Image Generation',
     desc: 'Generate beautiful images from text descriptions',
     to: '/features/image-generation',
   },
   {
-    icon: '🧠',
+    icon: 'memory',
     title: 'Long-Term Memory',
     desc: 'AI remembers every important moment — the more you chat, the better it knows you',
     to: '/features/memory',
   },
   {
-    icon: '⏰',
+    icon: 'focus',
     title: 'Focus & Reminders',
     desc: 'Pomodoro timer + alarm reminders — AI stays with you',
     to: '/features/focus-timer',
   },
   {
-    icon: '🤖',
+    icon: 'agent',
     title: 'AI Agent',
     desc: 'Let AI operate your computer, search the web, and execute tasks',
     to: '/features/agent',
   },
   {
-    icon: '🎨',
+    icon: 'theme',
     title: 'Themes & Personalization',
     desc: '9 beautiful themes, character models, voice customization',
     to: '/features/theme',
@@ -75,12 +82,6 @@ export default function Home(): React.JSX.Element {
   return (
     <Layout title={siteName} description={HOME_DESCRIPTION}>
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={siteName} />
         <meta name="twitter:title" content={siteName} />
@@ -103,7 +104,7 @@ export default function Home(): React.JSX.Element {
           <div className="eid-hero__content">
             <div className="eid-hero__badge">
               <span className="eid-hero__badge-dot" />
-              v2.0 Open Beta
+              v{LATEST_VERSION} Open Beta
             </div>
             <h1 className="eid-hero__title">
               <span className="eid-hero__title-line">Sholarel</span>
@@ -144,7 +145,7 @@ export default function Home(): React.JSX.Element {
             <div className="eid-features__grid">
               {features.map((f, i) => (
                 <Link key={i} className="eid-feature-card" to={f.to}>
-                  <span className="eid-feature-card__icon">{f.icon}</span>
+                  <span className="eid-feature-card__icon"><FeatureIcon name={f.icon} /></span>
                   <span className="eid-feature-card__title">{f.title}</span>
                   <span className="eid-feature-card__desc">{f.desc}</span>
                 </Link>

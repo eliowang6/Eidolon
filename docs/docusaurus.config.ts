@@ -82,6 +82,20 @@ const config: Config = {
     locales: ['zh-Hans', 'en'],
   },
 
+  themes: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['zh', 'en'],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        searchResultLimits: 8,
+        docsRouteBasePath: '/',
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',

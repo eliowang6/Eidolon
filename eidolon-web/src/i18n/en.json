@@ -125,7 +125,7 @@
     "terms": "Terms",
     "forget": "Forget me on this browser",
     "forgot": "Done — this browser’s settings are cleared.",
-    "langHint": "阅读本页的中文版本 →",
+    "langHint": "Read this page in Chinese →",
     "langHintClose": "Dismiss"
   },
   "featuresPage": {
@@ -1370,7 +1370,18 @@
           "off": "Delete anytime in Settings; deletion is permanent"
         }
       ],
-      "shotAlt": "The consent dialog in the app, asking before any proactive screen look or photo (real screen, Chinese UI)"
+      "shotAlt": "The consent dialog in the app, asking before any proactive screen look or photo",
+      "consent": {
+        "title": "Allow Sholarel to look at your screen / take a photo?",
+        "body": "Your companion wants to take a look at your screen or snap a photo, then follow up with a proactive message. It will not capture anything until you allow it.",
+        "points": [
+          "Screen contents may include private information",
+          "This will use your device camera to take one photo"
+        ],
+        "fine": "Choosing “Close” pauses this ability. It may ask again in 7 days, and will not ask again if you decline then. You can turn it back on anytime in Settings → Calls & Vision.",
+        "deny": "Close",
+        "allow": "Allow"
+      }
     },
     "pay": {
       "label": "Payments",

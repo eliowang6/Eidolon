@@ -82,32 +82,6 @@ On Android, if you want more accurate daily summaries, you need to grant "Usage 
 
 ---
 
-## Web
-
-### Usage
-
-Just open [https://web.eidolon.instarmony.com/](https://web.eidolon.instarmony.com/) in your browser — no installation needed.
-
-:::info The web app is currently in invite-only beta
-The web app is not publicly launched yet: an invite code is required to sign up, and the deployed version may temporarily lag behind the desktop client. Features and account data match the client; see the limitations below.
-:::
-
-### Browser Requirements
-
-- Chrome 90+, Edge 90+, Firefox 90+, Safari 15+
-- WebRTC support (required for audio/video calls)
-
-### Web Limitations
-
-The web version is mostly feature-complete, but the following are unavailable due to browser limitations:
-
-- Floating window mode
-- Auto-start on boot
-- Local notifications (alarm reminders)
-- Screen capture/recording
-
----
-
 ## Updates
 
 ### Desktop Updates

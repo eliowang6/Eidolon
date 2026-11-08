@@ -145,7 +145,7 @@ Sholarel's AI features **long-term memory**:
 - AI automatically remembers important information from conversations
 - Memory persists across sessions — even after closing and reopening the app, AI still remembers you
 - You can view what AI remembers on the **"Memory"** page
-- Memory supports search for easy回顾
+- Memory supports search for easy recall
 
 :::tip Help AI Remember You
 Tell AI about your preferences, habits, and important dates. For example: "I love watching movies on Friday nights", "My birthday is March 15th".

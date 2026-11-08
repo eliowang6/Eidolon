@@ -8,6 +8,8 @@ import {
   siteNameFor,
   websiteJsonLd,
 } from '../seo/site-meta';
+import FeatureIcon, { type FeatureIconName } from '../components/FeatureIcon';
+import { LATEST_VERSION } from '../version';
 
 const HOME_DESCRIPTION =
   'Sholarel 使用文档：从安装、注册到第一次对话，按章节讲清文字、语音与视频聊天、待办与习惯、长期记忆、AI 代理、小剧场与 AI 画图等功能的实际用法；常见问题按安装启动、账号、功能三类分组整理，方便逐项对照排查，也便于搜索直达具体条目。';
@@ -15,57 +17,62 @@ const HOME_DESCRIPTION =
 export default function Home(): React.JSX.Element {
   const {siteConfig, i18n} = useDocusaurusContext();
   const siteName = siteNameFor(i18n.currentLocale, siteConfig.title);
-  const features = [
+  const features: Array<{
+    icon: FeatureIconName;
+    title: string;
+    desc: string;
+    href: string;
+  }> = [
     {
-      icon: '💬',
+      icon: 'chat',
       title: '智能对话',
       desc: '文字、语音、视频，多种方式与 AI 自由交流',
       href: useBaseUrl('/features/chat'),
     },
     {
-      icon: '🎙️',
+      icon: 'call',
       title: '语音 & 视频通话',
       desc: '像打电话一样和 AI 对话，面对面视频陪伴',
       href: useBaseUrl('/features/video-call'),
     },
     {
-      icon: '✅',
+      icon: 'todo',
       title: '待办 & 习惯',
       desc: 'AI 帮你管理任务、养成好习惯、记录心情',
       href: useBaseUrl('/features/todo'),
     },
     {
-      icon: '🎭',
+      icon: 'theater',
       title: '小剧场',
       desc: '沉浸式互动剧情，与 AI 共创独特故事',
       href: useBaseUrl('/features/theater'),
     },
     {
-      icon: '🎨',
+      icon: 'image',
       title: 'AI 画图',
       desc: '用文字描述就能生成精美图片',
       href: useBaseUrl('/features/image-generation'),
     },
     {
-      icon: '🧠',
+      icon: 'memory',
       title: '长期记忆',
       desc: 'AI 记住你的每一个重要时刻，越聊越懂你',
       href: useBaseUrl('/features/memory'),
     },
     {
-      icon: '⏰',
+      icon: 'focus',
       title: '专注 & 提醒',
       desc: '番茄钟专注模式 + 闹钟提醒，AI 陪你一起',
       href: useBaseUrl('/features/focus-timer'),
     },
     {
-      icon: '🤖',
+      icon: 'agent',
       title: 'AI 代理',
       desc: '让 AI 帮你操作电脑、搜索信息、执行任务',
       href: useBaseUrl('/features/agent'),
     },
     {
-      icon: '🎨',
+      icon: 'theme',
       title: '主题 & 个性化',
       desc: '9 套精美主题、角色模型、声音定制',
       href: useBaseUrl('/features/theme'),
@@ -74,12 +81,6 @@ export default function Home(): React.JSX.Element {
   return (
     <Layout title={siteName} description={HOME_DESCRIPTION}>
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={siteName} />
         <meta name="twitter:title" content={siteName} />
@@ -103,7 +104,7 @@ export default function Home(): React.JSX.Element {
           <div className="eid-hero__content">
             <div className="eid-hero__badge">
               <span className="eid-hero__badge-dot" />
-              v2.0 Open Beta
+              v{LATEST_VERSION} Open Beta
             </div>
             <h1 className="eid-hero__title">
               <span className="eid-hero__title-line">Sholarel</span>
@@ -145,7 +146,7 @@ export default function Home(): React.JSX.Element {
             <div className="eid-features__grid">
               {features.map((f, i) => (
                 <a key={i} className="eid-feature-card" href={f.href}>
-                  <span className="eid-feature-card__icon">{f.icon}</span>
+                  <span className="eid-feature-card__icon"><FeatureIcon name={f.icon} /></span>
                   <span className="eid-feature-card__title">{f.title}</span>
                   <span className="eid-feature-card__desc">{f.desc}</span>
                 </a>

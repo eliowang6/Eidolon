@@ -205,7 +205,7 @@ function hideWhisper() {
     if (!whisper.classList.contains('show')) whisper.hidden = true;
   }, 520);
 }
-function showWhisper(key: string) {
+function showWhisper(key: string, anchor?: HTMLElement) {
   if (!whisper || !whisperText) return;
   const line = whisperLines[key];
   if (!line || seen.has(key)) return;
@@ -213,12 +213,29 @@ function showWhisper(key: string) {
   if (shownThisPage >= 2 || seen.size >= 3) return;
   if (Date.now() - lastShown < 25_000) return;
   if (drawerOpen) return;
+  // 小屏首屏不弹：气泡固定在底部，会压住 hero 里的 CTA
+  if (window.innerWidth < 700 && window.scrollY < window.innerHeight * 0.7) return;
+  whisperText.innerHTML = line;
+  whisper.hidden = false;
+  // 先量一遍，和触发它的元素重叠就这次不弹（不记 seen，之后可再试）
+  if (anchor) {
+    const bubble = whisper.getBoundingClientRect();
+    const target = anchor.getBoundingClientRect();
+    const pad = 12;
+    const overlap =
+      bubble.left < target.right + pad &&
+      bubble.right > target.left - pad &&
+      bubble.top < target.bottom + pad &&
+      bubble.bottom > target.top - pad;
+    if (overlap) {
+      whisper.hidden = true;
+      return;
+    }
+  }
   seen.add(key);
   setStored(seenKey, [...seen].join(','), session);
   shownThisPage += 1;
   lastShown = Date.now();
-  whisperText.innerHTML = line;
-  whisper.hidden = false;
   requestAnimationFrame(() => whisper.classList.add('show'));
   window.clearTimeout(hideTimer);
   hideTimer = window.setTimeout(hideWhisper, 9000);
@@ -245,7 +262,7 @@ if (whisper && whisperTargets.length && 'IntersectionObserver' in window) {
           dwell.set(
             el,
             window.setTimeout(() => {
-              showWhisper(el.dataset.whisper ?? '');
+              showWhisper(el.dataset.whisper ?? '', el);
               io.unobserve(el);
             }, delay),
           );

@@ -179,7 +179,7 @@ const whispers = Object.fromEntries(Object.entries(copy.whisper.lines).map(([key
         align-items: flex-start;
         gap: 12px;
         max-width: min(360px, calc(100vw - 28px));
-        padding: 14px 40px 14px 14px;
+        padding: 14px 48px 14px 14px;
         border-radius: 22px 22px 6px 22px;
         background: color-mix(in srgb, #ffffff 92%, transparent);
         border: 1px solid var(--line);
@@ -242,10 +242,12 @@ const whispers = Object.fromEntries(Object.entries(copy.whisper.lines).map(([key
       }
       .whisper-close {
         position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 28px;
-        height: 28px;
+        top: 2px;
+        right: 2px;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
         font-size: 18px;
         line-height: 1;
@@ -254,6 +256,14 @@ const whispers = Object.fromEntries(Object.entries(copy.whisper.lines).map(([key
       .whisper-close:hover {
         background: var(--pearl-2);
         color: var(--ink);
+      }
+      @media (max-width: 640px) {
+        .whisper {
+          left: 14px;
+          right: 14px;
+          max-width: none;
+          bottom: calc(14px + env(safe-area-inset-bottom));
+        }
       }
       .lang-hint {
         position: fixed;
