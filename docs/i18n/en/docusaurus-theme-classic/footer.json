@@ -22,9 +22,5 @@
   "link.item.label.Website": {
     "message": "Website",
     "description": "The label of footer link with label Website"
-  },
-  "copyright": {
-    "message": "Copyright © {year} Sholarel. Built with Docusaurus.",
-    "description": "The footer copyright"
   }
 }
