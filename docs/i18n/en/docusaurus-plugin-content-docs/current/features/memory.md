@@ -2,7 +2,7 @@
 sidebar_position: 4
 slug: /features/memory
 title: Long-Term Memory
-description: AI remembers every important moment you share
+description: "Long-term memory keeps what you share across sessions: AI spots what matters and refers back later. Covers what is remembered and how to delete it."
 ---
 
 # Long-Term Memory

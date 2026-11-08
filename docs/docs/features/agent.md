@@ -2,7 +2,7 @@
 sidebar_position: 5
 slug: /features/agent
 title: AI 代理（子代理）
-description: 让 AI 帮你操作电脑、搜索信息、执行复杂任务
+description: "AI 代理让 Sholarel 从聊天走向行动：它会拆解任务、按步骤操作你的电脑、搜索信息并实时汇报进度。本页说明 Genesis 等级怎样开启代理、如何用一句话布置任务、执行中能看到哪些日志，以及任务跑偏或卡住时怎样中断。代理只在 Genesis 及以上等级可用。"
 ---
 
 # AI 代理（子代理）

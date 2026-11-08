@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /faq
 title: 常见问题
-description: Sholarel 使用中的常见问题与解答
+description: "汇总安装与使用里最常被问到的问题：哪些平台能用、Windows 提示「已保护你的电脑」怎么处理、启动后白屏如何排查、Android 安装失败的原因，以及忘记密码、多设备登录和账号数据相关的解答。按安装启动、账号、功能三类分组，方便逐项对照排查。"
 ---
 
 # 常见问题

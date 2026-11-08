@@ -2,17 +2,17 @@
   "meta": {
     "home": {
       "title": "Sholarel — An AI companion on your desktop and phone",
-      "description": "Sholarel (formerly Eidolon) is an AI companion app by Instarmony. Choose Fea or Ael: they remember what you’ve said, check in first, and help with routes, files and reminders. Windows and Android, now in public beta.",
+      "description": "Sholarel (formerly Eidolon) is an AI companion for Windows and Android. Fea or Ael remembers what you say and helps with routes, files and reminders.",
       "keywords": "Sholarel, Eidolon, Instarmony, AI companion, desktop companion, AI desktop pet, Fea, Ael, long-term memory, voice calls, Windows, Android"
     },
     "features": {
       "title": "Features — Sholarel",
-      "description": "What Sholarel does: a 3D or Live2D companion floating on your desktop, long-term memory and check-ins, voice and video calls, 44 attachment formats, vision only with your consent, a two-way journal, plans and a focus cabin, and autonomous exploration.",
+      "description": "3D/Live2D desktop companion, long-term memory and check-ins, voice and video calls, 44 attachment formats, a two-way journal, focus cabin, AI exploration.",
       "keywords": "Sholarel, AI companion features, desktop pet, Live2D, VRM, long-term memory, voice call, video call, journal, focus, AI exploration"
     },
     "how": {
       "title": "Privacy & consent — Sholarel",
-      "description": "How Sholarel treats your data: local-first and minimal by design; it asks before looking at your screen, taking photos or sending notifications; we don’t sell data or train public base models on private chats without authorization.",
+      "description": "Privacy by design: local-first, minimal. Sholarel asks before reading your screen or taking photos, and never sells data or trains models on chats.",
       "keywords": "Sholarel, privacy, data protection, consent, local-first, AI companion privacy, screen permission, data deletion"
     },
     "beta": {
@@ -22,12 +22,12 @@
     },
     "pricing": {
       "title": "Plans — Sholarel",
-      "description": "Five Sholarel plans: Spark, Resonance, Genesis, Symbiosis and Fable. USD plans renew monthly and can be cancelled anytime in the app; benefits last to the end of the period.",
+      "description": "Five Sholarel plans: Spark, Resonance, Genesis, Symbiosis and Fable. USD plans renew monthly, cancel anytime; benefits run to the end of the period.",
       "keywords": "Sholarel, pricing, subscription plans, AI companion price, Spark, Resonance, Genesis, Echo credit"
     },
     "dew": {
       "title": "Chrono Dew 溯时星露 · Buy without signing up — Sholarel",
-      "description": "Chrono Dew is never-expiring Echo credit for Sholarel. No signup needed: buy with just an email — WeChat Pay / Alipay / UnionPay (CNY) or card / Apple Pay / Google Pay (USD) — then claim it in the app with a one-time code.",
+      "description": "Chrono Dew 溯时星露: never-expiring Echo credit, no signup. Pay with an email via WeChat Pay, Alipay or UnionPay (CNY) or card (USD), then claim it in the app.",
       "keywords": "Sholarel, Chrono Dew, 溯时星露, credit pack, no signup purchase, Echo credit, WeChat Pay, Alipay, credit card"
     },
     "download": {

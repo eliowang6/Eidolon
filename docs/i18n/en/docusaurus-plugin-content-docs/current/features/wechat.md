@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /features/wechat
 title: WeChat Integration
-description: Let AI auto-reply to your WeChat messages
+description: "Connect AI to WeChat: after a QR login, incoming messages are answered automatically. Covers setup, login flow, message order and disconnecting."
 ---
 
 # WeChat Integration

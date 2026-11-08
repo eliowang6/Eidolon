@@ -2,7 +2,7 @@
 sidebar_position: 4
 slug: /features/focus-timer
 title: Focus Mode
-description: Pomodoro timer + ambient sounds — focus together with AI
+description: "Pomodoro inside Sholarel: Classic 25, Sprint 40 and Deep 50 with valley, rain and stream ambience, while AI stays quiet during focus and chats on breaks."
 ---
 
 # Focus Mode

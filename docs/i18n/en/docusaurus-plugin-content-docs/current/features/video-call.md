@@ -2,7 +2,7 @@
 sidebar_position: 3
 slug: /features/video-call
 title: Video Call
-description: Face-to-face video companionship with AI
+description: "Open your camera so AI can see you and respond live, the most immersive feature. Covers calls, mute and screen share, captions and the 60-minute cutoff."
 ---
 
 # Video Call

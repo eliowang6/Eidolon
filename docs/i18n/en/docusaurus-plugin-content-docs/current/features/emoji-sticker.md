@@ -2,7 +2,7 @@
 sidebar_position: 3
 slug: /features/emoji-sticker
 title: Emoji & Stickers
-description: Search emoji packs and upload custom stickers
+description: "Forty quick emoji, keyword search across sticker packs, and your own image or GIF stickers. Includes tips, format limits and how to send or remove them."
 ---
 
 # Emoji & Stickers

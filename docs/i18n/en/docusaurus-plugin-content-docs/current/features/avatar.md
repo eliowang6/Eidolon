@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /features/avatar
 title: Character Model
-description: 3D character rendering, VRM/Live2D models, and avatar settings
+description: "VRM, Live2D and GLB character modes: load a local model, switch between 3D and 2D, adjust avatar and floating-window size, and fix common load failures."
 ---
 
 # Character Model

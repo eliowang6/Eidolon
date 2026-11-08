@@ -2,7 +2,7 @@
 sidebar_position: 2
 slug: /features/image-generation
 title: AI 画图
-description: 让 AI 根据你的描述生成图片
+description: "用文字就能画图：告诉 AI 你想要的画面、比例和风格，它会调用画图工具把结果直接放回聊天里。本页说明提示词怎么写、宽高比怎么选、常用风格有哪些，以及生成失败或结果不理想时可以怎样调整重试。生成记录会留在对话里，方便改词重画，图片也能直接保存到本地。"
 ---
 
 # AI 画图

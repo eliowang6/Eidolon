@@ -2,7 +2,7 @@
 sidebar_position: 5
 slug: /features/mcp
 title: MCP Tool Extensions
-description: Extend AI's capabilities through the MCP protocol
+description: "MCP servers act like plugins: each adds a capability such as database access or a third-party API. Includes the JSON format, startup and troubleshooting."
 ---
 
 # MCP Tool Extensions

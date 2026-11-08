@@ -3,9 +3,18 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
+import {
+  organizationJsonLd,
+  siteNameFor,
+  websiteJsonLd,
+} from '../seo/site-meta';
+
+const HOME_DESCRIPTION =
+  'Sholarel 使用文档：从安装、注册到第一次对话，按章节讲清文字、语音与视频聊天、待办与习惯、长期记忆、AI 代理、小剧场与 AI 画图等功能的实际用法；常见问题按安装启动、账号、功能三类分组整理，方便逐项对照排查，也便于搜索直达具体条目。';
 
 export default function Home(): React.JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const {siteConfig, i18n} = useDocusaurusContext();
+  const siteName = siteNameFor(i18n.currentLocale, siteConfig.title);
   const features = [
     {
       icon: '💬',
@@ -63,9 +72,7 @@ export default function Home(): React.JSX.Element {
     },
   ];
   return (
-    <Layout
-      title={`${siteConfig.title}`}
-      description="Sholarel 使用文档 - 你的 AI 时代另一个自己">
+    <Layout title={siteName} description={HOME_DESCRIPTION}>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -73,6 +80,16 @@ export default function Home(): React.JSX.Element {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={siteName} />
+        <meta name="twitter:title" content={siteName} />
+        <meta name="twitter:description" content={HOME_DESCRIPTION} />
+        <script type="application/ld+json">
+          {JSON.stringify(organizationJsonLd())}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteJsonLd(i18n.currentLocale))}
+        </script>
       </Head>
       <main className="eid-home">
         {/* ---- Hero ---- */}

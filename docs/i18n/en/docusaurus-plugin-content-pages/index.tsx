@@ -2,70 +2,78 @@ import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
+import Link from '@docusaurus/Link';
+import {
+  organizationJsonLd,
+  siteNameFor,
+  websiteJsonLd,
+} from '../../../src/seo/site-meta';
+
+const HOME_DESCRIPTION =
+  'Sholarel docs: install, sign up and your first chat, then guides on text, voice and video calls, to-dos, memory, AI agents and theater, and a FAQ by topic.';
 
 const features = [
   {
     icon: '💬',
     title: 'Smart Chat',
     desc: 'Text, voice, video — communicate with AI your way',
-    href: '/features/chat',
+    to: '/features/chat',
   },
   {
     icon: '🎙️',
     title: 'Voice & Video Calls',
     desc: 'Talk to AI like a phone call, or go face-to-face with video',
-    href: '/features/video-call',
+    to: '/features/video-call',
   },
   {
     icon: '✅',
     title: 'To-Do & Habits',
     desc: 'AI helps manage tasks, build habits, and track your mood',
-    href: '/features/todo',
+    to: '/features/todo',
   },
   {
     icon: '🎭',
     title: 'Theater',
     desc: 'Immersive interactive stories — co-create with AI',
-    href: '/features/theater',
+    to: '/features/theater',
   },
   {
     icon: '🎨',
     title: 'AI Image Generation',
     desc: 'Generate beautiful images from text descriptions',
-    href: '/features/image-generation',
+    to: '/features/image-generation',
   },
   {
     icon: '🧠',
     title: 'Long-Term Memory',
     desc: 'AI remembers every important moment — the more you chat, the better it knows you',
-    href: '/features/memory',
+    to: '/features/memory',
   },
   {
     icon: '⏰',
     title: 'Focus & Reminders',
     desc: 'Pomodoro timer + alarm reminders — AI stays with you',
-    href: '/features/focus-timer',
+    to: '/features/focus-timer',
   },
   {
     icon: '🤖',
     title: 'AI Agent',
     desc: 'Let AI operate your computer, search the web, and execute tasks',
-    href: '/features/agent',
+    to: '/features/agent',
   },
   {
     icon: '🎨',
     title: 'Themes & Personalization',
     desc: '9 beautiful themes, character models, voice customization',
-    href: '/features/theme',
+    to: '/features/theme',
   },
 ];
 
 export default function Home(): React.JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const {siteConfig, i18n} = useDocusaurusContext();
+  const siteName = siteNameFor(i18n.currentLocale, siteConfig.title);
   return (
-    <Layout
-      title={`${siteConfig.title}`}
-      description="Sholarel Docs — Your other self in the AI era">
+    <Layout title={siteName} description={HOME_DESCRIPTION}>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -73,6 +81,16 @@ export default function Home(): React.JSX.Element {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={siteName} />
+        <meta name="twitter:title" content={siteName} />
+        <meta name="twitter:description" content={HOME_DESCRIPTION} />
+        <script type="application/ld+json">
+          {JSON.stringify(organizationJsonLd())}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteJsonLd(i18n.currentLocale))}
+        </script>
       </Head>
       <main className="eid-home">
         <section className="eid-hero">
@@ -101,16 +119,16 @@ export default function Home(): React.JSX.Element {
               </span>
             </p>
             <div className="eid-hero__actions">
-              <a className="eid-btn eid-btn--primary" href="/quick-start">
+              <Link className="eid-btn eid-btn--primary" to="/quick-start">
                 <span>Quick Start</span>
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-              <a className="eid-btn eid-btn--ghost" href="/features/chat">
+              </Link>
+              <Link className="eid-btn eid-btn--ghost" to="/features/chat">
                 Features
-              </a>
-              <a className="eid-btn eid-btn--ghost" href="/faq">
+              </Link>
+              <Link className="eid-btn eid-btn--ghost" to="/faq">
                 FAQ
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -125,11 +143,11 @@ export default function Home(): React.JSX.Element {
             </p>
             <div className="eid-features__grid">
               {features.map((f, i) => (
-                <a key={i} className="eid-feature-card" href={f.href}>
+                <Link key={i} className="eid-feature-card" to={f.to}>
                   <span className="eid-feature-card__icon">{f.icon}</span>
                   <span className="eid-feature-card__title">{f.title}</span>
                   <span className="eid-feature-card__desc">{f.desc}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -139,10 +157,10 @@ export default function Home(): React.JSX.Element {
           <div className="eid-cta__container">
             <h2 className="eid-cta__title">Ready to begin?</h2>
             <p className="eid-cta__desc">Get started in 5 minutes — begin your AI companion journey</p>
-            <a className="eid-btn eid-btn--primary eid-btn--lg" href="/quick-start">
+            <Link className="eid-btn eid-btn--primary eid-btn--lg" to="/quick-start">
               <span>Get Started</span>
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            </Link>
           </div>
         </section>
       </main>

@@ -2,7 +2,7 @@
 sidebar_position: 5
 slug: /features/alarm
 title: Alarms & Reminders
-description: Set alarms and let AI remind you at the right time
+description: "Set alarms that AI announces in conversation, not a ring. Covers times, one-off or daily, weekly and monthly repeats, and how to dismiss one."
 ---
 
 # Alarms & Reminders

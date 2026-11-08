@@ -48,7 +48,7 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
         <div>
           <Eyebrow text={f.desktop.label} class="reveal" />
           <h2 id="desktop-h" class="reveal" style="--i:1">
-            <Fragment set:html={pr(f.desktop.h2a)} /><br /><Fragment set:html={pr(f.desktop.h2b)} />
+            <Fragment set:html={prPlain(f.desktop.h2a)} /><br /><Fragment set:html={prPlain(f.desktop.h2b)} />
           </h2>
         </div>
         <p class="lede reveal" style="--i:2" set:html={pr(f.desktop.body)} />
@@ -80,7 +80,7 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
         {
           f.desktop.points.map((pt, i) => (
             <li class="reveal" style={`--i:${i}`}>
-              <h3 set:html={pr(pt.t)} />
+              <h3 set:html={prPlain(pt.t)} />
               <p set:html={pr(pt.d)} />
             </li>
           ))
@@ -95,14 +95,14 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
       <div class="chap-copy">
         <Eyebrow text={f.chat.label} class="reveal" />
         <h2 id="chat-h" class="reveal" style="--i:1">
-          <Fragment set:html={pr(f.chat.h2a)} /><br /><Fragment set:html={pr(f.chat.h2b)} />
+          <Fragment set:html={prPlain(f.chat.h2a)} /><br /><Fragment set:html={prPlain(f.chat.h2b)} />
         </h2>
         <p class="lede reveal" style="--i:2" set:html={pr(f.chat.body)} />
         <ul class="points">
           {
             f.chat.points.map((pt, i) => (
               <li class="reveal" style={`--i:${i + 2}`}>
-                <h3 set:html={pr(pt.t)} />
+                <h3 set:html={prPlain(pt.t)} />
                 <p set:html={pr(pt.d)} />
               </li>
             ))
@@ -124,14 +124,14 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
         <div class="chap-copy">
           <Eyebrow text={f.calls.label} class="reveal" />
           <h2 id="calls-h" class="reveal" style="--i:1">
-            <Fragment set:html={pr(f.calls.h2a)} /><br /><Fragment set:html={pr(f.calls.h2b)} />
+            <Fragment set:html={prPlain(f.calls.h2a)} /><br /><Fragment set:html={prPlain(f.calls.h2b)} />
           </h2>
           <p class="lede reveal" style="--i:2" set:html={pr(f.calls.body)} />
           <ul class="points">
             {
               f.calls.points.map((pt, i) => (
                 <li class="reveal" style={`--i:${i + 2}`}>
-                  <h3 set:html={pr(pt.t)} />
+                  <h3 set:html={prPlain(pt.t)} />
                   <p set:html={pr(pt.d)} />
                 </li>
               ))
@@ -154,14 +154,14 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
       <div class="chap-copy">
         <Eyebrow text={f.vision.label} class="reveal" />
         <h2 id="vision-h" class="reveal" style="--i:1">
-          <Fragment set:html={pr(f.vision.h2a)} /><br /><Fragment set:html={pr(f.vision.h2b)} />
+          <Fragment set:html={prPlain(f.vision.h2a)} /><br /><Fragment set:html={prPlain(f.vision.h2b)} />
         </h2>
         <p class="lede reveal" style="--i:2" set:html={pr(f.vision.body)} />
         <ul class="points">
           {
             f.vision.points.map((pt, i) => (
               <li class="reveal" style={`--i:${i + 2}`}>
-                <h3 set:html={pr(pt.t)} />
+                <h3 set:html={prPlain(pt.t)} />
                 <p set:html={pr(pt.d)} />
               </li>
             ))
@@ -189,7 +189,7 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
     <div class="container">
       <div class="sec-head sec-head--center reveal">
         <Eyebrow text={f.life.label} />
-        <h2 id="life-h"><Fragment set:html={pr(f.life.h2a)} /><br /><Fragment set:html={pr(f.life.h2b)} /></h2>
+        <h2 id="life-h"><Fragment set:html={prPlain(f.life.h2a)} /><br /><Fragment set:html={prPlain(f.life.h2b)} /></h2>
         <p class="lede" set:html={pr(f.life.body)} />
       </div>
 
@@ -214,7 +214,7 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
         {
           f.life.items.map((item, i) => (
             <li class="reveal" style={`--i:${i}`}>
-              <h3 set:html={pr(item.t)} />
+              <h3 set:html={prPlain(item.t)} />
               <p set:html={pr(item.d)} />
             </li>
           ))
@@ -229,7 +229,7 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
       <div class="chap-copy">
         <Eyebrow text={f.explore.label} class="reveal" />
         <h2 id="explore-h" class="reveal" style="--i:1">
-          <Fragment set:html={pr(f.explore.h2a)} /><br /><Fragment set:html={pr(f.explore.h2b)} />
+          <Fragment set:html={prPlain(f.explore.h2a)} /><br /><Fragment set:html={prPlain(f.explore.h2b)} />
         </h2>
         <p class="lede reveal" style="--i:2" set:html={pr(f.explore.body)} />
         <p class="note reveal" style="--i:3" set:html={pr(f.explore.note)} />
@@ -255,7 +255,7 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
     <div class="container">
       <div class="sec-head sec-head--center reveal">
         <Eyebrow text={f.two.label} />
-        <h2 id="two-h"><Fragment set:html={pr(f.two.h2a)} /><br /><Fragment set:html={pr(f.two.h2b)} /></h2>
+        <h2 id="two-h"><Fragment set:html={prPlain(f.two.h2a)} /><br /><Fragment set:html={prPlain(f.two.h2b)} /></h2>
         <p class="lede" set:html={pr(f.two.body)} />
       </div>
       <div class="duo">
@@ -296,13 +296,13 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
     <div class="container">
       <div class="sec-head reveal">
         <Eyebrow text={f.more.label} />
-        <h2 id="more-h" set:html={pr(f.more.h2)} />
+        <h2 id="more-h" set:html={prPlain(f.more.h2)} />
       </div>
       <ul class="more-grid">
         {
           f.more.items.map((item, i) => (
             <li class="reveal" style={`--i:${i % 3}`}>
-              <h3 set:html={pr(item.t)} />
+              <h3 set:html={prPlain(item.t)} />
               <p set:html={pr(item.d)} />
             </li>
           ))
@@ -317,7 +317,7 @@ const walkWith = { fea: copy.nav.withFea, ael: copy.nav.withAel } as const;
       <div class="vow reveal">
         <div class="vow-head">
           <Eyebrow text={f.boundary.label} />
-          <h2 id="boundary-h" set:html={pr(f.boundary.h2)} />
+          <h2 id="boundary-h" set:html={prPlain(f.boundary.h2)} />
           <a class="tlink" href={p('/how-it-works.html')}>{f.boundary.link}</a>
         </div>
         <ul class="vow-list">

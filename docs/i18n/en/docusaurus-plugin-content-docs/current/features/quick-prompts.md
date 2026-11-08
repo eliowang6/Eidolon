@@ -2,7 +2,7 @@
 sidebar_position: 4
 slug: /features/quick-prompts
 title: Quick Prompts
-description: One-click conversation starters for common scenarios
+description: "Starters for when you don't know what to say: Theater, What to Eat, Where to Go, Solve a Problem, Q&A, Analyze This and riddles."
 ---
 
 # Quick Prompts

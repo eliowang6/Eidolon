@@ -2,7 +2,7 @@
 sidebar_position: 2
 slug: /install
 title: Installation Guide
-description: Detailed installation instructions for each platform
+description: "Install by platform: the Windows MSI and SmartScreen prompt, Android APK with unknown sources, and the browser build. Also lists requirements."
 ---
 
 # Installation Guide

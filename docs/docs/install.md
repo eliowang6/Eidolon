@@ -2,7 +2,7 @@
 sidebar_position: 2
 slug: /install
 title: 安装指南
-description: Sholarel 各平台安装方法详解
+description: "按平台讲清安装：Windows 下载 MSI、绕过 SmartScreen 提示并允许防火墙访问，Android 安装 APK 时开启未知来源，网页端直接打开浏览器即可。本页还列出各平台的系统要求、磁盘占用和桌面端独有的悬浮窗功能。安装前先确认系统版本和剩余空间。"
 ---
 
 # 安装指南

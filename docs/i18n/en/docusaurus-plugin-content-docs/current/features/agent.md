@@ -2,7 +2,7 @@
 sidebar_position: 5
 slug: /features/agent
 title: AI Agent (Sub-Agent)
-description: Let AI operate your computer, search information, and execute complex tasks
+description: "The AI agent turns chat into action: it breaks a task into steps, operates your computer, searches the web and reports progress live. Genesis tier only."
 ---
 
 # AI Agent (Sub-Agent)

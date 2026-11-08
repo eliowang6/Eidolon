@@ -10,7 +10,7 @@ import Faq from '../Faq.astro';
 import PageHero from '../PageHero.astro';
 import Release from '../Release.astro';
 import { GITHUB_ISSUES } from '../../config/site';
-import { pr, t, type Lang } from '../../i18n';
+import { pr, prPlain, t, type Lang } from '../../i18n';
 
 interface Props {
   lang: Lang;
@@ -114,7 +114,7 @@ const total = cadence.reduce((sum, c) => sum + c.n, 0);
   <div class="container ask-grid">
     <div class="ask-head reveal">
       <Eyebrow text={lang === 'zh' ? `${copy.footer.faq} / FAQ` : copy.footer.faq} />
-      <h2 id="faq-h" set:html={pr(cl.faqTitle)} />
+      <h2 id="faq-h" set:html={prPlain(cl.faqTitle)} />
       <a class="btn btn-ghost btn-sm" href={GITHUB_ISSUES} target="_blank" rel="noopener">{cl.issues}</a>
     </div>
     <Faq items={cl.faq} lang={lang} />

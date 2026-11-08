@@ -2,7 +2,7 @@
 sidebar_position: 5
 slug: /features/mcp
 title: MCP 工具扩展
-description: 通过 MCP 协议扩展 AI 的能力
+description: "MCP 是给 AI 装插件的方式：配置一个 MCP 服务器，就等于让它多一项调用外部工具的能力，比如查数据库或访问第三方 API。本页给出 JSON 配置格式、启动与排错方法、工具在对话中的调用方式，适合有技术基础的用户。配置写错时页面会提示错误，改完重新启动即可。"
 ---
 
 # MCP 工具扩展

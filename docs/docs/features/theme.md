@@ -2,7 +2,7 @@
 sidebar_position: 2
 slug: /features/theme
 title: 主题与外观
-description: 个性化你的 Sholarel 界面
+description: "主题决定 Sholarel 的气质：从安静的 Iris Atelier、清爽的 Amber Tide，到极夜感的 Aurora Circuit 和甜一点的 Petal Pop，共九套方案。本页展示每套的视觉风格与适合的心情，并说明如何即时切换、切换后哪些元素会跟着变。"
 ---
 
 # 主题与外观

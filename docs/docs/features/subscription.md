@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /features/subscription
 title: 订阅与权益
-description: 了解 Sholarel 的订阅等级和各项权益
+description: "Sholarel 按订阅等级开放能力：Awakening 提供基础对话与待办，Presence 加上长期记忆和语音、视频通话，更高的 Genesis 与 Symbiosis 解锁模型自选、AI 代理和实时全双工通话。本页逐级对比权益，并说明额度与升级方式。"
 ---
 
 # 订阅与权益

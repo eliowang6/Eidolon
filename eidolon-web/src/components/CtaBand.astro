@@ -2,7 +2,7 @@
 /** Closing call to action: the night again, with the mark and the two ways forward. */
 import Logo from './Logo.astro';
 import Release from './Release.astro';
-import { localizePath, pr, t, type Lang } from '../i18n';
+import { localizePath, pr, prPlain, t, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -21,7 +21,7 @@ const p = (href: string) => localizePath(lang, href);
   <div class="cta-glow" aria-hidden="true"></div>
   <div class="container cta-inner">
     <span class="cta-mark reveal" aria-hidden="true"><Logo size={64} stroke={1.6} /></span>
-    <h2 class="reveal" style="--i:1" set:html={pr(h2)} />
+    <h2 class="reveal" style="--i:1" set:html={prPlain(h2)} />
     {lede && <p class="lede reveal" style="--i:2" set:html={pr(lede)} />}
     <div class="cta-actions reveal" style="--i:3">
       <a class="btn btn-holo btn-lg" href={p('/download.html')}>{copy.common.ctaDownload}</a>

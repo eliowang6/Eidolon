@@ -1,11 +1,64 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+
+type FaqItem = {q: string; a: string};
+
+/**
+ * Reads the FAQ markdown and turns each "### Question" block into a
+ * Question/Answer pair, so the FAQPage JSON-LD always mirrors the page.
+ */
+function parseFaq(file: string): FaqItem[] {
+  if (!fs.existsSync(file)) {
+    return [];
+  }
+  const text = fs.readFileSync(file, 'utf8');
+  const body = text.replace(/^---[\s\S]*?\r?\n---\r?\n/, '');
+  const items: FaqItem[] = [];
+  for (const block of body.split(/\r?\n(?=###\s)/).slice(1)) {
+    const nl = block.indexOf('\n');
+    if (nl === -1) continue;
+    const q = block.slice(4, nl).trim();
+    const answer = block
+      .slice(nl + 1)
+      .split(/\r?\n(?=##\s)/)[0]
+      .replace(/\s*---\s*$/, '')
+      .split(/\r?\n/)
+      .map((line) =>
+        line
+          .replace(/^[-*]\s+/, '')
+          .replace(/`/g, '')
+          .replace(/\*\*/g, '')
+          .trim(),
+      )
+      .filter(Boolean)
+      .join(' ');
+    if (q && answer) items.push({q, a: answer});
+  }
+  return items;
+}
+
+const faq = {
+  zhHans: parseFaq(path.join(__dirname, 'docs', 'faq.md')),
+  en: parseFaq(
+    path.join(
+      __dirname,
+      'i18n',
+      'en',
+      'docusaurus-plugin-content-docs',
+      'current',
+      'faq.md',
+    ),
+  ),
+};
 
 const config: Config = {
   title: 'Sholarel 文档',
   tagline: 'Your other self in the AI era',
   favicon: 'img/favicon.ico',
+  customFields: {faq},
 
   // The docs ship on the product sub-domain, next to the pages they describe.
   // The old instarmony.com/docs/build/ paths are kept alive by 301 rules in

@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /features/subscription
 title: Subscription & Benefits
-description: Understand Sholarel's subscription tiers and their benefits
+description: "What each tier unlocks: Awakening for chat and to-dos, Presence adds memory and voice or video calls, Genesis and Symbiosis add model choice and AI agent."
 ---
 
 # Subscription & Benefits

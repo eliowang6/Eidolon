@@ -2,7 +2,7 @@
 sidebar_position: 3
 slug: /features/mood
 title: Mood Tracking
-description: Record your mood each day — AI helps you stay aware of emotional changes
+description: "Log how you feel in three steps: a mood, a reason, a line. AI turns entries into emotion trends and folds them into daily summaries."
 ---
 
 # Mood Tracking

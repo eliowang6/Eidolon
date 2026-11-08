@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /features/todo
 title: To-Do Management
-description: Let AI create, manage, and track your to-do items
+description: "Plan tasks with AI: create a card in one sentence with priority and due date, or type into the home widget. Covers fields, completion and overdue items."
 ---
 
 # To-Do Management

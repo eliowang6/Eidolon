@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /features/chat
 title: Smart Chat
-description: Everything about text chatting with your AI companion
+description: "The heart of Sholarel: free-form chat backed by long-term memory. Covers quoting a message, undoing a send, interrupted replies and finding history."
 ---
 
 # Smart Chat

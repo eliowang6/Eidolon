@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /features/avatar
 title: 角色模型
-description: 3D 角色渲染、VRM/Live2D 模型与头像设置
+description: "角色模型决定 AI 伴侣在屏幕上以什么形象出现。本页说明 VRM、Live2D 与 GLB 三种渲染模式的差异，怎样加载本地模型文件、在两类模型之间切换，以及头像、悬浮窗大小和加载失败时的常见原因。加载完成后角色会立刻出现在桌面和聊天界面。"
 ---
 
 # 角色模型

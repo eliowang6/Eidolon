@@ -11,7 +11,7 @@ import Faq from '../Faq.astro';
 import Logo from '../Logo.astro';
 import PageHero from '../PageHero.astro';
 import { SITE } from '../../config/site';
-import { localizePath, pr, t, type Lang } from '../../i18n';
+import { localizePath, pr, prPlain, t, type Lang } from '../../i18n';
 
 interface Props {
   lang: Lang;
@@ -356,7 +356,7 @@ const facts = [
   <div class="container ask-grid">
     <div class="ask-head reveal">
       <Eyebrow text={lang === 'zh' ? `${copy.footer.faq} / FAQ` : copy.footer.faq} />
-      <h2 id="faq-h" set:html={pr(page.faqTitle)} />
+      <h2 id="faq-h" set:html={prPlain(page.faqTitle)} />
       <a class="tlink" href={`mailto:${SITE.contactEmail}`}>{page.faqMore} →</a>
     </div>
     <Faq items={page.faq} lang={lang} />

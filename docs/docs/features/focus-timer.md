@@ -2,7 +2,7 @@
 sidebar_position: 4
 slug: /features/focus-timer
 title: 专注模式
-description: 番茄钟 + 白噪音，和 AI 一起专注
+description: "专注模式把番茄钟搬进 Sholarel：Classic 25、Sprint 40、Deep 50 三套节奏搭配山谷、雨声等白噪音，AI 会在你专注时安静陪伴、在休息时陪你聊两句。本页说明怎样开始、切换方案、查看专注记录和桌面伪全屏。专注结束后时长会记进每日总结。"
 ---
 
 # 专注模式

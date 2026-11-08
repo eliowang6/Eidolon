@@ -2,7 +2,7 @@
 sidebar_position: 3
 slug: /account
 title: Account Management
-description: Registration, login, password management, and account switching
+description: "Sign up with a username and password, no email needed. Covers nickname and invite-code rules, password resets, account switching and cross-device sync."
 ---
 
 # Account Management

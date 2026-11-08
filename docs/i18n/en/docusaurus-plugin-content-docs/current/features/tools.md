@@ -2,7 +2,7 @@
 sidebar_position: 4
 slug: /features/tools
 title: Tool Calling
-description: AI proactively creates to-dos, habits, images, and more for you
+description: "Tool calling is AI acting on its own: it creates to-do, habit, image or voice cards rather than only suggesting. Lists tools, triggers and how to undo."
 ---
 
 # Tool Calling

@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /quick-start
 title: Quick Start
-description: Get started with Sholarel in 5 minutes, from zero to your first conversation
+description: "From zero to your first conversation: install, create an account (invite code needed in beta), then chat. Also covers widgets and memory."
 ---
 
 # Quick Start

@@ -9,7 +9,7 @@ import Eyebrow from '../Eyebrow.astro';
 import Logo from '../Logo.astro';
 import PageHero from '../PageHero.astro';
 import { GITHUB_ISSUES, SITE } from '../../config/site';
-import { pr, t, type Lang } from '../../i18n';
+import { pr, prPlain, t, type Lang } from '../../i18n';
 
 interface Props {
   lang: Lang;
@@ -45,7 +45,7 @@ const contactIcon: Record<string, string> = {
   <div class="container two-grid">
     <div class="two-head reveal">
       <Eyebrow text={a.two.label} />
-      <h2 id="two-h" data-whisper="about" set:html={pr(a.two.h2)} />
+      <h2 id="two-h" data-whisper="about" set:html={prPlain(a.two.h2)} />
       <p class="lede" set:html={pr(a.two.lede)} />
     </div>
     {
@@ -84,7 +84,7 @@ const contactIcon: Record<string, string> = {
   <div class="container">
     <div class="name-head reveal">
       <Eyebrow text={a.name.label} />
-      <h2 id="name-h" set:html={pr(a.name.h2)} />
+      <h2 id="name-h" set:html={prPlain(a.name.h2)} />
     </div>
     <div class="name-grid">
       <figure class="etym reveal" style="--i:1" role="img" aria-label={a.name.figLabel}>
@@ -132,7 +132,7 @@ const contactIcon: Record<string, string> = {
               <p class="bel-k" lang={otherLang}>
                 {b.en}
               </p>
-              <h3 class="bel-t" set:html={pr(b.t)} />
+              <h3 class="bel-t" set:html={prPlain(b.t)} />
               <p class="bel-d" set:html={pr(b.d)} />
             </article>
           </>
@@ -147,7 +147,7 @@ const contactIcon: Record<string, string> = {
   <div class="container maker-grid">
     <div class="maker-copy">
       <Eyebrow text={a.maker.label} class="reveal" />
-      <h2 id="maker-h" class="reveal" style="--i:1" set:html={pr(a.maker.h2)} />
+      <h2 id="maker-h" class="reveal" style="--i:1" set:html={prPlain(a.maker.h2)} />
       <p class="maker-body reveal" style="--i:2" set:html={pr(a.maker.body)} />
       <p class="maker-link reveal" style="--i:3">
         <a class="tlink" href={SITE.founder.page} target="_blank" rel="noopener">{a.maker.link}</a>
@@ -182,7 +182,7 @@ const contactIcon: Record<string, string> = {
   <div class="container inv-grid">
     <div class="inv-copy">
       <Eyebrow text={a.investors.label} class="reveal" />
-      <h2 id="inv-h" class="reveal" style="--i:1" set:html={pr(a.investors.h2)} />
+      <h2 id="inv-h" class="reveal" style="--i:1" set:html={prPlain(a.investors.h2)} />
       <p class="lede reveal" style="--i:2" set:html={pr(a.investors.body)} />
     </div>
     <div class="inv-card reveal" style="--i:2">
@@ -216,7 +216,7 @@ const contactIcon: Record<string, string> = {
   <div class="container">
     <div class="sec-head reveal">
       <Eyebrow text={a.contact.label} />
-      <h2 id="contact-h" set:html={pr(a.contact.h2)} />
+      <h2 id="contact-h" set:html={prPlain(a.contact.h2)} />
     </div>
     <ul class="ct-grid">
       {

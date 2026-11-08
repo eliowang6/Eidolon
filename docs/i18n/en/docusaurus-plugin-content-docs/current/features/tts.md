@@ -2,7 +2,7 @@
 sidebar_position: 3
 slug: /features/tts
 title: TTS Voice Settings
-description: Customize AI's speaking voice and style
+description: "Give AI a natural voice: drag the emotion slider from restrained to vivid, or upload 10-30 seconds of reference audio to steer the timbre."
 ---
 
 # TTS Voice Settings

@@ -2,7 +2,7 @@
 sidebar_position: 3
 slug: /features/video-call
 title: 视频通话
-description: 与 AI 面对面的视频陪伴体验
+description: "视频通话打开摄像头，让 AI 看到你的画面并实时回应，是 Sholarel 最有临场感的功能。本页说明如何发起通话、界面各区域的作用、静音与屏幕共享怎么用、字幕如何显示，以及 60 分钟自动挂断的保护机制。通话中角色会做表情和口型，字幕同步显示 AI 说的话。"
 ---
 
 # 视频通话

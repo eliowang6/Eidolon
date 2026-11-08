@@ -7,7 +7,7 @@
 import CtaBand from '../CtaBand.astro';
 import Eyebrow from '../Eyebrow.astro';
 import PageHero from '../PageHero.astro';
-import { localizePath, pr, t, type Lang } from '../../i18n';
+import { localizePath, pr, prPlain, t, type Lang } from '../../i18n';
 
 interface Props {
   lang: Lang;
@@ -40,13 +40,13 @@ const mailLinks = (html: string) =>
   <div class="container">
     <div class="sec-head reveal">
       <Eyebrow text={tp.principles.label} />
-      <h2 id="pr-h" set:html={pr(tp.principles.h2)} />
+      <h2 id="pr-h" set:html={prPlain(tp.principles.h2)} />
     </div>
     <ul class="pr-grid">
       {
         tp.principles.items.map((item, i) => (
           <li class="reveal" style={`--i:${i}`}>
-            <h3 set:html={pr(item.t)} />
+            <h3 set:html={prPlain(item.t)} />
             <p set:html={pr(item.d)} />
           </li>
         ))
@@ -60,7 +60,7 @@ const mailLinks = (html: string) =>
   <div class="container">
     <div class="sec-head reveal">
       <Eyebrow text={tp.perms.label} />
-      <h2 id="pe-h" set:html={pr(tp.perms.h2)} />
+      <h2 id="pe-h" set:html={prPlain(tp.perms.h2)} />
       <p class="lede" set:html={pr(tp.perms.lede)} />
     </div>
     <div class="ledger reveal" data-whisper="trust">
@@ -97,7 +97,7 @@ const mailLinks = (html: string) =>
   <div class="container pay-grid">
     <div class="pay-copy">
       <Eyebrow text={tp.pay.label} class="reveal" />
-      <h2 id="pay-h" class="reveal" style="--i:1" set:html={pr(tp.pay.h2)} />
+      <h2 id="pay-h" class="reveal" style="--i:1" set:html={prPlain(tp.pay.h2)} />
       <p class="lede reveal" style="--i:2" set:html={pr(tp.pay.body)} />
       <dl class="pay-rows">
         {
@@ -138,7 +138,7 @@ const mailLinks = (html: string) =>
       <span class="fair-mark" aria-hidden="true"><i></i><i></i></span>
       <div>
         <Eyebrow text={tp.fair.label} />
-        <h2 id="fair-h" set:html={pr(tp.fair.h2)} />
+        <h2 id="fair-h" set:html={prPlain(tp.fair.h2)} />
         <p set:html={pr(tp.fair.body)} />
         <a class="tlink" href={p('/pricing.html')}>{tp.fair.link}</a>
       </div>
@@ -151,13 +151,13 @@ const mailLinks = (html: string) =>
   <div class="container rights-grid">
     <div class="sec-head reveal">
       <Eyebrow text={tp.rights.label} />
-      <h2 id="ri-h" set:html={pr(tp.rights.h2)} />
+      <h2 id="ri-h" set:html={prPlain(tp.rights.h2)} />
     </div>
     <ul class="rights-list">
       {
         tp.rights.items.map((item, i) => (
           <li class="reveal" style={`--i:${i}`}>
-            <h3 set:html={pr(item.t)} />
+            <h3 set:html={prPlain(item.t)} />
             <p set:html={mailLinks(pr(item.d))} />
           </li>
         ))
@@ -171,7 +171,7 @@ const mailLinks = (html: string) =>
   <div class="container ends-grid">
     <article class="end-card reveal">
       <Eyebrow text={tp.report.label} />
-      <h2 class="end-h" set:html={pr(tp.report.h2)} />
+      <h2 class="end-h" set:html={prPlain(tp.report.h2)} />
       <p set:html={mailLinks(pr(tp.report.body))} />
     </article>
     <div class="end-card end-card--legal reveal" style="--i:1">

@@ -2,7 +2,7 @@
 sidebar_position: 2
 slug: /features/qqbot
 title: QQ 机器人
-description: 让 AI 化身 QQ 机器人自动回复
+description: "把 AI 接进 QQ：在 QQ 开放平台创建机器人并拿到 AppID 与 AppSecret，填进 Sholarel 设置里开启，AI 就能在频道或群聊中自动回复。本页说明配置步骤、字段含义、运行状态怎么看，以及连不上时先检查什么。启用后能在设置页看到连接是否正常。"
 ---
 
 # QQ 机器人

@@ -11,7 +11,7 @@ import Release from '../Release.astro';
 import Screen from '../Screen.astro';
 import Eyebrow from '../Eyebrow.astro';
 import { SITE } from '../../config/site';
-import { localizeDocsPath, localizePath, pr, t, type Lang } from '../../i18n';
+import { localizeDocsPath, localizePath, pr, prPlain, t, type Lang } from '../../i18n';
 
 interface Props {
   lang: Lang;
@@ -104,7 +104,7 @@ const [, ...cols] = dp.tableHead;
   <div class="container">
     <div class="sec-head reveal">
       <Eyebrow text={dp.stepsLabel} />
-      <h2 id="st-h" set:html={pr(dp.stepsTitle)} />
+      <h2 id="st-h" set:html={prPlain(dp.stepsTitle)} />
     </div>
     <ol class="steps" data-whisper="download">
       {
@@ -113,7 +113,7 @@ const [, ...cols] = dp.tableHead;
             <span class="st-no" aria-hidden="true">
               {i + 1}
             </span>
-            <h3 set:html={pr(step.t)} />
+            <h3 set:html={prPlain(step.t)} />
             <p set:html={pr(step.d)} />
             {i === 1 && (
               <span class="st-duo" aria-hidden="true">
@@ -137,7 +137,7 @@ const [, ...cols] = dp.tableHead;
 <section class="section section--paper2 req-sec" aria-labelledby="rq-h">
   <div class="container req-grid">
     <div class="req-wrap reveal">
-      <h2 id="rq-h" class="req-title" set:html={pr(dp.tableTitle)} />
+      <h2 id="rq-h" class="req-title" set:html={prPlain(dp.tableTitle)} />
       <table class="req">
         <thead>
           <tr>
@@ -162,7 +162,7 @@ const [, ...cols] = dp.tableHead;
       </table>
     </div>
     <aside class="help reveal" style="--i:1" aria-labelledby="hp-h">
-      <h2 id="hp-h" class="help-title" set:html={pr(dp.helpTitle)} />
+      <h2 id="hp-h" class="help-title" set:html={prPlain(dp.helpTitle)} />
       {
         help.map((h) => (
           <a class="help-link" href={h.href} {...(h.ext ? { target: '_blank', rel: 'noopener' } : {})}>

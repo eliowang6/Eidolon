@@ -2,7 +2,7 @@
 sidebar_position: 2
 slug: /features/qqbot
 title: QQ Bot
-description: Turn AI into a QQ bot that auto-replies
+description: "Connect AI to QQ: create a bot on the QQ Open Platform, add its AppID and AppSecret, and it replies in channels and group chats. Includes status checks."
 ---
 
 # QQ Bot

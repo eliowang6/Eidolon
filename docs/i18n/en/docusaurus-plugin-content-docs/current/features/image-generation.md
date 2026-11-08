@@ -2,7 +2,7 @@
 sidebar_position: 2
 slug: /features/image-generation
 title: AI Image Generation
-description: Have AI generate images from your text descriptions
+description: "Describe a picture and AI draws it in chat. Covers prompt writing, aspect ratios, styles, and what to adjust when a generation misses."
 ---
 
 # AI Image Generation

@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /features/chat
 title: 智能对话
-description: 与 AI 伴侣的文字聊天功能详解
+description: "对话是 Sholarel 的核心：你可以像和朋友聊天一样自由交流，AI 会带着长期记忆回应你。本页覆盖发送文字、引用某条消息回复、撤回刚发出的内容，以及消息发送失败、AI 回复中断和长对话历史查找时的处理方式。输入框支持换行和插入表情，长对话会自动保留。"
 ---
 
 # 智能对话

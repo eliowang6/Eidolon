@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /faq
 title: FAQ
-description: Frequently asked questions and answers about using Sholarel
+description: "Answers to the questions we hear most: platforms, the Windows SmartScreen warning, blank screens at launch, Android installs and password recovery."
 ---
 
 # FAQ
