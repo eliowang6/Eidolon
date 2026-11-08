@@ -81,6 +81,12 @@ them to different places, and neither one calls the other.
 | **EdgeOne Pages** | `publish-edgeone.py` | Pages projects, one per host | the marketing sites |
 | **R2 + server** | `publish-site.py` | Cloudflare R2 → Azure origin | the API's static mount |
 
+### Release checklist
+
+- After every app release, sync `docs/src/version.ts` `LATEST_VERSION` with the
+  version the updater manifest actually serves — it is what the docs version
+  badge shows.
+
 ### EdgeOne Pages — the marketing sites
 
 ```bash

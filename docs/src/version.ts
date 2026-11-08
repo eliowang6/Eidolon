@@ -5,4 +5,4 @@
  * (i.e. the build users download). Bump this manually after a release —
  * it is part of the release checklist.
  */
-export const LATEST_VERSION = '3.1.1';
+export const LATEST_VERSION = '3.1.3';
