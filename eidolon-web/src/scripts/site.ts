@@ -323,13 +323,45 @@ type Manifest = {
   url?: unknown;
   fallback_url?: unknown;
 };
+const MODELSCOPE_BASE_URL = 'https://www.modelscope.cn/models/Iresina/llama2finetuned/resolve/master';
+
+function isChinaVisitor(): boolean {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    if (/^(Asia\/(Shanghai|Chongqing|Harbin|Urumqi|Beijing|Hong_Kong|Macau))/i.test(tz)) {
+      return true;
+    }
+  } catch {
+    /* ignore */
+  }
+  try {
+    const offset = new Date().getTimezoneOffset();
+    const langs = navigator.languages || [navigator.language || ''];
+    const primary = (langs[0] || '').toLowerCase();
+    if (offset === -480 && (primary === 'zh-cn' || primary === 'zh' || primary.startsWith('zh-hans'))) {
+      return true;
+    }
+  } catch {
+    /* ignore */
+  }
+  return false;
+}
+
+function toModelScopeUrl(filenameOrUrl: string): string {
+  const parts = filenameOrUrl.split('?')[0].replace(/^\/+/, '').split('/');
+  const filename = parts[parts.length - 1];
+  return `${MODELSCOPE_BASE_URL}/${filename}?view=false`;
+}
+
 const manifests = new Map<string, Promise<Manifest>>();
 function loadManifest(endpoint: string): Promise<Manifest> {
   let pending = manifests.get(endpoint);
   if (!pending) {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), RELEASE_TIMEOUT_MS);
-    pending = fetch(`${endpoint}?ts=${Date.now()}`, { cache: 'no-store', signal: controller.signal })
+    const regionParam = isChinaVisitor() ? '&region=cn' : '';
+    const fullEndpoint = `${endpoint}${endpoint.includes('?') ? '&' : '?'}ts=${Date.now()}${regionParam}`;
+    pending = fetch(fullEndpoint, { cache: 'no-store', signal: controller.signal })
       .then((response) => (response.ok ? response.json() : Promise.reject(new Error(String(response.status)))))
       .then((data: Manifest) => {
         if (typeof data.version !== 'string' || !data.version) throw new Error('missing version');
@@ -397,6 +429,13 @@ document.querySelectorAll<HTMLAnchorElement>('a[data-dl-manifest]').forEach((lin
 // the probe never holds anyone up.
 const PROBE_TIMEOUT_MS = 3000;
 document.querySelectorAll<HTMLAnchorElement>('a[data-dl-primary]').forEach((link) => {
+  if (isChinaVisitor() && link.href && !link.href.includes('modelscope.cn')) {
+    const orig = link.href;
+    link.href = toModelScopeUrl(orig);
+    if (!link.dataset.dlFallback) {
+      link.dataset.dlFallback = orig;
+    }
+  }
   link.addEventListener('click', (event) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const fallback = link.dataset.dlFallback;

@@ -3,14 +3,8 @@ export const SITE = {
   // Public beta since 2026-11-01 (see the changelog page).
   status: 'public-beta' as 'closed-beta' | 'waitlist' | 'public-beta',
   downloads: {
-    // 主线路：CDN 优选域名。国内走 Cloudflare 全球边缘（104.18/172.64 段），
-    // 比 R2 默认分配的 IP 段稳定得多。
-    // ⚠️ Windows 不再有固定别名：MSI 通道随 3.0.20 退役（MSI 安装器不执行
-    // NSIS 安装钩子，无法迁移旧的安装目录名），固定文件名 Eidolon_latest.msi
-    // 已无生产者。Windows 按钮的地址由 scripts/site.ts 在页面加载时从
-    // release.windows 清单里取**版本化 NSIS 包**回填（见 DownloadPage.astro
-    // 的 data-dl-manifest），所以发版既不需要改这里、也不需要重建官网。
-    android: 'https://cdn.instarmony.com/Sholarel_latest.apk',
+    // 主线路：storage 直链。中国大陆地区在前端自动切换至 ModelScope 国内优化线路。
+    android: 'https://storage.instarmony.com/Sholarel_latest.apk',
   },
   // 备用线路：R2 直连域名，和主线路是同一个 bucket。主线路探测不通时自动切换。
   downloadsFallback: {
