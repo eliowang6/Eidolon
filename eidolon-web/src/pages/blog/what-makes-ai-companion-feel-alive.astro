@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import BlogArticlePage from '../../components/pages/BlogArticlePage.astro';
+import { prPlain, t } from '../../i18n';
+import { ARTICLES_ZH } from '../../config/blog-data';
+import { blogArticleSchema, breadcrumbListSchema } from '../../config/schema';
+
+const copy = t('zh');
+const article = ARTICLES_ZH['what-makes-ai-companion-feel-alive'];
+const plainTitle = prPlain(article.title);
+const plainDesc = prPlain(article.description);
+
+const schema = [
+  blogArticleSchema({
+    title: plainTitle,
+    description: plainDesc,
+    url: 'https://sholarel.instarmony.com/blog/what-makes-ai-companion-feel-alive.html',
+    datePublished: article.date,
+    lang: 'zh',
+  }),
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: 'https://sholarel.instarmony.com/' },
+    { name: copy.nav.blog, url: 'https://sholarel.instarmony.com/blog.html' },
+    { name: plainTitle, url: 'https://sholarel.instarmony.com/blog/what-makes-ai-companion-feel-alive.html' },
+  ]),
+];
+---
+
+<Base
+  lang="zh"
+  path="/blog/what-makes-ai-companion-feel-alive.html"
+  title={`${plainTitle} — Sholarel 博客`}
+  description={plainDesc}
+  keywords="有活人感的 AI, 像微信聊天的 AI, 关掉 AI 括号动作描写, 不讨好的 AI 伴侣, 线上线下模式 AI, Sholarel, Fea, Ael"
+  jsonLd={schema}
+>
+  <BlogArticlePage lang="zh" article={article} />
+</Base>

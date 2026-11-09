@@ -1,0 +1,234 @@
+---
+/**
+ * Dedicated FAQ page: Direct, transparent answers organized by topic.
+ * Formatted for human readability and optimal AI/GEO citation.
+ */
+import Breadcrumb from '../Breadcrumb.astro';
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import PageHero from '../PageHero.astro';
+import { localizePath, pr, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const f = copy.faqPage;
+const pUrl = (href: string) => localizePath(lang, href);
+
+const breadcrumbs = [
+  { label: copy.nav.home, href: pUrl('/') },
+  { label: copy.nav.faq, href: pUrl('/faq.html') },
+];
+---
+
+<PageHero label={f.label} h1a={f.h1a} h1b={f.h1b} lede={f.lede}>
+  <Breadcrumb items={breadcrumbs} tone="night" class="faq-crumb" />
+</PageHero>
+
+<div class="faq-page-body">
+  <div class="container faq-container">
+    <div class="faq-layout">
+      <!-- Quick category nav -->
+      <aside class="faq-nav" aria-label="FAQ Categories">
+        <div class="faq-nav-in">
+          <Eyebrow text={lang === 'zh' ? '分类导航' : 'Categories'} />
+          <ul>
+            {
+              f.categories.map((cat) => (
+                <li>
+                  <a href={`#cat-${cat.id}`}>{cat.name}</a>
+                </li>
+              ))
+            }
+          </ul>
+          <div class="faq-nav-help">
+            <p>{lang === 'zh' ? '仍有疑问？' : 'Still have questions?'}</p>
+            <a class="btn btn-ghost btn-sm" href={`mailto:${copy.footer.contact}`}>
+              {lang === 'zh' ? '联系支持团队' : 'Contact Support'} →
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Question sections -->
+      <div class="faq-content">
+        {
+          f.categories.map((cat) => {
+            const items = f.items.filter((item) => item.cat === cat.id);
+            if (!items.length) return null;
+            return (
+              <section class="faq-group" id={`cat-${cat.id}`}>
+                <h2 class="faq-group-title">{cat.name}</h2>
+                <div class="faq-accordion">
+                  {items.map((item) => (
+                    <details class="faq-item" open>
+                      <summary>
+                        <span class="faq-q" set:html={pr(item.q)} />
+                        <span class="faq-arrow" aria-hidden="true" />
+                      </summary>
+                      <div class="faq-ans">
+                        <p set:html={pr(item.a)} />
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<CtaBand
+  lang={lang}
+  h2={copy.home.cta.h2}
+  lede={copy.home.cta.lede}
+  secondary="pricing"
+  whisper="desk"
+/>
+
+<style>
+  .faq-crumb {
+    margin-top: 18px;
+  }
+  .faq-page-body {
+    background: var(--pearl);
+    padding: clamp(60px, 8vw, 100px) 0;
+  }
+  .faq-container {
+    max-width: 1200px;
+  }
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+  }
+
+  .faq-nav-in {
+    position: sticky;
+    top: calc(var(--nav-h) + 24px);
+    padding: 24px 20px;
+    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+  .faq-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 24px;
+    display: grid;
+    gap: 8px;
+  }
+  .faq-nav a {
+    display: block;
+    font-size: 14.5px;
+    color: var(--ink-2);
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background var(--t-fast), color var(--t-fast);
+  }
+  .faq-nav a:hover {
+    background: var(--pearl-2);
+    color: var(--ink);
+  }
+  .faq-nav-help {
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+    color: var(--ink-3);
+  }
+  .faq-nav-help p {
+    margin-bottom: 10px;
+  }
+
+  .faq-group {
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+  .faq-group:last-child {
+    margin-bottom: 0;
+  }
+  .faq-group-title {
+    font-size: clamp(22px, 1.6vw, 28px);
+    color: var(--ink);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--line-2);
+  }
+
+  .faq-accordion {
+    display: grid;
+    gap: 12px;
+  }
+  .faq-item {
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    transition: border-color var(--t-fast);
+  }
+  .faq-item:hover {
+    border-color: var(--line-2);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 22px;
+    cursor: pointer;
+    user-select: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-q {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .faq-arrow {
+    position: relative;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--pearl-2);
+    transition: transform var(--t-mid) var(--ease);
+  }
+  .faq-arrow::before {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border-right: 2px solid var(--ink-2);
+    border-bottom: 2px solid var(--ink-2);
+    transform: rotate(45deg);
+    translate: 0 -2px;
+  }
+  details[open] .faq-arrow {
+    transform: rotate(180deg);
+  }
+  .faq-ans {
+    padding: 0 22px 22px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    border-top: 1px solid rgba(27, 30, 58, 0.06);
+    margin-top: -4px;
+    padding-top: 14px;
+  }
+
+  @media (max-width: 860px) {
+    .faq-layout {
+      grid-template-columns: 1fr;
+    }
+    .faq-nav {
+      display: none;
+    }
+  }
+</style>

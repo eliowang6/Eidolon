@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import BlogArticlePage from '../../components/pages/BlogArticlePage.astro';
+import { prPlain, t } from '../../i18n';
+import { ARTICLES_ZH } from '../../config/blog-data';
+import { blogArticleSchema, breadcrumbListSchema } from '../../config/schema';
+
+const copy = t('zh');
+const article = ARTICLES_ZH['desktop-companion-for-focus-and-routines'];
+const plainTitle = prPlain(article.title);
+const plainDesc = prPlain(article.description);
+
+const schema = [
+  blogArticleSchema({
+    title: plainTitle,
+    description: plainDesc,
+    url: 'https://sholarel.instarmony.com/blog/desktop-companion-for-focus-and-routines.html',
+    datePublished: article.date,
+    lang: 'zh',
+  }),
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: 'https://sholarel.instarmony.com/' },
+    { name: copy.nav.blog, url: 'https://sholarel.instarmony.com/blog.html' },
+    { name: plainTitle, url: 'https://sholarel.instarmony.com/blog/desktop-companion-for-focus-and-routines.html' },
+  ]),
+];
+---
+
+<Base
+  lang="zh"
+  path="/blog/desktop-companion-for-focus-and-routines.html"
+  title={`${plainTitle} — Sholarel 博客`}
+  description={plainDesc}
+  keywords="桌面学习陪伴, 电脑专注工具, 番茄钟陪伴, 双向交换手账, Windows 桌面伙伴, 自习搭子, Sholarel"
+  jsonLd={schema}
+>
+  <BlogArticlePage lang="zh" article={article} />
+</Base>

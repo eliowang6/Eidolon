@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductPage from '../../components/pages/ProductPage.astro';
+import { softwareAppSchema, breadcrumbListSchema } from '../../config/schema';
+import { t } from '../../i18n';
+
+const lang = 'en' as const;
+const copy = t(lang);
+
+const jsonLd = [
+  softwareAppSchema(lang),
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: '/en/' },
+    { name: copy.nav.product, url: '/en/product.html' },
+  ]),
+];
+---
+
+<Base
+  lang={lang}
+  path="/product.html"
+  title={copy.meta.product.title}
+  description={copy.meta.product.description}
+  keywords={copy.meta.product.keywords}
+  jsonLd={jsonLd}
+>
+  <ProductPage lang={lang} />
+</Base>

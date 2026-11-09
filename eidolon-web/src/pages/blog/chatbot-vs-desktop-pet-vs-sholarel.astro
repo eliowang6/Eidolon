@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import BlogArticlePage from '../../components/pages/BlogArticlePage.astro';
+import { prPlain, t } from '../../i18n';
+import { ARTICLES_ZH } from '../../config/blog-data';
+import { blogArticleSchema, breadcrumbListSchema } from '../../config/schema';
+
+const copy = t('zh');
+const article = ARTICLES_ZH['chatbot-vs-desktop-pet-vs-sholarel'];
+const plainTitle = prPlain(article.title);
+const plainDesc = prPlain(article.description);
+
+const schema = [
+  blogArticleSchema({
+    title: plainTitle,
+    description: plainDesc,
+    url: 'https://sholarel.instarmony.com/blog/chatbot-vs-desktop-pet-vs-sholarel.html',
+    datePublished: article.date,
+    lang: 'zh',
+  }),
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: 'https://sholarel.instarmony.com/' },
+    { name: copy.nav.blog, url: 'https://sholarel.instarmony.com/blog.html' },
+    { name: plainTitle, url: 'https://sholarel.instarmony.com/blog/chatbot-vs-desktop-pet-vs-sholarel.html' },
+  ]),
+];
+---
+
+<Base
+  lang="zh"
+  path="/blog/chatbot-vs-desktop-pet-vs-sholarel.html"
+  title={`${plainTitle} — Sholarel 博客`}
+  description={plainDesc}
+  keywords="桌面宠物推荐, AI 桌宠对比, 聊天机器人区别, Sholarel 是什么, 3D 桌面伴侣, Fea, Ael"
+  jsonLd={schema}
+>
+  <BlogArticlePage lang="zh" article={article} />
+</Base>

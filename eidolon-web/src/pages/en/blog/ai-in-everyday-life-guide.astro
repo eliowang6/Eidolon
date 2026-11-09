@@ -1,0 +1,38 @@
+---
+import Base from '../../../layouts/Base.astro';
+import BlogArticlePage from '../../../components/pages/BlogArticlePage.astro';
+import { prPlain, t } from '../../../i18n';
+import { ARTICLES_EN } from '../../../config/blog-data';
+import { blogArticleSchema, breadcrumbListSchema } from '../../../config/schema';
+
+const copy = t('en');
+const article = ARTICLES_EN['ai-in-everyday-life-guide'];
+const plainTitle = prPlain(article.title);
+const plainDesc = prPlain(article.description);
+
+const schema = [
+  blogArticleSchema({
+    title: plainTitle,
+    description: plainDesc,
+    url: 'https://sholarel.instarmony.com/en/blog/ai-in-everyday-life-guide.html',
+    datePublished: article.date,
+    lang: 'en',
+  }),
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: 'https://sholarel.instarmony.com/en/' },
+    { name: copy.nav.blog, url: 'https://sholarel.instarmony.com/en/blog.html' },
+    { name: plainTitle, url: 'https://sholarel.instarmony.com/en/blog/ai-in-everyday-life-guide.html' },
+  ]),
+];
+---
+
+<Base
+  lang="en"
+  path="/blog/ai-in-everyday-life-guide.html"
+  title={`${plainTitle} — Sholarel Blog`}
+  description={plainDesc}
+  keywords="everyday uses for AI, AI assistant for daily life, PC and phone AI sync, PDF summary desktop AI, voice call AI companion, Sholarel"
+  jsonLd={schema}
+>
+  <BlogArticlePage lang="en" article={article} />
+</Base>

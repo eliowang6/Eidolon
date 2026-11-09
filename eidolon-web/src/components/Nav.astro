@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
-import { localizePath, otherLang, t, type Lang } from '../i18n';
+import { SITE } from '../config/site';
+import { localizeDocsPath, localizePath, otherLang, t, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -10,14 +11,30 @@ interface Props {
 const { lang, path, tone = 'night' } = Astro.props;
 const copy = t(lang);
 const p = (href: string) => localizePath(lang, href);
+// The documentation is its own tree under /docs/ (en under /docs/en/), so its
+// nav entry must not go through localizePath — that would produce /en/docs/.
+const docsHref = localizeDocsPath(lang, SITE.docs.home);
+const hrefOf = (href: string) => (href === SITE.docs.home ? docsHref : p(href));
 const links = [
+  { href: '/product.html', label: copy.nav.product },
   { href: '/features.html', label: copy.nav.features },
-  { href: '/how-it-works.html', label: copy.nav.trust },
+  { href: '/use-cases.html', label: copy.nav.useCases },
+  { href: '/pricing.html', label: copy.nav.pricing },
+  { href: '/blog.html', label: copy.nav.blog },
+  { href: '/faq.html', label: copy.nav.faq },
+  { href: SITE.docs.home, label: copy.nav.docs },
+];
+const drawerLinks = [
+  { href: '/product.html', label: copy.nav.product },
+  { href: '/features.html', label: copy.nav.features },
+  { href: '/use-cases.html', label: copy.nav.useCases },
   { href: '/pricing.html', label: copy.nav.pricing },
   { href: '/dew.html', label: copy.nav.dew },
-  { href: '/beta.html', label: copy.nav.changelog },
+  { href: '/blog.html', label: copy.nav.blog },
+  { href: '/faq.html', label: copy.nav.faq },
+  { href: '/changelog.html', label: copy.nav.changelog },
   { href: '/about.html', label: copy.nav.about },
-  { href: '/docs.html', label: copy.nav.docs },
+  { href: SITE.docs.home, label: copy.nav.docs },
 ];
 const other = otherLang(lang);
 const isCurrent = (href: string) => path === href;
@@ -32,7 +49,7 @@ const isCurrent = (href: string) => path === href;
 
     <nav class="links" aria-label={copy.nav.primary}>
       {links.map((link) => (
-        <a href={p(link.href)} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
+        <a href={hrefOf(link.href)} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
       ))}
     </nav>
 
@@ -68,8 +85,8 @@ const isCurrent = (href: string) => path === href;
       </button>
     </div>
     <nav class="drawer-links" aria-label={copy.nav.primary}>
-      {links.map((link, i) => (
-        <a href={p(link.href)} style={`--i:${i}`} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
+      {drawerLinks.map((link, i) => (
+        <a href={hrefOf(link.href)} style={`--i:${i}`} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
       ))}
     </nav>
     <div class="drawer-foot">

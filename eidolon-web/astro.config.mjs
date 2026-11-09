@@ -54,7 +54,9 @@ export default defineConfig({
   trailingSlash: 'ignore',
   integrations: [
     sitemap({
-      filter: (page) => !/\/(404|login|contact)\/?$/.test(new URL(page).pathname),
+      // docs.html is a duplicate docs entry: /docs and /docs.html now answer a
+      // 301 to the Docusaurus tree (/docs/), so it must not be advertised here.
+      filter: (page) => !/\/(404|login|contact|docs)(\.html)?\/?$/.test(new URL(page).pathname),
       i18n: {
         defaultLocale: 'zh',
         locales: { zh: 'zh-Hans', en: 'en' },
@@ -69,6 +71,24 @@ export default defineConfig({
         if (item.url === `${SITE}/` || item.url === `${SITE}/en/`) {
           item.changefreq = 'weekly';
           item.priority = 1.0;
+        } else if (/\/product\.html$/.test(item.url)) {
+          item.changefreq = 'weekly';
+          item.priority = 0.95;
+        } else if (/\/features\.html$|\/use-cases\.html$/.test(item.url)) {
+          item.changefreq = 'weekly';
+          item.priority = 0.9;
+        } else if (/\/pricing\.html$|\/download\.html$|\/dew\.html$/.test(item.url)) {
+          item.changefreq = 'weekly';
+          item.priority = 0.85;
+        } else if (/\/faq\.html$|\/blog\.html$/.test(item.url)) {
+          item.changefreq = 'weekly';
+          item.priority = 0.85;
+        } else if (/\/blog\/.+\.html$/.test(item.url)) {
+          item.changefreq = 'monthly';
+          item.priority = 0.8;
+        } else if (/\/changelog\.html$|\/beta\.html$/.test(item.url)) {
+          item.changefreq = 'weekly';
+          item.priority = 0.75;
         } else if (/\/privacy\.html$|\/terms\.html$/.test(item.url)) {
           item.changefreq = 'yearly';
           item.priority = 0.2;
@@ -77,7 +97,7 @@ export default defineConfig({
           item.priority = 0.6;
         } else {
           item.changefreq = 'monthly';
-          item.priority = 0.8;
+          item.priority = 0.75;
         }
         return item;
       },

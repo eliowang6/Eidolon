@@ -1,0 +1,346 @@
+---
+/**
+ * Product Architecture: What Sholarel is, its 5-layer cognitive model,
+ * architectural differences from chatbots, and core principles.
+ */
+import Breadcrumb from '../Breadcrumb.astro';
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import PageHero from '../PageHero.astro';
+import Screen from '../Screen.astro';
+import { localizePath, pr, prPlain, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const p = copy.productPage;
+const pUrl = (href: string) => localizePath(lang, href);
+
+const breadcrumbs = [
+  { label: copy.nav.home, href: pUrl('/') },
+  { label: copy.nav.product, href: pUrl('/product.html') },
+];
+---
+
+<PageHero label={p.label} h1a={p.h1a} h1b={p.h1b} lede={p.lede}>
+  <Breadcrumb items={breadcrumbs} tone="night" class="prod-crumb" />
+</PageHero>
+
+<div class="product-body">
+  <!-- ── 1. Overview ───────────────────────────────────────────── -->
+  <section class="sec-overview" id="overview">
+    <div class="container ov-grid">
+      <div class="ov-text">
+        <Eyebrow text={p.overview.label} class="reveal" />
+        <h2 class="reveal" style="--i:1">{p.overview.h2}</h2>
+        <p class="lede reveal" style="--i:2" set:html={pr(p.overview.p1)} />
+        <p class="body-p reveal" style="--i:3" set:html={pr(p.overview.p2)} />
+        <div class="ov-links reveal" style="--i:4">
+          <a class="btn btn-holo" href={pUrl('/download.html')}>{copy.common.ctaDownload}</a>
+          <a class="btn btn-ghost" href={pUrl('/features.html')}>{copy.common.ctaFeatures} →</a>
+        </div>
+      </div>
+      <div class="ov-media reveal" style="--i:2">
+        <Screen shot="d-home" alt="Sholarel desktop workspace" class="ov-screen" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. Five Layers ────────────────────────────────────────── -->
+  <section class="sec-layers band-pearl" id="layers">
+    <div class="container">
+      <div class="sec-head">
+        <Eyebrow text={p.layers.label} class="reveal" />
+        <h2 class="reveal" style="--i:1">{p.layers.h2}</h2>
+        <p class="lede reveal" style="--i:2" set:html={pr(p.layers.lede)} />
+      </div>
+
+      <div class="layers-grid">
+        {
+          p.layers.items.map((layer, index) => (
+            <article class="layer-card reveal" style={`--i:${index + 1}`}>
+              <div class="layer-tag">{layer.tag}</div>
+              <h3>{layer.t}</h3>
+              <p set:html={pr(layer.d)} />
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. Comparison Matrix ─────────────────────────────────── -->
+  <section class="sec-comparison" id="comparison">
+    <div class="container">
+      <div class="sec-head">
+        <Eyebrow text={p.comparison.label} class="reveal" />
+        <h2 class="reveal" style="--i:1">{p.comparison.h2}</h2>
+      </div>
+
+      <div class="table-wrap reveal" style="--i:2">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              {p.comparison.headers.map((h, i) => (
+                <th class={i === 3 ? 'th-highlight' : ''}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              p.comparison.rows.map((row) => (
+                <tr>
+                  <td class="td-dim">{row.dim}</td>
+                  <td>{row.col1}</td>
+                  <td>{row.col2}</td>
+                  <td class="td-highlight">
+                    <strong>{row.col3}</strong>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. Companions ─────────────────────────────────────────── -->
+  <section class="sec-companions band-pearl" id="companions">
+    <div class="container comp-grid">
+      <div class="comp-copy">
+        <Eyebrow text={p.companions.label} class="reveal" />
+        <h2 class="reveal" style="--i:1">{p.companions.h2}</h2>
+        <p class="lede reveal" style="--i:2" set:html={pr(p.companions.p1)} />
+        <p class="body-p reveal" style="--i:3" set:html={pr(p.companions.p2)} />
+        <div class="comp-actions reveal" style="--i:4">
+          <a class="btn btn-ghost" href={pUrl('/about.html')}>{copy.footer.about} →</a>
+          <a class="btn btn-ghost" href={pUrl('/faq.html')}>{copy.footer.faq} →</a>
+        </div>
+      </div>
+      <div class="comp-avatars reveal" style="--i:3">
+        <div class="avatar-card fea">
+          <img src="/assets/art/fea-avatar.webp" alt="Fea avatar" width="80" height="80" />
+          <div class="avatar-name">Fea</div>
+          <p>{lang === 'zh' ? '细腻、敏锐、充满同理心与情绪观察' : 'Empathetic, attentive, emotionally observant'}</p>
+        </div>
+        <div class="avatar-card ael">
+          <img src="/assets/art/ael-avatar.webp" alt="Ael avatar" width="80" height="80" />
+          <div class="avatar-name">Ael</div>
+          <p>{lang === 'zh' ? '理智、从容、注重行动节奏与深度整理' : 'Calm, structured, focused on pragmatic action'}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<CtaBand
+  lang={lang}
+  h2={copy.home.cta.h2}
+  lede={copy.home.cta.lede}
+  secondary="features"
+  whisper="desk"
+/>
+
+<style>
+  .prod-crumb {
+    margin-top: 18px;
+  }
+  .product-body {
+    position: relative;
+    background: var(--pearl);
+  }
+  section {
+    padding: clamp(60px, 8vw, 108px) 0;
+  }
+  .sec-head {
+    max-width: 760px;
+    margin-bottom: clamp(32px, 5vw, 64px);
+  }
+  .sec-head h2 {
+    font-size: clamp(2rem, 1.6rem + 1.6vw, 3rem);
+    margin: 12px 0 16px;
+    line-height: 1.15;
+  }
+
+  /* Overview */
+  .ov-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  .ov-text h2 {
+    font-size: clamp(2.2rem, 1.8rem + 1.8vw, 3.2rem);
+    margin: 12px 0 18px;
+    line-height: 1.15;
+  }
+  .ov-text .lede {
+    font-size: clamp(17px, 1.2vw, 20px);
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.55;
+  }
+  .body-p {
+    font-size: 15.5px;
+    color: var(--ink-2);
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+  .ov-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .ov-media {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -20px rgba(14, 17, 49, 0.25);
+  }
+
+  /* Layers */
+  .layers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .layer-card {
+    padding: 30px 26px;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 30px -15px rgba(27, 30, 58, 0.08);
+    transition: transform var(--t-fast) var(--ease), border-color var(--t-fast);
+  }
+  .layer-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-2);
+  }
+  .layer-tag {
+    display: inline-block;
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: var(--pearl-2);
+    color: var(--ink-2);
+    margin-bottom: 16px;
+  }
+  .layer-card h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .layer-card p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-2);
+  }
+
+  /* Comparison Table */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 16px 40px -20px rgba(27, 30, 58, 0.1);
+  }
+  .comp-table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14.5px;
+  }
+  .comp-table th,
+  .comp-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .comp-table th {
+    background: var(--pearl-2);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .comp-table .th-highlight {
+    background: color-mix(in srgb, var(--night) 8%, var(--pearl-2));
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .td-dim {
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .td-highlight {
+    background: rgba(110, 169, 242, 0.08);
+    color: var(--ink);
+  }
+
+  /* Companions */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  .comp-avatars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .avatar-card {
+    padding: 26px 20px;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+  .avatar-card img {
+    border-radius: 50%;
+    margin-bottom: 12px;
+    box-shadow: 0 0 0 3px #fff, 0 8px 20px -8px rgba(14, 17, 49, 0.3);
+  }
+  .avatar-card.fea img {
+    box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--fea);
+  }
+  .avatar-card.ael img {
+    box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--ael);
+  }
+  .avatar-name {
+    font-family: var(--f-latin-display);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .avatar-card.fea .avatar-name {
+    color: var(--fea-ink);
+  }
+  .avatar-card.ael .avatar-name {
+    color: var(--ael-ink);
+  }
+  .avatar-card p {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .comp-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 860px) {
+    .ov-grid,
+    .comp-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

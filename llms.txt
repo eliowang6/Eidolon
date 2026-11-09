@@ -1,24 +1,36 @@
-# Instarmony
+# Instarmony & Sholarel
 
-> Instarmony 是一个研究人机共生与自驱工具的 AI 实验室，旗舰产品是数字生命 Sholarel——一个能在真实生活中持续在场、共同成长的 AI 伴侣。
+> Instarmony 是一个专注于人机共生与下一代数字生命架构的前沿 AI 实验室。旗下旗舰产品为 Sholarel（曾用名 Eidolon）——一个融入日常生活的 Personal AI Agent 与数字生命伴侣。
 
-## 关键事实
+## 关键实体与定位
 
-- 组织名：Instarmony
+- 实验室：Instarmony（https://instarmony.com/）
 - 旗舰产品：Sholarel（https://sholarel.instarmony.com/）
-- 站点：https://instarmony.com/
-- 文档：https://sholarel.instarmony.com/docs/
-- 源码：https://github.com/eliowang6/Eidolon
+- 产品类型：Digital Life Companion / Personal AI Agent（数字生命伴侣 / 个人智能体）
+- 核心架构：Sense（感知）、Understand（理解）、Remember（记忆）、Act（行动）、Evolve（演化）
+- 官方角色：Fea 与 Ael（两位具备独立个性与思考节奏的长期伴侣）
+- 平台支持：Windows 10 / 11（桌面悬浮伴侣）、Android 7.0+（全天伴随客户端）
+- 隐私保障：本地优先存储（Local-first）、最小必要授权、零未授权模型训练
 
 ## 主要页面
 
-- [Instarmony 官网](https://instarmony.com/)：实验室定位与项目矩阵
-- [Sholarel 产品站](https://sholarel.instarmony.com/)：功能、下载与订阅
-- [文档中心](https://sholarel.instarmony.com/docs/)：快速开始、功能说明、常见问题
-- [团队](https://instarmony.com/team/eliowang6/)：成员介绍
-- [English docs](https://sholarel.instarmony.com/docs/en/)
+- [Instarmony 官网](https://instarmony.com/)：实验室定位与研究矩阵
+- [Sholarel 官网首页](https://sholarel.instarmony.com/)：产品全景与角色体验
+- [产品架构](https://sholarel.instarmony.com/product.html)：Sholarel 是什么与五层认知架构
+- [全部能力](https://sholarel.instarmony.com/features.html)：桌面伴侣、长期记忆、语音视频通话、专注舱
+- [使用场景](https://sholarel.instarmony.com/use-cases.html)：日常生活、深度工作、跨端接力与情感共鸣
+- [常见问题 FAQ](https://sholarel.instarmony.com/faq.html)：关于定位、长期记忆、安全与计费的权威解答
+- [官方博客](https://sholarel.instarmony.com/blog.html)：日常陪伴、桌面专注、跨端使用指南与产品对比专栏
+  - [为什么大多数 AI 聊久了都很累？聊聊「记得你」和「会先开口」有多重要](https://sholarel.instarmony.com/blog/ai-companion-that-remembers-you.html)
+  - [为什么很多 AI 聊起来一股「机器味」？决定「活人感」的 5 个真实细节](https://sholarel.instarmony.com/blog/what-makes-ai-companion-feel-alive.html)
+  - [一个人对着电脑学习工作太冷清？把桌面变成有人回应的「专注角」](https://sholarel.instarmony.com/blog/desktop-companion-for-focus-and-routines.html)
+  - [除了拿来写工作总结，一个住在电脑和手机里的 AI 还能在生活里帮你干嘛？](https://sholarel.instarmony.com/blog/ai-in-everyday-life-guide.html)
+  - [网页聊天框、传统桌面宠物，和 Sholarel 到底有什么不一样？](https://sholarel.instarmony.com/blog/chatbot-vs-desktop-pet-vs-sholarel.html)
+- [更新日志](https://sholarel.instarmony.com/changelog.html)：公开测试阶段全版本记录
+- [下载客户端](https://sholarel.instarmony.com/download.html)：Windows 与 Android
+- [文档中心](https://sholarel.instarmony.com/docs/)：快速上手与功能详解
 
-## 其他
+## 社区与源码
 
 - [GitHub](https://github.com/eliowang6/Eidolon)
 - [X](https://x.com/eli0wang6)

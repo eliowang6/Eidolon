@@ -1,4 +1,176 @@
 {
+  "redirects": [
+    {
+      "source": "/product",
+      "destination": "/product.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/use-cases",
+      "destination": "/use-cases.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/changelog",
+      "destination": "/changelog.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/ai-companion-that-remembers-you",
+      "destination": "/blog/ai-companion-that-remembers-you.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/what-makes-ai-companion-feel-alive",
+      "destination": "/blog/what-makes-ai-companion-feel-alive.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/desktop-companion-for-focus-and-routines",
+      "destination": "/blog/desktop-companion-for-focus-and-routines.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/ai-in-everyday-life-guide",
+      "destination": "/blog/ai-in-everyday-life-guide.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/chatbot-vs-desktop-pet-vs-sholarel",
+      "destination": "/blog/chatbot-vs-desktop-pet-vs-sholarel.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/features",
+      "destination": "/features.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/pricing",
+      "destination": "/pricing.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/download",
+      "destination": "/download.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/dew",
+      "destination": "/dew.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/product",
+      "destination": "/en/product.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/use-cases",
+      "destination": "/en/use-cases.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/faq",
+      "destination": "/en/faq.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/changelog",
+      "destination": "/en/changelog.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/blog",
+      "destination": "/en/blog.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/blog/ai-companion-that-remembers-you",
+      "destination": "/en/blog/ai-companion-that-remembers-you.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/blog/what-makes-ai-companion-feel-alive",
+      "destination": "/en/blog/what-makes-ai-companion-feel-alive.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/blog/desktop-companion-for-focus-and-routines",
+      "destination": "/en/blog/desktop-companion-for-focus-and-routines.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/blog/ai-in-everyday-life-guide",
+      "destination": "/en/blog/ai-in-everyday-life-guide.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/blog/chatbot-vs-desktop-pet-vs-sholarel",
+      "destination": "/en/blog/chatbot-vs-desktop-pet-vs-sholarel.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/features",
+      "destination": "/en/features.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/pricing",
+      "destination": "/en/pricing.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/download",
+      "destination": "/en/download.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/dew",
+      "destination": "/en/dew.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/about",
+      "destination": "/en/about.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs",
+      "destination": "/docs/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs.html",
+      "destination": "/docs/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/docs",
+      "destination": "/docs/en/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/docs.html",
+      "destination": "/docs/en/",
+      "statusCode": 301
+    }
+  ],
   "headers": [
     {
       "source": "/baidu_verify_codeva-NQXQSyqVE6.html",

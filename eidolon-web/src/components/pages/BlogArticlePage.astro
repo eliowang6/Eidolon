@@ -1,0 +1,384 @@
+---
+/**
+ * Blog Article Page Template: Rich typography, executive summary,
+ * structured sections, comparison tables, and GEO-friendly citations.
+ */
+import Breadcrumb from '../Breadcrumb.astro';
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import PageHero from '../PageHero.astro';
+import { localizePath, pr, t, type Lang } from '../../i18n';
+
+export interface ArticleData {
+  slug: string;
+  category: string;
+  categoryLabel: string;
+  title: string;
+  description: string;
+  date: string;
+  readTime: string;
+  summary: string;
+  takeaways: string[];
+  sections: {
+    heading: string;
+    paragraphs: string[];
+    table?: {
+      headers: string[];
+      rows: string[][];
+    };
+    quote?: string;
+  }[];
+}
+
+interface Props {
+  lang: Lang;
+  article: ArticleData;
+}
+
+const { lang, article } = Astro.props;
+const copy = t(lang);
+const pUrl = (href: string) => localizePath(lang, href);
+
+const breadcrumbs = [
+  { label: copy.nav.home, href: pUrl('/') },
+  { label: copy.nav.blog, href: pUrl('/blog.html') },
+  { label: article.title },
+];
+---
+
+<PageHero label={article.categoryLabel} h1a={article.title}>
+  <Breadcrumb items={breadcrumbs} tone="night" class="art-crumb" />
+</PageHero>
+
+<div class="art-body">
+  <div class="container art-container">
+    <div class="art-main">
+      <!-- Article meta bar -->
+      <div class="art-meta-bar">
+        <span class="meta-tag">{article.categoryLabel}</span>
+        <time class="meta-date">{article.date}</time>
+        <span class="meta-read">{article.readTime} {copy.blogPage.minRead}</span>
+        <span class="meta-author">Instarmony AI Lab</span>
+      </div>
+
+      <!-- Summary box (ideal for busy readers) -->
+      <div class="art-summary-box">
+        <div class="summary-label">{lang === 'zh' ? '一分钟先看重点' : 'In Short'}</div>
+        <p set:html={pr(article.summary)} />
+      </div>
+
+      <!-- Main content sections -->
+      <div class="art-prose">
+        {
+          article.sections.map((sec) => (
+            <section class="art-section">
+              <h2 set:html={pr(sec.heading)} />
+              {sec.paragraphs.map((p) => (
+                <p set:html={pr(p)} />
+              ))}
+              {sec.quote && (
+                <blockquote class="art-quote">
+                  <p set:html={pr(sec.quote)} />
+                </blockquote>
+              )}
+              {sec.table && (
+                <div class="art-table-wrap">
+                  <table class="art-table">
+                    <thead>
+                      <tr>
+                        {sec.table.headers.map((h) => (
+                          <th set:html={pr(h)} />
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sec.table.rows.map((row) => (
+                        <tr>
+                          {row.map((cell, idx) => (
+                            <td class={idx === 0 ? 'td-bold' : ''} set:html={pr(cell)} />
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </section>
+          ))
+        }
+
+        <!-- Takeaways & Conversion CTA -->
+        <section class="art-takeaways">
+          <h2>{lang === 'zh' ? '写在最后：现在就可以试试' : 'Try It Yourself'}</h2>
+          <ul>
+            {article.takeaways.map((item) => (
+              <li>
+                <span class="takeaway-bullet">✓</span>
+                <span set:html={pr(item)} />
+              </li>
+            ))}
+          </ul>
+          <div class="art-cta-row">
+            <a class="btn btn-holo" href={pUrl('/download.html')}>{copy.common.ctaDownload}</a>
+            <a class="btn btn-ghost" href={pUrl('/features.html')}>{copy.common.ctaFeatures} →</a>
+          </div>
+        </section>
+      </div>
+
+      <!-- Internal links bar -->
+      <div class="art-internal-links">
+        <h3>{lang === 'zh' ? '继续看看 Sholarel 能为你做什么' : 'Explore More About Sholarel'}</h3>
+        <div class="links-grid">
+          <a class="link-card" href={pUrl('/features.html')}>
+            <span class="lc-tag">{copy.nav.features}</span>
+            <span class="lc-title">{lang === 'zh' ? '桌面悬浮、主动视觉、双向手账与专注舱' : 'Desktop figure, active vision, shared journal & focus'} →</span>
+          </a>
+          <a class="link-card" href={pUrl('/use-cases.html')}>
+            <span class="lc-tag">{copy.nav.useCases}</span>
+            <span class="lc-title">{lang === 'zh' ? '查看清晨提醒、深度工作与跨设备真实场景' : 'See morning routines, deep work & cross-device scenes'} →</span>
+          </a>
+          <a class="link-card" href={pUrl('/faq.html')}>
+            <span class="lc-tag">{copy.nav.faq}</span>
+            <span class="lc-title">{lang === 'zh' ? '关于隐私保护、Fea 与 Ael 区别的常见解答' : 'Answers on privacy, Fea vs. Ael, and free tier'} →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<CtaBand
+  lang={lang}
+  h2={copy.home.cta.h2}
+  lede={copy.home.cta.lede}
+  secondary="features"
+  whisper="desk"
+/>
+
+<style>
+  .art-crumb {
+    margin-top: 18px;
+  }
+  .art-body {
+    background: var(--pearl);
+    padding: clamp(60px, 8vw, 100px) 0;
+  }
+  .art-container {
+    max-width: 860px;
+  }
+  .art-meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    color: var(--ink-3);
+  }
+  .meta-tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: var(--pearl-2);
+    color: var(--accent-ink);
+  }
+  .meta-date,
+  .meta-read {
+    font-family: var(--f-mono);
+  }
+  .meta-author {
+    margin-left: auto;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+
+  .art-summary-box {
+    padding: 24px 28px;
+    border-radius: 16px;
+    background: var(--card);
+    border-left: 4px solid var(--accent);
+    border-top: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 10px 30px -15px rgba(27, 30, 58, 0.08);
+    margin-bottom: clamp(36px, 5vw, 54px);
+  }
+  .summary-label {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin-bottom: 10px;
+  }
+  .art-summary-box p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .art-prose {
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+  .art-section {
+    margin-bottom: clamp(40px, 6vw, 60px);
+  }
+  .art-prose h2 {
+    font-size: clamp(24px, 1.8vw, 32px);
+    margin: 0 0 18px;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .art-prose p {
+    margin-bottom: 20px;
+    color: var(--ink-2);
+  }
+  .art-prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .art-quote {
+    margin: 28px 0;
+    padding: 20px 24px;
+    border-radius: 12px;
+    background: var(--pearl-2);
+    border-left: 3px solid var(--accent-ink);
+    font-family: var(--f-latin-display);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .art-quote p {
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .art-table-wrap {
+    overflow-x: auto;
+    margin: 28px 0;
+    border-radius: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+  .art-table {
+    width: 100%;
+    min-width: 580px;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14.5px;
+  }
+  .art-table th,
+  .art-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    line-height: 1.5;
+  }
+  .art-table th {
+    background: var(--pearl-2);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .td-bold {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .art-takeaways {
+    margin-top: 48px;
+    padding: 30px 32px;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 32px -16px rgba(27, 30, 58, 0.08);
+  }
+  .art-takeaways h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .art-takeaways ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .art-takeaways li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .takeaway-bullet {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pearl-2);
+    color: var(--accent-ink);
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .art-cta-row {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .art-internal-links {
+    margin-top: clamp(60px, 8vw, 84px);
+    padding-top: 36px;
+    border-top: 1px solid var(--line-2);
+  }
+  .art-internal-links h3 {
+    font-size: 19px;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .link-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    transition: transform var(--t-fast) var(--ease), border-color var(--t-fast);
+  }
+  .link-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--line-2);
+  }
+  .lc-tag {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--accent-ink);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .lc-title {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+</style>

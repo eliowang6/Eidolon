@@ -39,16 +39,28 @@ export function localizeDocsPath(lang: Lang, zhPath: string): string {
 }
 
 /**
- * Copy is written once for both companions. `⟨她|他⟩` keeps both forms and
- * CSS shows the one that matches html[data-companion]; `{name}` becomes
- * Fea / Ael the same way. Only for trusted strings from our own dictionaries.
+ * Copy is written once for both companions. `⟨她|他⟩` keeps both forms and the
+ * companion script paints the variant matching html[data-companion]; `{name}`
+ * becomes Fea / Ael the same way. Only for trusted strings from our own
+ * dictionaries.
+ *
+ * The two variants used to be sibling <span>s toggled by CSS, which glued them
+ * together in the raw HTML text node: "FeaAel", "她他", "SheHe". Copy is now a
+ * single span carrying both variants in data-* attributes, so the markup
+ * already reads with one name and scripts/site.ts swaps it on a switch.
  */
 const escapeHtml = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+// Values land in an attribute; & < > are already escaped, quotes are not.
+const attr = (text: string) => text.replace(/"/g, '&quot;');
+
+const whoSpan = (fea: string, ael: string) =>
+  `<span class="who" data-fea="${attr(fea)}" data-ael="${attr(ael)}">${fea}</span>`;
+
 export function pr(text: string): string {
   return escapeHtml(text)
-    .replace(/⟨([^|⟩]*)\|([^⟩]*)⟩/g, '<span class="cf">$1</span><span class="ca">$2</span>')
-    .replace(/\{name\}/g, '<span class="cf">Fea</span><span class="ca">Ael</span>')
+    .replace(/⟨([^|⟩]*)\|([^⟩]*)⟩/g, (_match, fea: string, ael: string) => whoSpan(fea, ael))
+    .replace(/\{name\}/g, whoSpan('Fea', 'Ael'))
     .replace(/\*\*([^*]+)\*\*/g, '<em>$1</em>');
 }
 

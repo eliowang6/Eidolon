@@ -1,0 +1,303 @@
+---
+/**
+ * Blog Index: Strategic content hub across 4 pillars:
+ * AI & Digital Life, Tech & Architecture, Use Cases, and Updates.
+ */
+import Breadcrumb from '../Breadcrumb.astro';
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import PageHero from '../PageHero.astro';
+import { localizePath, pr, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const b = copy.blogPage;
+const pUrl = (href: string) => localizePath(lang, href);
+
+const breadcrumbs = [
+  { label: copy.nav.home, href: pUrl('/') },
+  { label: copy.nav.blog, href: pUrl('/blog.html') },
+];
+---
+
+<PageHero label={b.label} h1a={b.h1a} h1b={b.h1b} lede={b.lede}>
+  <Breadcrumb items={breadcrumbs} tone="night" class="blog-crumb" />
+</PageHero>
+
+<div class="blog-body">
+  <div class="container blog-container">
+    <!-- Category pills -->
+    <div class="blog-filter" data-blog-filter>
+      {
+        b.categories.map((cat, i) => (
+          <a
+            href={cat.id === 'all' ? '#all' : `#${cat.id}`}
+            data-cat-pill={cat.id}
+            class:list={['filter-pill', i === 0 && 'on']}
+          >
+            {cat.name}
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Article grid or coming soon state -->
+    {
+      b.articles.length > 0 ? (
+        <div class="blog-grid" id="all">
+          {b.articles.map((art, index) => (
+            <article class="article-card reveal" data-art-cat={art.category} style={`--i:${index + 1}`}>
+              <div class="card-meta">
+                <span class="card-cat">{art.categoryLabel}</span>
+                <time class="card-date">{art.date}</time>
+              </div>
+              <h2 class="card-title">
+                <a href={pUrl(`/blog/${art.slug}.html`)} set:html={pr(art.title)} />
+              </h2>
+              <p class="card-desc" set:html={pr(art.description)} />
+              <div class="card-foot">
+                <span class="card-read">
+                  {art.readTime} {b.minRead}
+                </span>
+                <a class="card-link" href={pUrl(`/blog/${art.slug}.html`)}>
+                  {b.readMore} →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="blog-prep reveal">
+          <div class="prep-badge">{lang === 'zh' ? '专栏筹备中' : 'In Preparation'}</div>
+          <h2>{b.emptyTitle}</h2>
+          <p class="prep-desc">{b.emptyDesc}</p>
+          <div class="prep-actions">
+            <a class="btn btn-holo" href={pUrl('/features.html')}>{copy.common.ctaFeatures}</a>
+            <a class="btn btn-ghost" href={pUrl('/use-cases.html')}>{copy.nav.useCases} →</a>
+            <a class="btn btn-ghost" href={pUrl('/faq.html')}>{copy.nav.faq} →</a>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Content Mission Note -->
+    <div class="blog-mission">
+      <div class="mission-in">
+        <Eyebrow text={lang === 'zh' ? '关于这个专栏' : 'About This Column'} />
+        <h3>{lang === 'zh' ? '不谈晦涩的参数，只聊真实生活里的相处与好用' : 'No Jargon — Just Real Everyday Life with a Companion'}</h3>
+        <p>
+          {
+            lang === 'zh'
+              ? '这里记录的都是普通人在学习、工作、独处和日常生活里用上 Sholarel 的真实场景与小技巧：怎样把冷清的书桌变成专注角、怎样不用背提示词就让伙伴听懂你的习惯、以及电脑和手机之间如何顺手接力。'
+              : 'Here we share practical stories and everyday routines with Sholarel: turning a quiet desk into a focused workspace, getting help with daily files and schedules without memorizing prompt formulas, and keeping one continuous conversation across your PC and phone.'
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const bar = document.querySelector('[data-blog-filter]');
+    if (!bar) return;
+    const pills = bar.querySelectorAll('[data-cat-pill]');
+    const cards = document.querySelectorAll('[data-art-cat]');
+    pills.forEach((pill) => {
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = pill.getAttribute('data-cat-pill') || 'all';
+        pills.forEach((p) => p.classList.toggle('on', p === pill));
+        cards.forEach((card) => {
+          const c = card.getAttribute('data-art-cat');
+          card.style.display = cat === 'all' || c === cat ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+
+<CtaBand
+  lang={lang}
+  h2={copy.home.cta.h2}
+  lede={copy.home.cta.lede}
+  secondary="features"
+  whisper="desk"
+/>
+
+<style>
+  .blog-crumb {
+    margin-top: 18px;
+  }
+  .blog-body {
+    background: var(--pearl);
+    padding: clamp(60px, 8vw, 100px) 0;
+  }
+  .blog-container {
+    max-width: 1100px;
+  }
+
+  .blog-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: clamp(32px, 5vw, 54px);
+  }
+  .filter-pill {
+    padding: 8px 16px;
+    border-radius: var(--r-full);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    background: var(--card);
+    border: 1px solid var(--line);
+    transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+  }
+  .filter-pill:hover,
+  .filter-pill.on {
+    color: var(--ink);
+    background: var(--pearl-2);
+    border-color: var(--line-2);
+  }
+
+  .blog-prep {
+    padding: clamp(48px, 7vw, 80px) clamp(24px, 5vw, 64px);
+    border-radius: 24px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    text-align: center;
+    box-shadow: 0 16px 40px -20px rgba(27, 30, 58, 0.08);
+    margin-bottom: clamp(32px, 5vw, 54px);
+  }
+  .prep-badge {
+    display: inline-block;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 12px;
+    border-radius: var(--r-full);
+    background: var(--pearl-2);
+    color: var(--accent-ink);
+    margin-bottom: 18px;
+  }
+  .blog-prep h2 {
+    font-size: clamp(24px, 2vw, 32px);
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .prep-desc {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+  .prep-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+  }
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(26px, 4vw, 36px);
+    border-radius: 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 32px -16px rgba(27, 30, 58, 0.08);
+    transition: transform var(--t-fast) var(--ease), border-color var(--t-fast);
+  }
+  .article-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-2);
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .card-cat {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: var(--pearl-2);
+    color: var(--accent-ink);
+  }
+  .card-date {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+  .card-title {
+    font-size: clamp(20px, 1.4vw, 24px);
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
+  .card-title a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color var(--t-fast);
+  }
+  .card-title a:hover {
+    color: var(--accent-ink);
+  }
+  .card-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+  .card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .card-read {
+    color: var(--ink-3);
+  }
+  .card-link {
+    font-weight: 600;
+    color: var(--accent-ink);
+    transition: translate var(--t-fast);
+  }
+  .card-link:hover {
+    translate: 2px 0;
+  }
+
+  .blog-mission {
+    margin-top: clamp(60px, 8vw, 96px);
+    padding: clamp(32px, 5vw, 48px);
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(239, 143, 187, 0.08) 0%, rgba(110, 169, 242, 0.08) 100%), var(--card);
+    border: 1px solid var(--line);
+  }
+  .mission-in h3 {
+    font-size: clamp(20px, 1.5vw, 26px);
+    color: var(--ink);
+    margin: 10px 0 12px;
+  }
+  .mission-in p {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 800px;
+  }
+</style>

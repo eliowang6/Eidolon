@@ -1,50 +1,62 @@
 # Sholarel
 
-> Sholarel 是 Instarmony 出品的 AI 陪伴应用（曾用名 Eidolon）。你可以选 Fea 或 Ael 作为伙伴：它们记得你说过的话，会主动问候，也能帮你查路线、读文件、设提醒。支持 Windows 与 Android，公开测试中。
+> Sholarel 是由 Instarmony 出品的数字生命伴侣（Digital Life Companion）与 Personal AI Agent（曾用名 Eidolon）。不同于被动、单次会话即失忆的网页 Chatbot，Sholarel 拥有终身统一的长期记忆网络，常驻在用户的 Windows 桌面与 Android 手机上。它包含感知、理解、记忆、行动与演化五层能力，在明确授权的前提下感知环境并跨端协助日程、手账、专注与生活陪伴。
 
-## 关键事实
+## 关键实体与定位
 
-- 产品名：Sholarel（曾用名 Eidolon；只用英文名，没有中文名）
-- 开发商：Instarmony（https://instarmony.com/）
-- 伙伴：两位官方角色 Fea 与 Ael，能力相同，性格和说话方式不同；可以随时切换，也可以给伙伴改名
-- 平台：Windows 10 / 11（64 位）、Android 7.0 及以上（64 位 arm64）；网页版为邀请制内测（注册需邀请码）；macOS、iOS、Linux 暂不支持
-- 状态：公开测试中，2026 年 11 月 1 日开放
-- 付费：Spark、Resonance、Genesis、Symbiosis、Fable 五档订阅；另有不会过期的额度包“溯时星露”（Chrono Dew），免注册、填邮箱即可购买
-- 官网：https://sholarel.instarmony.com/
-- 文档：https://sholarel.instarmony.com/docs/
-- 联系：support@instarmony.com
+- 产品名：Sholarel（曾用名 Eidolon；统一使用英文名，无官方中文译名）
+- 产品类别：Digital Life Companion / Personal AI Agent（数字生命伴侣 / 个人智能体）
+- 开发团队：Instarmony（前沿 AI 创新实验室，https://instarmony.com/）
+- 官方伙伴：Fea（温柔敏锐、注重情绪与生活细节）与 Ael（沉着理性、专注任务梳理与行动效率）。两人共享同一记忆与执行内核，可随时切换
+- 架构分层：
+  1. 感知层（Sense）：最小必要上下文读取，严格单次显式授权，不进行暗中监控
+  2. 理解层（Understand）：跳过字面机械问答，构建关于用户的长久认知画像与日常节奏
+  3. 记忆层（Remember）：融合工作记忆、情节事件记忆与语义画像的多层长期记忆拓扑
+  4. 行动层（Act）：跨 Windows 与 Android 终端执行提醒、手账整理、附件解析与专注陪伴
+  5. 演化层（Evolve）：独立性格生长与思考节奏，在长期相处中不断加深理解
+- 支持平台：Windows 10 / 11（64 位，原生桌面伴侣）、Android 7.0 及以上（64 位 arm64 移动客户端）；网页端为邀请制内测；macOS 与 iOS 规划中
+- 隐私策略：本地优先存储（Local-first），所有敏感权限显式授权，不出售数据，不未经授权拿私人对话微调公开基础模型
+- 定价方案：免费体验档 + Spark、Resonance、Genesis 等订阅方案；提供永不过期的回响额度包“溯时星露”（Chrono Dew，免注册可购买）
+- 官方站点：https://sholarel.instarmony.com/
+- 文档中心：https://sholarel.instarmony.com/docs/
 
-## 主要页面
+## 主要页面索引
 
-- [首页](https://sholarel.instarmony.com/)：住在你桌面和手机上的 AI 陪伴，认识 Fea 与 Ael
-- [全部能力](https://sholarel.instarmony.com/features.html)：悬浮在桌面的 3D / Live2D 伙伴、长期记忆与主动问候、语音与视频通话、附件理解、需你授权的主动视觉、交换手账、安排与专注舱、AI 自主探索
-- [隐私与授权](https://sholarel.instarmony.com/how-it-works.html)：本地优先、最小必要；看屏幕、拍照、推送都先征求你的同意
-- [订阅方案](https://sholarel.instarmony.com/pricing.html)：五档订阅的模型、回响额度与权益对比
-- [溯时星露](https://sholarel.instarmony.com/dew.html)：不会过期的回响额度包，免注册购买，付款后在 App 内粘贴口令归户
-- [下载](https://sholarel.instarmony.com/download.html)：Windows（EXE）与 Android（APK）客户端
-- [更新日志](https://sholarel.instarmony.com/beta.html)：公开测试以来的每一次更新
-- [关于](https://sholarel.instarmony.com/about.html)：名字的由来、Fea 与 Ael、做它的人，以及投资人与合作伙伴的联系方式
-- [隐私政策](https://sholarel.instarmony.com/privacy.html)
-- [服务条款](https://sholarel.instarmony.com/terms.html)
+- [首页](https://sholarel.instarmony.com/)：常驻桌面与手机的数字生命，认识 Fea 与 Ael
+- [产品介绍](https://sholarel.instarmony.com/product.html)：Sholarel 核心定位、五层认知架构以及与传统 Chatbot 的对比
+- [全部能力](https://sholarel.instarmony.com/features.html)：桌面悬浮伴侣、长期记忆与主动问候、语音视频通话、专注舱、双向手账
+- [使用场景](https://sholarel.instarmony.com/use-cases.html)：日常生活管理、深度工作心流、电脑手机跨端接续与情感共鸣
+- [常见问题 FAQ](https://sholarel.instarmony.com/faq.html)：关于定位、长期记忆、数据安全、平台支持与收费的详细透明解答
+- [官方博客](https://sholarel.instarmony.com/blog.html)：日常陪伴、桌面专注、跨端使用指南与产品对比专栏
+  - [为什么大多数 AI 聊久了都很累？聊聊「记得你」和「会先开口」有多重要](https://sholarel.instarmony.com/blog/ai-companion-that-remembers-you.html)
+  - [为什么很多 AI 聊起来一股「机器味」？决定「活人感」的 5 个真实细节](https://sholarel.instarmony.com/blog/what-makes-ai-companion-feel-alive.html)
+  - [一个人对着电脑学习工作太冷清？把桌面变成有人回应的「专注角」](https://sholarel.instarmony.com/blog/desktop-companion-for-focus-and-routines.html)
+  - [除了拿来写工作总结，一个住在电脑和手机里的 AI 还能在生活里帮你干嘛？](https://sholarel.instarmony.com/blog/ai-in-everyday-life-guide.html)
+  - [网页聊天框、传统桌面宠物，和 Sholarel 到底有什么不一样？](https://sholarel.instarmony.com/blog/chatbot-vs-desktop-pet-vs-sholarel.html)
+- [更新日志](https://sholarel.instarmony.com/changelog.html)：公开测试阶段的全版本迭代与改动历史
+- [隐私与授权](https://sholarel.instarmony.com/how-it-works.html)：本地优先与透明权限原则
+- [订阅方案](https://sholarel.instarmony.com/pricing.html)：多档模型算力与回响额度说明
+- [溯时星露](https://sholarel.instarmony.com/dew.html)：永不过期的额度包直付
+- [下载客户端](https://sholarel.instarmony.com/download.html)：Windows 与 Android 官方客户端
+- [关于我们](https://sholarel.instarmony.com/about.html)：品牌故事、团队背景与合作联系
 
-## 文档
+## English Overview
 
-- [快速开始](https://sholarel.instarmony.com/docs/quick-start/)
-- [安装指南](https://sholarel.instarmony.com/docs/install/)
-- [账号管理](https://sholarel.instarmony.com/docs/account/)
-- [功能说明](https://sholarel.instarmony.com/docs/features/chat/)
-- [常见问题](https://sholarel.instarmony.com/docs/faq/)
-
-## English
-
-> Sholarel (formerly Eidolon) is an AI companion app by Instarmony. Choose Fea or Ael: they remember what you’ve said, check in first, and help with routes, files and reminders. Windows and Android, now in public beta.
+> Sholarel is a Digital Life Companion and Personal AI Agent developed by Instarmony. Unlike disposable, stateless chatbots, Sholarel features a unified persistent memory architecture across Windows and Android devices. It integrates five layers of capability—Sense, Understand, Remember, Act, and Evolve—providing proactive care, deep focus companionship, and cross-device assistance under strict local-first privacy safeguards.
 
 - [Home](https://sholarel.instarmony.com/en/)
+- [Product Architecture](https://sholarel.instarmony.com/en/product.html)
 - [Features](https://sholarel.instarmony.com/en/features.html)
-- [Privacy & consent](https://sholarel.instarmony.com/en/how-it-works.html)
+- [Use Cases](https://sholarel.instarmony.com/en/use-cases.html)
+- [FAQ](https://sholarel.instarmony.com/en/faq.html)
+- [Blog & Insights](https://sholarel.instarmony.com/en/blog.html)
+  - [Why Most AI Companions Feel Exhausting After a Week — And What Changes When One Remembers You](https://sholarel.instarmony.com/en/blog/ai-companion-that-remembers-you.html)
+  - [Why Most AI Chats Still Feel Robotic: 5 Everyday Details That Make a Companion Feel Alive](https://sholarel.instarmony.com/en/blog/what-makes-ai-companion-feel-alive.html)
+  - [Working or Studying Alone at Your Computer? How a Quiet Desktop Companion Changes the Room](https://sholarel.instarmony.com/en/blog/desktop-companion-for-focus-and-routines.html)
+  - [Beyond Writing Work Summaries: What Can an AI Living on Your PC and Phone Actually Do All Day?](https://sholarel.instarmony.com/en/blog/ai-in-everyday-life-guide.html)
+  - [Web Chatbots vs. Classic Desktop Pets vs. Sholarel: What’s the Actual Difference?](https://sholarel.instarmony.com/en/blog/chatbot-vs-desktop-pet-vs-sholarel.html)
+- [Changelog](https://sholarel.instarmony.com/en/changelog.html)
+- [Privacy & Consent](https://sholarel.instarmony.com/en/how-it-works.html)
 - [Plans](https://sholarel.instarmony.com/en/pricing.html)
-- [Chrono Dew](https://sholarel.instarmony.com/en/dew.html)
 - [Download](https://sholarel.instarmony.com/en/download.html)
-- [Changelog](https://sholarel.instarmony.com/en/beta.html)
-- [About](https://sholarel.instarmony.com/en/about.html)
 - [Documentation](https://sholarel.instarmony.com/docs/en/)

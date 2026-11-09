@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import FaqPage from '../../components/pages/FaqPage.astro';
+import { breadcrumbListSchema, faqPageSchema } from '../../config/schema';
+import { t } from '../../i18n';
+
+const lang = 'en' as const;
+const copy = t(lang);
+
+const jsonLd = [
+  faqPageSchema(copy.faqPage.items),
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: '/en/' },
+    { name: copy.nav.faq, url: '/en/faq.html' },
+  ]),
+];
+---
+
+<Base
+  lang={lang}
+  path="/faq.html"
+  title={copy.meta.faq.title}
+  description={copy.meta.faq.description}
+  keywords={copy.meta.faq.keywords}
+  jsonLd={jsonLd}
+>
+  <FaqPage lang={lang} />
+</Base>

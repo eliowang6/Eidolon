@@ -226,13 +226,34 @@ const BAIDU_TIERS = [
   { key: 'P0', label: '入口页', paths: ['/', '/download.html', '/docs/'] },
   {
     key: 'P1',
-    label: '核心转化页',
-    paths: ['/pricing.html', '/features.html', '/how-it-works.html', '/dew.html', '/beta.html'],
+    label: '核心转化与产品页',
+    paths: [
+      '/product.html',
+      '/pricing.html',
+      '/features.html',
+      '/use-cases.html',
+      '/faq.html',
+      '/how-it-works.html',
+      '/dew.html',
+      '/changelog.html',
+      '/beta.html',
+    ],
   },
   {
     key: 'P2',
-    label: '其余营销页',
-    paths: ['/about.html', '/register.html', '/privacy.html', '/terms.html'],
+    label: '博客与其余营销页',
+    paths: [
+      '/blog.html',
+      '/blog/ai-companion-that-remembers-you.html',
+      '/blog/what-makes-ai-companion-feel-alive.html',
+      '/blog/desktop-companion-for-focus-and-routines.html',
+      '/blog/ai-in-everyday-life-guide.html',
+      '/blog/chatbot-vs-desktop-pet-vs-sholarel.html',
+      '/about.html',
+      '/register.html',
+      '/privacy.html',
+      '/terms.html',
+    ],
   },
 ];
 

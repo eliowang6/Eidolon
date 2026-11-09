@@ -1,0 +1,38 @@
+---
+import Base from '../../../layouts/Base.astro';
+import BlogArticlePage from '../../../components/pages/BlogArticlePage.astro';
+import { prPlain, t } from '../../../i18n';
+import { ARTICLES_EN } from '../../../config/blog-data';
+import { blogArticleSchema, breadcrumbListSchema } from '../../../config/schema';
+
+const copy = t('en');
+const article = ARTICLES_EN['chatbot-vs-desktop-pet-vs-sholarel'];
+const plainTitle = prPlain(article.title);
+const plainDesc = prPlain(article.description);
+
+const schema = [
+  blogArticleSchema({
+    title: plainTitle,
+    description: plainDesc,
+    url: 'https://sholarel.instarmony.com/en/blog/chatbot-vs-desktop-pet-vs-sholarel.html',
+    datePublished: article.date,
+    lang: 'en',
+  }),
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: 'https://sholarel.instarmony.com/en/' },
+    { name: copy.nav.blog, url: 'https://sholarel.instarmony.com/en/blog.html' },
+    { name: plainTitle, url: 'https://sholarel.instarmony.com/en/blog/chatbot-vs-desktop-pet-vs-sholarel.html' },
+  ]),
+];
+---
+
+<Base
+  lang="en"
+  path="/blog/chatbot-vs-desktop-pet-vs-sholarel.html"
+  title={`${plainTitle} — Sholarel Blog`}
+  description={plainDesc}
+  keywords="desktop pet vs AI companion, web chatbot vs desktop companion, what is Sholarel, 3D desktop companion Windows, Fea, Ael"
+  jsonLd={schema}
+>
+  <BlogArticlePage lang="en" article={article} />
+</Base>

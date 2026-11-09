@@ -1,0 +1,91 @@
+---
+import { prPlain } from '../i18n';
+
+interface Item {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Item[];
+  tone?: 'night' | 'pearl';
+  class?: string;
+}
+
+const { items, tone = 'pearl', class: className = '' } = Astro.props;
+---
+
+<nav class:list={['breadcrumb', `breadcrumb--${tone}`, className]} aria-label="Breadcrumb">
+  <ol>
+    {
+      items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        return (
+          <li>
+            {index > 0 && <span class="sep" aria-hidden="true">/</span>}
+            {isLast || !item.href ? (
+              <span aria-current={isLast ? 'page' : undefined} class="current">
+                {prPlain(item.label)}
+              </span>
+            ) : (
+              <a href={item.href}>{prPlain(item.label)}</a>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+  .breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .breadcrumb a {
+    color: var(--ink-3);
+    text-decoration: none;
+    transition: color var(--t-fast);
+  }
+  .breadcrumb a:hover {
+    color: var(--ink);
+  }
+  .breadcrumb .current {
+    color: var(--ink-2);
+    font-weight: 500;
+  }
+  .breadcrumb .sep {
+    opacity: 0.4;
+    user-select: none;
+  }
+
+  .breadcrumb--night a {
+    color: var(--night-dim);
+  }
+  .breadcrumb--night a:hover {
+    color: var(--night-text);
+  }
+  .breadcrumb--night .current {
+    color: var(--night-text);
+    opacity: 0.9;
+  }
+  .breadcrumb--night .sep {
+    color: var(--night-dim);
+    opacity: 0.5;
+  }
+</style>

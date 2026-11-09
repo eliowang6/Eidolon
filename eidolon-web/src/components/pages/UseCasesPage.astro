@@ -1,0 +1,180 @@
+---
+/**
+ * Use Cases: Real-life workflows showing how Sholarel supports daily life,
+ * deep work, cross-device continuity, and emotional connection.
+ */
+import Breadcrumb from '../Breadcrumb.astro';
+import CtaBand from '../CtaBand.astro';
+import Eyebrow from '../Eyebrow.astro';
+import PageHero from '../PageHero.astro';
+import Phone from '../Phone.astro';
+import Screen from '../Screen.astro';
+import { localizePath, pr, prPlain, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = t(lang);
+const u = copy.useCasesPage;
+const pUrl = (href: string) => localizePath(lang, href);
+
+const breadcrumbs = [
+  { label: copy.nav.home, href: pUrl('/') },
+  { label: copy.nav.useCases, href: pUrl('/use-cases.html') },
+];
+---
+
+<PageHero label={u.label} h1a={u.h1a} h1b={u.h1b} lede={u.lede}>
+  <Breadcrumb items={breadcrumbs} tone="night" class="uc-crumb" />
+</PageHero>
+
+<div class="usecases-body">
+  {
+    u.cases.map((item, index) => (
+      <section class:list={['uc-section', index % 2 === 1 && 'band-pearl']} id={item.id}>
+        <div class="container uc-grid">
+          <div class="uc-text">
+            <Eyebrow text={item.tag} class="reveal" />
+            <h2 class="reveal" style="--i:1">{item.title}</h2>
+            <p class="subtitle reveal" style="--i:2">{item.subtitle}</p>
+            <p class="desc reveal" style="--i:3" set:html={pr(item.desc)} />
+            <ul class="points-list reveal" style="--i:4">
+              {item.points.map((pt) => (
+                <li>
+                  <span class="pt-icon" aria-hidden="true">✓</span>
+                  <span set:html={pr(pt)} />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class:list={['uc-media reveal', !item.shot.startsWith('d-') && 'uc-media-phone']} style="--i:2">
+            {
+              item.shot === 'd-chat-fea' ? (
+                <Screen shot="d-chat" pair alt={item.title} class="uc-screen" />
+              ) : item.shot === 'morning-fea' ? (
+                <Phone shot="morning" pair alt={item.title} class="uc-phone" />
+              ) : item.shot === 'route-fea' ? (
+                <Phone shot="route" pair alt={item.title} class="uc-phone" />
+              ) : (
+                <Phone shot={item.shot} alt={item.title} class="uc-phone" />
+              )
+            }
+          </div>
+        </div>
+      </section>
+    ))
+  }
+</div>
+
+<CtaBand
+  lang={lang}
+  h2={copy.home.cta.h2}
+  lede={copy.home.cta.lede}
+  secondary="pricing"
+  whisper="desk"
+/>
+
+<style>
+  .uc-crumb {
+    margin-top: 18px;
+  }
+  .usecases-body {
+    position: relative;
+    background: var(--pearl);
+  }
+  .uc-section {
+    padding: clamp(64px, 9vw, 112px) 0;
+  }
+  .uc-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(36px, 6vw, 72px);
+    align-items: center;
+  }
+  .uc-section:nth-child(even) .uc-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+  .uc-section:nth-child(even) .uc-text {
+    order: 2;
+  }
+  .uc-section:nth-child(even) .uc-media {
+    order: 1;
+  }
+
+  .uc-text h2 {
+    font-size: clamp(2rem, 1.7rem + 1.6vw, 2.8rem);
+    margin: 12px 0 10px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .subtitle {
+    font-family: var(--f-latin-display);
+    font-size: 19px;
+    font-style: italic;
+    color: var(--accent-ink);
+    margin-bottom: 18px;
+  }
+  .desc {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin-bottom: 24px;
+  }
+  .points-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .points-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .pt-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pearl-2);
+    color: var(--accent-ink);
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .uc-media {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -20px rgba(14, 17, 49, 0.2);
+  }
+  .uc-media-phone {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .uc-phone {
+    max-width: 300px;
+  }
+
+  @media (max-width: 860px) {
+    .uc-grid,
+    .uc-section:nth-child(even) .uc-grid {
+      grid-template-columns: 1fr;
+    }
+    .uc-section:nth-child(even) .uc-text {
+      order: 1;
+    }
+    .uc-section:nth-child(even) .uc-media {
+      order: 2;
+    }
+  }
+</style>

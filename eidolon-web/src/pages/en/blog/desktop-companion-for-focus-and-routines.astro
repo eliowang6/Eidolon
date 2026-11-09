@@ -1,0 +1,38 @@
+---
+import Base from '../../../layouts/Base.astro';
+import BlogArticlePage from '../../../components/pages/BlogArticlePage.astro';
+import { prPlain, t } from '../../../i18n';
+import { ARTICLES_EN } from '../../../config/blog-data';
+import { blogArticleSchema, breadcrumbListSchema } from '../../../config/schema';
+
+const copy = t('en');
+const article = ARTICLES_EN['desktop-companion-for-focus-and-routines'];
+const plainTitle = prPlain(article.title);
+const plainDesc = prPlain(article.description);
+
+const schema = [
+  blogArticleSchema({
+    title: plainTitle,
+    description: plainDesc,
+    url: 'https://sholarel.instarmony.com/en/blog/desktop-companion-for-focus-and-routines.html',
+    datePublished: article.date,
+    lang: 'en',
+  }),
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: 'https://sholarel.instarmony.com/en/' },
+    { name: copy.nav.blog, url: 'https://sholarel.instarmony.com/en/blog.html' },
+    { name: plainTitle, url: 'https://sholarel.instarmony.com/en/blog/desktop-companion-for-focus-and-routines.html' },
+  ]),
+];
+---
+
+<Base
+  lang="en"
+  path="/blog/desktop-companion-for-focus-and-routines.html"
+  title={`${plainTitle} — Sholarel Blog`}
+  description={plainDesc}
+  keywords="desktop study buddy, focus companion Windows, Pomodoro companion app, shared journal app, working from home companion, Sholarel"
+  jsonLd={schema}
+>
+  <BlogArticlePage lang="en" article={article} />
+</Base>

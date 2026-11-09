@@ -108,8 +108,15 @@ matchMedia('(min-width: 1101px)').addEventListener('change', (e) => {
 const companionKey = 'sholarel_companion';
 const current = (): Companion => (root.dataset.companion === 'ael' ? 'ael' : 'fea');
 
+function paintWho(scope: ParentNode, who: Companion) {
+  scope.querySelectorAll<HTMLElement>('[data-fea][data-ael]').forEach((el) => {
+    el.textContent = (who === 'fea' ? el.dataset.fea : el.dataset.ael) ?? '';
+  });
+}
+
 function paintCompanion(who: Companion) {
   root.dataset.companion = who;
+  paintWho(document, who);
   document.querySelectorAll<HTMLElement>('[data-companion-set]').forEach((button) => {
     const on = button.dataset.companionSet === who;
     button.setAttribute('aria-pressed', String(on));
@@ -216,6 +223,7 @@ function showWhisper(key: string, anchor?: HTMLElement) {
   // 小屏首屏不弹：气泡固定在底部，会压住 hero 里的 CTA
   if (window.innerWidth < 700 && window.scrollY < window.innerHeight * 0.7) return;
   whisperText.innerHTML = line;
+  paintWho(whisperText, current());
   whisper.hidden = false;
   // 先量一遍，和触发它的元素重叠就这次不弹（不记 seen，之后可再试）
   if (anchor) {

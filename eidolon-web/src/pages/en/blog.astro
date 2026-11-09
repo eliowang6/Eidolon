@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import BlogPage from '../../components/pages/BlogPage.astro';
+import { breadcrumbListSchema } from '../../config/schema';
+import { t } from '../../i18n';
+
+const lang = 'en' as const;
+const copy = t(lang);
+
+const jsonLd = [
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: '/en/' },
+    { name: copy.nav.blog, url: '/en/blog.html' },
+  ]),
+];
+---
+
+<Base
+  lang={lang}
+  path="/blog.html"
+  title={copy.meta.blog.title}
+  description={copy.meta.blog.description}
+  keywords={copy.meta.blog.keywords}
+  jsonLd={jsonLd}
+>
+  <BlogPage lang={lang} />
+</Base>

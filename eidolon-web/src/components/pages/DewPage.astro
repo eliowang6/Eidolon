@@ -418,7 +418,7 @@ const FACT_ICONS = [
   type Plan = {
     bundleId: string;
     units: number;
-    credits: number;
+    sparkMonthRatio: number;
     currency: string;
     listAmount: string;
     promoAmount: string;
@@ -470,7 +470,7 @@ const FACT_ICONS = [
       sign.textContent = currency === 'USD' ? '$' : '¥';
       el.replaceChildren(sign, document.createTextNode(String(amount)));
     };
-    const credits = (n: number) => `${(n / 1e9).toLocaleString(zh ? 'zh-CN' : 'en-US', { maximumFractionDigits: 1 })}B`;
+    const sparkPercent = (ratio: number) => String(Math.round((Number(ratio) || 0) * 100));
     const cents = (n: number) => (n % 100 === 0 ? String(n / 100) : (n / 100).toFixed(2));
     const hasCjk = (s: string) => /[㐀-鿿]/.test(s);
     const uuid = () =>
@@ -507,7 +507,7 @@ const FACT_ICONS = [
           'aria-label',
           fill(t.packAria, {
             units: plan.units,
-            credits: credits(plan.credits),
+            percent: sparkPercent(plan.sparkMonthRatio),
             price: `${plan.promoAvailable && label ? `${label} ` : ''}${money(plan.currency, nowPrice(plan))}`,
           })
         );
@@ -518,7 +518,7 @@ const FACT_ICONS = [
         for (let i = 0; i < plan.units; i++) drops.appendChild(document.createElement('i'));
 
         node.querySelector('.pack-units')!.textContent = String(plan.units);
-        node.querySelector('.pack-credits')!.textContent = fill(t.creditsLine, { credits: credits(plan.credits) });
+        node.querySelector('.pack-credits')!.textContent = fill(t.creditsLine, { percent: sparkPercent(plan.sparkMonthRatio) });
         const promo = node.querySelector<HTMLElement>('.pack-promo')!;
         promo.textContent = plan.promoAvailable ? label : '';
         promo.hidden = !plan.promoAvailable || !label;
@@ -617,7 +617,7 @@ const FACT_ICONS = [
       byId('s-units').textContent = plan ? String(plan.units) : '—';
       if (plan) setMoney(byId('s-now'), plan.currency, nowPrice(plan));
       else byId('s-now').textContent = '—';
-      byId('s-credits').textContent = plan ? fill(t.creditsLine, { credits: credits(plan.credits) }) : '';
+      byId('s-credits').textContent = plan ? fill(t.creditsLine, { percent: sparkPercent(plan.sparkMonthRatio) }) : '';
       byId('s-was').textContent = plan?.promoAvailable ? fill(t.slipList, { price: money(plan.currency, plan.listAmount) }) : '';
       const promo = byId('s-promo');
       const label = plan ? (zh ? plan.promoLabel : plan.promoLabelEn) : '';

@@ -30,8 +30,9 @@ const p = (href: string) => localizePath(lang, href);
       <nav aria-label={f.product}>
         <h2>{f.product}</h2>
         <ul>
+          <li><a href={p('/product.html')}>{f.productOverview}</a></li>
           <li><a href={p('/features.html')}>{f.features}</a></li>
-          <li><a href={p('/how-it-works.html')}>{f.trust}</a></li>
+          <li><a href={p('/use-cases.html')}>{f.useCases}</a></li>
           <li><a href={p('/pricing.html')}>{f.pricing}</a></li>
           <li><a href={p('/dew.html')}>{f.dew}</a></li>
           <li><a href={p('/download.html')}>{f.download}</a></li>
@@ -40,10 +41,11 @@ const p = (href: string) => localizePath(lang, href);
       <nav aria-label={f.learn}>
         <h2>{f.learn}</h2>
         <ul>
-          <li><a href={p('/beta.html')}>{f.changelog}</a></li>
-          <li><a href={p('/docs.html')}>{f.docs}</a></li>
-          <li><a href={p('/login.html')}>{f.account}</a></li>
-          <li><a href={localizeDocsPath(lang, SITE.docs.faq)}>{f.faq}</a></li>
+          <li><a href={p('/blog.html')}>{f.blog}</a></li>
+          <li><a href={p('/faq.html')}>{f.faq}</a></li>
+          <li><a href={p('/changelog.html')}>{f.changelog}</a></li>
+          <li><a href={p('/how-it-works.html')}>{f.trust}</a></li>
+          <li><a href={localizeDocsPath(lang, SITE.docs.home)}>{f.docs}</a></li>
           <li><a href={p('/about.html')}>{f.about}</a></li>
           <li><a href={SITE.social.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>

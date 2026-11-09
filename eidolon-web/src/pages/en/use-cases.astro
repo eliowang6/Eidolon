@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import UseCasesPage from '../../components/pages/UseCasesPage.astro';
+import { breadcrumbListSchema } from '../../config/schema';
+import { t } from '../../i18n';
+
+const lang = 'en' as const;
+const copy = t(lang);
+
+const jsonLd = [
+  breadcrumbListSchema([
+    { name: copy.nav.home, url: '/en/' },
+    { name: copy.nav.useCases, url: '/en/use-cases.html' },
+  ]),
+];
+---
+
+<Base
+  lang={lang}
+  path="/use-cases.html"
+  title={copy.meta.useCases.title}
+  description={copy.meta.useCases.description}
+  keywords={copy.meta.useCases.keywords}
+  jsonLd={jsonLd}
+>
+  <UseCasesPage lang={lang} />
+</Base>

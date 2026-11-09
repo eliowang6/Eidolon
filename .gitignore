@@ -29,6 +29,7 @@ eidolon-site/
 
 # Local credentials for the publish scripts (CF_R2_* / EDGEONE_* keys). Never commit.
 .env
+*.log
 
 .DS_Store
 Thumbs.db

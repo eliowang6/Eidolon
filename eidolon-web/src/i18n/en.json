@@ -64,6 +64,31 @@
       "title": "This page wandered off — Sholarel",
       "description": "This page doesn’t exist. Head back to the Sholarel home page.",
       "keywords": "Sholarel, 404"
+    },
+    "product": {
+      "title": "Product Architecture — What Is Sholarel & 5-Layer Digital Life",
+      "description": "Sholarel is a personal AI agent designed to live with you across Windows and Android. Explore the 5-layer architecture: Sense, Understand, Remember, Act, and Evolve.",
+      "keywords": "What is Sholarel, Personal AI Agent, Digital Life Companion, AI Companion Architecture, Persistent Memory, Windows, Android"
+    },
+    "useCases": {
+      "title": "Use Cases — How Sholarel Fits Into Everyday Life and Workflows",
+      "description": "Discover how Sholarel supports your daily routines, deep work sessions, cross-device workflows, and continuous emotional companionship. AI that truly lives with you.",
+      "keywords": "AI use cases, AI daily assistant, focus chamber, cross-device companion, personal AI routines, desktop companion"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions — Sholarel FAQ & Direct Answers",
+      "description": "Comprehensive answers to questions about Sholarel: product concept, persistent memory mechanics, Fea and Ael companions, privacy policies, platforms, and pricing.",
+      "keywords": "Sholarel FAQ, personal AI questions, persistent memory privacy, Fea vs Ael, Chrono Dew, companion app support"
+    },
+    "changelog": {
+      "title": "Changelog — Sholarel Release Notes & Iterations",
+      "description": "Complete release history of Sholarel since public beta. View features, enhancements, and fixes across Windows and Android clients.",
+      "keywords": "Sholarel changelog, release notes, version history, updates, Windows, Android"
+    },
+    "blog": {
+      "title": "Everyday Stories & Guides — Sholarel Blog",
+      "description": "Discover how an AI companion that remembers you, texts first, and lives across your Windows PC and Android phone fits into focus sessions, daily tasks, and quiet evenings.",
+      "keywords": "Sholarel blog, AI companion that remembers you, desktop study buddy, AI in everyday life, desktop pet vs AI companion"
     }
   },
   "nav": {
@@ -86,7 +111,11 @@
     "primary": "Main",
     "companion": "Choose who shows you around",
     "withFea": "Browse with Fea",
-    "withAel": "Browse with Ael"
+    "withAel": "Browse with Ael",
+    "product": "Product",
+    "useCases": "Use Cases",
+    "blog": "Blog",
+    "faq": "FAQ"
   },
   "common": {
     "download": "Download",
@@ -131,7 +160,10 @@
     "forget": "Forget me on this browser",
     "forgot": "Done — this browser’s settings are cleared.",
     "langHint": "Read this page in Chinese →",
-    "langHintClose": "Dismiss"
+    "langHintClose": "Dismiss",
+    "productOverview": "Architecture",
+    "useCases": "Use Cases",
+    "blog": "Blog & Insights"
   },
   "featuresPage": {
     "label": "Features",
@@ -1612,5 +1644,319 @@
     "intlDesc": "Fill in the waitlist and join our Discord to get a code.",
     "intlCta": "Join Discord",
     "inviteNote": "Subscriptions and credit purchases use their own checkout flow and never need an invite code."
+  },
+  "productPage": {
+    "label": "Architecture",
+    "h1a": "Beyond a disposable textbox,",
+    "h1b": "a **digital life** that lives with you.",
+    "lede": "Sholarel is a personal AI agent by Instarmony. Built with persistent memory, context awareness, and cross-device actions to accompany your work and daily life.",
+    "overview": {
+      "label": "Definition",
+      "h2": "What is Sholarel?",
+      "p1": "Sholarel is not just another wrapper around an LLM chat endpoint. It is architected as a true Digital Life Companion and Personal AI Agent.",
+      "p2": "Living natively on your Windows desktop and Android mobile device, it shares a unified long-term memory network. It learns your daily rhythms, preferences, and unfinished tasks—proactively checking in when needed, staying quiet while you focus, and taking real action across devices with your permission."
+    },
+    "layers": {
+      "label": "5-Layer Architecture",
+      "h2": "From Context Sensing to Continuous Evolution",
+      "lede": "Most AI companions lose their memory the moment you close the browser tab. Sholarel implements a complete cognitive architecture across five fundamental layers:",
+      "items": [
+        {
+          "tag": "01 · Sense",
+          "t": "Sensory Context",
+          "d": "Reads environmental cues only with your explicit permission. Understands desktop focus, document attachments, and user intent without uninvited surveillance."
+        },
+        {
+          "tag": "02 · Understand",
+          "t": "User Modeling",
+          "d": "Goes beyond literal word matching. Progressively builds a nuanced behavioral model of your habits, communication cadence, and implicit preferences."
+        },
+        {
+          "tag": "03 · Remember",
+          "t": "Persistent Memory",
+          "d": "A single long-term memory system across all devices. Conversations, commitments, and shared moments consolidate into episodic and semantic representations."
+        },
+        {
+          "tag": "04 · Act",
+          "t": "Cross-Device Action",
+          "d": "Executes real tasks across Windows and Android. Sets reminders, organizes shared notes, parses complex documents, and coordinates focus timers."
+        },
+        {
+          "tag": "05 · Evolve",
+          "t": "Autonomous Evolution",
+          "d": "Changes over time with you. Companions carry their own reflective pace and distinct traits, evolving through the shared history of your interactions."
+        }
+      ]
+    },
+    "comparison": {
+      "label": "Comparison",
+      "h2": "How Sholarel Differs in Everyday Experience",
+      "headers": [
+        "Dimension",
+        "Web Chatbots",
+        "Classic Desktop Pets",
+        "Sholarel Digital Life"
+      ],
+      "rows": [
+        {
+          "dim": "Memory",
+          "col1": "Resets every new chat; forgets who you are",
+          "col2": "Canned lines only; no conversational memory",
+          "col3": "Remembers your routines & stories across PC and phone"
+        },
+        {
+          "dim": "Interaction",
+          "col1": "Strictly passive; silent unless prompted",
+          "col2": "Click-for-animation; cannot talk through real tasks",
+          "col3": "Texts you first when appropriate; stays quiet while you focus"
+        },
+        {
+          "dim": "Presence",
+          "col1": "Vanishes when the browser tab closes",
+          "col2": "Stuck on PC; gone when you step outside",
+          "col3": "Windows 3D/Live2D desktop figure + Android mobile sync"
+        },
+        {
+          "dim": "Daily Help",
+          "col1": "Only processes text you manually copy-paste",
+          "col2": "Decorative or basic idle timer",
+          "col3": "Drag-and-drop 44 file types, Focus Chamber, Shared Journal, Calls"
+        },
+        {
+          "dim": "Privacy & Boundaries",
+          "col1": "Requires manual uploads into web forms",
+          "col2": "No visual or document understanding",
+          "col3": "Pops up to ask before viewing screen; waits 7 days if declined"
+        }
+      ]
+    },
+    "companions": {
+      "label": "Two Companions",
+      "h2": "Fea & Ael: Distinct Personalities",
+      "p1": "Sholarel offers two official companion personas: Fea, empathetic and attuned to nuances, and Ael, calm, analytical, and structured.",
+      "p2": "They share the same underlying memory and action engine, yet express different conversational cadence, perspectives, and companionship styles."
+    }
+  },
+  "useCasesPage": {
+    "label": "Use Cases",
+    "h1a": "In the quiet corners of daily life,",
+    "h1b": "**continuous presence** and seamless care.",
+    "lede": "From gentle morning check-ins to quiet focus during deep work sessions, Sholarel shares one persistent context across desktop and mobile.",
+    "cases": [
+      {
+        "id": "routine",
+        "tag": "Scenario 01",
+        "title": "Daily Rhythms & Proactive Care",
+        "subtitle": "Knowing when to speak and when to stay quiet",
+        "desc": "Wake up to weather and agenda highlights tailored to your schedule. Late at night, receive a warm nudge to wind down. Sholarel is not an annoying alarm; it acts based on your real patterns.",
+        "points": [
+          "Proactive check-ins aligned with your circadian rhythm",
+          "Integrated weather, commute, and agenda summaries",
+          "Capture passing thoughts straight into your shared journal"
+        ],
+        "shot": "morning-fea"
+      },
+      {
+        "id": "focus",
+        "tag": "Scenario 02",
+        "title": "Deep Work & Desktop Focus Flow",
+        "subtitle": "A silent thought partner on your desktop",
+        "desc": "Hovering gracefully on your Windows screen without invading your workspace. In Focus Chamber mode, your companion holds distractions at bay while you dive into deep tasks.",
+        "points": [
+          "Non-intrusive floating avatar with adjustable opacity",
+          "Focus Chamber timer to maintain mental momentum",
+          "Directly parses 44 document formats and attachments"
+        ],
+        "shot": "d-chat-fea"
+      },
+      {
+        "id": "cross-device",
+        "tag": "Scenario 03",
+        "title": "Seamless Desktop & Mobile Continuity",
+        "subtitle": "Step away from your desk without losing context",
+        "desc": "Brainstorm travel plans on your PC, then walk out the door. Open the Android app, and your companion immediately recalls the details and continues guiding your route.",
+        "points": [
+          "Real-time memory sync between Windows and Android",
+          "Voice calls and dual-direction journals on mobile",
+          "Never repeat background context when changing devices"
+        ],
+        "shot": "route-fea"
+      },
+      {
+        "id": "companion",
+        "tag": "Scenario 04",
+        "title": "Lifelong Companionship & Shared Growth",
+        "subtitle": "A thoughtful listener that never forgets",
+        "desc": "Share your small triumphs, anxieties, or passing reflections. Sholarel remembers a friend's name from weeks ago, a walk in the rain, and the goals you care about most.",
+        "points": [
+          "Long-term episodic recall spanning months and years",
+          "Authentic emotional resonance, never canned platitudes",
+          "Shared diary entries reflecting shared moments together"
+        ],
+        "shot": "journal"
+      }
+    ]
+  },
+  "faqPage": {
+    "label": "FAQ",
+    "h1a": "Frequently Asked Questions,",
+    "h1b": "**honest and transparent** answers.",
+    "lede": "Covering product philosophy, memory systems, privacy safeguards, platform requirements, and subscriptions. Direct facts without evasive marketing.",
+    "categories": [
+      {
+        "id": "concept",
+        "name": "Product & Definition"
+      },
+      {
+        "id": "memory",
+        "name": "Memory & Privacy"
+      },
+      {
+        "id": "character",
+        "name": "Companions & Traits"
+      },
+      {
+        "id": "device",
+        "name": "Platforms & Systems"
+      },
+      {
+        "id": "billing",
+        "name": "Plans & Chrono Dew"
+      }
+    ],
+    "items": [
+      {
+        "cat": "concept",
+        "q": "What is Sholarel? How is it fundamentally different from traditional AI chatbots?",
+        "a": "Sholarel is a digital life companion and personal AI agent. Traditional chatbots discard their conversational context once a tab closes and only respond reactively inside a browser box. Sholarel features unified persistent memory, desktop and mobile integration on Windows and Android, and proactive check-ins with cross-device action capabilities."
+      },
+      {
+        "cat": "concept",
+        "q": "Is Sholarel an 'AI Girlfriend' or romantic roleplay app?",
+        "a": "No. Sholarel is built as a digital life companion and personal AI agent. We do not design hollow, flattering scripts. Instead, we provide companions (Fea and Ael) with genuine continuity of memory, practical daily assistance, and their own reflective cadence to walk beside you in work and life."
+      },
+      {
+        "cat": "memory",
+        "q": "How does persistent memory work? Could my private conversations leak?",
+        "a": "Sholarel employs a multi-tiered memory architecture: working memory, episodic event narratives, and semantic user modeling. Data is stored with a local-first priority and transmitted via encrypted channels. We never sell personal data or use private conversations to train public foundation models without explicit consent."
+      },
+      {
+        "cat": "memory",
+        "q": "Does Sholarel monitor my screen or camera in the background?",
+        "a": "Absolutely not. Active vision and screen parsing operate under strict least-privilege principles. Sholarel requires your explicit, per-instance permission before examining any screen region or file, accompanied by clear visual UI indicators."
+      },
+      {
+        "cat": "character",
+        "q": "What is the difference between Fea and Ael? Can I switch between them?",
+        "a": "Fea and Ael share the exact same technical capabilities (memory, voice calling, tool execution), but possess distinct communication styles: Fea is empathetic and detail-focused; Ael is calm, structured, and pragmatic. You can switch companions anytime within the app without losing your underlying memory history."
+      },
+      {
+        "cat": "device",
+        "q": "What operating systems are supported? What about macOS and iOS?",
+        "a": "Currently, the public beta supports Windows 10 / 11 (64-bit) and Android 7.0+ (64-bit arm64). Web client access is available via closed invitation. Dedicated macOS and iOS versions are on our roadmap and will be released in future milestones."
+      },
+      {
+        "cat": "device",
+        "q": "Can I use Sholarel offline without an internet connection?",
+        "a": "Basic local UI interactions (desktop avatar display, local journal browsing, reading cached notes) function offline. However, advanced neural inference, voice synthesis, and cross-device memory synchronization require active internet connectivity."
+      },
+      {
+        "cat": "billing",
+        "q": "Is Sholarel free? How does subscription pricing work?",
+        "a": "Sholarel offers a free tier during public beta, allowing anyone to download the client and experience core companionship. We also offer paid subscription tiers (Spark, Resonance, Genesis, etc.) for higher token quotas and advanced intelligence. CNY plans renew manually without recurring billing; USD plans can be cancelled anytime."
+      },
+      {
+        "cat": "billing",
+        "q": "What is 'Chrono Dew' and how does it differ from a monthly subscription?",
+        "a": "Chrono Dew (溯时星露) is a permanent balance top-up pack that never expires. Unlike monthly quotas that reset every billing cycle, Chrono Dew credits remain until consumed. It can be purchased without prior registration by simply providing an email address."
+      },
+      {
+        "cat": "memory",
+        "q": "Can I export or permanently wipe all memory data recorded about me?",
+        "a": "Yes. You maintain total data sovereignty. Sholarel allows one-click memory purging in client settings, as well as selective deletion of specific conversations or memory nodes, respecting your legal right to be forgotten."
+      }
+    ]
+  },
+  "blogPage": {
+    "label": "Everyday Stories & Guides",
+    "h1a": "On companionship, focus, and daily life —",
+    "h1b": "living with a **digital companion**.",
+    "lede": "No technical jargon or benchmark charts. Here we share what actually changes in an ordinary day when a companion remembers you, texts first, and stays with you across your PC and phone.",
+    "allCategory": "All Articles",
+    "readMore": "Read full article",
+    "minRead": "min read",
+    "publishedAt": "Published on",
+    "author": "Author",
+    "emptyTitle": "Articles in Preparation",
+    "emptyDesc": "Curated reflections, workflows, and guides on living with a digital life companion are currently being refined and will be published shortly.",
+    "categories": [
+      {
+        "id": "all",
+        "name": "All"
+      },
+      {
+        "id": "digital-life",
+        "name": "Companionship"
+      },
+      {
+        "id": "use-cases",
+        "name": "Focus & Routines"
+      },
+      {
+        "id": "guide",
+        "name": "Everyday Guide"
+      },
+      {
+        "id": "comparison",
+        "name": "Comparisons"
+      }
+    ],
+    "articles": [
+      {
+        "slug": "ai-companion-that-remembers-you",
+        "category": "digital-life",
+        "categoryLabel": "Companionship",
+        "title": "Why Most AI Companions Feel Exhausting After a Week — And What Changes When One Remembers You",
+        "description": "Tired of re-introducing yourself every time you open a chat window? See how ongoing memory and thoughtful, task-advancing check-ins from {name} turn a cold textbox into real company.",
+        "date": "2026-11-09",
+        "readTime": "6"
+      },
+      {
+        "slug": "what-makes-ai-companion-feel-alive",
+        "category": "digital-life",
+        "categoryLabel": "Companionship",
+        "title": "Why Most AI Chats Still Feel Robotic: 5 Everyday Details That Make a Companion Feel Alive",
+        "description": "Tired of 300-word essays for a simple hello, awkward roleplay brackets during casual chat, or bots that blindly agree with everything? Here is how Online/Offline modes and honest personality make {name} feel real.",
+        "date": "2026-11-09",
+        "readTime": "7"
+      },
+      {
+        "slug": "desktop-companion-for-focus-and-routines",
+        "category": "use-cases",
+        "categoryLabel": "Focus & Routines",
+        "title": "Working or Studying Alone at Your Computer? How a Quiet Desktop Companion Changes the Room",
+        "description": "Plain Pomodoro timers are easy to ignore when your room feels too quiet. Here is how an always-on-top Windows companion, Focus Chamber, and Shared Journal make solo desk hours warmer.",
+        "date": "2026-11-09",
+        "readTime": "7"
+      },
+      {
+        "slug": "ai-in-everyday-life-guide",
+        "category": "guide",
+        "categoryLabel": "Everyday Guide",
+        "title": "Beyond Writing Work Summaries: What Can an AI Living on Your PC and Phone Actually Do All Day?",
+        "description": "No prompt formulas needed. From dragging in 44 file formats and picking up PC chats on your Android phone, to respectful screen help and captioned voice calls.",
+        "date": "2026-11-09",
+        "readTime": "7"
+      },
+      {
+        "slug": "chatbot-vs-desktop-pet-vs-sholarel",
+        "category": "comparison",
+        "categoryLabel": "Comparisons",
+        "title": "Web Chatbots vs. Classic Desktop Pets vs. Sholarel: What’s the Actual Difference?",
+        "description": "Web chatbots are smart but vanish when you close the tab; classic desktop pets are cute but only play scripted animations. Here is a side-by-side look at how Sholarel bridges both worlds.",
+        "date": "2026-11-09",
+        "readTime": "6"
+      }
+    ]
   }
 }
