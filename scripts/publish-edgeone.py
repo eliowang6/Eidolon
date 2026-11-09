@@ -396,8 +396,9 @@ def deploy(archive: Path, project: str, env: str, area: str, dry_run: bool) -> s
         print("         Generate one in the Pages console and put it in <site root>/.env.")
         return ""
 
+    edgeone_pkg = os.environ.get("EDGEONE_CLI_PACKAGE", "edgeone@1.6.47")
     command = [
-        "npx", "--yes", "edgeone@latest", "pages", "deploy", str(archive),
+        "npx", "--yes", edgeone_pkg, "pages", "deploy", str(archive),
         "-n", project, "-e", env, "-a", area, "-t", token, "--json",
     ]
     print(f"[RUN] edgeone pages deploy -> project '{project}' (env={env})")
