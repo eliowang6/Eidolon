@@ -420,7 +420,7 @@
         "model": "DeepSeek",
         "features": [
           "Whisper mind: quick, easy everyday replies",
-          "A full month of everyday Echo",
+          "Basic Echo allowance — enough for light daily chats",
           "Long-term memory and quick notes",
           "Voice calls up to 5 minutes each"
         ],
@@ -440,7 +440,7 @@
         "model": "Gemini 3.8 Flash",
         "features": [
           "Insight mind: reads between the lines",
-          "About 3× the Echo — long chats and proactive care keep going",
+          "About 10× the Echo — long chats and proactive care keep going",
           "Natural voice and light desktop help",
           "Voice calls up to 60 minutes each"
         ],
@@ -460,7 +460,7 @@
         "model": "Gemini 4 Argon",
         "features": [
           "Immersion mind: deep empathy and reasoning",
-          "About 8× the Echo",
+          "About 30× the Echo",
           "Full autonomous sub-agent workflows",
           "Every voice model, no per-call time limit"
         ],
@@ -480,7 +480,7 @@
         "model": "Claude Opus 5.5",
         "features": [
           "Omniscience mind: flagship writing and execution",
-          "About 15× the Echo",
+          "About 75× the Echo",
           "Every feature unlocked",
           "Custom voice"
         ],
@@ -500,7 +500,7 @@
         "model": "Claude Fable 5",
         "features": [
           "Singularity mind: a configuration reserved for this plan",
-          "About 30× the Echo",
+          "About 150× the Echo",
           "Everything in Symbiosis",
           "One-on-one with the founder, early access to new features"
         ],

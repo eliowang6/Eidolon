@@ -15,8 +15,8 @@ export const SITE = {
   // current_version 用 0.0.1：永远低于线上任何版本，端点才会返回最新清单本身；
   // 传真实版本且已是最新时会返回 204（空响应）。
   release: {
-    windows: 'https://api.eidolon.instarmony.com/eidolon/api/updater/windows/x86_64/0.0.1',
-    android: 'https://api.eidolon.instarmony.com/eidolon/api/updater/android/arm64-v8a/0.0.1',
+    windows: 'https://api.sholarel.instarmony.com/eidolon/api/updater/windows/x86_64/0.0.1',
+    android: 'https://api.sholarel.instarmony.com/eidolon/api/updater/android/arm64-v8a/0.0.1',
   },
   // The documentation ships with the site, under /docs/. It used to live on
   // the lab host at /docs/build/, which made the two hosts compete for the
