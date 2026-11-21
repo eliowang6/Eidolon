@@ -34,7 +34,10 @@ const config = {
   ],
   copy: {
     unit: page.unit,
-    creditsLine: page.creditsLine,
+    baseLine: page.baseLine,
+    firstBonusLine: page.firstBonusLine,
+    grantedLine: page.grantedLine,
+    firstBonusShort: page.firstBonusShort,
     packAria: page.packAria,
     loading: page.loading,
     loadFailed: page.loadFailed,
@@ -82,7 +85,34 @@ const glints = [
   { x: 1376, y: 520, s: 0.36 },
 ];
 const ticks = Array.from({ length: 12 }, (_, i) => i * 30);
-const skeletons = [0, 1, 2, 3, 4];
+const STATIC_PACKS = {
+  CNY: [
+    { units: 1, price: '9.9' },
+    { units: 4, price: '32' },
+    { units: 20, price: '128' },
+    { units: 80, price: '488' },
+    { units: 400, price: '2198' },
+    { units: 1000, price: '4998' },
+  ],
+  USD: [
+    { units: 1, price: '1.99' },
+    { units: 4, price: '4.99' },
+    { units: 20, price: '19' },
+    { units: 80, price: '69' },
+    { units: 400, price: '319' },
+    { units: 1000, price: '749' },
+  ],
+} as const;
+const staticPacks: ReadonlyArray<{ units: number; price: string }> = STATIC_PACKS[defaultCurrency];
+const fillText = (text: string, vars: Record<string, string | number>) =>
+  text.replace(/\{(\w+)\}/g, (_, key) => String(vars[key] ?? ''));
+const multiplierText = (units: number) => {
+  const value = units / 4;
+  return Number.isInteger(value) ? String(value) : String(value.toFixed(2)).replace(/0$/, '');
+};
+const staticDropCount = (units: number) => (
+  units <= 1 ? 1 : units <= 4 ? 4 : units <= 20 ? 8 : units <= 80 ? 10 : units <= 400 ? 11 : 12
+);
 const STAR = 'M0 -13 C1.4 -2 2 -1.4 13 0 C2 1.4 1.4 2 0 13 C-1.4 2 -2 1.4 -13 0 C-2 -1.4 -1.4 -2 0 -13 Z';
 // One mark per fact, in the copy's fixed order: email-only, never expires, allowance first, plan unchanged.
 const FACT_ICONS = [
@@ -237,13 +267,24 @@ const FACT_ICONS = [
           </div>
         </div>
 
-        <div class="pack-list" id="dew-packs" aria-busy="true">
-          {skeletons.map((i) => (
-            <div class="pack pack--ghost" aria-hidden="true" style={`--i:${i}`}>
-              <span class="ghost ghost--drops"></span>
-              <span class="ghost ghost--name"></span>
-              <span class="ghost ghost--price"></span>
-            </div>
+        <div class="pack-list" id="dew-packs" aria-busy="true" role="radiogroup" aria-labelledby="packs-title">
+          {staticPacks.map((pack, i) => (
+            <label class="pack pack--static" style={`--i:${i}`}>
+              <input class="pack-input" type="radio" name="dew-pack-static" disabled checked={i === 0} />
+              <span class="pack-drops" aria-hidden="true" style={`--cols:${staticDropCount(pack.units) <= 1 ? 1 : staticDropCount(pack.units) <= 4 ? 2 : staticDropCount(pack.units) <= 8 ? 4 : 5}`}>
+                {Array.from({ length: staticDropCount(pack.units) }, () => <i />)}
+              </span>
+              <span class="pack-name">
+                <span class="pack-qty"><b class="pack-units">{pack.units}</b><span>{page.unit}</span></span>
+                <span class="pack-credits mono">
+                  {fillText(page.baseLine, { count: pack.units, multiplier: multiplierText(pack.units) })}
+                </span>
+              </span>
+              <span class="pack-promo">{fillText(page.firstBonusShort, { count: pack.units * 2 })}</span>
+              <span class="pack-price">
+                <b class="pack-now"><span class="cur">{defaultCurrency === 'USD' ? '$' : '¥'}</span>{pack.price}</b>
+              </span>
+            </label>
           ))}
         </div>
         <div class="pack-status" id="dew-status" role="status">
@@ -418,7 +459,9 @@ const FACT_ICONS = [
   type Plan = {
     bundleId: string;
     units: number;
-    sparkMonthRatio: number;
+    baseUnits: number;
+    bonusUnits: number;
+    grantedUnits: number;
     currency: string;
     listAmount: string;
     promoAmount: string;
@@ -470,8 +513,11 @@ const FACT_ICONS = [
       sign.textContent = currency === 'USD' ? '$' : '¥';
       el.replaceChildren(sign, document.createTextNode(String(amount)));
     };
-    const sparkPercent = (ratio: number) => String(Math.round((Number(ratio) || 0) * 100));
     const cents = (n: number) => (n % 100 === 0 ? String(n / 100) : (n / 100).toFixed(2));
+    const multiplier = (units: number) => {
+      const value = Number(units || 0) / 4;
+      return Number.isInteger(value) ? String(value) : value.toFixed(2).replace(/0$/, '');
+    };
     const hasCjk = (s: string) => /[㐀-鿿]/.test(s);
     const uuid = () =>
       crypto.randomUUID ? crypto.randomUUID() : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
@@ -487,13 +533,12 @@ const FACT_ICONS = [
     let restartArmed = 0;
 
     /* ── price list ─────────────────────────────────── */
-    // 1 dot per Dew, laid out as a growing square: 1, 2×2, 4×4, 8×4, 8×8, 16×8.
-    const dropColumns = (n: number) => {
-      const k = Math.log2(n);
-      return Number.isInteger(k) ? 2 ** Math.ceil(k / 2) : Math.min(16, Math.ceil(Math.sqrt(n * 2)));
-    };
+    // Density mark, capped at 12 dots so the 1,000-Dew tier does not create a
+    // thousand DOM nodes on mobile.
+    const dropCount = (n: number) => (n <= 1 ? 1 : n <= 4 ? 4 : n <= 20 ? 8 : n <= 80 ? 10 : n <= 400 ? 11 : 12);
+    const dropColumns = (n: number) => (n <= 1 ? 1 : n <= 4 ? 2 : n <= 8 ? 4 : 5);
 
-    const nowPrice = (plan: Plan) => (plan.promoAvailable ? plan.promoAmount : plan.listAmount);
+    const nowPrice = (plan: Plan) => plan.listAmount;
 
     const renderPlans = (set: PlanSet) => {
       list.replaceChildren();
@@ -507,25 +552,31 @@ const FACT_ICONS = [
           'aria-label',
           fill(t.packAria, {
             units: plan.units,
-            percent: sparkPercent(plan.sparkMonthRatio),
+            granted: plan.grantedUnits,
             price: `${plan.promoAvailable && label ? `${label} ` : ''}${money(plan.currency, nowPrice(plan))}`,
           })
         );
         input.addEventListener('change', () => select(plan));
 
         const drops = node.querySelector<HTMLElement>('.pack-drops')!;
-        drops.style.setProperty('--cols', String(dropColumns(plan.units)));
-        for (let i = 0; i < plan.units; i++) drops.appendChild(document.createElement('i'));
+        const dropsToDraw = dropCount(plan.units);
+        drops.style.setProperty('--cols', String(dropColumns(dropsToDraw)));
+        for (let i = 0; i < dropsToDraw; i++) drops.appendChild(document.createElement('i'));
 
-        node.querySelector('.pack-units')!.textContent = String(plan.units);
-        node.querySelector('.pack-credits')!.textContent = fill(t.creditsLine, { percent: sparkPercent(plan.sparkMonthRatio) });
+        node.querySelector('.pack-units')!.textContent = String(plan.baseUnits ?? plan.units);
+        node.querySelector('.pack-credits')!.textContent = fill(t.baseLine, {
+          count: plan.baseUnits ?? plan.units,
+          multiplier: multiplier(plan.baseUnits ?? plan.units),
+        });
         const promo = node.querySelector<HTMLElement>('.pack-promo')!;
-        promo.textContent = plan.promoAvailable ? label : '';
-        promo.hidden = !plan.promoAvailable || !label;
+        promo.textContent = plan.promoAvailable
+          ? fill(t.firstBonusShort, { count: plan.grantedUnits })
+          : fill(t.grantedLine, { count: plan.grantedUnits });
+        promo.hidden = false;
         setMoney(node.querySelector<HTMLElement>('.pack-now')!, plan.currency, nowPrice(plan));
         const was = node.querySelector<HTMLElement>('.pack-was')!;
-        was.textContent = plan.promoAvailable ? money(plan.currency, plan.listAmount) : '';
-        was.hidden = !plan.promoAvailable;
+        was.textContent = '';
+        was.hidden = true;
         list.appendChild(node);
       }
       list.setAttribute('aria-busy', 'false');
@@ -562,13 +613,25 @@ const FACT_ICONS = [
       const seq = ++loadSeq;
       updateRegion();
       if (!sets[next]) {
+        if (next !== cfg.defaultCurrency) list.replaceChildren();
         list.setAttribute('aria-busy', 'true');
         list.classList.add('is-loading');
         setStatus(t.loading);
         try {
           const { resp, data } = await fetchJson(cfg.plansEndpoints.map((u: string) => `${u}?currency=${next}`));
           if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-          const plans = (Array.isArray(data.plans) ? data.plans : []).filter((plan: Plan) => plan.purchasable !== false);
+          const plans = (Array.isArray(data.plans) ? data.plans : [])
+            .filter((plan: Plan) => plan.purchasable !== false)
+            .map((plan: Plan) => {
+              const baseUnits = Number(plan.baseUnits ?? plan.units);
+              const bonusUnits = Number(plan.bonusUnits ?? (plan.promoAvailable ? baseUnits : 0));
+              return {
+                ...plan,
+                baseUnits,
+                bonusUnits,
+                grantedUnits: Number(plan.grantedUnits ?? baseUnits + bonusUnits),
+              };
+            });
           if (!plans.length) throw new Error('empty');
           sets[next] = {
             plans,
@@ -578,6 +641,7 @@ const FACT_ICONS = [
         } catch {
           if (seq !== loadSeq) return;
           list.classList.remove('is-loading');
+          list.setAttribute('aria-busy', 'false');
           setStatus(t.loadFailed, true);
           selected = null;
           updateSlip();
@@ -617,8 +681,12 @@ const FACT_ICONS = [
       byId('s-units').textContent = plan ? String(plan.units) : '—';
       if (plan) setMoney(byId('s-now'), plan.currency, nowPrice(plan));
       else byId('s-now').textContent = '—';
-      byId('s-credits').textContent = plan ? fill(t.creditsLine, { percent: sparkPercent(plan.sparkMonthRatio) }) : '';
-      byId('s-was').textContent = plan?.promoAvailable ? fill(t.slipList, { price: money(plan.currency, plan.listAmount) }) : '';
+      byId('s-credits').textContent = plan
+        ? fill(t.baseLine, { count: plan.baseUnits ?? plan.units, multiplier: multiplier(plan.baseUnits ?? plan.units) })
+        : '';
+      byId('s-was').textContent = plan?.promoAvailable
+        ? fill(t.slipList, { count: plan.bonusUnits ?? plan.units })
+        : plan ? fill(t.grantedLine, { count: plan.grantedUnits }) : '';
       const promo = byId('s-promo');
       const label = plan ? (zh ? plan.promoLabel : plan.promoLabelEn) : '';
       promo.textContent = label;

@@ -46,13 +46,17 @@ const plans = page.plans.map((plan, i) => {
     regular,
     summary,
     depthLabel: page.depth.replace('{n}', String(i + 1)),
-    // zh Fable is opened with the founder rather than at the cashier
-    contactOnly: lang === 'zh' && plan.id === 'fable',
+    // The top two CNY tiers are opened with the founder, not at the cashier.
+    contactOnly: lang === 'zh' && (plan.id === 'symbiosis' || plan.id === 'fable'),
   };
 });
 const grid = plans.filter((plan) => plan.variant !== 'night');
 const fable = plans.find((plan) => plan.variant === 'night')!;
-const fableMail = `mailto:${SITE.founder.email}?subject=${encodeURIComponent(page.fableMail)}`;
+const contactMailFor = (plan: (typeof plans)[number]) => {
+  const subject = plan.id === 'symbiosis' ? page.symbiosisMail : page.fableMail;
+  return `mailto:${SITE.founder.email}?subject=${encodeURIComponent(subject)}`;
+};
+const fableMail = contactMailFor(fable);
 
 /** "轻语心智：日常搭话" → lead term set apart from the rest. */
 const splitFeature = (text: string) => {
@@ -210,17 +214,26 @@ const facts = [
               })}
             </ul>
 
-            <button
-              type="button"
-              class:list={['btn plan-cta sub-trigger-btn', plan.id === 'spark' ? 'btn-holo' : 'btn-ink']}
-              data-tier={plan.id}
-              data-currency={currencyCode}
-              data-plan-name={plan.name}
-              data-plan-sum={plan.summary}
-              aria-haspopup="dialog"
-            >
-              {plan.cta}
-            </button>
+            {plan.contactOnly ? (
+              <a
+                class:list={['btn plan-cta', plan.id === 'spark' ? 'btn-holo' : 'btn-ink']}
+                href={contactMailFor(plan)}
+              >
+                {plan.cta}
+              </a>
+            ) : (
+              <button
+                type="button"
+                class:list={['btn plan-cta sub-trigger-btn', plan.id === 'spark' ? 'btn-holo' : 'btn-ink']}
+                data-tier={plan.id}
+                data-currency={currencyCode}
+                data-plan-name={plan.name}
+                data-plan-sum={plan.summary}
+                aria-haspopup="dialog"
+              >
+                {plan.cta}
+              </button>
+            )}
           </li>
         ))
       }
