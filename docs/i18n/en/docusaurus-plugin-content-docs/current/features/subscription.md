@@ -34,6 +34,7 @@ The table below is estimated from the last 30 days of production data, with one 
 | Operation | Multiplier |
 |---|---:|
 | Regular text chat | 1x |
+| Priority mode chat | 1.6x |
 | Voice message | ~1.3x |
 | Multi-image chat | ~2x |
 | Single TTS clip | ~0.5x |
@@ -43,7 +44,7 @@ The table below is estimated from the last 30 days of production data, with one 
 
 Background features such as immediate summaries, session notes and memory reflection count toward the total allowance as they occur: immediate summaries and session notes each use roughly 5% of total consumption, yesterday summaries ~0.6%, memory reflection ~2%.
 
-<p style="color: var(--ifm-color-emphasis-600); font-size: 0.85em; margin-top: -0.5rem;">Estimated from average user activity in the first two weeks after the 3.0 open beta, assuming the default tier-1 mind preset. Other presets or advanced tuning may cause small deviations.</p>
+<p style={{ color: 'var(--ifm-color-emphasis-600)', fontSize: '0.85em', marginTop: '-0.5rem' }}>Estimated from average user activity in the first two weeks after the 3.0 open beta, assuming the default tier-1 mind preset. Switching to a higher-tier model increases average consumption by roughly 2–3x compared to the current tier (with tier 1 to tier 2 jumping ~6–8x due to model architecture differences); other presets or advanced tuning may cause small deviations.</p>
 
 Open **Settings → Subscription & allowance** to see usage. The interface shows a usage ratio and estimated remaining time, not underlying provider prices.
 
@@ -89,7 +90,7 @@ Chrono Dew is a permanent extra Echo balance that requires an active subscriptio
 | 400 Dew | ¥2,198 | $319 |
 | 1,000 Dew | ¥4,998 | $749 |
 
-For the first purchase of each pack, the price stays the same and an equal Dew bonus is added — buy 4 and receive 8, for example. Eligibility is shared across CNY and USD per account and pack. An unpaid expired order does not consume it.
+For the first purchase of each pack, the list price stays the same: the 1 and 4 Dew packs double, while the four larger packs add a flat 50%. Eligibility is shared across CNY and USD per account and pack. An unpaid expired order does not consume it.
 
 Dew does not raise the subscription tier and cannot unlock models or features above the current plan by itself.
 
