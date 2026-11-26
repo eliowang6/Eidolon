@@ -2,6 +2,7 @@
 /** Closing call to action: the night again, with the mark and the two ways forward. */
 import Logo from './Logo.astro';
 import Release from './Release.astro';
+import { SITE } from '../config/site';
 import { localizePath, pr, prPlain, t, type Lang } from '../i18n';
 
 interface Props {
@@ -25,6 +26,7 @@ const p = (href: string) => localizePath(lang, href);
     {lede && <p class="lede reveal" style="--i:2" set:html={pr(lede)} />}
     <div class="cta-actions reveal" style="--i:3">
       <a class="btn btn-holo btn-lg" href={p('/download.html')}>{copy.common.ctaDownload}</a>
+      <a class="btn btn-ghost btn-lg" href={SITE.webApp} target="_blank" rel="noopener noreferrer">{copy.common.ctaWebLite} ↗</a>
       {
         secondary === 'pricing' ? (
           <a class="btn btn-ghost btn-lg" href={p('/pricing.html')}>{copy.common.ctaPlans}</a>

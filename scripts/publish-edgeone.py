@@ -84,6 +84,10 @@ EXCLUDE_FILES = {
     # root. add_tree must not ship it as page content as well — that would
     # write the same member twice — so the deploy step injects it alone.
     "edgeone.json",
+    "edgeone.sub.json",
+    "edgeone.web.json",
+    # Local VRM debug harness in client/public — never ship to the public web SPA.
+    "vrm-real-render-test.html",
 }
 
 # The EdgeOne custom-rules file. It must be inside the ZIP for the platform to
@@ -94,6 +98,9 @@ EDGEONE_JSON = "edgeone.json"
 # The product sub-domain is a separate Pages project with its own host, so it
 # carries its own rules file.
 EDGEONE_SUB_JSON = "edgeone.sub.json"
+# The web SPA carries its own anti-framing / no-cache / HSTS headers.
+EDGEONE_WEB_JSON = "edgeone.web.json"
+SOURCE_LEAK_GATE = EIDOLON_REPO / "scripts" / "deploy" / "verify_no_source_leak.py"
 
 # Secrets and local tooling config must never ship. .env holds EDGEONE_API_TOKEN
 # in plaintext, and a Pages ZIP makes every member publicly fetchable at
@@ -501,10 +508,21 @@ def main() -> int:
     web_zip = DIST_DIR / "eidolon-web-pages.zip"
     web_ready = False
     if WEB_DIST.is_dir():
+        # Fail-closed source-leak gate before packaging the public web SPA.
+        if not SOURCE_LEAK_GATE.is_file():
+            raise SystemExit(
+                f"[ERROR] Source-leak gate script missing at {SOURCE_LEAK_GATE} — "
+                "refusing to publish web client without verification."
+            )
+        run(
+            [sys.executable, str(SOURCE_LEAK_GATE), "--label", "web-pages", "--path", str(WEB_DIST)],
+            cwd=EIDOLON_REPO,
+        )
         n_web = package(web_zip, WEB_DIST)
         print(f"[OK] web client: {n_web} files -> {web_zip.name} "
               f"({web_zip.stat().st_size / 1024 / 1024:.1f} MB)")
         verify(web_zip, REQUIRED_WEB_ENTRIES)
+        inject_edgeone_json(web_zip, ROOT / EDGEONE_WEB_JSON)
         web_ready = True
     else:
         print(f"[SKIP] client/dist not found at {WEB_DIST} — "
@@ -548,7 +566,8 @@ def main() -> int:
     if dash_ready:
         print("  https://dashboard.eidolon.instarmony.com/")
     if web_ready:
-        print("  https://web.eidolon.instarmony.com/")
+        print("  https://web.sholarel.instarmony.com/")
+        print("  https://web.eidolon.instarmony.com/ (legacy alias)")
     return 0
 
 

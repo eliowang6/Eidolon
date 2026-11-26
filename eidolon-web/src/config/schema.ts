@@ -9,7 +9,7 @@ export function softwareAppSchema(lang: 'zh' | 'en') {
     name: 'Sholarel',
     alternateName: ['Eidolon', 'Sholarel AI'],
     applicationCategory: 'LifestyleApplication',
-    operatingSystem: 'Windows 10, Windows 11, Android 7.0+',
+    operatingSystem: 'Windows 10, Windows 11, Android 7.0+, HarmonyOS NEXT, iOS, macOS, Linux, Web',
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -17,8 +17,8 @@ export function softwareAppSchema(lang: 'zh' | 'en') {
       description: isZh ? '免费体验版与多种订阅方案' : 'Free tier with optional subscriptions',
     },
     description: isZh
-      ? 'Sholarel 是由 Instarmony 出品的数字生命伴侣与 Personal AI Agent，具备跨端长期记忆、主动问候、桌面常驻以及 Windows 与 Android 跨平台任务执行能力。'
-      : 'Sholarel is a digital life companion and personal AI agent featuring persistent long-term memory, proactive engagement, desktop presence, and cross-device actions on Windows and Android.',
+      ? 'Sholarel 是由 Instarmony 出品的数字生命伴侣与 Personal AI Agent，具备跨端长期记忆、主动问候与全平台访问能力：Windows 与 Android 提供完整版客户端，新华为纯血鸿蒙、iOS、macOS、Linux 等全平台可直接通过网页端 Sholarel Lite 尝鲜。'
+      : 'Sholarel is a digital life companion and personal AI agent with persistent long-term memory and proactive engagement across all platforms: full native apps on Windows and Android, plus Sholarel Lite on the web for HarmonyOS NEXT, iOS, macOS, Linux, and any browser.',
     screenshot: `${SITE.url}/assets/shots/d-home.webp`,
     publisher: {
       '@id': 'https://instarmony.com/#organization',

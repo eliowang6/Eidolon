@@ -1,4 +1,5 @@
 ---
+import InstarmonyMark from './InstarmonyMark.astro';
 import Logo from './Logo.astro';
 import { SITE } from '../config/site';
 import { localizeDocsPath, localizePath, t, type Lang } from '../i18n';
@@ -24,6 +25,10 @@ const p = (href: string) => localizePath(lang, href);
     <div class="foot-brand">
       <p class="foot-word">Sholarel</p>
       <p class="foot-tag">{f.tagline}</p>
+      <a class="foot-org" href="https://instarmony.com/" target="_blank" rel="noopener noreferrer">
+        <InstarmonyMark size={18} />
+        <span>Instarmony</span>
+      </a>
     </div>
 
     <div class="foot-cols">
@@ -36,6 +41,7 @@ const p = (href: string) => localizePath(lang, href);
           <li><a href={p('/pricing.html')}>{f.pricing}</a></li>
           <li><a href={p('/dew.html')}>{f.dew}</a></li>
           <li><a href={p('/download.html')}>{f.download}</a></li>
+          <li><a href={SITE.webApp} target="_blank" rel="noopener noreferrer">{f.webLite} ↗</a></li>
         </ul>
       </nav>
       <nav aria-label={f.learn}>
@@ -63,7 +69,12 @@ const p = (href: string) => localizePath(lang, href);
         <h2>{f.partners}</h2>
         <ul>
           <li><a href={`${p('/about.html')}#investors`}>{f.invest}</a></li>
-          <li><a href="https://instarmony.com/" target="_blank" rel="noopener noreferrer">{f.instarmony}</a></li>
+          <li>
+            <a class="foot-instarmony-link" href="https://instarmony.com/" target="_blank" rel="noopener noreferrer">
+              <InstarmonyMark size={15} />
+              <span>{f.instarmony}</span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -129,6 +140,30 @@ const p = (href: string) => localizePath(lang, href);
     color: var(--night-dim);
     font-size: 15.5px;
     line-height: 1.7;
+  }
+  .foot-org {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 22px;
+    padding: 7px 14px 7px 10px;
+    border-radius: var(--r-full);
+    border: 1px solid var(--night-line);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--night-dim);
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+  }
+  .foot-org:hover {
+    color: var(--night-text);
+    border-color: rgba(238, 240, 255, 0.28);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .foot-instarmony-link {
+    gap: 7px;
   }
   .foot-cols {
     display: grid;

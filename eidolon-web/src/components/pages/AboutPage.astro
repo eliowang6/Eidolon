@@ -6,6 +6,7 @@
  */
 import CtaBand from '../CtaBand.astro';
 import Eyebrow from '../Eyebrow.astro';
+import InstarmonyMark from '../InstarmonyMark.astro';
 import Logo from '../Logo.astro';
 import PageHero from '../PageHero.astro';
 import { GITHUB_ISSUES, SITE } from '../../config/site';
@@ -153,7 +154,10 @@ const contactIcon: Record<string, string> = {
         <a class="tlink" href={SITE.founder.page} target="_blank" rel="noopener">{a.maker.link}</a>
       </p>
       <div class="studio reveal" style="--i:4">
-        <Eyebrow text={a.studio.label} />
+        <div class="studio-head">
+          <InstarmonyMark size={24} class="studio-mark" />
+          <Eyebrow text={a.studio.label} />
+        </div>
         <p set:html={pr(a.studio.body)} />
         <a class="tlink" href={SITE.studio} target="_blank" rel="noopener">{a.studio.link}</a>
       </div>
@@ -686,6 +690,15 @@ const contactIcon: Record<string, string> = {
     margin-top: clamp(36px, 4vw, 52px);
     padding-top: 26px;
     border-top: 1px solid var(--line);
+  }
+  .studio-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .studio-mark {
+    color: var(--ink);
+    opacity: 0.85;
   }
   .studio p {
     margin: 12px 0 16px;

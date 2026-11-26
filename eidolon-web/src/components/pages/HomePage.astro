@@ -6,6 +6,7 @@ import Infinity from '../Infinity.astro';
 import Phone from '../Phone.astro';
 import Release from '../Release.astro';
 import Screen from '../Screen.astro';
+import { SITE } from '../../config/site';
 import { localizePath, pr, prPlain, t, type Lang } from '../../i18n';
 
 interface Props {
@@ -39,6 +40,7 @@ const it = h.powers.items;
     <p class="hero-lede" set:html={pr(h.hero.lede)} />
     <div class="hero-cta">
       <a class="btn btn-holo btn-lg" href={p('/download.html')}>{h.hero.ctaPrimary}</a>
+      <a class="btn btn-ghost btn-lg" href={SITE.webApp} target="_blank" rel="noopener noreferrer">{h.hero.ctaWebLite} ↗</a>
       <a class="btn btn-ghost btn-lg" href={p('/pricing.html')}>{h.hero.ctaSecondary}</a>
     </div>
     <p class="hero-meta mono">

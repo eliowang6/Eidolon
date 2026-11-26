@@ -1,5 +1,6 @@
 export const SITE = {
   url: 'https://sholarel.instarmony.com',
+  webApp: 'https://web.sholarel.instarmony.com',
   // Public beta since 2026-11-01 (see the changelog page).
   status: 'public-beta' as 'closed-beta' | 'waitlist' | 'public-beta',
   downloads: {

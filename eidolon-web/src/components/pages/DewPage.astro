@@ -103,7 +103,23 @@ const STATIC_PACKS = {
     { units: 1000, price: '749' },
   ],
 } as const;
-const staticPacks: ReadonlyArray<{ units: number; price: string }> = STATIC_PACKS[defaultCurrency];
+const STATIC_FIRST_BONUS = {
+  1: { bonus: 1, zh: '首充双倍', en: 'Double Dew on first purchase' },
+  4: { bonus: 4, zh: '首充双倍', en: 'Double Dew on first purchase' },
+  20: { bonus: 10, zh: '首充加赠 50%', en: 'First-purchase bonus +50%' },
+  80: { bonus: 40, zh: '首充加赠 50%', en: 'First-purchase bonus +50%' },
+  400: { bonus: 200, zh: '首充加赠 50%', en: 'First-purchase bonus +50%' },
+  1000: { bonus: 500, zh: '首充加赠 50%', en: 'First-purchase bonus +50%' },
+} as const;
+const staticPacks = STATIC_PACKS[defaultCurrency].map((pack) => {
+  const promo = STATIC_FIRST_BONUS[pack.units];
+  return {
+    ...pack,
+    bonusUnits: promo.bonus,
+    grantedUnits: pack.units + promo.bonus,
+    promoLabel: lang === 'zh' ? promo.zh : promo.en,
+  };
+});
 const fillText = (text: string, vars: Record<string, string | number>) =>
   text.replace(/\{(\w+)\}/g, (_, key) => String(vars[key] ?? ''));
 const multiplierText = (units: number) => {
@@ -280,7 +296,7 @@ const FACT_ICONS = [
                   {fillText(page.baseLine, { count: pack.units, multiplier: multiplierText(pack.units) })}
                 </span>
               </span>
-              <span class="pack-promo">{fillText(page.firstBonusShort, { count: pack.units * 2 })}</span>
+              <span class="pack-promo">{fillText(page.firstBonusShort, { label: pack.promoLabel, count: pack.grantedUnits })}</span>
               <span class="pack-price">
                 <b class="pack-now"><span class="cur">{defaultCurrency === 'USD' ? '$' : '¥'}</span>{pack.price}</b>
               </span>
@@ -553,7 +569,7 @@ const FACT_ICONS = [
           fill(t.packAria, {
             units: plan.units,
             granted: plan.grantedUnits,
-            price: `${plan.promoAvailable && label ? `${label} ` : ''}${money(plan.currency, nowPrice(plan))}`,
+            price: money(plan.currency, nowPrice(plan)),
           })
         );
         input.addEventListener('change', () => select(plan));
@@ -570,7 +586,7 @@ const FACT_ICONS = [
         });
         const promo = node.querySelector<HTMLElement>('.pack-promo')!;
         promo.textContent = plan.promoAvailable
-          ? fill(t.firstBonusShort, { count: plan.grantedUnits })
+          ? fill(t.firstBonusShort, { label, count: plan.grantedUnits })
           : fill(t.grantedLine, { count: plan.grantedUnits });
         promo.hidden = false;
         setMoney(node.querySelector<HTMLElement>('.pack-now')!, plan.currency, nowPrice(plan));

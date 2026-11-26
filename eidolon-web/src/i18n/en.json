@@ -2,8 +2,8 @@
   "meta": {
     "home": {
       "title": "Sholarel — An AI companion on your desktop and phone",
-      "description": "Sholarel (formerly Eidolon) is an AI companion for Windows and Android. Fea or Ael remembers what you say and helps with routes, files and reminders.",
-      "keywords": "Sholarel, Eidolon, Instarmony, AI companion, desktop companion, AI desktop pet, Fea, Ael, long-term memory, voice calls, Windows, Android"
+      "description": "Sholarel (formerly Eidolon) by Instarmony now supports all platforms: install the full app on Windows and Android, or jump straight into Sholarel Lite on the web from HarmonyOS NEXT, iOS, macOS, Linux, and any browser.",
+      "keywords": "Sholarel, Eidolon, Instarmony, AI companion, desktop companion, Sholarel Lite, web app, HarmonyOS NEXT, iOS, macOS, Linux, Windows, Android"
     },
     "features": {
       "title": "Features — Sholarel",
@@ -31,9 +31,9 @@
       "keywords": "Sholarel, Chrono Dew, 溯时星露, credit pack, no signup purchase, Echo credit, WeChat Pay, Alipay, credit card"
     },
     "download": {
-      "title": "Download Sholarel — Windows and Android",
-      "description": "Download Sholarel for Windows (EXE) and Android (APK), now in public beta. The site only serves downloads — sign-up and sign-in both happen inside the app; macOS, iOS and Linux aren’t supported yet.",
-      "keywords": "Sholarel, download, Windows app, EXE, Android APK, AI companion download, desktop pet download"
+      "title": "Download Sholarel — Full Apps (Windows / Android) & Web Sholarel Lite",
+      "description": "Sholarel now supports every platform via the web: install the full app on Windows (EXE) and Android (APK), or use Sholarel Lite directly in your browser on HarmonyOS NEXT, iOS, macOS, Linux, and more.",
+      "keywords": "Sholarel, download, Windows app, Android APK, Sholarel Lite web, HarmonyOS NEXT, iOS, macOS, Linux, AI companion"
     },
     "about": {
       "title": "About Sholarel — Fea, Ael and the people behind it",
@@ -67,7 +67,7 @@
     },
     "product": {
       "title": "Product Architecture — What Is Sholarel & 5-Layer Digital Life",
-      "description": "Sholarel is a personal AI agent designed to live with you across Windows and Android. Explore the 5-layer architecture: Sense, Understand, Remember, Act, and Evolve.",
+      "description": "Sholarel is a personal AI agent across every platform: full native apps on Windows and Android, plus Sholarel Lite on the web for HarmonyOS NEXT, iOS, macOS, Linux, and any browser.",
       "keywords": "What is Sholarel, Personal AI Agent, Digital Life Companion, AI Companion Architecture, Persistent Memory, Windows, Android"
     },
     "useCases": {
@@ -126,11 +126,12 @@
     "ctaDownload": "Download Sholarel",
     "ctaPlans": "See plans",
     "ctaFeatures": "See all features",
-    "platforms": "Windows 10 / 11 · Android 7.0+",
+    "platforms": "Windows & Android Full Apps · Web Sholarel Lite for HarmonyOS / iOS / macOS / Linux",
     "releaseLabel": "Latest",
     "releaseFallback": "Public beta",
     "demoNote": "Screens from a demo account (the app is in Chinese); conversations are illustrative.",
-    "illustration": "Illustration"
+    "illustration": "Illustration",
+    "ctaWebLite": "Web Sholarel Lite"
   },
   "footer": {
     "tagline": "An AI companion that lives on your desktop and phone. Made by Instarmony.",
@@ -163,7 +164,8 @@
     "langHintClose": "Dismiss",
     "productOverview": "Architecture",
     "useCases": "Use Cases",
-    "blog": "Blog & Insights"
+    "blog": "Blog & Insights",
+    "webLite": "Web Sholarel Lite"
   },
   "featuresPage": {
     "label": "Features",
@@ -626,7 +628,7 @@
     ],
     "packsLabel": "Price list",
     "packsTitle": "Choose your Chrono Dew",
-    "packsLede": "Six permanent prices, with a lower unit price at larger sizes. Your first purchase keeps the same price and adds an equal Dew bonus; once per pack per account, shared across currencies.",
+    "packsLede": "Six permanent prices, with a lower unit price at larger sizes. The two starter packs double on first purchase; the four larger packs add a flat 50%, once per pack per account and shared across currencies.",
     "regionLabel": "Billing",
     "regionCn": "Mainland China · CNY",
     "regionIntl": "Everywhere else · USD",
@@ -636,13 +638,13 @@
     "baseLine": "Base {count} Dew · about {multiplier}× Echo",
     "firstBonusLine": "First purchase adds {count} Dew",
     "grantedLine": "This order grants {count} Dew",
-    "firstBonusShort": "First purchase doubled · {count} total",
-    "packAria": "{units} base Dew, {granted} Dew with the first-purchase bonus, {price}",
+    "firstBonusShort": "{label} · {count} total",
+    "packAria": "{units} base Dew, {granted} Dew after the first-purchase bonus, {price}",
     "loading": "Loading prices…",
     "loadFailed": "Prices didn't load — the connection may be unstable.",
     "retry": "Try again",
     "noscript": "Buying needs JavaScript enabled in your browser.",
-    "promoNote": "The first-purchase bonus never changes the price: each pack adds an equal Dew bonus once per account, shared across USD and CNY. Balances never expire, require an active subscription, and do not raise tier access.",
+    "promoNote": "The first-purchase bonus never changes the list price: the 1 and 4 Dew packs add 100%, while the four larger packs add a flat 50% once per account, shared across USD and CNY. Balances never expire, require an active subscription, and do not raise tier access.",
     "founderNote": "Need more than {max} Dew? Write to the founder for a one-to-one top-up:",
     "slipTitle": "Your Chrono Dew",
     "slipRegion": "Billing",
@@ -670,7 +672,7 @@
     "expiresLabel": "Code valid until",
     "pay": "Copy code & go to payment",
     "payNote": "Payment opens in a new window. The code won't be shown again after this page reloads.",
-    "promoUsed": "This email already used the first-purchase double for this pack, so this order grants the base amount.",
+    "promoUsed": "This email already used the first-purchase bonus for this pack, so this order grants the base amount.",
     "restart": "Start over",
     "restartConfirm": "Code not copied yet — click again to drop this order",
     "alreadyPaid": "This order is already paid, so the code won't be shown again. If you didn't save it, contact support with order {id}.",
@@ -713,7 +715,7 @@
       },
       {
         "q": "How does the first-purchase offer work?",
-        "a": "On the first purchase of each pack, the price stays the same and you receive an equal Dew bonus — buy 4 and receive 8, for example. Eligibility is shared across currencies. Unpaid expired orders do not consume it; later purchases grant the base amount."
+        "a": "The price stays the same on each pack's first purchase: the 1 and 4 Dew packs double, while the four larger packs add a flat 50%. Eligibility is shared across currencies. Unpaid expired orders do not consume it; later purchases grant the base amount."
       },
       {
         "q": "Can I buy without an account?",
@@ -743,13 +745,13 @@
     "label": "Download",
     "h1a": "Bring ⟨her|him⟩",
     "h1b": "to **your devices**.",
-    "lede": "Available for Windows and Android, in public beta. One account signs in on both.",
+    "lede": "Now available across every platform via the web: install the full Sholarel app on Windows and Android, or try Sholarel Lite directly in your browser on HarmonyOS NEXT (Huawei), iOS, macOS, Linux, and more — all synced to one account.",
     "backupLink": "Download failing or slow? Try the backup line",
     "nameNote": "The installer still carries the former name Eidolon; the name inside the app switches to Sholarel with updates.",
     "windows": {
       "title": "Windows",
       "req": "Windows 10 / 11 · 64-bit",
-      "desc": "The floating companion on your desktop, plus chat, calls, the journal and deep explore.",
+      "desc": "Full desktop edition: floating 3D/Live2D companion, chat, realtime calls, journal, local tools, and deep explore.",
       "cta": "Download for Windows",
       "file": "EXE · about 230 MB",
       "note": "Needs WebView2 — the installer adds it if it’s missing."
@@ -757,7 +759,7 @@
     "android": {
       "title": "Android",
       "req": "Android 7.0 or later · 64-bit (arm64)",
-      "desc": "Chat and calls on the go, with reminders and proactive messages in your notification bar.",
+      "desc": "Full mobile edition: chat and calls on the go, with reminders and proactive messages in your notification bar.",
       "cta": "Download for Android",
       "file": "APK · about 270 MB",
       "note": "The first install asks you to allow apps from unknown sources. 32-bit devices aren’t supported yet."
@@ -767,7 +769,7 @@
     "steps": [
       {
         "t": "Sign up and sign in",
-        "d": "Create an account with your email; the same account works on Windows and Android."
+        "d": "Create an account directly in the app or on the web (invite code is now optional); one account syncs across every platform."
       },
       {
         "t": "Pick a companion",
@@ -786,49 +788,64 @@
     "tableTitle": "System requirements",
     "tableHead": [
       "",
-      "Windows",
-      "Android"
+      "Windows (Full)",
+      "Android (Full)",
+      "Sholarel Lite (Web)"
     ],
     "tableRows": [
       [
-        "System",
+        "Platforms",
         "Windows 10 / 11",
-        "Android 7.0 or later"
+        "Android 7.0 or later",
+        "HarmonyOS NEXT (Huawei), iOS, macOS, Linux, any modern browser"
       ],
       [
         "Architecture",
-        "x64",
-        "arm64 (no 32-bit yet)"
+        "x64 full client",
+        "arm64 full client (no 32-bit yet)",
+        "Web / PWA (no install, Add to Home Screen supported)"
       ],
       [
         "Runtime",
-        "WebView2 (installed automatically)",
-        "—"
+        "WebView2 (auto-installed)",
+        "Android native shell",
+        "Opens directly in browser"
       ],
       [
         "Package",
         "EXE, about 230 MB",
-        "APK, about 270 MB"
+        "APK, about 270 MB",
+        "No download needed"
       ],
       [
         "Updates",
-        "In-app prompt, installs once you confirm",
-        "In-app, incremental since 3.0.16"
+        "In-app prompt, installs once confirmed",
+        "In-app, incremental since 3.0.16",
+        "Always up to date on load"
       ],
       [
-        "Deep explore",
-        "Yes (higher plans)",
-        "—"
+        "Highlights",
+        "Floating desktop pet, deep explore, local tools",
+        "Native push notifications & sensors",
+        "Core chat, memory, calls, journal, focus cabin"
       ]
     ],
-    "unsupported": "macOS, iOS and Linux aren’t supported yet. The web version isn’t open for sign-ups.",
+    "unsupported": "All platforms are now covered: install full Sholarel on Windows and Android, or try Sholarel Lite on the web (web.sholarel.instarmony.com) on HarmonyOS NEXT (Huawei phones/PCs), iOS, macOS, Linux, and more.",
     "helpTitle": "Trouble installing?",
     "helpQuick": "Quick start",
     "helpQuickDesc": "Installing, first launch and signing in.",
     "helpFaq": "FAQ",
     "helpFaqDesc": "WebView2, audio and subscription questions.",
     "helpMail": "Write to us",
-    "helpMailDesc": "support@instarmony.com — we reply within one working day."
+    "helpMailDesc": "support@instarmony.com — we reply within one working day.",
+    "webLite": {
+      "badge": "All Platforms · Instant Web Access",
+      "title": "Sholarel Lite (Web)",
+      "req": "HarmonyOS NEXT (Huawei Phone/PC) · iOS · macOS · Linux · Any Modern Browser",
+      "desc": "Sholarel now supports every platform through the web! Sign up, sign in, and start chatting right in your browser with zero download. On mobile, add to Home Screen for a full-screen app feel.",
+      "cta": "Open Web Sholarel Lite",
+      "note": "For the floating desktop pet, local automation, and native system presence, install the full app on Windows or Android. HarmonyOS NEXT, iOS, macOS, Linux, and any other device can jump straight into Sholarel Lite anytime with full cloud sync."
+    }
   },
   "aboutPage": {
     "label": "About",
@@ -1159,10 +1176,11 @@
       "hint": "Tap the other side of ∞ to switch",
       "h1a": "No need to open it.",
       "h1b": "**{name}** is already here.",
-      "lede": "Sholarel is an AI companion that lives on your desktop and phone. ⟨She|He⟩ remembers what you’ve said, says good morning first, and handles the small things — routes, reading, alarms.",
-      "ctaPrimary": "Download Sholarel",
+      "lede": "Sholarel now supports every platform through the web: install the full app on Windows and Android, or try Sholarel Lite directly in your browser on HarmonyOS NEXT, iOS, macOS, Linux, and more.",
+      "ctaPrimary": "Download Full App",
       "ctaSecondary": "See plans",
-      "meta": "Windows 10 / 11 · Android 7.0+"
+      "meta": "Windows & Android Full · All-Platform Web Lite",
+      "ctaWebLite": "Try Web Sholarel Lite"
     },
     "day": {
       "label": "A day",
@@ -1363,7 +1381,7 @@
       },
       {
         "q": "Which devices are supported?",
-        "a": "Windows 10 / 11 (64-bit) and Android 7.0+ (arm64). The web version isn’t open for sign-ups. macOS, iOS and Linux aren’t supported yet.",
+        "a": "Every platform is now supported through the web: install the full version of Sholarel on Windows 10 / 11 (64-bit) and Android 7.0+ (arm64); on HarmonyOS NEXT (new Huawei phones & PCs), iOS, macOS, Linux, or any other device, open Sholarel Lite on the web (web.sholarel.instarmony.com) with no installation required — sharing the same account and cloud memory.",
         "downloadLink": true
       },
       {
@@ -1371,8 +1389,8 @@
         "a": "The download is free; AI features like chat and calls need a subscription, and there’s no free trial. USD plans renew automatically and can be cancelled anytime in the app, with benefits kept to the end of the period."
       },
       {
-        "q": "Do I need an invite code to subscribe?",
-        "a": "No. Invite codes are only for creating an account. Subscription checkout only asks for an email, and Chrono Dew needs neither an account nor a code."
+        "q": "Do I need an invite code to sign up or subscribe?",
+        "a": "No. Invite codes are now optional — leave the field blank to register directly, or enter a friend’s referral or gift card code if you have one. Subscriptions and Chrono Dew never need an invite code either."
       },
       {
         "q": "What happens when I run out of Echo?",
@@ -1390,7 +1408,7 @@
     ],
     "cta": {
       "h2": "Install Sholarel. Let **{name}** say hello.",
-      "lede": "Available for Windows and Android. Plans can be started right here on the web."
+      "lede": "Install the full app on Windows and Android, or try Sholarel Lite in any browser on HarmonyOS NEXT, iOS, macOS, and Linux."
     }
   },
   "trustPage": {
@@ -1658,34 +1676,37 @@
     "issues": "Send feedback on GitHub →",
     "cta": {
       "h2": "The latest version is ready to install.",
-      "lede": "Windows 10 / 11 and Android 7.0 or later."
+      "lede": "Full apps on Windows & Android, plus Web Sholarel Lite for HarmonyOS NEXT, iOS, macOS, and Linux."
     },
     "count": "{n} releases"
   },
   "accountPage": {
     "label": "ACCOUNT",
-    "h1": "Sign in and sign up inside the app.",
-    "lede": "The website does not offer sign-in or registration for now. Open the Sholarel app: existing accounts sign in there, and new accounts register on first launch.",
+    "h1": "Sign in or sign up on the web or in the app.",
+    "lede": "Open Web Sholarel Lite directly on any platform (HarmonyOS NEXT, iOS, macOS, Linux, and more), or install the full client on Windows and Android. Invite codes are now optional.",
     "loginTitle": "Already have an account",
-    "loginDesc": "Sign in inside the app. Your subscription, devices and data are managed there.",
+    "loginDesc": "Sign in on Web Sholarel Lite or in the native app — your memory, subscription, and data stay synced across devices.",
     "registerTitle": "New here",
-    "registerDesc": "Download the app and register on first launch; registration needs an invite code.",
+    "registerDesc": "Register directly on the web or in the app. Invite codes are optional — leave blank to join right away.",
     "windows": "Windows desktop",
     "windowsDesc": "Windows 10 / 11",
     "android": "Android",
     "androidDesc": "Android 7.0 or later",
     "download": "Go to downloads",
     "allDownloads": "See all download options",
-    "note": "This page is informational only: we never collect account details or passwords on the web, and this page will not redirect you elsewhere.",
-    "inviteTitle": "Where to get an invite code",
-    "inviteLede": "Invite codes are only needed for registration. Subscriptions and Chrono Dew don’t require one — you can check out directly.",
+    "note": "Official sign-in only takes place inside Web Sholarel Lite (web.sholarel.instarmony.com) or the official desktop/mobile apps.",
+    "inviteTitle": "Invite codes are now optional",
+    "inviteLede": "You no longer need an invite code to sign up — leave it blank to register immediately. If a friend gave you a referral or gift code, you can still enter it for perks. Join our community anytime:",
     "cnLabel": "Mainland China",
-    "cnDesc": "Join the QQ group — codes are handed out there.",
+    "cnDesc": "Join the official QQ group to share tips, report feedback, and catch community updates.",
     "cnCta": "Join the QQ group",
     "intlLabel": "Rest of the world",
-    "intlDesc": "Fill in the waitlist and join our Discord to get a code.",
+    "intlDesc": "Join our Discord community to chat, share feedback, and follow releases.",
     "intlCta": "Join Discord",
-    "inviteNote": "Subscriptions and credit purchases use their own checkout flow and never need an invite code."
+    "inviteNote": "Subscriptions and Chrono Dew never require an invite code either.",
+    "webLiteTitle": "Launch Web Sholarel Lite",
+    "webLiteDesc": "Works across HarmonyOS NEXT (Huawei phones & PCs), iOS, macOS, Linux, and any browser — sign in or create an account with no download.",
+    "webLiteCta": "Open Web Sholarel Lite"
   },
   "productPage": {
     "label": "Architecture",
@@ -1889,8 +1910,8 @@
       },
       {
         "cat": "character",
-        "q": "What is the difference between Fea and Ael? Can I switch between them?",
-        "a": "Fea and Ael share the exact same technical capabilities (memory, voice calling, tool execution), but possess distinct communication styles: Fea is empathetic and detail-focused; Ael is calm, structured, and pragmatic. You can switch companions anytime within the app without losing your underlying memory history."
+        "q": "Which platforms are supported? What about HarmonyOS NEXT, iOS, macOS, or Linux?",
+        "a": "Sholarel now supports every platform via the web: install the full native version on Windows 10 / 11 (64-bit) and Android 7.0+ (arm64); on new Huawei devices (HarmonyOS NEXT), iOS, macOS, Linux, or any other system, open Web Sholarel Lite (web.sholarel.instarmony.com) directly in your browser with full cloud account sync."
       },
       {
         "cat": "device",

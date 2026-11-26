@@ -342,9 +342,11 @@ h1, h2, h3, h4, .font-display {
 .nav-logo-img {
     width: 36px;
     height: 36px;
+    padding: 4px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    object-fit: contain;
+    background: rgba(124, 58, 237, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     box-shadow: 0 0 16px rgba(124, 58, 237, 0.4);
 }
 

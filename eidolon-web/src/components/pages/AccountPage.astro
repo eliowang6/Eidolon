@@ -32,6 +32,16 @@ const p = (href: string) => localizePath(lang, href);
 
 <section class="page-sec">
   <div class="container">
+    <div class="ac-web-banner reveal">
+      <div class="ac-web-copy">
+        <span class="ac-web-badge">ALL PLATFORMS · WEB LITE</span>
+        <h2>{ap.webLiteTitle}</h2>
+        <p>{ap.webLiteDesc}</p>
+      </div>
+      <a class="btn btn-holo btn-lg ac-web-btn" href={SITE.webApp} target="_blank" rel="noopener noreferrer" data-web-lite-link>
+        {ap.webLiteCta} ↗
+      </a>
+    </div>
     <div class="ac-dl">
       <a class="ac-plat reveal" href={p('/download.html')}>
         <span class="ac-plat-name">{ap.windows}</span>
@@ -50,6 +60,25 @@ const p = (href: string) => localizePath(lang, href);
     </p>
   </div>
 </section>
+
+<script is:inline>
+  (() => {
+    try {
+      const params = new URLSearchParams(window.location.search || '');
+      const invite = (params.get('invite') || params.get('gift') || params.get('code') || '').trim();
+      if (!invite) return;
+      document.querySelectorAll('[data-web-lite-link]').forEach((el) => {
+        const href = el.getAttribute('href');
+        if (!href) return;
+        const url = new URL(href);
+        url.searchParams.set('invite', invite);
+        el.setAttribute('href', url.toString());
+      });
+    } catch {
+      // ignore
+    }
+  })();
+</script>
 
 <section class="page-sec">
   <div class="container">
@@ -100,6 +129,50 @@ const p = (href: string) => localizePath(lang, href);
     color: var(--night-dim);
     font-size: 0.95rem;
     line-height: 1.65;
+  }
+  .ac-web-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px 24px;
+    max-width: 760px;
+    margin-bottom: 18px;
+    padding: 24px 26px;
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+    border-radius: 18px;
+    background:
+      radial-gradient(60% 100% at 100% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
+      var(--card);
+  }
+  .ac-web-copy {
+    flex: 1 1 320px;
+  }
+  .ac-web-badge {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--accent-ink);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+  .ac-web-copy h2 {
+    margin: 0 0 6px;
+    font-family: var(--f-body);
+    font-size: 1.12rem;
+    font-weight: 600;
+  }
+  .ac-web-copy p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+  .ac-web-btn {
+    flex: none;
   }
   .ac-dl {
     display: grid;

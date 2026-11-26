@@ -2,8 +2,8 @@
   "meta": {
     "home": {
       "title": "Sholarel — 住在你桌面和手机上的 AI 陪伴",
-      "description": "Sholarel 是 Instarmony 出品的 AI 陪伴应用（曾用名 Eidolon）。选择 Fea 或 Ael 作为伙伴：记得你说过的话，会主动问候，也能帮你查路线、读文件、设提醒。支持 Windows 与 Android，公开测试中。",
-      "keywords": "Sholarel, Eidolon, Instarmony, AI 陪伴, AI 桌宠, 桌面伙伴, Fea, Ael, 长期记忆, 语音通话, Windows, Android"
+      "description": "Sholarel 是 Instarmony 出品的 AI 陪伴应用（曾用名 Eidolon）。Windows 与 Android 可安装完整版客户端，新华为纯血鸿蒙、iOS、macOS、Linux 等全平台可直接通过网页端 Sholarel Lite 尝鲜。",
+      "keywords": "Sholarel, Eidolon, Instarmony, AI 陪伴, AI 桌宠, 桌面伙伴, Fea, Ael, 长期记忆, 语音通话, Windows, Android, 网页端, Sholarel Lite, 纯血鸿蒙, iOS, macOS, Linux"
     },
     "features": {
       "title": "全部能力 — Sholarel",
@@ -31,9 +31,9 @@
       "keywords": "Sholarel, 溯时星露, Chrono Dew, 额度包, 免注册购买, 回响额度, 微信支付, 支付宝, 信用卡"
     },
     "download": {
-      "title": "下载 Sholarel — Windows 与 Android",
-      "description": "下载 Sholarel 的 Windows（EXE）与 Android（APK）客户端，公开测试中。官网只提供下载，注册与登录都在客户端内完成；macOS、iOS 与 Linux 暂不支持。",
-      "keywords": "Sholarel, 下载, Windows 客户端, EXE, Android APK, AI 陪伴下载, AI 桌宠下载"
+      "title": "下载 Sholarel — Windows / Android 完整版与全平台网页端 Sholarel Lite",
+      "description": "Sholarel 现已通过网页端支持全平台：Windows（EXE）与 Android（APK）可安装体验完整版；新华为手机/电脑（纯血鸿蒙）、iOS、macOS、Linux 等可直接打开网页端 Sholarel Lite 免安装尝鲜。",
+      "keywords": "Sholarel, 下载, Windows 客户端, Android APK, 网页端 Sholarel Lite, 纯血鸿蒙, iOS, macOS, Linux, AI 陪伴下载"
     },
     "about": {
       "title": "关于 Sholarel — Fea、Ael 与做它的人",
@@ -67,7 +67,7 @@
     },
     "product": {
       "title": "产品介绍 — Sholarel 是什么与五层数字生命架构",
-      "description": "Sholarel 是一个能够持续理解你、融入真实生活并协助跨端执行的 Personal AI Agent。了解 Sholarel 的感知、理解、多层长期记忆、跨端行动与自主演化架构。",
+      "description": "Sholarel 是一个能够持续理解你、融入真实生活并协助跨端执行的 Personal AI Agent。支持 Windows 与 Android 完整版，以及面向全平台的网页端 Sholarel Lite。",
       "keywords": "Sholarel 是什么, Personal AI Agent, 数字生命, AI 伴侣架构, 长期记忆, 跨端协同, AI 助手"
     },
     "useCases": {
@@ -126,11 +126,12 @@
     "ctaDownload": "下载 Sholarel",
     "ctaPlans": "查看订阅方案",
     "ctaFeatures": "看全部能力",
-    "platforms": "Windows 10 / 11 · Android 7.0+",
+    "platforms": "Windows · Android 完整版 · 纯血鸿蒙 / iOS / macOS / Linux 网页端 Sholarel Lite",
     "releaseLabel": "最新版",
     "releaseFallback": "公开测试中",
     "demoNote": "画面来自演示账号，对话为演示内容。",
-    "illustration": "插画"
+    "illustration": "插画",
+    "ctaWebLite": "网页端 Sholarel Lite"
   },
   "footer": {
     "tagline": "住在你桌面和手机上的 AI 陪伴。由 Instarmony 出品。",
@@ -163,7 +164,8 @@
     "langHintClose": "关闭提示",
     "productOverview": "产品架构",
     "useCases": "使用场景",
-    "blog": "博客与洞见"
+    "blog": "博客与洞见",
+    "webLite": "网页端 Sholarel Lite"
   },
   "featuresPage": {
     "label": "能力 / Features",
@@ -626,7 +628,7 @@
     ],
     "packsLabel": "价目",
     "packsTitle": "选一份溯时星露",
-    "packsLede": "六档常驻价，份数越多，每颗越划算。首次购买同档价格不变、额外赠送等量星露；每个账号每档跨币种共享一次。",
+    "packsLede": "六档常驻价，份数越多，每颗越划算。前两档首充双倍，后四档首充统一加赠 50%；每个账号每档跨币种共享一次。",
     "regionLabel": "结算方式",
     "regionCn": "中国大陆 · 人民币",
     "regionIntl": "其他地区 · 美元",
@@ -636,13 +638,13 @@
     "baseLine": "基础 {count} 颗 · 约 {multiplier}x 回响",
     "firstBonusLine": "首购额外赠送 {count} 颗",
     "grantedLine": "本次到账 {count} 颗",
-    "firstBonusShort": "首充双倍 · 实得 {count} 颗",
-    "packAria": "{units} 颗星露，首充双倍实得 {granted} 颗，{price}",
+    "firstBonusShort": "{label} · 实得 {count} 颗",
+    "packAria": "基础 {units} 颗星露，首充加赠后实得 {granted} 颗，{price}",
     "loading": "正在获取价格…",
     "loadFailed": "价格没能加载出来，可能是网络不太稳定。",
     "retry": "重新加载",
     "noscript": "购买需要启用浏览器的 JavaScript。",
-    "promoNote": "首充双倍不改变售价：首次购买每档额外赠送等量星露，每账号每档跨币种共享一次。余额永久有效，需配合有效订阅使用，不提升档位权限。",
+    "promoNote": "首充加赠不改变售价：1 颗和 4 颗档 +100%，后四档统一 +50%；每账号每档跨币种共享一次。余额永久有效，需配合有效订阅使用，不提升档位权限。",
     "founderNote": "需要超过 {max} 星露？请写信给创始人，一对一充值：",
     "slipTitle": "你的溯时星露",
     "slipRegion": "结算",
@@ -670,7 +672,7 @@
     "expiresLabel": "口令有效期至",
     "pay": "复制口令并前往支付",
     "payNote": "支付在新窗口打开。这一页刷新后，口令不会再显示。",
-    "promoUsed": "这个邮箱已经享受过本档首充双倍，本次按基础数量到账。",
+    "promoUsed": "这个邮箱已经享受过本档首充加赠，本次按基础数量到账。",
     "restart": "重新选择",
     "restartConfirm": "口令还没复制，再点一次放弃这笔订单",
     "alreadyPaid": "这笔订单已经付过款，口令不会再次显示。若没保存，请带上订单号 {id} 联系客服。",
@@ -713,7 +715,7 @@
       },
       {
         "q": "首充优惠怎么算？",
-        "a": "每个账号每个档位首次购买时，价格不变，额外赠送等量星露，例如买 4 颗到账 8 颗；跨币种按档位共用一次。未支付超时订单不会占用资格，复购按基础数量到账。"
+        "a": "每个账号每个档位首次购买时价格不变：1 颗和 4 颗档双倍，后四档统一加赠 50%；跨币种按档位共用一次。未支付超时订单不会占用资格，复购按基础数量到账。"
       },
       {
         "q": "不注册也能买吗？",
@@ -743,13 +745,13 @@
     "label": "下载 / Download",
     "h1a": "把⟨她|他⟩",
     "h1b": "带到你的**设备**上。",
-    "lede": "Windows 和 Android 都能装，正在公开测试。同一个账号两端都能登录。",
+    "lede": "已通过网页端支持全平台：在 Windows 和 Android 上安装完整版 Sholarel，其他平台（新华为手机/电脑纯血鸿蒙、iOS、macOS、Linux 等）可直接打开网页端 Sholarel Lite 尝鲜，同一账号数据云端互通。",
     "backupLink": "下载失败或太慢？换备用线路",
     "nameNote": "安装包的文件名还是曾用名 Eidolon，App 里的名字会随更新换成 Sholarel。",
     "windows": {
       "title": "Windows",
       "req": "Windows 10 / 11 · 64 位",
-      "desc": "桌面上的悬浮伙伴，加上聊天、通话、手账和深度探索。",
+      "desc": "完整版桌面体验：悬浮桌宠、聊天、实时通话、手账、本地工具与深度探索。",
       "cta": "下载 Windows 版",
       "file": "EXE · 约 230 MB",
       "note": "需要 WebView2；缺少时安装程序会自动补上。"
@@ -757,7 +759,7 @@
     "android": {
       "title": "Android",
       "req": "Android 7.0 及以上 · 64 位（arm64）",
-      "desc": "随身聊天和通话，提醒和主动消息能送到通知栏。",
+      "desc": "完整版移动体验：随身聊天和通话，提醒与主动消息直达系统通知栏。",
       "cta": "下载 Android 版",
       "file": "APK · 约 270 MB",
       "note": "首次安装需要允许「安装未知来源应用」。暂不支持 32 位设备。"
@@ -767,7 +769,7 @@
     "steps": [
       {
         "t": "注册并登录",
-        "d": "用邮箱注册账号；Windows 和 Android 用同一个账号。"
+        "d": "支持直接在应用内或网页端注册账号（邀请码改为选填，留空即可注册）；全平台共用同一个账号。"
       },
       {
         "t": "选一位伙伴",
@@ -786,49 +788,64 @@
     "tableTitle": "系统要求",
     "tableHead": [
       "",
-      "Windows",
-      "Android"
+      "Windows 完整版",
+      "Android 完整版",
+      "网页端 Sholarel Lite"
     ],
     "tableRows": [
       [
-        "系统",
+        "支持平台",
         "Windows 10 / 11",
-        "Android 7.0 及以上"
+        "Android 7.0 及以上",
+        "新华为手机/电脑（纯血鸿蒙）、iOS、macOS、Linux、全平台浏览器"
       ],
       [
-        "架构",
-        "x64",
-        "arm64（暂不支持 32 位）"
+        "架构 / 形态",
+        "x64 完整客户端",
+        "arm64 完整客户端（暂不支持 32 位）",
+        "Web / PWA（免安装，支持主屏幕全屏）"
       ],
       [
         "运行环境",
         "WebView2（自动安装）",
-        "—"
+        "Android 原生壳",
+        "现代浏览器直开"
       ],
       [
         "安装包",
         "EXE，约 230 MB",
-        "APK，约 270 MB"
+        "APK，约 270 MB",
+        "免下载，打开即用"
       ],
       [
         "更新方式",
         "App 内提示，确认后自动安装",
-        "App 内更新，3.0.16 起增量下载"
+        "App 内更新，3.0.16 起增量下载",
+        "刷新即最新版"
       ],
       [
-        "深度探索",
-        "支持（需更高档位）",
-        "—"
+        "特色能力",
+        "悬浮桌宠、深度探索、本地工具",
+        "系统通知栏推送、后台感知",
+        "核心对话、记忆、通话、手账、专注舱"
       ]
     ],
-    "unsupported": "macOS、iOS 和 Linux 暂不支持。网页版暂不开放注册。",
+    "unsupported": "全平台现已覆盖：Windows 与 Android 可安装使用完整版 Sholarel；新华为手机/电脑（纯血鸿蒙）、iOS、macOS、Linux 等平台可直接使用网页端 Sholarel Lite（web.sholarel.instarmony.com）尝鲜。",
     "helpTitle": "装不上？",
     "helpQuick": "快速上手",
     "helpQuickDesc": "安装、第一次启动和登录。",
     "helpFaq": "常见问题",
     "helpFaqDesc": "WebView2、声音和订阅相关的问题。",
     "helpMail": "写信给我们",
-    "helpMailDesc": "support@instarmony.com，工作日 24 小时内回复。"
+    "helpMailDesc": "support@instarmony.com，工作日 24 小时内回复。",
+    "webLite": {
+      "badge": "全平台 · 免安装直开",
+      "title": "网页端 Sholarel Lite",
+      "req": "新华为手机/电脑（纯血鸿蒙）· iOS · macOS · Linux · 全平台浏览器",
+      "desc": "Sholarel 现已通过网页端正式支持全平台！打开浏览器即可注册登录并开启陪伴体验，无需下载安装包；手机端支持「添加到主屏幕 / 桌面」全屏使用。",
+      "cta": "立即打开网页端 Sholarel Lite",
+      "note": "Windows 与 Android 推荐安装上方完整版以体验悬浮桌宠、桌面自动化与后台感知；纯血鸿蒙、iOS、Mac、Linux 等其他平台可随时通过网页端尝鲜，同一账号云端同步。"
+    }
   },
   "aboutPage": {
     "label": "关于 / About",
@@ -1159,10 +1176,11 @@
       "hint": "点 ∞ 的另一边，换一位陪你逛",
       "h1a": "不用打开，",
       "h1b": "**⟨她|他⟩**就在。",
-      "lede": "Sholarel 是住在你桌面和手机上的 AI 陪伴。⟨她|他⟩记得你说过的话，会先开口问候，也会帮你查路线、读资料、定闹钟。",
-      "ctaPrimary": "下载 Sholarel",
+      "lede": "Sholarel 现已通过网页端支持全平台：在 Windows 与 Android 安装完整版体验桌面常驻与深度能力，在新华为纯血鸿蒙、iOS、Mac、Linux 上也可直接打开网页端 Sholarel Lite 尝鲜。",
+      "ctaPrimary": "下载完整版",
       "ctaSecondary": "首月 ¥9.9 起",
-      "meta": "Windows 10 / 11 · Android 7.0+"
+      "meta": "Win · Android 完整版 · 全平台网页端 Sholarel Lite",
+      "ctaWebLite": "网页端 Sholarel Lite 尝鲜"
     },
     "day": {
       "label": "一天 / A day",
@@ -1363,7 +1381,7 @@
       },
       {
         "q": "支持哪些设备？",
-        "a": "Windows 10 / 11（64 位）和 Android 7.0 及以上（arm64）。网页版暂不开放注册。macOS、iOS 与 Linux 暂不支持。",
+        "a": "已通过网页端支持全平台：Windows 10 / 11（64 位）和 Android 7.0 及以上（arm64）可安装并使用完整版 Sholarel；新华为手机/电脑（纯血鸿蒙）、iOS、macOS、Linux 等其他平台也可以直接打开网页端 Sholarel Lite（web.sholarel.instarmony.com）免安装尝鲜，同一账号记忆与数据云端互通。",
         "downloadLink": true
       },
       {
@@ -1371,8 +1389,8 @@
         "a": "下载免费；AI 对话、通话等能力需要订阅，目前不提供免费试用。人民币方案 Spark 首期 ¥9.9，按 31 天手动续费、不会自动扣款；美元方案自动续费，可随时在 App 内取消，权益保留到当期结束。"
       },
       {
-        "q": "开通订阅需要邀请码吗？",
-        "a": "不需要。邀请码只用于注册账号；订阅结算只填邮箱，溯时星露也不需要注册或邀请码。"
+        "q": "注册或订阅需要邀请码吗？",
+        "a": "不需要。邀请码现已改为选填，留空即可直接注册账号；如果你有好友邀请码或星辉赠礼卡口令，也可以在注册时顺手填写。订阅结算与溯时星露同样不需要邀请码。"
       },
       {
         "q": "回响额度用完了怎么办？",
@@ -1390,7 +1408,7 @@
     ],
     "cta": {
       "h2": "装上 Sholarel，**⟨她|他⟩**先跟你打招呼。",
-      "lede": "Windows 与 Android 都能下载；订阅在网页上就能开通。"
+      "lede": "Windows 与 Android 可安装完整版；新华为纯血鸿蒙、iOS、macOS、Linux 等全平台可直接用网页端 Sholarel Lite 尝鲜。"
     }
   },
   "trustPage": {
@@ -1658,34 +1676,37 @@
     "issues": "在 GitHub 提交反馈 →",
     "cta": {
       "h2": "最新版，现在就能装。",
-      "lede": "Windows 10 / 11 与 Android 7.0 以上。"
+      "lede": "Windows 与 Android 完整版，以及面向新华为纯血鸿蒙 / iOS / macOS / Linux 的网页端 Sholarel Lite。"
     },
     "count": "{n} 次更新"
   },
   "accountPage": {
     "label": "账号 / ACCOUNT",
-    "h1": "登录和注册，都在应用内完成。",
-    "lede": "网页端暂时不提供登录和注册。打开 Sholarel 应用，已有账号直接登录；新用户可在首次启动时注册。",
+    "h1": "在网页端或客户端，即刻登录与注册。",
+    "lede": "现在既可以直接打开网页端 Sholarel Lite（全平台支持，含纯血鸿蒙、iOS、Mac、Linux）注册登录，也可以在 Windows 与 Android 上安装完整版客户端。邀请码现已改为选填。",
     "loginTitle": "已有账号",
-    "loginDesc": "在应用中登录，订阅、设备与个人数据都在应用内管理。",
+    "loginDesc": "在网页端 Sholarel Lite 或客户端中登录，同一账号跨设备自动同步记忆与订阅。",
     "registerTitle": "还没有账号",
-    "registerDesc": "下载应用，首次启动时注册；注册需要邀请码。",
+    "registerDesc": "网页端与客户端均可直接注册，邀请码现已改为选填，留空即可创建账号。",
     "windows": "Windows 桌面端",
     "windowsDesc": "Windows 10 / 11",
     "android": "Android 移动端",
     "androidDesc": "Android 7.0 以上",
     "download": "前往下载",
     "allDownloads": "查看全部下载方式",
-    "note": "本页只做说明：我们不会在网页上收集账号或密码，也不会把登录页跳转到别处。",
-    "inviteTitle": "邀请码怎么拿？",
-    "inviteLede": "邀请码只用于注册，开通订阅和购买溯时星露都不需要邀请码，可以直接结算。",
+    "note": "本页提供官方入口说明：账号密码仅在官方网页端（web.sholarel.instarmony.com）或客户端内输入。",
+    "inviteTitle": "邀请码现已改为选填",
+    "inviteLede": "现在注册账号不再强制要求邀请码，留空即可直接注册。如果你有好友分享的星辉邀请码或赠礼卡口令，填写后仍可领取对应福利；也欢迎加入社群交流：",
     "cnLabel": "中国大陆",
-    "cnDesc": "加入 QQ 群，邀请码在群里发放。",
+    "cnDesc": "加入官方 QQ 群，交流玩法、反馈建议或领取社区福利。",
     "cnCta": "加入 QQ 群",
     "intlLabel": "其他地区",
-    "intlDesc": "填写 waitlist，并加入 Discord 获取邀请码。",
+    "intlDesc": "加入官方 Discord 社区，交流体验与获取最新动态。",
     "intlCta": "加入 Discord",
-    "inviteNote": "订阅与额度购买走独立的结算流程，不需要邀请码。"
+    "inviteNote": "订阅与溯时星露同样不需要邀请码，注册与购买均可直接完成。",
+    "webLiteTitle": "直接打开网页端 Sholarel Lite",
+    "webLiteDesc": "支持新华为手机/电脑（纯血鸿蒙）、iOS、macOS、Linux 等全平台浏览器，免安装直接登录或注册。",
+    "webLiteCta": "打开网页端 Sholarel Lite"
   },
   "productPage": {
     "label": "产品架构 / Architecture",
@@ -1889,8 +1910,8 @@
       },
       {
         "cat": "character",
-        "q": "Fea 和 Ael 两位伙伴有什么区别？我之后可以换人吗？",
-        "a": "Fea 与 Ael 拥有完全相同的功能能力（包括记忆、通话、工具调用等），但具备不同的说话风格与思考节奏：Fea 细腻敏锐、善于情绪关怀；Ael 沉稳克制、偏向理性梳理。你可以在客户端内随时无损切换，也可以为伴侣设定专属昵称。"
+        "q": "目前支持哪些平台和操作系统？纯血鸿蒙、iOS、macOS 或 Linux 能用吗？",
+        "a": "现在已通过网页端支持全平台：在 Windows 10 / 11（64位）与 Android 7.0 及以上（arm64）可以安装并使用完整版 Sholarel；新华为手机/电脑（纯血鸿蒙 HarmonyOS NEXT）、iOS、macOS、Linux 等其他平台也可以直接访问网页端 Sholarel Lite（web.sholarel.instarmony.com）免安装尝鲜，同一账号数据云端同步。"
       },
       {
         "cat": "device",

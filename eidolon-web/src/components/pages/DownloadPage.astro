@@ -82,6 +82,26 @@ const [, ...cols] = dp.tableHead;
         </article>
       ))
     }
+    <article class="plat plat--web reveal" style="--i:5">
+      <div class="plat-web-head">
+        <div class="plat-web-copy">
+          <span class="plat-web-badge">{dp.webLite.badge}</span>
+          <h2 class="plat-title">{dp.webLite.title}</h2>
+          <p class="plat-req">{dp.webLite.req}</p>
+          <p class="plat-desc" set:html={pr(dp.webLite.desc)} />
+          <p class="plat-note plat-note--web" set:html={pr(dp.webLite.note)} />
+        </div>
+        <div class="plat-web-actions">
+          <a class="btn btn-holo btn-lg" href={SITE.webApp} target="_blank" rel="noopener noreferrer">
+            {dp.webLite.cta} ↗
+          </a>
+          <p class="plat-meta">
+            <span class="live" aria-hidden="true" />
+            <span>web.sholarel.instarmony.com</span>
+          </p>
+        </div>
+      </div>
+    </article>
   </div>
 </PageHero>
 
@@ -311,6 +331,51 @@ const [, ...cols] = dp.tableHead;
   .plat-backup:hover {
     color: var(--ink);
     border-bottom-color: var(--ink);
+  }
+  .plat--web {
+    grid-column: 1 / -1;
+    background:
+      radial-gradient(60% 100% at 100% 0%, rgba(164, 146, 255, 0.28), transparent 70%),
+      radial-gradient(50% 80% at 0% 100%, rgba(239, 143, 187, 0.2), transparent 70%),
+      linear-gradient(155deg, rgba(44, 52, 118, 0.72), rgba(20, 24, 66, 0.84));
+  }
+  .plat-web-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px clamp(24px, 4vw, 56px);
+    padding: clamp(26px, 3vw, 40px);
+  }
+  .plat-web-copy {
+    flex: 1 1 420px;
+  }
+  .plat-web-copy .plat-desc {
+    max-width: 44em;
+    margin-bottom: 12px;
+  }
+  .plat-web-badge {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(205, 182, 255, 0.35);
+    background: rgba(205, 182, 255, 0.14);
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+  .plat-note--web {
+    margin-top: 8px;
+    max-width: 52em;
+  }
+  .plat-web-actions {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
   @media (max-width: 900px) {
     .dl-grid {

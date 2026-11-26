@@ -398,7 +398,7 @@ export const ARTICLES_ZH: Record<string, ArticleData> = {
         heading: '四、现在怎么开始试试？关于平台与费用的坦诚说明',
         paragraphs: [
           '很多朋友看完会关心两个最实际的问题：我的设备能不能装？要不要一开始就花钱？',
-          '关于设备：目前 Sholarel 公开测试版支持 **Windows 10 / 11（64位）** 电脑端与 **Android 7.0 及以上** 手机端（网页端为邀请制内测，macOS 与 iOS 客户端正在开发排期中）。',
+          '关于设备：Sholarel 现已通过网页端实现全平台覆盖——在 **Windows 10 / 11（64位）** 与 **Android 7.0 及以上** 可安装体验完整版客户端；**新华为手机/电脑（纯血鸿蒙）、iOS、macOS、Linux** 等其他平台也可以直接打开网页端 **Sholarel Lite**（web.sholarel.instarmony.com）免安装尝鲜，同一账号数据云端互通。',
           '关于费用：Sholarel 提供**免费档位**，下载注册后就可以直接和 Fea 或 Ael 开启日常聊天、桌面陪伴、专注舱与双向交换手账。如果你聊得特别投缘、或者需要连续发上百张截图一起深度共创，既可以选择首月 ¥9.9 起的月度方案（人民币方案采用**按月手动续费，绝不绑卡自动扣费**），也可以免注册直接购买**永不过期的「溯时星露」加油包**，用多少算多少，完全没有包月压力。',
         ],
         quote:
@@ -788,7 +788,7 @@ export const ARTICLES_EN: Record<string, ArticleData> = {
         heading: '4. How to Try It Yourself: Platforms and Transparent Pricing',
         paragraphs: [
           'Two practical questions people always ask before downloading: What devices does it run on, and do I have to pay upfront?',
-          'On platforms: Sholarel’s public beta currently supports **Windows 10 / 11 (64-bit)** and **Android 7.0+ (64-bit arm64)**, with web access by invitation and macOS / iOS clients on the roadmap.',
+          'On platforms: Sholarel now supports every platform via the web — install the full native app on **Windows 10 / 11 (64-bit)** and **Android 7.0+ (64-bit arm64)**, or jump straight into **Sholarel Lite** on the web (web.sholarel.instarmony.com) on **HarmonyOS NEXT (new Huawei phones & PCs), iOS, macOS, Linux**, and any browser, with full cloud account sync.',
           'On pricing: You can start on the **Free tier** right after downloading—chatting with Fea or Ael, placing them on your desktop, using the Focus Chamber, and writing in your Shared Journal. If you want heavier daily conversations or multi-image co-creation, you can pick a monthly plan (CNY plans use manual monthly renewal with zero auto-charge; USD plans can be cancelled anytime) or grab **Chrono Dew (溯时星露)**—permanent credit packs that never expire and do not even require registering on the website first.',
         ],
         quote:

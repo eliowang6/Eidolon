@@ -217,6 +217,10 @@ const config: Config = {
           title: 'More',
           items: [
             {
+              label: 'Instarmony',
+              href: 'https://instarmony.com/',
+            },
+            {
               label: 'Official Website',
               href: 'https://sholarel.instarmony.com/',
             },
@@ -231,7 +235,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Sholarel. Built with Docusaurus.`,
+      copyright: `<span style="display:inline-flex;align-items:center;gap:6px;vertical-align:middle;"><img src="${process.env.DOCS_BASE_URL ?? '/docs/'}img/instarmony-mark.png" alt="Instarmony" width="16" height="16" style="opacity:0.82" />Copyright © ${new Date().getFullYear()} Sholarel by Instarmony. Built with Docusaurus.</span>`,
     },
     prism: {
       theme: prismThemes.github,
